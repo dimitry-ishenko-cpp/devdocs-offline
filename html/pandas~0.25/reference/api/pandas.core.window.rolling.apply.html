@@ -1,0 +1,26 @@
+<h1 id="pandas-core-window-rolling-apply">pandas.core.window.Rolling.apply</h1> <dl class="method"> <dt id="pandas.core.window.Rolling.apply">
+<code>Rolling.apply(self, func, raw=None, args=(), kwargs={})</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/window.py#L1847-L1850"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>The rolling function’s apply function.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function</code> </dt> <dd>
+<p class="first last">Must produce a single value from an ndarray input if <code>raw=True</code> or a single value from a Series if <code>raw=False</code>.</p> </dd> <dt>
+<code>raw : bool, default None</code> </dt> <dd>
+<ul class="first simple"> <li>
+<code>False</code> : passes each row or column as a Series to the function.</li> <li>
+<code>True</code> or <code>None</code> : the passed function will receive ndarray objects instead. If you are just applying a NumPy reduction function this will achieve much better performance.</li> </ul> <p>The <code>raw</code> parameter is required and will show a FutureWarning if not passed. In the future <code>raw</code> will default to False.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt><strong>*args, **kwargs</strong></dt> <dd>
+<p class="first last">Arguments and keyword arguments to be passed into func.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Return type is determined by the caller.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.rolling</code> </dt> <dd>Series rolling.</dd> <dt>
+<code>DataFrame.rolling</code> </dt> <dd>DataFrame rolling.</dd> </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.apply.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.apply.html</a>
+  </p>
+</div>

@@ -1,0 +1,56 @@
+<h1 id="pandas-series-all">pandas.Series.all</h1> <dl class="method"> <dt id="pandas.Series.all">
+<code>Series.all(self, axis=0, bool_only=None, skipna=True, level=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L11701-L11726"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return whether all elements are True, potentially over an axis.</p> <p>Returns True unless there at least one element within a series or along a Dataframe axis that is False or equivalent (e.g. zero or empty).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’, None}, default 0</code> </dt> <dd>
+<p class="first">Indicate which axis or axes should be reduced.</p> <ul class="last simple"> <li>0 / ‘index’ : reduce the index, return a Series whose index is the original column labels.</li> <li>1 / ‘columns’ : reduce the columns, return a Series whose index is the original index.</li> <li>None : reduce all axes, return a scalar.</li> </ul> </dd> <dt>
+<code>bool_only : bool, default None</code> </dt> <dd>
+<p class="first last">Include only boolean columns. If None, will attempt to use everything, then use only boolean data. Not implemented for Series.</p> </dd> <dt>
+<code>skipna : bool, default True</code> </dt> <dd>
+<p class="first last">Exclude NA/null values. If the entire row/column is NA and skipna is True, then the result will be True, as for an empty row/column. If skipna is False, then NA are treated as True, because these are not equal to zero.</p> </dd> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">If the axis is a MultiIndex (hierarchical), count along a particular level, collapsing into a scalar.</p> </dd> <dt>
+<code>**kwargs : any, default None</code> </dt> <dd>
+<p class="first last">Additional keywords have no effect but might be accepted for compatibility with NumPy.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar or Series</dt> <dd>
+<p class="first last">If level is specified, then, Series is returned; otherwise, scalar is returned.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="#pandas.Series.all" title="pandas.Series.all"><code>Series.all</code></a>
+</dt> <dd>Return True if all elements are True.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.any.html#pandas.DataFrame.any" title="pandas.DataFrame.any"><code>DataFrame.any</code></a>
+</dt> <dd>Return True if one (or more) elements are True.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Series</strong></p> <pre data-language="python">&gt;&gt;&gt; pd.Series([True, True]).all()
+True
+&gt;&gt;&gt; pd.Series([True, False]).all()
+False
+&gt;&gt;&gt; pd.Series([]).all()
+True
+&gt;&gt;&gt; pd.Series([np.nan]).all()
+True
+&gt;&gt;&gt; pd.Series([np.nan]).all(skipna=False)
+True
+</pre> <p><strong>DataFrames</strong></p> <p>Create a dataframe from a dictionary.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'col1': [True, True], 'col2': [True, False]})
+&gt;&gt;&gt; df
+   col1   col2
+0  True   True
+1  True  False
+</pre> <p>Default behaviour checks if column-wise values all return True.</p> <pre data-language="python">&gt;&gt;&gt; df.all()
+col1     True
+col2    False
+dtype: bool
+</pre> <p>Specify <code>axis='columns'</code> to check if row-wise values all return True.</p> <pre data-language="python">&gt;&gt;&gt; df.all(axis='columns')
+0     True
+1    False
+dtype: bool
+</pre> <p>Or <code>axis=None</code> for whether every value is True.</p> <pre data-language="python">&gt;&gt;&gt; df.all(axis=None)
+False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.all.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.all.html</a>
+  </p>
+</div>

@@ -1,0 +1,35 @@
+    <h1 id="firstHeading" class="firstHeading">std::counted_iterator&lt;I&gt;::operator*,-&gt;</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">constexpr decltype(auto) operator*();</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">constexpr decltype(auto) operator*() const
+    requires /*dereferenceable*/&lt;const I&gt;;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">constexpr auto operator-&gt;() const noexcept
+    requires std::contiguous_iterator&lt;I&gt;;</pre>
+</td> <td> (3) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1-2)</span> Returns a reference to the current element. The behavior is undefined if <code>this-&gt;count() &lt;= 0</code>. The function's body is equivalent to <code>return *current;</code>.</div> <div class="t-li1">
+<span class="t-li">3)</span> Returns a pointer to the current element. The function's body is equivalent to <code><span class="kw1">return</span> <a href="http://en.cppreference.com/w/cpp/memory/to_address"><span class="kw2649">std::<span class="me2">to_address</span></span></a><span class="br0">(</span>current<span class="br0">)</span><span class="sy4">;</span></code>.</div>  <h3 id="Parameters"> Parameters</h3> <p>(none).</p>
+<h3 id="Return_value"> Return value</h3> <p>Reference or pointer to the current element.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;complex&gt;
+#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+using std::operator""i;
+ 
+int main()
+{
+    const auto il = { 1.i, 2.i, 3.i, 4.i, 5.i };
+ 
+    for (std::counted_iterator i{il.begin() + 1, 3}; i != std::default_sentinel; ++i)
+        std::cout &lt;&lt; *i &lt;&lt; ' ';
+    std::cout &lt;&lt; '\n';
+ 
+    for (std::counted_iterator i{il.begin() + 1, 3}; i != std::default_sentinel; ++i)
+        std::cout &lt;&lt; i-&gt;imag() &lt;&lt; ' ';
+    std::cout &lt;&lt; '\n';
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">(0,2) (0,3) (0,4)
+2 3 4</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="operator_at.html" title="cpp/iterator/counted iterator/operator at"> <span class="t-lines"><span>operator[]</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> accesses an element by index <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/iterator/counted_iterator/operator*" class="_attribution-link">https://en.cppreference.com/w/cpp/iterator/counted_iterator/operator*</a>
+  </p>
+</div>

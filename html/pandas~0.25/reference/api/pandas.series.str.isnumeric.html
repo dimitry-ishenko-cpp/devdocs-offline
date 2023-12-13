@@ -1,0 +1,101 @@
+<h1 id="pandas-series-str-isnumeric">pandas.Series.str.isnumeric</h1> <dl class="method"> <dt id="pandas.Series.str.isnumeric">
+<code>Series.str.isnumeric(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L1852-L1855"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check whether all characters in each string are numeric.</p> <p>This is equivalent to running the Python string method <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.isnumeric" title="(in Python v3.7)"><code>str.isnumeric()</code></a> for each element of the Series/Index. If a string has zero characters, <code>False</code> is returned for that check.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or Index of bool</dt> <dd>
+<p class="first last">Series or Index of boolean values with the same length as the original Series/Index.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.isalpha.html#pandas.Series.str.isalpha" title="pandas.Series.str.isalpha"><code>Series.str.isalpha</code></a>
+</dt> <dd>Check whether all characters are alphabetic.</dd> <dt>
+ <a class="reference internal" href="#pandas.Series.str.isnumeric" title="pandas.Series.str.isnumeric"><code>Series.str.isnumeric</code></a>
+</dt> <dd>Check whether all characters are numeric.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.isalnum.html#pandas.Series.str.isalnum" title="pandas.Series.str.isalnum"><code>Series.str.isalnum</code></a>
+</dt> <dd>Check whether all characters are alphanumeric.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.isdigit.html#pandas.Series.str.isdigit" title="pandas.Series.str.isdigit"><code>Series.str.isdigit</code></a>
+</dt> <dd>Check whether all characters are digits.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.isdecimal.html#pandas.Series.str.isdecimal" title="pandas.Series.str.isdecimal"><code>Series.str.isdecimal</code></a>
+</dt> <dd>Check whether all characters are decimal.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.isspace.html#pandas.Series.str.isspace" title="pandas.Series.str.isspace"><code>Series.str.isspace</code></a>
+</dt> <dd>Check whether all characters are whitespace.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.islower.html#pandas.Series.str.islower" title="pandas.Series.str.islower"><code>Series.str.islower</code></a>
+</dt> <dd>Check whether all characters are lowercase.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.isupper.html#pandas.Series.str.isupper" title="pandas.Series.str.isupper"><code>Series.str.isupper</code></a>
+</dt> <dd>Check whether all characters are uppercase.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.istitle.html#pandas.Series.str.istitle" title="pandas.Series.str.istitle"><code>Series.str.istitle</code></a>
+</dt> <dd>Check whether all characters are titlecase.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Checks for Alphabetic and Numeric Characters</strong></p> <pre data-language="python">&gt;&gt;&gt; s1 = pd.Series(['one', 'one1', '1', ''])
+</pre> <pre data-language="python">&gt;&gt;&gt; s1.str.isalpha()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+</pre> <pre data-language="python">&gt;&gt;&gt; s1.str.isnumeric()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+</pre> <pre data-language="python">&gt;&gt;&gt; s1.str.isalnum()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+</pre> <p>Note that checks against characters mixed with any additional punctuation or whitespace will evaluate to false for an alphanumeric check.</p> <pre data-language="python">&gt;&gt;&gt; s2 = pd.Series(['A B', '1.5', '3,000'])
+&gt;&gt;&gt; s2.str.isalnum()
+0    False
+1    False
+2    False
+dtype: bool
+</pre> <p><strong>More Detailed Checks for Numeric Characters</strong></p> <p>There are several different but overlapping sets of numeric characters that can be checked for.</p> <pre data-language="python">&gt;&gt;&gt; s3 = pd.Series(['23', '³', '⅕', ''])
+</pre> <p>The <code>s3.str.isdecimal</code> method checks for characters used to form numbers in base 10.</p> <pre data-language="python">&gt;&gt;&gt; s3.str.isdecimal()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+</pre> <p>The <code>s.str.isdigit</code> method is the same as <code>s3.str.isdecimal</code> but also includes special digits, like superscripted and subscripted digits in unicode.</p> <pre data-language="python">&gt;&gt;&gt; s3.str.isdigit()
+0     True
+1     True
+2    False
+3    False
+dtype: bool
+</pre> <p>The <code>s.str.isnumeric</code> method is the same as <code>s3.str.isdigit</code> but also includes other characters that can represent quantities such as unicode fractions.</p> <pre data-language="python">&gt;&gt;&gt; s3.str.isnumeric()
+0     True
+1     True
+2     True
+3    False
+dtype: bool
+</pre> <p><strong>Checks for Whitespace</strong></p> <pre data-language="python">&gt;&gt;&gt; s4 = pd.Series([' ', '\t\r\n ', ''])
+&gt;&gt;&gt; s4.str.isspace()
+0     True
+1     True
+2    False
+dtype: bool
+</pre> <p><strong>Checks for Character Case</strong></p> <pre data-language="python">&gt;&gt;&gt; s5 = pd.Series(['leopard', 'Golden Eagle', 'SNAKE', ''])
+</pre> <pre data-language="python">&gt;&gt;&gt; s5.str.islower()
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+</pre> <pre data-language="python">&gt;&gt;&gt; s5.str.isupper()
+0    False
+1    False
+2     True
+3    False
+dtype: bool
+</pre> <p>The <code>s5.str.istitle</code> method checks for whether all words are in title case (whether only the first letter of each word is capitalized). Words are assumed to be as any sequence of non-numeric characters separated by whitespace characters.</p> <pre data-language="python">&gt;&gt;&gt; s5.str.istitle()
+0    False
+1     True
+2    False
+3    False
+dtype: bool
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.isnumeric.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.isnumeric.html</a>
+  </p>
+</div>

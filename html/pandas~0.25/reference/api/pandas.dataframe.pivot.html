@@ -1,0 +1,73 @@
+<h1 id="pandas-dataframe-pivot">pandas.DataFrame.pivot</h1> <dl class="method"> <dt id="pandas.DataFrame.pivot">
+<code>DataFrame.pivot(self, index=None, columns=None, values=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L5907-L5912"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return reshaped DataFrame organized by given index / column values.</p> <p>Reshape data (produce a “pivot” table) based on column values. Uses unique values from specified <code>index</code> / <code>columns</code> to form axes of the resulting DataFrame. This function does not support data aggregation, multiple values will result in a MultiIndex in the columns. See the <a class="reference internal" href="../../user_guide/reshaping.html#reshaping"><span class="std std-ref">User Guide</span></a> for more on reshaping.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : string or object, optional</code> </dt> <dd>
+<p class="first last">Column to use to make new frame’s index. If None, uses existing index.</p> </dd> <dt>
+<code>columns : string or object</code> </dt> <dd>
+<p class="first last">Column to use to make new frame’s columns.</p> </dd> <dt>
+<code>values : string, object or a list of the previous, optional</code> </dt> <dd>
+<p class="first">Column(s) to use for populating new frame’s values. If not specified, all remaining columns will be used and the result will have hierarchically indexed columns.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.23.0: </span>Also accept list of column names.</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Returns reshaped DataFrame.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError:</dt> <dd>
+<p class="first last">When there are any <code>index</code>, <code>columns</code> combinations with multiple values. <code>DataFrame.pivot_table</code> when you need to aggregate.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.pivot_table.html#pandas.DataFrame.pivot_table" title="pandas.DataFrame.pivot_table"><code>DataFrame.pivot_table</code></a>
+</dt> <dd>Generalization of pivot that can handle duplicate values for one index/column pair.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.unstack.html#pandas.DataFrame.unstack" title="pandas.DataFrame.unstack"><code>DataFrame.unstack</code></a>
+</dt> <dd>Pivot based on the index values instead of a column.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>For finer-tuned control, see hierarchical indexing documentation along with the related stack/unstack methods.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'foo': ['one', 'one', 'one', 'two', 'two',
+...                            'two'],
+...                    'bar': ['A', 'B', 'C', 'A', 'B', 'C'],
+...                    'baz': [1, 2, 3, 4, 5, 6],
+...                    'zoo': ['x', 'y', 'z', 'q', 'w', 't']})
+&gt;&gt;&gt; df
+    foo   bar  baz  zoo
+0   one   A    1    x
+1   one   B    2    y
+2   one   C    3    z
+3   two   A    4    q
+4   two   B    5    w
+5   two   C    6    t
+</pre> <pre data-language="python">&gt;&gt;&gt; df.pivot(index='foo', columns='bar', values='baz')
+bar  A   B   C
+foo
+one  1   2   3
+two  4   5   6
+</pre> <pre data-language="python">&gt;&gt;&gt; df.pivot(index='foo', columns='bar')['baz']
+bar  A   B   C
+foo
+one  1   2   3
+two  4   5   6
+</pre> <pre data-language="python">&gt;&gt;&gt; df.pivot(index='foo', columns='bar', values=['baz', 'zoo'])
+      baz       zoo
+bar   A  B  C   A  B  C
+foo
+one   1  2  3   x  y  z
+two   4  5  6   q  w  t
+</pre> <p>A ValueError is raised if there are any duplicates.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"foo": ['one', 'one', 'two', 'two'],
+...                    "bar": ['A', 'A', 'B', 'C'],
+...                    "baz": [1, 2, 3, 4]})
+&gt;&gt;&gt; df
+   foo bar  baz
+0  one   A    1
+1  one   A    2
+2  two   B    3
+3  two   C    4
+</pre> <p>Notice that the first two rows are the same for our <code>index</code> and <code>columns</code> arguments.</p> <pre data-language="python">&gt;&gt;&gt; df.pivot(index='foo', columns='bar', values='baz')
+Traceback (most recent call last):
+   ...
+ValueError: Index contains duplicate entries, cannot reshape
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.pivot.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.pivot.html</a>
+  </p>
+</div>

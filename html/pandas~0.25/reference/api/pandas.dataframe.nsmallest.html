@@ -1,0 +1,72 @@
+<h1 id="pandas-dataframe-nsmallest">pandas.DataFrame.nsmallest</h1> <dl class="method"> <dt id="pandas.DataFrame.nsmallest">
+<code>DataFrame.nsmallest(self, n, columns, keep='first')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L5193-L5292"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the first <code>n</code> rows ordered by <code>columns</code> in ascending order.</p> <p>Return the first <code>n</code> rows with the smallest values in <code>columns</code>, in ascending order. The columns that are not specified are returned as well, but not used for ordering.</p> <p>This method is equivalent to <code>df.sort_values(columns, ascending=True).head(n)</code>, but more performant.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>n : int</code> </dt> <dd>
+<p class="first last">Number of items to retrieve.</p> </dd> <dt>
+<code>columns : list or str</code> </dt> <dd>
+<p class="first last">Column name or names to order by.</p> </dd> <dt>
+<code>keep : {‘first’, ‘last’, ‘all’}, default ‘first’</code> </dt> <dd>
+<p class="first">Where there are duplicate values:</p> <ul class="simple"> <li>
+<code>first</code> : take the first occurrence.</li> <li>
+<code>last</code> : take the last occurrence.</li> <li>
+<code>all</code> : do not drop any duplicates, even it means selecting more than <code>n</code> items.</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.nlargest.html#pandas.DataFrame.nlargest" title="pandas.DataFrame.nlargest"><code>DataFrame.nlargest</code></a>
+</dt> <dd>Return the first <code>n</code> rows ordered by <code>columns</code> in descending order.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code>DataFrame.sort_values</code></a>
+</dt> <dd>Sort DataFrame by the values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head"><code>DataFrame.head</code></a>
+</dt> <dd>Return the first <code>n</code> rows without re-ordering.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'population': [59000000, 65000000, 434000,
+...                                   434000, 434000, 337000, 11300,
+...                                   11300, 11300],
+...                    'GDP': [1937894, 2583560 , 12011, 4520, 12128,
+...                            17036, 182, 38, 311],
+...                    'alpha-2': ["IT", "FR", "MT", "MV", "BN",
+...                                "IS", "NR", "TV", "AI"]},
+...                   index=["Italy", "France", "Malta",
+...                          "Maldives", "Brunei", "Iceland",
+...                          "Nauru", "Tuvalu", "Anguilla"])
+&gt;&gt;&gt; df
+          population      GDP alpha-2
+Italy       59000000  1937894      IT
+France      65000000  2583560      FR
+Malta         434000    12011      MT
+Maldives      434000     4520      MV
+Brunei        434000    12128      BN
+Iceland       337000    17036      IS
+Nauru          11300      182      NR
+Tuvalu         11300       38      TV
+Anguilla       11300      311      AI
+</pre> <p>In the following example, we will use <code>nsmallest</code> to select the three rows having the smallest values in column “a”.</p> <pre data-language="python">&gt;&gt;&gt; df.nsmallest(3, 'population')
+          population  GDP alpha-2
+Nauru          11300  182      NR
+Tuvalu         11300   38      TV
+Anguilla       11300  311      AI
+</pre> <p>When using <code>keep='last'</code>, ties are resolved in reverse order:</p> <pre data-language="python">&gt;&gt;&gt; df.nsmallest(3, 'population', keep='last')
+          population  GDP alpha-2
+Anguilla       11300  311      AI
+Tuvalu         11300   38      TV
+Nauru          11300  182      NR
+</pre> <p>When using <code>keep='all'</code>, all duplicate items are maintained:</p> <pre data-language="python">&gt;&gt;&gt; df.nsmallest(3, 'population', keep='all')
+          population  GDP alpha-2
+Nauru          11300  182      NR
+Tuvalu         11300   38      TV
+Anguilla       11300  311      AI
+</pre> <p>To order by the largest values in column “a” and then “c”, we can specify multiple columns like in the next example.</p> <pre data-language="python">&gt;&gt;&gt; df.nsmallest(3, ['population', 'GDP'])
+          population  GDP alpha-2
+Tuvalu         11300   38      TV
+Nauru          11300  182      NR
+Anguilla       11300  311      AI
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.nsmallest.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.nsmallest.html</a>
+  </p>
+</div>

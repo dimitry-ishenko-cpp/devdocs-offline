@@ -1,0 +1,74 @@
+<h1 id="pandas-core-groupby-seriesgroupby-nlargest">pandas.core.groupby.SeriesGroupBy.nlargest</h1> <dl class="attribute"> <dt id="pandas.core.groupby.SeriesGroupBy.nlargest">
+<code>SeriesGroupBy.nlargest</code> </dt> <dd>
+<p>Return the largest <code>n</code> elements.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>n : int, default 5</code> </dt> <dd>
+<p class="first last">Return this many descending sorted values.</p> </dd> <dt>
+<code>keep : {‘first’, ‘last’, ‘all’}, default ‘first’</code> </dt> <dd>
+<p class="first">When there are duplicate values that cannot all fit in a Series of <code>n</code> elements:</p> <ul class="last"> <li>
+<dl class="first docutils"> <dt>
+<code>first : return the first n occurrences in order</code> </dt> <dd>
+<p class="first last">of appearance.</p> </dd> </dl> </li> <li>
+<dl class="first docutils"> <dt>
+<code>last : return the last n occurrences in reverse</code> </dt> <dd>
+<p class="first last">order of appearance.</p> </dd> </dl> </li> <li>
+<dl class="first docutils"> <dt>
+<code>all : keep all occurrences. This can result in a Series of</code> </dt> <dd>
+<p class="first last">size larger than <code>n</code>.</p> </dd> </dl> </li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">The <code>n</code> largest values in the Series, sorted in decreasing order.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.nsmallest</code> </dt> <dd>Get the <code>n</code> smallest elements.</dd> <dt>
+<code>Series.sort_values</code> </dt> <dd>Sort Series by values.</dd> <dt>
+<code>Series.head</code> </dt> <dd>Return the first <code>n</code> rows.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Faster than <code>.sort_values(ascending=False).head(n)</code> for small <code>n</code> relative to the size of the <code>Series</code> object.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; countries_population = {"Italy": 59000000, "France": 65000000,
+...                         "Malta": 434000, "Maldives": 434000,
+...                         "Brunei": 434000, "Iceland": 337000,
+...                         "Nauru": 11300, "Tuvalu": 11300,
+...                         "Anguilla": 11300, "Monserat": 5200}
+&gt;&gt;&gt; s = pd.Series(countries_population)
+&gt;&gt;&gt; s
+Italy       59000000
+France      65000000
+Malta         434000
+Maldives      434000
+Brunei        434000
+Iceland       337000
+Nauru          11300
+Tuvalu         11300
+Anguilla       11300
+Monserat        5200
+dtype: int64
+</pre> <p>The <code>n</code> largest elements where <code>n=5</code> by default.</p> <pre data-language="python">&gt;&gt;&gt; s.nlargest()
+France      65000000
+Italy       59000000
+Malta         434000
+Maldives      434000
+Brunei        434000
+dtype: int64
+</pre> <p>The <code>n</code> largest elements where <code>n=3</code>. Default <code>keep</code> value is ‘first’ so Malta will be kept.</p> <pre data-language="python">&gt;&gt;&gt; s.nlargest(3)
+France    65000000
+Italy     59000000
+Malta       434000
+dtype: int64
+</pre> <p>The <code>n</code> largest elements where <code>n=3</code> and keeping the last duplicates. Brunei will be kept since it is the last with value 434000 based on the index order.</p> <pre data-language="python">&gt;&gt;&gt; s.nlargest(3, keep='last')
+France      65000000
+Italy       59000000
+Brunei        434000
+dtype: int64
+</pre> <p>The <code>n</code> largest elements where <code>n=3</code> with all duplicates kept. Note that the returned Series has five elements due to the three duplicates.</p> <pre data-language="python">&gt;&gt;&gt; s.nlargest(3, keep='all')
+France      65000000
+Italy       59000000
+Malta         434000
+Maldives      434000
+Brunei        434000
+dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.SeriesGroupBy.nlargest.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.SeriesGroupBy.nlargest.html</a>
+  </p>
+</div>

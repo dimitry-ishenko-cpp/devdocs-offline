@@ -1,0 +1,79 @@
+<h1 id="pandas-series-any">pandas.Series.any</h1> <dl class="method"> <dt id="pandas.Series.any">
+<code>Series.any(self, axis=0, bool_only=None, skipna=True, level=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L11701-L11726"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return whether any element is True, potentially over an axis.</p> <p>Returns False unless there at least one element within a series or along a Dataframe axis that is True or equivalent (e.g. non-zero or non-empty).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’, None}, default 0</code> </dt> <dd>
+<p class="first">Indicate which axis or axes should be reduced.</p> <ul class="last simple"> <li>0 / ‘index’ : reduce the index, return a Series whose index is the original column labels.</li> <li>1 / ‘columns’ : reduce the columns, return a Series whose index is the original index.</li> <li>None : reduce all axes, return a scalar.</li> </ul> </dd> <dt>
+<code>bool_only : bool, default None</code> </dt> <dd>
+<p class="first last">Include only boolean columns. If None, will attempt to use everything, then use only boolean data. Not implemented for Series.</p> </dd> <dt>
+<code>skipna : bool, default True</code> </dt> <dd>
+<p class="first last">Exclude NA/null values. If the entire row/column is NA and skipna is True, then the result will be False, as for an empty row/column. If skipna is False, then NA are treated as True, because these are not equal to zero.</p> </dd> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">If the axis is a MultiIndex (hierarchical), count along a particular level, collapsing into a scalar.</p> </dd> <dt>
+<code>**kwargs : any, default None</code> </dt> <dd>
+<p class="first last">Additional keywords have no effect but might be accepted for compatibility with NumPy.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar or Series</dt> <dd>
+<p class="first last">If level is specified, then, Series is returned; otherwise, scalar is returned.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.any.html#numpy.any" title="(in NumPy v1.16)"><code>numpy.any</code></a>
+</dt> <dd>Numpy version of this method.</dd> <dt>
+ <a class="reference internal" href="#pandas.Series.any" title="pandas.Series.any"><code>Series.any</code></a>
+</dt> <dd>Return whether any element is True.</dd> <dt>
+ <a class="reference internal" href="pandas.series.all.html#pandas.Series.all" title="pandas.Series.all"><code>Series.all</code></a>
+</dt> <dd>Return whether all elements are True.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.any.html#pandas.DataFrame.any" title="pandas.DataFrame.any"><code>DataFrame.any</code></a>
+</dt> <dd>Return whether any element is True over requested axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.all.html#pandas.DataFrame.all" title="pandas.DataFrame.all"><code>DataFrame.all</code></a>
+</dt> <dd>Return whether all elements are True over requested axis.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Series</strong></p> <p>For Series input, the output is a scalar indicating whether any element is True.</p> <pre data-language="python">&gt;&gt;&gt; pd.Series([False, False]).any()
+False
+&gt;&gt;&gt; pd.Series([True, False]).any()
+True
+&gt;&gt;&gt; pd.Series([]).any()
+False
+&gt;&gt;&gt; pd.Series([np.nan]).any()
+False
+&gt;&gt;&gt; pd.Series([np.nan]).any(skipna=False)
+True
+</pre> <p><strong>DataFrame</strong></p> <p>Whether each column contains at least one True element (the default).</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": [1, 2], "B": [0, 2], "C": [0, 0]})
+&gt;&gt;&gt; df
+   A  B  C
+0  1  0  0
+1  2  2  0
+</pre> <pre data-language="python">&gt;&gt;&gt; df.any()
+A     True
+B     True
+C    False
+dtype: bool
+</pre> <p>Aggregating over the columns.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": [True, False], "B": [1, 2]})
+&gt;&gt;&gt; df
+       A  B
+0   True  1
+1  False  2
+</pre> <pre data-language="python">&gt;&gt;&gt; df.any(axis='columns')
+0    True
+1    True
+dtype: bool
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": [True, False], "B": [1, 0]})
+&gt;&gt;&gt; df
+       A  B
+0   True  1
+1  False  0
+</pre> <pre data-language="python">&gt;&gt;&gt; df.any(axis='columns')
+0    True
+1    False
+dtype: bool
+</pre> <p>Aggregating over the entire DataFrame with <code>axis=None</code>.</p> <pre data-language="python">&gt;&gt;&gt; df.any(axis=None)
+True
+</pre> <p><code>any</code> for an empty DataFrame is an empty Series.</p> <pre data-language="python">&gt;&gt;&gt; pd.DataFrame([]).any()
+Series([], dtype: bool)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.any.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.any.html</a>
+  </p>
+</div>

@@ -1,0 +1,92 @@
+<h1 id="pandas-dataframe-pct-change">pandas.DataFrame.pct_change</h1> <dl class="method"> <dt id="pandas.DataFrame.pct_change">
+<code>DataFrame.pct_change(self, periods=1, fill_method='pad', limit=None, freq=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L10423-L10437"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Percentage change between the current and a prior element.</p> <p>Computes the percentage change from the immediately previous row by default. This is useful in comparing the percentage of change in a time series of elements.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>periods : int, default 1</code> </dt> <dd>
+<p class="first last">Periods to shift for forming percent change.</p> </dd> <dt>
+<code>fill_method : str, default ‘pad’</code> </dt> <dd>
+<p class="first last">How to handle NAs before computing percent changes.</p> </dd> <dt>
+<code>limit : int, default None</code> </dt> <dd>
+<p class="first last">The number of consecutive NAs to fill before stopping.</p> </dd> <dt>
+<code>freq : DateOffset, timedelta, or offset alias string, optional</code> </dt> <dd>
+<p class="first last">Increment to use from time series API (e.g. ‘M’ or BDay()).</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Additional keyword arguments are passed into <code>DataFrame.shift</code> or <code>Series.shift</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>chg : Series or DataFrame</code> </dt> <dd>
+<p class="first last">The same type as the calling object.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.diff.html#pandas.Series.diff" title="pandas.Series.diff"><code>Series.diff</code></a>
+</dt> <dd>Compute the difference of two elements in a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.diff.html#pandas.DataFrame.diff" title="pandas.DataFrame.diff"><code>DataFrame.diff</code></a>
+</dt> <dd>Compute the difference of two elements in a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.series.shift.html#pandas.Series.shift" title="pandas.Series.shift"><code>Series.shift</code></a>
+</dt> <dd>Shift the index by some number of periods.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.shift.html#pandas.DataFrame.shift" title="pandas.DataFrame.shift"><code>DataFrame.shift</code></a>
+</dt> <dd>Shift the index by some number of periods.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Series</strong></p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([90, 91, 85])
+&gt;&gt;&gt; s
+0    90
+1    91
+2    85
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.pct_change()
+0         NaN
+1    0.011111
+2   -0.065934
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.pct_change(periods=2)
+0         NaN
+1         NaN
+2   -0.055556
+dtype: float64
+</pre> <p>See the percentage change in a Series where filling NAs with last valid observation forward to next valid.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([90, 91, None, 85])
+&gt;&gt;&gt; s
+0    90.0
+1    91.0
+2     NaN
+3    85.0
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.pct_change(fill_method='ffill')
+0         NaN
+1    0.011111
+2    0.000000
+3   -0.065934
+dtype: float64
+</pre> <p><strong>DataFrame</strong></p> <p>Percentage change in French franc, Deutsche Mark, and Italian lira from 1980-01-01 to 1980-03-01.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({
+...     'FR': [4.0405, 4.0963, 4.3149],
+...     'GR': [1.7246, 1.7482, 1.8519],
+...     'IT': [804.74, 810.01, 860.13]},
+...     index=['1980-01-01', '1980-02-01', '1980-03-01'])
+&gt;&gt;&gt; df
+                FR      GR      IT
+1980-01-01  4.0405  1.7246  804.74
+1980-02-01  4.0963  1.7482  810.01
+1980-03-01  4.3149  1.8519  860.13
+</pre> <pre data-language="python">&gt;&gt;&gt; df.pct_change()
+                  FR        GR        IT
+1980-01-01       NaN       NaN       NaN
+1980-02-01  0.013810  0.013684  0.006549
+1980-03-01  0.053365  0.059318  0.061876
+</pre> <p>Percentage of change in GOOG and APPL stock volume. Shows computing the percentage change between columns.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({
+...     '2016': [1769950, 30586265],
+...     '2015': [1500923, 40912316],
+...     '2014': [1371819, 41403351]},
+...     index=['GOOG', 'APPL'])
+&gt;&gt;&gt; df
+          2016      2015      2014
+GOOG   1769950   1500923   1371819
+APPL  30586265  40912316  41403351
+</pre> <pre data-language="python">&gt;&gt;&gt; df.pct_change(axis='columns')
+      2016      2015      2014
+GOOG   NaN -0.151997 -0.086016
+APPL   NaN  0.337604  0.012002
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.pct_change.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.pct_change.html</a>
+  </p>
+</div>

@@ -1,0 +1,47 @@
+<h1 id="pandas-core-groupby-dataframegroupby-boxplot">pandas.core.groupby.DataFrameGroupBy.boxplot</h1> <dl class="method"> <dt id="pandas.core.groupby.DataFrameGroupBy.boxplot">
+<code>DataFrameGroupBy.boxplot(grouped, subplots=True, column=None, fontsize=None, rot=0, grid=True, ax=None, figsize=None, layout=None, sharex=False, sharey=True, **kwds)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/plotting/_core.py#L424-L501"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Make box plots from DataFrameGroupBy data.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>grouped : Grouped DataFrame</code> </dt>  <dt>
+<code>subplots : bool</code> </dt> <dd>
+<ul class="first last simple"> <li>
+<code>False</code> - no subplots will be used</li> <li>
+<code>True</code> - create a subplot for each group</li> </ul> </dd> <dt>
+<code>column : column name or list of names, or vector</code> </dt> <dd>
+<p class="first last">Can be any valid input to groupby</p> </dd> <dt>
+<code>fontsize : int or string</code> </dt>  <dt>
+<code>rot : label rotation angle</code> </dt>  <dt>
+<code>grid : Setting this to True will show the grid</code> </dt>  <dt>
+<code>ax : Matplotlib axis object, default None</code> </dt>  <dt>
+<code>figsize : A tuple (width, height) in inches</code> </dt>  <dt>
+<code>layout : tuple (optional)</code> </dt> <dd>
+<p class="first last">(rows, columns) for the layout of the plot</p> </dd> <dt>
+<code>sharex : bool, default False</code> </dt> <dd>
+<p class="first">Whether x-axes will be shared among subplots</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.1.</span></p> </div> </dd> <dt>
+<code>sharey : bool, default True</code> </dt> <dd>
+<p class="first">Whether y-axes will be shared among subplots</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.1.</span></p> </div> </dd> <dt>
+<code>`**kwds` : Keyword Arguments</code> </dt> <dd>
+<p class="first last">All other plotting keyword arguments to be passed to matplotlib’s boxplot function</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>dict of key/value = group key/DataFrame.boxplot return value</dt>  <dt>or DataFrame.boxplot return value in case subplots=figures=False</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; import itertools
+&gt;&gt;&gt; tuples = [t for t in itertools.product(range(1000), range(4))]
+&gt;&gt;&gt; index = pd.MultiIndex.from_tuples(tuples, names=['lvl0', 'lvl1'])
+&gt;&gt;&gt; data = np.random.randn(len(index),4)
+&gt;&gt;&gt; df = pd.DataFrame(data, columns=list('ABCD'), index=index)
+&gt;&gt;&gt;
+&gt;&gt;&gt; grouped = df.groupby(level='lvl1')
+&gt;&gt;&gt; boxplot_frame_groupby(grouped)
+&gt;&gt;&gt;
+&gt;&gt;&gt; grouped = df.unstack(level='lvl1').groupby(level=0, axis=1)
+&gt;&gt;&gt; boxplot_frame_groupby(grouped, subplots=False)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.boxplot.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.boxplot.html</a>
+  </p>
+</div>

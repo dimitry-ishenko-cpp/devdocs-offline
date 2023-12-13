@@ -1,0 +1,67 @@
+<h1 id="pandas-series-str-replace">pandas.Series.str.replace</h1> <dl class="method"> <dt id="pandas.Series.str.replace">
+<code>Series.str.replace(self, pat, repl, n=-1, case=None, flags=0, regex=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2709-L2715"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Replace occurrences of pattern/regex in the Series/Index with some other string. Equivalent to <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.replace" title="(in Python v3.7)"><code>str.replace()</code></a> or <a class="reference external" href="https://docs.python.org/3/library/re.html#re.sub" title="(in Python v3.7)"><code>re.sub()</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>pat : str or compiled regex</code> </dt> <dd>
+<p class="first">String can be a character sequence or regular expression.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0: </span><code>pat</code> also accepts a compiled regex.</p> </div> </dd> <dt>
+<code>repl : str or callable</code> </dt> <dd>
+<p class="first">Replacement string or a callable. The callable is passed the regex match object and must return a replacement string to be used. See <a class="reference external" href="https://docs.python.org/3/library/re.html#re.sub" title="(in Python v3.7)"><code>re.sub()</code></a>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0: </span><code>repl</code> also accepts a callable.</p> </div> </dd> <dt>
+<code>n : int, default -1 (all)</code> </dt> <dd>
+<p class="first last">Number of replacements to make from start.</p> </dd> <dt>
+<code>case : bool, default None</code> </dt> <dd>
+<ul class="first last simple"> <li>If True, case sensitive (the default if <code>pat</code> is a string)</li> <li>Set to False for case insensitive</li> <li>Cannot be set if <code>pat</code> is a compiled regex</li> </ul> </dd> <dt>
+<code>flags : int, default 0 (no flags)</code> </dt> <dd>
+<ul class="first last simple"> <li>re module flags, e.g. re.IGNORECASE</li> <li>Cannot be set if <code>pat</code> is a compiled regex</li> </ul> </dd> <dt>
+<code>regex : bool, default True</code> </dt> <dd>
+<ul class="first simple"> <li>If True, assumes the passed-in pattern is a regular expression.</li> <li>If False, treats the pattern as a literal string</li> <li>Cannot be set to False if <code>pat</code> is a compiled regex or <code>repl</code> is a callable.</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>Series or Index of object</dt> <dd>
+<p class="first last">A copy of the object with all matching occurrences of <code>pat</code> replaced by <code>repl</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<ul class="first last simple"> <li>if <code>regex</code> is False and <code>repl</code> is a callable or <code>pat</code> is a compiled regex</li> <li>if <code>pat</code> is a compiled regex and <code>case</code> or <code>flags</code> is set</li> </ul> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>When <code>pat</code> is a compiled regex, all flags should be included in the compiled regex. Use of <code>case</code>, <code>flags</code>, or <code>regex=False</code> with a compiled regex will raise an error.</p> <h4 class="rubric">Examples</h4> <p>When <code>pat</code> is a string and <code>regex</code> is True (the default), the given <code>pat</code> is compiled as a regex. When <code>repl</code> is a string, it replaces matching regex patterns as with <code>re.sub()</code>. NaN value(s) in the Series are left as is:</p> <pre data-language="python">&gt;&gt;&gt; pd.Series(['foo', 'fuz', np.nan]).str.replace('f.', 'ba', regex=True)
+0    bao
+1    baz
+2    NaN
+dtype: object
+</pre> <p>When <code>pat</code> is a string and <code>regex</code> is False, every <code>pat</code> is replaced with <code>repl</code> as with <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.replace" title="(in Python v3.7)"><code>str.replace()</code></a>:</p> <pre data-language="python">&gt;&gt;&gt; pd.Series(['f.o', 'fuz', np.nan]).str.replace('f.', 'ba', regex=False)
+0    bao
+1    fuz
+2    NaN
+dtype: object
+</pre> <p>When <code>repl</code> is a callable, it is called on every <code>pat</code> using <a class="reference external" href="https://docs.python.org/3/library/re.html#re.sub" title="(in Python v3.7)"><code>re.sub()</code></a>. The callable should expect one positional argument (a regex object) and return a string.</p> <p>To get the idea:</p> <pre data-language="python">&gt;&gt;&gt; pd.Series(['foo', 'fuz', np.nan]).str.replace('f', repr)
+0    &lt;_sre.SRE_Match object; span=(0, 1), match='f'&gt;oo
+1    &lt;_sre.SRE_Match object; span=(0, 1), match='f'&gt;uz
+2                                                  NaN
+dtype: object
+</pre> <p>Reverse every lowercase alphabetic word:</p> <pre data-language="python">&gt;&gt;&gt; repl = lambda m: m.group(0)[::-1]
+&gt;&gt;&gt; pd.Series(['foo 123', 'bar baz', np.nan]).str.replace(r'[a-z]+', repl)
+0    oof 123
+1    rab zab
+2        NaN
+dtype: object
+</pre> <p>Using regex groups (extract second group and swap case):</p> <pre data-language="python">&gt;&gt;&gt; pat = r"(?P&lt;one&gt;\w+) (?P&lt;two&gt;\w+) (?P&lt;three&gt;\w+)"
+&gt;&gt;&gt; repl = lambda m: m.group('two').swapcase()
+&gt;&gt;&gt; pd.Series(['One Two Three', 'Foo Bar Baz']).str.replace(pat, repl)
+0    tWO
+1    bAR
+dtype: object
+</pre> <p>Using a compiled regex with flags</p> <pre data-language="python">&gt;&gt;&gt; import re
+&gt;&gt;&gt; regex_pat = re.compile(r'FUZ', flags=re.IGNORECASE)
+&gt;&gt;&gt; pd.Series(['foo', 'fuz', np.nan]).str.replace(regex_pat, 'bar')
+0    foo
+1    bar
+2    NaN
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.replace.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.replace.html</a>
+  </p>
+</div>

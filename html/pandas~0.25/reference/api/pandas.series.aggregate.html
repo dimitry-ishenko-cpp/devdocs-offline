@@ -1,0 +1,41 @@
+<h1 id="pandas-series-aggregate">pandas.Series.aggregate</h1> <dl class="method"> <dt id="pandas.Series.aggregate">
+<code>Series.aggregate(self, func, axis=0, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L3869-L3900"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Aggregate using one or more operations over the specified axis.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function, str, list or dict</code> </dt> <dd>
+<p class="first">Function to use for aggregating the data. If a function, must either work when passed a Series or when passed to Series.apply.</p> <p>Accepted combinations are:</p> <ul class="last simple"> <li>function</li> <li>string function name</li> <li>list of functions and/or function names, e.g. <code>[np.sum, 'mean']</code>
+</li> <li>dict of axis labels -&gt; functions, function names or list of such.</li> </ul> </dd> <dt>
+<code>axis : {0 or ‘index’}</code> </dt> <dd>
+<p class="first last">Parameter needed for compatibility with DataFrame.</p> </dd> <dt><strong>*args</strong></dt> <dd>
+<p class="first last">Positional arguments to pass to <code>func</code>.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Keyword arguments to pass to <code>func</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar, Series or DataFrame</dt> <dd>
+<p class="first">The return can be:</p> <ul class="simple"> <li>scalar : when Series.agg is called with single function</li> <li>Series : when DataFrame.agg is called with a single function</li> <li>DataFrame : when DataFrame.agg is called with several functions</li> </ul> <p class="last">Return scalar, Series or DataFrame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.apply.html#pandas.Series.apply" title="pandas.Series.apply"><code>Series.apply</code></a>
+</dt> <dd>Invoke function on a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.series.transform.html#pandas.Series.transform" title="pandas.Series.transform"><code>Series.transform</code></a>
+</dt> <dd>Transform function producing a Series with like indexes.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p><code>agg</code> is an alias for <code>aggregate</code>. Use the alias.</p> <p>A passed user-defined-function will be passed a Series for evaluation.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4])
+&gt;&gt;&gt; s
+0    1
+1    2
+2    3
+3    4
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.agg('min')
+1
+</pre> <pre data-language="python">&gt;&gt;&gt; s.agg(['min', 'max'])
+min   1
+max   4
+dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.aggregate.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.aggregate.html</a>
+  </p>
+</div>

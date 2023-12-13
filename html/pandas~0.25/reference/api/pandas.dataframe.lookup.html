@@ -1,0 +1,23 @@
+<h1 id="pandas-dataframe-lookup">pandas.DataFrame.lookup</h1> <dl class="method"> <dt id="pandas.DataFrame.lookup">
+<code>DataFrame.lookup(self, row_labels, col_labels)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L3774-L3827"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Label-based “fancy indexing” function for DataFrame.</p> <p>Given equal-length arrays of row and column labels, return an array of the values corresponding to each (row, col) pair.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>row_labels : sequence</code> </dt> <dd>
+<p class="first last">The row labels to use for lookup</p> </dd> <dt>
+<code>col_labels : sequence</code> </dt> <dd>
+<p class="first last">The column labels to use for lookup</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>Akin to:</p> <pre data-language="python">result = [df.get_value(row, col)
+          for row, col in zip(row_labels, col_labels)]
+</pre> <h4 class="rubric">Examples</h4> <dl class="docutils"> <dt>
+<code>values : ndarray</code> </dt> <dd>The found values</dd> </dl> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.lookup.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.lookup.html</a>
+  </p>
+</div>

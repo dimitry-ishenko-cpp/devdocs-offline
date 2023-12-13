@@ -1,0 +1,34 @@
+<h1 id="pandas-core-groupby-dataframegroupby-quantile">pandas.core.groupby.DataFrameGroupBy.quantile</h1> <dl class="method"> <dt id="pandas.core.groupby.DataFrameGroupBy.quantile">
+<code>DataFrameGroupBy.quantile(self, q=0.5, interpolation='linear')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/groupby.py#L1837-L1909"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return group values at the given quantile, a la numpy.percentile.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>q : float or array-like, default 0.5 (50% quantile)</code> </dt> <dd>
+<p class="first last">Value(s) between 0 and 1 providing the quantile(s) to compute.</p> </dd> <dt>
+<code>interpolation : {‘linear’, ‘lower’, ‘higher’, ‘midpoint’, ‘nearest’}</code> </dt> <dd>
+<p class="first last">Method to use when the desired quantile falls between two points.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Return type determined by caller of GroupBy object.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.quantile</code> </dt> <dd>Similar method for Series.</dd> <dt>
+<code>DataFrame.quantile</code> </dt> <dd>Similar method for DataFrame.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.percentile.html#numpy.percentile" title="(in NumPy v1.16)"><code>numpy.percentile</code></a>
+</dt> <dd>NumPy method to compute qth percentile.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([
+...     ['a', 1], ['a', 2], ['a', 3],
+...     ['b', 1], ['b', 3], ['b', 5]
+... ], columns=['key', 'val'])
+&gt;&gt;&gt; df.groupby('key').quantile()
+    val
+key
+a    2.0
+b    3.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.quantile.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.quantile.html</a>
+  </p>
+</div>

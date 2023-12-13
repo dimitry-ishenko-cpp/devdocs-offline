@@ -1,0 +1,30 @@
+<h1 id="pandas-api-types-is-scalar">pandas.api.types.is_scalar</h1> <dl class="function"> <dt id="pandas.api.types.is_scalar">
+<code>pandas.api.types.is_scalar()</code> </dt> <dd>
+<p>Return True if given value is scalar.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>val : object</code> </dt> <dd>
+<p class="first">This includes:</p> <ul class="last simple"> <li>numpy array scalar (e.g. np.int64)</li> <li>Python builtin numerics</li> <li>Python builtin byte arrays and strings</li> <li>None</li> <li>datetime.datetime</li> <li>datetime.timedelta</li> <li>Period</li> <li>decimal.Decimal</li> <li>Interval</li> <li>DateOffset</li> <li>Fraction</li> <li>Number</li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>bool</dt> <dd>
+<p class="first last">Return True if given object is scalar, False otherwise</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; dt = pd.datetime.datetime(2018, 10, 3)
+&gt;&gt;&gt; pd.is_scalar(dt)
+True
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.api.types.is_scalar([2, 3])
+False
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.api.types.is_scalar({0: 1, 2: 3})
+False
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.api.types.is_scalar((0, 2))
+False
+</pre> <p>pandas supports PEP 3141 numbers:</p> <pre data-language="python">&gt;&gt;&gt; from fractions import Fraction
+&gt;&gt;&gt; pd.api.types.is_scalar(Fraction(3, 5))
+True
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_scalar.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_scalar.html</a>
+  </p>
+</div>

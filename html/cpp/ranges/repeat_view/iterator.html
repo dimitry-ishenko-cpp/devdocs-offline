@@ -1,0 +1,89 @@
+    <h1 id="firstHeading" class="firstHeading">std::ranges::repeat_view&lt;W, Bound&gt;::<i>iterator</i>
+</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">struct /*iterator*/;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl-h"> <td> Helper alias templates</td> <td></td> <td></td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">template&lt; class I &gt;
+using /*iota-diff-t*/ = /* see below */;  // exposition only</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> The return type of <a href="../repeat_view.html" title="cpp/ranges/repeat view"><code>repeat_view::begin</code></a>. The name of this class (shown here as <code>/*iterator*/</code>) is unspecified.</div> <span class="t-li">2)</span> The exposition-only alias template <code>/*iota-diff-t*/</code> calculates the difference type for both iterator types and <a href="../../iterator/weakly_incrementable.html#Integer-like_types" title="cpp/iterator/weakly incrementable">integer-like types</a>. <ul>
+<li> If <code>W</code> is not an integral type, or if it is an integral type and <code>sizeof<span class="br0">(</span><a href="http://en.cppreference.com/w/cpp/iterator/iter_t"><span class="kw2879">std::<span class="me2">iter_difference_t</span></span></a><span class="sy1">&lt;</span>I<span class="sy1">&gt;</span><span class="br0">)</span></code> is greater than <code>sizeof(I)</code>, then <code>/*iota-diff-t*/&lt;I&gt;</code> is <code><a href="http://en.cppreference.com/w/cpp/iterator/iter_t"><span class="kw2879">std::<span class="me2">iter_difference_t</span></span></a><span class="sy1">&lt;</span>I<span class="sy1">&gt;</span></code>. </li>
+<li> Otherwise, <code>/*iota-diff-t*/&lt;I&gt;</code> is a signed integer type of width greater than the width of <code>I</code> if such a type exists. </li>
+<li> Otherwise, <code>I</code> is one of the widest integral types, and <code>/*iota-diff-t*/&lt;I&gt;</code> is an unspecified <a href="../../iterator/weakly_incrementable.html#Integer-like_types" title="cpp/iterator/weakly incrementable">signed-integer-like type</a> of width not less than the width of <code>I</code>. It is unspecified whether <code>/*iota-diff-t*/&lt;I&gt;</code> models <a href="../../iterator/weakly_incrementable.html" title="cpp/iterator/weakly incrementable"><code>weakly_incrementable</code></a> in this case.</li>
+</ul>  <h3 id="Member_types"> Member types</h3> <table class="t-dsc-begin"> <tr class="t-dsc-hitem"> <th> Member type </th> <th> Definition </th>
+</tr> <tr class="t-dsc"> <td> <code><i>index-type</i></code> <span class="t-mark">(private)</span> </td> <td> <ul>
+<li> <code><a href="http://en.cppreference.com/w/cpp/types/ptrdiff_t"><span class="kw108">std::<span class="me2">ptrdiff_t</span></span></a></code>, if <code>Bound</code> is the same as <code><a href="../../iterator/unreachable_sentinel_t.html" title="cpp/iterator/unreachable sentinel t">std::unreachable_sentinel_t</a></code>. Otherwise, </li>
+<li> <code>Bound</code>. </li>
+</ul> <p>The name is for exposition only.</p>
+</td>
+</tr> <tr class="t-dsc"> <td> <code>iterator_concept</code> </td> <td> <code><a href="../../iterator/iterator_tags.html" title="cpp/iterator/iterator tags">std::random_access_iterator_tag</a></code> </td>
+</tr> <tr class="t-dsc"> <td> <code>iterator_category</code> </td> <td> <code><a href="../../iterator/iterator_tags.html" title="cpp/iterator/iterator tags">std::random_access_iterator_tag</a></code> </td>
+</tr> <tr class="t-dsc"> <td> <code>value_type</code> </td> <td> <code>W</code> </td>
+</tr> <tr class="t-dsc"> <td> <code>difference_type</code> </td> <td> <ul>
+<li> <code>/*index-type*/</code>, if <code>/*is-signed-like*/&lt;/*index-type*/&gt;</code> is <code>true</code>, </li>
+<li> <code>/*iota-diff-t*/(/*index-type*/)</code> otherwise. </li>
+</ul> </td>
+</tr> </table> <h3 id="Data_members"> Data members</h3> <p>Typical implementation of this iterator type contains two data members:</p>
+<ul>
+<li> <code><i>value_</i></code> of type <code>const W*</code> that holds the pointer to the value to repeat; </li>
+<li> <code><i>current_</i></code> of type <code>/*index-type*/</code> that holds the current position. </li>
+</ul> <p>These names are exposition only.</p>
+<h3 id="Member_functions"> Member functions</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>(constructor)</span></span></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> constructs an iterator <br> <span class="t-mark">(public member function)</span> </td>
+</tr> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>operator*</span></span></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> returns the current subrange <br> <span class="t-mark">(public member function)</span> </td>
+</tr> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>operator[]</span></span></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> accesses an element by index <br> <span class="t-mark">(public member function)</span> </td>
+</tr> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>operator++</span><span>operator++(int)</span><span>operator--</span><span>operator--(int)</span><span>operator+=</span><span>operator-=</span></span></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> advances or decrements the underlying iterator <br> <span class="t-mark">(public member function)</span> </td>
+</tr> </table> <div class="t-member"> <h2 id="std::ranges::repeat_view::iterator::iterator"> std::ranges::repeat_view::<i>iterator</i>::<i>iterator</i>
+</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">/*iterator*/() = default;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr explicit /*iterator*/(    // exposition only
+    const W* value, /*index-type*/ b = /*index-type*/() );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <span class="t-li">1)</span> Value initializes the exposition-only data members: <ul>
+<li> <code><i>value_</i></code> with <code>nullptr_t</code> via its default member initializer; </li>
+<li> <code><i>index_</i></code> via its default member initializer (<code>= /*index-type*/()</code>).</li>
+</ul> <div class="t-li1">
+<span class="t-li">2)</span> Value initializes <code><i>value_</i></code> with <code>value</code> and <code><i>bound_</i></code> with <code>b</code>. If <code>Bound</code> is not <code><a href="../../iterator/unreachable_sentinel_t.html" title="cpp/iterator/unreachable sentinel t">std::unreachable_sentinel_t</a></code> then <code>b</code> must be non-negative. This constructor is not a part of the public interface. </div>
+</div> <div class="t-member"> <h2 id="std::ranges::repeat_view::iterator::operator.2A"> std::ranges::repeat_view::<i>iterator</i>::operator*</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr const W&amp; operator*() const noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p>Equivalent to <code>return *value_;</code>.</p>
+</div> <div class="t-member"> <h2 id="std::ranges::repeat_view::iterator::operator.5B.5D"> std::ranges::repeat_view::<i>iterator</i>::operator[]</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr const W&amp; operator[]( difference_type n ) const noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p>Equivalent to <code>return *(*this + n);</code>.</p>
+</div> <div class="t-member"> <h2 id="std::ranges::repeat_view::iterator::operator.2B.2B"> std::ranges::repeat_view::<i>iterator</i>::operator++</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr /*iterator*/&amp; operator++();</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr void operator++(int);</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> Equivalent to <code>++current_; return *this;</code>.</div> <div class="t-li1">
+<span class="t-li">2)</span> Equivalent to <code>auto tmp = *this; ++*this; return tmp;</code>. </div>
+</div> <div class="t-member"> <h2 id="std::ranges::repeat_view::iterator::operator--"> std::ranges::repeat_view::<i>iterator</i>::operator--</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr /*iterator*/&amp; operator--();</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr /*iterator*/ operator--(int);</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> Equivalent to <code>--current_; return *this;</code>. If <code>Bound</code> is not <code><a href="../../iterator/unreachable_sentinel_t.html" title="cpp/iterator/unreachable sentinel t">std::unreachable_sentinel_t</a></code> then <code><i>bound_</i></code> must be positive.</div> <div class="t-li1">
+<span class="t-li">2)</span> Equivalent to <code>auto tmp = *this; --*this; return tmp;</code>. </div>
+</div> <div class="t-member"> <h2 id="std::ranges::repeat_view::iterator::operator.2B.3D"> std::ranges::repeat_view::<i>iterator</i>::operator+=</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr /*iterator*/&amp; operator+=( difference_type n );</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p>Equivalent to <code>current_ += n; return *this;</code>. If <code>Bound</code> is not <code><a href="../../iterator/unreachable_sentinel_t.html" title="cpp/iterator/unreachable sentinel t">std::unreachable_sentinel_t</a></code> then <code>(<i>bound_</i> + n)</code> must be non-negative.</p>
+</div> <div class="t-member"> <h2 id="std::ranges::repeat_view::iterator::operator-.3D"> std::ranges::repeat_view::<i>iterator</i>::operator-=</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr /*iterator*/&amp; operator-=( difference_type n );</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p>Equivalent to <code>current_ -= n; return *this;</code>. If <code>Bound</code> is not <code><a href="../../iterator/unreachable_sentinel_t.html" title="cpp/iterator/unreachable sentinel t">std::unreachable_sentinel_t</a></code>, then <code>(<i>bound_</i> - n)</code> must be non-negative.</p>
+</div> <h3 id="Non-member_functions"> Non-member functions</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>operator==</span><span>operator&lt;=&gt;</span></span></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> compares the underlying iterators <br> <span class="t-mark">(function)</span> </td>
+</tr> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>operator+</span><span>operator-</span></span></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> performs iterator arithmetic <br> <span class="t-mark">(function)</span> </td>
+</tr> </table> <div class="t-member"> <h2 id="operator.3D.3D.2C_.3C.3D.3E.28std::ranges::repeat_view::iterator.29"> operator==, &lt;=&gt;(std::ranges::repeat_view::<i>iterator</i>)</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">friend constexpr bool operator==( const /*iterator*/&amp; x, const /*iterator*/&amp; y );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">friend constexpr auto operator&lt;=&gt;( const /*iterator*/&amp; x, const /*iterator*/&amp; y );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> Equivalent to <code>x.current_ == y.current_</code>.</div> <div class="t-li1">
+<span class="t-li">2)</span> Equivalent to <code>x.current_ &lt;=&gt; y.current_</code>.</div> <p>The <code>!=</code> operator is <a href="../../language/operators.html#Relational_operators" title="cpp/language/operators">synthesized</a> from <code>operator==</code>.</p>
+<p>These functions are not visible to ordinary <a href="../../language/unqualified_lookup.html" title="cpp/language/unqualified lookup">unqualified</a> or <a href="../../language/qualified_lookup.html" title="cpp/language/qualified lookup">qualified lookup</a>, and can only be found by <a href="../../language/adl.html" title="cpp/language/adl">argument-dependent lookup</a> when <code><i>iterator</i></code> is an associated class of the arguments.</p>
+</div> <div class="t-member"> <h2 id="operator.2B.28std::ranges::repeat_view::iterator.29"> operator+(std::ranges::repeat_view::<i>iterator</i>)</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">friend constexpr /*iterator*/ operator+( /*iterator*/ i, difference_type n );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">friend constexpr /*iterator*/ operator+( difference_type n, /*iterator*/ i );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p>Equivalent to <code>i += n; return i;</code>.</p>
+<p>These functions are not visible to ordinary <a href="../../language/unqualified_lookup.html" title="cpp/language/unqualified lookup">unqualified</a> or <a href="../../language/qualified_lookup.html" title="cpp/language/qualified lookup">qualified lookup</a>, and can only be found by <a href="../../language/adl.html" title="cpp/language/adl">argument-dependent lookup</a> when <code><i>iterator</i></code> is an associated class of the arguments.</p>
+</div> <div class="t-member"> <h2 id="operator-.28std::ranges::repeat_view::iterator.29"> operator-(std::ranges::repeat_view::<i>iterator</i>)</h2> <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">friend constexpr /*iterator*/ operator-( /*iterator*/ i, difference_type n );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">friend constexpr difference_type operator-( const /*iterator*/&amp; x,
+                                            const /*iterator*/&amp; y );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> Equivalent to <code>i -= n; return i;</code>.</div> <div class="t-li1">
+<span class="t-li">2)</span> Equivalent to <code>return static_cast&lt;difference_type&gt;(x.current_) - static_cast&lt;difference_type&gt;(y.current_);</code>.</div> <p>These functions are not visible to ordinary <a href="../../language/unqualified_lookup.html" title="cpp/language/unqualified lookup">unqualified</a> or <a href="../../language/qualified_lookup.html" title="cpp/language/qualified lookup">qualified lookup</a>, and can only be found by <a href="../../language/adl.html" title="cpp/language/adl">argument-dependent lookup</a> when <code><i>iterator</i></code> is an associated class of the arguments.</p>
+</div> <h3 id="Notes"> Notes</h3> <p><code><i>iterator</i></code> is always <a href="../../iterator/random_access_iterator.html" title="cpp/iterator/random access iterator"><code>random_access_iterator</code></a>.</p>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/ranges/repeat_view/iterator" class="_attribution-link">https://en.cppreference.com/w/cpp/ranges/repeat_view/iterator</a>
+  </p>
+</div>

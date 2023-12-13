@@ -1,0 +1,33 @@
+<h1 id="pandas-dataframe-to-numpy">pandas.DataFrame.to_numpy</h1> <dl class="method"> <dt id="pandas.DataFrame.to_numpy">
+<code>DataFrame.to_numpy(self, dtype=None, copy=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1187-L1240"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert the DataFrame to a NumPy array.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <p>By default, the dtype of the returned array will be the common NumPy dtype of all types in the DataFrame. For example, if the dtypes are <code>float16</code> and <code>float32</code>, the results dtype will be <code>float32</code>. This may require copying data and coercing values, which may be expensive.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>dtype : str or numpy.dtype, optional</code> </dt> <dd>
+<p class="first last">The dtype to pass to <code>numpy.asarray()</code></p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to ensure that the returned value is a not a view on another array. Note that <code>copy=False</code> does not <em>ensure</em> that <code>to_numpy()</code> is no-copy. Rather, <code>copy=True</code> ensure that a copy is made, even if not strictly necessary.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy</code></a>
+</dt> <dd>Similar method for Series.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.DataFrame({"A": [1, 2], "B": [3, 4]}).to_numpy()
+array([[1, 3],
+       [2, 4]])
+</pre> <p>With heterogenous data, the lowest common type will have to be used.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": [1, 2], "B": [3.0, 4.5]})
+&gt;&gt;&gt; df.to_numpy()
+array([[1. , 3. ],
+       [2. , 4.5]])
+</pre> <p>For a mix of numeric and non-numeric types, the output array will have object dtype.</p> <pre data-language="python">&gt;&gt;&gt; df['C'] = pd.date_range('2000', periods=2)
+&gt;&gt;&gt; df.to_numpy()
+array([[1, 3.0, Timestamp('2000-01-01 00:00:00')],
+       [2, 4.5, Timestamp('2000-01-02 00:00:00')]], dtype=object)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_numpy.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_numpy.html</a>
+  </p>
+</div>

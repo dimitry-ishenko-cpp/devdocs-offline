@@ -1,0 +1,33 @@
+<h1 id="pandas-index-repeat">pandas.Index.repeat</h1> <dl class="method"> <dt id="pandas.Index.repeat">
+<code>Index.repeat(self, repeats, axis=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L964-L968"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Repeat elements of a Index.</p> <p>Returns a new Index where each element of the current Index is repeated consecutively a given number of times.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>repeats : int or array of ints</code> </dt> <dd>
+<p class="first last">The number of repetitions for each element. This should be a non-negative integer. Repeating 0 times will return an empty Index.</p> </dd> <dt>
+<code>axis : None</code> </dt> <dd>
+<p class="first last">Must be <code>None</code>. Has no effect but is accepted for compatibility with numpy.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>repeated_index : Index</code> </dt> <dd>
+<p class="first last">Newly created Index with repeated elements.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.repeat.html#pandas.Series.repeat" title="pandas.Series.repeat"><code>Series.repeat</code></a>
+</dt> <dd>Equivalent function for Series.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.repeat.html#numpy.repeat" title="(in NumPy v1.16)"><code>numpy.repeat</code></a>
+</dt> <dd>Similar method for <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code>numpy.ndarray</code></a>.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['a', 'b', 'c'])
+&gt;&gt;&gt; idx
+Index(['a', 'b', 'c'], dtype='object')
+&gt;&gt;&gt; idx.repeat(2)
+Index(['a', 'a', 'b', 'b', 'c', 'c'], dtype='object')
+&gt;&gt;&gt; idx.repeat([1, 2, 3])
+Index(['a', 'b', 'b', 'c', 'c', 'c'], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.repeat.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.repeat.html</a>
+  </p>
+</div>

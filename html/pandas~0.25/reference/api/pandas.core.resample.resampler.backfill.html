@@ -1,0 +1,84 @@
+<h1 id="pandas-core-resample-resampler-backfill">pandas.core.resample.Resampler.backfill</h1> <dl class="method"> <dt id="pandas.core.resample.Resampler.backfill">
+<code>Resampler.backfill(self, limit=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/resample.py#L505-L606"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Backward fill the new missing values in the resampled data.</p> <p>In statistics, imputation is the process of replacing missing data with substituted values <a class="reference internal" href="#rbbbeff54acb7-1" id="id1">[1]</a>. When resampling data, missing values may appear (e.g., when the resampling frequency is higher than the original frequency). The backward fill will replace NaN values that appeared in the resampled data with the next value in the original sequence. Missing values that existed in the original data will not be modified.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>limit : integer, optional</code> </dt> <dd>
+<p class="first last">Limit of how many values to fill.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series, DataFrame</dt> <dd>
+<p class="first last">An upsampled Series or DataFrame with backward filled NaN values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.core.resample.resampler.bfill.html#pandas.core.resample.Resampler.bfill" title="pandas.core.resample.Resampler.bfill"><code>bfill</code></a>
+</dt> <dd>Alias of backfill.</dd> <dt>
+ <a class="reference internal" href="pandas.core.resample.resampler.fillna.html#pandas.core.resample.Resampler.fillna" title="pandas.core.resample.Resampler.fillna"><code>fillna</code></a>
+</dt> <dd>Fill NaN values using the specified method, which can be ‘backfill’.</dd> <dt>
+ <a class="reference internal" href="pandas.core.resample.resampler.nearest.html#pandas.core.resample.Resampler.nearest" title="pandas.core.resample.Resampler.nearest"><code>nearest</code></a>
+</dt> <dd>Fill NaN values with nearest neighbor starting from center.</dd> <dt>
+ <a class="reference internal" href="pandas.core.resample.resampler.pad.html#pandas.core.resample.Resampler.pad" title="pandas.core.resample.Resampler.pad"><code>pad</code></a>
+</dt> <dd>Forward fill NaN values.</dd> <dt>
+<code>Series.fillna</code> </dt> <dd>Fill NaN values in the Series using the specified method, which can be ‘backfill’.</dd> <dt>
+<code>DataFrame.fillna</code> </dt> <dd>Fill NaN values in the DataFrame using the specified method, which can be ‘backfill’.</dd> </dl> </div> <h4 class="rubric">References</h4> <table class="docutils citation" frame="void" id="rbbbeff54acb7-1" rules="none">   <tr>
+<td class="label"><a class="fn-backref" href="#id1">[1]</a></td>
+<td>
+<a class="reference external" href="https://en.wikipedia.org/wiki/Imputation_(statistics">https://en.wikipedia.org/wiki/Imputation_(statistics</a>)</td>
+</tr>  </table> <h4 class="rubric">Examples</h4> <p>Resampling a Series:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3],
+...               index=pd.date_range('20180101', periods=3, freq='h'))
+&gt;&gt;&gt; s
+2018-01-01 00:00:00    1
+2018-01-01 01:00:00    2
+2018-01-01 02:00:00    3
+Freq: H, dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.resample('30min').backfill()
+2018-01-01 00:00:00    1
+2018-01-01 00:30:00    2
+2018-01-01 01:00:00    2
+2018-01-01 01:30:00    3
+2018-01-01 02:00:00    3
+Freq: 30T, dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.resample('15min').backfill(limit=2)
+2018-01-01 00:00:00    1.0
+2018-01-01 00:15:00    NaN
+2018-01-01 00:30:00    2.0
+2018-01-01 00:45:00    2.0
+2018-01-01 01:00:00    2.0
+2018-01-01 01:15:00    NaN
+2018-01-01 01:30:00    3.0
+2018-01-01 01:45:00    3.0
+2018-01-01 02:00:00    3.0
+Freq: 15T, dtype: float64
+</pre> <p>Resampling a DataFrame that has missing values:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'a': [2, np.nan, 6], 'b': [1, 3, 5]},
+...                   index=pd.date_range('20180101', periods=3,
+...                                       freq='h'))
+&gt;&gt;&gt; df
+                       a  b
+2018-01-01 00:00:00  2.0  1
+2018-01-01 01:00:00  NaN  3
+2018-01-01 02:00:00  6.0  5
+</pre> <pre data-language="python">&gt;&gt;&gt; df.resample('30min').backfill()
+                       a  b
+2018-01-01 00:00:00  2.0  1
+2018-01-01 00:30:00  NaN  3
+2018-01-01 01:00:00  NaN  3
+2018-01-01 01:30:00  6.0  5
+2018-01-01 02:00:00  6.0  5
+</pre> <pre data-language="python">&gt;&gt;&gt; df.resample('15min').backfill(limit=2)
+                       a    b
+2018-01-01 00:00:00  2.0  1.0
+2018-01-01 00:15:00  NaN  NaN
+2018-01-01 00:30:00  NaN  3.0
+2018-01-01 00:45:00  NaN  3.0
+2018-01-01 01:00:00  NaN  3.0
+2018-01-01 01:15:00  NaN  NaN
+2018-01-01 01:30:00  6.0  5.0
+2018-01-01 01:45:00  6.0  5.0
+2018-01-01 02:00:00  6.0  5.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.backfill.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.backfill.html</a>
+  </p>
+</div>

@@ -1,0 +1,32 @@
+<h1 id="pandas-series-dt-is-year-end">pandas.Series.dt.is_year_end</h1> <dl class="attribute"> <dt id="pandas.Series.dt.is_year_end">
+<code>Series.dt.is_year_end</code> </dt> <dd>
+<p>Indicate whether the date is the last day of the year.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DatetimeIndex</dt> <dd>
+<p class="first last">The same type as the original data with boolean values. Series will have the same name and index. DatetimeIndex will have the same name.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.dt.is_year_start.html#pandas.Series.dt.is_year_start" title="pandas.Series.dt.is_year_start"><code>is_year_start</code></a>
+</dt> <dd>Similar property indicating the start of the year.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>This method is available on Series with datetime values under the <code>.dt</code> accessor, and directly on DatetimeIndex.</p> <pre data-language="python">&gt;&gt;&gt; dates = pd.Series(pd.date_range("2017-12-30", periods=3))
+&gt;&gt;&gt; dates
+0   2017-12-30
+1   2017-12-31
+2   2018-01-01
+dtype: datetime64[ns]
+</pre> <pre data-language="python">&gt;&gt;&gt; dates.dt.is_year_end
+0    False
+1     True
+2    False
+dtype: bool
+</pre> <pre data-language="python">&gt;&gt;&gt; idx = pd.date_range("2017-12-30", periods=3)
+&gt;&gt;&gt; idx
+DatetimeIndex(['2017-12-30', '2017-12-31', '2018-01-01'],
+              dtype='datetime64[ns]', freq='D')
+</pre> <pre data-language="python">&gt;&gt;&gt; idx.is_year_end
+array([False,  True, False])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.is_year_end.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.is_year_end.html</a>
+  </p>
+</div>

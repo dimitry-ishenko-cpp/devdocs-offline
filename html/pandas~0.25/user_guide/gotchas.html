@@ -1,0 +1,61 @@
+<h1 id="gotchas">Frequently Asked Questions (FAQ)</h1>  <h2 id="df-memory-usage">DataFrame memory usage</h2> <p id="frequently-asked-questions-faq">The memory usage of a <code>DataFrame</code> (including the index) is shown when calling the <a class="reference internal" href="../reference/api/pandas.dataframe.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code>info()</code></a>. A configuration option, <code>display.memory_usage</code> (see <a class="reference internal" href="options.html#options-available"><span class="std std-ref">the list of options</span></a>), specifies if the <code>DataFrame</code>’s memory usage will be displayed when invoking the <code>df.info()</code> method.</p> <p>For example, the memory usage of the <code>DataFrame</code> below is shown when calling <a class="reference internal" href="../reference/api/pandas.dataframe.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code>info()</code></a>:</p> <pre data-language="python">In [1]: dtypes = ['int64', 'float64', 'datetime64[ns]', 'timedelta64[ns]',
+   ...:           'complex128', 'object', 'bool']
+   ...: 
+
+In [2]: n = 5000
+
+In [3]: data = {t: np.random.randint(100, size=n).astype(t) for t in dtypes}
+
+In [4]: df = pd.DataFrame(data)
+
+In [5]: df['categorical'] = df['object'].astype('category')
+
+In [6]: df.info()
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 5000 entries, 0 to 4999
+Data columns (total 8 columns):
+int64              5000 non-null int64
+float64            5000 non-null float64
+datetime64[ns]     5000 non-null datetime64[ns]
+timedelta64[ns]    5000 non-null timedelta64[ns]
+complex128         5000 non-null complex128
+object             5000 non-null object
+bool               5000 non-null bool
+categorical        5000 non-null category
+dtypes: bool(1), category(1), complex128(1), datetime64[ns](1), float64(1), int64(1), object(1), timedelta64[ns](1)
+memory usage: 289.1+ KB
+</pre> <p>The <code>+</code> symbol indicates that the true memory usage could be higher, because pandas does not count the memory used by values in columns with <code>dtype=object</code>.</p> <p>Passing <code>memory_usage='deep'</code> will enable a more accurate memory usage report, accounting for the full usage of the contained objects. This is optional as it can be expensive to do this deeper introspection.</p> <pre data-language="python">In [7]: df.info(memory_usage='deep')
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 5000 entries, 0 to 4999
+Data columns (total 8 columns):
+int64              5000 non-null int64
+float64            5000 non-null float64
+datetime64[ns]     5000 non-null datetime64[ns]
+timedelta64[ns]    5000 non-null timedelta64[ns]
+complex128         5000 non-null complex128
+object             5000 non-null object
+bool               5000 non-null bool
+categorical        5000 non-null category
+dtypes: bool(1), category(1), complex128(1), datetime64[ns](1), float64(1), int64(1), object(1), timedelta64[ns](1)
+memory usage: 425.6 KB
+</pre> <p>By default the display option is set to <code>True</code> but can be explicitly overridden by passing the <code>memory_usage</code> argument when invoking <code>df.info()</code>.</p> <p>The memory usage of each column can be found by calling the <a class="reference internal" href="../reference/api/pandas.dataframe.memory_usage.html#pandas.DataFrame.memory_usage" title="pandas.DataFrame.memory_usage"><code>memory_usage()</code></a> method. This returns a <code>Series</code> with an index represented by column names and memory usage of each column shown in bytes. For the <code>DataFrame</code> above, the memory usage of each column and the total memory usage can be found with the <code>memory_usage</code> method:</p> <pre data-language="python">In [8]: df.memory_usage()
+Out[8]: 
+Index                128
+int64              40000
+float64            40000
+datetime64[ns]     40000
+timedelta64[ns]    40000
+complex128         80000
+object             40000
+bool                5000
+categorical        10920
+dtype: int64
+
+# total memory usage of dataframe
+In [9]: df.memory_usage().sum()
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/gotchas.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/gotchas.html</a>
+  </p>
+</div>

@@ -1,0 +1,72 @@
+    <h1 id="firstHeading" class="firstHeading">std::numeric_limits&lt;T&gt;::epsilon</h1>            <table class="t-dcl-begin">   <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">static T epsilon() throw();</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">static constexpr T epsilon() noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>   </table> <p>Returns the machine epsilon, that is, the difference between <code>1.0</code> and the next value representable by the floating-point type <code>T</code>. It is only meaningful if <code><a href="http://en.cppreference.com/w/cpp/types/numeric_limits"><span class="kw351">std::<span class="me2">numeric_limits</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="sy4">::</span><span class="me2">is_integer</span> <span class="sy1">==</span> <span class="kw2">false</span></code>.</p>
+<h3 id="Return_value"> Return value</h3> <table class="t-dsc-begin"> <tr class="t-dsc-hitem"> <th> <code>T</code> </th> <th> <code><a href="http://en.cppreference.com/w/cpp/types/numeric_limits"><span class="kw351">std::<span class="me2">numeric_limits</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="sy4">::</span><span class="me2">epsilon</span><span class="br0">(</span><span class="br0">)</span></code> </th>
+</tr> <tr class="t-dsc"> <td> <span class="coMULTI">/* non-specialized */</span> </td> <td> <code>T()</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">bool</span> </td> <td> <code>false</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">char</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">signed</span> <span class="kw4">char</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">unsigned</span> <span class="kw4">char</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">wchar_t</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> char8_t <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">char16_t</span> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">char32_t</span> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">short</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">unsigned</span> <span class="kw4">short</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">int</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">unsigned</span> <span class="kw4">int</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">long</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">unsigned</span> <span class="kw4">long</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">long</span> <span class="kw4">long</span> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">unsigned</span> <span class="kw4">long</span> <span class="kw4">long</span><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> <td> <code>​0​</code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">float</span> </td> <td> <code><a href="../climits.html" title="cpp/types/climits">FLT_EPSILON</a></code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">double</span> </td> <td> <code><a href="../climits.html" title="cpp/types/climits">DBL_EPSILON</a></code> </td>
+</tr> <tr class="t-dsc"> <td> <span class="kw4">long</span> <span class="kw4">double</span> </td> <td> <code><a href="../climits.html" title="cpp/types/climits">LDBL_EPSILON</a></code> </td>
+</tr> </table> <h3 id="Example"> Example</h3> <div class="t-example">
+<p>Demonstrates the use of machine epsilon to compare floating-point values for equality:</p>
+<div class="cpp source-cpp"><pre data-language="cpp">#include &lt;cmath&gt;
+#include &lt;limits&gt;
+#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;type_traits&gt;
+#include &lt;algorithm&gt;
+ 
+template&lt;class T&gt;
+typename std::enable_if&lt;!std::numeric_limits&lt;T&gt;::is_integer, bool&gt;::type
+    almost_equal(T x, T y, int ulp)
+{
+    // the machine epsilon has to be scaled to the magnitude of the values used
+    // and multiplied by the desired precision in ULPs (units in the last place)
+    return std::fabs(x - y) &lt;= std::numeric_limits&lt;T&gt;::epsilon() * std::fabs(x + y) * ulp
+        // unless the result is subnormal
+        || std::fabs(x - y) &lt; std::numeric_limits&lt;T&gt;::min();
+}
+ 
+int main()
+{
+    double d1 = 0.2;
+    double d2 = 1 / std::sqrt(5) / std::sqrt(5);
+    std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(20) 
+              &lt;&lt; "d1=" &lt;&lt; d1 &lt;&lt; "\nd2=" &lt;&lt; d2 &lt;&lt; '\n';
+ 
+    if (d1 == d2)
+        std::cout &lt;&lt; "d1 == d2\n";
+    else
+        std::cout &lt;&lt; "d1 != d2\n";
+ 
+    if (almost_equal(d1, d2, 2))
+        std::cout &lt;&lt; "d1 almost equals d2\n";
+    else
+        std::cout &lt;&lt; "d1 does not almost equal d2\n";
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">d1=0.20000000000000001110
+d2=0.19999999999999998335
+d1 != d2
+d1 almost equals d2</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../../numeric/math/nextafter.html" title="cpp/numeric/math/nextafter"> <span class="t-lines"><span>nextafter</span><span>nextafterf</span><span>nextafterl</span><span>nexttoward</span><span>nexttowardf</span><span>nexttowardl</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span> </span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> next representable floating point value towards the given value <br> <span class="t-mark">(function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/types/numeric_limits/epsilon" class="_attribution-link">https://en.cppreference.com/w/cpp/types/numeric_limits/epsilon</a>
+  </p>
+</div>

@@ -1,0 +1,48 @@
+<h1 id="pandas-series-abs">pandas.Series.abs</h1> <dl class="method"> <dt id="pandas.Series.abs">
+<code>Series.abs(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L9877-L9944"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a Series/DataFrame with absolute numeric value of each element.</p> <p>This function only applies to elements that are all numeric.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>abs</dt> <dd>
+<p class="first last">Series/DataFrame containing the absolute value of each element.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.absolute.html#numpy.absolute" title="(in NumPy v1.16)"><code>numpy.absolute</code></a>
+</dt> <dd>Calculate the absolute value element-wise.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>For <code>complex</code> inputs, <code>1.2 + 1j</code>, the absolute value is <span class="math notranslate nohighlight">\(\sqrt{ a^2 + b^2 }\)</span>.</p> <h4 class="rubric">Examples</h4> <p>Absolute numeric values in a Series.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([-1.10, 2, -3.33, 4])
+&gt;&gt;&gt; s.abs()
+0    1.10
+1    2.00
+2    3.33
+3    4.00
+dtype: float64
+</pre> <p>Absolute numeric values in a Series with complex numbers.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1.2 + 1j])
+&gt;&gt;&gt; s.abs()
+0    1.56205
+dtype: float64
+</pre> <p>Absolute numeric values in a Series with a Timedelta element.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([pd.Timedelta('1 days')])
+&gt;&gt;&gt; s.abs()
+0   1 days
+dtype: timedelta64[ns]
+</pre> <p>Select rows with data closest to certain value using argsort (from <a class="reference external" href="https://stackoverflow.com/a/17758115">StackOverflow</a>).</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({
+...     'a': [4, 5, 6, 7],
+...     'b': [10, 20, 30, 40],
+...     'c': [100, 50, -30, -50]
+... })
+&gt;&gt;&gt; df
+     a    b    c
+0    4   10  100
+1    5   20   50
+2    6   30  -30
+3    7   40  -50
+&gt;&gt;&gt; df.loc[(df.c - 43).abs().argsort()]
+     a    b    c
+1    5   20   50
+0    4   10  100
+2    6   30  -30
+3    7   40  -50
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.abs.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.abs.html</a>
+  </p>
+</div>

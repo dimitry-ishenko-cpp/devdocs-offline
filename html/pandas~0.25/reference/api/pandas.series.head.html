@@ -1,0 +1,47 @@
+<h1 id="pandas-series-head">pandas.Series.head</h1> <dl class="method"> <dt id="pandas.Series.head">
+<code>Series.head(self, n=5)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L4679-L4736"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the first <code>n</code> rows.</p> <p>This function returns the first <code>n</code> rows for the object based on position. It is useful for quickly testing if your object has the right type of data in it.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>n : int, default 5</code> </dt> <dd>
+<p class="first last">Number of rows to select.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>obj_head : same type as caller</code> </dt> <dd>
+<p class="first last">The first <code>n</code> rows of the caller object.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.tail.html#pandas.DataFrame.tail" title="pandas.DataFrame.tail"><code>DataFrame.tail</code></a>
+</dt> <dd>Returns the last <code>n</code> rows.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'animal':['alligator', 'bee', 'falcon', 'lion',
+...                    'monkey', 'parrot', 'shark', 'whale', 'zebra']})
+&gt;&gt;&gt; df
+      animal
+0  alligator
+1        bee
+2     falcon
+3       lion
+4     monkey
+5     parrot
+6      shark
+7      whale
+8      zebra
+</pre> <p>Viewing the first 5 lines</p> <pre data-language="python">&gt;&gt;&gt; df.head()
+      animal
+0  alligator
+1        bee
+2     falcon
+3       lion
+4     monkey
+</pre> <p>Viewing the first <code>n</code> lines (three in this case)</p> <pre data-language="python">&gt;&gt;&gt; df.head(3)
+      animal
+0  alligator
+1        bee
+2     falcon
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.head.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.head.html</a>
+  </p>
+</div>

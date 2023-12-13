@@ -1,0 +1,40 @@
+<h1 id="pandas-tseries-offsets-fy5253quarter">pandas.tseries.offsets.FY5253Quarter</h1> <dl class="class"> <dt id="pandas.tseries.offsets.FY5253Quarter">
+<code>class pandas.tseries.offsets.FY5253Quarter(n=1, normalize=False, weekday=0, startingMonth=1, qtr_with_extra_week=1, variation='nearest')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/tseries/offsets.py#L2242-L2447"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>DateOffset increments between business quarter dates for 52-53 week fiscal year (also known as a 4-4-5 calendar).</p> <p>It is used by companies that desire that their fiscal year always end on the same day of the week.</p> <p>It is a method of managing accounting periods. It is a common calendar structure for some industries, such as retail, manufacturing and parking industry.</p> <p>For more information see: <a class="reference external" href="http://en.wikipedia.org/wiki/4-4-5_calendar">http://en.wikipedia.org/wiki/4-4-5_calendar</a></p> <p>The year may either: - end on the last X day of the Y month. - end on the last X day closest to the last day of the Y month.</p> <p>X is a specific day of the week. Y is a certain month of the year</p> <p>startingMonth = 1 corresponds to dates like 1/31/2007, 4/30/2007, … startingMonth = 2 corresponds to dates like 2/28/2007, 5/31/2007, … startingMonth = 3 corresponds to dates like 3/30/2007, 6/29/2007, …</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>n : int</code> </dt>  <dt>
+<code>weekday : {0, 1, …, 6}</code> </dt> <dd>
+<p class="first last">0: Mondays 1: Tuesdays 2: Wednesdays 3: Thursdays 4: Fridays 5: Saturdays 6: Sundays</p> </dd> <dt>
+<code>startingMonth : The month in which fiscal years end. {1, 2, … 12}</code> </dt>  <dt>
+<code>qtr_with_extra_week : The quarter number that has the leap</code> </dt> <dd>
+<p class="first last">or 14 week when needed. {1,2,3,4}</p> </dd> <dt>
+<code>variation : str</code> </dt> <dd>
+<p class="first last">{“nearest”, “last”} for “LastOfMonth” or “NearestEndMonth”</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.fy5253quarter.base.html#pandas.tseries.offsets.FY5253Quarter.base" title="pandas.tseries.offsets.FY5253Quarter.base"><code>base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>freqstr</strong></td> <td> </td> </tr> <tr>
+<td><strong>kwds</strong></td> <td> </td> </tr> <tr>
+<td><strong>name</strong></td> <td> </td> </tr> <tr>
+<td><strong>nanos</strong></td> <td> </td> </tr> <tr>
+<td><strong>rule_code</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.fy5253quarter.apply_index.html#pandas.tseries.offsets.FY5253Quarter.apply_index" title="pandas.tseries.offsets.FY5253Quarter.apply_index"><code>apply_index</code></a>(self, other)</td> <td>Vectorized apply of DateOffset to DatetimeIndex, raises NotImplentedError for offsets without a vectorized implementation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.fy5253quarter.rollback.html#pandas.tseries.offsets.FY5253Quarter.rollback" title="pandas.tseries.offsets.FY5253Quarter.rollback"><code>rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.fy5253quarter.rollforward.html#pandas.tseries.offsets.FY5253Quarter.rollforward" title="pandas.tseries.offsets.FY5253Quarter.rollforward"><code>rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>__call__</strong></td> <td> </td> </tr> <tr>
+<td><strong>apply</strong></td> <td> </td> </tr> <tr>
+<td><strong>copy</strong></td> <td> </td> </tr> <tr>
+<td><strong>get_weeks</strong></td> <td> </td> </tr> <tr>
+<td><strong>isAnchored</strong></td> <td> </td> </tr> <tr>
+<td><strong>onOffset</strong></td> <td> </td> </tr> <tr>
+<td><strong>year_has_extra_week</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.FY5253Quarter.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.FY5253Quarter.html</a>
+  </p>
+</div>

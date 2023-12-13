@@ -1,0 +1,52 @@
+<h1 id="pandas-series-map">pandas.Series.map</h1> <dl class="method"> <dt id="pandas.Series.map">
+<code>Series.map(self, arg, na_action=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L3746-L3822"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Map values of Series according to input correspondence.</p> <p>Used for substituting each value in a Series with another value, that may be derived from a function, a <code>dict</code> or a <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arg : function, dict, or Series</code> </dt> <dd>
+<p class="first last">Mapping correspondence.</p> </dd> <dt>
+<code>na_action : {None, ‘ignore’}, default None</code> </dt> <dd>
+<p class="first last">If ‘ignore’, propagate NaN values, without passing them to the mapping correspondence.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Same index as caller.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.apply.html#pandas.Series.apply" title="pandas.Series.apply"><code>Series.apply</code></a>
+</dt> <dd>For applying more complex functions on a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code>DataFrame.apply</code></a>
+</dt> <dd>Apply a function row-/column-wise.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.applymap.html#pandas.DataFrame.applymap" title="pandas.DataFrame.applymap"><code>DataFrame.applymap</code></a>
+</dt> <dd>Apply a function elementwise on a whole DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>When <code>arg</code> is a dictionary, values in Series that are not in the dictionary (as keys) are converted to <code>NaN</code>. However, if the dictionary is a <code>dict</code> subclass that defines <code>__missing__</code> (i.e. provides a method for default values), then this default is used rather than <code>NaN</code>.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['cat', 'dog', np.nan, 'rabbit'])
+&gt;&gt;&gt; s
+0      cat
+1      dog
+2      NaN
+3   rabbit
+dtype: object
+</pre> <p><code>map</code> accepts a <code>dict</code> or a <code>Series</code>. Values that are not found in the <code>dict</code> are converted to <code>NaN</code>, unless the dict has a default value (e.g. <code>defaultdict</code>):</p> <pre data-language="python">&gt;&gt;&gt; s.map({'cat': 'kitten', 'dog': 'puppy'})
+0   kitten
+1    puppy
+2      NaN
+3      NaN
+dtype: object
+</pre> <p>It also accepts a function:</p> <pre data-language="python">&gt;&gt;&gt; s.map('I am a {}'.format)
+0       I am a cat
+1       I am a dog
+2       I am a nan
+3    I am a rabbit
+dtype: object
+</pre> <p>To avoid applying the function to missing values (and keep them as <code>NaN</code>) <code>na_action='ignore'</code> can be used:</p> <pre data-language="python">&gt;&gt;&gt; s.map('I am a {}'.format, na_action='ignore')
+0     I am a cat
+1     I am a dog
+2            NaN
+3  I am a rabbit
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.map.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.map.html</a>
+  </p>
+</div>

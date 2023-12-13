@@ -1,0 +1,49 @@
+<h1 id="pandas-series-between">pandas.Series.between</h1> <dl class="method"> <dt id="pandas.Series.between">
+<code>Series.between(self, left, right, inclusive=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L4512-L4585"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return boolean Series equivalent to left &lt;= series &lt;= right.</p> <p>This function returns a boolean vector containing <code>True</code> wherever the corresponding Series element is between the boundary values <code>left</code> and <code>right</code>. NA values are treated as <code>False</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>left : scalar</code> </dt> <dd>
+<p class="first last">Left boundary.</p> </dd> <dt>
+<code>right : scalar</code> </dt> <dd>
+<p class="first last">Right boundary.</p> </dd> <dt>
+<code>inclusive : bool, default True</code> </dt> <dd>
+<p class="first last">Include boundaries.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Series representing whether each element is between left and right (inclusive).</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.gt.html#pandas.Series.gt" title="pandas.Series.gt"><code>Series.gt</code></a>
+</dt> <dd>Greater than of series and other.</dd> <dt>
+ <a class="reference internal" href="pandas.series.lt.html#pandas.Series.lt" title="pandas.Series.lt"><code>Series.lt</code></a>
+</dt> <dd>Less than of series and other.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This function is equivalent to <code>(left &lt;= ser) &amp; (ser &lt;= right)</code></p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([2, 0, 4, 8, np.nan])
+</pre> <p>Boundary values are included by default:</p> <pre data-language="python">&gt;&gt;&gt; s.between(1, 4)
+0     True
+1    False
+2     True
+3    False
+4    False
+dtype: bool
+</pre> <p>With <code>inclusive</code> set to <code>False</code> boundary values are excluded:</p> <pre data-language="python">&gt;&gt;&gt; s.between(1, 4, inclusive=False)
+0     True
+1    False
+2    False
+3    False
+4    False
+dtype: bool
+</pre> <p><code>left</code> and <code>right</code> can be any scalar value:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['Alice', 'Bob', 'Carol', 'Eve'])
+&gt;&gt;&gt; s.between('Anna', 'Daniel')
+0    False
+1     True
+2     True
+3    False
+dtype: bool
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.between.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.between.html</a>
+  </p>
+</div>

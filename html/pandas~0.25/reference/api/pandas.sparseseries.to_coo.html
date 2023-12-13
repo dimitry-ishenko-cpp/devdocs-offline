@@ -1,0 +1,46 @@
+<h1 id="pandas-sparseseries-to-coo">pandas.SparseSeries.to_coo</h1> <dl class="method"> <dt id="pandas.SparseSeries.to_coo">
+<code>SparseSeries.to_coo(self, row_levels=(0, ), column_levels=(1, ), sort_labels=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/sparse/series.py#L637-L642"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Create a scipy.sparse.coo_matrix from a SparseSeries with MultiIndex.</p> <p>Use row_levels and column_levels to determine the row and column coordinates respectively. row_levels and column_levels are the names (labels) or numbers of the levels. {row_levels, column_levels} must be a partition of the MultiIndex level names (or numbers).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>row_levels : tuple/list</code> </dt>  <dt>
+<code>column_levels : tuple/list</code> </dt>  <dt>
+<code>sort_labels : bool, default False</code> </dt> <dd>
+<p class="first last">Sort the row and column labels before forming the sparse matrix.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>y : scipy.sparse.coo_matrix</code> </dt>  <dt>
+<code>rows : list (row labels)</code> </dt>  <dt>
+<code>columns : list (column labels)</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([3.0, np.nan, 1.0, 3.0, np.nan, np.nan])
+&gt;&gt;&gt; s.index = pd.MultiIndex.from_tuples([(1, 2, 'a', 0),
+                                        (1, 2, 'a', 1),
+                                        (1, 1, 'b', 0),
+                                        (1, 1, 'b', 1),
+                                        (2, 1, 'b', 0),
+                                        (2, 1, 'b', 1)],
+                                        names=['A', 'B', 'C', 'D'])
+&gt;&gt;&gt; ss = s.to_sparse()
+&gt;&gt;&gt; A, rows, columns = ss.to_coo(row_levels=['A', 'B'],
+                                 column_levels=['C', 'D'],
+                                 sort_labels=True)
+&gt;&gt;&gt; A
+&lt;3x4 sparse matrix of type '&lt;class 'numpy.float64'&gt;'
+        with 3 stored elements in COOrdinate format&gt;
+&gt;&gt;&gt; A.todense()
+matrix([[ 0.,  0.,  1.,  3.],
+[ 3.,  0.,  0.,  0.],
+[ 0.,  0.,  0.,  0.]])
+&gt;&gt;&gt; rows
+[(1, 1), (1, 2), (2, 1)]
+&gt;&gt;&gt; columns
+[('a', 0), ('a', 1), ('b', 0), ('b', 1)]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseSeries.to_coo.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseSeries.to_coo.html</a>
+  </p>
+</div>

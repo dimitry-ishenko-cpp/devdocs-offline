@@ -1,0 +1,109 @@
+<h1 id="indexing">Indexing and selecting data</h1> <p id="indexing-and-selecting-data">The axis labeling information in pandas objects serves many purposes:</p> <ul class="simple"> <li>Identifies data (i.e. provides <em>metadata</em>) using known indicators, important for analysis, visualization, and interactive console display.</li> <li>Enables automatic and explicit data alignment.</li> <li>Allows intuitive getting and setting of subsets of the data set.</li> </ul> <p>In this section, we will focus on the final point: namely, how to slice, dice, and generally get and set subsets of pandas objects. The primary focus will be on Series and DataFrame as they have received more development attention in this area.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">The Python and NumPy indexing operators <code>[]</code> and attribute operator <code>.</code> provide quick and easy access to pandas data structures across a wide range of use cases. This makes interactive work intuitive, as there’s little new to learn if you already know how to deal with Python dictionaries and NumPy arrays. However, since the type of the data to be accessed isn’t known in advance, directly using standard operators has some optimization limits. For production code, we recommended that you take advantage of the optimized pandas data access methods exposed in this chapter.</p> </div> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">Whether a copy or a reference is returned for a setting operation, may depend on the context. This is sometimes called <code>chained assignment</code> and should be avoided. See <a class="reference internal" href="#indexing-view-versus-copy"><span class="std std-ref">Returning a View versus Copy</span></a>.</p> </div> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">Indexing on an integer-based Index with floats has been clarified in 0.18.0, for a summary of the changes, see <a class="reference internal" href="https://pandas.pydata.org/pandas-docs/version/0.25.0/whatsnew/v0.18.0.html#whatsnew-0180-float-indexers"><span class="std std-ref">here</span></a>.</p> </div> <p>See the <a class="reference internal" href="advanced.html#advanced"><span class="std std-ref">MultiIndex / Advanced Indexing</span></a> for <code>MultiIndex</code> and more advanced indexing documentation.</p> <p>See the <a class="reference internal" href="cookbook.html#cookbook-selection"><span class="std std-ref">cookbook</span></a> for some advanced strategies.</p>  <h2 id="indexing-choice">Different choices for indexing</h2> <p id="different-choices-for-indexing">Object selection has had a number of user-requested additions in order to support more explicit location based indexing. Pandas now supports three types of multi-axis indexing.</p> <ul> <li>
+<p class="first"><code>.loc</code> is primarily label based, but may also be used with a boolean array. <code>.loc</code> will raise <code>KeyError</code> when the items are not found. Allowed inputs are:</p>  <ul> <li>A single label, e.g. <code>5</code> or <code>'a'</code> (Note that <code>5</code> is interpreted as a <em>label</em> of the index. This use is <strong>not</strong> an integer position along the index.). </li> <li>A list or array of labels <code>['a', 'b', 'c']</code>. </li> <li>A slice object with labels <code>'a':'f'</code> (Note that contrary to usual python slices, <strong>both</strong> the start and the stop are included, when present in the index! See <a class="reference internal" href="#indexing-slicing-with-labels"><span class="std std-ref">Slicing with labels</span></a> and <a class="reference internal" href="advanced.html#advanced-endpoints-are-inclusive"><span class="std std-ref">Endpoints are inclusive</span></a>.) </li> <li>A boolean array </li> <li>
+<p class="first">A <code>callable</code> function with one argument (the calling Series or DataFrame) and that returns valid output for indexing (one of the above).</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.18.1.</span></p> </div> </li> </ul>  <p>See more at <a class="reference internal" href="#indexing-label"><span class="std std-ref">Selection by Label</span></a>.</p> </li> <li>
+<p class="first"><code>.iloc</code> is primarily integer position based (from <code>0</code> to <code>length-1</code> of the axis), but may also be used with a boolean array. <code>.iloc</code> will raise <code>IndexError</code> if a requested indexer is out-of-bounds, except <em>slice</em> indexers which allow out-of-bounds indexing. (this conforms with Python/NumPy <em>slice</em> semantics). Allowed inputs are:</p>  <ul> <li>An integer e.g. <code>5</code>. </li> <li>A list or array of integers <code>[4, 3, 0]</code>. </li> <li>A slice object with ints <code>1:7</code>. </li> <li>A boolean array. </li> <li>
+<p class="first">A <code>callable</code> function with one argument (the calling Series or DataFrame) and that returns valid output for indexing (one of the above).</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.18.1.</span></p> </div> </li> </ul>  <p>See more at <a class="reference internal" href="#indexing-integer"><span class="std std-ref">Selection by Position</span></a>, <a class="reference internal" href="advanced.html#advanced"><span class="std std-ref">Advanced Indexing</span></a> and <a class="reference internal" href="advanced.html#advanced-advanced-hierarchical"><span class="std std-ref">Advanced Hierarchical</span></a>.</p> </li> <li>
+<code>.loc</code>, <code>.iloc</code>, and also <code>[]</code> indexing can accept a <code>callable</code> as indexer. See more at <a class="reference internal" href="#indexing-callable"><span class="std std-ref">Selection By Callable</span></a>. </li> </ul> <p>Getting values from an object with multi-axes selection uses the following notation (using <code>.loc</code> as an example, but the following applies to <code>.iloc</code> as well). Any of the axes accessors may be the null slice <code>:</code>. Axes left out of the specification are assumed to be <code>:</code>, e.g. <code>p.loc['a']</code> is equivalent to <code>p.loc['a', :, :]</code>.</p> <table class="colwidths-given docutils">  <thead valign="bottom"> <tr>
+<th class="head">Object Type</th> <th class="head">Indexers</th> </tr> </thead>  <tr>
+<td>Series</td> <td><code>s.loc[indexer]</code></td> </tr> <tr>
+<td>DataFrame</td> <td><code>df.loc[row_indexer,column_indexer]</code></td> </tr>  </table>   <h2 id="indexing-basics">Basics</h2> <p id="basics">As mentioned when introducing the data structures in the <a class="reference internal" href="../getting_started/basics.html#basics"><span class="std std-ref">last section</span></a>, the primary function of indexing with <code>[]</code> (a.k.a. <code>__getitem__</code> for those familiar with implementing class behavior in Python) is selecting out lower-dimensional slices. The following table shows return type values when indexing pandas objects with <code>[]</code>:</p> <table class="colwidths-given docutils">  <thead valign="bottom"> <tr>
+<th class="head">Object Type</th> <th class="head">Selection</th> <th class="head">Return Value Type</th> </tr> </thead>  <tr>
+<td>Series</td> <td><code>series[label]</code></td> <td>scalar value</td> </tr> <tr>
+<td>DataFrame</td> <td><code>frame[colname]</code></td> <td>
+<code>Series</code> corresponding to colname</td> </tr>  </table> <p>Here we construct a simple time series data set to use for illustrating the indexing functionality:</p> <pre data-language="python">In [1]: dates = pd.date_range('1/1/2000', periods=8)
+
+In [2]: df = pd.DataFrame(np.random.randn(8, 4),
+   ...:                   index=dates, columns=['A', 'B', 'C', 'D'])
+   ...: 
+
+In [3]: df
+Out[3]: 
+                   A         B         C         D
+2000-01-01  0.469112 -0.282863 -1.509059 -1.135632
+2000-01-02  1.212112 -0.173215  0.119209 -1.044236
+2000-01-03 -0.861849 -2.104569 -0.494929  1.071804
+2000-01-04  0.721555 -0.706771 -1.039575  0.271860
+2000-01-05 -0.424972  0.567020  0.276232 -1.087401
+2000-01-06 -0.673690  0.113648 -1.478427  0.524988
+2000-01-07  0.404705  0.577046 -1.715002 -1.039268
+2000-01-08 -0.370647 -1.157892 -1.344312  0.844885
+</pre> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">None of the indexing functionality is time series specific unless specifically stated.</p> </div> <p>Thus, as per above, we have the most basic indexing using <code>[]</code>:</p> <pre data-language="python">In [4]: s = df['A']
+
+In [5]: s[dates[5]]
+Out[5]: -0.6736897080883706
+</pre> <p>You can pass a list of columns to <code>[]</code> to select columns in that order. If a column is not contained in the DataFrame, an exception will be raised. Multiple columns can also be set in this manner:</p> <pre data-language="python">In [6]: df
+Out[6]: 
+                   A         B         C         D
+2000-01-01  0.469112 -0.282863 -1.509059 -1.135632
+2000-01-02  1.212112 -0.173215  0.119209 -1.044236
+2000-01-03 -0.861849 -2.104569 -0.494929  1.071804
+2000-01-04  0.721555 -0.706771 -1.039575  0.271860
+2000-01-05 -0.424972  0.567020  0.276232 -1.087401
+2000-01-06 -0.673690  0.113648 -1.478427  0.524988
+2000-01-07  0.404705  0.577046 -1.715002 -1.039268
+2000-01-08 -0.370647 -1.157892 -1.344312  0.844885
+
+In [7]: df[['B', 'A']] = df[['A', 'B']]
+
+In [8]: df
+Out[8]: 
+                   A         B         C         D
+2000-01-01 -0.282863  0.469112 -1.509059 -1.135632
+2000-01-02 -0.173215  1.212112  0.119209 -1.044236
+2000-01-03 -2.104569 -0.861849 -0.494929  1.071804
+2000-01-04 -0.706771  0.721555 -1.039575  0.271860
+2000-01-05  0.567020 -0.424972  0.276232 -1.087401
+2000-01-06  0.113648 -0.673690 -1.478427  0.524988
+2000-01-07  0.577046  0.404705 -1.715002 -1.039268
+2000-01-08 -1.157892 -0.370647 -1.344312  0.844885
+</pre> <p>You may find this useful for applying a transform (in-place) to a subset of the columns.</p> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p>pandas aligns all AXES when setting <code>Series</code> and <code>DataFrame</code> from <code>.loc</code>, and <code>.iloc</code>.</p> <p>This will <strong>not</strong> modify <code>df</code> because the column alignment is before value assignment.</p> <pre data-language="python">In [9]: df[['A', 'B']]
+Out[9]: 
+                   A         B
+2000-01-01 -0.282863  0.469112
+2000-01-02 -0.173215  1.212112
+2000-01-03 -2.104569 -0.861849
+2000-01-04 -0.706771  0.721555
+2000-01-05  0.567020 -0.424972
+2000-01-06  0.113648 -0.673690
+2000-01-07  0.577046  0.404705
+2000-01-08 -1.157892 -0.370647
+
+In [10]: df.loc[:, ['B', 'A']] = df[['A', 'B']]
+
+In [11]: df[['A', 'B']]
+Out[11]: 
+                   A         B
+2000-01-01 -0.282863  0.469112
+2000-01-02 -0.173215  1.212112
+2000-01-03 -2.104569 -0.861849
+2000-01-04 -0.706771  0.721555
+2000-01-05  0.567020 -0.424972
+2000-01-06  0.113648 -0.673690
+2000-01-07  0.577046  0.404705
+2000-01-08 -1.157892 -0.370647
+</pre> <p>The correct way to swap column values is by using raw values:</p> <pre data-language="python">In [12]: df.loc[:, ['B', 'A']] = df[['A', 'B']].to_numpy()
+
+In [13]: df[['A', 'B']]
+Out[13]: 
+                   A         B
+2000-01-01  0.469112 -0.282863
+2000-01-02  1.212112 -0.173215
+2000-01-03 -0.861849 -2.104569
+2000-01-04  0.721555 -0.706771
+2000-01-05 -0.424972  0.567020
+2000-01-06 -0.673690  0.113648
+2000-01-07  0.404705  0.577046
+2000-01-08 -0.370647 -1.157892
+</pre> </div>   <h2 id="attribute-access">Attribute access</h2> <p id="indexing-attribute-access">You may access an index on a <code id="indexing-columns-multiple">Series</code> or column on a <code>DataFrame</code> directly as an attribute:</p> <pre data-language="python">In [14]: sa = pd.Series([1, 2, 3], index=list('abc'))
+
+In [15]: dfa = df.copy()
+</pre> <pre data-language="python">In [16]: sa.b
+Out[16]: 2
+
+In [17]: dfa.A
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/indexing.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/indexing.html</a>
+  </p>
+</div>

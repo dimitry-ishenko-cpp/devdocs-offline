@@ -1,0 +1,48 @@
+    <h1 id="firstHeading" class="firstHeading">std::begin<small>(std::valarray)</small>
+</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">template&lt; class T &gt; 
+/*unspecified1*/ begin( valarray&lt;T&gt;&amp; v );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">template&lt; class T &gt; 
+/*unspecified2*/ begin( const valarray&lt;T&gt;&amp; v );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  </table> <p>The overload of <code><a href="../../iterator/begin.html" title="cpp/iterator/begin">std::begin</a></code> for <code>valarray</code> returns an iterator of unspecified type referring to the first element in the numeric array.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> The return type meets the requirements of mutable <a href="../../named_req/randomaccessiterator.html" title="cpp/named req/RandomAccessIterator">LegacyRandomAccessIterator</a>.</div> <div class="t-li1">
+<span class="t-li">2)</span> The return type meets the requirements of constant <a href="../../named_req/randomaccessiterator.html" title="cpp/named req/RandomAccessIterator">LegacyRandomAccessIterator</a>.</div> <p>The iterator obtained from this function is invalidated when the member function <code>resize()</code> is called on the array <code>v</code> or when the lifetime of <code>v</code> ends, whichever comes first.</p>
+<h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> v </td> <td> - </td> <td> a numeric array </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p>Iterator to the first value in the numeric array.</p>
+<h3 id="Exceptions"> Exceptions</h3> <p>May throw implementation-defined exceptions.</p>
+<h3 id="Notes"> Notes</h3> <p>Unlike other functions that take <code>std::valarray</code> arguments, <code>begin()</code> cannot accept the replacement types (such as the types produced by expression templates) that may be returned from expressions involving valarrays: <code><a href="http://en.cppreference.com/w/cpp/iterator/begin"><span class="kw679">std::<span class="me2">begin</span></span></a><span class="br0">(</span>v1 <span class="sy2">+</span> v2<span class="br0">)</span></code> is not portable, <code><a href="http://en.cppreference.com/w/cpp/iterator/begin"><span class="kw679">std::<span class="me2">begin</span></span></a><span class="br0">(</span><a href="http://en.cppreference.com/w/cpp/numeric/valarray"><span class="kw1477">std::<span class="me2">valarray</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="br0">(</span>v1 <span class="sy2">+</span> v2<span class="br0">)</span><span class="br0">)</span></code> has to be used instead.</p>
+<p>The intent of this function is to allow <a href="../../language/range-for.html" title="cpp/language/range-for">range for loops</a> to work with valarrays, not to provide container semantics.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;valarray&gt;
+#include &lt;algorithm&gt;
+ 
+auto show = [](std::valarray&lt;int&gt; const&amp; v) {
+    std::for_each(std::begin(v), std::end(v), [](int c) {
+        std::cout &lt;&lt; c &lt;&lt; ' ';
+    });
+    std::cout &lt;&lt; '\n';
+};
+ 
+int main()
+{
+    const std::valarray&lt;int&gt; x { 47, 70, 37, 52, 90, 23, 17, 33, 22, 16, 21, 4 };
+    const std::valarray&lt;int&gt; y { 25, 31, 71, 56, 21, 21, 15, 34, 21, 27, 12, 6 };
+ 
+    show(x); 
+    show(y); 
+ 
+    const std::valarray&lt;int&gt; z { x + y };
+ 
+    std::for_each(std::begin(z), std::end(z), [](char c) { std::cout &lt;&lt; c; });
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">47 70 37 52 90 23 17 33 22 16 21 4 
+25 31 71 56 21 21 15 34 21 27 12 6 
+Hello, C++!</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="end2.html" title="cpp/numeric/valarray/end2"> <span class="t-lines"><span>std::end<span class="t-dsc-small">(std::valarray)</span></span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> specializes <code><a href="../../iterator/end.html" title="cpp/iterator/end">std::end</a></code> <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/numeric/valarray/begin2" class="_attribution-link">https://en.cppreference.com/w/cpp/numeric/valarray/begin2</a>
+  </p>
+</div>

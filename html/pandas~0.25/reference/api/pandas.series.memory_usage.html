@@ -1,0 +1,37 @@
+<h1 id="pandas-series-memory-usage">pandas.Series.memory_usage</h1> <dl class="method"> <dt id="pandas.Series.memory_usage">
+<code>Series.memory_usage(self, index=True, deep=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L4371-L4423"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the memory usage of the Series.</p> <p>The memory usage can optionally include the contribution of the index and of elements of <code>object</code> dtype.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">Specifies whether to include the memory usage of the Series index.</p> </dd> <dt>
+<code>deep : bool, default False</code> </dt> <dd>
+<p class="first last">If True, introspect the data deeply by interrogating <code>object</code> dtypes for system-level memory consumption, and include it in the returned value.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>int</dt> <dd>
+<p class="first last">Bytes of memory consumed.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.nbytes.html#numpy.ndarray.nbytes" title="(in NumPy v1.16)"><code>numpy.ndarray.nbytes</code></a>
+</dt> <dd>Total bytes consumed by the elements of the array.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.memory_usage.html#pandas.DataFrame.memory_usage" title="pandas.DataFrame.memory_usage"><code>DataFrame.memory_usage</code></a>
+</dt> <dd>Bytes consumed by a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(range(3))
+&gt;&gt;&gt; s.memory_usage()
+152
+</pre> <p>Not including the index gives the size of the rest of the data, which is necessarily smaller:</p> <pre data-language="python">&gt;&gt;&gt; s.memory_usage(index=False)
+24
+</pre> <p>The memory footprint of <code>object</code> values is ignored by default:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(["a", "b"])
+&gt;&gt;&gt; s.values
+array(['a', 'b'], dtype=object)
+&gt;&gt;&gt; s.memory_usage()
+144
+&gt;&gt;&gt; s.memory_usage(deep=True)
+260
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.memory_usage.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.memory_usage.html</a>
+  </p>
+</div>

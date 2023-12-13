@@ -1,0 +1,58 @@
+<h1 id="pandas-isna">pandas.isna</h1> <dl class="function"> <dt id="pandas.isna">
+<code>pandas.isna(obj)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/missing.py#L48-L122"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Detect missing values for an array-like object.</p> <p>This function takes a scalar or array-like object and indicates whether values are missing (<code>NaN</code> in numeric arrays, <code>None</code> or <code>NaN</code> in object arrays, <code>NaT</code> in datetimelike).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>obj : scalar or array-like</code> </dt> <dd>
+<p class="first last">Object to check for null or missing values.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>bool or array-like of bool</dt> <dd>
+<p class="first last">For scalar input, returns a scalar boolean. For array input, returns an array of boolean indicating whether each corresponding element is missing.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.notna.html#pandas.notna" title="pandas.notna"><code>notna</code></a>
+</dt> <dd>Boolean inverse of pandas.isna.</dd> <dt>
+ <a class="reference internal" href="pandas.series.isna.html#pandas.Series.isna" title="pandas.Series.isna"><code>Series.isna</code></a>
+</dt> <dd>Detect missing values in a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.isna.html#pandas.DataFrame.isna" title="pandas.DataFrame.isna"><code>DataFrame.isna</code></a>
+</dt> <dd>Detect missing values in a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.index.isna.html#pandas.Index.isna" title="pandas.Index.isna"><code>Index.isna</code></a>
+</dt> <dd>Detect missing values in an Index.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Scalar arguments (including strings) result in a scalar boolean.</p> <pre data-language="python">&gt;&gt;&gt; pd.isna('dog')
+False
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.isna(np.nan)
+True
+</pre> <p>ndarrays result in an ndarray of booleans.</p> <pre data-language="python">&gt;&gt;&gt; array = np.array([[1, np.nan, 3], [4, 5, np.nan]])
+&gt;&gt;&gt; array
+array([[ 1., nan,  3.],
+       [ 4.,  5., nan]])
+&gt;&gt;&gt; pd.isna(array)
+array([[False,  True, False],
+       [False, False,  True]])
+</pre> <p>For indexes, an ndarray of booleans is returned.</p> <pre data-language="python">&gt;&gt;&gt; index = pd.DatetimeIndex(["2017-07-05", "2017-07-06", None,
+...                           "2017-07-08"])
+&gt;&gt;&gt; index
+DatetimeIndex(['2017-07-05', '2017-07-06', 'NaT', '2017-07-08'],
+              dtype='datetime64[ns]', freq=None)
+&gt;&gt;&gt; pd.isna(index)
+array([False, False,  True, False])
+</pre> <p>For Series and DataFrame, the same type is returned, containing booleans.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([['ant', 'bee', 'cat'], ['dog', None, 'fly']])
+&gt;&gt;&gt; df
+     0     1    2
+0  ant   bee  cat
+1  dog  None  fly
+&gt;&gt;&gt; pd.isna(df)
+       0      1      2
+0  False  False  False
+1  False   True  False
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.isna(df[1])
+0    False
+1     True
+Name: 1, dtype: bool
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.isna.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.isna.html</a>
+  </p>
+</div>

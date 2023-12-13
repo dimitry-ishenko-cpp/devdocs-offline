@@ -1,0 +1,37 @@
+<h1 id="pandas-dataframe-get-values">pandas.DataFrame.get_values</h1> <dl class="method"> <dt id="pandas.DataFrame.get_values">
+<code>DataFrame.get_values(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L5456-L5508"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return an ndarray after converting sparse values to dense.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.25.0: </span>Use <code>np.asarray(..)</code> or <a class="reference internal" href="pandas.dataframe.values.html#pandas.DataFrame.values" title="pandas.DataFrame.values"><code>DataFrame.values()</code></a> instead.</p> </div> <p>This is the same as <code>.values</code> for non-sparse data. For sparse data contained in a <code>SparseArray</code>, the data are first converted to a dense representation.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt> <dd>
+<p class="first last">Numpy representation of DataFrame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.values.html#pandas.DataFrame.values" title="pandas.DataFrame.values"><code>values</code></a>
+</dt> <dd>Numpy representation of DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.sparsearray.html#pandas.SparseArray" title="pandas.SparseArray"><code>SparseArray</code></a>
+</dt> <dd>Container for sparse data.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'a': [1, 2], 'b': [True, False],
+...                    'c': [1.0, 2.0]})
+&gt;&gt;&gt; df
+   a      b    c
+0  1   True  1.0
+1  2  False  2.0
+</pre> <pre data-language="python">&gt;&gt;&gt; df.get_values()
+array([[1, True, 1.0], [2, False, 2.0]], dtype=object)
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"a": pd.SparseArray([1, None, None]),
+...                    "c": [1.0, 2.0, 3.0]})
+&gt;&gt;&gt; df
+     a    c
+0  1.0  1.0
+1  NaN  2.0
+2  NaN  3.0
+</pre> <pre data-language="python">&gt;&gt;&gt; df.get_values()
+array([[ 1.,  1.],
+       [nan,  2.],
+       [nan,  3.]])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.get_values.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.get_values.html</a>
+  </p>
+</div>

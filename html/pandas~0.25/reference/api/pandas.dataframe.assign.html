@@ -1,0 +1,38 @@
+<h1 id="pandas-dataframe-assign">pandas.DataFrame.assign</h1> <dl class="method"> <dt id="pandas.DataFrame.assign">
+<code>DataFrame.assign(self, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L3573-L3661"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Assign new columns to a DataFrame.</p> <p>Returns a new object with all original columns in addition to new ones. Existing columns that are re-assigned will be overwritten.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>**kwargs : dict of {str: callable or Series}</code> </dt> <dd>
+<p class="first last">The column names are keywords. If the values are callable, they are computed on the DataFrame and assigned to the new columns. The callable must not change input DataFrame (though pandas doesn’t check it). If the values are not callable, (e.g. a Series, scalar, or array), they are simply assigned.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">A new DataFrame with the new columns in addition to all the existing columns.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>Assigning multiple columns within the same <code>assign</code> is possible. For Python 3.6 and above, later items in ‘**kwargs’ may refer to newly created or modified columns in ‘df’; items are computed and assigned into ‘df’ in order. For Python 3.5 and below, the order of keyword arguments is not specified, you cannot refer to newly created or modified columns. All items are computed first, and then assigned in alphabetical order.</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.23.0: </span>Keyword argument order is maintained for Python 3.6 and later.</p> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'temp_c': [17.0, 25.0]},
+...                   index=['Portland', 'Berkeley'])
+&gt;&gt;&gt; df
+          temp_c
+Portland    17.0
+Berkeley    25.0
+</pre> <p>Where the value is a callable, evaluated on <code>df</code>:</p> <pre data-language="python">&gt;&gt;&gt; df.assign(temp_f=lambda x: x.temp_c * 9 / 5 + 32)
+          temp_c  temp_f
+Portland    17.0    62.6
+Berkeley    25.0    77.0
+</pre> <p>Alternatively, the same behavior can be achieved by directly referencing an existing Series or sequence:</p> <pre data-language="python">&gt;&gt;&gt; df.assign(temp_f=df['temp_c'] * 9 / 5 + 32)
+          temp_c  temp_f
+Portland    17.0    62.6
+Berkeley    25.0    77.0
+</pre> <p>In Python 3.6+, you can create multiple columns within the same assign where one of the columns depends on another one defined within the same assign:</p> <pre data-language="python">&gt;&gt;&gt; df.assign(temp_f=lambda x: x['temp_c'] * 9 / 5 + 32,
+...           temp_k=lambda x: (x['temp_f'] +  459.67) * 5 / 9)
+          temp_c  temp_f  temp_k
+Portland    17.0    62.6  290.15
+Berkeley    25.0    77.0  298.15
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.assign.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.assign.html</a>
+  </p>
+</div>

@@ -1,0 +1,77 @@
+<h1 id="pandas-multiindex">pandas.MultiIndex</h1> <dl class="class"> <dt id="pandas.MultiIndex">
+<code>class pandas.MultiIndex</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/multi.py#L136-L3428"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>A multi-level, or hierarchical, index object for pandas objects.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>levels : sequence of arrays</code> </dt> <dd>
+<p class="first last">The unique labels for each level.</p> </dd> <dt>
+<code>codes : sequence of arrays</code> </dt> <dd>
+<p class="first">Integers for each level designating which label at each location.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>labels : sequence of arrays</code> </dt> <dd>
+<p class="first">Integers for each level designating which label at each location.</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0: </span>Use <code>codes</code> instead</p> </div> </dd> <dt>
+<code>sortorder : optional int</code> </dt> <dd>
+<p class="first last">Level of sortedness (must be lexicographically sorted by that level).</p> </dd> <dt>
+<code>names : optional sequence of objects</code> </dt> <dd>
+<p class="first last">Names for each of the index levels. (name is accepted for compat).</p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Copy the meta-data.</p> </dd> <dt>
+<code>verify_integrity : bool, default True</code> </dt> <dd>
+<p class="first last">Check that the levels/codes are consistent and valid.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.multiindex.from_arrays.html#pandas.MultiIndex.from_arrays" title="pandas.MultiIndex.from_arrays"><code>MultiIndex.from_arrays</code></a>
+</dt> <dd>Convert list of arrays to MultiIndex.</dd> <dt>
+ <a class="reference internal" href="pandas.multiindex.from_product.html#pandas.MultiIndex.from_product" title="pandas.MultiIndex.from_product"><code>MultiIndex.from_product</code></a>
+</dt> <dd>Create a MultiIndex from the cartesian product of iterables.</dd> <dt>
+ <a class="reference internal" href="pandas.multiindex.from_tuples.html#pandas.MultiIndex.from_tuples" title="pandas.MultiIndex.from_tuples"><code>MultiIndex.from_tuples</code></a>
+</dt> <dd>Convert list of tuples to a MultiIndex.</dd> <dt>
+ <a class="reference internal" href="pandas.multiindex.from_frame.html#pandas.MultiIndex.from_frame" title="pandas.MultiIndex.from_frame"><code>MultiIndex.from_frame</code></a>
+</dt> <dd>Make a MultiIndex from a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>
+</dt> <dd>The base pandas Index type.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>See the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html">user guide</a> for more.</p> <h4 class="rubric">Examples</h4> <p>A new <code>MultiIndex</code> is typically constructed using one of the helper methods <a class="reference internal" href="pandas.multiindex.from_arrays.html#pandas.MultiIndex.from_arrays" title="pandas.MultiIndex.from_arrays"><code>MultiIndex.from_arrays()</code></a>, <a class="reference internal" href="pandas.multiindex.from_product.html#pandas.MultiIndex.from_product" title="pandas.MultiIndex.from_product"><code>MultiIndex.from_product()</code></a> and <a class="reference internal" href="pandas.multiindex.from_tuples.html#pandas.MultiIndex.from_tuples" title="pandas.MultiIndex.from_tuples"><code>MultiIndex.from_tuples()</code></a>. For example (using <code>.from_arrays</code>):</p> <pre data-language="python">&gt;&gt;&gt; arrays = [[1, 1, 2, 2], ['red', 'blue', 'red', 'blue']]
+&gt;&gt;&gt; pd.MultiIndex.from_arrays(arrays, names=('number', 'color'))
+MultiIndex([(1,  'red'),
+            (1, 'blue'),
+            (2,  'red'),
+            (2, 'blue')],
+           names=['number', 'color'])
+</pre> <p>See further examples for how to construct a MultiIndex in the doc strings of the mentioned helper methods.</p> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.multiindex.names.html#pandas.MultiIndex.names" title="pandas.MultiIndex.names"><code>names</code></a></td> <td>Names of levels in MultiIndex</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.multiindex.nlevels.html#pandas.MultiIndex.nlevels" title="pandas.MultiIndex.nlevels"><code>nlevels</code></a></td> <td>Integer number of levels in this MultiIndex.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.multiindex.levshape.html#pandas.MultiIndex.levshape" title="pandas.MultiIndex.levshape"><code>levshape</code></a></td> <td>A tuple with the length of each level.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>levels</strong></td> <td> </td> </tr> <tr>
+<td><strong>codes</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.from_arrays.html#pandas.MultiIndex.from_arrays" title="pandas.MultiIndex.from_arrays"><code>from_arrays</code></a>(arrays[, sortorder, names])</td> <td>Convert arrays to MultiIndex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.from_tuples.html#pandas.MultiIndex.from_tuples" title="pandas.MultiIndex.from_tuples"><code>from_tuples</code></a>(tuples[, sortorder, names])</td> <td>Convert list of tuples to MultiIndex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.from_product.html#pandas.MultiIndex.from_product" title="pandas.MultiIndex.from_product"><code>from_product</code></a>(iterables[, sortorder, names])</td> <td>Make a MultiIndex from the cartesian product of multiple iterables.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.from_frame.html#pandas.MultiIndex.from_frame" title="pandas.MultiIndex.from_frame"><code>from_frame</code></a>(df[, sortorder, names])</td> <td>Make a MultiIndex from a DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.set_levels.html#pandas.MultiIndex.set_levels" title="pandas.MultiIndex.set_levels"><code>set_levels</code></a>(self, levels[, level, inplace, …])</td> <td>Set new levels on MultiIndex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.set_codes.html#pandas.MultiIndex.set_codes" title="pandas.MultiIndex.set_codes"><code>set_codes</code></a>(self, codes[, level, inplace, …])</td> <td>Set new codes on MultiIndex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.to_frame.html#pandas.MultiIndex.to_frame" title="pandas.MultiIndex.to_frame"><code>to_frame</code></a>(self[, index, name])</td> <td>Create a DataFrame with the levels of the MultiIndex as columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.to_flat_index.html#pandas.MultiIndex.to_flat_index" title="pandas.MultiIndex.to_flat_index"><code>to_flat_index</code></a>(self)</td> <td>Convert a MultiIndex to an Index of Tuples containing the level values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.is_lexsorted.html#pandas.MultiIndex.is_lexsorted" title="pandas.MultiIndex.is_lexsorted"><code>is_lexsorted</code></a>(self)</td> <td>Return True if the codes are lexicographically sorted</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.sortlevel.html#pandas.MultiIndex.sortlevel" title="pandas.MultiIndex.sortlevel"><code>sortlevel</code></a>(self[, level, ascending, …])</td> <td>Sort MultiIndex at the requested level.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.droplevel.html#pandas.MultiIndex.droplevel" title="pandas.MultiIndex.droplevel"><code>droplevel</code></a>(self[, level])</td> <td>Return index with requested level(s) removed.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.swaplevel.html#pandas.MultiIndex.swaplevel" title="pandas.MultiIndex.swaplevel"><code>swaplevel</code></a>(self[, i, j])</td> <td>Swap level i with level j.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.reorder_levels.html#pandas.MultiIndex.reorder_levels" title="pandas.MultiIndex.reorder_levels"><code>reorder_levels</code></a>(self, order)</td> <td>Rearrange levels using input order.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.multiindex.remove_unused_levels.html#pandas.MultiIndex.remove_unused_levels" title="pandas.MultiIndex.remove_unused_levels"><code>remove_unused_levels</code></a>(self)</td> <td>Create a new MultiIndex from the current that removes unused levels, meaning that they are not expressed in the labels.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.html</a>
+  </p>
+</div>

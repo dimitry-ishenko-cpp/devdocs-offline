@@ -1,0 +1,23 @@
+<h1 id="pandas-series-le">pandas.Series.le</h1> <dl class="method"> <dt id="pandas.Series.le">
+<code>Series.le(self, other, level=None, fill_value=None, axis=0)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/ops/__init__.py#L1334-L1350"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return Less than or equal to of series and other, element-wise (binary operator <code>le</code>).</p> <p>Equivalent to <code>series &lt;= other</code>, but with support to substitute a fill_value for missing data in one of the inputs.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : Series or scalar value</code> </dt>  <dt>
+<code>fill_value : None or float value, default None (NaN)</code> </dt> <dd>
+<p class="first last">Fill existing missing (NaN) values, and any new element needed for successful Series alignment, with this value before computation. If data in both corresponding Series locations is missing the result will be missing.</p> </dd> <dt>
+<code>level : int or name</code> </dt> <dd>
+<p class="first last">Broadcast across a level, matching Index values on the passed MultiIndex level.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">The result of the operation.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.None</code> </dt>  </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.le.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.le.html</a>
+  </p>
+</div>

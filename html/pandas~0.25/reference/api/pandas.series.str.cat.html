@@ -1,0 +1,80 @@
+<h1 id="pandas-series-str-cat">pandas.Series.str.cat</h1> <dl class="method"> <dt id="pandas.Series.str.cat">
+<code>Series.str.cat(self, others=None, sep=None, na_rep=None, join=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2185-L2421"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Concatenate strings in the Series/Index with given separator.</p> <p>If <code>others</code> is specified, this function concatenates the Series/Index and elements of <code>others</code> element-wise. If <code>others</code> is not passed, then all values in the Series/Index are concatenated into a single string with a given <code>sep</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>others : Series, Index, DataFrame, np.ndarray or list-like</code> </dt> <dd>
+<p class="first">Series, Index, DataFrame, np.ndarray (one- or two-dimensional) and other list-likes of strings must have the same length as the calling Series/Index, with the exception of indexed objects (i.e. Series/Index/DataFrame) if <code>join</code> is not None.</p> <p>If others is a list-like that contains a combination of Series, Index or np.ndarray (1-dim), then all elements will be unpacked and must satisfy the above criteria individually.</p> <p class="last">If others is None, the method returns the concatenation of all strings in the calling Series/Index.</p> </dd> <dt>
+<code>sep : str, default ‘’</code> </dt> <dd>
+<p class="first last">The separator between the different elements/columns. By default the empty string <code>‘’</code> is used.</p> </dd> <dt>
+<code>na_rep : str or None, default None</code> </dt> <dd>
+<p class="first">Representation that is inserted for all missing values:</p> <ul class="last simple"> <li>If <code>na_rep</code> is None, and <code>others</code> is None, missing values in the Series/Index are omitted from the result.</li> <li>If <code>na_rep</code> is None, and <code>others</code> is not None, a row containing a missing value in any of the columns (before concatenation) will have a missing value in the result.</li> </ul> </dd> <dt>
+<code>join : {‘left’, ‘right’, ‘outer’, ‘inner’}, default None</code> </dt> <dd>
+<p class="first">Determines the join-style between the calling Series/Index and any Series/Index/DataFrame in <code>others</code> (objects without an index need to match the length of the calling Series/Index). If None, alignment is disabled, but this option will be removed in a future version of pandas and replaced with a default of <code>‘left’</code>. To disable alignment, use <code>.values</code> on any Series/Index/DataFrame in <code>others</code>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>str, Series or Index</dt> <dd>
+<p class="first last">If <code>others</code> is None, <code>str</code> is returned, otherwise a <code>Series/Index</code> (same type as caller) of objects is returned.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.split.html#pandas.Series.str.split" title="pandas.Series.str.split"><code>split</code></a>
+</dt> <dd>Split each string in the Series/Index.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.join.html#pandas.Series.str.join" title="pandas.Series.str.join"><code>join</code></a>
+</dt> <dd>Join lists contained as elements in the Series/Index.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>When not passing <code>others</code>, all values are concatenated into a single string:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['a', 'b', np.nan, 'd'])
+&gt;&gt;&gt; s.str.cat(sep=' ')
+'a b d'
+</pre> <p>By default, NA values in the Series are ignored. Using <code>na_rep</code>, they can be given a representation:</p> <pre data-language="python">&gt;&gt;&gt; s.str.cat(sep=' ', na_rep='?')
+'a b ? d'
+</pre> <p>If <code>others</code> is specified, corresponding values are concatenated with the separator. Result will be a Series of strings.</p> <pre data-language="python">&gt;&gt;&gt; s.str.cat(['A', 'B', 'C', 'D'], sep=',')
+0    a,A
+1    b,B
+2    NaN
+3    d,D
+dtype: object
+</pre> <p>Missing values will remain missing in the result, but can again be represented using <code>na_rep</code></p> <pre data-language="python">&gt;&gt;&gt; s.str.cat(['A', 'B', 'C', 'D'], sep=',', na_rep='-')
+0    a,A
+1    b,B
+2    -,C
+3    d,D
+dtype: object
+</pre> <p>If <code>sep</code> is not specified, the values are concatenated without separation.</p> <pre data-language="python">&gt;&gt;&gt; s.str.cat(['A', 'B', 'C', 'D'], na_rep='-')
+0    aA
+1    bB
+2    -C
+3    dD
+dtype: object
+</pre> <p>Series with different indexes can be aligned before concatenation. The <code>join</code>-keyword works as in other methods.</p> <pre data-language="python">&gt;&gt;&gt; t = pd.Series(['d', 'a', 'e', 'c'], index=[3, 0, 4, 2])
+&gt;&gt;&gt; s.str.cat(t, join='left', na_rep='-')
+0    aa
+1    b-
+2    -c
+3    dd
+dtype: object
+&gt;&gt;&gt;
+&gt;&gt;&gt; s.str.cat(t, join='outer', na_rep='-')
+0    aa
+1    b-
+2    -c
+3    dd
+4    -e
+dtype: object
+&gt;&gt;&gt;
+&gt;&gt;&gt; s.str.cat(t, join='inner', na_rep='-')
+0    aa
+2    -c
+3    dd
+dtype: object
+&gt;&gt;&gt;
+&gt;&gt;&gt; s.str.cat(t, join='right', na_rep='-')
+3    dd
+0    aa
+4    -e
+2    -c
+dtype: object
+</pre> <p>For more examples, see <a class="reference internal" href="../../user_guide/text.html#text-concatenate"><span class="std std-ref">here</span></a>.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.cat.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.cat.html</a>
+  </p>
+</div>

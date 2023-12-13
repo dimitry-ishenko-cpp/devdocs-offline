@@ -1,0 +1,50 @@
+<h1 id="pandas-dataframe-to-pickle">pandas.DataFrame.to_pickle</h1> <dl class="method"> <dt id="pandas.DataFrame.to_pickle">
+<code>DataFrame.to_pickle(self, path, compression='infer', protocol=4)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L2716-L2772"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Pickle (serialize) object to file.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>path : str</code> </dt> <dd>
+<p class="first last">File path where the pickled object will be stored.</p> </dd> <dt>
+<code>compression : {‘infer’, ‘gzip’, ‘bz2’, ‘zip’, ‘xz’, None}, default ‘infer’</code> </dt> <dd>
+<p class="first">A string representing the compression to use in the output file. By default, infers from the file extension in specified path.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> <dt>
+<code>protocol : int</code> </dt> <dd>
+<p class="first">Int which indicates which protocol should be used by the pickler, default HIGHEST_PROTOCOL (see <a class="reference internal" href="#rc4e85fbd536b-1" id="id1">[1]</a> paragraph 12.1.2). The possible values are 0, 1, 2, 3, 4. A negative value for the protocol parameter is equivalent to setting its value to HIGHEST_PROTOCOL.</p> <table class="docutils citation" frame="void" id="rc4e85fbd536b-1" rules="none">   <tr>
+<td class="label"><a class="fn-backref" href="#id1">[1]</a></td>
+<td>
+<p class="first last"><a class="reference external" href="https://docs.python.org/3/library/pickle.html">https://docs.python.org/3/library/pickle.html</a></p> </td>
+</tr>  </table> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_pickle.html#pandas.read_pickle" title="pandas.read_pickle"><code>read_pickle</code></a>
+</dt> <dd>Load pickled pandas object (or any object) from file.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_hdf.html#pandas.DataFrame.to_hdf" title="pandas.DataFrame.to_hdf"><code>DataFrame.to_hdf</code></a>
+</dt> <dd>Write DataFrame to an HDF5 file.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code>DataFrame.to_sql</code></a>
+</dt> <dd>Write DataFrame to a SQL database.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_parquet.html#pandas.DataFrame.to_parquet" title="pandas.DataFrame.to_parquet"><code>DataFrame.to_parquet</code></a>
+</dt> <dd>Write a DataFrame to the binary parquet format.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; original_df = pd.DataFrame({"foo": range(5), "bar": range(5, 10)})
+&gt;&gt;&gt; original_df
+   foo  bar
+0    0    5
+1    1    6
+2    2    7
+3    3    8
+4    4    9
+&gt;&gt;&gt; original_df.to_pickle("./dummy.pkl")
+</pre> <pre data-language="python">&gt;&gt;&gt; unpickled_df = pd.read_pickle("./dummy.pkl")
+&gt;&gt;&gt; unpickled_df
+   foo  bar
+0    0    5
+1    1    6
+2    2    7
+3    3    8
+4    4    9
+</pre> <pre data-language="python">&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.remove("./dummy.pkl")
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_pickle.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_pickle.html</a>
+  </p>
+</div>

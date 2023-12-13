@@ -1,0 +1,22 @@
+<h1 id="pandas-core-groupby-dataframegroupby-tshift">pandas.core.groupby.DataFrameGroupBy.tshift</h1> <dl class="attribute"> <dt id="pandas.core.groupby.DataFrameGroupBy.tshift">
+<code>DataFrameGroupBy.tshift</code> </dt> <dd>
+<p>Shift the time index, using the index’s frequency if available.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>periods : int</code> </dt> <dd>
+<p class="first last">Number of periods to move, can be positive or negative</p> </dd> <dt>
+<code>freq : DateOffset, timedelta, or time rule string, default None</code> </dt> <dd>
+<p class="first last">Increment to use from the tseries module or time rule (e.g. ‘EOM’)</p> </dd> <dt>
+<code>axis : int or basestring</code> </dt> <dd>
+<p class="first last">Corresponds to the axis that contains the Index</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>shifted : Series/DataFrame</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>If freq is not specified then tries to use the freq or inferred_freq attributes of the index. If neither of those attributes exist, a ValueError is thrown</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.tshift.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.tshift.html</a>
+  </p>
+</div>

@@ -1,0 +1,373 @@
+<h1>Modules</h1>
+<p>Starting with ECMAScript 2015, JavaScript has a concept of modules. TypeScript shares this concept.</p> <p>Modules are executed within their own scope, not in the global scope; this means that variables, functions, classes, etc. declared in a module are not visible outside the module unless they are explicitly exported using one of the <a href="#export"><code>export</code> forms</a>. Conversely, to consume a variable, function, class, interface, etc. exported from a different module, it has to be imported using one of the <a href="#import"><code>import</code> forms</a>.</p> <p>Modules are declarative; the relationships between modules are specified in terms of imports and exports at the file level.</p> <p>Modules import one another using a module loader. At runtime the module loader is responsible for locating and executing all dependencies of a module before executing it. Well-known module loaders used in JavaScript are Node.js’s loader for <a href="https://wikipedia.org/wiki/CommonJS">CommonJS</a> modules and the <a href="http://requirejs.org/">RequireJS</a> loader for <a href="https://github.com/amdjs/amdjs-api/blob/master/AMD.md">AMD</a> modules in Web applications.</p> <p>In TypeScript, just as in ECMAScript 2015, any file containing a top-level <code>import</code> or <code>export</code> is considered a module. Conversely, a file without any top-level <code>import</code> or <code>export</code> declarations is treated as a script whose contents are available in the global scope (and therefore to modules as well).</p> <h2 id="export" style="position:relative;">Export</h2> <h2 id="exporting-a-declaration" style="position:relative;">Exporting a declaration</h2> <p>Any declaration (such as a variable, function, class, type alias, or interface) can be exported by adding the <code>export</code> keyword.</p> <h5 id="stringvalidatorts" style="position:relative;">StringValidator.ts</h5> <pre data-language="ts">export interface StringValidator {
+  isAcceptable(s: string): boolean;
+}</pre> <h5 id="zipcodevalidatorts" style="position:relative;">ZipCodeValidator.ts</h5> <pre data-language="ts">import { StringValidator } from "./StringValidator";
+
+export const numberRegexp = /^[0-9]+$/;
+
+export class ZipCodeValidator implements StringValidator {
+  isAcceptable(s: string) {
+    return s.length === 5 &amp;&amp; numberRegexp.test(s);
+  }
+}</pre> <h2 id="export-statements" style="position:relative;">Export statements</h2> <p>Export statements are handy when exports need to be renamed for consumers, so the above example can be written as:</p> <pre data-language="ts">class ZipCodeValidator implements StringValidator {
+  isAcceptable(s: string) {
+    return s.length === 5 &amp;&amp; numberRegexp.test(s);
+  }
+}
+export { ZipCodeValidator };
+export { ZipCodeValidator as mainValidator };</pre> <h2 id="re-exports" style="position:relative;">Re-exports</h2> <p>Often modules extend other modules, and partially expose some of their features. A re-export does not import it locally, or introduce a local variable.</p> <h5 id="parseintbasedzipcodevalidatorts" style="position:relative;">ParseIntBasedZipCodeValidator.ts</h5> <pre data-language="ts">export class ParseIntBasedZipCodeValidator {
+  isAcceptable(s: string) {
+    return s.length === 5 &amp;&amp; parseInt(s).toString() === s;
+  }
+}
+
+// Export original validator but rename it
+export { ZipCodeValidator as RegExpBasedZipCodeValidator } from "./ZipCodeValidator";</pre> <p>Optionally, a module can wrap one or more modules and combine all their exports using <code>export * from "module"</code> syntax.</p> <h5 id="allvalidatorsts" style="position:relative;">AllValidators.ts</h5> <pre data-language="ts">export * from "./StringValidator"; // exports 'StringValidator' interface
+export * from "./ZipCodeValidator"; // exports 'ZipCodeValidator' class and 'numberRegexp' constant value
+export * from "./ParseIntBasedZipCodeValidator"; //  exports the 'ParseIntBasedZipCodeValidator' class
+// and re-exports 'RegExpBasedZipCodeValidator' as alias
+// of the 'ZipCodeValidator' class from 'ZipCodeValidator.ts'
+// module.</pre> <h2 id="import" style="position:relative;">Import</h2> <p>Importing is just about as easy as exporting from a module. Importing an exported declaration is done through using one of the <code>import</code> forms below:</p> <h2 id="import-a-single-export-from-a-module" style="position:relative;">Import a single export from a module</h2> <pre data-language="ts">import { ZipCodeValidator } from "./ZipCodeValidator";
+
+let myValidator = new ZipCodeValidator();</pre> <p>imports can also be renamed</p> <pre data-language="ts">import { ZipCodeValidator as ZCV } from "./ZipCodeValidator";
+let myValidator = new ZCV();</pre> <h2 id="import-the-entire-module-into-a-single-variable-and-use-it-to-access-the-module-exports" style="position:relative;">Import the entire module into a single variable, and use it to access the module exports</h2> <pre data-language="ts">import * as validator from "./ZipCodeValidator";
+let myValidator = new validator.ZipCodeValidator();</pre> <h2 id="import-a-module-for-side-effects-only" style="position:relative;">Import a module for side-effects only</h2> <p>Though not recommended practice, some modules set up some global state that can be used by other modules. These modules may not have any exports, or the consumer is not interested in any of their exports. To import these modules, use:</p> <pre data-language="ts">import "./my-module.js";</pre> <h2 id="importing-types" style="position:relative;">Importing Types</h2> <p>Prior to TypeScript 3.8, you can import a type using <code>import</code>. With TypeScript 3.8, you can import a type using the <code>import</code> statement, or using <code>import type</code>.</p> <pre data-language="ts">// Re-using the same import
+import { APIResponseType } from "./api";
+
+// Explicitly use import type
+import type { APIResponseType } from "./api";
+
+// Explicitly pull out a value (getResponse) and a type (APIResponseType) 
+import { getResponse, type APIResponseType} from "./api";</pre> <p>Any explicitly marked <code>type</code> import is guaranteed to be removed from your JavaScript, and tools like Babel can make better assumptions about your code via the <a href="https://www.typescriptlang.org/tsconfig#isolatedModules"><code>isolatedModules</code></a> compiler flag. You can read more in the <a href="https://devblogs.microsoft.com/typescript/announcing-typescript-3-8-beta/#type-only-imports-exports">3.8 release notes</a>.</p> <p>With TypeScript 4.5, you can use a <code>type</code> modifier on individual named imports.</p> <pre data-language="ts">import { someFunc, type BaseType } from "./some-module.js";</pre> <h2 id="default-exports" style="position:relative;">Default exports</h2> <p>Each module can optionally export a <code>default</code> export. Default exports are marked with the keyword <code>default</code>; and there can only be one <code>default</code> export per module. <code>default</code> exports are imported using a different import form.</p> <p><code>default</code> exports are really handy. For instance, a library like jQuery might have a default export of <code>jQuery</code> or <code>$</code>, which we’d probably also import under the name <code>$</code> or <code>jQuery</code>.</p> <h5 id="jquerydts" style="position:relative;"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/jquery/JQuery.d.ts">JQuery.d.ts</a></h5> <pre data-language="ts">declare let $: JQuery;
+export default $;</pre> <h5 id="appts" style="position:relative;">App.ts</h5> <pre data-language="ts">import $ from "jquery";
+
+$("button.continue").html("Next Step...");</pre> <p>Classes and function declarations can be authored directly as default exports. Default export class and function declaration names are optional.</p> <h5 id="zipcodevalidatorts-1" style="position:relative;">ZipCodeValidator.ts</h5> <pre data-language="ts">export default class ZipCodeValidator {
+  static numberRegexp = /^[0-9]+$/;
+  isAcceptable(s: string) {
+    return s.length === 5 &amp;&amp; ZipCodeValidator.numberRegexp.test(s);
+  }
+}</pre> <h5 id="testts" style="position:relative;">Test.ts</h5> <pre data-language="ts">import validator from "./ZipCodeValidator";
+
+let myValidator = new validator();</pre> <p>or</p> <h5 id="staticzipcodevalidatorts" style="position:relative;">StaticZipCodeValidator.ts</h5> <pre data-language="ts">const numberRegexp = /^[0-9]+$/;
+
+export default function (s: string) {
+  return s.length === 5 &amp;&amp; numberRegexp.test(s);
+}</pre> <h5 id="testts-1" style="position:relative;">Test.ts</h5> <pre data-language="ts">import validate from "./StaticZipCodeValidator";
+
+let strings = ["Hello", "98052", "101"];
+
+// Use function validate
+strings.forEach((s) =&gt; {
+  console.log(`"${s}" ${validate(s) ? "matches" : "does not match"}`);
+});</pre> <p><code>default</code> exports can also be just values:</p> <h5 id="onetwothreets" style="position:relative;">OneTwoThree.ts</h5> <pre data-language="ts">export default "123";</pre> <h5 id="logts" style="position:relative;">Log.ts</h5> <pre data-language="ts">import num from "./OneTwoThree";
+
+console.log(num); // "123"</pre> <h2 id="export-all-as-x" style="position:relative;">Export all as x</h2> <p>With TypeScript 3.8, you can use <code>export * as ns</code> as a shorthand for re-exporting another module with a name:</p> <pre data-language="ts">export * as utilities from "./utilities";</pre> <p>This takes all of the dependencies from a module and makes it an exported field, you could import it like this:</p> <pre data-language="ts">import { utilities } from "./index";</pre> <h2 id="export--and-import--require" style="position:relative;">
+<code>export =</code> and <code>import = require()</code>
+</h2> <p>Both CommonJS and AMD generally have the concept of an <code>exports</code> object which contains all exports from a module.</p> <p>They also support replacing the <code>exports</code> object with a custom single object. Default exports are meant to act as a replacement for this behavior; however, the two are incompatible. TypeScript supports <code>export =</code> to model the traditional CommonJS and AMD workflow.</p> <p>The <code>export =</code> syntax specifies a single object that is exported from the module. This can be a class, interface, namespace, function, or enum.</p> <p>When exporting a module using <code>export =</code>, TypeScript-specific <code>import module = require("module")</code> must be used to import the module.</p> <h5 id="zipcodevalidatorts-2" style="position:relative;">ZipCodeValidator.ts</h5> <pre data-language="ts">let numberRegexp = /^[0-9]+$/;
+class ZipCodeValidator {
+  isAcceptable(s: string) {
+    return s.length === 5 &amp;&amp; numberRegexp.test(s);
+  }
+}
+export = ZipCodeValidator;</pre> <h5 id="testts-2" style="position:relative;">Test.ts</h5> <pre data-language="ts">import zip = require("./ZipCodeValidator");
+
+// Some samples to try
+let strings = ["Hello", "98052", "101"];
+
+// Validators to use
+let validator = new zip();
+
+// Show whether each string passed each validator
+strings.forEach((s) =&gt; {
+  console.log(
+    `"${s}" - ${validator.isAcceptable(s) ? "matches" : "does not match"}`
+  );
+});</pre> <h2 id="code-generation-for-modules" style="position:relative;">Code Generation for Modules</h2> <p>Depending on the module target specified during compilation, the compiler will generate appropriate code for Node.js (<a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a>), require.js (<a href="https://github.com/amdjs/amdjs-api/wiki/AMD">AMD</a>), <a href="https://github.com/umdjs/umd">UMD</a>, <a href="https://github.com/systemjs/systemjs">SystemJS</a>, or <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-modules">ECMAScript 2015 native modules</a> (ES6) module-loading systems. For more information on what the <code>define</code>, <code>require</code> and <code>register</code> calls in the generated code do, consult the documentation for each module loader.</p> <p>This simple example shows how the names used during importing and exporting get translated into the module loading code.</p> <h5 id="simplemodulets" style="position:relative;">SimpleModule.ts</h5> <pre data-language="ts">import m = require("mod");
+export let t = m.something + 1;</pre> <h5 id="amd--requirejs-simplemodulejs" style="position:relative;">AMD / RequireJS SimpleModule.js</h5> <pre data-language="js">define(["require", "exports", "./mod"], function (require, exports, mod_1) {
+  exports.t = mod_1.something + 1;
+});</pre> <h5 id="commonjs--node-simplemodulejs" style="position:relative;">CommonJS / Node SimpleModule.js</h5> <pre data-language="js">var mod_1 = require("./mod");
+exports.t = mod_1.something + 1;</pre> <h5 id="umd-simplemodulejs" style="position:relative;">UMD SimpleModule.js</h5> <pre data-language="js">(function (factory) {
+  if (typeof module === "object" &amp;&amp; typeof module.exports === "object") {
+    var v = factory(require, exports);
+    if (v !== undefined) module.exports = v;
+  } else if (typeof define === "function" &amp;&amp; define.amd) {
+    define(["require", "exports", "./mod"], factory);
+  }
+})(function (require, exports) {
+  var mod_1 = require("./mod");
+  exports.t = mod_1.something + 1;
+});</pre> <h5 id="system-simplemodulejs" style="position:relative;">System SimpleModule.js</h5> <pre data-language="js">System.register(["./mod"], function (exports_1) {
+  var mod_1;
+  var t;
+  return {
+    setters: [
+      function (mod_1_1) {
+        mod_1 = mod_1_1;
+      },
+    ],
+    execute: function () {
+      exports_1("t", (t = mod_1.something + 1));
+    },
+  };
+});</pre> <h5 id="native-ecmascript-2015-modules-simplemodulejs" style="position:relative;">Native ECMAScript 2015 modules SimpleModule.js</h5> <pre data-language="js">import { something } from "./mod";
+export var t = something + 1;</pre> <h2 id="simple-example" style="position:relative;">Simple Example</h2> <p>Below, we’ve consolidated the Validator implementations used in previous examples to only export a single named export from each module.</p> <p>To compile, we must specify a module target on the command line. For Node.js, use <code>--module commonjs</code>; for require.js, use <code>--module amd</code>. For example:</p> <pre data-language="typescript">tsc --module commonjs Test.ts</pre> <p>When compiled, each module will become a separate <code>.js</code> file. As with reference tags, the compiler will follow <code>import</code> statements to compile dependent files.</p> <h5 id="validationts" style="position:relative;">Validation.ts</h5> <pre data-language="ts">export interface StringValidator {
+  isAcceptable(s: string): boolean;
+}</pre> <h5 id="lettersonlyvalidatorts" style="position:relative;">LettersOnlyValidator.ts</h5> <pre data-language="ts">import { StringValidator } from "./Validation";
+
+const lettersRegexp = /^[A-Za-z]+$/;
+
+export class LettersOnlyValidator implements StringValidator {
+  isAcceptable(s: string) {
+    return lettersRegexp.test(s);
+  }
+}</pre> <h5 id="zipcodevalidatorts-3" style="position:relative;">ZipCodeValidator.ts</h5> <pre data-language="ts">import { StringValidator } from "./Validation";
+
+const numberRegexp = /^[0-9]+$/;
+
+export class ZipCodeValidator implements StringValidator {
+  isAcceptable(s: string) {
+    return s.length === 5 &amp;&amp; numberRegexp.test(s);
+  }
+}</pre> <h5 id="testts-3" style="position:relative;">Test.ts</h5> <pre data-language="ts">import { StringValidator } from "./Validation";
+import { ZipCodeValidator } from "./ZipCodeValidator";
+import { LettersOnlyValidator } from "./LettersOnlyValidator";
+
+// Some samples to try
+let strings = ["Hello", "98052", "101"];
+
+// Validators to use
+let validators: { [s: string]: StringValidator } = {};
+validators["ZIP code"] = new ZipCodeValidator();
+validators["Letters only"] = new LettersOnlyValidator();
+
+// Show whether each string passed each validator
+strings.forEach((s) =&gt; {
+  for (let name in validators) {
+    console.log(
+      `"${s}" - ${
+        validators[name].isAcceptable(s) ? "matches" : "does not match"
+      } ${name}`
+    );
+  }
+});</pre> <h2 id="optional-module-loading-and-other-advanced-loading-scenarios" style="position:relative;">Optional Module Loading and Other Advanced Loading Scenarios</h2> <p>In some cases, you may want to only load a module under some conditions. In TypeScript, we can use the pattern shown below to implement this and other advanced loading scenarios to directly invoke the module loaders without losing type safety.</p> <p>The compiler detects whether each module is used in the emitted JavaScript. If a module identifier is only ever used as part of a type annotations and never as an expression, then no <code>require</code> call is emitted for that module. This elision of unused references is a good performance optimization, and also allows for optional loading of those modules.</p> <p>The core idea of the pattern is that the <code>import id = require("...")</code> statement gives us access to the types exposed by the module. The module loader is invoked (through <code>require</code>) dynamically, as shown in the <code>if</code> blocks below. This leverages the reference-elision optimization so that the module is only loaded when needed. For this pattern to work, it’s important that the symbol defined via an <code>import</code> is only used in type positions (i.e. never in a position that would be emitted into the JavaScript).</p> <p>To maintain type safety, we can use the <code>typeof</code> keyword. The <code>typeof</code> keyword, when used in a type position, produces the type of a value, in this case the type of the module.</p> <h5 id="dynamic-module-loading-in-nodejs" style="position:relative;">Dynamic Module Loading in Node.js</h5> <pre data-language="ts">declare function require(moduleName: string): any;
+
+import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+
+if (needZipValidation) {
+  let ZipCodeValidator: typeof Zip = require("./ZipCodeValidator");
+  let validator = new ZipCodeValidator();
+  if (validator.isAcceptable("...")) {
+    /* ... */
+  }
+}</pre> <h5 id="sample-dynamic-module-loading-in-requirejs" style="position:relative;">Sample: Dynamic Module Loading in require.js</h5> <pre data-language="ts">declare function require(
+  moduleNames: string[],
+  onLoad: (...args: any[]) =&gt; void
+): void;
+
+import * as Zip from "./ZipCodeValidator";
+
+if (needZipValidation) {
+  require(["./ZipCodeValidator"], (ZipCodeValidator: typeof Zip) =&gt; {
+    let validator = new ZipCodeValidator.ZipCodeValidator();
+    if (validator.isAcceptable("...")) {
+      /* ... */
+    }
+  });
+}</pre> <h5 id="sample-dynamic-module-loading-in-systemjs" style="position:relative;">Sample: Dynamic Module Loading in System.js</h5> <pre data-language="ts">declare const System: any;
+
+import { ZipCodeValidator as Zip } from "./ZipCodeValidator";
+
+if (needZipValidation) {
+  System.import("./ZipCodeValidator").then((ZipCodeValidator: typeof Zip) =&gt; {
+    var x = new ZipCodeValidator();
+    if (x.isAcceptable("...")) {
+      /* ... */
+    }
+  });
+}</pre> <h2 id="working-with-other-javascript-libraries" style="position:relative;">Working with Other JavaScript Libraries</h2> <p>To describe the shape of libraries not written in TypeScript, we need to declare the API that the library exposes.</p> <p>We call declarations that don’t define an implementation “ambient”. Typically, these are defined in <code>.d.ts</code> files. If you’re familiar with C/C++, you can think of these as <code>.h</code> files. Let’s look at a few examples.</p> <h2 id="ambient-modules" style="position:relative;">Ambient Modules</h2> <p>In Node.js, most tasks are accomplished by loading one or more modules. We could define each module in its own <code>.d.ts</code> file with top-level export declarations, but it’s more convenient to write them as one larger <code>.d.ts</code> file. To do so, we use a construct similar to ambient namespaces, but we use the <code>module</code> keyword and the quoted name of the module which will be available to a later import. For example:</p> <h5 id="nodedts-simplified-excerpt" style="position:relative;">node.d.ts (simplified excerpt)</h5> <pre data-language="ts">declare module "url" {
+  export interface Url {
+    protocol?: string;
+    hostname?: string;
+    pathname?: string;
+  }
+
+  export function parse(
+    urlStr: string,
+    parseQueryString?,
+    slashesDenoteHost?
+  ): Url;
+}
+
+declare module "path" {
+  export function normalize(p: string): string;
+  export function join(...paths: any[]): string;
+  export var sep: string;
+}</pre> <p>Now we can <code>/// &lt;reference&gt;</code> <code>node.d.ts</code> and then load the modules using <code>import url = require("url");</code> or <code>import * as URL from "url"</code>.</p> <pre data-language="ts">/// &lt;reference path="node.d.ts"/&gt;
+import * as URL from "url";
+let myUrl = URL.parse("https://www.typescriptlang.org");</pre> <h3 id="shorthand-ambient-modules" style="position:relative;">Shorthand ambient modules</h3> <p>If you don’t want to take the time to write out declarations before using a new module, you can use a shorthand declaration to get started quickly.</p> <h5 id="declarationsdts" style="position:relative;">declarations.d.ts</h5> <pre data-language="ts">declare module "hot-new-module";</pre> <p>All imports from a shorthand module will have the <code>any</code> type.</p> <pre data-language="ts">import x, { y } from "hot-new-module";
+x(y);</pre> <h3 id="wildcard-module-declarations" style="position:relative;">Wildcard module declarations</h3> <p>Some module loaders such as <a href="https://github.com/systemjs/systemjs/blob/master/docs/module-types.md">SystemJS</a> and <a href="https://github.com/amdjs/amdjs-api/blob/master/LoaderPlugins.md">AMD</a> allow non-JavaScript content to be imported. These typically use a prefix or suffix to indicate the special loading semantics. Wildcard module declarations can be used to cover these cases.</p> <pre data-language="ts">declare module "*!text" {
+  const content: string;
+  export default content;
+}
+// Some do it the other way around.
+declare module "json!*" {
+  const value: any;
+  export default value;
+}</pre> <p>Now you can import things that match <code>"*!text"</code> or <code>"json!*"</code>.</p> <pre data-language="ts">import fileContent from "./xyz.txt!text";
+import data from "json!http://example.com/data.json";
+console.log(data, fileContent);</pre> <h3 id="umd-modules" style="position:relative;">UMD modules</h3> <p>Some libraries are designed to be used in many module loaders, or with no module loading (global variables). These are known as <a href="https://github.com/umdjs/umd">UMD</a> modules. These libraries can be accessed through either an import or a global variable. For example:</p> <h5 id="math-libdts" style="position:relative;">math-lib.d.ts</h5> <pre data-language="ts">export function isPrime(x: number): boolean;
+export as namespace mathLib;</pre> <p>The library can then be used as an import within modules:</p> <pre data-language="ts">import { isPrime } from "math-lib";
+isPrime(2);
+mathLib.isPrime(2); // ERROR: can't use the global definition from inside a module</pre> <p>It can also be used as a global variable, but only inside of a script. (A script is a file with no imports or exports.)</p> <pre data-language="ts">mathLib.isPrime(2);</pre> <h2 id="guidance-for-structuring-modules" style="position:relative;">Guidance for structuring modules</h2> <h2 id="export-as-close-to-top-level-as-possible" style="position:relative;">Export as close to top-level as possible</h2> <p>Consumers of your module should have as little friction as possible when using things that you export. Adding too many levels of nesting tends to be cumbersome, so think carefully about how you want to structure things.</p> <p>Exporting a namespace from your module is an example of adding too many layers of nesting. While namespaces sometime have their uses, they add an extra level of indirection when using modules. This can quickly become a pain point for users, and is usually unnecessary.</p> <p>Static methods on an exported class have a similar problem - the class itself adds a layer of nesting. Unless it increases expressivity or intent in a clearly useful way, consider simply exporting a helper function.</p> <h3 id="if-youre-only-exporting-a-single-class-or-function-use-export-default" style="position:relative;">If you’re only exporting a single <code>class</code> or <code>function</code>, use <code>export default</code>
+</h3> <p>Just as “exporting near the top-level” reduces friction on your module’s consumers, so does introducing a default export. If a module’s primary purpose is to house one specific export, then you should consider exporting it as a default export. This makes both importing and actually using the import a little easier. For example:</p> <h4 id="myclassts" style="position:relative;">MyClass.ts</h4> <pre data-language="ts">export default class SomeType {
+  constructor() { ... }
+}</pre> <h4 id="myfuncts" style="position:relative;">MyFunc.ts</h4> <pre data-language="ts">export default function getThing() {
+  return "thing";
+}</pre> <h4 id="consumerts" style="position:relative;">Consumer.ts</h4> <pre data-language="ts">import t from "./MyClass";
+import f from "./MyFunc";
+let x = new t();
+console.log(f());</pre> <p>This is optimal for consumers. They can name your type whatever they want (<code>t</code> in this case) and don’t have to do any excessive dotting to find your objects.</p> <h3 id="if-youre-exporting-multiple-objects-put-them-all-at-top-level" style="position:relative;">If you’re exporting multiple objects, put them all at top-level</h3> <h4 id="mythingsts" style="position:relative;">MyThings.ts</h4> <pre data-language="ts">export class SomeType {
+  /* ... */
+}
+export function someFunc() {
+  /* ... */
+}</pre> <p>Conversely when importing:</p> <h3 id="explicitly-list-imported-names" style="position:relative;">Explicitly list imported names</h3> <h4 id="consumerts-1" style="position:relative;">Consumer.ts</h4> <pre data-language="ts">import { SomeType, someFunc } from "./MyThings";
+let x = new SomeType();
+let y = someFunc();</pre> <h3 id="use-the-namespace-import-pattern-if-youre-importing-a-large-number-of-things" style="position:relative;">Use the namespace import pattern if you’re importing a large number of things</h3> <h4 id="mylargemodulets" style="position:relative;">MyLargeModule.ts</h4> <pre data-language="ts">export class Dog { ... }
+export class Cat { ... }
+export class Tree { ... }
+export class Flower { ... }</pre> <h4 id="consumerts-2" style="position:relative;">Consumer.ts</h4> <pre data-language="ts">import * as myLargeModule from "./MyLargeModule.ts";
+let x = new myLargeModule.Dog();</pre> <h2 id="re-export-to-extend" style="position:relative;">Re-export to extend</h2> <p>Often you will need to extend functionality on a module. A common JS pattern is to augment the original object with <em>extensions</em>, similar to how JQuery extensions work. As we’ve mentioned before, modules do not <em>merge</em> like global namespace objects would. The recommended solution is to <em>not</em> mutate the original object, but rather export a new entity that provides the new functionality.</p> <p>Consider a simple calculator implementation defined in module <code>Calculator.ts</code>. The module also exports a helper function to test the calculator functionality by passing a list of input strings and writing the result at the end.</p> <h4 id="calculatorts" style="position:relative;">Calculator.ts</h4> <pre data-language="ts">export class Calculator {
+  private current = 0;
+  private memory = 0;
+  private operator: string;
+
+  protected processDigit(digit: string, currentValue: number) {
+    if (digit &gt;= "0" &amp;&amp; digit &lt;= "9") {
+      return currentValue * 10 + (digit.charCodeAt(0) - "0".charCodeAt(0));
+    }
+  }
+
+  protected processOperator(operator: string) {
+    if (["+", "-", "*", "/"].indexOf(operator) &gt;= 0) {
+      return operator;
+    }
+  }
+
+  protected evaluateOperator(
+    operator: string,
+    left: number,
+    right: number
+  ): number {
+    switch (this.operator) {
+      case "+":
+        return left + right;
+      case "-":
+        return left - right;
+      case "*":
+        return left * right;
+      case "/":
+        return left / right;
+    }
+  }
+
+  private evaluate() {
+    if (this.operator) {
+      this.memory = this.evaluateOperator(
+        this.operator,
+        this.memory,
+        this.current
+      );
+    } else {
+      this.memory = this.current;
+    }
+    this.current = 0;
+  }
+
+  public handleChar(char: string) {
+    if (char === "=") {
+      this.evaluate();
+      return;
+    } else {
+      let value = this.processDigit(char, this.current);
+      if (value !== undefined) {
+        this.current = value;
+        return;
+      } else {
+        let value = this.processOperator(char);
+        if (value !== undefined) {
+          this.evaluate();
+          this.operator = value;
+          return;
+        }
+      }
+    }
+    throw new Error(`Unsupported input: '${char}'`);
+  }
+
+  public getResult() {
+    return this.memory;
+  }
+}
+
+export function test(c: Calculator, input: string) {
+  for (let i = 0; i &lt; input.length; i++) {
+    c.handleChar(input[i]);
+  }
+
+  console.log(`result of '${input}' is '${c.getResult()}'`);
+}</pre> <p>Here is a simple test for the calculator using the exposed <code>test</code> function.</p> <h4 id="testcalculatorts" style="position:relative;">TestCalculator.ts</h4> <pre data-language="ts">import { Calculator, test } from "./Calculator";
+
+let c = new Calculator();
+test(c, "1+2*33/11="); // prints 9</pre> <p>Now to extend this to add support for input with numbers in bases other than 10, let’s create <code>ProgrammerCalculator.ts</code></p> <h4 id="programmercalculatorts" style="position:relative;">ProgrammerCalculator.ts</h4> <pre data-language="ts">import { Calculator } from "./Calculator";
+
+class ProgrammerCalculator extends Calculator {
+  static digits = [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+  ];
+
+  constructor(public base: number) {
+    super();
+    const maxBase = ProgrammerCalculator.digits.length;
+    if (base &lt;= 0 || base &gt; maxBase) {
+      throw new Error(`base has to be within 0 to ${maxBase} inclusive.`);
+    }
+  }
+
+  protected processDigit(digit: string, currentValue: number) {
+    if (ProgrammerCalculator.digits.indexOf(digit) &gt;= 0) {
+      return (
+        currentValue * this.base + ProgrammerCalculator.digits.indexOf(digit)
+      );
+    }
+  }
+}
+
+// Export the new extended calculator as Calculator
+export { ProgrammerCalculator as Calculator };
+
+// Also, export the helper function
+export { test } from "./Calculator";</pre> <p>The new module <code>ProgrammerCalculator</code> exports an API shape similar to that of the original <code>Calculator</code> module, but does not augment any objects in the original module. Here is a test for our ProgrammerCalculator class:</p> <h4 id="testprogrammercalculatorts" style="position:relative;">TestProgrammerCalculator.ts</h4> <pre data-language="ts">import { Calculator, test } from "./ProgrammerCalculator";
+
+let c = new Calculator(2);
+test(c, "001+010="); // prints 3</pre> <h2 id="do-not-use-namespaces-in-modules" style="position:relative;">Do not use namespaces in modules</h2> <p>When first moving to a module-based organization, a common tendency is to wrap exports in an additional layer of namespaces. Modules have their own scope, and only exported declarations are visible from outside the module. With this in mind, namespace provide very little, if any, value when working with modules.</p> <p>On the organization front, namespaces are handy for grouping together logically-related objects and types in the global scope. For example, in C#, you’re going to find all the collection types in System.Collections. By organizing our types into hierarchical namespaces, we provide a good “discovery” experience for users of those types. Modules, on the other hand, are already present in a file system, necessarily. We have to resolve them by path and filename, so there’s a logical organization scheme for us to use. We can have a /collections/generic/ folder with a list module in it.</p> <p>Namespaces are important to avoid naming collisions in the global scope. For example, you might have <code>My.Application.Customer.AddForm</code> and <code>My.Application.Order.AddForm</code> — two types with the same name, but a different namespace. This, however, is not an issue with modules. Within a module, there’s no plausible reason to have two objects with the same name. From the consumption side, the consumer of any given module gets to pick the name that they will use to refer to the module, so accidental naming conflicts are impossible.</p> <blockquote> <p>For more discussion about modules and namespaces see <a href="namespaces-and-modules.html">Namespaces and Modules</a>.</p> </blockquote> <h2 id="red-flags" style="position:relative;">Red Flags</h2> <p>All of the following are red flags for module structuring. Double-check that you’re not trying to namespace your external modules if any of these apply to your files:</p> <ul> <li>A file whose only top-level declaration is <code>export namespace Foo { ... }</code> (remove <code>Foo</code> and move everything ‘up’ a level)</li> <li>Multiple files that have the same <code>export namespace Foo {</code> at top-level (don’t think that these are going to combine into one <code>Foo</code>!)</li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2012-2023 Microsoft<br>Licensed under the Apache License, Version 2.0.<br>
+    <a href="https://www.typescriptlang.org/docs/handbook/modules.html" class="_attribution-link">https://www.typescriptlang.org/docs/handbook/modules.html</a>
+  </p>
+</div>

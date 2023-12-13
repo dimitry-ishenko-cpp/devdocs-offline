@@ -1,0 +1,41 @@
+<h1 id="sparse">Sparse data structures</h1> <div class="admonition note" id="sparse-data-structures"> <p class="first admonition-title">Note</p> <p class="last"><code>SparseSeries</code> and <code>SparseDataFrame</code> have been deprecated. Their purpose is served equally well by a <a class="reference internal" href="../reference/api/pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> or <a class="reference internal" href="../reference/api/pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> with sparse values. See <a class="reference internal" href="#sparse-migration"><span class="std std-ref">Migrating</span></a> for tips on migrating.</p> </div> <p>Pandas provides data structures for efficiently storing sparse data. These are not necessarily sparse in the typical “mostly 0”. Rather, you can view these objects as being “compressed” where any data matching a specific value (<code>NaN</code> / missing value, though any value can be chosen, including 0) is omitted. The compressed values are not actually stored in the array.</p> <pre data-language="python">In [1]: arr = np.random.randn(10)
+
+In [2]: arr[2:-2] = np.nan
+
+In [3]: ts = pd.Series(pd.SparseArray(arr))
+
+In [4]: ts
+Out[4]: 
+0    0.469112
+1   -0.282863
+2         NaN
+3         NaN
+4         NaN
+5         NaN
+6         NaN
+7         NaN
+8   -0.861849
+9   -2.104569
+dtype: Sparse[float64, nan]
+</pre> <p>Notice the dtype, <code>Sparse[float64, nan]</code>. The <code>nan</code> means that elements in the array that are <code>nan</code> aren’t actually stored, only the non-<code>nan</code> elements are. Those non-<code>nan</code> elements have a <code>float64</code> dtype.</p> <p>The sparse objects exist for memory efficiency reasons. Suppose you had a large, mostly NA <code>DataFrame</code>:</p> <pre data-language="python">In [5]: df = pd.DataFrame(np.random.randn(10000, 4))
+
+In [6]: df.iloc[:9998] = np.nan
+
+In [7]: sdf = df.astype(pd.SparseDtype("float", np.nan))
+
+In [8]: sdf.head()
+Out[8]: 
+    0   1   2   3
+0 NaN NaN NaN NaN
+1 NaN NaN NaN NaN
+2 NaN NaN NaN NaN
+3 NaN NaN NaN NaN
+4 NaN NaN NaN NaN
+
+In [9]: sdf.dtypes
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/sparse.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/sparse.html</a>
+  </p>
+</div>

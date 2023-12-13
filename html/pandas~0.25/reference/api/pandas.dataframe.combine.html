@@ -1,0 +1,75 @@
+<h1 id="pandas-dataframe-combine">pandas.DataFrame.combine</h1> <dl class="method"> <dt id="pandas.DataFrame.combine">
+<code>DataFrame.combine(self, other, func, fill_value=None, overwrite=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L5398-L5563"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Perform column-wise combine with another DataFrame.</p> <p>Combines a DataFrame with <code>other</code> DataFrame using <code>func</code> to element-wise combine columns. The row and column indexes of the resulting DataFrame will be the union of the two.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : DataFrame</code> </dt> <dd>
+<p class="first last">The DataFrame to merge column-wise.</p> </dd> <dt>
+<code>func : function</code> </dt> <dd>
+<p class="first last">Function that takes two series as inputs and return a Series or a scalar. Used to merge the two dataframes column by columns.</p> </dd> <dt>
+<code>fill_value : scalar value, default None</code> </dt> <dd>
+<p class="first last">The value to fill NaNs with prior to passing any column to the merge func.</p> </dd> <dt>
+<code>overwrite : bool, default True</code> </dt> <dd>
+<p class="first last">If True, columns in <code>self</code> that do not exist in <code>other</code> will be overwritten with NaNs.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Combination of the provided DataFrames.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.combine_first.html#pandas.DataFrame.combine_first" title="pandas.DataFrame.combine_first"><code>DataFrame.combine_first</code></a>
+</dt> <dd>Combine two DataFrame objects and default to non-null values in frame calling the method.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Combine using a simple function that chooses the smaller column.</p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'A': [0, 0], 'B': [4, 4]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'A': [1, 1], 'B': [3, 3]})
+&gt;&gt;&gt; take_smaller = lambda s1, s2: s1 if s1.sum() &lt; s2.sum() else s2
+&gt;&gt;&gt; df1.combine(df2, take_smaller)
+   A  B
+0  0  3
+1  0  3
+</pre> <p>Example using a true element-wise combine function.</p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'A': [5, 0], 'B': [2, 4]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'A': [1, 1], 'B': [3, 3]})
+&gt;&gt;&gt; df1.combine(df2, np.minimum)
+   A  B
+0  1  2
+1  0  3
+</pre> <p>Using <code>fill_value</code> fills Nones prior to passing the column to the merge function.</p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'A': [0, 0], 'B': [None, 4]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'A': [1, 1], 'B': [3, 3]})
+&gt;&gt;&gt; df1.combine(df2, take_smaller, fill_value=-5)
+   A    B
+0  0 -5.0
+1  0  4.0
+</pre> <p>However, if the same element in both dataframes is None, that None is preserved</p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'A': [0, 0], 'B': [None, 4]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'A': [1, 1], 'B': [None, 3]})
+&gt;&gt;&gt; df1.combine(df2, take_smaller, fill_value=-5)
+    A    B
+0  0 -5.0
+1  0  3.0
+</pre> <p>Example that demonstrates the use of <code>overwrite</code> and behavior when the axis differ between the dataframes.</p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'A': [0, 0], 'B': [4, 4]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'B': [3, 3], 'C': [-10, 1], }, index=[1, 2])
+&gt;&gt;&gt; df1.combine(df2, take_smaller)
+     A    B     C
+0  NaN  NaN   NaN
+1  NaN  3.0 -10.0
+2  NaN  3.0   1.0
+</pre> <pre data-language="python">&gt;&gt;&gt; df1.combine(df2, take_smaller, overwrite=False)
+     A    B     C
+0  0.0  NaN   NaN
+1  0.0  3.0 -10.0
+2  NaN  3.0   1.0
+</pre> <p>Demonstrating the preference of the passed in dataframe.</p> <pre data-language="python">&gt;&gt;&gt; df2 = pd.DataFrame({'B': [3, 3], 'C': [1, 1], }, index=[1, 2])
+&gt;&gt;&gt; df2.combine(df1, take_smaller)
+   A    B   C
+0  0.0  NaN NaN
+1  0.0  3.0 NaN
+2  NaN  3.0 NaN
+</pre> <pre data-language="python">&gt;&gt;&gt; df2.combine(df1, take_smaller, overwrite=False)
+     A    B   C
+0  0.0  NaN NaN
+1  0.0  3.0 1.0
+2  NaN  3.0 1.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.combine.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.combine.html</a>
+  </p>
+</div>

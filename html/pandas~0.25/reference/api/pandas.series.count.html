@@ -1,0 +1,22 @@
+<h1 id="pandas-series-count">pandas.Series.count</h1> <dl class="method"> <dt id="pandas.Series.count">
+<code>Series.count(self, level=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L1863-L1900"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return number of non-NA/null observations in the Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">If the axis is a MultiIndex (hierarchical), count along a particular level, collapsing into a smaller Series.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>int or Series (if level specified)</dt> <dd>
+<p class="first last">Number of non-null values in the Series.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([0.0, 1.0, np.nan])
+&gt;&gt;&gt; s.count()
+2
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.count.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.count.html</a>
+  </p>
+</div>

@@ -1,0 +1,22 @@
+<h1 id="text">Working with text data</h1> <p id="working-with-text-data">Series and Index are equipped with a set of string processing methods that make it easy to operate on each element of the array. Perhaps most importantly, these methods exclude missing/NA values automatically. These are accessed via the <code>str</code> attribute and generally have names matching the equivalent (scalar) built-in string methods:</p> <pre data-language="python">In [1]: s = pd.Series(['A', 'B', 'C', 'Aaba', 'Baca', np.nan, 'CABA', 'dog', 'cat'])
+
+In [2]: s.str.lower()
+Out[2]: 
+0       a
+1       b
+2       c
+3    aaba
+4    baca
+5     NaN
+6    caba
+7     dog
+8     cat
+dtype: object
+
+In [3]: s.str.upper()
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/text.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/text.html</a>
+  </p>
+</div>

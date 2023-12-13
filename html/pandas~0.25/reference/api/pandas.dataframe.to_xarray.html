@@ -1,0 +1,67 @@
+<h1 id="pandas-dataframe-to-xarray">pandas.DataFrame.to_xarray</h1> <dl class="method"> <dt id="pandas.DataFrame.to_xarray">
+<code>DataFrame.to_xarray(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L2832-L2912"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return an xarray object from the pandas object.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>xarray.DataArray or xarray.Dataset</dt> <dd>
+<p class="first last">Data in the pandas structure converted to Dataset if the object is a DataFrame, or a DataArray if the object is a Series.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_hdf.html#pandas.DataFrame.to_hdf" title="pandas.DataFrame.to_hdf"><code>DataFrame.to_hdf</code></a>
+</dt> <dd>Write DataFrame to an HDF5 file.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_parquet.html#pandas.DataFrame.to_parquet" title="pandas.DataFrame.to_parquet"><code>DataFrame.to_parquet</code></a>
+</dt> <dd>Write a DataFrame to the binary parquet format.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>See the <a class="reference external" href="http://xarray.pydata.org/en/stable/">xarray docs</a></p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([('falcon', 'bird',  389.0, 2),
+...                    ('parrot', 'bird', 24.0, 2),
+...                    ('lion',   'mammal', 80.5, 4),
+...                    ('monkey', 'mammal', np.nan, 4)],
+...                    columns=['name', 'class', 'max_speed',
+...                             'num_legs'])
+&gt;&gt;&gt; df
+     name   class  max_speed  num_legs
+0  falcon    bird      389.0         2
+1  parrot    bird       24.0         2
+2    lion  mammal       80.5         4
+3  monkey  mammal        NaN         4
+</pre> <pre data-language="python">&gt;&gt;&gt; df.to_xarray()
+&lt;xarray.Dataset&gt;
+Dimensions:    (index: 4)
+Coordinates:
+  * index      (index) int64 0 1 2 3
+Data variables:
+    name       (index) object 'falcon' 'parrot' 'lion' 'monkey'
+    class      (index) object 'bird' 'bird' 'mammal' 'mammal'
+    max_speed  (index) float64 389.0 24.0 80.5 nan
+    num_legs   (index) int64 2 2 4 4
+</pre> <pre data-language="python">&gt;&gt;&gt; df['max_speed'].to_xarray()
+&lt;xarray.DataArray 'max_speed' (index: 4)&gt;
+array([389. ,  24. ,  80.5,   nan])
+Coordinates:
+  * index    (index) int64 0 1 2 3
+</pre> <pre data-language="python">&gt;&gt;&gt; dates = pd.to_datetime(['2018-01-01', '2018-01-01',
+...                         '2018-01-02', '2018-01-02'])
+&gt;&gt;&gt; df_multiindex = pd.DataFrame({'date': dates,
+...                    'animal': ['falcon', 'parrot', 'falcon',
+...                               'parrot'],
+...                    'speed': [350, 18, 361, 15]}).set_index(['date',
+...                                                    'animal'])
+&gt;&gt;&gt; df_multiindex
+                   speed
+date       animal
+2018-01-01 falcon    350
+           parrot     18
+2018-01-02 falcon    361
+           parrot     15
+</pre> <pre data-language="python">&gt;&gt;&gt; df_multiindex.to_xarray()
+&lt;xarray.Dataset&gt;
+Dimensions:  (animal: 2, date: 2)
+Coordinates:
+  * date     (date) datetime64[ns] 2018-01-01 2018-01-02
+  * animal   (animal) object 'falcon' 'parrot'
+Data variables:
+    speed    (date, animal) int64 350 18 361 15
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_xarray.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_xarray.html</a>
+  </p>
+</div>

@@ -1,0 +1,28 @@
+<h1 id="pandas-api-extensions-extensionarray-searchsorted">pandas.api.extensions.ExtensionArray.searchsorted</h1> <dl class="method"> <dt id="pandas.api.extensions.ExtensionArray.searchsorted">
+<code>ExtensionArray.searchsorted(self, value, side='left', sorter=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/base.py#L592-L638"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Find indices where elements should be inserted to maintain order.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <p>Find the indices into a sorted array <code>self</code> (a) such that, if the corresponding elements in <code>value</code> were inserted before the indices, the order of <code>self</code> would be preserved.</p> <p>Assuming that <code>self</code> is sorted:</p> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head"><code>side</code></th> <th class="head">returned index <code>i</code> satisfies</th> </tr> </thead>  <tr>
+<td>left</td> <td><code>self[i-1] &lt; value &lt;= self[i]</code></td> </tr> <tr>
+<td>right</td> <td><code>self[i-1] &lt;= value &lt; self[i]</code></td> </tr>  </table> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>value : array_like</code> </dt> <dd>
+<p class="first last">Values to insert into <code>self</code>.</p> </dd> <dt>
+<code>side : {‘left’, ‘right’}, optional</code> </dt> <dd>
+<p class="first last">If ‘left’, the index of the first suitable location found is given. If ‘right’, return the last such index. If there is no suitable index, return either 0 or N (where N is the length of <code>self</code>).</p> </dd> <dt>
+<code>sorter : 1-D array_like, optional</code> </dt> <dd>
+<p class="first last">Optional array of integer indices that sort array a into ascending order. They are typically the result of argsort.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>array of ints</dt> <dd>
+<p class="first last">Array of insertion points with the same shape as <code>value</code>.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.searchsorted.html#numpy.searchsorted" title="(in NumPy v1.16)"><code>numpy.searchsorted</code></a>
+</dt> <dd>Similar method from NumPy.</dd> </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray.searchsorted.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray.searchsorted.html</a>
+  </p>
+</div>

@@ -1,0 +1,25 @@
+<h1 id="pandas-series-std">pandas.Series.std</h1> <dl class="method"> <dt id="pandas.Series.std">
+<code>Series.std(self, axis=None, skipna=None, level=None, ddof=1, numeric_only=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L11627-L11643"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return sample standard deviation over requested axis.</p> <p>Normalized by N-1 by default. This can be changed using the ddof argument</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {index (0)}</code> </dt>  <dt>
+<code>skipna : bool, default True</code> </dt> <dd>
+<p class="first last">Exclude NA/null values. If an entire row/column is NA, the result will be NA</p> </dd> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">If the axis is a MultiIndex (hierarchical), count along a particular level, collapsing into a scalar</p> </dd> <dt>
+<code>ddof : int, default 1</code> </dt> <dd>
+<p class="first last">Delta Degrees of Freedom. The divisor used in calculations is N - ddof, where N represents the number of elements.</p> </dd> <dt>
+<code>numeric_only : bool, default None</code> </dt> <dd>
+<p class="first last">Include only float, int, boolean columns. If None, will attempt to use everything, then use only numeric data. Not implemented for Series.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar or Series (if level specified)</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.std.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.std.html</a>
+  </p>
+</div>

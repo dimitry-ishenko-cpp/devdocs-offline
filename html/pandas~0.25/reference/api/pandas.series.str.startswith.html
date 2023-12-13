@@ -1,0 +1,46 @@
+<h1 id="pandas-series-str-startswith">pandas.Series.str.startswith</h1> <dl class="method"> <dt id="pandas.Series.str.startswith">
+<code>Series.str.startswith(self, pat, na=nan)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L1879-L1882"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Test if the start of each string element matches a pattern.</p> <p>Equivalent to <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.startswith" title="(in Python v3.7)"><code>str.startswith()</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>pat : str</code> </dt> <dd>
+<p class="first last">Character sequence. Regular expressions are not accepted.</p> </dd> <dt>
+<code>na : object, default NaN</code> </dt> <dd>
+<p class="first last">Object shown if element tested is not a string.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or Index of bool</dt> <dd>
+<p class="first last">A Series of booleans indicating whether the given pattern matches the start of each string element.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.startswith" title="(in Python v3.7)"><code>str.startswith</code></a>
+</dt> <dd>Python standard library string method.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.endswith.html#pandas.Series.str.endswith" title="pandas.Series.str.endswith"><code>Series.str.endswith</code></a>
+</dt> <dd>Same as startswith, but tests the end of string.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.contains.html#pandas.Series.str.contains" title="pandas.Series.str.contains"><code>Series.str.contains</code></a>
+</dt> <dd>Tests if string element contains a pattern.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['bat', 'Bear', 'cat', np.nan])
+&gt;&gt;&gt; s
+0     bat
+1    Bear
+2     cat
+3     NaN
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.startswith('b')
+0     True
+1    False
+2    False
+3      NaN
+dtype: object
+</pre> <p>Specifying <code>na</code> to be <code>False</code> instead of <code>NaN</code>.</p> <pre data-language="python">&gt;&gt;&gt; s.str.startswith('b', na=False)
+0     True
+1    False
+2    False
+3    False
+dtype: bool
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.startswith.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.startswith.html</a>
+  </p>
+</div>

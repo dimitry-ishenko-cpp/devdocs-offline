@@ -1,0 +1,82 @@
+<header><h1>SharedArrayBuffer.prototype.slice()</h1></header><div class="section-content"><p> The <code>slice()</code> method of <a href="../sharedarraybuffer.html"><code>SharedArrayBuffer</code></a> instances returns a new <a href="../sharedarraybuffer.html"><code>SharedArrayBuffer</code></a> whose contents are a copy of this <code>SharedArrayBuffer</code>'s bytes from begin, inclusive, up to end, exclusive. If either begin or end is negative, it refers to an index from the end of the array, as opposed to from the beginning. This method has the same algorithm as <a href="../array/slice.html"><code>Array.prototype.slice()</code></a>. </p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-js-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/js/sharedarraybuffer-slice.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="2qoy9w0EEuVJBJA1bG/eux5wSSqN+kboejDSbaH02Hw=" data-language="js"><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>begin<span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>begin<span class="token punctuation">,</span> end<span class="token punctuation">)</span>
+</pre>
+</div></div></section><section aria-labelledby="parameters"><h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="begin">
+<a href="#begin"><code>begin</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Zero-based index at which to begin extraction.</p> <p> A negative index can be used, indicating an offset from the end of the sequence. <code>slice(-2)</code> extracts the last two elements in the sequence. </p> <p> If <code>begin</code> is undefined, <code>slice</code> begins from index <code>0</code>. </p> </dd> <dt id="end">
+<a href="#end"><code>end</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p> Zero-based index <em>before</em> which to end extraction. <code>slice</code> extracts up to but not including <code>end</code>. </p> <p> For example, <code>slice(1,4)</code> extracts the second element through the fourth element (elements indexed 1, 2, and 3). </p> <p> A negative index can be used, indicating an offset from the end of the sequence. <code>slice(2,-1)</code> extracts the third element through the second-to-last element in the sequence. </p> <p> If <code>end</code> is omitted, <code>slice</code> extracts through the end of the sequence (<code>sab.byteLength</code>). </p> </dd> </dl></div></section><section aria-labelledby="return_value"><h3 id="return_value">Return value</h3>
+<div class="section-content"><p>A new <a href="../sharedarraybuffer.html"><code>SharedArrayBuffer</code></a> containing the extracted elements.</p></div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="using_slice"><h3 id="using_slice">Using slice()</h3>
+<div class="section-content"><div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="DrbyQKJHV3Td0Wbe/FBc90+SOBtcyQUNEB+rSHkhG+A=" data-language="js"><span class="token keyword">const</span> sab <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedArrayBuffer</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// SharedArrayBuffer { byteLength: 1024 }</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// SharedArrayBuffer { byteLength: 1022 }</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// SharedArrayBuffer { byteLength: 2 }</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// SharedArrayBuffer { byteLength: 1 }</span>
+</pre>
+</div></div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/multipage/structured-data.html#sec-sharedarraybuffer.prototype.slice">ECMAScript Language Specification <br><small># sec-sharedarraybuffer.prototype.slice</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="_table"><table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>slice</code></th>
+<td class="bc-supports-yes">68</td>
+<td class="bc-supports-yes">79</td>
+<td class="bc-supports-yes">79</td>
+<td class="bc-supports-no">No</td>
+<td class="bc-supports-yes">55</td>
+<td class="bc-supports-yes">15.2</td>
+<td class="bc-supports-no">No</td>
+<td class="bc-supports-yes">89</td>
+<td class="bc-supports-yes">79</td>
+<td class="bc-supports-yes">63</td>
+<td class="bc-supports-yes">15.2</td>
+<td class="bc-supports-yes">15.0</td>
+<td class="bc-supports-yes">1.0</td>
+<td class="bc-supports-yes">8.10.0</td>
+</tr></tbody>
+</table></div>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="../sharedarraybuffer.html"><code>SharedArrayBuffer</code></a></li> <li><a href="../array/slice.html"><code>Array.prototype.slice()</code></a></li> </ul></div></section><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2023 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer/slice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer/slice</a>
+  </p>
+</div>

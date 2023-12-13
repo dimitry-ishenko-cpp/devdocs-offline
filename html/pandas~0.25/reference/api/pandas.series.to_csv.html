@@ -1,0 +1,64 @@
+<h1 id="pandas-series-to-csv">pandas.Series.to_csv</h1> <dl class="method"> <dt id="pandas.Series.to_csv">
+<code>Series.to_csv(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L4587-L4680"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Write object to a comma-separated values (csv) file.</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0: </span>The order of arguments for Series was changed.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>path_or_buf : str or file handle, default None</code> </dt> <dd>
+<p class="first">File path or object, if None is provided the result is returned as a string. If a file object is passed it should be opened with <code>newline=’‘</code>, disabling universal newlines.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0: </span>Was previously named “path” for Series.</p> </div> </dd> <dt>
+<code>sep : str, default ‘,’</code> </dt> <dd>
+<p class="first last">String of length 1. Field delimiter for the output file.</p> </dd> <dt>
+<code>na_rep : str, default ‘’</code> </dt> <dd>
+<p class="first last">Missing data representation.</p> </dd> <dt>
+<code>float_format : str, default None</code> </dt> <dd>
+<p class="first last">Format string for floating point numbers.</p> </dd> <dt>
+<code>columns : sequence, optional</code> </dt> <dd>
+<p class="first last">Columns to write.</p> </dd> <dt>
+<code>header : bool or list of str, default True</code> </dt> <dd>
+<p class="first">Write out the column names. If a list of strings is given it is assumed to be aliases for the column names.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0: </span>Previously defaulted to False for Series.</p> </div> </dd> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">Write row names (index).</p> </dd> <dt>
+<code>index_label : str or sequence, or False, default None</code> </dt> <dd>
+<p class="first last">Column label for index column(s) if desired. If None is given, and <code>header</code> and <code>index</code> are True, then the index names are used. A sequence should be given if the object uses MultiIndex. If False do not print fields for index names. Use index_label=False for easier importing in R.</p> </dd> <dt>
+<code>mode : str</code> </dt> <dd>
+<p class="first last">Python write mode, default ‘w’.</p> </dd> <dt>
+<code>encoding : str, optional</code> </dt> <dd>
+<p class="first last">A string representing the encoding to use in the output file, defaults to ‘utf-8’.</p> </dd> <dt>
+<code>compression : str, default ‘infer’</code> </dt> <dd>
+<p class="first">Compression mode among the following possible values: {‘infer’, ‘gzip’, ‘bz2’, ‘zip’, ‘xz’, None}. If ‘infer’ and <code>path_or_buf</code> is path-like, then detect compression from the following extensions: ‘.gz’, ‘.bz2’, ‘.zip’ or ‘.xz’. (otherwise no compression).</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0: </span>‘infer’ option added and set to default.</p> </div> </dd> <dt>
+<code>quoting : optional constant from csv module</code> </dt> <dd>
+<p class="first last">Defaults to csv.QUOTE_MINIMAL. If you have set a <code>float_format</code> then floats are converted to strings and thus csv.QUOTE_NONNUMERIC will treat them as non-numeric.</p> </dd> <dt>
+<code>quotechar : str, default ‘"’</code> </dt> <dd>
+<p class="first last">String of length 1. Character used to quote fields.</p> </dd> <dt>
+<code>line_terminator : str, optional</code> </dt> <dd>
+<p class="first">The newline character or character sequence to use in the output file. Defaults to <code>os.linesep</code>, which depends on the OS in which this method is called (‘n’ for linux, ‘rn’ for Windows, i.e.).</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>chunksize : int or None</code> </dt> <dd>
+<p class="first last">Rows to write at a time.</p> </dd> <dt>
+<code>date_format : str, default None</code> </dt> <dd>
+<p class="first last">Format string for datetime objects.</p> </dd> <dt>
+<code>doublequote : bool, default True</code> </dt> <dd>
+<p class="first last">Control quoting of <code>quotechar</code> inside a field.</p> </dd> <dt>
+<code>escapechar : str, default None</code> </dt> <dd>
+<p class="first last">String of length 1. Character used to escape <code>sep</code> and <code>quotechar</code> when appropriate.</p> </dd> <dt>
+<code>decimal : str, default ‘.’</code> </dt> <dd>
+<p class="first last">Character recognized as decimal separator. E.g. use ‘,’ for European data.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>None or str</dt> <dd>
+<p class="first last">If path_or_buf is None, returns the resulting csv format as a string. Otherwise returns None.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code>read_csv</code></a>
+</dt> <dd>Load a CSV file into a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.series.to_excel.html#pandas.Series.to_excel" title="pandas.Series.to_excel"><code>to_excel</code></a>
+</dt> <dd>Write DataFrame to an Excel file.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'name': ['Raphael', 'Donatello'],
+...                    'mask': ['red', 'purple'],
+...                    'weapon': ['sai', 'bo staff']})
+&gt;&gt;&gt; df.to_csv(index=False)
+'name,mask,weapon\nRaphael,red,sai\nDonatello,purple,bo staff\n'
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_csv.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_csv.html</a>
+  </p>
+</div>

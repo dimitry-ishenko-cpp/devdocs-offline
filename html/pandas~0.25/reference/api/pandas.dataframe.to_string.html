@@ -1,0 +1,60 @@
+<h1 id="pandas-dataframe-to-string">pandas.DataFrame.to_string</h1> <dl class="method"> <dt id="pandas.DataFrame.to_string">
+<code>DataFrame.to_string(self, buf=None, columns=None, col_space=None, header=True, index=True, na_rep='NaN', formatters=None, float_format=None, sparsify=None, index_names=True, justify=None, max_rows=None, min_rows=None, max_cols=None, show_dimensions=False, decimal='.', line_width=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L687-L760"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Render a DataFrame to a console-friendly tabular output.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>buf : StringIO-like, optional</code> </dt> <dd>
+<p class="first last">Buffer to write to.</p> </dd> <dt>
+<code>columns : sequence, optional, default None</code> </dt> <dd>
+<p class="first last">The subset of columns to write. Writes all columns by default.</p> </dd> <dt>
+<code>col_space : int, optional</code> </dt> <dd>
+<p class="first last">The minimum width of each column.</p> </dd> <dt>
+<code>header : bool, optional</code> </dt> <dd>
+<p class="first last">Write out the column names. If a list of strings is given, it is assumed to be aliases for the column names.</p> </dd> <dt>
+<code>index : bool, optional, default True</code> </dt> <dd>
+<p class="first last">Whether to print index (row) labels.</p> </dd> <dt>
+<code>na_rep : str, optional, default ‘NaN’</code> </dt> <dd>
+<p class="first last">String representation of NAN to use.</p> </dd> <dt>
+<code>formatters : list or dict of one-param. functions, optional</code> </dt> <dd>
+<p class="first last">Formatter functions to apply to columns’ elements by position or name. The result of each function must be a unicode string. List must be of length equal to the number of columns.</p> </dd> <dt>
+<code>float_format : one-parameter function, optional, default None</code> </dt> <dd>
+<p class="first last">Formatter function to apply to columns’ elements if they are floats. The result of this function must be a unicode string.</p> </dd> <dt>
+<code>sparsify : bool, optional, default True</code> </dt> <dd>
+<p class="first last">Set to False for a DataFrame with a hierarchical index to print every multiindex key at each row.</p> </dd> <dt>
+<code>index_names : bool, optional, default True</code> </dt> <dd>
+<p class="first last">Prints the names of the indexes.</p> </dd> <dt>
+<code>justify : str, default None</code> </dt> <dd>
+<p class="first">How to justify the column labels. If None uses the option from the print configuration (controlled by set_option), ‘right’ out of the box. Valid values are</p> <ul class="last simple"> <li>left</li> <li>right</li> <li>center</li> <li>justify</li> <li>justify-all</li> <li>start</li> <li>end</li> <li>inherit</li> <li>match-parent</li> <li>initial</li> <li>unset.</li> </ul> </dd> <dt>
+<code>max_rows : int, optional</code> </dt> <dd>
+<p class="first last">Maximum number of rows to display in the console.</p> </dd> <dt>
+<code>min_rows : int, optional</code> </dt> <dd>
+<p class="first last">The number of rows to display in the console in a truncated repr (when number of rows is above <code>max_rows</code>).</p> </dd> <dt>
+<code>max_cols : int, optional</code> </dt> <dd>
+<p class="first last">Maximum number of columns to display in the console.</p> </dd> <dt>
+<code>show_dimensions : bool, default False</code> </dt> <dd>
+<p class="first last">Display DataFrame dimensions (number of rows by number of columns).</p> </dd> <dt>
+<code>decimal : str, default ‘.’</code> </dt> <dd>
+<p class="first">Character recognized as decimal separator, e.g. ‘,’ in Europe.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> </dd> <dt>
+<code>line_width : int, optional</code> </dt> <dd>
+<p class="first last">Width to wrap a line in characters.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>str (or unicode, depending on data and options)</dt> <dd>
+<p class="first last">String representation of the dataframe.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_html.html#pandas.DataFrame.to_html" title="pandas.DataFrame.to_html"><code>to_html</code></a>
+</dt> <dd>Convert DataFrame to HTML.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; d = {'col1': [1, 2, 3], 'col2': [4, 5, 6]}
+&gt;&gt;&gt; df = pd.DataFrame(d)
+&gt;&gt;&gt; print(df.to_string())
+   col1  col2
+0     1     4
+1     2     5
+2     3     6
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_string.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_string.html</a>
+  </p>
+</div>

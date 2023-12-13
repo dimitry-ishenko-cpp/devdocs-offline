@@ -1,0 +1,140 @@
+<h1 id="pandas-core-groupby-dataframegroupby-describe">pandas.core.groupby.DataFrameGroupBy.describe</h1> <dl class="method"> <dt id="pandas.core.groupby.DataFrameGroupBy.describe">
+<code>DataFrameGroupBy.describe(self, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/groupby.py#L1442-L1448"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Generate descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding <code>NaN</code> values.</p> <p>Analyzes both numeric and object series, as well as <code>DataFrame</code> column sets of mixed data types. The output will vary depending on what is provided. Refer to the notes below for more detail.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>percentiles : list-like of numbers, optional</code> </dt> <dd>
+<p class="first last">The percentiles to include in the output. All should fall between 0 and 1. The default is <code>[.25, .5, .75]</code>, which returns the 25th, 50th, and 75th percentiles.</p> </dd> <dt>
+<code>include : ‘all’, list-like of dtypes or None (default), optional</code> </dt> <dd>
+<p class="first">A white list of data types to include in the result. Ignored for <code>Series</code>. Here are the options:</p> <ul class="last simple"> <li>‘all’ : All columns of the input will be included in the output.</li> <li>A list-like of dtypes : Limits the results to the provided data types. To limit the result to numeric types submit <code>numpy.number</code>. To limit it instead to object columns submit the <code>numpy.object</code> data type. Strings can also be used in the style of <code>select_dtypes</code> (e.g. <code>df.describe(include=['O'])</code>). To select pandas categorical columns, use <code>'category'</code>
+</li> <li>None (default) : The result will include all numeric columns.</li> </ul> </dd> <dt>
+<code>exclude : list-like of dtypes or None (default), optional,</code> </dt> <dd>
+<p class="first">A black list of data types to omit from the result. Ignored for <code>Series</code>. Here are the options:</p> <ul class="last simple"> <li>A list-like of dtypes : Excludes the provided data types from the result. To exclude numeric types submit <code>numpy.number</code>. To exclude object columns submit the data type <code>numpy.object</code>. Strings can also be used in the style of <code>select_dtypes</code> (e.g. <code>df.describe(include=['O'])</code>). To exclude pandas categorical columns, use <code>'category'</code>
+</li> <li>None (default) : The result will exclude nothing.</li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Summary statistics of the Series or Dataframe provided.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>DataFrame.count</code> </dt> <dd>Count number of non-NA/null observations.</dd> <dt>
+<code>DataFrame.max</code> </dt> <dd>Maximum of the values in the object.</dd> <dt>
+<code>DataFrame.min</code> </dt> <dd>Minimum of the values in the object.</dd> <dt>
+<code>DataFrame.mean</code> </dt> <dd>Mean of the values.</dd> <dt>
+<code>DataFrame.std</code> </dt> <dd>Standard deviation of the observations.</dd> <dt>
+<code>DataFrame.select_dtypes</code> </dt> <dd>Subset of a DataFrame including/excluding columns based on their dtype.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>For numeric data, the result’s index will include <code>count</code>, <code>mean</code>, <code>std</code>, <code>min</code>, <code>max</code> as well as lower, <code>50</code> and upper percentiles. By default the lower percentile is <code>25</code> and the upper percentile is <code>75</code>. The <code>50</code> percentile is the same as the median.</p> <p>For object data (e.g. strings or timestamps), the result’s index will include <code>count</code>, <code>unique</code>, <code>top</code>, and <code>freq</code>. The <code>top</code> is the most common value. The <code>freq</code> is the most common value’s frequency. Timestamps also include the <code>first</code> and <code>last</code> items.</p> <p>If multiple object values have the highest count, then the <code>count</code> and <code>top</code> results will be arbitrarily chosen from among those with the highest count.</p> <p>For mixed data types provided via a <code>DataFrame</code>, the default is to return only an analysis of numeric columns. If the dataframe consists only of object and categorical data without any numeric columns, the default is to return an analysis of both the object and categorical columns. If <code>include='all'</code> is provided as an option, the result will include a union of attributes of each type.</p> <p>The <code>include</code> and <code>exclude</code> parameters can be used to limit which columns in a <code>DataFrame</code> are analyzed for the output. The parameters are ignored when analyzing a <code>Series</code>.</p> <h4 class="rubric">Examples</h4> <p>Describing a numeric <code>Series</code>.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3])
+&gt;&gt;&gt; s.describe()
+count    3.0
+mean     2.0
+std      1.0
+min      1.0
+25%      1.5
+50%      2.0
+75%      2.5
+max      3.0
+dtype: float64
+</pre> <p>Describing a categorical <code>Series</code>.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['a', 'a', 'b', 'c'])
+&gt;&gt;&gt; s.describe()
+count     4
+unique    3
+top       a
+freq      2
+dtype: object
+</pre> <p>Describing a timestamp <code>Series</code>.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([
+...   np.datetime64("2000-01-01"),
+...   np.datetime64("2010-01-01"),
+...   np.datetime64("2010-01-01")
+... ])
+&gt;&gt;&gt; s.describe()
+count                       3
+unique                      2
+top       2010-01-01 00:00:00
+freq                        2
+first     2000-01-01 00:00:00
+last      2010-01-01 00:00:00
+dtype: object
+</pre> <p>Describing a <code>DataFrame</code>. By default only numeric fields are returned.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'categorical': pd.Categorical(['d','e','f']),
+...                    'numeric': [1, 2, 3],
+...                    'object': ['a', 'b', 'c']
+...                   })
+&gt;&gt;&gt; df.describe()
+       numeric
+count      3.0
+mean       2.0
+std        1.0
+min        1.0
+25%        1.5
+50%        2.0
+75%        2.5
+max        3.0
+</pre> <p>Describing all columns of a <code>DataFrame</code> regardless of data type.</p> <pre data-language="python">&gt;&gt;&gt; df.describe(include='all')
+        categorical  numeric object
+count            3      3.0      3
+unique           3      NaN      3
+top              f      NaN      c
+freq             1      NaN      1
+mean           NaN      2.0    NaN
+std            NaN      1.0    NaN
+min            NaN      1.0    NaN
+25%            NaN      1.5    NaN
+50%            NaN      2.0    NaN
+75%            NaN      2.5    NaN
+max            NaN      3.0    NaN
+</pre> <p>Describing a column from a <code>DataFrame</code> by accessing it as an attribute.</p> <pre data-language="python">&gt;&gt;&gt; df.numeric.describe()
+count    3.0
+mean     2.0
+std      1.0
+min      1.0
+25%      1.5
+50%      2.0
+75%      2.5
+max      3.0
+Name: numeric, dtype: float64
+</pre> <p>Including only numeric columns in a <code>DataFrame</code> description.</p> <pre data-language="python">&gt;&gt;&gt; df.describe(include=[np.number])
+       numeric
+count      3.0
+mean       2.0
+std        1.0
+min        1.0
+25%        1.5
+50%        2.0
+75%        2.5
+max        3.0
+</pre> <p>Including only string columns in a <code>DataFrame</code> description.</p> <pre data-language="python">&gt;&gt;&gt; df.describe(include=[np.object])
+       object
+count       3
+unique      3
+top         c
+freq        1
+</pre> <p>Including only categorical columns from a <code>DataFrame</code> description.</p> <pre data-language="python">&gt;&gt;&gt; df.describe(include=['category'])
+       categorical
+count            3
+unique           3
+top              f
+freq             1
+</pre> <p>Excluding numeric columns from a <code>DataFrame</code> description.</p> <pre data-language="python">&gt;&gt;&gt; df.describe(exclude=[np.number])
+       categorical object
+count            3      3
+unique           3      3
+top              f      c
+freq             1      1
+</pre> <p>Excluding object columns from a <code>DataFrame</code> description.</p> <pre data-language="python">&gt;&gt;&gt; df.describe(exclude=[np.object])
+       categorical  numeric
+count            3      3.0
+unique           3      NaN
+top              f      NaN
+freq             1      NaN
+mean           NaN      2.0
+std            NaN      1.0
+min            NaN      1.0
+25%            NaN      1.5
+50%            NaN      2.0
+75%            NaN      2.5
+max            NaN      3.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.describe.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.describe.html</a>
+  </p>
+</div>

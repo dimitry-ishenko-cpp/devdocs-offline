@@ -1,0 +1,46 @@
+<h1 id="pandas-series-str-join">pandas.Series.str.join</h1> <dl class="method"> <dt id="pandas.Series.str.join">
+<code>Series.str.join(self, sep)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2689-L2693"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Join lists contained as elements in the Series/Index with passed delimiter.</p> <p>If the elements of a Series are lists themselves, join the content of these lists using the delimiter passed to the function. This function is an equivalent to <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.join" title="(in Python v3.7)"><code>str.join()</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>sep : str</code> </dt> <dd>
+<p class="first last">Delimiter to use between list entries.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>Series/Index: object</dt> <dd>
+<p class="first last">The list entries concatenated by intervening occurrences of the delimiter.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>AttributeError</dt> <dd>
+<p class="first last">If the supplied Series contains neither strings nor lists.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.join" title="(in Python v3.7)"><code>str.join</code></a>
+</dt> <dd>Standard library version of this method.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.split.html#pandas.Series.str.split" title="pandas.Series.str.split"><code>Series.str.split</code></a>
+</dt> <dd>Split strings around given separator/delimiter.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>If any of the list items is not a string object, the result of the join will be <code>NaN</code>.</p> <h4 class="rubric">Examples</h4> <p>Example with a list that contains non-string elements.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([['lion', 'elephant', 'zebra'],
+...                [1.1, 2.2, 3.3],
+...                ['cat', np.nan, 'dog'],
+...                ['cow', 4.5, 'goat'],
+...                ['duck', ['swan', 'fish'], 'guppy']])
+&gt;&gt;&gt; s
+0        [lion, elephant, zebra]
+1                [1.1, 2.2, 3.3]
+2                [cat, nan, dog]
+3               [cow, 4.5, goat]
+4    [duck, [swan, fish], guppy]
+dtype: object
+</pre> <p>Join all lists using a ‘-‘. The lists containing object(s) of types other than str will produce a NaN.</p> <pre data-language="python">&gt;&gt;&gt; s.str.join('-')
+0    lion-elephant-zebra
+1                    NaN
+2                    NaN
+3                    NaN
+4                    NaN
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.join.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.join.html</a>
+  </p>
+</div>

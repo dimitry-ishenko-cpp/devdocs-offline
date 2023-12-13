@@ -1,0 +1,62 @@
+<h1 id="pandas-series-str-upper">pandas.Series.str.upper</h1> <dl class="method"> <dt id="pandas.Series.str.upper">
+<code>Series.str.upper(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L1852-L1855"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert strings in the Series/Index to uppercase.</p> <p>Equivalent to <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.upper" title="(in Python v3.7)"><code>str.upper()</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series/Index of objects</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.lower.html#pandas.Series.str.lower" title="pandas.Series.str.lower"><code>Series.str.lower</code></a>
+</dt> <dd>Converts all characters to lowercase.</dd> <dt>
+ <a class="reference internal" href="#pandas.Series.str.upper" title="pandas.Series.str.upper"><code>Series.str.upper</code></a>
+</dt> <dd>Converts all characters to uppercase.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.title.html#pandas.Series.str.title" title="pandas.Series.str.title"><code>Series.str.title</code></a>
+</dt> <dd>Converts first character of each word to uppercase and remaining to lowercase.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.capitalize.html#pandas.Series.str.capitalize" title="pandas.Series.str.capitalize"><code>Series.str.capitalize</code></a>
+</dt> <dd>Converts first character to uppercase and remaining to lowercase.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.swapcase.html#pandas.Series.str.swapcase" title="pandas.Series.str.swapcase"><code>Series.str.swapcase</code></a>
+</dt> <dd>Converts uppercase to lowercase and lowercase to uppercase.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.casefold.html#pandas.Series.str.casefold" title="pandas.Series.str.casefold"><code>Series.str.casefold</code></a>
+</dt> <dd>Removes all case distinctions in the string.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['lower', 'CAPITALS', 'this is a sentence', 'SwApCaSe'])
+&gt;&gt;&gt; s
+0                 lower
+1              CAPITALS
+2    this is a sentence
+3              SwApCaSe
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.lower()
+0                 lower
+1              capitals
+2    this is a sentence
+3              swapcase
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.upper()
+0                 LOWER
+1              CAPITALS
+2    THIS IS A SENTENCE
+3              SWAPCASE
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.title()
+0                 Lower
+1              Capitals
+2    This Is A Sentence
+3              Swapcase
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.capitalize()
+0                 Lower
+1              Capitals
+2    This is a sentence
+3              Swapcase
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.swapcase()
+0                 LOWER
+1              capitals
+2    THIS IS A SENTENCE
+3              sWaPcAsE
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.upper.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.upper.html</a>
+  </p>
+</div>

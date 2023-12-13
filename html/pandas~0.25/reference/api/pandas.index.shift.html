@@ -1,0 +1,36 @@
+<h1 id="pandas-index-shift">pandas.Index.shift</h1> <dl class="method"> <dt id="pandas.Index.shift">
+<code>Index.shift(self, periods=1, freq=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L4585-L4641"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Shift index by desired number of time frequency increments.</p> <p>This method is for shifting the values of datetime-like indexes by a specified time increment a given number of times.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>periods : int, default 1</code> </dt> <dd>
+<p class="first last">Number of periods (or increments) to shift by, can be positive or negative.</p> </dd> <dt>
+<code>freq : pandas.DateOffset, pandas.Timedelta or string, optional</code> </dt> <dd>
+<p class="first last">Frequency increment to shift by. If None, the index is shifted by its own <code>freq</code> attribute. Offset aliases are valid strings, e.g., ‘D’, ‘W’, ‘M’ etc.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>pandas.Index</dt> <dd>
+<p class="first last">Shifted index.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.shift.html#pandas.Series.shift" title="pandas.Series.shift"><code>Series.shift</code></a>
+</dt> <dd>Shift values of Series.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This method is only implemented for datetime-like index classes, i.e., DatetimeIndex, PeriodIndex and TimedeltaIndex.</p> <h4 class="rubric">Examples</h4> <p>Put the first 5 month starts of 2011 into an index.</p> <pre data-language="python">&gt;&gt;&gt; month_starts = pd.date_range('1/1/2011', periods=5, freq='MS')
+&gt;&gt;&gt; month_starts
+DatetimeIndex(['2011-01-01', '2011-02-01', '2011-03-01', '2011-04-01',
+               '2011-05-01'],
+              dtype='datetime64[ns]', freq='MS')
+</pre> <p>Shift the index by 10 days.</p> <pre data-language="python">&gt;&gt;&gt; month_starts.shift(10, freq='D')
+DatetimeIndex(['2011-01-11', '2011-02-11', '2011-03-11', '2011-04-11',
+               '2011-05-11'],
+              dtype='datetime64[ns]', freq=None)
+</pre> <p>The default value of <code>freq</code> is the <code>freq</code> attribute of the index, which is ‘MS’ (month start) in this example.</p> <pre data-language="python">&gt;&gt;&gt; month_starts.shift(10)
+DatetimeIndex(['2011-11-01', '2011-12-01', '2012-01-01', '2012-02-01',
+               '2012-03-01'],
+              dtype='datetime64[ns]', freq='MS')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.shift.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.shift.html</a>
+  </p>
+</div>

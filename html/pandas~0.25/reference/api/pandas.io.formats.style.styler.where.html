@@ -1,0 +1,29 @@
+<h1 id="pandas-io-formats-style-styler-where">pandas.io.formats.style.Styler.where</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.where">
+<code>Styler.where(self, cond, value, other=None, subset=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L718-L754"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Apply a function elementwise, updating the HTML representation with a style which is selected in accordance with the return value of a function.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>cond : callable</code> </dt> <dd>
+<p class="first last"><code>cond</code> should take a scalar and return a boolean</p> </dd> <dt>
+<code>value : str</code> </dt> <dd>
+<p class="first last">applied when <code>cond</code> returns true</p> </dd> <dt>
+<code>other : str</code> </dt> <dd>
+<p class="first last">applied when <code>cond</code> returns false</p> </dd> <dt>
+<code>subset : IndexSlice</code> </dt> <dd>
+<p class="first last">a valid indexer to limit <code>data</code> to <em>before</em> applying the function. Consider using a pandas.IndexSlice</p> </dd> <dt>
+<code>kwargs : dict</code> </dt> <dd>
+<p class="first last">pass along to <code>cond</code></p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>self : Styler</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.io.formats.style.styler.applymap.html#pandas.io.formats.style.Styler.applymap" title="pandas.io.formats.style.Styler.applymap"><code>Styler.applymap</code></a>
+</dt>  </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.where.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.where.html</a>
+  </p>
+</div>

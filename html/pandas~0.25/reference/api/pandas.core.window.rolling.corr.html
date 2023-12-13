@@ -1,0 +1,74 @@
+<h1 id="pandas-core-window-rolling-corr">pandas.core.window.Rolling.corr</h1> <dl class="method"> <dt id="pandas.core.window.Rolling.corr">
+<code>Rolling.corr(self, other=None, pairwise=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/window.py#L1945-L1948"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Calculate rolling correlation.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : Series, DataFrame, or ndarray, optional</code> </dt> <dd>
+<p class="first last">If not supplied then will default to self.</p> </dd> <dt>
+<code>pairwise : bool, default None</code> </dt> <dd>
+<p class="first last">Calculate pairwise combinations of columns within a DataFrame. If <code>other</code> is not specified, defaults to <code>True</code>, otherwise defaults to <code>False</code>. Not relevant for <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Unused.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Returned object type is determined by the caller of the rolling calculation.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.rolling</code> </dt> <dd>Calling object with Series data.</dd> <dt>
+<code>DataFrame.rolling</code> </dt> <dd>Calling object with DataFrames.</dd> <dt>
+<code>Series.corr</code> </dt> <dd>Equivalent method for Series.</dd> <dt>
+<code>DataFrame.corr</code> </dt> <dd>Equivalent method for DataFrame.</dd> <dt>
+<code>rolling.cov</code> </dt> <dd>Similar method to calculate covariance.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.corrcoef.html#numpy.corrcoef" title="(in NumPy v1.16)"><code>numpy.corrcoef</code></a>
+</dt> <dd>NumPy Pearson’s correlation calculation.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This function uses Pearson’s definition of correlation (<a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">https://en.wikipedia.org/wiki/Pearson_correlation_coefficient</a>).</p> <p>When <code>other</code> is not specified, the output will be self correlation (e.g. all 1’s), except for <a class="reference internal" href="pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> inputs with <code>pairwise</code> set to <code>True</code>.</p> <p>Function will return <code>NaN</code> for correlations of equal valued sequences; this is the result of a 0/0 division error.</p> <p>When <code>pairwise</code> is set to <code>False</code>, only matching columns between <code>self</code> and <code>other</code> will be used.</p> <p>When <code>pairwise</code> is set to <code>True</code>, the output will be a MultiIndex DataFrame with the original index on the first level, and the <code>other</code> DataFrame columns on the second level.</p> <p>In the case of missing elements, only complete pairwise observations will be used.</p> <h4 class="rubric">Examples</h4> <p>The below example shows a rolling calculation with a window size of four matching the equivalent function call using <code>numpy.corrcoef()</code>.</p> <pre data-language="python">&gt;&gt;&gt; v1 = [3, 3, 3, 5, 8]
+&gt;&gt;&gt; v2 = [3, 4, 4, 4, 8]
+&gt;&gt;&gt; fmt = "{0:.6f}"  # limit the printed precision to 6 digits
+&gt;&gt;&gt; # numpy returns a 2X2 array, the correlation coefficient
+&gt;&gt;&gt; # is the number at entry [0][1]
+&gt;&gt;&gt; print(fmt.format(np.corrcoef(v1[:-1], v2[:-1])[0][1]))
+0.333333
+&gt;&gt;&gt; print(fmt.format(np.corrcoef(v1[1:], v2[1:])[0][1]))
+0.916949
+&gt;&gt;&gt; s1 = pd.Series(v1)
+&gt;&gt;&gt; s2 = pd.Series(v2)
+&gt;&gt;&gt; s1.rolling(4).corr(s2)
+0         NaN
+1         NaN
+2         NaN
+3    0.333333
+4    0.916949
+dtype: float64
+</pre> <p>The below example shows a similar rolling calculation on a DataFrame using the pairwise option.</p> <pre data-language="python">&gt;&gt;&gt; matrix = np.array([[51., 35.], [49., 30.], [47., 32.],    [46., 31.], [50., 36.]])
+&gt;&gt;&gt; print(np.corrcoef(matrix[:-1,0], matrix[:-1,1]).round(7))
+[[1.         0.6263001]
+ [0.6263001  1.       ]]
+&gt;&gt;&gt; print(np.corrcoef(matrix[1:,0], matrix[1:,1]).round(7))
+[[1.         0.5553681]
+ [0.5553681  1.        ]]
+&gt;&gt;&gt; df = pd.DataFrame(matrix, columns=['X','Y'])
+&gt;&gt;&gt; df
+      X     Y
+0  51.0  35.0
+1  49.0  30.0
+2  47.0  32.0
+3  46.0  31.0
+4  50.0  36.0
+&gt;&gt;&gt; df.rolling(4).corr(pairwise=True)
+            X         Y
+0 X       NaN       NaN
+  Y       NaN       NaN
+1 X       NaN       NaN
+  Y       NaN       NaN
+2 X       NaN       NaN
+  Y       NaN       NaN
+3 X  1.000000  0.626300
+  Y  0.626300  1.000000
+4 X  1.000000  0.555368
+  Y  0.555368  1.000000
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.corr.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.corr.html</a>
+  </p>
+</div>

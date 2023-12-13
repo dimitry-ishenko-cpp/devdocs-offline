@@ -1,0 +1,46 @@
+<h1 id="pandas-tseries-offsets-custombusinessmonthbegin">pandas.tseries.offsets.CustomBusinessMonthBegin</h1> <dl class="class"> <dt id="pandas.tseries.offsets.CustomBusinessMonthBegin">
+<code>class pandas.tseries.offsets.CustomBusinessMonthBegin(n=1, normalize=False, weekmask='Mon Tue Wed Thu Fri', holidays=None, calendar=None, offset=datetime.timedelta(0))</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/tseries/offsets.py#L1283-L1284"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>DateOffset subclass representing custom business month(s).</p> <p>Increments between beginning of month dates.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>n : int, default 1</code> </dt> <dd>
+<p class="first last">The number of months represented.</p> </dd> <dt>
+<code>normalize : bool, default False</code> </dt> <dd>
+<p class="first last">Normalize start/end dates to midnight before generating date range.</p> </dd> <dt>
+<code>weekmask : str, Default ‘Mon Tue Wed Thu Fri’</code> </dt> <dd>
+<p class="first last">Weekmask of valid business days, passed to <code>numpy.busdaycalendar</code>.</p> </dd> <dt>
+<code>holidays : list</code> </dt> <dd>
+<p class="first last">List/array of dates to exclude from the set of valid business days, passed to <code>numpy.busdaycalendar</code>.</p> </dd> <dt>
+<code>calendar : pd.HolidayCalendar or np.busdaycalendar</code> </dt> <dd>
+<p class="first last">Calendar to integrate.</p> </dd> <dt>
+<code>offset : timedelta, default timedelta(0)</code> </dt> <dd>
+<p class="first last">Time offset to apply.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.custombusinessmonthbegin.base.html#pandas.tseries.offsets.CustomBusinessMonthBegin.base" title="pandas.tseries.offsets.CustomBusinessMonthBegin.base"><code>base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.custombusinessmonthbegin.cbday_roll.html#pandas.tseries.offsets.CustomBusinessMonthBegin.cbday_roll" title="pandas.tseries.offsets.CustomBusinessMonthBegin.cbday_roll"><code>cbday_roll</code></a></td> <td>Define default roll function to be called in apply method.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.custombusinessmonthbegin.month_roll.html#pandas.tseries.offsets.CustomBusinessMonthBegin.month_roll" title="pandas.tseries.offsets.CustomBusinessMonthBegin.month_roll"><code>month_roll</code></a></td> <td>Define default roll function to be called in apply method.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.custombusinessmonthbegin.offset.html#pandas.tseries.offsets.CustomBusinessMonthBegin.offset" title="pandas.tseries.offsets.CustomBusinessMonthBegin.offset"><code>offset</code></a></td> <td>Alias for self._offset.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>freqstr</strong></td> <td> </td> </tr> <tr>
+<td><strong>kwds</strong></td> <td> </td> </tr> <tr>
+<td><strong>m_offset</strong></td> <td> </td> </tr> <tr>
+<td><strong>name</strong></td> <td> </td> </tr> <tr>
+<td><strong>nanos</strong></td> <td> </td> </tr> <tr>
+<td><strong>rule_code</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.custombusinessmonthbegin.apply_index.html#pandas.tseries.offsets.CustomBusinessMonthBegin.apply_index" title="pandas.tseries.offsets.CustomBusinessMonthBegin.apply_index"><code>apply_index</code></a>(self, other)</td> <td>Vectorized apply of DateOffset to DatetimeIndex, raises NotImplentedError for offsets without a vectorized implementation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.custombusinessmonthbegin.rollback.html#pandas.tseries.offsets.CustomBusinessMonthBegin.rollback" title="pandas.tseries.offsets.CustomBusinessMonthBegin.rollback"><code>rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.custombusinessmonthbegin.rollforward.html#pandas.tseries.offsets.CustomBusinessMonthBegin.rollforward" title="pandas.tseries.offsets.CustomBusinessMonthBegin.rollforward"><code>rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>__call__</strong></td> <td> </td> </tr> <tr>
+<td><strong>apply</strong></td> <td> </td> </tr> <tr>
+<td><strong>copy</strong></td> <td> </td> </tr> <tr>
+<td><strong>isAnchored</strong></td> <td> </td> </tr> <tr>
+<td><strong>onOffset</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.CustomBusinessMonthBegin.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.CustomBusinessMonthBegin.html</a>
+  </p>
+</div>

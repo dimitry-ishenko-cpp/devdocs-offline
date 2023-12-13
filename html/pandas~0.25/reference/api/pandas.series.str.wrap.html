@@ -1,0 +1,33 @@
+<h1 id="pandas-series-str-wrap">pandas.Series.str.wrap</h1> <dl class="method"> <dt id="pandas.Series.str.wrap">
+<code>Series.str.wrap(self, width, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2935-L2939"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Wrap long strings in the Series/Index to be formatted in paragraphs with length less than a given width.</p> <p>This method has the same keyword parameters and defaults as <a class="reference external" href="https://docs.python.org/3/library/textwrap.html#textwrap.TextWrapper" title="(in Python v3.7)"><code>textwrap.TextWrapper</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>width : int</code> </dt> <dd>
+<p class="first last">Maximum line width.</p> </dd> <dt>
+<code>expand_tabs : bool, optional</code> </dt> <dd>
+<p class="first last">If True, tab characters will be expanded to spaces (default: True).</p> </dd> <dt>
+<code>replace_whitespace : bool, optional</code> </dt> <dd>
+<p class="first last">If True, each whitespace character (as defined by string.whitespace) remaining after tab expansion will be replaced by a single space (default: True).</p> </dd> <dt>
+<code>drop_whitespace : bool, optional</code> </dt> <dd>
+<p class="first last">If True, whitespace that, after wrapping, happens to end up at the beginning or end of a line is dropped (default: True).</p> </dd> <dt>
+<code>break_long_words : bool, optional</code> </dt> <dd>
+<p class="first last">If True, then words longer than width will be broken in order to ensure that no lines are longer than width. If it is false, long words will not be broken, and some lines may be longer than width (default: True).</p> </dd> <dt>
+<code>break_on_hyphens : bool, optional</code> </dt> <dd>
+<p class="first last">If True, wrapping will occur preferably on whitespace and right after hyphens in compound words, as it is customary in English. If false, only whitespaces will be considered as potentially good places for line breaks, but you need to set break_long_words to false if you want truly insecable words (default: True).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or Index</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>Internally, this method uses a <a class="reference external" href="https://docs.python.org/3/library/textwrap.html#textwrap.TextWrapper" title="(in Python v3.7)"><code>textwrap.TextWrapper</code></a> instance with default settings. To achieve behavior matching R’s stringr library str_wrap function, use the arguments:</p> <ul class="simple"> <li>expand_tabs = False</li> <li>replace_whitespace = True</li> <li>drop_whitespace = True</li> <li>break_long_words = False</li> <li>break_on_hyphens = False</li> </ul> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['line to be wrapped', 'another line to be wrapped'])
+&gt;&gt;&gt; s.str.wrap(12)
+0             line to be\nwrapped
+1    another line\nto be\nwrapped
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.wrap.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.wrap.html</a>
+  </p>
+</div>

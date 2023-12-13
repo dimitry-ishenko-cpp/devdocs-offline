@@ -1,0 +1,35 @@
+<h1 id="pandas-series-autocorr">pandas.Series.autocorr</h1> <dl class="method"> <dt id="pandas.Series.autocorr">
+<code>Series.autocorr(self, lag=1)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L2550-L2593"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute the lag-N autocorrelation.</p> <p>This method computes the Pearson correlation between the Series and its shifted self.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>lag : int, default 1</code> </dt> <dd>
+<p class="first last">Number of lags to apply before performing autocorrelation.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>float</dt> <dd>
+<p class="first last">The Pearson correlation between self and self.shift(lag).</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.corr.html#pandas.Series.corr" title="pandas.Series.corr"><code>Series.corr</code></a>
+</dt> <dd>Compute the correlation between two Series.</dd> <dt>
+ <a class="reference internal" href="pandas.series.shift.html#pandas.Series.shift" title="pandas.Series.shift"><code>Series.shift</code></a>
+</dt> <dd>Shift index by desired number of periods.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.corr.html#pandas.DataFrame.corr" title="pandas.DataFrame.corr"><code>DataFrame.corr</code></a>
+</dt> <dd>Compute pairwise correlation of columns.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.corrwith.html#pandas.DataFrame.corrwith" title="pandas.DataFrame.corrwith"><code>DataFrame.corrwith</code></a>
+</dt> <dd>Compute pairwise correlation between rows or columns of two DataFrame objects.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>If the Pearson correlation is not well defined return ‘NaN’.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([0.25, 0.5, 0.2, -0.05])
+&gt;&gt;&gt; s.autocorr()  # doctest: +ELLIPSIS
+0.10355...
+&gt;&gt;&gt; s.autocorr(lag=2)  # doctest: +ELLIPSIS
+-0.99999...
+</pre> <p>If the Pearson correlation is not well defined, then ‘NaN’ is returned.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 0, 0, 0])
+&gt;&gt;&gt; s.autocorr()
+nan
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.autocorr.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.autocorr.html</a>
+  </p>
+</div>

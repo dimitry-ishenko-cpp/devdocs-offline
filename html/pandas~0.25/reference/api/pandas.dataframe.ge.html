@@ -1,0 +1,108 @@
+<h1 id="pandas-dataframe-ge">pandas.DataFrame.ge</h1> <dl class="method"> <dt id="pandas.DataFrame.ge">
+<code>DataFrame.ge(self, other, axis='columns', level=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/ops/__init__.py#L1530-L1547"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Get Greater than or equal to of dataframe and other, element-wise (binary operator <code>ge</code>).</p> <p>Among flexible wrappers (<code>eq</code>, <code>ne</code>, <code>le</code>, <code>lt</code>, <code>ge</code>, <code>gt</code>) to comparison operators.</p> <p>Equivalent to <code>==</code>, <code>=!</code>, <code>&lt;=</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&gt;</code> with support to choose axis (rows or columns) and level for comparison.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : scalar, sequence, Series, or DataFrame</code> </dt> <dd>
+<p class="first last">Any single or multiple element data structure, or list-like object.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default ‘columns’</code> </dt> <dd>
+<p class="first last">Whether to compare by the index (0 or ‘index’) or columns (1 or ‘columns’).</p> </dd> <dt>
+<code>level : int or label</code> </dt> <dd>
+<p class="first last">Broadcast across a level, matching Index values on the passed MultiIndex level.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame of bool</dt> <dd>
+<p class="first last">Result of the comparison.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.eq.html#pandas.DataFrame.eq" title="pandas.DataFrame.eq"><code>DataFrame.eq</code></a>
+</dt> <dd>Compare DataFrames for equality elementwise.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.ne.html#pandas.DataFrame.ne" title="pandas.DataFrame.ne"><code>DataFrame.ne</code></a>
+</dt> <dd>Compare DataFrames for inequality elementwise.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.le.html#pandas.DataFrame.le" title="pandas.DataFrame.le"><code>DataFrame.le</code></a>
+</dt> <dd>Compare DataFrames for less than inequality or equality elementwise.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.lt.html#pandas.DataFrame.lt" title="pandas.DataFrame.lt"><code>DataFrame.lt</code></a>
+</dt> <dd>Compare DataFrames for strictly less than inequality elementwise.</dd> <dt>
+ <a class="reference internal" href="#pandas.DataFrame.ge" title="pandas.DataFrame.ge"><code>DataFrame.ge</code></a>
+</dt> <dd>Compare DataFrames for greater than inequality or equality elementwise.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.gt.html#pandas.DataFrame.gt" title="pandas.DataFrame.gt"><code>DataFrame.gt</code></a>
+</dt> <dd>Compare DataFrames for strictly greater than inequality elementwise.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Mismatched indices will be unioned together. <code>NaN</code> values are considered different (i.e. <code>NaN</code> != <code>NaN</code>).</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'cost': [250, 150, 100],
+...                    'revenue': [100, 250, 300]},
+...                   index=['A', 'B', 'C'])
+&gt;&gt;&gt; df
+   cost  revenue
+A   250      100
+B   150      250
+C   100      300
+</pre> <p>Comparison with a scalar, using either the operator or method:</p> <pre data-language="python">&gt;&gt;&gt; df == 100
+    cost  revenue
+A  False     True
+B  False    False
+C   True    False
+</pre> <pre data-language="python">&gt;&gt;&gt; df.eq(100)
+    cost  revenue
+A  False     True
+B  False    False
+C   True    False
+</pre> <p>When <code>other</code> is a <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>, the columns of a DataFrame are aligned with the index of <code>other</code> and broadcast:</p> <pre data-language="python">&gt;&gt;&gt; df != pd.Series([100, 250], index=["cost", "revenue"])
+    cost  revenue
+A   True     True
+B   True    False
+C  False     True
+</pre> <p>Use the method to control the broadcast axis:</p> <pre data-language="python">&gt;&gt;&gt; df.ne(pd.Series([100, 300], index=["A", "D"]), axis='index')
+   cost  revenue
+A  True    False
+B  True     True
+C  True     True
+D  True     True
+</pre> <p>When comparing to an arbitrary sequence, the number of columns must match the number elements in <code>other</code>:</p> <pre data-language="python">&gt;&gt;&gt; df == [250, 100]
+    cost  revenue
+A   True     True
+B  False    False
+C  False    False
+</pre> <p>Use the method to control the axis:</p> <pre data-language="python">&gt;&gt;&gt; df.eq([250, 250, 100], axis='index')
+    cost  revenue
+A   True    False
+B  False     True
+C   True    False
+</pre> <p>Compare to a DataFrame of different shape.</p> <pre data-language="python">&gt;&gt;&gt; other = pd.DataFrame({'revenue': [300, 250, 100, 150]},
+...                      index=['A', 'B', 'C', 'D'])
+&gt;&gt;&gt; other
+   revenue
+A      300
+B      250
+C      100
+D      150
+</pre> <pre data-language="python">&gt;&gt;&gt; df.gt(other)
+    cost  revenue
+A  False    False
+B  False    False
+C  False     True
+D  False    False
+</pre> <p>Compare to a MultiIndex by level.</p> <pre data-language="python">&gt;&gt;&gt; df_multindex = pd.DataFrame({'cost': [250, 150, 100, 150, 300, 220],
+...                              'revenue': [100, 250, 300, 200, 175, 225]},
+...                             index=[['Q1', 'Q1', 'Q1', 'Q2', 'Q2', 'Q2'],
+...                                    ['A', 'B', 'C', 'A', 'B', 'C']])
+&gt;&gt;&gt; df_multindex
+      cost  revenue
+Q1 A   250      100
+   B   150      250
+   C   100      300
+Q2 A   150      200
+   B   300      175
+   C   220      225
+</pre> <pre data-language="python">&gt;&gt;&gt; df.le(df_multindex, level=1)
+       cost  revenue
+Q1 A   True     True
+   B   True     True
+   C   True     True
+Q2 A  False     True
+   B   True    False
+   C   True    False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ge.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ge.html</a>
+  </p>
+</div>

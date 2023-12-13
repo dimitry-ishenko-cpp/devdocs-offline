@@ -1,0 +1,55 @@
+<h1 id="compare-with-sql">Comparison with SQL</h1> <p id="comparison-with-sql">Since many potential pandas users have some familiarity with <a class="reference external" href="https://en.wikipedia.org/wiki/SQL">SQL</a>, this page is meant to provide some examples of how various SQL operations would be performed using pandas.</p> <p>If you’re new to pandas, you might want to first read through <a class="reference internal" href="../10min.html#min"><span class="std std-ref">10 Minutes to pandas</span></a> to familiarize yourself with the library.</p> <p>As is customary, we import pandas and NumPy as follows:</p> <pre data-language="python">In [1]: import pandas as pd
+
+In [2]: import numpy as np
+</pre> <p>Most of the examples will utilize the <code>tips</code> dataset found within pandas tests. We’ll read the data into a DataFrame called <code>tips</code> and assume we have a database table of the same name and structure.</p> <pre data-language="python">In [3]: url = ('https://raw.github.com/pandas-dev'
+   ...:        '/pandas/master/pandas/tests/data/tips.csv')
+   ...: 
+
+In [4]: tips = pd.read_csv(url)
+
+In [5]: tips.head()
+Out[5]: 
+   total_bill   tip     sex smoker  day    time  size
+0       16.99  1.01  Female     No  Sun  Dinner     2
+1       10.34  1.66    Male     No  Sun  Dinner     3
+2       21.01  3.50    Male     No  Sun  Dinner     3
+3       23.68  3.31    Male     No  Sun  Dinner     2
+4       24.59  3.61  Female     No  Sun  Dinner     4
+</pre>  <h2 id="select">SELECT</h2> <p>In SQL, selection is done using a comma-separated list of columns you’d like to select (or a <code>*</code> to select all columns):</p> <pre data-language="sql">SELECT total_bill, tip, smoker, time
+FROM tips
+LIMIT 5;
+</pre> <p>With pandas, column selection is done by passing a list of column names to your DataFrame:</p> <pre data-language="python">In [6]: tips[['total_bill', 'tip', 'smoker', 'time']].head(5)
+Out[6]: 
+   total_bill   tip smoker    time
+0       16.99  1.01     No  Dinner
+1       10.34  1.66     No  Dinner
+2       21.01  3.50     No  Dinner
+3       23.68  3.31     No  Dinner
+4       24.59  3.61     No  Dinner
+</pre> <p>Calling the DataFrame without the list of column names would display all columns (akin to SQL’s <code>*</code>).</p>   <h2 id="where">WHERE</h2> <p>Filtering in SQL is done via a WHERE clause.</p> <pre data-language="sql">SELECT *
+FROM tips
+WHERE time = 'Dinner'
+LIMIT 5;
+</pre> <p>DataFrames can be filtered in multiple ways; the most intuitive of which is using <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/indexing.html#boolean-indexing">boolean indexing</a>.</p> <pre data-language="python">In [7]: tips[tips['time'] == 'Dinner'].head(5)
+Out[7]: 
+   total_bill   tip     sex smoker  day    time  size
+0       16.99  1.01  Female     No  Sun  Dinner     2
+1       10.34  1.66    Male     No  Sun  Dinner     3
+2       21.01  3.50    Male     No  Sun  Dinner     3
+3       23.68  3.31    Male     No  Sun  Dinner     2
+4       24.59  3.61  Female     No  Sun  Dinner     4
+</pre> <p>The above statement is simply passing a <code>Series</code> of True/False objects to the DataFrame, returning all rows with True.</p> <pre data-language="python">In [8]: is_dinner = tips['time'] == 'Dinner'
+
+In [9]: is_dinner.value_counts()
+Out[9]: 
+True     176
+False     68
+Name: time, dtype: int64
+
+In [10]: tips[is_dinner].head(5)
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_sql.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_sql.html</a>
+  </p>
+</div>

@@ -1,0 +1,22 @@
+<h1 id="pandas-dataframe-from-items">pandas.DataFrame.from_items</h1> <dl class="classmethod"> <dt id="pandas.DataFrame.from_items">
+<code>classmethod DataFrame.from_items(items, columns=None, orient='columns')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1821-L1916"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Construct a DataFrame from a list of tuples.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.23.0: </span><code>from_items</code> is deprecated and will be removed in a future version. Use <a class="reference internal" href="pandas.dataframe.from_dict.html#pandas.DataFrame.from_dict" title="pandas.DataFrame.from_dict"><code>DataFrame.from_dict(dict(items))</code></a> instead. <a class="reference internal" href="pandas.dataframe.from_dict.html#pandas.DataFrame.from_dict" title="pandas.DataFrame.from_dict"><code>DataFrame.from_dict(OrderedDict(items))</code></a> may be used to preserve the key order.</p> </div> <p>Convert (key, value) pairs to DataFrame. The keys will be the axis index (usually the columns, but depends on the specified orientation). The values should be arrays or Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>items : sequence of (key, value) pairs</code> </dt> <dd>
+<p class="first last">Values should be arrays or Series.</p> </dd> <dt>
+<code>columns : sequence of column labels, optional</code> </dt> <dd>
+<p class="first last">Must be passed if orient=’index’.</p> </dd> <dt>
+<code>orient : {‘columns’, ‘index’}, default ‘columns’</code> </dt> <dd>
+<p class="first last">The “orientation” of the data. If the keys of the input correspond to column labels, pass ‘columns’ (default). Otherwise if the keys correspond to the index, pass ‘index’.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.from_items.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.from_items.html</a>
+  </p>
+</div>

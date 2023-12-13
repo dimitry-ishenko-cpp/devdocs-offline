@@ -1,0 +1,16 @@
+<h1 id="pandas-dataframe-ndim">pandas.DataFrame.ndim</h1> <dl class="attribute"> <dt id="pandas.DataFrame.ndim">
+<code>DataFrame.ndim</code> </dt> <dd>
+<p>Return an int representing the number of axes / array dimensions.</p> <p>Return 1 if Series. Otherwise return 2 if DataFrame.</p> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>ndarray.ndim</code> </dt> <dd>Number of array dimensions.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series({'a': 1, 'b': 2, 'c': 3})
+&gt;&gt;&gt; s.ndim
+1
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})
+&gt;&gt;&gt; df.ndim
+2
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ndim.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ndim.html</a>
+  </p>
+</div>

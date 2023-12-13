@@ -1,0 +1,29 @@
+<h1 id="pandas-api-types-is-datetimetz">pandas.api.types.is_datetimetz</h1> <dl class="function"> <dt id="pandas.api.types.is_datetimetz">
+<code>pandas.api.types.is_datetimetz(arr)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/common.py#L390-L437"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check whether an array-like is a datetime array-like with a timezone component in its dtype.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arr : array-like</code> </dt> <dd>
+<p class="first last">The array-like to check.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>boolean</dt> <dd>
+<p class="first last">Whether or not the array-like is a datetime array-like with a timezone component in its dtype.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; is_datetimetz([1, 2, 3])
+False
+</pre> <p>Although the following examples are both DatetimeIndex objects, the first one returns False because it has no timezone component unlike the second one, which returns True.</p> <pre data-language="python">&gt;&gt;&gt; is_datetimetz(pd.DatetimeIndex([1, 2, 3]))
+False
+&gt;&gt;&gt; is_datetimetz(pd.DatetimeIndex([1, 2, 3], tz="US/Eastern"))
+True
+</pre> <p>The object need not be a DatetimeIndex object. It just needs to have a dtype which has a timezone component.</p> <pre data-language="python">&gt;&gt;&gt; dtype = DatetimeTZDtype("ns", tz="US/Eastern")
+&gt;&gt;&gt; s = pd.Series([], dtype=dtype)
+&gt;&gt;&gt; is_datetimetz(s)
+True
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_datetimetz.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_datetimetz.html</a>
+  </p>
+</div>

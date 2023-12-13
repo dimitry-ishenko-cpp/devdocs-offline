@@ -1,0 +1,28 @@
+<h1 id="pandas-read-sas">pandas.read_sas</h1> <dl class="function"> <dt id="pandas.read_sas">
+<code>pandas.read_sas(filepath_or_buffer, format=None, index=None, encoding=None, chunksize=None, iterator=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/sas/sasreader.py#L7-L86"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Read SAS files stored as either XPORT or SAS7BDAT format files.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>filepath_or_buffer : str, path object or file-like object</code> </dt> <dd>
+<p class="first">Any valid string path is acceptable. The string could be a URL. Valid URL schemes include http, ftp, s3, and file. For file URLs, a host is expected. A local file could be: <code>file://localhost/path/to/table.sas</code>.</p> <p>If you want to pass in a path object, pandas accepts any <code>os.PathLike</code>.</p> <p class="last">By file-like object, we refer to objects with a <code>read()</code> method, such as a file handler (e.g. via builtin <code>open</code> function) or <code>StringIO</code>.</p> </dd> <dt>
+<code>format : string {‘xport’, ‘sas7bdat’} or None</code> </dt> <dd>
+<p class="first last">If None, file format is inferred from file extension. If ‘xport’ or ‘sas7bdat’, uses the corresponding format.</p> </dd> <dt>
+<code>index : identifier of index column, defaults to None</code> </dt> <dd>
+<p class="first last">Identifier of column that should be used as index of the DataFrame.</p> </dd> <dt>
+<code>encoding : string, default is None</code> </dt> <dd>
+<p class="first last">Encoding for text data. If None, text data are stored as raw bytes.</p> </dd> <dt>
+<code>chunksize : int</code> </dt> <dd>
+<p class="first last">Read file <code>chunksize</code> lines at a time, returns iterator.</p> </dd> <dt>
+<code>iterator : bool, defaults to False</code> </dt> <dd>
+<p class="first last">If True, returns an iterator for reading the file incrementally.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame if iterator=False and chunksize=None, else SAS7BDATReader</dt>  <dt>or XportReader</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_sas.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_sas.html</a>
+  </p>
+</div>

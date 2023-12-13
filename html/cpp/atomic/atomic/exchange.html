@@ -1,0 +1,80 @@
+    <h1 id="firstHeading" class="firstHeading">std::atomic&lt;T&gt;::exchange</h1>            <table class="t-dcl-begin">  <tr class="t-dcl-rev-aux"> <td></td> <td></td> <td rowspan="3"> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T exchange( T desired, std::memory_order order = std::memory_order_seq_cst )
+  noexcept;</pre>
+</td> <td> (1) </td> <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T exchange( T desired, std::memory_order order = std::memory_order_seq_cst ) volatile
+  noexcept;</pre>
+</td> <td> (2) </td> <td class="t-dcl-nopad"> </td> </tr>   </table> <p>Atomically replaces the underlying value with <code>desired</code> (a read-modify-write operation). Memory is affected according to the value of <code>order</code>.</p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p>The volatile-qualified version <span class="t-v">(2)</span> is deprecated if <code><a href="http://en.cppreference.com/w/cpp/atomic/atomic"><span class="kw2071">std::<span class="me2">atomic</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="sy4">::</span><span class="me2">is_always_lock_free</span></code> is <code>false</code>.</p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> desired </td> <td> - </td> <td> value to assign </td>
+</tr> <tr class="t-par"> <td> order </td> <td> - </td> <td> memory order constraints to enforce </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p>The value of the atomic variable before the call.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;algorithm&gt;
+#include &lt;atomic&gt;
+#include &lt;cstddef&gt;
+#include &lt;iostream&gt;
+#include &lt;syncstream&gt;
+#include &lt;thread&gt;
+#include &lt;vector&gt;
+ 
+int main(){
+    const std::size_t ThreadNumber = 5;
+    const int Sum = 5;
+    std::atomic&lt;int&gt; atom{0};
+    std::atomic&lt;int&gt; counter{0};
+ 
+    // lambda as thread proc
+    auto lambda = [&amp;](const int id){
+        for (int next = 0; next &lt; Sum;){
+            // each thread is writing a value from its own knowledge
+            const int current = atom.exchange(next);
+            counter++;
+            // sync writing to prevent from interrupting by other threads
+            std::osyncstream(std::cout)
+                &lt;&lt; '#' &lt;&lt; id &lt;&lt; " (" &lt;&lt; std::this_thread::get_id()
+                &lt;&lt; ") wrote " &lt;&lt; next &lt;&lt; " replacing the old value "
+                &lt;&lt; current &lt;&lt; '\n';
+            next = std::max(current, next) + 1;
+        }
+    };
+ 
+    std::vector&lt;std::thread&gt; v;
+    for (std::size_t i = 0; i &lt; ThreadNumber; ++i){
+        v.emplace_back(lambda, i);
+    }
+ 
+    for (auto&amp; tr : v){
+        tr.join();
+    }
+ 
+    std::cout &lt;&lt; ThreadNumber &lt;&lt; " threads adding 0 to "
+              &lt;&lt; Sum &lt;&lt; " takes total "
+              &lt;&lt; counter &lt;&lt; " times\n";
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">#1 (140552371918592) wrote 0 replacing the old value 0
+#2 (140552363525888) wrote 0 replacing the old value 0
+#1 (140552371918592) wrote 1 replacing the old value 0
+#1 (140552371918592) wrote 2 replacing the old value 1
+#2 (140552363525888) wrote 1 replacing the old value 1
+#1 (140552371918592) wrote 3 replacing the old value 2
+#1 (140552371918592) wrote 4 replacing the old value 2
+#2 (140552363525888) wrote 2 replacing the old value 3
+#2 (140552363525888) wrote 4 replacing the old value 0
+#3 (140552355133184) wrote 0 replacing the old value 4
+#0 (140552380311296) wrote 0 replacing the old value 0
+#0 (140552380311296) wrote 1 replacing the old value 4
+#4 (140552346740480) wrote 0 replacing the old value 1
+#4 (140552346740480) wrote 2 replacing the old value 0
+#4 (140552346740480) wrote 3 replacing the old value 2
+#4 (140552346740480) wrote 4 replacing the old value 3
+5 threads adding 0 to 5 takes total 16 times</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../atomic_exchange.html" title="cpp/atomic/atomic exchange"> <span class="t-lines"><span>atomic_exchange</span><span>atomic_exchange_explicit</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> atomically replaces the value of the atomic object with non-atomic argument and returns the old value of the atomic <br> <span class="t-mark">(function template)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../../utility/exchange.html" title="cpp/utility/exchange"> <span class="t-lines"><span>exchange</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx14">(C++14)</span></span></span></div> </td> <td> replaces the argument with a new value and returns its previous value <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/atomic/atomic/exchange" class="_attribution-link">https://en.cppreference.com/w/cpp/atomic/atomic/exchange</a>
+  </p>
+</div>

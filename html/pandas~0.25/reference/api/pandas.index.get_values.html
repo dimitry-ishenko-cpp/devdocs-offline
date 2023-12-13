@@ -1,0 +1,34 @@
+<h1 id="pandas-index-get-values">pandas.Index.get_values</h1> <dl class="method"> <dt id="pandas.Index.get_values">
+<code>Index.get_values(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L3946-L3997"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return <code>Index</code> data as an <code>numpy.ndarray</code>.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.25.0: </span>Use <a class="reference internal" href="pandas.index.to_numpy.html#pandas.Index.to_numpy" title="pandas.Index.to_numpy"><code>Index.to_numpy()</code></a> or <a class="reference internal" href="pandas.index.array.html#pandas.Index.array" title="pandas.Index.array"><code>Index.array</code></a> instead.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt> <dd>
+<p class="first last">A one-dimensional numpy array of the <code>Index</code> values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.values.html#pandas.Index.values" title="pandas.Index.values"><code>Index.values</code></a>
+</dt> <dd>The attribute that get_values wraps.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Getting the <code>Index</code> values of a <code>DataFrame</code>:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+...                    index=['a', 'b', 'c'], columns=['A', 'B', 'C'])
+&gt;&gt;&gt; df
+   A  B  C
+a  1  2  3
+b  4  5  6
+c  7  8  9
+&gt;&gt;&gt; df.index.get_values()
+array(['a', 'b', 'c'], dtype=object)
+</pre> <p>Standalone <code>Index</code> values:</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['1', '2', '3'])
+&gt;&gt;&gt; idx.get_values()
+array(['1', '2', '3'], dtype=object)
+</pre> <p><code>MultiIndex</code> arrays also have only one dimension:</p> <pre data-language="python">&gt;&gt;&gt; midx = pd.MultiIndex.from_arrays([[1, 2, 3], ['a', 'b', 'c']],
+...                                  names=('number', 'letter'))
+&gt;&gt;&gt; midx.get_values()
+array([(1, 'a'), (2, 'b'), (3, 'c')], dtype=object)
+&gt;&gt;&gt; midx.get_values().ndim
+1
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.get_values.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.get_values.html</a>
+  </p>
+</div>

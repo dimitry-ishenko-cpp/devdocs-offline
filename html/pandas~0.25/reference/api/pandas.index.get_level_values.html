@@ -1,0 +1,26 @@
+<h1 id="pandas-index-get-level-values">pandas.Index.get_level_values</h1> <dl class="method"> <dt id="pandas.Index.get_level_values">
+<code>Index.get_level_values(self, level)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1578-L1616"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return an Index of values for requested level.</p> <p>This is primarily useful to get an individual level of values from a MultiIndex, but is provided on Index as well for compatibility.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>level : int or str</code> </dt> <dd>
+<p class="first last">It is either the integer position or the name of the level.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Index</dt> <dd>
+<p class="first last">Calling object, as there is only one level in the Index.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.multiindex.get_level_values.html#pandas.MultiIndex.get_level_values" title="pandas.MultiIndex.get_level_values"><code>MultiIndex.get_level_values</code></a>
+</dt> <dd>Get values for a level of a MultiIndex.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>For Index, level should be 0, since there are no multiple levels.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(list('abc'))
+&gt;&gt;&gt; idx
+Index(['a', 'b', 'c'], dtype='object')
+</pre> <p>Get level values by supplying <code>level</code> as integer:</p> <pre data-language="python">&gt;&gt;&gt; idx.get_level_values(0)
+Index(['a', 'b', 'c'], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.get_level_values.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.get_level_values.html</a>
+  </p>
+</div>

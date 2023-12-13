@@ -1,0 +1,30 @@
+<h1 id="pandas-index-any">pandas.Index.any</h1> <dl class="method"> <dt id="pandas.Index.any">
+<code>Index.any(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L5611-L5623"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return whether any element is True.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt><strong>*args</strong></dt> <dd>
+<p class="first last">These parameters will be passed to numpy.any.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">These parameters will be passed to numpy.any.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>any : bool or array_like (if axis is specified)</code> </dt> <dd>
+<p class="first last">A single element array_like may be converted to bool.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.all.html#pandas.Index.all" title="pandas.Index.all"><code>Index.all</code></a>
+</dt> <dd>Return whether all elements are True.</dd> <dt>
+ <a class="reference internal" href="pandas.series.all.html#pandas.Series.all" title="pandas.Series.all"><code>Series.all</code></a>
+</dt> <dd>Return whether all elements are True.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Not a Number (NaN), positive infinity and negative infinity evaluate to True because these are not equal to zero.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; index = pd.Index([0, 1, 2])
+&gt;&gt;&gt; index.any()
+True
+</pre> <pre data-language="python">&gt;&gt;&gt; index = pd.Index([0, 0, 0])
+&gt;&gt;&gt; index.any()
+False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.any.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.any.html</a>
+  </p>
+</div>

@@ -1,0 +1,37 @@
+<h1 id="pandas-arrays-integerarray">pandas.arrays.IntegerArray</h1> <dl class="class"> <dt id="pandas.arrays.IntegerArray">
+<code>class pandas.arrays.IntegerArray(values, mask, copy=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/integer.py#L233-L742"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Array of integer (optional missing) values.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">IntegerArray is currently experimental, and its API or internal implementation may change without warning.</p> </div> <p>We represent an IntegerArray with 2 numpy arrays:</p> <ul class="simple"> <li>data: contains a numpy integer array of the appropriate dtype</li> <li>mask: a boolean array holding a mask on the data, True is missing</li> </ul> <p>To construct an IntegerArray from generic array-like input, use <a class="reference internal" href="pandas.array.html#pandas.array" title="pandas.array"><code>pandas.array()</code></a> with one of the integer dtypes (see examples).</p> <p>See <a class="reference internal" href="../../user_guide/integer_na.html#integer-na"><span class="std std-ref">Nullable integer data type</span></a> for more.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>values : numpy.ndarray</code> </dt> <dd>
+<p class="first last">A 1-d integer-dtype array.</p> </dd> <dt>
+<code>mask : numpy.ndarray</code> </dt> <dd>
+<p class="first last">A 1-d boolean-dtype array indicating missing values.</p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to copy the <code>values</code> and <code>mask</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>IntegerArray</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <p>Create an IntegerArray with <a class="reference internal" href="pandas.array.html#pandas.array" title="pandas.array"><code>pandas.array()</code></a>.</p> <pre data-language="python">&gt;&gt;&gt; int_array = pd.array([1, None, 3], dtype=pd.Int32Dtype())
+&gt;&gt;&gt; int_array
+&lt;IntegerArray&gt;
+[1, NaN, 3]
+Length: 3, dtype: Int32
+</pre> <p>String aliases for the dtypes are also available. They are capitalized.</p> <pre data-language="python">&gt;&gt;&gt; pd.array([1, None, 3], dtype='Int32')
+&lt;IntegerArray&gt;
+[1, NaN, 3]
+Length: 3, dtype: Int32
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.array([1, None, 3], dtype='UInt16')
+&lt;IntegerArray&gt;
+[1, NaN, 3]
+Length: 3, dtype: UInt16
+</pre> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.IntegerArray.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.IntegerArray.html</a>
+  </p>
+</div>

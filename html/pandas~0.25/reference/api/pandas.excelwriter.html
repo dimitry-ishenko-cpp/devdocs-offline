@@ -1,0 +1,36 @@
+<h1 id="pandas-excelwriter">pandas.ExcelWriter</h1> <dl class="class"> <dt id="pandas.ExcelWriter">
+<code>class pandas.ExcelWriter(path, engine=None, date_format=None, datetime_format=None, mode='w', **engine_kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/excel/_base.py#L534-L783"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Class for writing DataFrame objects into excel sheets, default is to use xlwt for xls, openpyxl for xlsx. See DataFrame.to_excel for typical usage.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>path : string</code> </dt> <dd>
+<p class="first last">Path to xls or xlsx file.</p> </dd> <dt>
+<code>engine : string (optional)</code> </dt> <dd>
+<p class="first last">Engine to use for writing. If None, defaults to <code>io.excel.&lt;extension&gt;.writer</code>. NOTE: can only be passed as a keyword argument.</p> </dd> <dt>
+<code>date_format : string, default None</code> </dt> <dd>
+<p class="first last">Format string for dates written into Excel files (e.g. ‘YYYY-MM-DD’)</p> </dd> <dt>
+<code>datetime_format : string, default None</code> </dt> <dd>
+<p class="first last">Format string for datetime objects written into Excel files (e.g. ‘YYYY-MM-DD HH:MM:SS’)</p> </dd> <dt>
+<code>mode : {‘w’, ‘a’}, default ‘w’</code> </dt> <dd>
+<p class="first">File mode to use (write or append).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>None of the methods and properties are considered public.</p> <p>For compatibility with CSV writers, ExcelWriter serializes lists and dicts to strings before writing.</p> <h4 class="rubric">Examples</h4> <p>Default usage:</p> <pre data-language="python">&gt;&gt;&gt; with ExcelWriter('path_to_file.xlsx') as writer:
+...     df.to_excel(writer)
+</pre> <p>To write to separate sheets in a single file:</p> <pre data-language="python">&gt;&gt;&gt; with ExcelWriter('path_to_file.xlsx') as writer:
+...     df1.to_excel(writer, sheet_name='Sheet1')
+...     df2.to_excel(writer, sheet_name='Sheet2')
+</pre> <p>You can set the date format or datetime format:</p> <pre data-language="python">&gt;&gt;&gt; with ExcelWriter('path_to_file.xlsx',
+                      date_format='YYYY-MM-DD',
+                      datetime_format='YYYY-MM-DD HH:MM:SS') as writer:
+...     df.to_excel(writer)
+</pre> <p>You can also append to an existing Excel file:</p> <pre data-language="python">&gt;&gt;&gt; with ExcelWriter('path_to_file.xlsx', mode='a') as writer:
+...     df.to_excel(writer, sheet_name='Sheet3')
+</pre> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.ExcelWriter.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.ExcelWriter.html</a>
+  </p>
+</div>

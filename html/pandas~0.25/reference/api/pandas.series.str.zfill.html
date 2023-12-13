@@ -1,0 +1,41 @@
+<h1 id="pandas-series-str-zfill">pandas.Series.str.zfill</h1> <dl class="method"> <dt id="pandas.Series.str.zfill">
+<code>Series.str.zfill(self, width)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2763-L2825"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Pad strings in the Series/Index by prepending ‘0’ characters.</p> <p>Strings in the Series/Index are padded with ‘0’ characters on the left of the string to reach a total string length <code>width</code>. Strings in the Series/Index with length greater or equal to <code>width</code> are unchanged.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>width : int</code> </dt> <dd>
+<p class="first last">Minimum length of resulting string; strings with length less than <code>width</code> be prepended with ‘0’ characters.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series/Index of objects</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.rjust.html#pandas.Series.str.rjust" title="pandas.Series.str.rjust"><code>Series.str.rjust</code></a>
+</dt> <dd>Fills the left side of strings with an arbitrary character.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.ljust.html#pandas.Series.str.ljust" title="pandas.Series.str.ljust"><code>Series.str.ljust</code></a>
+</dt> <dd>Fills the right side of strings with an arbitrary character.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.pad.html#pandas.Series.str.pad" title="pandas.Series.str.pad"><code>Series.str.pad</code></a>
+</dt> <dd>Fills the specified sides of strings with an arbitrary character.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.center.html#pandas.Series.str.center" title="pandas.Series.str.center"><code>Series.str.center</code></a>
+</dt> <dd>Fills boths sides of strings with an arbitrary character.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Differs from <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.zfill" title="(in Python v3.7)"><code>str.zfill()</code></a> which has special handling for ‘+’/’-‘ in the string.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['-1', '1', '1000', 10, np.nan])
+&gt;&gt;&gt; s
+0      -1
+1       1
+2    1000
+3      10
+4     NaN
+dtype: object
+</pre> <p>Note that <code>10</code> and <code>NaN</code> are not strings, therefore they are converted to <code>NaN</code>. The minus sign in <code>'-1'</code> is treated as a regular character and the zero is added to the left of it (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.zfill" title="(in Python v3.7)"><code>str.zfill()</code></a> would have moved it to the left). <code>1000</code> remains unchanged as it is longer than <code>width</code>.</p> <pre data-language="python">&gt;&gt;&gt; s.str.zfill(3)
+0     0-1
+1     001
+2    1000
+3     NaN
+4     NaN
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.zfill.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.zfill.html</a>
+  </p>
+</div>

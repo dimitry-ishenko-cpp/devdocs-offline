@@ -1,0 +1,51 @@
+<h1 id="pandas-index-set-names">pandas.Index.set_names</h1> <dl class="method"> <dt id="pandas.Index.set_names">
+<code>Index.set_names(self, names, level=None, inplace=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1387-L1465"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Set Index or MultiIndex name.</p> <p>Able to set new names partially and by level.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>names : label or list of label</code> </dt> <dd>
+<p class="first last">Name(s) to set.</p> </dd> <dt>
+<code>level : int, label or list of int or label, optional</code> </dt> <dd>
+<p class="first last">If the index is a MultiIndex, level(s) to set (None for all levels). Otherwise level must be None.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">Modifies the object directly, instead of creating a new Index or MultiIndex.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Index</dt> <dd>
+<p class="first last">The same type as the caller or None if inplace is True.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.rename.html#pandas.Index.rename" title="pandas.Index.rename"><code>Index.rename</code></a>
+</dt> <dd>Able to set new names without level.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index([1, 2, 3, 4])
+&gt;&gt;&gt; idx
+Int64Index([1, 2, 3, 4], dtype='int64')
+&gt;&gt;&gt; idx.set_names('quarter')
+Int64Index([1, 2, 3, 4], dtype='int64', name='quarter')
+</pre> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_product([['python', 'cobra'],
+...                                   [2018, 2019]])
+&gt;&gt;&gt; idx
+MultiIndex([('python', 2018),
+            ('python', 2019),
+            ( 'cobra', 2018),
+            ( 'cobra', 2019)],
+           )
+&gt;&gt;&gt; idx.set_names(['kind', 'year'], inplace=True)
+&gt;&gt;&gt; idx
+MultiIndex([('python', 2018),
+            ('python', 2019),
+            ( 'cobra', 2018),
+            ( 'cobra', 2019)],
+           names=['kind', 'year'])
+&gt;&gt;&gt; idx.set_names('species', level=0)
+MultiIndex([('python', 2018),
+            ('python', 2019),
+            ( 'cobra', 2018),
+            ( 'cobra', 2019)],
+           names=['species', 'year'])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.set_names.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.set_names.html</a>
+  </p>
+</div>

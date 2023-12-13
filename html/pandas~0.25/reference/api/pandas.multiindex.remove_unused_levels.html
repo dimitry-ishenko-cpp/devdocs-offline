@@ -1,0 +1,27 @@
+<h1 id="pandas-multiindex-remove-unused-levels">pandas.MultiIndex.remove_unused_levels</h1> <dl class="method"> <dt id="pandas.MultiIndex.remove_unused_levels">
+<code>MultiIndex.remove_unused_levels(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/multi.py#L1848-L1933"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Create a new MultiIndex from the current that removes unused levels, meaning that they are not expressed in the labels.</p> <p>The resulting MultiIndex will have the same outward appearance, meaning the same .values and ordering. It will also be .equals() to the original.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>MultiIndex</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; mi = pd.MultiIndex.from_product([range(2), list('ab')])
+&gt;&gt;&gt; mi
+MultiIndex([(0, 'a'),
+            (0, 'b'),
+            (1, 'a'),
+            (1, 'b')],
+           )
+</pre> <pre data-language="python">&gt;&gt;&gt; mi[2:]
+MultiIndex([(1, 'a'),
+            (1, 'b')],
+           )
+</pre> <p>The 0 from the first level is not represented and can be removed</p> <pre data-language="python">&gt;&gt;&gt; mi2 = mi[2:].remove_unused_levels()
+&gt;&gt;&gt; mi2.levels
+FrozenList([[1], ['a', 'b']])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.remove_unused_levels.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.remove_unused_levels.html</a>
+  </p>
+</div>

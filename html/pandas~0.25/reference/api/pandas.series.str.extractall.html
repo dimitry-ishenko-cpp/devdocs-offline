@@ -1,0 +1,49 @@
+<h1 id="pandas-series-str-extractall">pandas.Series.str.extractall</h1> <dl class="method"> <dt id="pandas.Series.str.extractall">
+<code>Series.str.extractall(self, pat, flags=0)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2968-L2971"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>For each subject string in the Series, extract groups from all matches of regular expression pat. When each subject string in the Series has exactly one match, extractall(pat).xs(0, level=’match’) is the same as extract(pat).</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>pat : str</code> </dt> <dd>
+<p class="first last">Regular expression pattern with capturing groups.</p> </dd> <dt>
+<code>flags : int, default 0 (no flags)</code> </dt> <dd>
+<p class="first last">A <code>re</code> module flag, for example <code>re.IGNORECASE</code>. These allow to modify regular expression matching for things like case, spaces, etc. Multiple flags can be combined with the bitwise OR operator, for example <code>re.IGNORECASE | re.MULTILINE</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">A <code>DataFrame</code> with one row for each match, and one column for each group. Its rows have a <code>MultiIndex</code> with first levels that come from the subject <code>Series</code>. The last level is named ‘match’ and indexes the matches in each item of the <code>Series</code>. Any capture group names in regular expression pat will be used for column names; otherwise capture group numbers will be used.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.extract.html#pandas.Series.str.extract" title="pandas.Series.str.extract"><code>extract</code></a>
+</dt> <dd>Returns first match only (not all matches).</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>A pattern with one group will return a DataFrame with one column. Indices with no matches will not appear in the result.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(["a1a2", "b1", "c1"], index=["A", "B", "C"])
+&gt;&gt;&gt; s.str.extractall(r"[ab](\d)")
+         0
+  match
+A 0      1
+  1      2
+B 0      1
+</pre> <p>Capture group names are used for column names of the result.</p> <pre data-language="python">&gt;&gt;&gt; s.str.extractall(r"[ab](?P&lt;digit&gt;\d)")
+        digit
+  match
+A 0         1
+  1         2
+B 0         1
+</pre> <p>A pattern with two groups will return a DataFrame with two columns.</p> <pre data-language="python">&gt;&gt;&gt; s.str.extractall(r"(?P&lt;letter&gt;[ab])(?P&lt;digit&gt;\d)")
+        letter digit
+  match
+A 0          a     1
+  1          a     2
+B 0          b     1
+</pre> <p>Optional groups that do not match are NaN in the result.</p> <pre data-language="python">&gt;&gt;&gt; s.str.extractall(r"(?P&lt;letter&gt;[ab])?(?P&lt;digit&gt;\d)")
+        letter digit
+  match
+A 0          a     1
+  1          a     2
+B 0          b     1
+C 0        NaN     1
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.extractall.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.extractall.html</a>
+  </p>
+</div>

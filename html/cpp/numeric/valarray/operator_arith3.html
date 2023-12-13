@@ -1,0 +1,153 @@
+    <h1 id="firstHeading" class="firstHeading">operator+,-,*,/,%,&amp;,|,^,&lt;&lt;,&gt;&gt;,&amp;&amp;,|| (std::valarray)</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../../header/valarray.html" title="cpp/header/valarray">&lt;valarray&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">template&lt; class T &gt;
+std::valarray&lt;T&gt; operator+ ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator- ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator* ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator/ ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator% ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&amp; ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator| ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator^ ( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&lt;&lt;( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&gt;&gt;( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;bool&gt; operator&amp;&amp;( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;bool&gt; operator||( const std::valarray&lt;T&gt;&amp; lhs, const std::valarray&lt;T&gt;&amp; rhs );</pre>
+</td> <td> (1) </td> <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">template&lt; class T &gt;
+std::valarray&lt;T&gt; operator+ ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator- ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator* ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator/ ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator% ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&amp; ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator| ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator^ ( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&lt;&lt;( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&gt;&gt;( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                             const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;bool&gt; operator&amp;&amp;( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                                const std::valarray&lt;T&gt;&amp; rhs );
+template&lt; class T &gt;
+std::valarray&lt;bool&gt; operator||( const typename std::valarray&lt;T&gt;::value_type &amp; val,
+                                const std::valarray&lt;T&gt;&amp; rhs );</pre>
+</td> <td> (2) </td> <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">template&lt; class T &gt;
+std::valarray&lt;T&gt; operator+ ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator- ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator* ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator/ ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator% ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&amp; ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator| ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator^ ( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&lt;&lt;( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;T&gt; operator&gt;&gt;( const std::valarray&lt;T&gt;&amp; lhs,
+                             const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;bool&gt; operator&amp;&amp;( const std::valarray&lt;T&gt;&amp; lhs,
+                                const typename std::valarray&lt;T&gt;::value_type &amp; val );
+template&lt; class T &gt;
+std::valarray&lt;bool&gt; operator||( const std::valarray&lt;T&gt;&amp; lhs,
+                                const typename std::valarray&lt;T&gt;::value_type &amp; val );</pre>
+</td> <td> (3) </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>Apply binary operators to each element of two valarrays, or a valarray and a value.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> The operators works on valarrays of the same size and returns a valarray with the same size as the parameters with the operation applied to every elements of the two arguments.</div> <div class="t-li1">
+<span class="t-li">2,3)</span> Applies the operator between each element of the valarray and the scalar.</div>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> rhs </td> <td> - </td> <td> a numeric array </td>
+</tr> <tr class="t-par"> <td> lhs </td> <td> - </td> <td> a numeric array </td>
+</tr> <tr class="t-par"> <td> val </td> <td> - </td> <td> a value of type <code>T</code> </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p>A valarray with the same size as the parameter.</p>
+<h3 id="Note"> Note</h3> <p>The behaviour is undefined when the two arguments are valarrays with different sizes.</p>
+<p>The function can be implemented with the return type different from <code><a href="../valarray.html" title="cpp/numeric/valarray">std::valarray</a></code>. In this case, the replacement type has the following properties:</p>
+<ul>
+<li> All <span class="kw4">const</span> member functions of <code><a href="../valarray.html" title="cpp/numeric/valarray">std::valarray</a></code> are provided. </li>
+<li> <code><a href="../valarray.html" title="cpp/numeric/valarray">std::valarray</a></code>, <code><a href="slice_array.html" title="cpp/numeric/valarray/slice array">std::slice_array</a></code>, <code><a href="gslice_array.html" title="cpp/numeric/valarray/gslice array">std::gslice_array</a></code>, <code><a href="mask_array.html" title="cpp/numeric/valarray/mask array">std::mask_array</a></code> and <code><a href="indirect_array.html" title="cpp/numeric/valarray/indirect array">std::indirect_array</a></code> can be constructed from the replacement type. </li>
+<li> All functions accepting an argument of type <span class="kw4">const</span> <a href="http://en.cppreference.com/w/cpp/numeric/valarray"><span class="kw1477">std::<span class="me2">valarray</span></span></a><span class="sy3">&amp;</span> <span class="t-rev-inl t-since-cxx11"><span> except <a href="begin2.html" title="cpp/numeric/valarray/begin2"><code>begin()</code></a> and <a href="end2.html" title="cpp/numeric/valarray/end2"><code>end()</code></a></span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span> should also accept the replacement type. </li>
+<li> All functions accepting two arguments of type <span class="kw4">const</span> <a href="http://en.cppreference.com/w/cpp/numeric/valarray"><span class="kw1477">std::<span class="me2">valarray</span></span></a><span class="sy3">&amp;</span> should accept every combination of <span class="kw4">const</span> <a href="http://en.cppreference.com/w/cpp/numeric/valarray"><span class="kw1477">std::<span class="me2">valarray</span></span></a><span class="sy3">&amp;</span> and the replacement type. </li>
+<li> The return type does not add more than two levels of template nesting over the most deeply-nested argument type. </li>
+</ul> <h3 id="Example"> Example</h3> <div class="t-example">
+<p>Finds real roots of multiple <a href="https://en.wikipedia.org/wiki/Quadratic_equation" class="extiw" title="enwiki:Quadratic equation">Quadratic equations</a>.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">#include &lt;cstddef&gt;
+#include &lt;iostream&gt;
+#include &lt;valarray&gt;
+ 
+int main()
+{
+    std::valarray&lt;double&gt; a(1, 8);
+    std::valarray&lt;double&gt; b{1, 2, 3, 4, 5, 6, 7, 8};
+    std::valarray&lt;double&gt; c = -b;
+    // literals must also be of type T until LWG3074 (double in this case)
+    std::valarray&lt;double&gt; d = std::sqrt(b * b - 4.0 * a * c);
+    std::valarray&lt;double&gt; x1 = (-b - d) / (2.0 * a);
+    std::valarray&lt;double&gt; x2 = (-b + d) / (2.0 * a);
+    std::cout &lt;&lt; "quadratic equation:  root 1:    root 2:\n";
+    for (std::size_t i = 0; i &lt; a.size(); ++i)
+        std::cout &lt;&lt; a[i] &lt;&lt; "\u00B7x\u00B2 + " &lt;&lt; b[i] &lt;&lt; "\u00B7x + "
+                  &lt;&lt; c[i] &lt;&lt; " = 0  " &lt;&lt; std::fixed &lt;&lt; x1[i] &lt;&lt; "  "
+                  &lt;&lt; x2[i] &lt;&lt; std::defaultfloat &lt;&lt; '\n';
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">quadratic equation:  root 1:    root 2:
+1·x² + 1·x + -1 = 0  -1.618034  0.618034
+1·x² + 2·x + -2 = 0  -2.732051  0.732051
+1·x² + 3·x + -3 = 0  -3.791288  0.791288
+1·x² + 4·x + -4 = 0  -4.828427  0.828427
+1·x² + 5·x + -5 = 0  -5.854102  0.854102
+1·x² + 6·x + -6 = 0  -6.872983  0.872983
+1·x² + 7·x + -7 = 0  -7.887482  0.887482
+1·x² + 8·x + -8 = 0  -8.898979  0.898979</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/LWG/issue3074">LWG 3074</a> </td> <td> C++98 </td> <td> <code>T</code> is deduced from both the scalar and the <code>valarray</code> for <span class="t-v">(2-3)</span>, disallowing mixed-type calls </td> <td> only deduce <code>T</code> from the <code>valarray</code> </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="operator_arith.html" title="cpp/numeric/valarray/operator arith"> <span class="t-lines"><span>operator+</span><span>operator-</span><span>operator~</span><span>operator!</span></span></a></div> </td> <td> applies a unary arithmetic operator to each element of the valarray <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="operator_arith2.html" title="cpp/numeric/valarray/operator arith2"> <span class="t-lines"><span>operator+=</span><span>operator-=</span><span>operator*=</span><span>operator/=</span><span>operator%=</span><span>operator&amp;=</span><span>operator|=</span><span>operator^=</span><span>operator&lt;&lt;=</span><span>operator&gt;&gt;=</span></span></a></div> </td> <td> applies compound assignment operator to each element of the valarray <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/numeric/valarray/operator_arith3" class="_attribution-link">https://en.cppreference.com/w/cpp/numeric/valarray/operator_arith3</a>
+  </p>
+</div>

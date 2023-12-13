@@ -1,0 +1,29 @@
+<h1 id="pandas-core-groupby-groupby-apply">pandas.core.groupby.GroupBy.apply</h1> <dl class="method"> <dt id="pandas.core.groupby.GroupBy.apply">
+<code>GroupBy.apply(self, func, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/groupby.py#L695-L739"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Apply function <code>func</code> group-wise and combine the results together.</p> <p>The function passed to <code>apply</code> must take a dataframe as its first argument and return a DataFrame, Series or scalar. <code>apply</code> will then take care of combining the results back together into a single dataframe or series. <code>apply</code> is therefore a highly flexible grouping method.</p> <p>While <code>apply</code> is a very flexible method, its downside is that using it can be quite a bit slower than using more specific methods like <code>agg</code> or <code>transform</code>. Pandas offers a wide range of method that will be much faster than using <code>apply</code> for their specific purposes, so try to use them before reaching for <code>apply</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : callable</code> </dt> <dd>
+<p class="first last">A callable that takes a dataframe as its first argument, and returns a dataframe, a series or a scalar. In addition the callable may take positional and keyword arguments.</p> </dd> <dt>
+<code>args, kwargs : tuple and dict</code> </dt> <dd>
+<p class="first last">Optional positional and keyword arguments to pass to <code>func</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>applied : Series or DataFrame</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.core.groupby.groupby.pipe.html#pandas.core.groupby.GroupBy.pipe" title="pandas.core.groupby.GroupBy.pipe"><code>pipe</code></a>
+</dt> <dd>Apply function to the full GroupBy object instead of to each group.</dd> <dt>
+ <a class="reference internal" href="pandas.core.groupby.groupby.aggregate.html#pandas.core.groupby.GroupBy.aggregate" title="pandas.core.groupby.GroupBy.aggregate"><code>aggregate</code></a>
+</dt> <dd>Apply aggregate function to the GroupBy object.</dd> <dt>
+ <a class="reference internal" href="pandas.core.groupby.groupby.transform.html#pandas.core.groupby.GroupBy.transform" title="pandas.core.groupby.GroupBy.transform"><code>transform</code></a>
+</dt> <dd>Apply function column-by-column to the GroupBy object.</dd> <dt>
+<code>Series.apply</code> </dt> <dd>Apply a function to a Series.</dd> <dt>
+<code>DataFrame.apply</code> </dt> <dd>Apply a function to each row or column of a DataFrame.</dd> </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.GroupBy.apply.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.GroupBy.apply.html</a>
+  </p>
+</div>

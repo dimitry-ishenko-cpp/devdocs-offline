@@ -1,0 +1,73 @@
+<h1 id="pandas-dataframe-cumprod">pandas.DataFrame.cumprod</h1> <dl class="method"> <dt id="pandas.DataFrame.cumprod">
+<code>DataFrame.cumprod(self, axis=None, skipna=True, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L11661-L11693"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return cumulative product over a DataFrame or Series axis.</p> <p>Returns a DataFrame or Series of the same size containing the cumulative product.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">The index or the name of the axis. 0 is equivalent to None or ‘index’.</p> </dd> <dt>
+<code>skipna : boolean, default True</code> </dt> <dd>
+<p class="first last">Exclude NA/null values. If an entire row/column is NA, the result will be NA.</p> </dd> <dt><strong>*args, **kwargs :</strong></dt> <dd>
+<p class="first last">Additional keywords have no effect but might be accepted for compatibility with NumPy.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>core.window.Expanding.prod</code> </dt> <dd>Similar functionality but ignores <code>NaN</code> values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.prod.html#pandas.DataFrame.prod" title="pandas.DataFrame.prod"><code>DataFrame.prod</code></a>
+</dt> <dd>Return the product over DataFrame axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.cummax.html#pandas.DataFrame.cummax" title="pandas.DataFrame.cummax"><code>DataFrame.cummax</code></a>
+</dt> <dd>Return cumulative maximum over DataFrame axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.cummin.html#pandas.DataFrame.cummin" title="pandas.DataFrame.cummin"><code>DataFrame.cummin</code></a>
+</dt> <dd>Return cumulative minimum over DataFrame axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.cumsum.html#pandas.DataFrame.cumsum" title="pandas.DataFrame.cumsum"><code>DataFrame.cumsum</code></a>
+</dt> <dd>Return cumulative sum over DataFrame axis.</dd> <dt>
+ <a class="reference internal" href="#pandas.DataFrame.cumprod" title="pandas.DataFrame.cumprod"><code>DataFrame.cumprod</code></a>
+</dt> <dd>Return cumulative product over DataFrame axis.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Series</strong></p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([2, np.nan, 5, -1, 0])
+&gt;&gt;&gt; s
+0    2.0
+1    NaN
+2    5.0
+3   -1.0
+4    0.0
+dtype: float64
+</pre> <p>By default, NA values are ignored.</p> <pre data-language="python">&gt;&gt;&gt; s.cumprod()
+0     2.0
+1     NaN
+2    10.0
+3   -10.0
+4    -0.0
+dtype: float64
+</pre> <p>To include NA values in the operation, use <code>skipna=False</code></p> <pre data-language="python">&gt;&gt;&gt; s.cumprod(skipna=False)
+0    2.0
+1    NaN
+2    NaN
+3    NaN
+4    NaN
+dtype: float64
+</pre> <p><strong>DataFrame</strong></p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[2.0, 1.0],
+...                    [3.0, np.nan],
+...                    [1.0, 0.0]],
+...                    columns=list('AB'))
+&gt;&gt;&gt; df
+     A    B
+0  2.0  1.0
+1  3.0  NaN
+2  1.0  0.0
+</pre> <p>By default, iterates over rows and finds the product in each column. This is equivalent to <code>axis=None</code> or <code>axis='index'</code>.</p> <pre data-language="python">&gt;&gt;&gt; df.cumprod()
+     A    B
+0  2.0  1.0
+1  6.0  NaN
+2  6.0  0.0
+</pre> <p>To iterate over columns and find the product in each row, use <code>axis=1</code></p> <pre data-language="python">&gt;&gt;&gt; df.cumprod(axis=1)
+     A    B
+0  2.0  2.0
+1  3.0  NaN
+2  1.0  0.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.cumprod.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.cumprod.html</a>
+  </p>
+</div>

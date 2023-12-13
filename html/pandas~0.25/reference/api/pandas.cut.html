@@ -1,0 +1,93 @@
+<h1 id="pandas-cut">pandas.cut</h1> <dl class="function"> <dt id="pandas.cut">
+<code>pandas.cut(x, bins, right=True, labels=None, retbins=False, precision=3, include_lowest=False, duplicates='raise')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/reshape/tile.py#L38-L275"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Bin values into discrete intervals.</p> <p>Use <code>cut</code> when you need to segment and sort data values into bins. This function is also useful for going from a continuous variable to a categorical variable. For example, <code>cut</code> could convert ages to groups of age ranges. Supports binning into an equal number of bins, or a pre-specified array of bins.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>x : array-like</code> </dt> <dd>
+<p class="first last">The input array to be binned. Must be 1-dimensional.</p> </dd> <dt>
+<code>bins : int, sequence of scalars, or IntervalIndex</code> </dt> <dd>
+<p class="first">The criteria to bin by.</p> <ul class="last simple"> <li>int : Defines the number of equal-width bins in the range of <code>x</code>. The range of <code>x</code> is extended by .1% on each side to include the minimum and maximum values of <code>x</code>.</li> <li>sequence of scalars : Defines the bin edges allowing for non-uniform width. No extension of the range of <code>x</code> is done.</li> <li>IntervalIndex : Defines the exact bins to be used. Note that IntervalIndex for <code>bins</code> must be non-overlapping.</li> </ul> </dd> <dt>
+<code>right : bool, default True</code> </dt> <dd>
+<p class="first last">Indicates whether <code>bins</code> includes the rightmost edge or not. If <code>right == True</code> (the default), then the <code>bins</code> <code>[1, 2, 3, 4]</code> indicate (1,2], (2,3], (3,4]. This argument is ignored when <code>bins</code> is an IntervalIndex.</p> </dd> <dt>
+<code>labels : array or bool, optional</code> </dt> <dd>
+<p class="first last">Specifies the labels for the returned bins. Must be the same length as the resulting bins. If False, returns only integer indicators of the bins. This affects the type of the output container (see below). This argument is ignored when <code>bins</code> is an IntervalIndex.</p> </dd> <dt>
+<code>retbins : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to return the bins or not. Useful when bins is provided as a scalar.</p> </dd> <dt>
+<code>precision : int, default 3</code> </dt> <dd>
+<p class="first last">The precision at which to store and display the bins labels.</p> </dd> <dt>
+<code>include_lowest : bool, default False</code> </dt> <dd>
+<p class="first last">Whether the first interval should be left-inclusive or not.</p> </dd> <dt>
+<code>duplicates : {default ‘raise’, ‘drop’}, optional</code> </dt> <dd>
+<p class="first">If bin edges are not unique, raise ValueError or drop non-uniques.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>out : Categorical, Series, or ndarray</code> </dt> <dd>
+<p class="first">An array-like object representing the respective bin for each value of <code>x</code>. The type depends on the value of <code>labels</code>.</p> <ul class="last simple"> <li>True (default) : returns a Series for Series <code>x</code> or a Categorical for all other inputs. The values stored within are Interval dtype.</li> <li>sequence of scalars : returns a Series for Series <code>x</code> or a Categorical for all other inputs. The values stored within are whatever the type in the sequence is.</li> <li>False : returns an ndarray of integers.</li> </ul> </dd> <dt>
+<code>bins : numpy.ndarray or IntervalIndex.</code> </dt> <dd>
+<p class="first last">The computed or specified bins. Only returned when <code>retbins=True</code>. For scalar or sequence <code>bins</code>, this is an ndarray with the computed bins. If set <code>duplicates=drop</code>, <code>bins</code> will drop non-unique bin. For an IntervalIndex <code>bins</code>, this is equal to <code>bins</code>.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.qcut.html#pandas.qcut" title="pandas.qcut"><code>qcut</code></a>
+</dt> <dd>Discretize variable into equal-sized buckets based on rank or based on sample quantiles.</dd> <dt>
+ <a class="reference internal" href="pandas.categorical.html#pandas.Categorical" title="pandas.Categorical"><code>Categorical</code></a>
+</dt> <dd>Array type for storing data that come from a fixed set of values.</dd> <dt>
+ <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>
+</dt> <dd>One-dimensional array with axis labels (including time series).</dd> <dt>
+ <a class="reference internal" href="pandas.intervalindex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code>IntervalIndex</code></a>
+</dt> <dd>Immutable Index implementing an ordered, sliceable set.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Any NA values will be NA in the result. Out of bounds values will be NA in the resulting Series or Categorical object.</p> <h4 class="rubric">Examples</h4> <p>Discretize into three equal-sized bins.</p> <pre data-language="python">&gt;&gt;&gt; pd.cut(np.array([1, 7, 5, 4, 6, 3]), 3)
+... # doctest: +ELLIPSIS
+[(0.994, 3.0], (5.0, 7.0], (3.0, 5.0], (3.0, 5.0], (5.0, 7.0], ...
+Categories (3, interval[float64]): [(0.994, 3.0] &lt; (3.0, 5.0] ...
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.cut(np.array([1, 7, 5, 4, 6, 3]), 3, retbins=True)
+... # doctest: +ELLIPSIS
+([(0.994, 3.0], (5.0, 7.0], (3.0, 5.0], (3.0, 5.0], (5.0, 7.0], ...
+Categories (3, interval[float64]): [(0.994, 3.0] &lt; (3.0, 5.0] ...
+array([0.994, 3.   , 5.   , 7.   ]))
+</pre> <p>Discovers the same bins, but assign them specific labels. Notice that the returned Categorical’s categories are <code>labels</code> and is ordered.</p> <pre data-language="python">&gt;&gt;&gt; pd.cut(np.array([1, 7, 5, 4, 6, 3]),
+...        3, labels=["bad", "medium", "good"])
+[bad, good, medium, medium, good, bad]
+Categories (3, object): [bad &lt; medium &lt; good]
+</pre> <p><code>labels=False</code> implies you just want the bins back.</p> <pre data-language="python">&gt;&gt;&gt; pd.cut([0, 1, 1, 2], bins=4, labels=False)
+array([0, 1, 1, 3])
+</pre> <p>Passing a Series as an input returns a Series with categorical dtype:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(np.array([2, 4, 6, 8, 10]),
+...               index=['a', 'b', 'c', 'd', 'e'])
+&gt;&gt;&gt; pd.cut(s, 3)
+... # doctest: +ELLIPSIS
+a    (1.992, 4.667]
+b    (1.992, 4.667]
+c    (4.667, 7.333]
+d     (7.333, 10.0]
+e     (7.333, 10.0]
+dtype: category
+Categories (3, interval[float64]): [(1.992, 4.667] &lt; (4.667, ...
+</pre> <p>Passing a Series as an input returns a Series with mapping value. It is used to map numerically to intervals based on bins.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(np.array([2, 4, 6, 8, 10]),
+...               index=['a', 'b', 'c', 'd', 'e'])
+&gt;&gt;&gt; pd.cut(s, [0, 2, 4, 6, 8, 10], labels=False, retbins=True, right=False)
+... # doctest: +ELLIPSIS
+(a    0.0
+ b    1.0
+ c    2.0
+ d    3.0
+ e    4.0
+ dtype: float64, array([0, 2, 4, 6, 8]))
+</pre> <p>Use <code>drop</code> optional when bins is not unique</p> <pre data-language="python">&gt;&gt;&gt; pd.cut(s, [0, 2, 4, 6, 10, 10], labels=False, retbins=True,
+...        right=False, duplicates='drop')
+... # doctest: +ELLIPSIS
+(a    0.0
+ b    1.0
+ c    2.0
+ d    3.0
+ e    3.0
+ dtype: float64, array([0, 2, 4, 6, 8]))
+</pre> <p>Passing an IntervalIndex for <code>bins</code> results in those categories exactly. Notice that values not covered by the IntervalIndex are set to NaN. 0 is to the left of the first bin (which is closed on the right), and 1.5 falls between two bins.</p> <pre data-language="python">&gt;&gt;&gt; bins = pd.IntervalIndex.from_tuples([(0, 1), (2, 3), (4, 5)])
+&gt;&gt;&gt; pd.cut([0, 0.5, 1.5, 2.5, 4.5], bins)
+[NaN, (0, 1], NaN, (2, 3], (4, 5]]
+Categories (3, interval[int64]): [(0, 1] &lt; (2, 3] &lt; (4, 5]]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.cut.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.cut.html</a>
+  </p>
+</div>

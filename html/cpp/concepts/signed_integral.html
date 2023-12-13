@@ -1,0 +1,42 @@
+    <h1 id="firstHeading" class="firstHeading">std::signed_integral</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/concepts.html" title="cpp/header/concepts">&lt;concepts&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template &lt; class T &gt;
+concept signed_integral = std::integral&lt;T&gt; &amp;&amp; std::is_signed_v&lt;T&gt;;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <p>The concept <code>signed_integral&lt;T&gt;</code> is satisfied if and only if <code>T</code> is an integral type and <code><a href="http://en.cppreference.com/w/cpp/types/is_signed"><span class="kw524">std::<span class="me2">is_signed_v</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span></code> is <code>true</code>.</p>
+<h3 id="Notes">  Notes </h3> <p><code>signed_integral&lt;T&gt;</code> may be satisfied by a type that is not a <a href="../language/type.html#Type_classification" title="cpp/language/type">signed integer type</a>, for example, <code>char</code> (on a system where <code>char</code> is signed).</p>
+<h3 id="Example">  Example </h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;concepts&gt;
+#include &lt;iostream&gt;
+ 
+void print(std::signed_integral auto i) {
+    std::cout &lt;&lt; "Signed integral: " &lt;&lt; i &lt;&lt; '\n';
+}
+ 
+void print(std::unsigned_integral auto u) {
+    std::cout &lt;&lt; "Unsigned integral: " &lt;&lt; u &lt;&lt; '\n';
+}
+ 
+void print(auto x) {
+    std::cout &lt;&lt; "Non-integral: " &lt;&lt; x &lt;&lt; '\n';
+}
+ 
+int main() {
+    print(42);     // signed
+    print(0xFull); // unsigned
+    print(true);   // unsigned
+    print('A');    // platform-dependent
+    print(4e-2);   // non-integral (hex-float)
+    print("∫∫∫");  // non-integral
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">Signed integral: 42
+Unsigned integral: 15
+Unsigned integral: 1
+Signed integral: A
+Non-integral: 0.04
+Non-integral: ∫∫∫</pre></div> </div> <h3 id="See_also">  See also </h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../types/is_integral.html" title="cpp/types/is integral"> <span class="t-lines"><span>is_integral</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> checks if a type is an integral type <br> <span class="t-mark">(class template)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../types/is_signed.html" title="cpp/types/is signed"> <span class="t-lines"><span>is_signed</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> checks if a type is a signed arithmetic type <br> <span class="t-mark">(class template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/concepts/signed_integral" class="_attribution-link">https://en.cppreference.com/w/cpp/concepts/signed_integral</a>
+  </p>
+</div>

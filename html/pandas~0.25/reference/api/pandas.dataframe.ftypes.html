@@ -1,0 +1,30 @@
+<h1 id="pandas-dataframe-ftypes">pandas.DataFrame.ftypes</h1> <dl class="attribute"> <dt id="pandas.DataFrame.ftypes">
+<code>DataFrame.ftypes</code> </dt> <dd>
+<p>Return the ftypes (indication of sparse/dense and dtype) in DataFrame.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.25.0: </span>Use <a class="reference internal" href="pandas.dataframe.dtypes.html#pandas.DataFrame.dtypes" title="pandas.DataFrame.dtypes"><code>dtypes()</code></a> instead.</p> </div> <p>This returns a Series with the data type of each column. The result’s index is the original DataFrame’s columns. Columns with mixed types are stored with the <code>object</code> dtype. See <a class="reference internal" href="../../getting_started/basics.html#basics-dtypes"><span class="std std-ref">the User Guide</span></a> for more.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>pandas.Series</dt> <dd>
+<p class="first last">The data type and indication of sparse/dense of each column.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.dtypes.html#pandas.DataFrame.dtypes" title="pandas.DataFrame.dtypes"><code>DataFrame.dtypes</code></a>
+</dt> <dd>Series with just dtype information.</dd> <dt>
+<code>SparseDataFrame</code> </dt> <dd>Container for sparse tabular data.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Sparse data should have the same dtypes as its dense representation.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; arr = np.random.RandomState(0).randn(100, 4)
+&gt;&gt;&gt; arr[arr &lt; .8] = np.nan
+&gt;&gt;&gt; pd.DataFrame(arr).ftypes
+0    float64:dense
+1    float64:dense
+2    float64:dense
+3    float64:dense
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.SparseDataFrame(arr).ftypes  # doctest: +SKIP
+0    float64:sparse
+1    float64:sparse
+2    float64:sparse
+3    float64:sparse
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ftypes.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ftypes.html</a>
+  </p>
+</div>

@@ -1,0 +1,39 @@
+<h1 id="pandas-plotting-scatter-matrix">pandas.plotting.scatter_matrix</h1> <dl class="function"> <dt id="pandas.plotting.scatter_matrix">
+<code>pandas.plotting.scatter_matrix(frame, alpha=0.5, figsize=None, ax=None, grid=False, diagonal='hist', marker='.', density_kwds=None, hist_kwds=None, range_padding=0.05, **kwds)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/plotting/_misc.py#L74-L140"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Draw a matrix of scatter plots.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>frame : DataFrame</code> </dt>  <dt>
+<code>alpha : float, optional</code> </dt> <dd>
+<p class="first last">amount of transparency applied</p> </dd> <dt>
+<code>figsize : (float,float), optional</code> </dt> <dd>
+<p class="first last">a tuple (width, height) in inches</p> </dd> <dt>
+<code>ax : Matplotlib axis object, optional</code> </dt>  <dt>
+<code>grid : bool, optional</code> </dt> <dd>
+<p class="first last">setting this to True will show the grid</p> </dd> <dt>
+<code>diagonal : {‘hist’, ‘kde’}</code> </dt> <dd>
+<p class="first last">pick between ‘kde’ and ‘hist’ for either Kernel Density Estimation or Histogram plot in the diagonal</p> </dd> <dt>
+<code>marker : str, optional</code> </dt> <dd>
+<p class="first last">Matplotlib marker type, default ‘.’</p> </dd> <dt>
+<code>hist_kwds : other plotting keyword arguments</code> </dt> <dd>
+<p class="first last">To be passed to hist function</p> </dd> <dt>
+<code>density_kwds : other plotting keyword arguments</code> </dt> <dd>
+<p class="first last">To be passed to kernel density estimate plot</p> </dd> <dt>
+<code>range_padding : float, optional</code> </dt> <dd>
+<p class="first last">relative extension of axis range in x and y with respect to (x_max - x_min) or (y_max - y_min), default 0.05</p> </dd> <dt>
+<code>kwds : other plotting keyword arguments</code> </dt> <dd>
+<p class="first last">To be passed to scatter function</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt> <dd>
+<p class="first last">A matrix of scatter plots.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(np.random.randn(1000, 4), columns=['A','B','C','D'])
+&gt;&gt;&gt; scatter_matrix(df, alpha=0.2)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.plotting.scatter_matrix.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.plotting.scatter_matrix.html</a>
+  </p>
+</div>

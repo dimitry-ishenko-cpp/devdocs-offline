@@ -1,0 +1,119 @@
+    <h1 id="firstHeading" class="firstHeading">cv (const and volatile) type qualifiers</h1>            <p>Appear in any type specifier, including <span class="t-spar">decl-specifier-seq</span> of <a href="declarations.html" title="cpp/language/declarations">declaration grammar</a>, to specify constness or volatility of the object being declared or of the type being named.</p>
+<ul>
+<li>
+<code>const</code> - defines that the type is <i>constant</i>. </li>
+<li>
+<code>volatile</code> - defines that the type is <i>volatile</i>. </li>
+</ul>  <h3 id="Explanation"> Explanation</h3> <p>For any type <code>T</code> (including incomplete types), other than <a href="functions.html" title="cpp/language/functions">function type</a> or <a href="reference.html" title="cpp/language/reference">reference type</a>, there are three more distinct types in the C++ type system: <span class="t-spar">const-qualified</span> <code>T</code>, <span class="t-spar">volatile-qualified</span> <code>T</code>, and <span class="t-spar">const-volatile-qualified</span> <code>T</code>.  Note: <a href="array.html" title="cpp/language/array">array types</a> are considered to have the same cv-qualification as their element types.</p>
+<p>When an object is first created, the cv-qualifiers used (which could be part of <span class="t-spar">decl-specifier-seq</span> or part of a <span class="t-spar">declarator</span> in a <a href="declarations.html" title="cpp/language/declarations">declaration</a>, or part of <span class="t-spar">type-id</span> in a <a href="new.html" title="cpp/language/new">new-expression</a>) determine the constness or volatility of the object, as follows:</p>
+<ul>
+<li>
+<i><b>const object</b></i> - an object whose type is <span class="t-spar">const-qualified</span>, or a non-mutable subobject of a const object. Such object cannot be modified: attempt to do so directly is a compile-time error, and attempt to do so indirectly (e.g., by modifying the const object through a reference or pointer to non-const type) results in undefined behavior. </li>
+<li>
+<i><b>volatile object</b></i> - an object whose type is <span class="t-spar">volatile-qualified</span>, or a subobject of a volatile object, or a mutable subobject of a const-volatile object. Every access (read or write operation, member function call, etc.) made through a glvalue expression of volatile-qualified type is treated as a visible side-effect for the <a href="as_if.html" title="cpp/language/as if">purposes of optimization</a> (that is, within a single thread of execution, volatile accesses cannot be optimized out or reordered with another visible side effect that is <a href="eval_order.html" title="cpp/language/eval order">sequenced-before</a> or sequenced-after the volatile access. This makes volatile objects suitable for communication with a <a href="../utility/program/signal.html" title="cpp/utility/program/signal">signal handler</a>, but not with another thread of execution, see <code><a href="../atomic/memory_order.html" title="cpp/atomic/memory order">std::memory_order</a></code>). Any attempt to access a volatile object through a <a href="value_category.html#glvalue" title="cpp/language/value category">glvalue</a> of non-volatile type (e.g. through a reference or pointer to non-volatile type) results in undefined behavior. </li>
+<li>
+<i><b>const volatile object</b></i> - an object whose type is <span class="t-spar">const-volatile-qualified</span>, a non-mutable subobject of a const volatile object, a const subobject of a volatile object, or a non-mutable volatile subobject of a const object. Behaves as both a const object and as a volatile object. </li>
+</ul> <p>Each cv-qualifier (<code>const</code> and <code>volatile</code>) can appear at most once in any cv-qualifier sequence. For example, <code>const const</code> and <code>volatile const volatile</code> are not valid cv-qualifier sequences.</p>
+<h3 id="mutable_specifier"> <code>mutable</code> specifier</h3> <ul><li>
+<code>mutable</code> - permits modification of the class member declared mutable even if the containing object is declared const. </li></ul> <p>May appear in the declaration of a non-static <a href="data_members.html" title="cpp/language/data members">class members</a> of non-reference non-const type:</p>
+<div class="cpp source-cpp"><pre data-language="cpp">class X
+{
+    mutable const int* p; // OK
+    mutable int* const q; // ill-formed
+    mutable int&amp;       r; // ill-formed
+};</pre></div> <p>Mutable is used to specify that the member does not affect the externally visible state of the class (as often used for mutexes, memo caches, lazy evaluation, and access instrumentation).</p>
+<div class="cpp source-cpp"><pre data-language="cpp">class ThreadsafeCounter
+{
+    mutable std::mutex m; // The "M&amp;M rule": mutable and mutex go together
+    int data = 0;
+public:
+    int get() const
+    {
+        std::lock_guard&lt;std::mutex&gt; lk(m);
+        return data;
+    }
+ 
+    void inc()
+    {
+        std::lock_guard&lt;std::mutex&gt; lk(m);
+        ++data;
+    }
+};</pre></div> <h3 id="Conversions"> Conversions</h3> <p>There is partial ordering of cv-qualifiers by the order of increasing restrictions. The type can be said <i>more</i> or <i>less</i> cv-qualified than:</p>
+<ul>
+<li> <i>unqualified</i> &lt; <code>const</code> </li>
+<li> <i>unqualified</i> &lt; <code>volatile</code> </li>
+<li> <i>unqualified</i> &lt; <code>const volatile</code> </li>
+<li> <code>const</code> &lt; <code>const volatile</code> </li>
+<li> <code>volatile</code> &lt; <code>const volatile</code> </li>
+</ul> <p>References and pointers to cv-qualified types may be <a href="implicit_cast.html#Qualification_conversions" title="cpp/language/implicit cast" class="mw-redirect">implicitly converted</a> to references and pointers to <i>more cv-qualified</i> types. In particular, the following conversions are allowed:</p>
+<ul>
+<li> reference/pointer to <i>unqualified</i> type can be converted to reference/pointer to <code>const</code> </li>
+<li> reference/pointer to <i>unqualified</i> type can be converted to reference/pointer to <code>volatile</code> </li>
+<li> reference/pointer to <i>unqualified</i> type can be converted to reference/pointer to <code>const volatile</code> </li>
+<li> reference/pointer to <code>const</code> type can be converted to reference/pointer to <code>const volatile</code> </li>
+<li> reference/pointer to <code>volatile</code> type can be converted to reference/pointer to <code>const volatile</code> </li>
+</ul> Note: <a href="implicit_cast.html#Qualification_conversions" title="cpp/language/implicit cast" class="mw-redirect">additional restrictions</a> are imposed on multi-level pointers.  <p>To convert a reference or a pointer to a cv-qualified type to a reference or pointer to a <i>less cv-qualified</i> type, <a href="const_cast.html" title="cpp/language/const cast">const_cast</a> must be used.</p>
+<h3 id="Keywords"> Keywords</h3> <p><a href="../keyword/const.html" title="cpp/keyword/const"><code>const</code></a>, <a href="../keyword/volatile.html" title="cpp/keyword/volatile"><code>volatile</code></a>, <a href="../keyword/mutable.html" title="cpp/keyword/mutable"><code>mutable</code></a>.</p>
+<h3 id="Notes"> Notes</h3> <p>The <code>const</code> qualifier used on a declaration of a non-local non-volatile <span class="t-rev-inl t-since-cxx14"><span>non-<a href="variable_template.html" title="cpp/language/variable template">template</a></span> <span><span class="t-mark-rev t-since-cxx14">(since C++14)</span></span></span><span class="t-rev-inl t-since-cxx17"><span>non-<a href="inline.html" title="cpp/language/inline">inline</a></span> <span><span class="t-mark-rev t-since-cxx17">(since C++17)</span></span></span> variable that is not declared <code>extern</code> gives it <a href="storage_duration.html#Linkage" title="cpp/language/storage duration">internal linkage</a>. This is different from C where const file scope variables have external linkage.</p>
+<p>The C++ language grammar treats <code>mutable</code> as a <a href="storage_duration.html" title="cpp/language/storage duration">storage-class-specifier</a>, rather than a type qualifier, but it does not affect storage class or linkage.</p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p>Some uses of volatile are deprecated:</p>
+<ul>
+<li> lvalue of volatile type as operand of built-in <a href="operator_incdec.html" title="cpp/language/operator incdec">increment/decrement</a> operators; </li>
+<li> lvalue of volatile type as left operand of built-in <a href="operator_assignment.html" title="cpp/language/operator assignment">direct assignment</a>, unless the direct assignment expression appears in an <a href="expressions.html#Unevaluated_expressions" title="cpp/language/expressions">unevaluated context</a> or is a <a href="expressions.html#Discarded-value_expressions" title="cpp/language/expressions">discarded-value expression</a>; </li>
+<li> volatile object type as function parameter type or return type; </li>
+<li> volatile qualifier in <a href="structured_binding.html" title="cpp/language/structured binding">structured binding</a> declaration. </li>
+</ul> </td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> <h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;cstdlib&gt;
+ 
+int main()
+{
+    int n1 = 0;          // non-const object
+    const int n2 = 0;    // const object
+    int const n3 = 0;    // const object (same as n2)
+    volatile int n4 = 0; // volatile object
+ 
+    const struct
+    {
+        int n1;
+        mutable int n2;
+    } x = {0, 0};        // const object with mutable member
+ 
+    n1 = 1;   // ok, modifiable object
+//  n2 = 2;   // error: non-modifiable object
+    n4 = 3;   // ok, treated as a side-effect
+//  x.n1 = 4; // error: member of a const object is const
+    x.n2 = 4; // ok, mutable member of a const object isn't const
+ 
+    const int&amp; r1 = n1; // reference to const bound to non-const object
+//  r1 = 2; // error: attempt to modify through reference to const
+    const_cast&lt;int&amp;&gt;(r1) = 2; // ok, modifies non-const object n1
+ 
+    const int&amp; r2 = n2; // reference to const bound to const object
+//  r2 = 2; // error: attempt to modify through reference to const
+//  const_cast&lt;int&amp;&gt;(r2) = 2; // undefined behavior: attempt to modify const object n2
+ 
+    [](...){}(n3, n4, x, r2); // see also: [[maybe_unused]]
+ 
+    std::system("g++ -O3 -Wa,-adhln ./main.cpp"); // may issue asm on POSIX systems
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c"># typical machine code produced on an x86_64 platform
+# (only the code that contributes to observable side-effects is emitted)
+main:
+    movl    $0, -4(%rsp) # volatile int n4 = 0;
+    movl    $3, -4(%rsp) # n4 = 3;
+    xorl    %eax, %eax   # return 0 (implicit)
+    ret</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1428.html">CWG 1428</a> </td> <td> C++98 </td> <td> the definition of <i>const object</i> was based on declaration </td> <td> based on object type </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1528.html">CWG 1528</a> </td> <td> C++98 </td> <td> there was no requirement on the number of occurrences<br>of each cv-qualifier in the same cv-qualifier sequence </td> <td> at most once for<br>each cv-qualifier </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1799.html">CWG 1799</a> </td> <td> C++98 </td> <td> <code>mutable</code> could be applied to data members not declared<br><code>const</code>, but the members' types may still be const-qualified </td> <td> cannot apply <code>mutable</code> to data<br>members of const-qualified types </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td colspan="2"> <span><a href="https://en.cppreference.com/w/c/language/const" title="c/language/const">C documentation</a></span> for <span class=""><span><code>const</code> qualifier</span></span> </td>
+</tr> <tr class="t-dsc"> <td colspan="2"> <span><a href="https://en.cppreference.com/w/c/language/volatile" title="c/language/volatile">C documentation</a></span> for <span class=""><span><code>volatile</code> qualifier</span></span> </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/language/cv" class="_attribution-link">https://en.cppreference.com/w/cpp/language/cv</a>
+  </p>
+</div>

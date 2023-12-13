@@ -1,0 +1,98 @@
+    <h1 id="firstHeading" class="firstHeading">std::bind_front, std::bind_back</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../../header/functional.html" title="cpp/header/functional">&lt;functional&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class F, class... Args &gt;
+constexpr /*unspecified*/ bind_front( F&amp;&amp; f, Args&amp;&amp;... args );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">template&lt; class F, class... Args &gt;
+constexpr /*unspecified*/ bind_back( F&amp;&amp; f, Args&amp;&amp;... args );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p>Function templates <code>std::bind_front</code> and <code>std::bind_back</code> generate a forwarding call wrapper for <code>f</code>. Calling this wrapper is equivalent to invoking <code>f</code> with its (1) first or (2) last <code>sizeof...(Args)</code> parameters bound to <code>args</code>.</p>
+<p>In other words:</p>
+<ul>
+<li> <code>std::bind_front(f, bound_args...)(call_args...)</code> is equivalent to <code><a href="http://en.cppreference.com/w/cpp/utility/functional/invoke"><span class="kw1064">std::<span class="me2">invoke</span></span></a><span class="br0">(</span>f, bound_args..., call_args...<span class="br0">)</span></code>. </li>
+<li> <code>std::bind_back(f, bound_args...)(call_args...)</code> is equivalent to <code><a href="http://en.cppreference.com/w/cpp/utility/functional/invoke"><span class="kw1064">std::<span class="me2">invoke</span></span></a><span class="br0">(</span>f, call_args..., bound_args...<span class="br0">)</span></code>. </li>
+</ul> <p>The program is ill-formed if any of the following is <code>false</code>:</p>
+<ul>
+<li> <code><a href="http://en.cppreference.com/w/cpp/types/is_constructible"><span class="kw528">std::<span class="me2">is_constructible_v</span></span></a><span class="sy1">&lt;</span><a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>F<span class="sy1">&gt;</span>, F<span class="sy1">&gt;</span></code> </li>
+<li> <code><a href="http://en.cppreference.com/w/cpp/types/is_move_constructible"><span class="kw546">std::<span class="me2">is_move_constructible_v</span></span></a><span class="sy1">&lt;</span><a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>F<span class="sy1">&gt;&gt;</span></code> </li>
+<li> <code><span class="br0">(</span><a href="http://en.cppreference.com/w/cpp/types/is_constructible"><span class="kw528">std::<span class="me2">is_constructible_v</span></span></a><span class="sy1">&lt;</span><a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>Args<span class="sy1">&gt;</span>, Args<span class="sy1">&gt;</span> <span class="sy3">&amp;&amp;</span> ...<span class="br0">)</span></code> </li>
+<li> <code><span class="br0">(</span><a href="http://en.cppreference.com/w/cpp/types/is_move_constructible"><span class="kw546">std::<span class="me2">is_move_constructible_v</span></span></a><span class="sy1">&lt;</span><a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>Args<span class="sy1">&gt;&gt;</span> <span class="sy3">&amp;&amp;</span> ...<span class="br0">)</span></code> </li>
+</ul>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> f </td> <td> - </td> <td> <a href="../../named_req/callable.html" title="cpp/named req/Callable">Callable</a> object (function object, pointer to function, reference to function, pointer to member function, or pointer to data member) that will be bound to some arguments </td>
+</tr> <tr class="t-par"> <td> args </td> <td> - </td> <td> list of the arguments to bind to the (1) first or (2) last <code>sizeof...(Args)</code> parameters of <code>f</code> </td>
+</tr> <tr class="t-par-hitem"> <td colspan="3"> Type requirements </td>
+</tr> <tr class="t-par-req"> <td colspan="3"> -<code><a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>F<span class="sy1">&gt;</span> and each type in <a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>Args<span class="sy1">&gt;</span>...</code> must meet the requirements of <a href="../../named_req/moveconstructible.html" title="cpp/named req/MoveConstructible">MoveConstructible</a>. </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p>A function object of type <code>T</code> that is unspecified, except that the types of objects returned by two calls to <code>std::bind_front</code> or <code>std::bind_back</code> with the same arguments are the same.</p>
+<p>The returned object (call wrapper) has the following properties:</p>
+<h2 id="bind-partial_return_type"> <i>bind-partial return type</i>
+</h2> <p>Let <code><i>bind-partial</i></code> be either <code>std::bind_front</code> or <code>std::bind_back</code>.</p>
+<h4 id="Member_objects"> Member objects</h4> <p>The returned object behaves as if it holds a member object <code>fd</code> of type <code><a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>F<span class="sy1">&gt;</span></code> direct-non-list-initialized from <code><a href="http://en.cppreference.com/w/cpp/utility/forward"><span class="kw1121">std::<span class="me2">forward</span></span></a><span class="sy1">&lt;</span>F<span class="sy1">&gt;</span><span class="br0">(</span>f<span class="br0">)</span></code>, and an <code><a href="../tuple.html" title="cpp/utility/tuple">std::tuple</a></code> object <code>tup</code> constructed with <code><a href="http://en.cppreference.com/w/cpp/utility/tuple"><span class="kw1102">std::<span class="me2">tuple</span></span></a><span class="sy1">&lt;</span><a href="http://en.cppreference.com/w/cpp/types/decay"><span class="kw632">std::<span class="me2">decay_t</span></span></a><span class="sy1">&lt;</span>Args<span class="sy1">&gt;</span>...<span class="sy1">&gt;</span><span class="br0">(</span><a href="http://en.cppreference.com/w/cpp/utility/forward"><span class="kw1121">std::<span class="me2">forward</span></span></a><span class="sy1">&lt;</span>Args<span class="sy1">&gt;</span><span class="br0">(</span>args<span class="br0">)</span>...<span class="br0">)</span></code>, except that the returned object's assignment behavior is unspecified and the names are for exposition only.</p>
+<h4 id="Constructors"> Constructors</h4> <p>The return type of <code><i>bind-partial</i></code> behaves as if its copy/move constructors perform a memberwise copy/move. It is <a href="../../named_req/copyconstructible.html" title="cpp/named req/CopyConstructible">CopyConstructible</a> if all of its member objects (specified above) are CopyConstructible, and is <a href="../../named_req/moveconstructible.html" title="cpp/named req/MoveConstructible">MoveConstructible</a> otherwise.</p>
+<h4 id="Member_function_operator.28.29"> Member function <code>operator()</code>
+</h4> <p>Given an object <code>G</code> obtained from an earlier call to <code><i>bind-partial</i>(f, args...)</code>, when a glvalue <code>g</code> designating <code>G</code> is invoked in a function call expression <code>g(call_args...)</code>, an invocation of the stored object takes place, as if by.</p>
+<ul>
+<li> <code><a href="http://en.cppreference.com/w/cpp/utility/functional/invoke"><span class="kw1064">std::<span class="me2">invoke</span></span></a><span class="br0">(</span>g.<span class="me1">fd</span>, <a href="http://en.cppreference.com/w/cpp/utility/variant/get"><span class="kw3220">std::<span class="me2">get</span></span></a><span class="sy1">&lt;</span>Ns<span class="sy1">&gt;</span><span class="br0">(</span>g.<span class="me1">tup</span><span class="br0">)</span>..., call_args...<span class="br0">)</span></code>, when <code><i>bind-partial</i></code> is <code>std::bind_front</code>, or by </li>
+<li> <code><a href="http://en.cppreference.com/w/cpp/utility/functional/invoke"><span class="kw1064">std::<span class="me2">invoke</span></span></a><span class="br0">(</span>g.<span class="me1">fd</span>, call_args..., <a href="http://en.cppreference.com/w/cpp/utility/variant/get"><span class="kw3220">std::<span class="me2">get</span></span></a><span class="sy1">&lt;</span>Ns<span class="sy1">&gt;</span><span class="br0">(</span>g.<span class="me1">tup</span><span class="br0">)</span>...<span class="br0">)</span></code>, when <code><i>bind-partial</i></code> is <code>std::bind_back</code>, where </li>
+<ul>
+<li> <code>Ns</code> is an integer pack <code>0, 1, ..., (sizeof...(Args) - 1)</code> </li>
+<li> <code>g</code> is an lvalue in the <code><a href="invoke.html" title="cpp/utility/functional/invoke">std::invoke</a></code> expression if it is an lvalue in the call expression, and is an rvalue otherwise. Thus <code>std::move(g)(call_args...)</code> can move the bound arguments into the call, where <code>g(call_args...)</code> would copy. </li>
+</ul>
+</ul>  <p>The program is ill-formed if <code>g</code> has volatile-qualified type.</p>
+<p>The member <code>operator()</code> is <a href="../../language/noexcept.html" title="cpp/language/noexcept"><code>noexcept</code></a> if the <code><a href="invoke.html" title="cpp/utility/functional/invoke">std::invoke</a></code> expression it calls is noexcept (in other words, it preserves the exception specification of the underlying call operator).</p>
+<h3 id="Exceptions"> Exceptions</h3> <p>Only throws if construction of stored function object or any of the bound arguments throws.</p>
+<h3 id="Notes"> Notes</h3> <p>These function templates are intended to replace <code><a href="bind.html" title="cpp/utility/functional/bind">std::bind</a></code>. Unlike <code>std::bind</code>, they do not support arbitrary argument rearrangement and have no special treatment for nested bind-expressions or <code><a href="reference_wrapper.html" title="cpp/utility/functional/reference wrapper">std::reference_wrapper</a></code>s. On the other hand, they pay attention to the value category of the call wrapper object and propagate exception specification of the underlying call operator.</p>
+<p>As described in <code><a href="invoke.html" title="cpp/utility/functional/invoke">std::invoke</a></code>, when invoking a pointer to non-static member function or pointer to non-static data member, the first argument has to be a reference or pointer (including, possibly, smart pointer such as <code><a href="../../memory/shared_ptr.html" title="cpp/memory/shared ptr">std::shared_ptr</a></code> and <code><a href="../../memory/unique_ptr.html" title="cpp/memory/unique ptr">std::unique_ptr</a></code>) to an object whose member will be accessed.</p>
+<p>The arguments to <code>std::bind_front</code> or <code>std::bind_back</code> are copied or moved, and are never passed by reference unless wrapped in <code><a href="ref.html" title="cpp/utility/functional/ref">std::ref</a></code> or <code><a href="ref.html" title="cpp/utility/functional/ref">std::cref</a></code>.</p>
+<table class="wikitable ftm-begin ftm-has-value"> <tr> <th>
+<a href="../feature_test.html" title="cpp/utility/feature test">Feature-test</a> macro</th> <th>Value</th> <th><span title="Standard in which the feature is introduced">Std</span></th> <th>Comment </th>
+</tr> <tr> <td><a href="../../feature_test.html#Library_features" title="cpp/feature test"><code>__cpp_lib_bind_front</code></a></td> <td><span class="nu0">201907L</span></td> <td><span class="t-mark">(C++20)</span></td> <td>
+<a href="#top"><code>std::bind_front</code></a> </td>
+</tr> <tr> <td><a href="../../feature_test.html#Library_features" title="cpp/feature test"><code>__cpp_lib_bind_back</code></a></td> <td><span class="nu0">202202L</span></td> <td><span class="t-mark">(C++23)</span></td> <td>
+<a href="#top"><code>std::bind_back</code></a> </td>
+</tr>
+</table> <h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;functional&gt;
+#include &lt;iostream&gt;
+ 
+int minus(int a, int b)
+{
+    return a - b;
+}
+ 
+struct S
+{
+    int val;
+    int minus(int arg) const noexcept { return val - arg; }
+};
+ 
+int main()
+{
+    auto fifty_minus = std::bind_front(minus, 50);
+    std::cout &lt;&lt; fifty_minus(3) &lt;&lt; '\n'; // equivalent to `minus(50, 3)`
+ 
+    auto member_minus = std::bind_front(&amp;S::minus, S{50});
+    std::cout &lt;&lt; member_minus(3) &lt;&lt; '\n'; // equivalent to `S tmp{50}; tmp.minus(3)`
+ 
+    // noexcept-specification is preserved!
+    static_assert(!noexcept(fifty_minus(3)));
+    static_assert(noexcept(member_minus(3)));
+ 
+    // binding of a lambda
+    auto plus = [](int a, int b) { return a + b; };
+    auto forty_plus = std::bind_front(plus, 40);
+    std::cout &lt;&lt; forty_plus(7) &lt;&lt; '\n'; // equivalent to `plus(40, 7)`
+ 
+    #ifdef __cpp_lib_bind_back
+    auto madd = [](int a, int b, int c) { return a * b + c; };
+    auto mul_plus_seven = std::bind_back(madd, 7);
+    std::cout &lt;&lt; mul_plus_seven(4, 10) &lt;&lt; '\n'; // equivalent to `madd(4, 10, 7)`
+    #endif
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">47
+47
+47
+47</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="bind.html" title="cpp/utility/functional/bind"> <span class="t-lines"><span>bind</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> binds one or more arguments to a function object <br> <span class="t-mark">(function template)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="mem_fn.html" title="cpp/utility/functional/mem fn"> <span class="t-lines"><span>mem_fn</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> creates a function object out of a pointer to a member <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/utility/functional/bind_front" class="_attribution-link">https://en.cppreference.com/w/cpp/utility/functional/bind_front</a>
+  </p>
+</div>

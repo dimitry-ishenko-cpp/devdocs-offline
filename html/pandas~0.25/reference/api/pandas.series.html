@@ -1,0 +1,458 @@
+<h1 id="pandas-series">pandas.Series</h1> <dl class="class"> <dt id="pandas.Series">
+<code>class pandas.Series(data=None, index=None, dtype=None, name=None, copy=False, fastpath=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L141-L4875"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>One-dimensional ndarray with axis labels (including time series).</p> <p>Labels need not be unique but must be a hashable type. The object supports both integer- and label-based indexing and provides a host of methods for performing operations involving the index. Statistical methods from ndarray have been overridden to automatically exclude missing data (currently represented as NaN).</p> <p>Operations between Series (+, -, /, <em>, *</em>) align values based on their associated index values– they need not be the same length. The result index will be the sorted union of the two indexes.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : array-like, Iterable, dict, or scalar value</code> </dt> <dd>
+<p class="first">Contains data stored in Series.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.23.0: </span>If data is a dict, argument order is maintained for Python 3.6 and later.</p> </div> </dd> <dt>
+<code>index : array-like or Index (1d)</code> </dt> <dd>
+<p class="first last">Values must be hashable and have the same length as <code>data</code>. Non-unique index values are allowed. Will default to RangeIndex (0, 1, 2, …, n) if not provided. If both a dict and index sequence are used, the index will override the keys found in the dict.</p> </dd> <dt>
+<code>dtype : str, numpy.dtype, or ExtensionDtype, optional</code> </dt> <dd>
+<p class="first last">Data type for the output Series. If not specified, this will be inferred from <code>data</code>. See the <a class="reference internal" href="../../getting_started/basics.html#basics-dtypes"><span class="std std-ref">user guide</span></a> for more usages.</p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Copy input data.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.series.t.html#pandas.Series.T" title="pandas.Series.T"><code>T</code></a></td> <td>Return the transpose, which is by</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.array.html#pandas.Series.array" title="pandas.Series.array"><code>array</code></a></td> <td>The ExtensionArray of the data backing this Series or Index.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.asobject.html#pandas.Series.asobject" title="pandas.Series.asobject"><code>asobject</code></a></td> <td>Return object Series which contains boxed values.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.at.html#pandas.Series.at" title="pandas.Series.at"><code>at</code></a></td> <td>Access a single value for a row/column label pair.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.axes.html#pandas.Series.axes" title="pandas.Series.axes"><code>axes</code></a></td> <td>Return a list of the row axis labels.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.base.html#pandas.Series.base" title="pandas.Series.base"><code>base</code></a></td> <td>(DEPRECATED) Return the base object if the memory of the underlying data is shared.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.blocks.html#pandas.Series.blocks" title="pandas.Series.blocks"><code>blocks</code></a></td> <td>(DEPRECATED) Internal property, property synonym for as_blocks().</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.data.html#pandas.Series.data" title="pandas.Series.data"><code>data</code></a></td> <td>(DEPRECATED) Return the data pointer of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.dtype.html#pandas.Series.dtype" title="pandas.Series.dtype"><code>dtype</code></a></td> <td>Return the dtype object of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.dtypes.html#pandas.Series.dtypes" title="pandas.Series.dtypes"><code>dtypes</code></a></td> <td>Return the dtype object of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.flags.html#pandas.Series.flags" title="pandas.Series.flags"><code>flags</code></a></td> <td>(DEPRECATED)</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.ftype.html#pandas.Series.ftype" title="pandas.Series.ftype"><code>ftype</code></a></td> <td>(DEPRECATED) Return if the data is sparse|dense.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.ftypes.html#pandas.Series.ftypes" title="pandas.Series.ftypes"><code>ftypes</code></a></td> <td>(DEPRECATED) Return if the data is sparse|dense.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.hasnans.html#pandas.Series.hasnans" title="pandas.Series.hasnans"><code>hasnans</code></a></td> <td>Return if I have any nans; enables various perf speedups.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.iat.html#pandas.Series.iat" title="pandas.Series.iat"><code>iat</code></a></td> <td>Access a single value for a row/column pair by integer position.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.iloc.html#pandas.Series.iloc" title="pandas.Series.iloc"><code>iloc</code></a></td> <td>Purely integer-location based indexing for selection by position.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.imag.html#pandas.Series.imag" title="pandas.Series.imag"><code>imag</code></a></td> <td>Return imag value of vector.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.index.html#pandas.Series.index" title="pandas.Series.index"><code>index</code></a></td> <td>The index (axis labels) of the Series.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.is_copy.html#pandas.Series.is_copy" title="pandas.Series.is_copy"><code>is_copy</code></a></td> <td>Return the copy.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.is_monotonic.html#pandas.Series.is_monotonic" title="pandas.Series.is_monotonic"><code>is_monotonic</code></a></td> <td>Return boolean if values in the object are monotonic_increasing.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.is_monotonic_decreasing.html#pandas.Series.is_monotonic_decreasing" title="pandas.Series.is_monotonic_decreasing"><code>is_monotonic_decreasing</code></a></td> <td>Return boolean if values in the object are monotonic_decreasing.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.is_monotonic_increasing.html#pandas.Series.is_monotonic_increasing" title="pandas.Series.is_monotonic_increasing"><code>is_monotonic_increasing</code></a></td> <td>Return boolean if values in the object are monotonic_increasing.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.is_unique.html#pandas.Series.is_unique" title="pandas.Series.is_unique"><code>is_unique</code></a></td> <td>Return boolean if values in the object are unique.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.itemsize.html#pandas.Series.itemsize" title="pandas.Series.itemsize"><code>itemsize</code></a></td> <td>(DEPRECATED) Return the size of the dtype of the item of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.ix.html#pandas.Series.ix" title="pandas.Series.ix"><code>ix</code></a></td> <td>A primarily label-location based indexer, with integer position fallback.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.loc.html#pandas.Series.loc" title="pandas.Series.loc"><code>loc</code></a></td> <td>Access a group of rows and columns by label(s) or a boolean array.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.name.html#pandas.Series.name" title="pandas.Series.name"><code>name</code></a></td> <td>Return name of the Series.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.nbytes.html#pandas.Series.nbytes" title="pandas.Series.nbytes"><code>nbytes</code></a></td> <td>Return the number of bytes in the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.ndim.html#pandas.Series.ndim" title="pandas.Series.ndim"><code>ndim</code></a></td> <td>Number of dimensions of the underlying data, by definition 1.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.real.html#pandas.Series.real" title="pandas.Series.real"><code>real</code></a></td> <td>Return the real value of vector.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.shape.html#pandas.Series.shape" title="pandas.Series.shape"><code>shape</code></a></td> <td>Return a tuple of the shape of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.size.html#pandas.Series.size" title="pandas.Series.size"><code>size</code></a></td> <td>Return the number of elements in the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.strides.html#pandas.Series.strides" title="pandas.Series.strides"><code>strides</code></a></td> <td>(DEPRECATED) Return the strides of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.values.html#pandas.Series.values" title="pandas.Series.values"><code>values</code></a></td> <td>Return Series as ndarray or ndarray-like depending on the dtype.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>empty</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.series.abs.html#pandas.Series.abs" title="pandas.Series.abs"><code>abs</code></a>(self)</td> <td>Return a Series/DataFrame with absolute numeric value of each element.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.add.html#pandas.Series.add" title="pandas.Series.add"><code>add</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Addition of series and other, element-wise (binary operator <code>add</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.add_prefix.html#pandas.Series.add_prefix" title="pandas.Series.add_prefix"><code>add_prefix</code></a>(self, prefix)</td> <td>Prefix labels with string <code>prefix</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.add_suffix.html#pandas.Series.add_suffix" title="pandas.Series.add_suffix"><code>add_suffix</code></a>(self, suffix)</td> <td>Suffix labels with string <code>suffix</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.agg.html#pandas.Series.agg" title="pandas.Series.agg"><code>agg</code></a>(self, func[, axis])</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.aggregate.html#pandas.Series.aggregate" title="pandas.Series.aggregate"><code>aggregate</code></a>(self, func[, axis])</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.align.html#pandas.Series.align" title="pandas.Series.align"><code>align</code></a>(self, other[, join, axis, level, …])</td> <td>Align two objects on their axes with the specified join method for each axis Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.all.html#pandas.Series.all" title="pandas.Series.all"><code>all</code></a>(self[, axis, bool_only, skipna, level])</td> <td>Return whether all elements are True, potentially over an axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.any.html#pandas.Series.any" title="pandas.Series.any"><code>any</code></a>(self[, axis, bool_only, skipna, level])</td> <td>Return whether any element is True, potentially over an axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.append.html#pandas.Series.append" title="pandas.Series.append"><code>append</code></a>(self, to_append[, ignore_index, …])</td> <td>Concatenate two or more Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.apply.html#pandas.Series.apply" title="pandas.Series.apply"><code>apply</code></a>(self, func[, convert_dtype, args])</td> <td>Invoke function on values of Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.argmax.html#pandas.Series.argmax" title="pandas.Series.argmax"><code>argmax</code></a>(self[, axis, skipna])</td> <td>(DEPRECATED) Return the row label of the maximum value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.argmin.html#pandas.Series.argmin" title="pandas.Series.argmin"><code>argmin</code></a>(self[, axis, skipna])</td> <td>(DEPRECATED) Return the row label of the minimum value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.argsort.html#pandas.Series.argsort" title="pandas.Series.argsort"><code>argsort</code></a>(self[, axis, kind, order])</td> <td>Override ndarray.argsort.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.as_blocks.html#pandas.Series.as_blocks" title="pandas.Series.as_blocks"><code>as_blocks</code></a>(self[, copy])</td> <td>(DEPRECATED) Convert the frame to a dict of dtype -&gt; Constructor Types that each has a homogeneous dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.as_matrix.html#pandas.Series.as_matrix" title="pandas.Series.as_matrix"><code>as_matrix</code></a>(self[, columns])</td> <td>(DEPRECATED) Convert the frame to its Numpy-array representation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.asfreq.html#pandas.Series.asfreq" title="pandas.Series.asfreq"><code>asfreq</code></a>(self, freq[, method, how, normalize, …])</td> <td>Convert TimeSeries to specified frequency.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.asof.html#pandas.Series.asof" title="pandas.Series.asof"><code>asof</code></a>(self, where[, subset])</td> <td>Return the last row(s) without any NaNs before <code>where</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.astype.html#pandas.Series.astype" title="pandas.Series.astype"><code>astype</code></a>(self, dtype[, copy, errors])</td> <td>Cast a pandas object to a specified dtype <code>dtype</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.at_time.html#pandas.Series.at_time" title="pandas.Series.at_time"><code>at_time</code></a>(self, time[, asof, axis])</td> <td>Select values at particular time of day (e.g.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.autocorr.html#pandas.Series.autocorr" title="pandas.Series.autocorr"><code>autocorr</code></a>(self[, lag])</td> <td>Compute the lag-N autocorrelation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.between.html#pandas.Series.between" title="pandas.Series.between"><code>between</code></a>(self, left, right[, inclusive])</td> <td>Return boolean Series equivalent to left &lt;= series &lt;= right.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.between_time.html#pandas.Series.between_time" title="pandas.Series.between_time"><code>between_time</code></a>(self, start_time, end_time[, …])</td> <td>Select values between particular times of the day (e.g., 9:00-9:30 AM).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.bfill.html#pandas.Series.bfill" title="pandas.Series.bfill"><code>bfill</code></a>(self[, axis, inplace, limit, downcast])</td> <td>Synonym for <a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>DataFrame.fillna()</code></a> with <code>method='bfill'</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.bool.html#pandas.Series.bool" title="pandas.Series.bool"><code>bool</code></a>(self)</td> <td>Return the bool of a single element PandasObject.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.cat.html#pandas.Series.cat" title="pandas.Series.cat"><code>cat</code></a></td> <td>alias of <code>pandas.core.arrays.categorical.CategoricalAccessor</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.clip.html#pandas.Series.clip" title="pandas.Series.clip"><code>clip</code></a>(self[, lower, upper, axis, inplace])</td> <td>Trim values at input threshold(s).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.clip_lower.html#pandas.Series.clip_lower" title="pandas.Series.clip_lower"><code>clip_lower</code></a>(self, threshold[, axis, inplace])</td> <td>(DEPRECATED) Trim values below a given threshold.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.clip_upper.html#pandas.Series.clip_upper" title="pandas.Series.clip_upper"><code>clip_upper</code></a>(self, threshold[, axis, inplace])</td> <td>(DEPRECATED) Trim values above a given threshold.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.combine.html#pandas.Series.combine" title="pandas.Series.combine"><code>combine</code></a>(self, other, func[, fill_value])</td> <td>Combine the Series with a Series or scalar according to <code>func</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.combine_first.html#pandas.Series.combine_first" title="pandas.Series.combine_first"><code>combine_first</code></a>(self, other)</td> <td>Combine Series values, choosing the calling Series’s values first.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.compound.html#pandas.Series.compound" title="pandas.Series.compound"><code>compound</code></a>(self[, axis, skipna, level])</td> <td>(DEPRECATED) Return the compound percentage of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.compress.html#pandas.Series.compress" title="pandas.Series.compress"><code>compress</code></a>(self, condition, \*args, \*\*kwargs)</td> <td>(DEPRECATED) Return selected slices of an array along given axis as a Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.copy.html#pandas.Series.copy" title="pandas.Series.copy"><code>copy</code></a>(self[, deep])</td> <td>Make a copy of this object’s indices and data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.corr.html#pandas.Series.corr" title="pandas.Series.corr"><code>corr</code></a>(self, other[, method, min_periods])</td> <td>Compute correlation with <code>other</code> Series, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.count.html#pandas.Series.count" title="pandas.Series.count"><code>count</code></a>(self[, level])</td> <td>Return number of non-NA/null observations in the Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.cov.html#pandas.Series.cov" title="pandas.Series.cov"><code>cov</code></a>(self, other[, min_periods])</td> <td>Compute covariance with Series, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.cummax.html#pandas.Series.cummax" title="pandas.Series.cummax"><code>cummax</code></a>(self[, axis, skipna])</td> <td>Return cumulative maximum over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.cummin.html#pandas.Series.cummin" title="pandas.Series.cummin"><code>cummin</code></a>(self[, axis, skipna])</td> <td>Return cumulative minimum over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.cumprod.html#pandas.Series.cumprod" title="pandas.Series.cumprod"><code>cumprod</code></a>(self[, axis, skipna])</td> <td>Return cumulative product over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.cumsum.html#pandas.Series.cumsum" title="pandas.Series.cumsum"><code>cumsum</code></a>(self[, axis, skipna])</td> <td>Return cumulative sum over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.describe.html#pandas.Series.describe" title="pandas.Series.describe"><code>describe</code></a>(self[, percentiles, include, exclude])</td> <td>Generate descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding <code>NaN</code> values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.diff.html#pandas.Series.diff" title="pandas.Series.diff"><code>diff</code></a>(self[, periods])</td> <td>First discrete difference of element.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.div.html#pandas.Series.div" title="pandas.Series.div"><code>div</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Floating division of series and other, element-wise (binary operator <code>truediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.divide.html#pandas.Series.divide" title="pandas.Series.divide"><code>divide</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Floating division of series and other, element-wise (binary operator <code>truediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.divmod.html#pandas.Series.divmod" title="pandas.Series.divmod"><code>divmod</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Integer division and modulo of series and other, element-wise (binary operator <code>divmod</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.dot.html#pandas.Series.dot" title="pandas.Series.dot"><code>dot</code></a>(self, other)</td> <td>Compute the dot product between the Series and the columns of other.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.drop.html#pandas.Series.drop" title="pandas.Series.drop"><code>drop</code></a>(self[, labels, axis, index, columns, …])</td> <td>Return Series with specified index labels removed.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.drop_duplicates.html#pandas.Series.drop_duplicates" title="pandas.Series.drop_duplicates"><code>drop_duplicates</code></a>(self[, keep, inplace])</td> <td>Return Series with duplicate values removed.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.droplevel.html#pandas.Series.droplevel" title="pandas.Series.droplevel"><code>droplevel</code></a>(self, level[, axis])</td> <td>Return DataFrame with requested index / column level(s) removed.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.dropna.html#pandas.Series.dropna" title="pandas.Series.dropna"><code>dropna</code></a>(self[, axis, inplace])</td> <td>Return a new Series with missing values removed.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.dt.html#pandas.Series.dt" title="pandas.Series.dt"><code>dt</code></a></td> <td>alias of <code>pandas.core.indexes.accessors.CombinedDatetimelikeProperties</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.duplicated.html#pandas.Series.duplicated" title="pandas.Series.duplicated"><code>duplicated</code></a>(self[, keep])</td> <td>Indicate duplicate Series values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.eq.html#pandas.Series.eq" title="pandas.Series.eq"><code>eq</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Equal to of series and other, element-wise (binary operator <code>eq</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.equals.html#pandas.Series.equals" title="pandas.Series.equals"><code>equals</code></a>(self, other)</td> <td>Test whether two objects contain the same elements.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.ewm.html#pandas.Series.ewm" title="pandas.Series.ewm"><code>ewm</code></a>(self[, com, span, halflife, alpha, …])</td> <td>Provide exponential weighted functions.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.expanding.html#pandas.Series.expanding" title="pandas.Series.expanding"><code>expanding</code></a>(self[, min_periods, center, axis])</td> <td>Provide expanding transformations.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.explode.html#pandas.Series.explode" title="pandas.Series.explode"><code>explode</code></a>(self)</td> <td>Transform each element of a list-like to a row, replicating the index values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.factorize.html#pandas.Series.factorize" title="pandas.Series.factorize"><code>factorize</code></a>(self[, sort, na_sentinel])</td> <td>Encode the object as an enumerated type or categorical variable.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.ffill.html#pandas.Series.ffill" title="pandas.Series.ffill"><code>ffill</code></a>(self[, axis, inplace, limit, downcast])</td> <td>Synonym for <a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>DataFrame.fillna()</code></a> with <code>method='ffill'</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.fillna.html#pandas.Series.fillna" title="pandas.Series.fillna"><code>fillna</code></a>(self[, value, method, axis, inplace, …])</td> <td>Fill NA/NaN values using the specified method.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.filter.html#pandas.Series.filter" title="pandas.Series.filter"><code>filter</code></a>(self[, items, like, regex, axis])</td> <td>Subset rows or columns of dataframe according to labels in the specified index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.first.html#pandas.Series.first" title="pandas.Series.first"><code>first</code></a>(self, offset)</td> <td>Convenience method for subsetting initial periods of time series data based on a date offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.first_valid_index.html#pandas.Series.first_valid_index" title="pandas.Series.first_valid_index"><code>first_valid_index</code></a>(self)</td> <td>Return index for first non-NA/null value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.floordiv.html#pandas.Series.floordiv" title="pandas.Series.floordiv"><code>floordiv</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Integer division of series and other, element-wise (binary operator <code>floordiv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.from_array.html#pandas.Series.from_array" title="pandas.Series.from_array"><code>from_array</code></a>(arr[, index, name, dtype, copy, …])</td> <td>Construct Series from array.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.ge.html#pandas.Series.ge" title="pandas.Series.ge"><code>ge</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Greater than or equal to of series and other, element-wise (binary operator <code>ge</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.get.html#pandas.Series.get" title="pandas.Series.get"><code>get</code></a>(self, key[, default])</td> <td>Get item from object for given key (ex: DataFrame column).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.get_dtype_counts.html#pandas.Series.get_dtype_counts" title="pandas.Series.get_dtype_counts"><code>get_dtype_counts</code></a>(self)</td> <td>(DEPRECATED) Return counts of unique dtypes in this object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.get_ftype_counts.html#pandas.Series.get_ftype_counts" title="pandas.Series.get_ftype_counts"><code>get_ftype_counts</code></a>(self)</td> <td>(DEPRECATED) Return counts of unique ftypes in this object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.get_value.html#pandas.Series.get_value" title="pandas.Series.get_value"><code>get_value</code></a>(self, label[, takeable])</td> <td>(DEPRECATED) Quickly retrieve single value at passed index label.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.get_values.html#pandas.Series.get_values" title="pandas.Series.get_values"><code>get_values</code></a>(self)</td> <td>(DEPRECATED) Same as values (but handles sparseness conversions); is a view.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.groupby.html#pandas.Series.groupby" title="pandas.Series.groupby"><code>groupby</code></a>(self[, by, axis, level, as_index, …])</td> <td>Group DataFrame or Series using a mapper or by a Series of columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.gt.html#pandas.Series.gt" title="pandas.Series.gt"><code>gt</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Greater than of series and other, element-wise (binary operator <code>gt</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.head.html#pandas.Series.head" title="pandas.Series.head"><code>head</code></a>(self[, n])</td> <td>Return the first <code>n</code> rows.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.hist.html#pandas.Series.hist" title="pandas.Series.hist"><code>hist</code></a>(self[, by, ax, grid, xlabelsize, xrot, …])</td> <td>Draw histogram of the input series using matplotlib.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.idxmax.html#pandas.Series.idxmax" title="pandas.Series.idxmax"><code>idxmax</code></a>(self[, axis, skipna])</td> <td>Return the row label of the maximum value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.idxmin.html#pandas.Series.idxmin" title="pandas.Series.idxmin"><code>idxmin</code></a>(self[, axis, skipna])</td> <td>Return the row label of the minimum value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.infer_objects.html#pandas.Series.infer_objects" title="pandas.Series.infer_objects"><code>infer_objects</code></a>(self)</td> <td>Attempt to infer better dtypes for object columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.interpolate.html#pandas.Series.interpolate" title="pandas.Series.interpolate"><code>interpolate</code></a>(self[, method, axis, limit, …])</td> <td>Interpolate values according to different methods.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.isin.html#pandas.Series.isin" title="pandas.Series.isin"><code>isin</code></a>(self, values)</td> <td>Check whether <code>values</code> are contained in Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.isna.html#pandas.Series.isna" title="pandas.Series.isna"><code>isna</code></a>(self)</td> <td>Detect missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.isnull.html#pandas.Series.isnull" title="pandas.Series.isnull"><code>isnull</code></a>(self)</td> <td>Detect missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.item.html#pandas.Series.item" title="pandas.Series.item"><code>item</code></a>(self)</td> <td>Return the first element of the underlying data as a python scalar.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.items.html#pandas.Series.items" title="pandas.Series.items"><code>items</code></a>(self)</td> <td>Lazily iterate over (index, value) tuples.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.iteritems.html#pandas.Series.iteritems" title="pandas.Series.iteritems"><code>iteritems</code></a>(self)</td> <td>Lazily iterate over (index, value) tuples.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.keys.html#pandas.Series.keys" title="pandas.Series.keys"><code>keys</code></a>(self)</td> <td>Return alias for index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.kurt.html#pandas.Series.kurt" title="pandas.Series.kurt"><code>kurt</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return unbiased kurtosis over requested axis using Fisher’s definition of kurtosis (kurtosis of normal == 0.0).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.kurtosis.html#pandas.Series.kurtosis" title="pandas.Series.kurtosis"><code>kurtosis</code></a>(self[, axis, skipna, level, …])</td> <td>Return unbiased kurtosis over requested axis using Fisher’s definition of kurtosis (kurtosis of normal == 0.0).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.last.html#pandas.Series.last" title="pandas.Series.last"><code>last</code></a>(self, offset)</td> <td>Convenience method for subsetting final periods of time series data based on a date offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.last_valid_index.html#pandas.Series.last_valid_index" title="pandas.Series.last_valid_index"><code>last_valid_index</code></a>(self)</td> <td>Return index for last non-NA/null value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.le.html#pandas.Series.le" title="pandas.Series.le"><code>le</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Less than or equal to of series and other, element-wise (binary operator <code>le</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.lt.html#pandas.Series.lt" title="pandas.Series.lt"><code>lt</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Less than of series and other, element-wise (binary operator <code>lt</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.mad.html#pandas.Series.mad" title="pandas.Series.mad"><code>mad</code></a>(self[, axis, skipna, level])</td> <td>Return the mean absolute deviation of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.map.html#pandas.Series.map" title="pandas.Series.map"><code>map</code></a>(self, arg[, na_action])</td> <td>Map values of Series according to input correspondence.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.mask.html#pandas.Series.mask" title="pandas.Series.mask"><code>mask</code></a>(self, cond[, other, inplace, axis, …])</td> <td>Replace values where the condition is True.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.max.html#pandas.Series.max" title="pandas.Series.max"><code>max</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the maximum of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.mean.html#pandas.Series.mean" title="pandas.Series.mean"><code>mean</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the mean of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.median.html#pandas.Series.median" title="pandas.Series.median"><code>median</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the median of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.memory_usage.html#pandas.Series.memory_usage" title="pandas.Series.memory_usage"><code>memory_usage</code></a>(self[, index, deep])</td> <td>Return the memory usage of the Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.min.html#pandas.Series.min" title="pandas.Series.min"><code>min</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the minimum of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.mod.html#pandas.Series.mod" title="pandas.Series.mod"><code>mod</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Modulo of series and other, element-wise (binary operator <code>mod</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.mode.html#pandas.Series.mode" title="pandas.Series.mode"><code>mode</code></a>(self[, dropna])</td> <td>Return the mode(s) of the dataset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.mul.html#pandas.Series.mul" title="pandas.Series.mul"><code>mul</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Multiplication of series and other, element-wise (binary operator <code>mul</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.multiply.html#pandas.Series.multiply" title="pandas.Series.multiply"><code>multiply</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Multiplication of series and other, element-wise (binary operator <code>mul</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.ne.html#pandas.Series.ne" title="pandas.Series.ne"><code>ne</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Not equal to of series and other, element-wise (binary operator <code>ne</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.nlargest.html#pandas.Series.nlargest" title="pandas.Series.nlargest"><code>nlargest</code></a>(self[, n, keep])</td> <td>Return the largest <code>n</code> elements.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.nonzero.html#pandas.Series.nonzero" title="pandas.Series.nonzero"><code>nonzero</code></a>(self)</td> <td>(DEPRECATED) Return the <em>integer</em> indices of the elements that are non-zero.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.notna.html#pandas.Series.notna" title="pandas.Series.notna"><code>notna</code></a>(self)</td> <td>Detect existing (non-missing) values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.notnull.html#pandas.Series.notnull" title="pandas.Series.notnull"><code>notnull</code></a>(self)</td> <td>Detect existing (non-missing) values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.nsmallest.html#pandas.Series.nsmallest" title="pandas.Series.nsmallest"><code>nsmallest</code></a>(self[, n, keep])</td> <td>Return the smallest <code>n</code> elements.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.nunique.html#pandas.Series.nunique" title="pandas.Series.nunique"><code>nunique</code></a>(self[, dropna])</td> <td>Return number of unique elements in the object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.pct_change.html#pandas.Series.pct_change" title="pandas.Series.pct_change"><code>pct_change</code></a>(self[, periods, fill_method, …])</td> <td>Percentage change between the current and a prior element.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.pipe.html#pandas.Series.pipe" title="pandas.Series.pipe"><code>pipe</code></a>(self, func, \*args, \*\*kwargs)</td> <td>Apply func(self, *args, **kwargs).</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.plot.html#pandas.Series.plot" title="pandas.Series.plot"><code>plot</code></a></td> <td>alias of <code>pandas.plotting._core.PlotAccessor</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.pop.html#pandas.Series.pop" title="pandas.Series.pop"><code>pop</code></a>(self, item)</td> <td>Return item and drop from frame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.pow.html#pandas.Series.pow" title="pandas.Series.pow"><code>pow</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Exponential power of series and other, element-wise (binary operator <code>pow</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.prod.html#pandas.Series.prod" title="pandas.Series.prod"><code>prod</code></a>(self[, axis, skipna, level, …])</td> <td>Return the product of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.product.html#pandas.Series.product" title="pandas.Series.product"><code>product</code></a>(self[, axis, skipna, level, …])</td> <td>Return the product of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.ptp.html#pandas.Series.ptp" title="pandas.Series.ptp"><code>ptp</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>(DEPRECATED) Return the difference between the maximum value and the</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.put.html#pandas.Series.put" title="pandas.Series.put"><code>put</code></a>(self, \*args, \*\*kwargs)</td> <td>(DEPRECATED) Apply the <code>put</code> method to its <code>values</code> attribute if it has one.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.quantile.html#pandas.Series.quantile" title="pandas.Series.quantile"><code>quantile</code></a>(self[, q, interpolation])</td> <td>Return value at the given quantile.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.radd.html#pandas.Series.radd" title="pandas.Series.radd"><code>radd</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Addition of series and other, element-wise (binary operator <code>radd</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rank.html#pandas.Series.rank" title="pandas.Series.rank"><code>rank</code></a>(self[, axis, method, numeric_only, …])</td> <td>Compute numerical data ranks (1 through n) along axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.ravel.html#pandas.Series.ravel" title="pandas.Series.ravel"><code>ravel</code></a>(self[, order])</td> <td>Return the flattened underlying data as an ndarray.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rdiv.html#pandas.Series.rdiv" title="pandas.Series.rdiv"><code>rdiv</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Floating division of series and other, element-wise (binary operator <code>rtruediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rdivmod.html#pandas.Series.rdivmod" title="pandas.Series.rdivmod"><code>rdivmod</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Integer division and modulo of series and other, element-wise (binary operator <code>rdivmod</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.reindex.html#pandas.Series.reindex" title="pandas.Series.reindex"><code>reindex</code></a>(self[, index])</td> <td>Conform Series to new index with optional filling logic, placing NA/NaN in locations having no value in the previous index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.reindex_like.html#pandas.Series.reindex_like" title="pandas.Series.reindex_like"><code>reindex_like</code></a>(self, other[, method, copy, …])</td> <td>Return an object with matching indices as other object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rename.html#pandas.Series.rename" title="pandas.Series.rename"><code>rename</code></a>(self[, index])</td> <td>Alter Series index labels or name.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rename_axis.html#pandas.Series.rename_axis" title="pandas.Series.rename_axis"><code>rename_axis</code></a>(self[, mapper, index, columns, …])</td> <td>Set the name of the axis for the index or columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.reorder_levels.html#pandas.Series.reorder_levels" title="pandas.Series.reorder_levels"><code>reorder_levels</code></a>(self, order)</td> <td>Rearrange index levels using input order.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.repeat.html#pandas.Series.repeat" title="pandas.Series.repeat"><code>repeat</code></a>(self, repeats[, axis])</td> <td>Repeat elements of a Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.replace.html#pandas.Series.replace" title="pandas.Series.replace"><code>replace</code></a>(self[, to_replace, value, inplace, …])</td> <td>Replace values given in <code>to_replace</code> with <code>value</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.resample.html#pandas.Series.resample" title="pandas.Series.resample"><code>resample</code></a>(self, rule[, how, axis, …])</td> <td>Resample time-series data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.reset_index.html#pandas.Series.reset_index" title="pandas.Series.reset_index"><code>reset_index</code></a>(self[, level, drop, name, inplace])</td> <td>Generate a new DataFrame or Series with the index reset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rfloordiv.html#pandas.Series.rfloordiv" title="pandas.Series.rfloordiv"><code>rfloordiv</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Integer division of series and other, element-wise (binary operator <code>rfloordiv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rmod.html#pandas.Series.rmod" title="pandas.Series.rmod"><code>rmod</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Modulo of series and other, element-wise (binary operator <code>rmod</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rmul.html#pandas.Series.rmul" title="pandas.Series.rmul"><code>rmul</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Multiplication of series and other, element-wise (binary operator <code>rmul</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rolling.html#pandas.Series.rolling" title="pandas.Series.rolling"><code>rolling</code></a>(self, window[, min_periods, center, …])</td> <td>Provide rolling window calculations.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.round.html#pandas.Series.round" title="pandas.Series.round"><code>round</code></a>(self[, decimals])</td> <td>Round each value in a Series to the given number of decimals.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rpow.html#pandas.Series.rpow" title="pandas.Series.rpow"><code>rpow</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Exponential power of series and other, element-wise (binary operator <code>rpow</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rsub.html#pandas.Series.rsub" title="pandas.Series.rsub"><code>rsub</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Subtraction of series and other, element-wise (binary operator <code>rsub</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.rtruediv.html#pandas.Series.rtruediv" title="pandas.Series.rtruediv"><code>rtruediv</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Floating division of series and other, element-wise (binary operator <code>rtruediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.sample.html#pandas.Series.sample" title="pandas.Series.sample"><code>sample</code></a>(self[, n, frac, replace, weights, …])</td> <td>Return a random sample of items from an axis of object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.searchsorted.html#pandas.Series.searchsorted" title="pandas.Series.searchsorted"><code>searchsorted</code></a>(self, value[, side, sorter])</td> <td>Find indices where elements should be inserted to maintain order.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.sem.html#pandas.Series.sem" title="pandas.Series.sem"><code>sem</code></a>(self[, axis, skipna, level, ddof, …])</td> <td>Return unbiased standard error of the mean over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.set_axis.html#pandas.Series.set_axis" title="pandas.Series.set_axis"><code>set_axis</code></a>(self, labels[, axis, inplace])</td> <td>Assign desired index to given axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.set_value.html#pandas.Series.set_value" title="pandas.Series.set_value"><code>set_value</code></a>(self, label, value[, takeable])</td> <td>(DEPRECATED) Quickly set single value at passed label.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.shift.html#pandas.Series.shift" title="pandas.Series.shift"><code>shift</code></a>(self[, periods, freq, axis, fill_value])</td> <td>Shift index by desired number of periods with an optional time <code>freq</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.skew.html#pandas.Series.skew" title="pandas.Series.skew"><code>skew</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return unbiased skew over requested axis Normalized by N-1.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.slice_shift.html#pandas.Series.slice_shift" title="pandas.Series.slice_shift"><code>slice_shift</code></a>(self[, periods, axis])</td> <td>Equivalent to <code>shift</code> without copying data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.sort_index.html#pandas.Series.sort_index" title="pandas.Series.sort_index"><code>sort_index</code></a>(self[, axis, level, ascending, …])</td> <td>Sort Series by index labels.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.sort_values.html#pandas.Series.sort_values" title="pandas.Series.sort_values"><code>sort_values</code></a>(self[, axis, ascending, …])</td> <td>Sort by the values.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.sparse.html#pandas.Series.sparse" title="pandas.Series.sparse"><code>sparse</code></a></td> <td>alias of <code>pandas.core.arrays.sparse.SparseAccessor</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.squeeze.html#pandas.Series.squeeze" title="pandas.Series.squeeze"><code>squeeze</code></a>(self[, axis])</td> <td>Squeeze 1 dimensional axis objects into scalars.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.std.html#pandas.Series.std" title="pandas.Series.std"><code>std</code></a>(self[, axis, skipna, level, ddof, …])</td> <td>Return sample standard deviation over requested axis.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.series.str.html#pandas.Series.str" title="pandas.Series.str"><code>str</code></a></td> <td>alias of <code>pandas.core.strings.StringMethods</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.sub.html#pandas.Series.sub" title="pandas.Series.sub"><code>sub</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Subtraction of series and other, element-wise (binary operator <code>sub</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.subtract.html#pandas.Series.subtract" title="pandas.Series.subtract"><code>subtract</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Subtraction of series and other, element-wise (binary operator <code>sub</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.sum.html#pandas.Series.sum" title="pandas.Series.sum"><code>sum</code></a>(self[, axis, skipna, level, …])</td> <td>Return the sum of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.swapaxes.html#pandas.Series.swapaxes" title="pandas.Series.swapaxes"><code>swapaxes</code></a>(self, axis1, axis2[, copy])</td> <td>Interchange axes and swap values axes appropriately.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.swaplevel.html#pandas.Series.swaplevel" title="pandas.Series.swaplevel"><code>swaplevel</code></a>(self[, i, j, copy])</td> <td>Swap levels i and j in a MultiIndex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.tail.html#pandas.Series.tail" title="pandas.Series.tail"><code>tail</code></a>(self[, n])</td> <td>Return the last <code>n</code> rows.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.take.html#pandas.Series.take" title="pandas.Series.take"><code>take</code></a>(self, indices[, axis, is_copy])</td> <td>Return the elements in the given <em>positional</em> indices along an axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_clipboard.html#pandas.Series.to_clipboard" title="pandas.Series.to_clipboard"><code>to_clipboard</code></a>(self[, excel, sep])</td> <td>Copy object to the system clipboard.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_csv.html#pandas.Series.to_csv" title="pandas.Series.to_csv"><code>to_csv</code></a>(self, \*args, \*\*kwargs)</td> <td>Write object to a comma-separated values (csv) file.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_dense.html#pandas.Series.to_dense" title="pandas.Series.to_dense"><code>to_dense</code></a>(self)</td> <td>(DEPRECATED) Return dense representation of Series/DataFrame (as opposed to sparse).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_dict.html#pandas.Series.to_dict" title="pandas.Series.to_dict"><code>to_dict</code></a>(self[, into])</td> <td>Convert Series to {label -&gt; value} dict or dict-like object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_excel.html#pandas.Series.to_excel" title="pandas.Series.to_excel"><code>to_excel</code></a>(self, excel_writer[, sheet_name, …])</td> <td>Write object to an Excel sheet.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_frame.html#pandas.Series.to_frame" title="pandas.Series.to_frame"><code>to_frame</code></a>(self[, name])</td> <td>Convert Series to DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_hdf.html#pandas.Series.to_hdf" title="pandas.Series.to_hdf"><code>to_hdf</code></a>(self, path_or_buf, key, \*\*kwargs)</td> <td>Write the contained data to an HDF5 file using HDFStore.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_json.html#pandas.Series.to_json" title="pandas.Series.to_json"><code>to_json</code></a>(self[, path_or_buf, orient, …])</td> <td>Convert the object to a JSON string.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_latex.html#pandas.Series.to_latex" title="pandas.Series.to_latex"><code>to_latex</code></a>(self[, buf, columns, col_space, …])</td> <td>Render an object to a LaTeX tabular environment table.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_list.html#pandas.Series.to_list" title="pandas.Series.to_list"><code>to_list</code></a>(self)</td> <td>Return a list of the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_msgpack.html#pandas.Series.to_msgpack" title="pandas.Series.to_msgpack"><code>to_msgpack</code></a>(self[, path_or_buf, encoding])</td> <td>(DEPRECATED) Serialize object to input file path using msgpack format.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>to_numpy</code></a>(self[, dtype, copy])</td> <td>A NumPy ndarray representing the values in this Series or Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_period.html#pandas.Series.to_period" title="pandas.Series.to_period"><code>to_period</code></a>(self[, freq, copy])</td> <td>Convert Series from DatetimeIndex to PeriodIndex with desired frequency (inferred from index if not passed).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_pickle.html#pandas.Series.to_pickle" title="pandas.Series.to_pickle"><code>to_pickle</code></a>(self, path[, compression, protocol])</td> <td>Pickle (serialize) object to file.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_sparse.html#pandas.Series.to_sparse" title="pandas.Series.to_sparse"><code>to_sparse</code></a>(self[, kind, fill_value])</td> <td>(DEPRECATED) Convert Series to SparseSeries.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_sql.html#pandas.Series.to_sql" title="pandas.Series.to_sql"><code>to_sql</code></a>(self, name, con[, schema, if_exists, …])</td> <td>Write records stored in a DataFrame to a SQL database.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_string.html#pandas.Series.to_string" title="pandas.Series.to_string"><code>to_string</code></a>(self[, buf, na_rep, float_format, …])</td> <td>Render a string representation of the Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_timestamp.html#pandas.Series.to_timestamp" title="pandas.Series.to_timestamp"><code>to_timestamp</code></a>(self[, freq, how, copy])</td> <td>Cast to DatetimeIndex of Timestamps, at <em>beginning</em> of period.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.to_xarray.html#pandas.Series.to_xarray" title="pandas.Series.to_xarray"><code>to_xarray</code></a>(self)</td> <td>Return an xarray object from the pandas object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.tolist.html#pandas.Series.tolist" title="pandas.Series.tolist"><code>tolist</code></a>(self)</td> <td>Return a list of the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.transform.html#pandas.Series.transform" title="pandas.Series.transform"><code>transform</code></a>(self, func[, axis])</td> <td>Call <code>func</code> on self producing a Series with transformed values and that has the same axis length as self.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.transpose.html#pandas.Series.transpose" title="pandas.Series.transpose"><code>transpose</code></a>(self, \*args, \*\*kwargs)</td> <td>Return the transpose, which is by definition self.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.truediv.html#pandas.Series.truediv" title="pandas.Series.truediv"><code>truediv</code></a>(self, other[, level, fill_value, axis])</td> <td>Return Floating division of series and other, element-wise (binary operator <code>truediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.truncate.html#pandas.Series.truncate" title="pandas.Series.truncate"><code>truncate</code></a>(self[, before, after, axis, copy])</td> <td>Truncate a Series or DataFrame before and after some index value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.tshift.html#pandas.Series.tshift" title="pandas.Series.tshift"><code>tshift</code></a>(self[, periods, freq, axis])</td> <td>Shift the time index, using the index’s frequency if available.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.tz_convert.html#pandas.Series.tz_convert" title="pandas.Series.tz_convert"><code>tz_convert</code></a>(self, tz[, axis, level, copy])</td> <td>Convert tz-aware axis to target time zone.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.tz_localize.html#pandas.Series.tz_localize" title="pandas.Series.tz_localize"><code>tz_localize</code></a>(self, tz[, axis, level, copy, …])</td> <td>Localize tz-naive index of a Series or DataFrame to target time zone.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.unique.html#pandas.Series.unique" title="pandas.Series.unique"><code>unique</code></a>(self)</td> <td>Return unique values of Series object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.unstack.html#pandas.Series.unstack" title="pandas.Series.unstack"><code>unstack</code></a>(self[, level, fill_value])</td> <td>Unstack, a.k.a.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.update.html#pandas.Series.update" title="pandas.Series.update"><code>update</code></a>(self, other)</td> <td>Modify Series in place using non-NA values from passed Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.valid.html#pandas.Series.valid" title="pandas.Series.valid"><code>valid</code></a>(self[, inplace])</td> <td>(DEPRECATED) Return Series without null values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.value_counts.html#pandas.Series.value_counts" title="pandas.Series.value_counts"><code>value_counts</code></a>(self[, normalize, sort, …])</td> <td>Return a Series containing counts of unique values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.var.html#pandas.Series.var" title="pandas.Series.var"><code>var</code></a>(self[, axis, skipna, level, ddof, …])</td> <td>Return unbiased variance over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.view.html#pandas.Series.view" title="pandas.Series.view"><code>view</code></a>(self[, dtype])</td> <td>Create a new view of the Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.where.html#pandas.Series.where" title="pandas.Series.where"><code>where</code></a>(self, cond[, other, inplace, axis, …])</td> <td>Replace values where the condition is False.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.series.xs.html#pandas.Series.xs" title="pandas.Series.xs"><code>xs</code></a>(self, key[, axis, level, drop_level])</td> <td>Return cross-section from the Series/DataFrame.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.html</a>
+  </p>
+</div>

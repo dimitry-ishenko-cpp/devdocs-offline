@@ -1,0 +1,42 @@
+    <h1 id="firstHeading" class="firstHeading">std::filesystem::directory_entry::is_directory</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">bool is_directory() const;
+bool is_directory( std::error_code&amp; ec ) const noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr>  </table> <p>Checks whether the pointed-to object is a directory. Effectively returns <code><a href="http://en.cppreference.com/w/cpp/filesystem/is_directory"><span class="kw2296">std::<span class="me2">filesystem</span><span class="sy4">::</span><span class="me2">is_directory</span></span></a><span class="br0">(</span>status<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span></code> or <code><a href="http://en.cppreference.com/w/cpp/filesystem/is_directory"><span class="kw2296">std::<span class="me2">filesystem</span><span class="sy4">::</span><span class="me2">is_directory</span></span></a><span class="br0">(</span>status<span class="br0">(</span>ec<span class="br0">)</span><span class="br0">)</span></code>, respectively.</p>
+<h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> ec </td> <td> - </td> <td> out-parameter for error reporting in the non-throwing overload </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p><code>true</code> if the referred-to filesystem object is a directory, <code>false</code> otherwise.</p>
+<h3 id="Exceptions"> Exceptions</h3> <p>The overload that does not take a <code><a href="http://en.cppreference.com/w/cpp/error/error_code"><span class="kw879">std::<span class="me2">error_code</span></span></a><span class="sy3">&amp;</span></code> parameter throws <a href="../filesystem_error.html" title="cpp/filesystem/filesystem error"><code>filesystem::filesystem_error</code></a> on underlying OS API errors, constructed with <code>p</code> as the first path argument and the OS error code as the error code argument. The overload taking a <code><a href="http://en.cppreference.com/w/cpp/error/error_code"><span class="kw879">std::<span class="me2">error_code</span></span></a><span class="sy3">&amp;</span></code> parameter sets it to the OS API error code if an OS API call fails, and executes <code>ec.clear()</code> if no errors occur. Any overload not marked <code>noexcept</code> may throw <code><a href="../../memory/new/bad_alloc.html" title="cpp/memory/new/bad alloc">std::bad_alloc</a></code> if memory allocation fails.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;filesystem&gt;
+ 
+namespace fs = std::filesystem;
+ 
+int main()
+{
+    fs::directory_entry d1(".");
+    fs::directory_entry d2("file.txt");
+    fs::directory_entry d3("new_dir");
+ 
+    std::cout &lt;&lt; std::boolalpha
+              &lt;&lt; ". d1 " &lt;&lt; d1.is_directory() &lt;&lt; '\n'
+              &lt;&lt; "file.txt d2 " &lt;&lt; d2.is_directory() &lt;&lt; '\n'
+              // false because it has not been created
+              &lt;&lt; "new_dir d3 " &lt;&lt; d3.is_directory() &lt;&lt; '\n';
+ 
+    fs::create_directory("new_dir");
+ 
+    std::cout &lt;&lt; "new_dir d3 before refresh " &lt;&lt; d3.is_directory() &lt;&lt; '\n';
+    d3.refresh();
+    std::cout &lt;&lt; "new_dir d3 after refresh " &lt;&lt; d3.is_directory() &lt;&lt; '\n';
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">. d1 true
+file.txt d2 false
+new_dir d3 false
+new_dir d3 before refresh false
+new_dir d3 after refresh true</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../is_directory.html" title="cpp/filesystem/is directory"> <span class="t-lines"><span>is_directory</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx17">(C++17)</span></span></span></div> </td> <td> checks whether the given path refers to a directory <br> <span class="t-mark">(function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/filesystem/directory_entry/is_directory" class="_attribution-link">https://en.cppreference.com/w/cpp/filesystem/directory_entry/is_directory</a>
+  </p>
+</div>

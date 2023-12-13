@@ -1,0 +1,61 @@
+<h1 id="pandas-series-dropna">pandas.Series.dropna</h1> <dl class="method"> <dt id="pandas.Series.dropna">
+<code>Series.dropna(self, axis=0, inplace=False, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L4698-L4790"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a new Series with missing values removed.</p> <p>See the <a class="reference internal" href="../../user_guide/missing_data.html#missing-data"><span class="std std-ref">User Guide</span></a> for more on which values are considered missing, and how to work with missing data.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’}, default 0</code> </dt> <dd>
+<p class="first last">There is only one axis to drop values from.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">If True, do operation inplace and return None.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Not in use.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Series with NA entries dropped from it.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.isna.html#pandas.Series.isna" title="pandas.Series.isna"><code>Series.isna</code></a>
+</dt> <dd>Indicate missing values.</dd> <dt>
+ <a class="reference internal" href="pandas.series.notna.html#pandas.Series.notna" title="pandas.Series.notna"><code>Series.notna</code></a>
+</dt> <dd>Indicate existing (non-missing) values.</dd> <dt>
+ <a class="reference internal" href="pandas.series.fillna.html#pandas.Series.fillna" title="pandas.Series.fillna"><code>Series.fillna</code></a>
+</dt> <dd>Replace missing values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.dropna.html#pandas.DataFrame.dropna" title="pandas.DataFrame.dropna"><code>DataFrame.dropna</code></a>
+</dt> <dd>Drop rows or columns which contain NA values.</dd> <dt>
+ <a class="reference internal" href="pandas.index.dropna.html#pandas.Index.dropna" title="pandas.Index.dropna"><code>Index.dropna</code></a>
+</dt> <dd>Drop missing indices.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; ser = pd.Series([1., 2., np.nan])
+&gt;&gt;&gt; ser
+0    1.0
+1    2.0
+2    NaN
+dtype: float64
+</pre> <p>Drop NA values from a Series.</p> <pre data-language="python">&gt;&gt;&gt; ser.dropna()
+0    1.0
+1    2.0
+dtype: float64
+</pre> <p>Keep the Series with valid entries in the same variable.</p> <pre data-language="python">&gt;&gt;&gt; ser.dropna(inplace=True)
+&gt;&gt;&gt; ser
+0    1.0
+1    2.0
+dtype: float64
+</pre> <p>Empty strings are not considered NA values. <code>None</code> is considered an NA value.</p> <pre data-language="python">&gt;&gt;&gt; ser = pd.Series([np.NaN, 2, pd.NaT, '', None, 'I stay'])
+&gt;&gt;&gt; ser
+0       NaN
+1         2
+2       NaT
+3
+4      None
+5    I stay
+dtype: object
+&gt;&gt;&gt; ser.dropna()
+1         2
+3
+5    I stay
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dropna.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dropna.html</a>
+  </p>
+</div>

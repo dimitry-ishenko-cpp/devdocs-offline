@@ -1,0 +1,151 @@
+    <h1 id="firstHeading" class="firstHeading">String literal</h1>             <h3 id="Syntax"> Syntax</h3> <table class="t-sdsc-begin">  <tr class="t-sdsc"> <td> <code>"</code><span class="t-spar">s-char-sequence</span> ﻿<span class="t-mark">(optional)</span><code>"</code> </td> <td> (1) </td> <td class="t-sdsc-nopad"> </td>
+</tr>  <tr class="t-sdsc"> <td> <code>L"</code><span class="t-spar">s-char-sequence</span> ﻿<span class="t-mark">(optional)</span><code>"</code> </td> <td> (2) </td> <td class="t-sdsc-nopad"> </td>
+</tr>  <tr class="t-sdsc"> <td> <code>u8"</code><span class="t-spar">s-char-sequence</span> ﻿<span class="t-mark">(optional)</span><code>"</code> </td> <td> (3) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td>
+</tr>  <tr class="t-sdsc"> <td> <code>u"</code><span class="t-spar">s-char-sequence</span> ﻿<span class="t-mark">(optional)</span><code>"</code> </td> <td> (4) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td>
+</tr>  <tr class="t-sdsc"> <td> <code>U"</code><span class="t-spar">s-char-sequence</span> ﻿<span class="t-mark">(optional)</span><code>"</code> </td> <td> (5) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td>
+</tr>  <tr class="t-sdsc"> <td> <span class="t-spar">prefix</span> ﻿<span class="t-mark">(optional)</span> <code>R"</code><span class="t-spar">d-char-sequence</span> ﻿<span class="t-mark">(optional)</span><br><code>(</code><span class="t-spar">r-char-sequence</span> ﻿<span class="t-mark">(optional)</span><code>)</code><span class="t-spar">d-char-sequence</span> ﻿<span class="t-mark">(optional)</span><code>"</code> </td> <td> (6) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td>
+</tr> 
+</table> <h3 id="Explanation"> Explanation</h3> <table class="t-par-begin"> <tr class="t-par"> <td> <span class="t-spar">s-char-sequence</span> </td> <td> - </td> <td> A sequence of one or more <span class="t-spar">s-char</span>s </td>
+</tr> <tr class="t-par"> <td> <span class="t-spar">s-char</span> </td> <td> - </td> <td> One of <ul>
+<li> a <span class="t-spar">basic-s-char</span> </li>
+<li> an escape sequence, as defined in <a href="escape.html" title="cpp/language/escape">escape sequences</a> </li>
+<li> a universal character name, as defined in <a href="escape.html" title="cpp/language/escape">escape sequences</a> </li>
+</ul> </td>
+</tr> <tr class="t-par"> <td> <span class="t-spar">basic-s-char</span> </td> <td> - </td> <td> A character from the <span class="t-rev-inl t-until-cxx23"><span><a href="charset.html#Basic_source_character_set" title="cpp/language/charset">basic source character set</a></span> <span><span class="t-mark-rev t-until-cxx23">(until C++23)</span></span></span><span class="t-rev-inl t-since-cxx23"><span><a href="charset.html#Translation_character_set" title="cpp/language/charset">translation character set</a></span> <span><span class="t-mark-rev t-since-cxx23">(since C++23)</span></span></span>, except the double-quote <code>"</code>, backslash <code>\</code>, or new-line character </td>
+</tr> <tr class="t-par"> <td> <span class="t-spar">prefix</span> </td> <td> - </td> <td> One of <code>L</code>, <code>u8</code>, <code>u</code>, <code>U</code> </td>
+</tr> <tr class="t-par"> <td> <span class="t-spar">d-char-sequence</span> </td> <td> - </td> <td> A sequence of one or more <span class="t-spar">d-char</span>s, at most 16 characters long </td>
+</tr> <tr class="t-par"> <td> <span class="t-spar">d-char</span> </td> <td> - </td> <td> A character from the <span class="t-rev-inl t-until-cxx23"><span><a href="charset.html#Basic_source_character_set" title="cpp/language/charset">basic source character set</a></span> <span><span class="t-mark-rev t-until-cxx23">(until C++23)</span></span></span><span class="t-rev-inl t-since-cxx23"><span><a href="charset.html#Basic_character_set" title="cpp/language/charset">basic character set</a></span> <span><span class="t-mark-rev t-since-cxx23">(since C++23)</span></span></span>, except parentheses, backslash and <a href="../string/byte/isspace.html" title="cpp/string/byte/isspace">spaces</a> </td>
+</tr> <tr class="t-par"> <td> <span class="t-spar">r-char-sequence</span> </td> <td> - </td> <td> A sequence of one or more <span class="t-spar">r-char</span>s, except that it must not contain the closing sequence<br><code>)</code><span class="t-spar">d-char-sequence</span><code>"</code> </td>
+</tr> <tr class="t-par"> <td> <span class="t-spar">r-char</span> </td> <td> - </td> <td> A character from the <span class="t-rev-inl t-until-cxx23"><span><a href="translation_phases.html#Phase_5" title="cpp/language/translation phases">source character set</a></span> <span><span class="t-mark-rev t-until-cxx23">(until C++23)</span></span></span><span class="t-rev-inl t-since-cxx23"><span><a href="charset.html#Translation_character_set" title="cpp/language/charset">translation character set</a></span> <span><span class="t-mark-rev t-since-cxx23">(since C++23)</span></span></span> </td>
+</tr>
+</table> <div class="t-li1">
+<span class="t-li">1)</span> Ordinary string literal. The type of an unprefixed string literal is <code>const char[N]</code>, where <code>N</code> is the size of the string in code units of the <span class="t-rev-inl t-until-cxx23"><span>execution narrow encoding</span> <span><span class="t-mark-rev t-until-cxx23">(until C++23)</span></span></span><span class="t-rev-inl t-since-cxx23"><span><a href="charset.html#Code_unit_and_literal_encoding" title="cpp/language/charset">ordinary literal encoding</a></span> <span><span class="t-mark-rev t-since-cxx23">(since C++23)</span></span></span>, including the null terminator.</div> <div class="t-li1">
+<span class="t-li">2)</span> Wide string literal. The type of a <code>L"..."</code> string literal is <code>const wchar_t[N]</code>, where <code>N</code> is the size of the string in code units of the <span class="t-rev-inl t-until-cxx23"><span>execution wide encoding</span> <span><span class="t-mark-rev t-until-cxx23">(until C++23)</span></span></span><span class="t-rev-inl t-since-cxx23"><span>wide literal encoding</span> <span><span class="t-mark-rev t-since-cxx23">(since C++23)</span></span></span>, including the null terminator.</div> <div class="t-li1">
+<span class="t-li">3)</span> UTF-8 string literal. The type of a <code>u8"..."</code> string literal is <span class="t-rev-inl t-until-cxx20"><span><code>const char[N]</code></span> <span><span class="t-mark-rev t-until-cxx20">(until C++20)</span></span></span><span class="t-rev-inl t-since-cxx20"><span><code>const char8_t[N]</code></span> <span><span class="t-mark-rev t-since-cxx20">(since C++20)</span></span></span>, where <code>N</code> is the size of the string in UTF-8 code units including the null terminator.</div> <div class="t-li1">
+<span class="t-li">4)</span> UTF-16 string literal. The type of a <code>u"..."</code> string literal is <code>const char16_t[N]</code>, where <code>N</code> is the size of the string in UTF-16 code units including the null terminator.</div> <div class="t-li1">
+<span class="t-li">5)</span> UTF-32 string literal. The type of a <code>U"..."</code> string literal is <code>const char32_t[N]</code>, where <code>N</code> is the size of the string in UTF-32 code units including the null terminator.</div> <div class="t-li1">
+<span class="t-li">6)</span> Raw string literal. Used to avoid escaping of any character. Anything between the delimiters becomes part of the string. <span class="t-spar">prefix</span>, if present, has the same meaning as described above. The terminating <span class="t-spar">d-char-sequence</span> is the same sequence of characters as the initial <span class="t-spar">d-char-sequence</span>.</div> <p>Each <span class="t-spar">s-char</span> (originally from non-raw string literals) <span class="t-rev-inl t-since-cxx11"><span>or <span class="t-spar">r-char</span> (originally from raw string literals)</span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span> initializes the corresponding element(s) in the string literal object. An <span class="t-spar">s-char</span> <span class="t-rev-inl t-since-cxx11"><span>or <span class="t-spar">r-char</span></span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span> corresponds to more than one element if and only if it is represented by a sequence of more than one code units in the string literal's associated character encoding.</p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx23">
+<td> <p>If a character lacks representation in the associated character encoding,</p>
+<ul>
+<li> if the string literal is an ordinary string literal or wide string literal, it is conditionally-supported and an implementation-defined code unit sequence is encoded; </li>
+<li> otherwise (the string literal is UTF-encoded), the string literal is ill-formed. </li>
+</ul> </td> <td><span class="t-mark-rev t-since-cxx23">(since C++23)</span></td>
+</tr> </table> <p>Each numeric escape sequence corresponds to a single element. <span class="t-rev-inl t-since-cxx23"><span>If the value specified by the escape sequence fits within the unsigned version of the element type, the element has the specified value (possibly after conversion to the element type); otherwise (the specified value is out of range), the string literal is ill-formed.</span> <span><span class="t-mark-rev t-since-cxx23">(since C++23)</span></span></span>.</p>
+<h4 id="Concatenation"> Concatenation</h4> <p>String literals placed side-by-side are concatenated at <a href="translation_phases.html#Phase_6" title="cpp/language/translation phases">translation phase 6</a> (after the preprocessor). That is, <code>"Hello," " world!"</code> yields the (single) string <code>"Hello, world!"</code>. If the two strings have the same encoding prefix (or neither has one), the resulting string will have the same encoding prefix (or no prefix).</p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx11">
+<td> <p>If one of the strings has an encoding prefix and the other doesn't, the one that doesn't will be considered to have the same encoding prefix as the other.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">L"Δx = %" PRId16 // at phase 4, PRId16 expands to "d"
+                 // at phase 6, L"Δx = %" and "d" form L"Δx = %d"</pre></div> <p>If a UTF-8 string literal and a wide string literal are side by side, the program is ill-formed.</p>
+</td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx11 t-until-cxx23">
+<td> <p>Any other combination of encoding prefixes may or may not be supported by the implementation. The result of such a concatenation is implementation-defined.</p>
+</td> <td>
+<span class="t-mark-rev t-since-cxx11">(since C++11)</span><br><span class="t-mark-rev t-until-cxx23">(until C++23)</span>
+</td>
+</tr> <tr class="t-rev t-since-cxx23">
+<td> <p>Any other combination of encoding prefixes is ill-formed.</p>
+</td> <td><span class="t-mark-rev t-since-cxx23">(since C++23)</span></td>
+</tr> </table> <h3 id="Notes"> Notes</h3> <p>The null character (<code>'\0'</code>, <code>L'\0'</code>, <code>char16_t()</code>, etc) is always appended to the string literal: thus, a string literal <code>"Hello"</code> is a <code>const char[6]</code> holding the characters <code>'H'</code>, <code>'e'</code>, <code>'l'</code>, <code>'l'</code>, <code>'o'</code>, and <code>'\0'</code>.</p>
+<p>The encoding of ordinary string literals <span class="t-v">(1)</span> and wide string literals <span class="t-v">(2)</span> is implementation-defined. For example, gcc selects them with the <a rel="nofollow" class="external text" href="https://gcc.gnu.org/onlinedocs/cpp/Invocation.html">command line options</a> <code>-fexec-charset</code> and <code>-fwide-exec-charset</code>.</p>
+<p>String literals have <a href="storage_duration.html" title="cpp/language/storage duration">static storage duration</a>, and thus exist in memory for the life of the program.</p>
+<p>String literals can be used to <a href="aggregate_initialization.html" title="cpp/language/aggregate initialization">initialize character arrays</a>. If an array is initialized like <code>char str[] = "foo";</code>, <code>str</code> will contain a copy of the string <code>"foo"</code>.</p>
+<p>Whether string literals can overlap and whether successive evaluations of a string-literal yield the same object is unspecified. That means that identical string literals may or may not compare equal when compared by pointer.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">bool b = "bar" == 3+"foobar"; // could be true or false, implementation-defined</pre></div> <p>Attempting to modify a string literal results in <i>undefined behavior</i>: they may be stored in read-only storage (such as <code>.rodata</code>) or combined with other string literals:</p>
+<div class="cpp source-cpp"><pre data-language="cpp">const char* pc = "Hello";
+char* p = const_cast&lt;char*&gt;(pc);
+p[0] = 'M'; // undefined behavior</pre></div> <table class="t-rev-begin"> <tr class="t-rev t-until-cxx11">
+<td> <p>String literals are convertible and assignable to non-const <code>char*</code> or <code>wchar_t*</code> in order to be compatible with C, where string literals are of types <code>char[N]</code> and <code>wchar_t[N]</code>. Such implicit conversion is deprecated.</p>
+</td> <td><span class="t-mark-rev t-until-cxx11">(until C++11)</span></td>
+</tr> <tr class="t-rev t-since-cxx11">
+<td> <p>String literals are not convertible or assignable to non-const <code>CharT*</code>. An explicit cast (e.g. <a href="const_cast.html" title="cpp/language/const cast"><code>const_cast</code></a>) must be used if such conversion is wanted.</p>
+</td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <p>A string literal is not necessarily a null-terminated character sequence: if a string literal has embedded null characters, it represents an array which contains more than one string.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">const char* p = "abc\0def"; // std::strlen(p) == 3, but the array has size 8</pre></div> <p>If a valid hex digit follows a hex escape in a string literal, it would fail to compile as an invalid escape sequence. String concatenation can be used as a workaround:</p>
+<div class="cpp source-cpp"><pre data-language="cpp">//const char* p = "\xfff"; // error: hex escape sequence out of range
+const char* p = "\xff""f"; // OK: the literal is const char[3] holding {'\xff','f','\0'}</pre></div> <p>Although mixed wide string literal concatenation is allowed in C++11, all known C++ compilers reject such concatenation, and its usage experience is unknown. As a result, allowance of mixed wide string literal concatenation is removed in C++23.</p>
+<table class="wikitable sortable ftm-begin ftm-has-value"> <tr> <th>
+<a href="../utility/feature_test.html" title="cpp/utility/feature test">Feature-test</a> macro</th> <th>Value</th> <th><span title="Standard in which the feature is introduced">Std</span></th> <th>Comment </th>
+</tr> <tr> <td><a href="../feature_test.html#Language_features" title="cpp/feature test"><code>__cpp_char8_t</code></a></td> <td><span class="nu0">202207L</span></td> <td>
+<span class="t-mark">(C++20)</span><br><span class="t-mark">(DR)</span>
+</td> <td>
+<code>char8_t</code> compatibility and portability fix (<a href="aggregate_initialization.html#Character_arrays" title="cpp/language/aggregate initialization">allow initialization of (<code>unsigned</code>) <code>char</code> arrays</a> from UTF-8 string literals) </td>
+</tr> <tr> <td><a href="../feature_test.html#Language_features" title="cpp/feature test"><code>__cpp_raw_strings</code></a></td> <td><span class="nu0">200710L</span></td> <td><span class="t-mark">(C++11)</span></td> <td>Raw string literals </td>
+</tr> <tr> <td><a href="../feature_test.html#Language_features" title="cpp/feature test"><code>__cpp_unicode_literals</code></a></td> <td><span class="nu0">200710L</span></td> <td><span class="t-mark">(C++11)</span></td> <td>Unicode string literals </td>
+</tr>
+</table> <h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+ 
+char array1[] = "Foo" "bar";
+// same as
+char array2[] = { 'F', 'o', 'o', 'b', 'a', 'r', '\0' };
+ 
+const char* s1 = R"foo(
+Hello
+  World
+)foo";
+// same as
+const char* s2 = "\nHello\n  World\n";
+// same as
+const char* s3 = "\n"
+                 "Hello\n"
+                 "  World\n";
+ 
+const wchar_t* s4 = L"ABC" L"DEF"; // ok, same as
+const wchar_t* s5 = L"ABCDEF";
+const char32_t* s6 = U"GHI" "JKL"; // ok, same as
+const char32_t* s7 = U"GHIJKL";
+const char16_t* s9 = "MN" u"OP" "QR"; // ok, same as
+const char16_t* sA = u"MNOPQR";
+ 
+// const auto* sB = u"Mixed" U"Types";
+        // before C++23 may or may not be supported by
+        // the implementation; ill-formed since C++23
+ 
+const wchar_t* sC = LR"--(STUV)--"; // ok, raw string literal
+ 
+int main()
+{
+    std::cout &lt;&lt; array1 &lt;&lt; ' ' &lt;&lt; array2 &lt;&lt; '\n'
+              &lt;&lt; s1 &lt;&lt; s2 &lt;&lt; s3 &lt;&lt; std::endl;
+    std::wcout &lt;&lt; s4 &lt;&lt; ' ' &lt;&lt; s5 &lt;&lt; ' ' &lt;&lt; sC
+               &lt;&lt; std::endl;
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">Foobar Foobar
+ 
+Hello
+  World
+ 
+Hello
+  World
+ 
+Hello
+  World
+ 
+ABCDEF ABCDEF STUV</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1759.html">CWG 1759</a> </td> <td> C++11 </td> <td> A UTF-8 string literal might have code<br>units that are not representable in <code>char</code> </td> <td> <code>char</code> can represent all UTF-8 code units </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1823.html">CWG 1823</a> </td> <td> C++98 </td> <td> whether string literals are distinct<br>was implementation-defined </td> <td> distinctness is unspecified, and same<br>string literal can yield different object </td>
+</tr>
+</table> <h3 id="References"> References</h3>  <ul>
+<li> C++23 standard (ISO/IEC 14882:2023): </li>
+<ul><li> 5.13.5 String literals [lex.string] </li></ul>
+<li> C++20 standard (ISO/IEC 14882:2020): </li>
+<ul><li> 5.13.5 String literals [lex.string] </li></ul>
+<li> C++17 standard (ISO/IEC 14882:2017): </li>
+<ul><li> 5.13.5 String literals [lex.string] </li></ul>
+<li> C++14 standard (ISO/IEC 14882:2014): </li>
+<ul><li> 2.14.5 String literals [lex.string] </li></ul>
+<li> C++11 standard (ISO/IEC 14882:2011): </li>
+<ul><li> 2.14.5 String literals [lex.string] </li></ul>
+<li> C++03 standard (ISO/IEC 14882:2003): </li>
+<ul><li> 2.13.4 String literals [lex.string] </li></ul>
+<li> C++98 standard (ISO/IEC 14882:1998): </li>
+<ul><li> 2.13.4 String literals [lex.string] </li></ul>
+</ul>                           <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <a href="user_literal.html" title="cpp/language/user literal"> user-defined literals</a><span class="t-mark-rev t-since-cxx11">(C++11)</span> </td> <td> literals with user-defined suffix </td>
+</tr> <tr class="t-dsc"> <td colspan="2"> <span><a href="https://en.cppreference.com/w/c/language/string_literal" title="c/language/string literal">C documentation</a></span> for <span class=""><span>String literals</span></span> </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/language/string_literal" class="_attribution-link">https://en.cppreference.com/w/cpp/language/string_literal</a>
+  </p>
+</div>

@@ -1,0 +1,44 @@
+    <h1 id="firstHeading" class="firstHeading">std::ranges::range</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/ranges.html" title="cpp/header/ranges">&lt;ranges&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class T &gt;
+concept range = requires( T&amp; t ) {
+  ranges::begin(t); // equality-preserving for forward iterators
+  ranges::end  (t);
+};</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <p>The <code>range</code> concept defines the requirements of a type that allows iteration over its elements by providing an iterator and sentinel that denote the elements of the range.</p>
+<h3 id="Semantic_requirements"> Semantic requirements</h3> <p>Given an expression <code>E</code> such that <code>decltype((E))</code> is <code>T</code>, <code>T</code> models <code>range</code> only if.</p>
+<ul>
+<li> [<code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/begin"><span class="kw2886">ranges::<span class="me2">begin</span></span></a><span class="br0">(</span>E<span class="br0">)</span></code>, <code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/end"><span class="kw2888">ranges::<span class="me2">end</span></span></a><span class="br0">(</span>E<span class="br0">)</span></code>) denotes a range, and </li>
+<li> both <code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/begin"><span class="kw2886">ranges::<span class="me2">begin</span></span></a><span class="br0">(</span>E<span class="br0">)</span></code> and <code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/end"><span class="kw2888">ranges::<span class="me2">end</span></span></a><span class="br0">(</span>E<span class="br0">)</span></code> are amortized constant time and do not alter the value of <code>E</code> in a manner observable to <a href="../concepts.html#Equality_preservation" title="cpp/concepts">equality-preserving</a> expressions, and </li>
+<li> if the type of <code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/begin"><span class="kw2886">ranges::<span class="me2">begin</span></span></a><span class="br0">(</span>E<span class="br0">)</span></code> models <a href="../iterator/forward_iterator.html" title="cpp/iterator/forward iterator"><code>forward_iterator</code></a>, <code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/begin"><span class="kw2886">ranges::<span class="me2">begin</span></span></a><span class="br0">(</span>E<span class="br0">)</span></code> is <a href="../concepts.html#Equality_preservation" title="cpp/concepts">equality-preserving</a> (in other words, forward iterators support multi-pass algorithms). </li>
+</ul> <p>Note: In the definition above, the required expressions <code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/begin"><span class="kw2886">ranges::<span class="me2">begin</span></span></a><span class="br0">(</span>t<span class="br0">)</span></code> and <code><a href="http://en.cppreference.com/w/cpp/ranges-ranges-placeholder/end"><span class="kw2888">ranges::<span class="me2">end</span></span></a><span class="br0">(</span>t<span class="br0">)</span></code> do not require <a href="../concepts/equality_comparable.html#Implicit_expression_variations" title="cpp/concepts/equality comparable">implicit expression variations</a>.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;ranges&gt;
+#include &lt;vector&gt;
+ 
+template &lt;typename T&gt;
+struct range_t : private T
+{
+    using T::begin, T::end; /*...*/
+};
+static_assert(std::ranges::range&lt; range_t&lt;std::vector&lt;int&gt;&gt; &gt;);
+ 
+template &lt;typename T&gt; struct scalar_t
+{
+    T t {}; /* no begin/end */
+};
+static_assert(not std::ranges::range&lt; scalar_t&lt;int&gt; &gt;);
+ 
+int main()
+{
+    if constexpr (range_t&lt;std::vector&lt;int&gt;&gt; r; std::ranges::range&lt;decltype(r)&gt;)
+        std::cout &lt;&lt; "r is a range\n";
+ 
+    if constexpr (scalar_t&lt;int&gt; s; not std::ranges::range&lt;decltype(s)&gt;)
+        std::cout &lt;&lt; "s is not a range\n";
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">r is a range
+s is not a range</pre></div> </div>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/ranges/range" class="_attribution-link">https://en.cppreference.com/w/cpp/ranges/range</a>
+  </p>
+</div>

@@ -1,0 +1,121 @@
+    <h1 id="firstHeading" class="firstHeading">std::errc</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/system_error.html" title="cpp/header/system error">&lt;system_error&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">enum class errc;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  </table> <p>The scoped enumeration <code>std::errc</code> defines the values of portable error conditions that correspond to the POSIX error codes.</p>
+<h3 id="Member_constants"> Member constants</h3> <table class="t-dsc-begin"> <tr class="t-dsc-hitem"> <th> Constant </th> <th> Equivalent POSIX Error </th>
+</tr> <tr class="t-dsc"> <td> <code>address_family_not_supported</code> </td> <td> EAFNOSUPPORT </td>
+</tr> <tr class="t-dsc"> <td> <code>address_in_use</code> </td> <td> EADDRINUSE </td>
+</tr> <tr class="t-dsc"> <td> <code>address_not_available</code> </td> <td> EADDRNOTAVAIL </td>
+</tr> <tr class="t-dsc"> <td> <code>already_connected</code> </td> <td> EISCONN </td>
+</tr> <tr class="t-dsc"> <td> <code>argument_list_too_long</code> </td> <td> E2BIG </td>
+</tr> <tr class="t-dsc"> <td> <code>argument_out_of_domain</code> </td> <td> EDOM </td>
+</tr> <tr class="t-dsc"> <td> <code>bad_address</code> </td> <td> EFAULT </td>
+</tr> <tr class="t-dsc"> <td> <code>bad_file_descriptor</code> </td> <td> EBADF </td>
+</tr> <tr class="t-dsc"> <td> <code>bad_message</code> </td> <td> EBADMSG </td>
+</tr> <tr class="t-dsc"> <td> <code>broken_pipe</code> </td> <td> EPIPE </td>
+</tr> <tr class="t-dsc"> <td> <code>connection_aborted</code> </td> <td> ECONNABORTED </td>
+</tr> <tr class="t-dsc"> <td> <code>connection_already_in_progress</code> </td> <td> EALREADY </td>
+</tr> <tr class="t-dsc"> <td> <code>connection_refused</code> </td> <td> ECONNREFUSED </td>
+</tr> <tr class="t-dsc"> <td> <code>connection_reset</code> </td> <td> ECONNRESET </td>
+</tr> <tr class="t-dsc"> <td> <code>cross_device_link</code> </td> <td> EXDEV </td>
+</tr> <tr class="t-dsc"> <td> <code>destination_address_required</code> </td> <td> EDESTADDRREQ </td>
+</tr> <tr class="t-dsc"> <td> <code>device_or_resource_busy</code> </td> <td> EBUSY </td>
+</tr> <tr class="t-dsc"> <td> <code>directory_not_empty</code> </td> <td> ENOTEMPTY </td>
+</tr> <tr class="t-dsc"> <td> <code>executable_format_error</code> </td> <td> ENOEXEC </td>
+</tr> <tr class="t-dsc"> <td> <code>file_exists</code> </td> <td> EEXIST </td>
+</tr> <tr class="t-dsc"> <td> <code>file_too_large</code> </td> <td> EFBIG </td>
+</tr> <tr class="t-dsc"> <td> <code>filename_too_long</code> </td> <td> ENAMETOOLONG </td>
+</tr> <tr class="t-dsc"> <td> <code>function_not_supported</code> </td> <td> ENOSYS </td>
+</tr> <tr class="t-dsc"> <td> <code>host_unreachable</code> </td> <td> EHOSTUNREACH </td>
+</tr> <tr class="t-dsc"> <td> <code>identifier_removed</code> </td> <td> EIDRM </td>
+</tr> <tr class="t-dsc"> <td> <code>illegal_byte_sequence</code> </td> <td> EILSEQ </td>
+</tr> <tr class="t-dsc"> <td> <code>inappropriate_io_control_operation</code> </td> <td> ENOTTY </td>
+</tr> <tr class="t-dsc"> <td> <code>interrupted</code> </td> <td> EINTR </td>
+</tr> <tr class="t-dsc"> <td> <code>invalid_argument</code> </td> <td> EINVAL </td>
+</tr> <tr class="t-dsc"> <td> <code>invalid_seek</code> </td> <td> ESPIPE </td>
+</tr> <tr class="t-dsc"> <td> <code>io_error</code> </td> <td> EIO </td>
+</tr> <tr class="t-dsc"> <td> <code>is_a_directory</code> </td> <td> EISDIR </td>
+</tr> <tr class="t-dsc"> <td> <code>message_size</code> </td> <td> EMSGSIZE </td>
+</tr> <tr class="t-dsc"> <td> <code>network_down</code> </td> <td> ENETDOWN </td>
+</tr> <tr class="t-dsc"> <td> <code>network_reset</code> </td> <td> ENETRESET </td>
+</tr> <tr class="t-dsc"> <td> <code>network_unreachable</code> </td> <td> ENETUNREACH </td>
+</tr> <tr class="t-dsc"> <td> <code>no_buffer_space</code> </td> <td> ENOBUFS </td>
+</tr> <tr class="t-dsc"> <td> <code>no_child_process</code> </td> <td> ECHILD </td>
+</tr> <tr class="t-dsc"> <td> <code>no_link</code> </td> <td> ENOLINK </td>
+</tr> <tr class="t-dsc"> <td> <code>no_lock_available</code> </td> <td> ENOLCK </td>
+</tr> <tr class="t-dsc"> <td> <code>no_message_available</code> <span class="t-mark">(deprecated)</span> </td> <td> ENODATA </td>
+</tr> <tr class="t-dsc"> <td> <code>no_message</code> </td> <td> ENOMSG </td>
+</tr> <tr class="t-dsc"> <td> <code>no_protocol_option</code> </td> <td> ENOPROTOOPT </td>
+</tr> <tr class="t-dsc"> <td> <code>no_space_on_device</code> </td> <td> ENOSPC </td>
+</tr> <tr class="t-dsc"> <td> <code>no_stream_resources</code> <span class="t-mark">(deprecated)</span> </td> <td> ENOSR </td>
+</tr> <tr class="t-dsc"> <td> <code>no_such_device_or_address</code> </td> <td> ENXIO </td>
+</tr> <tr class="t-dsc"> <td> <code>no_such_device</code> </td> <td> ENODEV </td>
+</tr> <tr class="t-dsc"> <td> <code>no_such_file_or_directory</code> </td> <td> ENOENT </td>
+</tr> <tr class="t-dsc"> <td> <code>no_such_process</code> </td> <td> ESRCH </td>
+</tr> <tr class="t-dsc"> <td> <code>not_a_directory</code> </td> <td> ENOTDIR </td>
+</tr> <tr class="t-dsc"> <td> <code>not_a_socket</code> </td> <td> ENOTSOCK </td>
+</tr> <tr class="t-dsc"> <td> <code>not_a_stream</code> <span class="t-mark">(deprecated)</span> </td> <td> ENOSTR </td>
+</tr> <tr class="t-dsc"> <td> <code>not_connected</code> </td> <td> ENOTCONN </td>
+</tr> <tr class="t-dsc"> <td> <code>not_enough_memory</code> </td> <td> ENOMEM </td>
+</tr> <tr class="t-dsc"> <td> <code>not_supported</code> </td> <td> ENOTSUP </td>
+</tr> <tr class="t-dsc"> <td> <code>operation_canceled</code> </td> <td> ECANCELED </td>
+</tr> <tr class="t-dsc"> <td> <code>operation_in_progress</code> </td> <td> EINPROGRESS </td>
+</tr> <tr class="t-dsc"> <td> <code>operation_not_permitted</code> </td> <td> EPERM </td>
+</tr> <tr class="t-dsc"> <td> <code>operation_not_supported</code> </td> <td> EOPNOTSUPP </td>
+</tr> <tr class="t-dsc"> <td> <code>operation_would_block</code> </td> <td> EWOULDBLOCK </td>
+</tr> <tr class="t-dsc"> <td> <code>owner_dead</code> </td> <td> EOWNERDEAD </td>
+</tr> <tr class="t-dsc"> <td> <code>permission_denied</code> </td> <td> EACCES </td>
+</tr> <tr class="t-dsc"> <td> <code>protocol_error</code> </td> <td> EPROTO </td>
+</tr> <tr class="t-dsc"> <td> <code>protocol_not_supported</code> </td> <td> EPROTONOSUPPORT </td>
+</tr> <tr class="t-dsc"> <td> <code>read_only_file_system</code> </td> <td> EROFS </td>
+</tr> <tr class="t-dsc"> <td> <code>resource_deadlock_would_occur</code> </td> <td> EDEADLK </td>
+</tr> <tr class="t-dsc"> <td> <code>resource_unavailable_try_again</code> </td> <td> EAGAIN </td>
+</tr> <tr class="t-dsc"> <td> <code>result_out_of_range</code> </td> <td> ERANGE </td>
+</tr> <tr class="t-dsc"> <td> <code>state_not_recoverable</code> </td> <td> ENOTRECOVERABLE </td>
+</tr> <tr class="t-dsc"> <td> <code>stream_timeout</code> <span class="t-mark">(deprecated)</span> </td> <td> ETIME </td>
+</tr> <tr class="t-dsc"> <td> <code>text_file_busy</code> </td> <td> ETXTBSY </td>
+</tr> <tr class="t-dsc"> <td> <code>timed_out</code> </td> <td> ETIMEDOUT </td>
+</tr> <tr class="t-dsc"> <td> <code>too_many_files_open_in_system</code> </td> <td> ENFILE </td>
+</tr> <tr class="t-dsc"> <td> <code>too_many_files_open</code> </td> <td> EMFILE </td>
+</tr> <tr class="t-dsc"> <td> <code>too_many_links</code> </td> <td> EMLINK </td>
+</tr> <tr class="t-dsc"> <td> <code>too_many_symbolic_link_levels</code> </td> <td> ELOOP </td>
+</tr> <tr class="t-dsc"> <td> <code>value_too_large</code> </td> <td> EOVERFLOW </td>
+</tr> <tr class="t-dsc"> <td> <code>wrong_protocol_type</code> </td> <td> EPROTOTYPE </td>
+</tr> </table> <h3 id="Non-member_functions"> Non-member functions</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="errc/make_error_code.html" title="cpp/error/errc/make error code"> <span class="t-lines"><span>make_error_code<span class="t-dsc-small">(std::errc)</span></span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> constructs an <code>std::errc</code> error code <br> <span class="t-mark">(function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="errc/make_error_condition.html" title="cpp/error/errc/make error condition"> <span class="t-lines"><span>make_error_condition<span class="t-dsc-small">(std::errc)</span></span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> constructs an <code>std::errc</code> error condition <br> <span class="t-mark">(function)</span>  </td>
+</tr> </table> <h3 id="Helper_classes"> Helper classes</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="errc/is_error_condition_enum.html" title="cpp/error/errc/is error condition enum"> <span class="t-lines"><span>is_error_condition_enum<span class="t-dsc-small">&lt;std::errc&gt;</span></span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> extends the type trait <code><a href="error_condition/is_error_condition_enum.html" title="cpp/error/error condition/is error condition enum">std::is_error_condition_enum</a></code> to identify <code>std::errc</code> values as error conditions <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table> <h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;system_error&gt;
+#include &lt;thread&gt;
+ 
+int main()
+{
+    try
+    {
+        std::thread().detach(); // detaching a not-a-thread
+    }
+    catch (const std::system_error&amp; e)
+    {
+        std::cout &lt;&lt; "Caught a system_error\n";
+        if (e.code() == std::errc::invalid_argument)
+            std::cout &lt;&lt; "The error condition is 'std::errc::invalid_argument'\n";
+        std::cout &lt;&lt; "The error description is '" &lt;&lt; e.what() &lt;&lt; "'\n";
+    }
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">Caught a system_error
+The error condition is 'std::errc::invalid_argument'
+The error description is 'Invalid argument'</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/LWG/issue3869">LWG 3869</a> </td> <td> C++11 </td> <td> the member constants <code>no_message_available</code>,<br><code>no_stream_resources</code>, <code>not_a_stream</code> and <code>stream_timeout</code><br>referred to the obsolete POSIX STREAMS API<sup id="cite_ref-1" class="reference"><a href="#cite_note-1">[1]</a></sup> </td> <td> deprecated them </td>
+</tr>
+</table> <ol class="references"> <li id="cite_note-1"> <span class="reference-text">Although the corresponding POSIX error numbers ENODATA, ENOSR, ENOSTR and ETIME were marked "obsolescent" in POSIX 2017, the STREAMS API was optional and not required for conformance to the previous POSIX standard (because popular unix-like systems refused to implement it).</span> </li> </ol> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="error_code.html" title="cpp/error/error code"> <span class="t-lines"><span>error_code</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> holds a platform-dependent error code <br> <span class="t-mark">(class)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="error_condition.html" title="cpp/error/error condition"> <span class="t-lines"><span>error_condition</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> holds a portable error code <br> <span class="t-mark">(class)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/error/errc" class="_attribution-link">https://en.cppreference.com/w/cpp/error/errc</a>
+  </p>
+</div>

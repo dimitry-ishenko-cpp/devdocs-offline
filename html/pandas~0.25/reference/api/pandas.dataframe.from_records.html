@@ -1,0 +1,27 @@
+<h1 id="pandas-dataframe-from-records">pandas.DataFrame.from_records</h1> <dl class="classmethod"> <dt id="pandas.DataFrame.from_records">
+<code>classmethod DataFrame.from_records(data, index=None, exclude=None, columns=None, coerce_float=False, nrows=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1506-L1634"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert structured or record ndarray to DataFrame.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : ndarray (structured dtype), list of tuples, dict, or DataFrame</code> </dt>  <dt>
+<code>index : string, list of fields, array-like</code> </dt> <dd>
+<p class="first last">Field of array to use as the index, alternately a specific set of input labels to use</p> </dd> <dt>
+<code>exclude : sequence, default None</code> </dt> <dd>
+<p class="first last">Columns or fields to exclude</p> </dd> <dt>
+<code>columns : sequence, default None</code> </dt> <dd>
+<p class="first last">Column names to use. If the passed data do not have names associated with them, this argument provides names for the columns. Otherwise this argument indicates the order of the columns in the result (any names not found in the data will become all-NA columns)</p> </dd> <dt>
+<code>coerce_float : boolean, default False</code> </dt> <dd>
+<p class="first last">Attempt to convert values of non-string, non-numeric objects (like decimal.Decimal) to floating point, useful for SQL result sets</p> </dd> <dt>
+<code>nrows : int, default None</code> </dt> <dd>
+<p class="first last">Number of rows to read if data is an iterator</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.from_records.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.from_records.html</a>
+  </p>
+</div>

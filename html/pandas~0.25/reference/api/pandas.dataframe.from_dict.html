@@ -1,0 +1,45 @@
+<h1 id="pandas-dataframe-from-dict">pandas.DataFrame.from_dict</h1> <dl class="classmethod"> <dt id="pandas.DataFrame.from_dict">
+<code>classmethod DataFrame.from_dict(data, orient='columns', dtype=None, columns=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1104-L1185"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Construct DataFrame from dict of array-like or dicts.</p> <p>Creates DataFrame object from dictionary by columns or by index allowing dtype specification.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : dict</code> </dt> <dd>
+<p class="first last">Of the form {field : array-like} or {field : dict}.</p> </dd> <dt>
+<code>orient : {‘columns’, ‘index’}, default ‘columns’</code> </dt> <dd>
+<p class="first last">The “orientation” of the data. If the keys of the passed dict should be the columns of the resulting DataFrame, pass ‘columns’ (default). Otherwise if the keys should be rows, pass ‘index’.</p> </dd> <dt>
+<code>dtype : dtype, default None</code> </dt> <dd>
+<p class="first last">Data type to force, otherwise infer.</p> </dd> <dt>
+<code>columns : list, default None</code> </dt> <dd>
+<p class="first">Column labels to use when <code>orient='index'</code>. Raises a ValueError if used with <code>orient='columns'</code>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.from_records.html#pandas.DataFrame.from_records" title="pandas.DataFrame.from_records"><code>DataFrame.from_records</code></a>
+</dt> <dd>DataFrame from ndarray (structured dtype), list of tuples, dict, or DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a>
+</dt> <dd>DataFrame object creation using constructor.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>By default the keys of the dict become the DataFrame columns:</p> <pre data-language="python">&gt;&gt;&gt; data = {'col_1': [3, 2, 1, 0], 'col_2': ['a', 'b', 'c', 'd']}
+&gt;&gt;&gt; pd.DataFrame.from_dict(data)
+   col_1 col_2
+0      3     a
+1      2     b
+2      1     c
+3      0     d
+</pre> <p>Specify <code>orient='index'</code> to create the DataFrame using dictionary keys as rows:</p> <pre data-language="python">&gt;&gt;&gt; data = {'row_1': [3, 2, 1, 0], 'row_2': ['a', 'b', 'c', 'd']}
+&gt;&gt;&gt; pd.DataFrame.from_dict(data, orient='index')
+       0  1  2  3
+row_1  3  2  1  0
+row_2  a  b  c  d
+</pre> <p>When using the ‘index’ orientation, the column names can be specified manually:</p> <pre data-language="python">&gt;&gt;&gt; pd.DataFrame.from_dict(data, orient='index',
+...                        columns=['A', 'B', 'C', 'D'])
+       A  B  C  D
+row_1  3  2  1  0
+row_2  a  b  c  d
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.from_dict.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.from_dict.html</a>
+  </p>
+</div>

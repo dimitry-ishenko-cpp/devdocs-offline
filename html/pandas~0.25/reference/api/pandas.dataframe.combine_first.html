@@ -1,0 +1,33 @@
+<h1 id="pandas-dataframe-combine-first">pandas.DataFrame.combine_first</h1> <dl class="method"> <dt id="pandas.DataFrame.combine_first">
+<code>DataFrame.combine_first(self, other)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L5565-L5639"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Update null elements with value in the same location in <code>other</code>.</p> <p>Combine two DataFrame objects by filling null values in one DataFrame with non-null values from other DataFrame. The row and column indexes of the resulting DataFrame will be the union of the two.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : DataFrame</code> </dt> <dd>
+<p class="first last">Provided DataFrame to use to fill null values.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.combine.html#pandas.DataFrame.combine" title="pandas.DataFrame.combine"><code>DataFrame.combine</code></a>
+</dt> <dd>Perform series-wise operation on two DataFrames using a given function.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'A': [None, 0], 'B': [None, 4]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'A': [1, 1], 'B': [3, 3]})
+&gt;&gt;&gt; df1.combine_first(df2)
+     A    B
+0  1.0  3.0
+1  0.0  4.0
+</pre> <p>Null values still persist if the location of that null value does not exist in <code>other</code></p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'A': [None, 0], 'B': [4, None]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'B': [3, 3], 'C': [1, 1]}, index=[1, 2])
+&gt;&gt;&gt; df1.combine_first(df2)
+     A    B    C
+0  NaN  4.0  NaN
+1  0.0  3.0  1.0
+2  NaN  3.0  1.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.combine_first.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.combine_first.html</a>
+  </p>
+</div>

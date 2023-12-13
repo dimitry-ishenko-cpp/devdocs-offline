@@ -1,0 +1,21 @@
+<h1 id="pandas-io-formats-style-styler-set-table-attributes">pandas.io.formats.style.Styler.set_table_attributes</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.set_table_attributes">
+<code>Styler.set_table_attributes(self, attributes)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L771-L793"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Set the table attributes.</p> <p>These are the items that show up in the opening <code>&lt;table&gt;</code> tag in addition to to automatic (by default) id.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>attributes : string</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>self : Styler</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(np.random.randn(10, 4))
+&gt;&gt;&gt; df.style.set_table_attributes('class="pure-table"')
+# ... &lt;table class="pure-table"&gt; ...
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.set_table_attributes.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.set_table_attributes.html</a>
+  </p>
+</div>

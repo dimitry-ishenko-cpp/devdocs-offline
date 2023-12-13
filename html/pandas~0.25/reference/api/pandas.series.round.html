@@ -1,0 +1,29 @@
+<h1 id="pandas-series-round">pandas.Series.round</h1> <dl class="method"> <dt id="pandas.Series.round">
+<code>Series.round(self, decimals=0, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L2308-L2342"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Round each value in a Series to the given number of decimals.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>decimals : int</code> </dt> <dd>
+<p class="first last">Number of decimal places to round to (default: 0). If decimals is negative, it specifies the number of positions to the left of the decimal point.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Rounded values of the Series.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.around.html#numpy.around" title="(in NumPy v1.16)"><code>numpy.around</code></a>
+</dt> <dd>Round values of an np.array.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.round.html#pandas.DataFrame.round" title="pandas.DataFrame.round"><code>DataFrame.round</code></a>
+</dt> <dd>Round values of a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([0.1, 1.3, 2.7])
+&gt;&gt;&gt; s.round()
+0    0.0
+1    1.0
+2    3.0
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.round.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.round.html</a>
+  </p>
+</div>

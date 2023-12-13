@@ -1,0 +1,18 @@
+<h1 id="pandas-index-droplevel">pandas.Index.droplevel</h1> <dl class="method"> <dt id="pandas.Index.droplevel">
+<code>Index.droplevel(self, level=0)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1620-L1681"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return index with requested level(s) removed.</p> <p>If resulting index has only 1 level left, the result will be of Index type, not MultiIndex.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.23.1: </span>(support for non-MultiIndex)</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>level : int, str, or list-like, default 0</code> </dt> <dd>
+<p class="first last">If a string is given, must be the name of a level If list-like, elements must be names or indexes of levels.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Index or MultiIndex</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.droplevel.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.droplevel.html</a>
+  </p>
+</div>

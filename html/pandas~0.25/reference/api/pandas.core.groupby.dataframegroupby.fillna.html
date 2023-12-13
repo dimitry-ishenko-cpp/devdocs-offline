@@ -1,0 +1,67 @@
+<h1 id="pandas-core-groupby-dataframegroupby-fillna">pandas.core.groupby.DataFrameGroupBy.fillna</h1> <dl class="attribute"> <dt id="pandas.core.groupby.DataFrameGroupBy.fillna">
+<code>DataFrameGroupBy.fillna</code> </dt> <dd>
+<p>Fill NA/NaN values using the specified method.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>value : scalar, dict, Series, or DataFrame</code> </dt> <dd>
+<p class="first last">Value to use to fill holes (e.g. 0), alternately a dict/Series/DataFrame of values specifying which value to use for each index (for a Series) or column (for a DataFrame). Values not in the dict/Series/DataFrame will not be filled. This value cannot be a list.</p> </dd> <dt>
+<code>method : {‘backfill’, ‘bfill’, ‘pad’, ‘ffill’, None}, default None</code> </dt> <dd>
+<p class="first last">Method to use for filling holes in reindexed Series pad / ffill: propagate last valid observation forward to next valid backfill / bfill: use next valid observation to fill gap.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}</code> </dt> <dd>
+<p class="first last">Axis along which to fill missing values.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">If True, fill in-place. Note: this will modify any other views on this object (e.g., a no-copy slice for a column in a DataFrame).</p> </dd> <dt>
+<code>limit : int, default None</code> </dt> <dd>
+<p class="first last">If method is specified, this is the maximum number of consecutive NaN values to forward/backward fill. In other words, if there is a gap with more than this number of consecutive NaNs, it will only be partially filled. If method is not specified, this is the maximum number of entries along the entire axis where NaNs will be filled. Must be greater than 0 if not None.</p> </dd> <dt>
+<code>downcast : dict, default is None</code> </dt> <dd>
+<p class="first last">A dict of item-&gt;dtype of what to downcast if possible, or the string ‘infer’ which will try to downcast to an appropriate equal type (e.g. float64 to int64 if possible).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Object with missing values filled.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>interpolate</code> </dt> <dd>Fill NaN values using interpolation.</dd> <dt>
+<code>reindex</code> </dt> <dd>Conform object to new index.</dd> <dt>
+<code>asfreq</code> </dt> <dd>Convert TimeSeries to specified frequency.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[np.nan, 2, np.nan, 0],
+...                    [3, 4, np.nan, 1],
+...                    [np.nan, np.nan, np.nan, 5],
+...                    [np.nan, 3, np.nan, 4]],
+...                   columns=list('ABCD'))
+&gt;&gt;&gt; df
+     A    B   C  D
+0  NaN  2.0 NaN  0
+1  3.0  4.0 NaN  1
+2  NaN  NaN NaN  5
+3  NaN  3.0 NaN  4
+</pre> <p>Replace all NaN elements with 0s.</p> <pre data-language="python">&gt;&gt;&gt; df.fillna(0)
+    A   B   C   D
+0   0.0 2.0 0.0 0
+1   3.0 4.0 0.0 1
+2   0.0 0.0 0.0 5
+3   0.0 3.0 0.0 4
+</pre> <p>We can also propagate non-null values forward or backward.</p> <pre data-language="python">&gt;&gt;&gt; df.fillna(method='ffill')
+    A   B   C   D
+0   NaN 2.0 NaN 0
+1   3.0 4.0 NaN 1
+2   3.0 4.0 NaN 5
+3   3.0 3.0 NaN 4
+</pre> <p>Replace all NaN elements in column ‘A’, ‘B’, ‘C’, and ‘D’, with 0, 1, 2, and 3 respectively.</p> <pre data-language="python">&gt;&gt;&gt; values = {'A': 0, 'B': 1, 'C': 2, 'D': 3}
+&gt;&gt;&gt; df.fillna(value=values)
+    A   B   C   D
+0   0.0 2.0 2.0 0
+1   3.0 4.0 2.0 1
+2   0.0 1.0 2.0 5
+3   0.0 3.0 2.0 4
+</pre> <p>Only replace the first NaN element.</p> <pre data-language="python">&gt;&gt;&gt; df.fillna(value=values, limit=1)
+    A   B   C   D
+0   0.0 2.0 2.0 0
+1   3.0 4.0 NaN 1
+2   NaN 1.0 NaN 5
+3   NaN 3.0 NaN 4
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.fillna.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.fillna.html</a>
+  </p>
+</div>

@@ -1,0 +1,41 @@
+<h1 id="pandas-core-window-rolling-kurt">pandas.core.window.Rolling.kurt</h1> <dl class="method"> <dt id="pandas.core.window.Rolling.kurt">
+<code>Rolling.kurt(self, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/window.py#L1926-L1930"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Calculate unbiased rolling kurtosis.</p> <p>This function uses Fisher’s definition of kurtosis without bias.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Under Review.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Returned object type is determined by the caller of the rolling calculation.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.rolling</code> </dt> <dd>Calling object with Series data.</dd> <dt>
+<code>DataFrame.rolling</code> </dt> <dd>Calling object with DataFrames.</dd> <dt>
+<code>Series.kurt</code> </dt> <dd>Equivalent method for Series.</dd> <dt>
+<code>DataFrame.kurt</code> </dt> <dd>Equivalent method for DataFrame.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.skew.html#scipy.stats.skew" title="(in SciPy v1.3.0)"><code>scipy.stats.skew</code></a>
+</dt> <dd>Third moment of a probability density.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.kurtosis.html#scipy.stats.kurtosis" title="(in SciPy v1.3.0)"><code>scipy.stats.kurtosis</code></a>
+</dt> <dd>Reference SciPy method.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>A minimum of 4 periods is required for the rolling calculation.</p> <h4 class="rubric">Examples</h4> <p>The example below will show a rolling calculation with a window size of four matching the equivalent function call using <code>scipy.stats</code>.</p> <pre data-language="python">&gt;&gt;&gt; arr = [1, 2, 3, 4, 999]
+&gt;&gt;&gt; fmt = "{0:.6f}"  # limit the printed precision to 6 digits
+&gt;&gt;&gt; import scipy.stats
+&gt;&gt;&gt; print(fmt.format(scipy.stats.kurtosis(arr[:-1], bias=False)))
+-1.200000
+&gt;&gt;&gt; print(fmt.format(scipy.stats.kurtosis(arr[1:], bias=False)))
+3.999946
+&gt;&gt;&gt; s = pd.Series(arr)
+&gt;&gt;&gt; s.rolling(4).kurt()
+0         NaN
+1         NaN
+2         NaN
+3   -1.200000
+4    3.999946
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.kurt.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.kurt.html</a>
+  </p>
+</div>

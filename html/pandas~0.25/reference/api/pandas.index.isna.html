@@ -1,0 +1,39 @@
+<h1 id="pandas-index-isna">pandas.Index.isna</h1> <dl class="method"> <dt id="pandas.Index.isna">
+<code>Index.isna(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1957-L2012"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Detect missing values.</p> <p>Return a boolean same-sized object indicating if the values are NA. NA values, such as <code>None</code>, <code>numpy.NaN</code> or <code>pd.NaT</code>, get mapped to <code>True</code> values. Everything else get mapped to <code>False</code> values. Characters such as empty strings <code>‘’</code> or <code>numpy.inf</code> are not considered NA values (unless you set <code>pandas.options.mode.use_inf_as_na = True</code>).</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt> <dd>
+<p class="first last">A boolean array of whether my values are NA.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.notna.html#pandas.Index.notna" title="pandas.Index.notna"><code>Index.notna</code></a>
+</dt> <dd>Boolean inverse of isna.</dd> <dt>
+ <a class="reference internal" href="pandas.index.dropna.html#pandas.Index.dropna" title="pandas.Index.dropna"><code>Index.dropna</code></a>
+</dt> <dd>Omit entries with missing values.</dd> <dt>
+ <a class="reference internal" href="pandas.isna.html#pandas.isna" title="pandas.isna"><code>isna</code></a>
+</dt> <dd>Top-level isna.</dd> <dt>
+ <a class="reference internal" href="pandas.series.isna.html#pandas.Series.isna" title="pandas.Series.isna"><code>Series.isna</code></a>
+</dt> <dd>Detect missing values in Series object.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Show which entries in a pandas.Index are NA. The result is an array.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index([5.2, 6.0, np.NaN])
+&gt;&gt;&gt; idx
+Float64Index([5.2, 6.0, nan], dtype='float64')
+&gt;&gt;&gt; idx.isna()
+array([False, False,  True], dtype=bool)
+</pre> <p>Empty strings are not considered NA values. None is considered an NA value.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['black', '', 'red', None])
+&gt;&gt;&gt; idx
+Index(['black', '', 'red', None], dtype='object')
+&gt;&gt;&gt; idx.isna()
+array([False, False, False,  True], dtype=bool)
+</pre> <p>For datetimes, <code>NaT</code> (Not a Time) is considered as an NA value.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.DatetimeIndex([pd.Timestamp('1940-04-25'),
+...                         pd.Timestamp(''), None, pd.NaT])
+&gt;&gt;&gt; idx
+DatetimeIndex(['1940-04-25', 'NaT', 'NaT', 'NaT'],
+              dtype='datetime64[ns]', freq=None)
+&gt;&gt;&gt; idx.isna()
+array([False,  True,  True,  True], dtype=bool)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.isna.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.isna.html</a>
+  </p>
+</div>

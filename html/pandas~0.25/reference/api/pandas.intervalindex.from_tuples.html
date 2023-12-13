@@ -1,0 +1,33 @@
+<h1 id="pandas-intervalindex-from-tuples">pandas.IntervalIndex.from_tuples</h1> <dl class="classmethod"> <dt id="pandas.IntervalIndex.from_tuples">
+<code>classmethod IntervalIndex.from_tuples(data, closed='right', name=None, copy=False, dtype=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/interval.py#L288-L293"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Construct an IntervalIndex from an array-like of tuples</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : array-like (1-dimensional)</code> </dt> <dd>
+<p class="first last">Array of tuples</p> </dd> <dt>
+<code>closed : {‘left’, ‘right’, ‘both’, ‘neither’}, default ‘right’</code> </dt> <dd>
+<p class="first last">Whether the intervals are closed on the left-side, right-side, both or neither.</p> </dd> <dt>
+<code>copy : boolean, default False</code> </dt> <dd>
+<p class="first last">by-default copy the data, this is compat only and ignored</p> </dd> <dt>
+<code>dtype : dtype or None, default None</code> </dt> <dd>
+<p class="first">If None, dtype will be inferred</p> <p class="last">..versionadded:: 0.23.0</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>IntervalIndex</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.interval_range.html#pandas.interval_range" title="pandas.interval_range"><code>interval_range</code></a>
+</dt> <dd>Function to create a fixed frequency IntervalIndex.</dd> <dt>
+ <a class="reference internal" href="pandas.intervalindex.from_arrays.html#pandas.IntervalIndex.from_arrays" title="pandas.IntervalIndex.from_arrays"><code>IntervalIndex.from_arrays</code></a>
+</dt> <dd>Construct an IntervalIndex from a left and right array.</dd> <dt>
+ <a class="reference internal" href="pandas.intervalindex.from_breaks.html#pandas.IntervalIndex.from_breaks" title="pandas.IntervalIndex.from_breaks"><code>IntervalIndex.from_breaks</code></a>
+</dt> <dd>Construct an IntervalIndex from an array of splits.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.IntervalIndex.from_tuples([(0, 1), (1, 2)])
+IntervalIndex([(0, 1], (1, 2]],
+            closed='right', dtype='interval[int64]')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.IntervalIndex.from_tuples.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.IntervalIndex.from_tuples.html</a>
+  </p>
+</div>

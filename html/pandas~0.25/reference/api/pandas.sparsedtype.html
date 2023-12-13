@@ -1,0 +1,25 @@
+<h1 id="pandas-sparsedtype">pandas.SparseDtype</h1> <dl class="class"> <dt id="pandas.SparseDtype">
+<code>class pandas.SparseDtype(dtype: Union[str, numpy.dtype, pandas.core.dtypes.base.ExtensionDtype] = &lt;class 'numpy.float64'&gt;, fill_value: Any = None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/sparse.py#L64-L389"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Dtype for data stored in <a class="reference internal" href="pandas.sparsearray.html#pandas.SparseArray" title="pandas.SparseArray"><code>SparseArray</code></a>.</p> <p>This dtype implements the pandas ExtensionDtype interface.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>dtype : str, ExtensionDtype, numpy.dtype, type, default numpy.float64</code> </dt> <dd>
+<p class="first last">The dtype of the underlying array storing the non-fill value values.</p> </dd> <dt>
+<code>fill_value : scalar, optional</code> </dt> <dd>
+<p class="first">The scalar value not stored in the SparseArray. By default, this depends on <code>dtype</code>.</p> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">dtype</th> <th class="head">na_value</th> </tr> </thead>  <tr>
+<td>float</td> <td><code>np.nan</code></td> </tr> <tr>
+<td>int</td> <td><code>0</code></td> </tr> <tr>
+<td>bool</td> <td><code>False</code></td> </tr> <tr>
+<td>datetime64</td> <td><code>pd.NaT</code></td> </tr> <tr>
+<td>timedelta64</td> <td><code>pd.NaT</code></td> </tr>  </table> <p class="last">The default value may be overridden by specifying a <code>fill_value</code>.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseDtype.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseDtype.html</a>
+  </p>
+</div>

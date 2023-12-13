@@ -1,0 +1,38 @@
+<h1 id="pandas-dataframe-applymap">pandas.DataFrame.applymap</h1> <dl class="method"> <dt id="pandas.DataFrame.applymap">
+<code>DataFrame.applymap(self, func)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L6908-L6972"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Apply a function to a Dataframe elementwise.</p> <p>This method applies a function that accepts and returns a scalar to every element of a DataFrame.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : callable</code> </dt> <dd>
+<p class="first last">Python function, returns a single value from a single value.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Transformed DataFrame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code>DataFrame.apply</code></a>
+</dt> <dd>Apply a function along input axis of DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>In the current implementation applymap calls <code>func</code> twice on the first column/row to decide whether it can take a fast or slow code path. This can lead to unexpected behavior if <code>func</code> has side-effects, as they will take effect twice for the first column/row.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[1, 2.12], [3.356, 4.567]])
+&gt;&gt;&gt; df
+       0      1
+0  1.000  2.120
+1  3.356  4.567
+</pre> <pre data-language="python">&gt;&gt;&gt; df.applymap(lambda x: len(str(x)))
+   0  1
+0  3  4
+1  5  5
+</pre> <p>Note that a vectorized version of <code>func</code> often exists, which will be much faster. You could square each number elementwise.</p> <pre data-language="python">&gt;&gt;&gt; df.applymap(lambda x: x**2)
+           0          1
+0   1.000000   4.494400
+1  11.262736  20.857489
+</pre> <p>But it’s better to avoid applymap in that case.</p> <pre data-language="python">&gt;&gt;&gt; df ** 2
+           0          1
+0   1.000000   4.494400
+1  11.262736  20.857489
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.applymap.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.applymap.html</a>
+  </p>
+</div>

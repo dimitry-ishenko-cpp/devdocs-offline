@@ -1,0 +1,56 @@
+<h1 id="pandas-dataframe-asof">pandas.DataFrame.asof</h1> <dl class="method"> <dt id="pandas.DataFrame.asof">
+<code>DataFrame.asof(self, where, subset=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L7082-L7251"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the last row(s) without any NaNs before <code>where</code>.</p> <p>The last row (for each element in <code>where</code>, if list) without any NaN is taken. In case of a <a class="reference internal" href="pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a>, the last row without NaN considering only the subset of columns (if not <code>None</code>)</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.19.0: </span>For DataFrame</p> </div> <p>If there is no good value, NaN is returned for a Series or a Series of NaN values for a DataFrame</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>where : date or array-like of dates</code> </dt> <dd>
+<p class="first last">Date(s) before which the last row(s) are returned.</p> </dd> <dt>
+<code>subset : str or array-like of str, default None</code> </dt> <dd>
+<p class="first last">For DataFrame, if not <code>None</code>, only use these columns to check for NaNs.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar, Series, or DataFrame</dt> <dd>
+<p class="first">The return can be:</p> <ul class="simple"> <li>scalar : when <code>self</code> is a Series and <code>where</code> is a scalar</li> <li>Series: when <code>self</code> is a Series and <code>where</code> is an array-like, or when <code>self</code> is a DataFrame and <code>where</code> is a scalar</li> <li>DataFrame : when <code>self</code> is a DataFrame and <code>where</code> is an array-like</li> </ul> <p class="last">Return scalar, Series, or DataFrame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.merge_asof.html#pandas.merge_asof" title="pandas.merge_asof"><code>merge_asof</code></a>
+</dt> <dd>Perform an asof merge. Similar to left join.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Dates are assumed to be sorted. Raises if this is not the case.</p> <h4 class="rubric">Examples</h4> <p>A Series and a scalar <code>where</code>.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, np.nan, 4], index=[10, 20, 30, 40])
+&gt;&gt;&gt; s
+10    1.0
+20    2.0
+30    NaN
+40    4.0
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.asof(20)
+2.0
+</pre> <p>For a sequence <code>where</code>, a Series is returned. The first value is NaN, because the first element of <code>where</code> is before the first index value.</p> <pre data-language="python">&gt;&gt;&gt; s.asof([5, 20])
+5     NaN
+20    2.0
+dtype: float64
+</pre> <p>Missing values are not considered. The following is <code>2.0</code>, not NaN, even though NaN is at the index location for <code>30</code>.</p> <pre data-language="python">&gt;&gt;&gt; s.asof(30)
+2.0
+</pre> <p>Take all columns into consideration</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'a': [10, 20, 30, 40, 50],
+...                    'b': [None, None, None, None, 500]},
+...                   index=pd.DatetimeIndex(['2018-02-27 09:01:00',
+...                                           '2018-02-27 09:02:00',
+...                                           '2018-02-27 09:03:00',
+...                                           '2018-02-27 09:04:00',
+...                                           '2018-02-27 09:05:00']))
+&gt;&gt;&gt; df.asof(pd.DatetimeIndex(['2018-02-27 09:03:30',
+...                           '2018-02-27 09:04:30']))
+                      a   b
+2018-02-27 09:03:30 NaN NaN
+2018-02-27 09:04:30 NaN NaN
+</pre> <p>Take a single column into consideration</p> <pre data-language="python">&gt;&gt;&gt; df.asof(pd.DatetimeIndex(['2018-02-27 09:03:30',
+...                           '2018-02-27 09:04:30']),
+...         subset=['a'])
+                         a   b
+2018-02-27 09:03:30   30.0 NaN
+2018-02-27 09:04:30   40.0 NaN
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.asof.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.asof.html</a>
+  </p>
+</div>

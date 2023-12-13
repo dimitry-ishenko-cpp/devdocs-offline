@@ -1,0 +1,29 @@
+    <h1 id="firstHeading" class="firstHeading">std::filesystem::recursive_directory_iterator::recursive_directory_iterator</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">recursive_directory_iterator() noexcept;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">recursive_directory_iterator( const recursive_directory_iterator&amp; rhs );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">recursive_directory_iterator( recursive_directory_iterator&amp;&amp; rhs ) noexcept;</pre>
+</td> <td> (3) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">explicit recursive_directory_iterator( const std::filesystem::path&amp; p );</pre>
+</td> <td> (4) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">recursive_directory_iterator(
+    const std::filesystem::path&amp; p,
+    std::filesystem::directory_options options );</pre>
+</td> <td> (4) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">recursive_directory_iterator(
+    const std::filesystem::path&amp; p,
+    std::filesystem::directory_options options,
+    std::error_code&amp; ec );</pre>
+</td> <td> (5) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">recursive_directory_iterator( const std::filesystem::path&amp; p, std::error_code&amp; ec );</pre>
+</td> <td> (6) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr>  </table> <p>Constructs new recursive directory iterator.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Default constructor. Constructs an end iterator.</div> <div class="t-li1">
+<span class="t-li">2)</span> Copy constructor.</div> <div class="t-li1">
+<span class="t-li">3)</span> Move constructor.</div> <div class="t-li1">
+<span class="t-li">4-6)</span> Constructs an iterator that refers to the first entry in the directory that <code>p</code> resolves to.</div>   <h3 id="Parameters"> Parameters</h3>  <h3 id="Exceptions"> Exceptions</h3> <p>The overload that does not take a <code><a href="http://en.cppreference.com/w/cpp/error/error_code"><span class="kw879">std::<span class="me2">error_code</span></span></a><span class="sy3">&amp;</span></code> parameter throws <a href="../filesystem_error.html" title="cpp/filesystem/filesystem error"><code>filesystem::filesystem_error</code></a> on underlying OS API errors, constructed with <code>p</code> as the first path argument and the OS error code as the error code argument. The overload taking a <code><a href="http://en.cppreference.com/w/cpp/error/error_code"><span class="kw879">std::<span class="me2">error_code</span></span></a><span class="sy3">&amp;</span></code> parameter sets it to the OS API error code if an OS API call fails, and executes <code>ec.clear()</code> if no errors occur. Any overload not marked <code>noexcept</code> may throw <code><a href="../../memory/new/bad_alloc.html" title="cpp/memory/new/bad alloc">std::bad_alloc</a></code> if memory allocation fails.</p>
+<h3 id="Notes"> Notes</h3> <p>Recursive directory iterators do not follow directory symlinks by default. To enable this behavior, specify <code>directory_options::follow_directory_symlink</code> among the <code>options</code> option set.</p>
+<h3 id="Example"> Example</h3>  <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/LWG/issue3013">LWG 3013</a> </td> <td> C++17 </td> <td> <code>error_code</code> overload marked noexcept but can allocate memory </td> <td> noexcept removed </td>
+</tr>
+</table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/filesystem/recursive_directory_iterator/recursive_directory_iterator" class="_attribution-link">https://en.cppreference.com/w/cpp/filesystem/recursive_directory_iterator/recursive_directory_iterator</a>
+  </p>
+</div>

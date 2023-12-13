@@ -1,0 +1,33 @@
+<h1 id="pandas-series-iat">pandas.Series.iat</h1> <dl class="attribute"> <dt id="pandas.Series.iat">
+<code>Series.iat</code> </dt> <dd>
+<p>Access a single value for a row/column pair by integer position.</p> <p>Similar to <code>iloc</code>, in that both provide integer-based lookups. Use <code>iat</code> if you only need to get or set a single value in a DataFrame or Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>IndexError</dt> <dd>
+<p class="first last">When integer position is out of bounds</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.at.html#pandas.DataFrame.at" title="pandas.DataFrame.at"><code>DataFrame.at</code></a>
+</dt> <dd>Access a single value for a row/column label pair.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code>DataFrame.loc</code></a>
+</dt> <dd>Access a group of rows and columns by label(s).</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code>DataFrame.iloc</code></a>
+</dt> <dd>Access a group of rows and columns by integer position(s).</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[0, 2, 3], [0, 4, 1], [10, 20, 30]],
+...                   columns=['A', 'B', 'C'])
+&gt;&gt;&gt; df
+    A   B   C
+0   0   2   3
+1   0   4   1
+2  10  20  30
+</pre> <p>Get value at specified row/column pair</p> <pre data-language="python">&gt;&gt;&gt; df.iat[1, 2]
+1
+</pre> <p>Set value at specified row/column pair</p> <pre data-language="python">&gt;&gt;&gt; df.iat[1, 2] = 10
+&gt;&gt;&gt; df.iat[1, 2]
+10
+</pre> <p>Get value within a series</p> <pre data-language="python">&gt;&gt;&gt; df.loc[0].iat[1]
+2
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.iat.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.iat.html</a>
+  </p>
+</div>

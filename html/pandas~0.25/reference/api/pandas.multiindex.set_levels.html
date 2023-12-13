@@ -1,0 +1,51 @@
+<h1 id="pandas-multiindex-set-levels">pandas.MultiIndex.set_levels</h1> <dl class="method"> <dt id="pandas.MultiIndex.set_levels">
+<code>MultiIndex.set_levels(self, levels, level=None, inplace=False, verify_integrity=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/multi.py#L693-L766"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Set new levels on MultiIndex. Defaults to returning new index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>levels : sequence or list of sequence</code> </dt> <dd>
+<p class="first last">new level(s) to apply</p> </dd> <dt>
+<code>level : int, level name, or sequence of int/level names (default None)</code> </dt> <dd>
+<p class="first last">level(s) to set (None for all levels)</p> </dd> <dt>
+<code>inplace : bool</code> </dt> <dd>
+<p class="first last">if True, mutates in place</p> </dd> <dt>
+<code>verify_integrity : bool (default True)</code> </dt> <dd>
+<p class="first last">if True, checks that levels and codes are compatible</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>new index (of same type and class…etc)</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_tuples([(1, 'one'), (1, 'two'),
+                                    (2, 'one'), (2, 'two')],
+                                    names=['foo', 'bar'])
+&gt;&gt;&gt; idx.set_levels([['a', 'b'], [1, 2]])
+MultiIndex([('a', 1),
+            ('a', 2),
+            ('b', 1),
+            ('b', 2)],
+           names=['foo', 'bar'])
+&gt;&gt;&gt; idx.set_levels(['a', 'b'], level=0)
+MultiIndex([('a', 'one'),
+            ('a', 'two'),
+            ('b', 'one'),
+            ('b', 'two')],
+           names=['foo', 'bar'])
+&gt;&gt;&gt; idx.set_levels(['a', 'b'], level='bar')
+MultiIndex([(1, 'a'),
+            (1, 'b'),
+            (2, 'a'),
+            (2, 'b')],
+           names=['foo', 'bar'])
+&gt;&gt;&gt; idx.set_levels([['a', 'b'], [1, 2]], level=[0, 1])
+MultiIndex([('a', 1),
+            ('a', 2),
+            ('b', 1),
+            ('b', 2)],
+           names=['foo', 'bar'])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.set_levels.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.set_levels.html</a>
+  </p>
+</div>

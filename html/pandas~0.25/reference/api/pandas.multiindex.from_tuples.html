@@ -1,0 +1,37 @@
+<h1 id="pandas-multiindex-from-tuples">pandas.MultiIndex.from_tuples</h1> <dl class="classmethod"> <dt id="pandas.MultiIndex.from_tuples">
+<code>classmethod MultiIndex.from_tuples(tuples, sortorder=None, names=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/multi.py#L432-L489"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert list of tuples to MultiIndex.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>tuples : list / sequence of tuple-likes</code> </dt> <dd>
+<p class="first last">Each tuple is the index of one row/column.</p> </dd> <dt>
+<code>sortorder : int or None</code> </dt> <dd>
+<p class="first last">Level of sortedness (must be lexicographically sorted by that level).</p> </dd> <dt>
+<code>names : list / sequence of str, optional</code> </dt> <dd>
+<p class="first last">Names for the levels in the index.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>index : MultiIndex</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.multiindex.from_arrays.html#pandas.MultiIndex.from_arrays" title="pandas.MultiIndex.from_arrays"><code>MultiIndex.from_arrays</code></a>
+</dt> <dd>Convert list of arrays to MultiIndex.</dd> <dt>
+ <a class="reference internal" href="pandas.multiindex.from_product.html#pandas.MultiIndex.from_product" title="pandas.MultiIndex.from_product"><code>MultiIndex.from_product</code></a>
+</dt> <dd>Make a MultiIndex from cartesian product of iterables.</dd> <dt>
+ <a class="reference internal" href="pandas.multiindex.from_frame.html#pandas.MultiIndex.from_frame" title="pandas.MultiIndex.from_frame"><code>MultiIndex.from_frame</code></a>
+</dt> <dd>Make a MultiIndex from a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; tuples = [(1, 'red'), (1, 'blue'),
+...           (2, 'red'), (2, 'blue')]
+&gt;&gt;&gt; pd.MultiIndex.from_tuples(tuples, names=('number', 'color'))
+MultiIndex([(1,  'red'),
+            (1, 'blue'),
+            (2,  'red'),
+            (2, 'blue')],
+           names=['number', 'color'])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.from_tuples.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.from_tuples.html</a>
+  </p>
+</div>

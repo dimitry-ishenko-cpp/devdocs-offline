@@ -1,0 +1,33 @@
+<h1 id="pandas-testing-assert-series-equal">pandas.testing.assert_series_equal</h1> <dl class="function"> <dt id="pandas.testing.assert_series_equal">
+<code>pandas.testing.assert_series_equal(left, right, check_dtype=True, check_index_type='equiv', check_series_type=True, check_less_precise=False, check_names=True, check_exact=False, check_datetimelike_compat=False, check_categorical=True, obj='Series')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/util/testing.py#L1072-L1219"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check that left and right Series are equal.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>left : Series</code> </dt>  <dt>
+<code>right : Series</code> </dt>  <dt>
+<code>check_dtype : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to check the Series dtype is identical.</p> </dd> <dt>
+<code>check_index_type : bool / string {‘equiv’}, default ‘equiv’</code> </dt> <dd>
+<p class="first last">Whether to check the Index class, dtype and inferred_type are identical.</p> </dd> <dt>
+<code>check_series_type : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to check the Series class is identical.</p> </dd> <dt>
+<code>check_less_precise : bool or int, default False</code> </dt> <dd>
+<p class="first">Specify comparison precision. Only used when check_exact is False. 5 digits (False) or 3 digits (True) after decimal points are compared. If int, then specify the digits to compare.</p> <p class="last">When comparing two numbers, if the first number has magnitude less than 1e-5, we compare the two numbers directly and check whether they are equivalent within the specified precision. Otherwise, we compare the <strong>ratio</strong> of the second number to the first number and check whether it is equivalent to 1 within the specified precision.</p> </dd> <dt>
+<code>check_names : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to check the Series and Index names attribute.</p> </dd> <dt>
+<code>check_exact : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to compare number exactly.</p> </dd> <dt>
+<code>check_datetimelike_compat : bool, default False</code> </dt> <dd>
+<p class="first last">Compare datetime-like which is comparable ignoring dtype.</p> </dd> <dt>
+<code>check_categorical : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to compare internal Categorical exactly.</p> </dd> <dt>
+<code>obj : str, default ‘Series’</code> </dt> <dd>
+<p class="first last">Specify object name being compared, internally used to show appropriate assertion message.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.testing.assert_series_equal.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.testing.assert_series_equal.html</a>
+  </p>
+</div>

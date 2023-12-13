@@ -1,0 +1,47 @@
+<h1 id="pandas-series-repeat">pandas.Series.repeat</h1> <dl class="method"> <dt id="pandas.Series.repeat">
+<code>Series.repeat(self, repeats, axis=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L1313-L1368"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Repeat elements of a Series.</p> <p>Returns a new Series where each element of the current Series is repeated consecutively a given number of times.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>repeats : int or array of ints</code> </dt> <dd>
+<p class="first last">The number of repetitions for each element. This should be a non-negative integer. Repeating 0 times will return an empty Series.</p> </dd> <dt>
+<code>axis : None</code> </dt> <dd>
+<p class="first last">Must be <code>None</code>. Has no effect but is accepted for compatibility with numpy.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Newly created Series with repeated elements.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.repeat.html#pandas.Index.repeat" title="pandas.Index.repeat"><code>Index.repeat</code></a>
+</dt> <dd>Equivalent function for Index.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.repeat.html#numpy.repeat" title="(in NumPy v1.16)"><code>numpy.repeat</code></a>
+</dt> <dd>Similar method for <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code>numpy.ndarray</code></a>.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['a', 'b', 'c'])
+&gt;&gt;&gt; s
+0    a
+1    b
+2    c
+dtype: object
+&gt;&gt;&gt; s.repeat(2)
+0    a
+0    a
+1    b
+1    b
+2    c
+2    c
+dtype: object
+&gt;&gt;&gt; s.repeat([1, 2, 3])
+0    a
+1    b
+1    b
+2    c
+2    c
+2    c
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.repeat.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.repeat.html</a>
+  </p>
+</div>

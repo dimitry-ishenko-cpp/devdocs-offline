@@ -1,0 +1,116 @@
+<h1 id="api-general-utility-functions">General utility functions</h1>  <h2 id="general-utility-functions">Working with options</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.describe_option.html#pandas.describe_option" title="pandas.describe_option"><code>describe_option</code></a>(pat[, _print_desc])</td> <td>Prints the description for one or more registered options.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.reset_option.html#pandas.reset_option" title="pandas.reset_option"><code>reset_option</code></a>(pat)</td> <td>Reset one or more options to their default value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.get_option.html#pandas.get_option" title="pandas.get_option"><code>get_option</code></a>(pat)</td> <td>Retrieves the value of the specified option.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.set_option.html#pandas.set_option" title="pandas.set_option"><code>set_option</code></a>(pat, value)</td> <td>Sets the value of the specified option.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.option_context.html#pandas.option_context" title="pandas.option_context"><code>option_context</code></a>(*args)</td> <td>Context manager to temporarily set options in the <code>with</code> statement context.</td> </tr>  </table>   <h2 id="testing-functions">Testing functions</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.testing.assert_frame_equal.html#pandas.testing.assert_frame_equal" title="pandas.testing.assert_frame_equal"><code>testing.assert_frame_equal</code></a>(left, right[, …])</td> <td>Check that left and right DataFrame are equal.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.testing.assert_series_equal.html#pandas.testing.assert_series_equal" title="pandas.testing.assert_series_equal"><code>testing.assert_series_equal</code></a>(left, right[, …])</td> <td>Check that left and right Series are equal.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.testing.assert_index_equal.html#pandas.testing.assert_index_equal" title="pandas.testing.assert_index_equal"><code>testing.assert_index_equal</code></a>(left, right, …)</td> <td>Check that left and right Index are equal.</td> </tr>  </table>   <h2 id="exceptions-and-warnings">Exceptions and warnings</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.errors.dtypewarning.html#pandas.errors.DtypeWarning" title="pandas.errors.DtypeWarning"><code>errors.DtypeWarning</code></a></td> <td>Warning raised when reading different dtypes in a column from a file.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.errors.emptydataerror.html#pandas.errors.EmptyDataError" title="pandas.errors.EmptyDataError"><code>errors.EmptyDataError</code></a></td> <td>Exception that is thrown in <code>pd.read_csv</code> (by both the C and Python engines) when empty data or header is encountered.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.errors.outofboundsdatetime.html#pandas.errors.OutOfBoundsDatetime" title="pandas.errors.OutOfBoundsDatetime"><code>errors.OutOfBoundsDatetime</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.errors.parsererror.html#pandas.errors.ParserError" title="pandas.errors.ParserError"><code>errors.ParserError</code></a></td> <td>Exception that is raised by an error encountered in parsing file contents.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.errors.parserwarning.html#pandas.errors.ParserWarning" title="pandas.errors.ParserWarning"><code>errors.ParserWarning</code></a></td> <td>Warning raised when reading a file that doesn’t use the default ‘c’ parser.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.errors.performancewarning.html#pandas.errors.PerformanceWarning" title="pandas.errors.PerformanceWarning"><code>errors.PerformanceWarning</code></a></td> <td>Warning raised when there is a possible performance impact.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.errors.unsortedindexerror.html#pandas.errors.UnsortedIndexError" title="pandas.errors.UnsortedIndexError"><code>errors.UnsortedIndexError</code></a></td> <td>Error raised when attempting to get a slice of a MultiIndex, and the index has not been lexsorted.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.errors.unsupportedfunctioncall.html#pandas.errors.UnsupportedFunctionCall" title="pandas.errors.UnsupportedFunctionCall"><code>errors.UnsupportedFunctionCall</code></a></td> <td>Exception raised when attempting to call a numpy function on a pandas object, but that function is not supported by the object e.g.</td> </tr>  </table>   <h2 id="data-types-related-functionality">Data types related functionality</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.union_categoricals.html#pandas.api.types.union_categoricals" title="pandas.api.types.union_categoricals"><code>api.types.union_categoricals</code></a>(to_union[, …])</td> <td>Combine list-like of Categorical-like, unioning categories.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.infer_dtype.html#pandas.api.types.infer_dtype" title="pandas.api.types.infer_dtype"><code>api.types.infer_dtype</code></a>()</td> <td>Efficiently infer the type of a passed val, or list-like array of values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.pandas_dtype.html#pandas.api.types.pandas_dtype" title="pandas.api.types.pandas_dtype"><code>api.types.pandas_dtype</code></a>(dtype)</td> <td>Convert input into a pandas only dtype object or a numpy dtype object.</td> </tr>  </table>  <h3 id="dtype-introspection">Dtype introspection</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_bool_dtype.html#pandas.api.types.is_bool_dtype" title="pandas.api.types.is_bool_dtype"><code>api.types.is_bool_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of a boolean dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_categorical_dtype.html#pandas.api.types.is_categorical_dtype" title="pandas.api.types.is_categorical_dtype"><code>api.types.is_categorical_dtype</code></a>(arr_or_dtype)</td> <td>Check whether an array-like or dtype is of the Categorical dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_complex_dtype.html#pandas.api.types.is_complex_dtype" title="pandas.api.types.is_complex_dtype"><code>api.types.is_complex_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of a complex dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_datetime64_any_dtype.html#pandas.api.types.is_datetime64_any_dtype" title="pandas.api.types.is_datetime64_any_dtype"><code>api.types.is_datetime64_any_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of the datetime64 dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_datetime64_dtype.html#pandas.api.types.is_datetime64_dtype" title="pandas.api.types.is_datetime64_dtype"><code>api.types.is_datetime64_dtype</code></a>(arr_or_dtype)</td> <td>Check whether an array-like or dtype is of the datetime64 dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_datetime64_ns_dtype.html#pandas.api.types.is_datetime64_ns_dtype" title="pandas.api.types.is_datetime64_ns_dtype"><code>api.types.is_datetime64_ns_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of the datetime64[ns] dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_datetime64tz_dtype.html#pandas.api.types.is_datetime64tz_dtype" title="pandas.api.types.is_datetime64tz_dtype"><code>api.types.is_datetime64tz_dtype</code></a>(arr_or_dtype)</td> <td>Check whether an array-like or dtype is of a DatetimeTZDtype dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_extension_type.html#pandas.api.types.is_extension_type" title="pandas.api.types.is_extension_type"><code>api.types.is_extension_type</code></a>(arr)</td> <td>Check whether an array-like is of a pandas extension class instance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_extension_array_dtype.html#pandas.api.types.is_extension_array_dtype" title="pandas.api.types.is_extension_array_dtype"><code>api.types.is_extension_array_dtype</code></a>(arr_or_dtype)</td> <td>Check if an object is a pandas extension array type.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_float_dtype.html#pandas.api.types.is_float_dtype" title="pandas.api.types.is_float_dtype"><code>api.types.is_float_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of a float dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_int64_dtype.html#pandas.api.types.is_int64_dtype" title="pandas.api.types.is_int64_dtype"><code>api.types.is_int64_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of the int64 dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_integer_dtype.html#pandas.api.types.is_integer_dtype" title="pandas.api.types.is_integer_dtype"><code>api.types.is_integer_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of an integer dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_interval_dtype.html#pandas.api.types.is_interval_dtype" title="pandas.api.types.is_interval_dtype"><code>api.types.is_interval_dtype</code></a>(arr_or_dtype)</td> <td>Check whether an array-like or dtype is of the Interval dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_numeric_dtype.html#pandas.api.types.is_numeric_dtype" title="pandas.api.types.is_numeric_dtype"><code>api.types.is_numeric_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of a numeric dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_object_dtype.html#pandas.api.types.is_object_dtype" title="pandas.api.types.is_object_dtype"><code>api.types.is_object_dtype</code></a>(arr_or_dtype)</td> <td>Check whether an array-like or dtype is of the object dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_period_dtype.html#pandas.api.types.is_period_dtype" title="pandas.api.types.is_period_dtype"><code>api.types.is_period_dtype</code></a>(arr_or_dtype)</td> <td>Check whether an array-like or dtype is of the Period dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_signed_integer_dtype.html#pandas.api.types.is_signed_integer_dtype" title="pandas.api.types.is_signed_integer_dtype"><code>api.types.is_signed_integer_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of a signed integer dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_string_dtype.html#pandas.api.types.is_string_dtype" title="pandas.api.types.is_string_dtype"><code>api.types.is_string_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of the string dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_timedelta64_dtype.html#pandas.api.types.is_timedelta64_dtype" title="pandas.api.types.is_timedelta64_dtype"><code>api.types.is_timedelta64_dtype</code></a>(arr_or_dtype)</td> <td>Check whether an array-like or dtype is of the timedelta64 dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_timedelta64_ns_dtype.html#pandas.api.types.is_timedelta64_ns_dtype" title="pandas.api.types.is_timedelta64_ns_dtype"><code>api.types.is_timedelta64_ns_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of the timedelta64[ns] dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_unsigned_integer_dtype.html#pandas.api.types.is_unsigned_integer_dtype" title="pandas.api.types.is_unsigned_integer_dtype"><code>api.types.is_unsigned_integer_dtype</code></a>(arr_or_dtype)</td> <td>Check whether the provided array or dtype is of an unsigned integer dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_sparse.html#pandas.api.types.is_sparse" title="pandas.api.types.is_sparse"><code>api.types.is_sparse</code></a>(arr)</td> <td>Check whether an array-like is a 1-D pandas sparse array.</td> </tr>  </table>   <h3 id="iterable-introspection">Iterable introspection</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_dict_like.html#pandas.api.types.is_dict_like" title="pandas.api.types.is_dict_like"><code>api.types.is_dict_like</code></a>(obj)</td> <td>Check if the object is dict-like.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_file_like.html#pandas.api.types.is_file_like" title="pandas.api.types.is_file_like"><code>api.types.is_file_like</code></a>(obj)</td> <td>Check if the object is a file-like object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_list_like.html#pandas.api.types.is_list_like" title="pandas.api.types.is_list_like"><code>api.types.is_list_like</code></a>()</td> <td>Check if the object is list-like.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_named_tuple.html#pandas.api.types.is_named_tuple" title="pandas.api.types.is_named_tuple"><code>api.types.is_named_tuple</code></a>(obj)</td> <td>Check if the object is a named tuple.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_iterator.html#pandas.api.types.is_iterator" title="pandas.api.types.is_iterator"><code>api.types.is_iterator</code></a>(obj)</td> <td>Check if the object is an iterator.</td> </tr>  </table>   <h3 id="scalar-introspection">Scalar introspection</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_bool.html#pandas.api.types.is_bool" title="pandas.api.types.is_bool"><code>api.types.is_bool</code></a>()</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_categorical.html#pandas.api.types.is_categorical" title="pandas.api.types.is_categorical"><code>api.types.is_categorical</code></a>(arr)</td> <td>Check whether an array-like is a Categorical instance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_complex.html#pandas.api.types.is_complex" title="pandas.api.types.is_complex"><code>api.types.is_complex</code></a>()</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_datetimetz.html#pandas.api.types.is_datetimetz" title="pandas.api.types.is_datetimetz"><code>api.types.is_datetimetz</code></a>(arr)</td> <td>(DEPRECATED) Check whether an array-like is a datetime array-like with a timezone component in its dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_float.html#pandas.api.types.is_float" title="pandas.api.types.is_float"><code>api.types.is_float</code></a>()</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_hashable.html#pandas.api.types.is_hashable" title="pandas.api.types.is_hashable"><code>api.types.is_hashable</code></a>(obj)</td> <td>Return True if hash(obj) will succeed, False otherwise.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_integer.html#pandas.api.types.is_integer" title="pandas.api.types.is_integer"><code>api.types.is_integer</code></a>()</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_interval.html#pandas.api.types.is_interval" title="pandas.api.types.is_interval"><code>api.types.is_interval</code></a>()</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_number.html#pandas.api.types.is_number" title="pandas.api.types.is_number"><code>api.types.is_number</code></a>(obj)</td> <td>Check if the object is a number.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_period.html#pandas.api.types.is_period" title="pandas.api.types.is_period"><code>api.types.is_period</code></a>(arr)</td> <td>(DEPRECATED) Check whether an array-like is a periodical index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_re.html#pandas.api.types.is_re" title="pandas.api.types.is_re"><code>api.types.is_re</code></a>(obj)</td> <td>Check if the object is a regex pattern instance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_re_compilable.html#pandas.api.types.is_re_compilable" title="pandas.api.types.is_re_compilable"><code>api.types.is_re_compilable</code></a>(obj)</td> <td>Check if the object can be compiled into a regex pattern instance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.api.types.is_scalar.html#pandas.api.types.is_scalar" title="pandas.api.types.is_scalar"><code>api.types.is_scalar</code></a>()</td> <td>Return True if given value is scalar.</td> </tr>  </table><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/general_utility_functions.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/general_utility_functions.html</a>
+  </p>
+</div>

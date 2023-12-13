@@ -1,0 +1,32 @@
+<h1 id="pandas-io-formats-style-styler-background-gradient">pandas.io.formats.style.Styler.background_gradient</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.background_gradient">
+<code>Styler.background_gradient(self, cmap='PuBu', low=0, high=0, axis=0, subset=None, text_color_threshold=0.408)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L951-L1012"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Color the background in a gradient according to the data in each column (optionally row).</p> <p>Requires matplotlib.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>cmap : str or colormap</code> </dt> <dd>
+<p class="first last">matplotlib colormap</p> </dd> <dt>
+<code>low, high : float</code> </dt> <dd>
+<p class="first last">compress the range by these values.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’, None}, default 0</code> </dt> <dd>
+<p class="first last">apply to each column (<code>axis=0</code> or <code>'index'</code>), to each row (<code>axis=1</code> or <code>'columns'</code>), or to the entire DataFrame at once with <code>axis=None</code>.</p> </dd> <dt>
+<code>subset : IndexSlice</code> </dt> <dd>
+<p class="first last">a valid slice for <code>data</code> to limit the style application to.</p> </dd> <dt>
+<code>text_color_threshold : float or int</code> </dt> <dd>
+<p class="first">luminance threshold for determining text color. Facilitates text visibility across varying background colors. From 0 to 1. 0 = all text is dark colored, 1 = all text is light colored.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>self : Styler</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">If <code>text_color_threshold</code> is not a value from 0 to 1.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>Set <code>text_color_threshold</code> or tune <code>low</code> and <code>high</code> to keep the text legible by not using the entire range of the color map. The range of the data is extended by <code>low * (x.max() - x.min())</code> and <code>high *
+(x.max() - x.min())</code> before normalizing.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.background_gradient.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.background_gradient.html</a>
+  </p>
+</div>

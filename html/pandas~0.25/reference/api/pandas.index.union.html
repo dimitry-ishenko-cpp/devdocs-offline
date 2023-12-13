@@ -1,0 +1,30 @@
+<h1 id="pandas-index-union">pandas.Index.union</h1> <dl class="method"> <dt id="pandas.Index.union">
+<code>Index.union(self, other, sort=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L2454-L2512"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Form the union of two Index objects.</p> <p>If the Index objects are incompatible, both Index objects will be cast to dtype(‘object’) first.</p>  <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.25.0.</span></p> </div>  <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : Index or array-like</code> </dt>  <dt>
+<code>sort : bool or None, default None</code> </dt> <dd>
+<p class="first">Whether to sort the resulting Index.</p> <ul class="simple"> <li>None : Sort the result, except when<ol class="arabic"> <li>
+<code>self</code> and <code>other</code> are equal.</li> <li>
+<code>self</code> or <code>other</code> has length 0.</li> <li>Some values in <code>self</code> or <code>other</code> cannot be compared. A RuntimeWarning is issued in this case.</li> </ol> </li> <li>False : do not sort the result.</li> </ul> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.1: </span>Changed the default value from <code>True</code> to <code>None</code> (without change in behaviour).</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>union : Index</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <p>Union matching dtypes</p> <pre data-language="python">&gt;&gt;&gt; idx1 = pd.Index([1, 2, 3, 4])
+&gt;&gt;&gt; idx2 = pd.Index([3, 4, 5, 6])
+&gt;&gt;&gt; idx1.union(idx2)
+Int64Index([1, 2, 3, 4, 5, 6], dtype='int64')
+</pre> <p>Union mismatched dtypes</p> <pre data-language="python">&gt;&gt;&gt; idx1 = pd.Index(['a', 'b', 'c', 'd'])
+&gt;&gt;&gt; idx2 = pd.Index([1, 2, 3, 4])
+&gt;&gt;&gt; idx1.union(idx2)
+Index(['a', 'b', 'c', 'd', 1, 2, 3, 4], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.union.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.union.html</a>
+  </p>
+</div>

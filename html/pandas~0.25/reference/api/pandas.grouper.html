@@ -1,0 +1,40 @@
+<h1 id="pandas-grouper">pandas.Grouper</h1> <dl class="class"> <dt id="pandas.Grouper">
+<code>class pandas.Grouper(key=None, level=None, freq=None, axis=0, sort=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/grouper.py#L35-L214"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>A Grouper allows the user to specify a groupby instruction for a target object</p> <p>This specification will select a column via the key parameter, or if the level and/or axis parameters are given, a level of the index of the target object.</p> <p>If <code>axis</code> and/or <code>level</code> are passed as keywords to both <code>Grouper</code> and <code>groupby</code>, the values passed to <code>Grouper</code> take precedence.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>key : string, defaults to None</code> </dt> <dd>
+<p class="first last">groupby key, which selects the grouping column of the target</p> </dd> <dt>
+<code>level : name/number, defaults to None</code> </dt> <dd>
+<p class="first last">the level for the target index</p> </dd> <dt>
+<code>freq : string / frequency object, defaults to None</code> </dt> <dd>
+<p class="first last">This will groupby the specified frequency if the target selection (via key or level) is a datetime-like object. For full specification of available frequencies, please see <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">here</a>.</p> </dd> <dt>
+<code>axis : number/name of the axis, defaults to 0</code> </dt>  <dt>
+<code>sort : boolean, default to False</code> </dt> <dd>
+<p class="first last">whether to sort the resulting labels</p> </dd> <dt>
+<code>closed : {‘left’ or ‘right’}</code> </dt> <dd>
+<p class="first last">Closed end of interval. Only when <code>freq</code> parameter is passed.</p> </dd> <dt>
+<code>label : {‘left’ or ‘right’}</code> </dt> <dd>
+<p class="first last">Interval boundary to use for labeling. Only when <code>freq</code> parameter is passed.</p> </dd> <dt>
+<code>convention : {‘start’, ‘end’, ‘e’, ‘s’}</code> </dt> <dd>
+<p class="first last">If grouper is PeriodIndex and <code>freq</code> parameter is passed.</p> </dd> <dt>
+<code>base : int, default 0</code> </dt> <dd>
+<p class="first last">Only when <code>freq</code> parameter is passed.</p> </dd> <dt>
+<code>loffset : string, DateOffset, timedelta object</code> </dt> <dd>
+<p class="first last">Only when <code>freq</code> parameter is passed.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>A specification for a groupby instruction</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <p>Syntactic sugar for <code>df.groupby('A')</code></p> <pre data-language="python">&gt;&gt;&gt; df.groupby(Grouper(key='A'))
+</pre> <p>Specify a resample operation on the column ‘date’</p> <pre data-language="python">&gt;&gt;&gt; df.groupby(Grouper(key='date', freq='60s'))
+</pre> <p>Specify a resample operation on the level ‘date’ on the columns axis with a frequency of 60s</p> <pre data-language="python">&gt;&gt;&gt; df.groupby(Grouper(level='date', freq='60s', axis=1))
+</pre> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>ax</strong></td> <td> </td> </tr> <tr>
+<td><strong>groups</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Grouper.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Grouper.html</a>
+  </p>
+</div>

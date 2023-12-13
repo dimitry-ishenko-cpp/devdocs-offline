@@ -1,0 +1,72 @@
+<h1 id="pandas-api-types-infer-dtype">pandas.api.types.infer_dtype</h1> <dl class="function"> <dt id="pandas.api.types.infer_dtype">
+<code>pandas.api.types.infer_dtype()</code> </dt> <dd>
+<p>Efficiently infer the type of a passed val, or list-like array of values. Return a string describing the type.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>value : scalar, list, ndarray, or pandas type</code> </dt>  <dt>
+<code>skipna : bool, default False</code> </dt> <dd>
+<p class="first">Ignore NaN values when inferring the type.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>string describing the common type of the input data.</dt>  <dt>Results can include:</dt>  </dl> <ul class="simple"> <li>
+<dl class="first docutils"> <dt>string</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>unicode</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>bytes</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>floating</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>integer</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>mixed-integer</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>mixed-integer-float</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>decimal</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>complex</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>categorical</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>boolean</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>datetime64</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>datetime</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>date</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>timedelta64</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>timedelta</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>time</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>period</dt>  </dl> </li> <li>
+<dl class="first docutils"> <dt>mixed</dt>  </dl> </li> </ul> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError if ndarray-like but cannot infer the dtype</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <ul class="simple"> <li>‘mixed’ is the catchall for anything that is not otherwise specialized</li> <li>‘mixed-integer-float’ are floats and integers</li> <li>‘mixed-integer’ are integers mixed with non-integers</li> </ul> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; infer_dtype(['foo', 'bar'])
+'string'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype(['a', np.nan, 'b'], skipna=True)
+'string'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype(['a', np.nan, 'b'], skipna=False)
+'mixed'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([b'foo', b'bar'])
+'bytes'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([1, 2, 3])
+'integer'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([1, 2, 3.5])
+'mixed-integer-float'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([1.0, 2.0, 3.5])
+'floating'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype(['a', 1])
+'mixed-integer'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([Decimal(1), Decimal(2.0)])
+'decimal'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([True, False])
+'boolean'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([True, False, np.nan])
+'mixed'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([pd.Timestamp('20130101')])
+'datetime'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([datetime.date(2013, 1, 1)])
+'date'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([np.datetime64('2013-01-01')])
+'datetime64'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype([datetime.timedelta(0, 1, 1)])
+'timedelta'
+</pre> <pre data-language="python">&gt;&gt;&gt; infer_dtype(pd.Series(list('aabc')).astype('category'))
+'categorical'
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.infer_dtype.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.infer_dtype.html</a>
+  </p>
+</div>

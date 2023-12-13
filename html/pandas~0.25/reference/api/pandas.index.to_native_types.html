@@ -1,0 +1,28 @@
+<h1 id="pandas-index-to-native-types">pandas.Index.to_native_types</h1> <dl class="method"> <dt id="pandas.Index.to_native_types">
+<code>Index.to_native_types(self, slicer=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1132-L1161"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Format specified values of <code>self</code> and return them.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>slicer : int, array-like</code> </dt> <dd>
+<p class="first last">An indexer into <code>self</code> that specifies which values are used in the formatting process.</p> </dd> <dt>
+<code>kwargs : dict</code> </dt> <dd>
+<p class="first">Options for specifying how the values should be formatted. These options include the following:</p> <ol class="last arabic simple"> <li>
+<dl class="first docutils"> <dt>
+<code>na_rep : str</code> </dt> <dd>The value that serves as a placeholder for NULL values</dd> </dl> </li> <li>
+<dl class="first docutils"> <dt>
+<code>quoting : bool or None</code> </dt> <dd>Whether or not there are quoted values in <code>self</code>
+</dd> </dl> </li> <li>
+<dl class="first docutils"> <dt>
+<code>date_format : str</code> </dt> <dd>The format used to represent date-like values</dd> </dl> </li> </ol> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt> <dd>
+<p class="first last">Formatted values.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.to_native_types.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.to_native_types.html</a>
+  </p>
+</div>

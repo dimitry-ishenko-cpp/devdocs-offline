@@ -1,0 +1,23 @@
+<h1 id="pandas-util-hash-pandas-object">pandas.util.hash_pandas_object</h1> <dl class="function"> <dt id="pandas.util.hash_pandas_object">
+<code>pandas.util.hash_pandas_object(obj, index=True, encoding='utf8', hash_key=None, categorize=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/util/hashing.py#L57-L136"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a data hash of the Index/Series/DataFrame</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.19.2.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : boolean, default True</code> </dt> <dd>
+<p class="first last">include the index in the hash (if Series/DataFrame)</p> </dd> <dt>
+<code>encoding : string, default ‘utf8’</code> </dt> <dd>
+<p class="first last">encoding for data &amp; key when strings</p> </dd> <dt>
+<code>hash_key : string key to encode, default to _default_hash_key</code> </dt>  <dt>
+<code>categorize : bool, default True</code> </dt> <dd>
+<p class="first">Whether to first categorize object arrays before hashing. This is more efficient when the array contains duplicate values.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series of uint64, same length as the object</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.util.hash_pandas_object.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.util.hash_pandas_object.html</a>
+  </p>
+</div>

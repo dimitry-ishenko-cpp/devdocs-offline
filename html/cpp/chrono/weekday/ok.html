@@ -1,0 +1,29 @@
+    <h1 id="firstHeading" class="firstHeading">std::chrono::weekday::ok</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">constexpr bool ok() const noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <p>Checks if the weekday value stored in <code>*this</code> is in the valid range, i.e., [0, 6].</p>
+<h3 id="Return_value">  Return value </h3> <p><code>true</code> if the weekday value stored in <code>*this</code> is in the range [0, 6]. Otherwise <code>false</code>.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+ 
+int main()
+{
+    for (const unsigned u : {0, 1, 6, 7, 8, 9}) {
+        const std::chrono::weekday wd{u};
+        std::cout 
+            &lt;&lt; "u = " &lt;&lt; u &lt;&lt; ", wd = "
+            &lt;&lt; wd.c_encoding() // Monday is 1
+            &lt;&lt; (wd.ok() ? " is a valid weekday.\n"
+                        : " is an invalid weekday!\n");
+    }
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">u = 0, wd = 0 is a valid weekday.
+u = 1, wd = 1 is a valid weekday.
+u = 6, wd = 6 is a valid weekday.
+u = 7, wd = 0 is a valid weekday.
+u = 8, wd = 8 is an invalid weekday!
+u = 9, wd = 9 is an invalid weekday!</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="encoding.html" title="cpp/chrono/weekday/encoding"> <span class="t-lines"><span>c_encoding</span><span>iso_encoding</span></span></a></div> </td> <td> retrieves the stored weekday value<br>retrieves ISO 8601 weekday value <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/chrono/weekday/ok" class="_attribution-link">https://en.cppreference.com/w/cpp/chrono/weekday/ok</a>
+  </p>
+</div>

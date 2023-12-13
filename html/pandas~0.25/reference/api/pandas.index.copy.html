@@ -1,0 +1,20 @@
+<h1 id="pandas-index-copy">pandas.Index.copy</h1> <dl class="method"> <dt id="pandas.Index.copy">
+<code>Index.copy(self, name=None, deep=False, dtype=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L995-L1008"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Make a copy of this object. Name and dtype sets those attributes on the new object.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>name : string, optional</code> </dt>  <dt>
+<code>deep : boolean, default False</code> </dt>  <dt>
+<code>dtype : numpy dtype or pandas type</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>copy : Index</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>In most cases, there should be no functional difference from using <code>deep</code>, but if <code>deep</code> is passed it will attempt to deepcopy.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.copy.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.copy.html</a>
+  </p>
+</div>

@@ -1,0 +1,45 @@
+<h1 id="pandas-core-resample-resampler-nearest">pandas.core.resample.Resampler.nearest</h1> <dl class="method"> <dt id="pandas.core.resample.Resampler.nearest">
+<code>Resampler.nearest(self, limit=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/resample.py#L443-L503"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Resample by using the nearest value.</p> <p>When resampling data, missing values may appear (e.g., when the resampling frequency is higher than the original frequency). The <code>nearest</code> method will replace <code>NaN</code> values that appeared in the resampled data with the value from the nearest member of the sequence, based on the index value. Missing values that existed in the original data will not be modified. If <code>limit</code> is given, fill only this many values in each direction for each of the original values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>limit : int, optional</code> </dt> <dd>
+<p class="first">Limit of how many values to fill.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">An upsampled Series or DataFrame with <code>NaN</code> values filled with their nearest value.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.core.resample.resampler.backfill.html#pandas.core.resample.Resampler.backfill" title="pandas.core.resample.Resampler.backfill"><code>backfill</code></a>
+</dt> <dd>Backward fill the new missing values in the resampled data.</dd> <dt>
+ <a class="reference internal" href="pandas.core.resample.resampler.pad.html#pandas.core.resample.Resampler.pad" title="pandas.core.resample.Resampler.pad"><code>pad</code></a>
+</dt> <dd>Forward fill <code>NaN</code> values.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2],
+...               index=pd.date_range('20180101',
+...                                   periods=2,
+...                                   freq='1h'))
+&gt;&gt;&gt; s
+2018-01-01 00:00:00    1
+2018-01-01 01:00:00    2
+Freq: H, dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.resample('15min').nearest()
+2018-01-01 00:00:00    1
+2018-01-01 00:15:00    1
+2018-01-01 00:30:00    2
+2018-01-01 00:45:00    2
+2018-01-01 01:00:00    2
+Freq: 15T, dtype: int64
+</pre> <p>Limit the number of upsampled values imputed by the nearest:</p> <pre data-language="python">&gt;&gt;&gt; s.resample('15min').nearest(limit=1)
+2018-01-01 00:00:00    1.0
+2018-01-01 00:15:00    1.0
+2018-01-01 00:30:00    NaN
+2018-01-01 00:45:00    2.0
+2018-01-01 01:00:00    2.0
+Freq: 15T, dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.nearest.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.nearest.html</a>
+  </p>
+</div>

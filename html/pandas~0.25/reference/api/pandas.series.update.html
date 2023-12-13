@@ -1,0 +1,42 @@
+<h1 id="pandas-series-update">pandas.Series.update</h1> <dl class="method"> <dt id="pandas.Series.update">
+<code>Series.update(self, other)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L2964-L3014"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Modify Series in place using non-NA values from passed Series. Aligns on index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>other : Series</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3])
+&gt;&gt;&gt; s.update(pd.Series([4, 5, 6]))
+&gt;&gt;&gt; s
+0    4
+1    5
+2    6
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['a', 'b', 'c'])
+&gt;&gt;&gt; s.update(pd.Series(['d', 'e'], index=[0, 2]))
+&gt;&gt;&gt; s
+0    d
+1    b
+2    e
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3])
+&gt;&gt;&gt; s.update(pd.Series([4, 5, 6, 7, 8]))
+&gt;&gt;&gt; s
+0    4
+1    5
+2    6
+dtype: int64
+</pre> <p>If <code>other</code> contains NaNs the corresponding values are not updated in the original Series.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3])
+&gt;&gt;&gt; s.update(pd.Series([4, np.nan, 6]))
+&gt;&gt;&gt; s
+0    4
+1    2
+2    6
+dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.update.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.update.html</a>
+  </p>
+</div>

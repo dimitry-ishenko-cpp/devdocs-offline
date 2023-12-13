@@ -1,0 +1,36 @@
+<h1 id="pandas-dataframe-align">pandas.DataFrame.align</h1> <dl class="method"> <dt id="pandas.DataFrame.align">
+<code>DataFrame.align(self, other, join='outer', axis=None, level=None, copy=True, fill_value=None, method=None, limit=None, fill_axis=0, broadcast_axis=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L3910-L3935"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Align two objects on their axes with the specified join method for each axis Index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : DataFrame or Series</code> </dt>  <dt>
+<code>join : {‘outer’, ‘inner’, ‘left’, ‘right’}, default ‘outer’</code> </dt>  <dt>
+<code>axis : allowed axis of the other object, default None</code> </dt> <dd>
+<p class="first last">Align on index (0), columns (1), or both (None)</p> </dd> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">Broadcast across a level, matching Index values on the passed MultiIndex level</p> </dd> <dt>
+<code>copy : boolean, default True</code> </dt> <dd>
+<p class="first last">Always returns new objects. If copy=False and no reindexing is required then original objects are returned.</p> </dd> <dt>
+<code>fill_value : scalar, default np.NaN</code> </dt> <dd>
+<p class="first last">Value to use for missing values. Defaults to NaN, but can be any “compatible” value</p> </dd> <dt>
+<code>method : {‘backfill’, ‘bfill’, ‘pad’, ‘ffill’, None}, default None</code> </dt> <dd>
+<p class="first last">Method to use for filling holes in reindexed Series pad / ffill: propagate last valid observation forward to next valid backfill / bfill: use NEXT valid observation to fill gap</p> </dd> <dt>
+<code>limit : int, default None</code> </dt> <dd>
+<p class="first last">If method is specified, this is the maximum number of consecutive NaN values to forward/backward fill. In other words, if there is a gap with more than this number of consecutive NaNs, it will only be partially filled. If method is not specified, this is the maximum number of entries along the entire axis where NaNs will be filled. Must be greater than 0 if not None.</p> </dd> <dt>
+<code>fill_axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">Filling axis, method and limit</p> </dd> <dt>
+<code>broadcast_axis : {0 or ‘index’, 1 or ‘columns’}, default None</code> </dt> <dd>
+<p class="first last">Broadcast values along this axis, if aligning two objects of different dimensions</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>(left, right) : (DataFrame, type of other)</code> </dt> <dd>
+<p class="first last">Aligned objects.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.align.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.align.html</a>
+  </p>
+</div>

@@ -1,0 +1,50 @@
+<h1 id="pandas-dataframe-between-time">pandas.DataFrame.between_time</h1> <dl class="method"> <dt id="pandas.DataFrame.between_time">
+<code>DataFrame.between_time(self, start_time, end_time, include_start=True, include_end=True, axis=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L8060-L8135"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Select values between particular times of the day (e.g., 9:00-9:30 AM).</p> <p>By setting <code>start_time</code> to be later than <code>end_time</code>, you can get the times that are <em>not</em> between the two times.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>start_time : datetime.time or str</code> </dt>  <dt>
+<code>end_time : datetime.time or str</code> </dt>  <dt>
+<code>include_start : bool, default True</code> </dt>  <dt>
+<code>include_end : bool, default True</code> </dt>  <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<div class="first last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>Series or DataFrame</dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError</dt> <dd>
+<p class="first last">If the index is not a <a class="reference internal" href="pandas.datetimeindex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code>DatetimeIndex</code></a></p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.at_time.html#pandas.DataFrame.at_time" title="pandas.DataFrame.at_time"><code>at_time</code></a>
+</dt> <dd>Select values at a particular time of the day.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.first.html#pandas.DataFrame.first" title="pandas.DataFrame.first"><code>first</code></a>
+</dt> <dd>Select initial periods of time series based on a date offset.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.last.html#pandas.DataFrame.last" title="pandas.DataFrame.last"><code>last</code></a>
+</dt> <dd>Select final periods of time series based on a date offset.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.indexer_between_time.html#pandas.DatetimeIndex.indexer_between_time" title="pandas.DatetimeIndex.indexer_between_time"><code>DatetimeIndex.indexer_between_time</code></a>
+</dt> <dd>Get just the index locations for values between particular times of the day.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; i = pd.date_range('2018-04-09', periods=4, freq='1D20min')
+&gt;&gt;&gt; ts = pd.DataFrame({'A': [1, 2, 3, 4]}, index=i)
+&gt;&gt;&gt; ts
+                     A
+2018-04-09 00:00:00  1
+2018-04-10 00:20:00  2
+2018-04-11 00:40:00  3
+2018-04-12 01:00:00  4
+</pre> <pre data-language="python">&gt;&gt;&gt; ts.between_time('0:15', '0:45')
+                     A
+2018-04-10 00:20:00  2
+2018-04-11 00:40:00  3
+</pre> <p>You get the times that are <em>not</em> between two times by setting <code>start_time</code> later than <code>end_time</code>:</p> <pre data-language="python">&gt;&gt;&gt; ts.between_time('0:45', '0:15')
+                     A
+2018-04-09 00:00:00  1
+2018-04-12 01:00:00  4
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.between_time.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.between_time.html</a>
+  </p>
+</div>

@@ -1,0 +1,129 @@
+<h1 id="pandas-concat">pandas.concat</h1> <dl class="function"> <dt id="pandas.concat">
+<code>pandas.concat(objs, axis=0, join='outer', join_axes=None, ignore_index=False, keys=None, levels=None, names=None, verify_integrity=False, sort=None, copy=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/reshape/concat.py#L31-L258"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Concatenate pandas objects along a particular axis with optional set logic along the other axes.</p> <p>Can also add a layer of hierarchical indexing on the concatenation axis, which may be useful if the labels are the same (or overlapping) on the passed axis number.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>objs : a sequence or mapping of Series or DataFrame objects</code> </dt> <dd>
+<p class="first last">If a dict is passed, the sorted keys will be used as the <code>keys</code> argument, unless it is passed, in which case the values will be selected (see below). Any None objects will be dropped silently unless they are all None in which case a ValueError will be raised.</p> </dd> <dt>
+<code>axis : {0/’index’, 1/’columns’}, default 0</code> </dt> <dd>
+<p class="first last">The axis to concatenate along.</p> </dd> <dt>
+<code>join : {‘inner’, ‘outer’}, default ‘outer’</code> </dt> <dd>
+<p class="first last">How to handle indexes on other axis (or axes).</p> </dd> <dt>
+<code>join_axes : list of Index objects</code> </dt> <dd>
+<div class="first deprecated"> <p><span class="versionmodified">Deprecated since version 0.25.0.</span></p> </div> <p class="last">Specific indexes to use for the other n - 1 axes instead of performing inner/outer set logic. Use .reindex() before or after concatenation as a replacement.</p> </dd> <dt>
+<code>ignore_index : bool, default False</code> </dt> <dd>
+<p class="first last">If True, do not use the index values along the concatenation axis. The resulting axis will be labeled 0, …, n - 1. This is useful if you are concatenating objects where the concatenation axis does not have meaningful indexing information. Note the index values on the other axes are still respected in the join.</p> </dd> <dt>
+<code>keys : sequence, default None</code> </dt> <dd>
+<p class="first last">If multiple levels passed, should contain tuples. Construct hierarchical index using the passed keys as the outermost level.</p> </dd> <dt>
+<code>levels : list of sequences, default None</code> </dt> <dd>
+<p class="first last">Specific levels (unique values) to use for constructing a MultiIndex. Otherwise they will be inferred from the keys.</p> </dd> <dt>
+<code>names : list, default None</code> </dt> <dd>
+<p class="first last">Names for the levels in the resulting hierarchical index.</p> </dd> <dt>
+<code>verify_integrity : bool, default False</code> </dt> <dd>
+<p class="first last">Check whether the new concatenated axis contains duplicates. This can be very expensive relative to the actual data concatenation.</p> </dd> <dt>
+<code>sort : bool, default None</code> </dt> <dd>
+<p class="first">Sort non-concatenation axis if it is not already aligned when <code>join</code> is ‘outer’. The current default of sorting is deprecated and will change to not-sorting in a future version of pandas.</p> <p>Explicitly pass <code>sort=True</code> to silence the warning and sort. Explicitly pass <code>sort=False</code> to silence the warning and not sort.</p> <p>This has no effect when <code>join='inner'</code>, which already preserves the order of the non-concatenation axis.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt>
+<code>copy : bool, default True</code> </dt> <dd>
+<p class="first last">If False, do not copy data unnecessarily.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>object, type of objs</dt> <dd>
+<p class="first last">When concatenating all <code>Series</code> along the index (axis=0), a <code>Series</code> is returned. When <code>objs</code> contains at least one <code>DataFrame</code>, a <code>DataFrame</code> is returned. When concatenating along the columns (axis=1), a <code>DataFrame</code> is returned.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.append.html#pandas.Series.append" title="pandas.Series.append"><code>Series.append</code></a>
+</dt> <dd>Concatenate Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.append.html#pandas.DataFrame.append" title="pandas.DataFrame.append"><code>DataFrame.append</code></a>
+</dt> <dd>Concatenate DataFrames.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.join.html#pandas.DataFrame.join" title="pandas.DataFrame.join"><code>DataFrame.join</code></a>
+</dt> <dd>Join DataFrames using indexes.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.merge.html#pandas.DataFrame.merge" title="pandas.DataFrame.merge"><code>DataFrame.merge</code></a>
+</dt> <dd>Merge DataFrames by indexes or columns.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The keys, levels, and names arguments are all optional.</p> <p>A walkthrough of how this method fits in with other tools for combining pandas objects can be found <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/merging.html">here</a>.</p> <h4 class="rubric">Examples</h4> <p>Combine two <code>Series</code>.</p> <pre data-language="python">&gt;&gt;&gt; s1 = pd.Series(['a', 'b'])
+&gt;&gt;&gt; s2 = pd.Series(['c', 'd'])
+&gt;&gt;&gt; pd.concat([s1, s2])
+0    a
+1    b
+0    c
+1    d
+dtype: object
+</pre> <p>Clear the existing index and reset it in the result by setting the <code>ignore_index</code> option to <code>True</code>.</p> <pre data-language="python">&gt;&gt;&gt; pd.concat([s1, s2], ignore_index=True)
+0    a
+1    b
+2    c
+3    d
+dtype: object
+</pre> <p>Add a hierarchical index at the outermost level of the data with the <code>keys</code> option.</p> <pre data-language="python">&gt;&gt;&gt; pd.concat([s1, s2], keys=['s1', 's2'])
+s1  0    a
+    1    b
+s2  0    c
+    1    d
+dtype: object
+</pre> <p>Label the index keys you create with the <code>names</code> option.</p> <pre data-language="python">&gt;&gt;&gt; pd.concat([s1, s2], keys=['s1', 's2'],
+...           names=['Series name', 'Row ID'])
+Series name  Row ID
+s1           0         a
+             1         b
+s2           0         c
+             1         d
+dtype: object
+</pre> <p>Combine two <code>DataFrame</code> objects with identical columns.</p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame([['a', 1], ['b', 2]],
+...                    columns=['letter', 'number'])
+&gt;&gt;&gt; df1
+  letter  number
+0      a       1
+1      b       2
+&gt;&gt;&gt; df2 = pd.DataFrame([['c', 3], ['d', 4]],
+...                    columns=['letter', 'number'])
+&gt;&gt;&gt; df2
+  letter  number
+0      c       3
+1      d       4
+&gt;&gt;&gt; pd.concat([df1, df2])
+  letter  number
+0      a       1
+1      b       2
+0      c       3
+1      d       4
+</pre> <p>Combine <code>DataFrame</code> objects with overlapping columns and return everything. Columns outside the intersection will be filled with <code>NaN</code> values.</p> <pre data-language="python">&gt;&gt;&gt; df3 = pd.DataFrame([['c', 3, 'cat'], ['d', 4, 'dog']],
+...                    columns=['letter', 'number', 'animal'])
+&gt;&gt;&gt; df3
+  letter  number animal
+0      c       3    cat
+1      d       4    dog
+&gt;&gt;&gt; pd.concat([df1, df3], sort=False)
+  letter  number animal
+0      a       1    NaN
+1      b       2    NaN
+0      c       3    cat
+1      d       4    dog
+</pre> <p>Combine <code>DataFrame</code> objects with overlapping columns and return only those that are shared by passing <code>inner</code> to the <code>join</code> keyword argument.</p> <pre data-language="python">&gt;&gt;&gt; pd.concat([df1, df3], join="inner")
+  letter  number
+0      a       1
+1      b       2
+0      c       3
+1      d       4
+</pre> <p>Combine <code>DataFrame</code> objects horizontally along the x axis by passing in <code>axis=1</code>.</p> <pre data-language="python">&gt;&gt;&gt; df4 = pd.DataFrame([['bird', 'polly'], ['monkey', 'george']],
+...                    columns=['animal', 'name'])
+&gt;&gt;&gt; pd.concat([df1, df4], axis=1)
+  letter  number  animal    name
+0      a       1    bird   polly
+1      b       2  monkey  george
+</pre> <p>Prevent the result from including duplicate index values with the <code>verify_integrity</code> option.</p> <pre data-language="python">&gt;&gt;&gt; df5 = pd.DataFrame([1], index=['a'])
+&gt;&gt;&gt; df5
+   0
+a  1
+&gt;&gt;&gt; df6 = pd.DataFrame([2], index=['a'])
+&gt;&gt;&gt; df6
+   0
+a  2
+&gt;&gt;&gt; pd.concat([df5, df6], verify_integrity=True)
+Traceback (most recent call last):
+    ...
+ValueError: Indexes have overlapping values: ['a']
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.concat.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.concat.html</a>
+  </p>
+</div>

@@ -1,0 +1,31 @@
+<h1 id="pandas-series-array">pandas.Series.array</h1> <dl class="attribute"> <dt id="pandas.Series.array">
+<code>Series.array</code> </dt> <dd>
+<p>The ExtensionArray of the data backing this Series or Index.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ExtensionArray</dt> <dd>
+<p class="first">An ExtensionArray of the values stored within. For extension types, this is the actual array. For NumPy native types, this is a thin (no copy) wrapper around <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code>numpy.ndarray</code></a>.</p> <p class="last"><code>.array</code> differs <code>.values</code> which may require converting the data to a different form.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.to_numpy.html#pandas.Index.to_numpy" title="pandas.Index.to_numpy"><code>Index.to_numpy</code></a>
+</dt> <dd>Similar method that always returns a NumPy array.</dd> <dt>
+ <a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy</code></a>
+</dt> <dd>Similar method that always returns a NumPy array.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This table lays out the different array types for each extension dtype within pandas.</p> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">dtype</th> <th class="head">array type</th> </tr> </thead>  <tr>
+<td>category</td> <td>Categorical</td> </tr> <tr>
+<td>period</td> <td>PeriodArray</td> </tr> <tr>
+<td>interval</td> <td>IntervalArray</td> </tr> <tr>
+<td>IntegerNA</td> <td>IntegerArray</td> </tr> <tr>
+<td>datetime64[ns, tz]</td> <td>DatetimeArray</td> </tr>  </table> <p>For any 3rd-party extension types, the array type will be an ExtensionArray.</p> <p>For all remaining dtypes <code>.array</code> will be a <code>arrays.NumpyExtensionArray</code> wrapping the actual ndarray stored within. If you absolutely need a NumPy array (possibly with copying / coercing data), then use <a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy()</code></a> instead.</p> <h4 class="rubric">Examples</h4> <p>For regular NumPy types like int, and float, a PandasArray is returned.</p> <pre data-language="python">&gt;&gt;&gt; pd.Series([1, 2, 3]).array
+&lt;PandasArray&gt;
+[1, 2, 3]
+Length: 3, dtype: int64
+</pre> <p>For extension types, like Categorical, the actual ExtensionArray is returned</p> <pre data-language="python">&gt;&gt;&gt; ser = pd.Series(pd.Categorical(['a', 'b', 'a']))
+&gt;&gt;&gt; ser.array
+[a, b, a]
+Categories (2, object): [a, b]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.array.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.array.html</a>
+  </p>
+</div>

@@ -1,0 +1,42 @@
+<h1 id="pandas-datetimeindex-to-frame">pandas.DatetimeIndex.to_frame</h1> <dl class="method"> <dt id="pandas.DatetimeIndex.to_frame">
+<code>DatetimeIndex.to_frame(self, index=True, name=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1267-L1327"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Create a DataFrame with a column containing the Index.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : boolean, default True</code> </dt> <dd>
+<p class="first last">Set the index of the returned DataFrame as the original Index.</p> </dd> <dt>
+<code>name : object, default None</code> </dt> <dd>
+<p class="first last">The passed name should substitute for the index name (if it has one).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">DataFrame containing the original Index data.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.to_series.html#pandas.Index.to_series" title="pandas.Index.to_series"><code>Index.to_series</code></a>
+</dt> <dd>Convert an Index to a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.series.to_frame.html#pandas.Series.to_frame" title="pandas.Series.to_frame"><code>Series.to_frame</code></a>
+</dt> <dd>Convert Series to DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['Ant', 'Bear', 'Cow'], name='animal')
+&gt;&gt;&gt; idx.to_frame()
+       animal
+animal
+Ant       Ant
+Bear     Bear
+Cow       Cow
+</pre> <p>By default, the original Index is reused. To enforce a new Index:</p> <pre data-language="python">&gt;&gt;&gt; idx.to_frame(index=False)
+    animal
+0   Ant
+1  Bear
+2   Cow
+</pre> <p>To override the name of the resulting column, specify <code>name</code>:</p> <pre data-language="python">&gt;&gt;&gt; idx.to_frame(index=False, name='zoo')
+    zoo
+0   Ant
+1  Bear
+2   Cow
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.to_frame.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.to_frame.html</a>
+  </p>
+</div>

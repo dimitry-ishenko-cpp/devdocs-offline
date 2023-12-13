@@ -1,0 +1,79 @@
+    <h1 id="firstHeading" class="firstHeading">std::basic_ostringstream&lt;CharT,Traits,Allocator&gt;::basic_ostringstream</h1>             <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">basic_ostringstream()
+    : basic_ostringstream(std::ios_base::out) { }</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(2)</td> <td></td> </tr> <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">explicit basic_ostringstream( std::ios_base::openmode mode = std::ios_base::out );</pre>
+</td>  <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">explicit basic_ostringstream( std::ios_base::openmode mode );</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  <tr class="t-dcl"> <td> <pre data-language="cpp">explicit basic_ostringstream( const std::basic_string&lt;CharT,Traits,Allocator&gt;&amp; str,
+                              std::ios_base::openmode mode = std::ios_base::out );</pre>
+</td> <td> (3) </td> <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">basic_ostringstream( basic_ostringstream&amp;&amp; other );</pre>
+</td> <td> (4) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">basic_ostringstream( std::ios_base::openmode mode, const Allocator&amp; a );</pre>
+</td> <td> (5) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">explicit basic_ostringstream( std::basic_string&lt;CharT,Traits,Allocator&gt;&amp;&amp; str,
+                              std::ios_base::openmode mode = std::ios_base::out );</pre>
+</td> <td> (6) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt;class SAlloc&gt;
+basic_ostringstream( const std::basic_string&lt;CharT,Traits,SAlloc&gt;&amp; str,
+                     const Allocator&amp; a )
+    : basic_ostringstream(str, std::ios_base::out, a) { }</pre>
+</td> <td> (7) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt;class SAlloc&gt;
+basic_ostringstream( const std::basic_string&lt;CharT,Traits,SAlloc&gt;&amp; str,
+                     std::ios_base::openmode mode, const Allocator&amp; a );</pre>
+</td> <td> (8) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt;class SAlloc&gt;
+explicit basic_ostringstream( const std::basic_string&lt;CharT,Traits,SAlloc&gt;&amp; str,
+                              std::ios_base::openmode mode = std::ios_base::out );</pre>
+</td> <td> (9) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <p>Constructs new string stream.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Default constructor. Constructs new underlying string device with the default open mode</div> <div class="t-li1">
+<span class="t-li">2)</span> Constructs new underlying string device. The underlying <code>basic_stringbuf</code> object is constructed as <code>basic_stringbuf<span class="sy1">&lt;</span>Char,Traits,Allocator<span class="sy1">&gt;</span><span class="br0">(</span>mode <span class="sy3">|</span> <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a><span class="br0">)</span></code>.</div> <div class="t-li1">
+<span class="t-li">3)</span> Uses a copy of <code>str</code> as initial contents of the underlying string device. The underlying <code>basic_stringbuf</code> object is constructed as <code>basic_stringbuf<span class="sy1">&lt;</span>Char,Traits,Allocator<span class="sy1">&gt;</span><span class="br0">(</span>str, mode <span class="sy3">|</span> <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a><span class="br0">)</span></code>.</div> <div class="t-li1">
+<span class="t-li">4)</span> Move constructor. Constructs the string stream with the state of <code>other</code> using move semantics.</div> <div class="t-li1">
+<span class="t-li">5)</span> Constructs new underlying string device. The underlying <code>basic_stringbuf</code> object is constructed as <code>basic_stringbuf<span class="sy1">&lt;</span>Char,Traits,Allocator<span class="sy1">&gt;</span><span class="br0">(</span>mode <span class="sy3">|</span> <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a>, a<span class="br0">)</span></code>.</div> <div class="t-li1">
+<span class="t-li">6)</span> Move-construct the contents of the underlying string device with <code>str</code>. The underlying <code>basic_stringbuf</code> object is constructed as <code>basic_stringbuf<span class="sy1">&lt;</span>Char,Traits,Allocator<span class="sy1">&gt;</span><span class="br0">(</span>std<span class="sy4">::</span><span class="me2">move</span><span class="br0">(</span>str<span class="br0">)</span>, mode <span class="sy3">|</span> <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a><span class="br0">)</span></code>.</div> <div class="t-li1">
+<span class="t-li">7)</span> Constructs new underlying string device. The underlying <code>basic_stringbuf</code> object is constructed as <code>basic_stringbuf<span class="sy1">&lt;</span>Char,Traits,Allocator<span class="sy1">&gt;</span><span class="br0">(</span>str, <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a>, a<span class="br0">)</span></code>.</div> <div class="t-li1">
+<span class="t-li">8)</span> Constructs new underlying string device. The underlying <code>basic_stringbuf</code> object is constructed as <code>basic_stringbuf<span class="sy1">&lt;</span>Char,Traits,Allocator<span class="sy1">&gt;</span><span class="br0">(</span>str, mode <span class="sy3">|</span> <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a>, a<span class="br0">)</span></code>.</div> <div class="t-li1">
+<span class="t-li">9)</span> Constructs new underlying string device. The underlying <code>basic_stringbuf</code> object is constructed as <code>basic_stringbuf<span class="sy1">&lt;</span>Char,Traits,Allocator<span class="sy1">&gt;</span><span class="br0">(</span>str, mode <span class="sy3">|</span> <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a><span class="br0">)</span></code>. This overload participates in overload resolution only if <code>SAlloc</code> and <code>Allocator</code> are not the same type.</div>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> str </td> <td> - </td> <td> string to use as initial contents of the string stream </td>
+</tr> <tr class="t-par"> <td> a </td> <td> - </td> <td> allocator used for allocating the contents of the string stream </td>
+</tr> <tr class="t-par"> <td> mode </td> <td> - </td> <td> specifies stream open mode. It is bitmask type, the following constants are defined: <table class="t-dsc-begin"> <tr class="t-dsc-hitem"> <th> Constant </th> <th> Explanation </th>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>app</code></a> </td> <td> seek to the end of stream before each write </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>binary</code></a> </td> <td> open in <a href="../c/file.html#Binary_and_text_modes" title="cpp/io/c/FILE">binary mode</a> </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>in</code></a> </td> <td> open for reading </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>out</code></a> </td> <td> open for writing </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>trunc</code></a> </td> <td> discard the contents of the stream when opening </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>ate</code></a> </td> <td> seek to the end of stream immediately after open </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>noreplace</code></a> <span class="t-mark-rev t-since-cxx23">(C++23)</span> </td> <td> open in exclusive mode </td>
+</tr> </table> </td>
+</tr> <tr class="t-par"> <td> other </td> <td> - </td> <td> another string stream to use as source </td>
+</tr>
+</table> <h3 id="Notes"> Notes</h3> <p>Construction of one-off <code>basic_ostringstream</code> objects in a tight loop, such as when used for string conversion, may be significantly more costly than calling <code><a href="str.html" title="cpp/io/basic ostringstream/str">str</a></code> to reuse the same object.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+int main()
+{
+    // default constructor (input/output stream)
+    std::stringstream buf1;
+    buf1 &lt;&lt; 7;
+    int n = 0;
+    buf1 &gt;&gt; n;
+    std::cout &lt;&lt; "buf1 = " &lt;&lt; buf1.str() &lt;&lt; " n = " &lt;&lt; n &lt;&lt; '\n';
+ 
+    // input stream
+    std::istringstream inbuf("-10");
+    inbuf &gt;&gt; n;
+    std::cout &lt;&lt; "n = " &lt;&lt; n &lt;&lt; '\n';
+ 
+    // output stream in append mode (C++11)
+    std::ostringstream buf2("test", std::ios_base::ate);
+    buf2 &lt;&lt; '1';
+    std::cout &lt;&lt; buf2.str() &lt;&lt; '\n';
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">buf1 = 7 n = 7
+n = -10
+test1</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://wg21.link/P0935R0">P0935R0</a> </td> <td> C++11 </td> <td> default constructor was explicit </td> <td> made implicit </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="str.html" title="cpp/io/basic ostringstream/str"> <span class="t-lines"><span>str</span></span></a></div> </td> <td> gets or sets the contents of underlying string device object <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../basic_stringbuf/basic_stringbuf.html" title="cpp/io/basic stringbuf/basic stringbuf"> <span class="t-lines"><span>(constructor)</span></span></a></div> </td> <td> constructs a <code>basic_stringbuf</code> object <br> <span class="t-mark">(public member function of <code>std::basic_stringbuf&lt;CharT,Traits,Allocator&gt;</code>)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/io/basic_ostringstream/basic_ostringstream" class="_attribution-link">https://en.cppreference.com/w/cpp/io/basic_ostringstream/basic_ostringstream</a>
+  </p>
+</div>

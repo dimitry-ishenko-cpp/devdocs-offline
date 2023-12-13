@@ -1,0 +1,27 @@
+<h1 id="pandas-period-start-time">pandas.Period.start_time</h1> <dl class="attribute"> <dt id="pandas.Period.start_time">
+<code>Period.start_time</code> </dt> <dd>
+<p>Get the Timestamp for the start of the period.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Timestamp</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.period.end_time.html#pandas.Period.end_time" title="pandas.Period.end_time"><code>Period.end_time</code></a>
+</dt> <dd>Return the end Timestamp.</dd> <dt>
+ <a class="reference internal" href="pandas.period.dayofyear.html#pandas.Period.dayofyear" title="pandas.Period.dayofyear"><code>Period.dayofyear</code></a>
+</dt> <dd>Return the day of year.</dd> <dt>
+ <a class="reference internal" href="pandas.period.daysinmonth.html#pandas.Period.daysinmonth" title="pandas.Period.daysinmonth"><code>Period.daysinmonth</code></a>
+</dt> <dd>Return the days in that month.</dd> <dt>
+ <a class="reference internal" href="pandas.period.dayofweek.html#pandas.Period.dayofweek" title="pandas.Period.dayofweek"><code>Period.dayofweek</code></a>
+</dt> <dd>Return the day of the week.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; period = pd.Period('2012-1-1', freq='D')
+&gt;&gt;&gt; period
+Period('2012-01-01', 'D')
+</pre> <pre data-language="python">&gt;&gt;&gt; period.start_time
+Timestamp('2012-01-01 00:00:00')
+</pre> <pre data-language="python">&gt;&gt;&gt; period.end_time
+Timestamp('2012-01-01 23:59:59.999999999')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.start_time.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.start_time.html</a>
+  </p>
+</div>

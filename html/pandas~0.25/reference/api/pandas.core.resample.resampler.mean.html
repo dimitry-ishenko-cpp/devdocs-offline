@@ -1,0 +1,35 @@
+<h1 id="pandas-core-resample-resampler-mean">pandas.core.resample.Resampler.mean</h1> <dl class="method"> <dt id="pandas.core.resample.Resampler.mean">
+<code>Resampler.mean(self, _method='mean', *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/resample.py#L904-L906"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute mean of groups, excluding missing values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>pandas.Series or pandas.DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.groupby</code> </dt>  <dt>
+<code>DataFrame.groupby</code> </dt>  </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': [1, 1, 2, 1, 2],
+...                    'B': [np.nan, 2, 3, 4, 5],
+...                    'C': [1, 2, 1, 1, 2]}, columns=['A', 'B', 'C'])
+</pre> <p>Groupby one column and return the mean of the remaining columns in each group.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('A').mean()
+     B         C
+A
+1  3.0  1.333333
+2  4.0  1.500000
+</pre> <p>Groupby two columns and return the mean of the remaining column.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby(['A', 'B']).mean()
+       C
+A B
+1 2.0  2
+  4.0  1
+2 3.0  1
+  5.0  2
+</pre> <p>Groupby one column and return the mean of only particular column in the group.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('A')['B'].mean()
+A
+1    3.0
+2    4.0
+Name: B, dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.mean.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.mean.html</a>
+  </p>
+</div>

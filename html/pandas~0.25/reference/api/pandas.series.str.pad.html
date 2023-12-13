@@ -1,0 +1,48 @@
+<h1 id="pandas-series-str-pad">pandas.Series.str.pad</h1> <dl class="method"> <dt id="pandas.Series.str.pad">
+<code>Series.str.pad(self, width, side='left', fillchar=' ')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2723-L2727"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Pad strings in the Series/Index up to width.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>width : int</code> </dt> <dd>
+<p class="first last">Minimum width of resulting string; additional characters will be filled with character defined in <code>fillchar</code>.</p> </dd> <dt>
+<code>side : {‘left’, ‘right’, ‘both’}, default ‘left’</code> </dt> <dd>
+<p class="first last">Side from which to fill resulting string.</p> </dd> <dt>
+<code>fillchar : str, default ‘ ‘</code> </dt> <dd>
+<p class="first last">Additional character for filling, default is whitespace.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or Index of object</dt> <dd>
+<p class="first last">Returns Series or Index with minimum number of char in object.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.rjust.html#pandas.Series.str.rjust" title="pandas.Series.str.rjust"><code>Series.str.rjust</code></a>
+</dt> <dd>Fills the left side of strings with an arbitrary character. Equivalent to <code>Series.str.pad(side='left')</code>.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.ljust.html#pandas.Series.str.ljust" title="pandas.Series.str.ljust"><code>Series.str.ljust</code></a>
+</dt> <dd>Fills the right side of strings with an arbitrary character. Equivalent to <code>Series.str.pad(side='right')</code>.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.center.html#pandas.Series.str.center" title="pandas.Series.str.center"><code>Series.str.center</code></a>
+</dt> <dd>Fills boths sides of strings with an arbitrary character. Equivalent to <code>Series.str.pad(side='both')</code>.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.zfill.html#pandas.Series.str.zfill" title="pandas.Series.str.zfill"><code>Series.str.zfill</code></a>
+</dt> <dd>Pad strings in the Series/Index by prepending ‘0’ character. Equivalent to <code>Series.str.pad(side='left', fillchar='0')</code>.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(["caribou", "tiger"])
+&gt;&gt;&gt; s
+0    caribou
+1      tiger
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.pad(width=10)
+0       caribou
+1         tiger
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.pad(width=10, side='right', fillchar='-')
+0    caribou---
+1    tiger-----
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.pad(width=10, side='both', fillchar='-')
+0    -caribou--
+1    --tiger---
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.pad.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.pad.html</a>
+  </p>
+</div>

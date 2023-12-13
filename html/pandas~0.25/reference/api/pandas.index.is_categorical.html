@@ -1,0 +1,32 @@
+<h1 id="pandas-index-is-categorical">pandas.Index.is_categorical</h1> <dl class="method"> <dt id="pandas.Index.is_categorical">
+<code>Index.is_categorical(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1822-L1856"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check if the Index holds categorical data.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>boolean</dt> <dd>
+<p class="first last">True if the Index is categorical.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.categoricalindex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code>CategoricalIndex</code></a>
+</dt> <dd>Index for categorical data.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(["Watermelon", "Orange", "Apple",
+...                 "Watermelon"]).astype("category")
+&gt;&gt;&gt; idx.is_categorical()
+True
+</pre> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index([1, 3, 5, 7])
+&gt;&gt;&gt; idx.is_categorical()
+False
+</pre> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(["Peter", "Victor", "Elisabeth", "Mar"])
+&gt;&gt;&gt; s
+0        Peter
+1       Victor
+2    Elisabeth
+3          Mar
+dtype: object
+&gt;&gt;&gt; s.index.is_categorical()
+False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.is_categorical.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.is_categorical.html</a>
+  </p>
+</div>

@@ -1,0 +1,28 @@
+<h1 id="pandas-core-groupby-dataframegroupby-rank">pandas.core.groupby.DataFrameGroupBy.rank</h1> <dl class="method"> <dt id="pandas.core.groupby.DataFrameGroupBy.rank">
+<code>DataFrameGroupBy.rank(self, method='average', ascending=True, na_option='keep', pct=False, axis=0)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/groupby.py#L2041-L2083"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Provide the rank of values within each group.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>method : {‘average’, ‘min’, ‘max’, ‘first’, ‘dense’}, default ‘average’</code> </dt> <dd>
+<ul class="first last simple"> <li>average: average rank of group</li> <li>min: lowest rank in group</li> <li>max: highest rank in group</li> <li>first: ranks assigned in order they appear in the array</li> <li>dense: like ‘min’, but rank always increases by 1 between groups</li> </ul> </dd> <dt>
+<code>ascending : boolean, default True</code> </dt> <dd>
+<p class="first last">False for ranks by high (1) to low (N)</p> </dd> <dt>
+<code>na_option : {‘keep’, ‘top’, ‘bottom’}, default ‘keep’</code> </dt> <dd>
+<ul class="first last simple"> <li>keep: leave NA values where they are</li> <li>top: smallest rank if ascending</li> <li>bottom: smallest rank if descending</li> </ul> </dd> <dt>
+<code>pct : boolean, default False</code> </dt> <dd>
+<p class="first last">Compute percentage rank of data within each group</p> </dd> <dt>
+<code>axis : int, default 0</code> </dt> <dd>
+<p class="first last">The axis of the object over which to compute the rank.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame with ranking of values within each group</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.groupby</code> </dt>  <dt>
+<code>DataFrame.groupby</code> </dt>  </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.rank.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.rank.html</a>
+  </p>
+</div>

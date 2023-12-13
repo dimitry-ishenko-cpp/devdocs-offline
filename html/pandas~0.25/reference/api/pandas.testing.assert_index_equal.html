@@ -1,0 +1,27 @@
+<h1 id="pandas-testing-assert-index-equal">pandas.testing.assert_index_equal</h1> <dl class="function"> <dt id="pandas.testing.assert_index_equal">
+<code>pandas.testing.assert_index_equal(left: pandas.core.indexes.base.Index, right: pandas.core.indexes.base.Index, exact: Union[bool, str] = 'equiv', check_names: bool = True, check_less_precise: Union[bool, int] = False, check_exact: bool = True, check_categorical: bool = True, obj: str = 'Index') → None</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/util/testing.py#L574-L706"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check that left and right Index are equal.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>left : Index</code> </dt>  <dt>
+<code>right : Index</code> </dt>  <dt>
+<code>exact : bool / string {‘equiv’}, default ‘equiv’</code> </dt> <dd>
+<p class="first last">Whether to check the Index class, dtype and inferred_type are identical. If ‘equiv’, then RangeIndex can be substituted for Int64Index as well.</p> </dd> <dt>
+<code>check_names : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to check the names attribute.</p> </dd> <dt>
+<code>check_less_precise : bool or int, default False</code> </dt> <dd>
+<p class="first last">Specify comparison precision. Only used when check_exact is False. 5 digits (False) or 3 digits (True) after decimal points are compared. If int, then specify the digits to compare</p> </dd> <dt>
+<code>check_exact : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to compare number exactly.</p> </dd> <dt>
+<code>check_categorical : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to compare internal Categorical exactly.</p> </dd> <dt>
+<code>obj : str, default ‘Index’</code> </dt> <dd>
+<p class="first last">Specify object name being compared, internally used to show appropriate assertion message</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.testing.assert_index_equal.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.testing.assert_index_equal.html</a>
+  </p>
+</div>

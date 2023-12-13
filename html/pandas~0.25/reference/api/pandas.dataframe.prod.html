@@ -1,0 +1,35 @@
+<h1 id="pandas-dataframe-prod">pandas.DataFrame.prod</h1> <dl class="method"> <dt id="pandas.DataFrame.prod">
+<code>DataFrame.prod(self, axis=None, skipna=None, level=None, numeric_only=None, min_count=0, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L11548-L11588"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the product of the values for the requested axis.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {index (0), columns (1)}</code> </dt> <dd>
+<p class="first last">Axis for the function to be applied on.</p> </dd> <dt>
+<code>skipna : bool, default True</code> </dt> <dd>
+<p class="first last">Exclude NA/null values when computing the result.</p> </dd> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">If the axis is a MultiIndex (hierarchical), count along a particular level, collapsing into a Series.</p> </dd> <dt>
+<code>numeric_only : bool, default None</code> </dt> <dd>
+<p class="first last">Include only float, int, boolean columns. If None, will attempt to use everything, then use only numeric data. Not implemented for Series.</p> </dd> <dt>
+<code>min_count : int, default 0</code> </dt> <dd>
+<p class="first">The required number of valid values to perform the operation. If fewer than <code>min_count</code> non-NA values are present the result will be NA.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.22.0: </span>Added with the default being 0. This means the sum of an all-NA or empty Series is 0, and the product of an all-NA or empty Series is 1.</p> </div> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Additional keyword arguments to be passed to the function.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame (if level specified)</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <p>By default, the product of an empty or all-NA Series is <code>1</code></p> <pre data-language="python">&gt;&gt;&gt; pd.Series([]).prod()
+1.0
+</pre> <p>This can be controlled with the <code>min_count</code> parameter</p> <pre data-language="python">&gt;&gt;&gt; pd.Series([]).prod(min_count=1)
+nan
+</pre> <p>Thanks to the <code>skipna</code> parameter, <code>min_count</code> handles all-NA and empty series identically.</p> <pre data-language="python">&gt;&gt;&gt; pd.Series([np.nan]).prod()
+1.0
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Series([np.nan]).prod(min_count=1)
+nan
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.prod.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.prod.html</a>
+  </p>
+</div>

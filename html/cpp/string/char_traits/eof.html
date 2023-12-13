@@ -1,0 +1,15 @@
+    <h1 id="firstHeading" class="firstHeading">std::char_traits&lt;CharT&gt;::eof</h1>            <table class="t-dcl-begin">   <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">static int_type eof();</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">static constexpr int_type eof() noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>   </table> <p>Returns a value not equivalent to any valid value of type <code>char_type</code>.</p>
+<p>Formally, returns a value <code>e</code> such that <code>X::eq_int_type(e, X::to_int_type(c))</code> is <code>false</code> for all values <code>c</code>.</p>
+<h3 id="Parameters"> Parameters</h3> <p>(none).</p>
+<h3 id="Return_value"> Return value</h3> <p>A value not equivalent to any valid value of type <code>char_type</code>.</p>
+<h3 id="Complexity"> Complexity</h3> <p>Constant.</p>
+<h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="not_eof.html" title="cpp/string/char traits/not eof"> <span class="t-lines"><span>not_eof</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-cmark">[static]</span></span></span></div> </td> <td> checks whether a character is <i>eof</i> value <br> <span class="t-mark">(public static member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/string/char_traits/eof" class="_attribution-link">https://en.cppreference.com/w/cpp/string/char_traits/eof</a>
+  </p>
+</div>

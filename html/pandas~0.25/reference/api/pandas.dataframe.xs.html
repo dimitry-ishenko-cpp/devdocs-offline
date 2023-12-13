@@ -1,0 +1,69 @@
+<h1 id="pandas-dataframe-xs">pandas.DataFrame.xs</h1> <dl class="method"> <dt id="pandas.DataFrame.xs">
+<code>DataFrame.xs(self, key, axis=0, level=None, drop_level=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L3616-L3775"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return cross-section from the Series/DataFrame.</p> <p>This method takes a <code>key</code> argument to select data at a particular level of a MultiIndex.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>key : label or tuple of label</code> </dt> <dd>
+<p class="first last">Label contained in the index, or partially in a MultiIndex.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">Axis to retrieve cross-section on.</p> </dd> <dt>
+<code>level : object, defaults to first n levels (n=1 or len(key))</code> </dt> <dd>
+<p class="first last">In case of a key partially contained in a MultiIndex, indicate which levels are used. Levels can be referred by label or position.</p> </dd> <dt>
+<code>drop_level : bool, default True</code> </dt> <dd>
+<p class="first last">If False, returns object with same levels as self.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Cross-section from the original Series or DataFrame corresponding to the selected index levels.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code>DataFrame.loc</code></a>
+</dt> <dd>Access a group of rows and columns by label(s) or a boolean array.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code>DataFrame.iloc</code></a>
+</dt> <dd>Purely integer-location based indexing for selection by position.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p><code>xs</code> can not be used to set values.</p> <p>MultiIndex Slicers is a generic way to get/set values on any level or levels. It is a superset of <code>xs</code> functionality, see <a class="reference internal" href="../../user_guide/advanced.html#advanced-mi-slicers"><span class="std std-ref">MultiIndex Slicers</span></a>.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; d = {'num_legs': [4, 4, 2, 2],
+...      'num_wings': [0, 0, 2, 2],
+...      'class': ['mammal', 'mammal', 'mammal', 'bird'],
+...      'animal': ['cat', 'dog', 'bat', 'penguin'],
+...      'locomotion': ['walks', 'walks', 'flies', 'walks']}
+&gt;&gt;&gt; df = pd.DataFrame(data=d)
+&gt;&gt;&gt; df = df.set_index(['class', 'animal', 'locomotion'])
+&gt;&gt;&gt; df
+                           num_legs  num_wings
+class  animal  locomotion
+mammal cat     walks              4          0
+       dog     walks              4          0
+       bat     flies              2          2
+bird   penguin walks              2          2
+</pre> <p>Get values at specified index</p> <pre data-language="python">&gt;&gt;&gt; df.xs('mammal')
+                   num_legs  num_wings
+animal locomotion
+cat    walks              4          0
+dog    walks              4          0
+bat    flies              2          2
+</pre> <p>Get values at several indexes</p> <pre data-language="python">&gt;&gt;&gt; df.xs(('mammal', 'dog'))
+            num_legs  num_wings
+locomotion
+walks              4          0
+</pre> <p>Get values at specified index and level</p> <pre data-language="python">&gt;&gt;&gt; df.xs('cat', level=1)
+                   num_legs  num_wings
+class  locomotion
+mammal walks              4          0
+</pre> <p>Get values at several indexes and levels</p> <pre data-language="python">&gt;&gt;&gt; df.xs(('bird', 'walks'),
+...       level=[0, 'locomotion'])
+         num_legs  num_wings
+animal
+penguin         2          2
+</pre> <p>Get values at specified column and axis</p> <pre data-language="python">&gt;&gt;&gt; df.xs('num_wings', axis=1)
+class   animal   locomotion
+mammal  cat      walks         0
+        dog      walks         0
+        bat      flies         2
+bird    penguin  walks         2
+Name: num_wings, dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.xs.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.xs.html</a>
+  </p>
+</div>

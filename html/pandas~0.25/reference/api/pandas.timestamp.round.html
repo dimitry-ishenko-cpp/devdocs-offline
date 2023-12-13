@@ -1,0 +1,24 @@
+<h1 id="pandas-timestamp-round">pandas.Timestamp.round</h1> <dl class="attribute"> <dt id="pandas.Timestamp.round">
+<code>Timestamp.round(self, freq, ambiguous='raise', nonexistent='raise')</code> </dt> <dd>
+<p>Round the Timestamp to the specified resolution</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>freq : a freq string indicating the rounding resolution</code> </dt>  <dt>
+<code>ambiguous : bool, ‘NaT’, default ‘raise’</code> </dt> <dd>
+<ul class="first simple"> <li>bool contains flags to determine if time is dst or not (note that this flag is only applicable for ambiguous fall dst dates)</li> <li>‘NaT’ will return NaT for an ambiguous time</li> <li>‘raise’ will raise an AmbiguousTimeError for an ambiguous time</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>nonexistent : ‘shift_forward’, ‘shift_backward, ‘NaT’, timedelta, default ‘raise’</code> </dt> <dd>
+<p class="first">A nonexistent time does not exist in a particular timezone where clocks moved forward due to DST.</p> <ul class="simple"> <li>‘shift_forward’ will shift the nonexistent time forward to the closest existing time</li> <li>‘shift_backward’ will shift the nonexistent time backward to the closest existing time</li> <li>‘NaT’ will return NaT where there are nonexistent times</li> <li>timedelta objects will shift nonexistent times by the timedelta</li> <li>‘raise’ will raise an NonExistentTimeError if there are nonexistent times</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>a new Timestamp rounded to the given resolution of freq</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError if the freq cannot be converted</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timestamp.round.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timestamp.round.html</a>
+  </p>
+</div>

@@ -1,0 +1,67 @@
+<h1 id="pandas-dataframe-rename">pandas.DataFrame.rename</h1> <dl class="method"> <dt id="pandas.DataFrame.rename">
+<code>DataFrame.rename(self, mapper=None, index=None, columns=None, axis=None, copy=True, inplace=False, level=None, errors='ignore')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L4100-L4218"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Alter axes labels.</p> <p>Function / dict values must be unique (1-to-1). Labels not contained in a dict / Series will be left as-is. Extra labels listed don’t throw an error.</p> <p>See the <a class="reference internal" href="../../getting_started/basics.html#basics-rename"><span class="std std-ref">user guide</span></a> for more.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>mapper : dict-like or function</code> </dt> <dd>
+<p class="first last">Dict-like or functions transformations to apply to that axis’ values. Use either <code>mapper</code> and <code>axis</code> to specify the axis to target with <code>mapper</code>, or <code>index</code> and <code>columns</code>.</p> </dd> <dt>
+<code>index : dict-like or function</code> </dt> <dd>
+<p class="first last">Alternative to specifying axis (<code>mapper, axis=0</code> is equivalent to <code>index=mapper</code>).</p> </dd> <dt>
+<code>columns : dict-like or function</code> </dt> <dd>
+<p class="first last">Alternative to specifying axis (<code>mapper, axis=1</code> is equivalent to <code>columns=mapper</code>).</p> </dd> <dt>
+<code>axis : int or str</code> </dt> <dd>
+<p class="first last">Axis to target with <code>mapper</code>. Can be either the axis name (‘index’, ‘columns’) or number (0, 1). The default is ‘index’.</p> </dd> <dt>
+<code>copy : bool, default True</code> </dt> <dd>
+<p class="first last">Also copy underlying data.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to return a new DataFrame. If True then value of copy is ignored.</p> </dd> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">In case of a MultiIndex, only rename labels in the specified level.</p> </dd> <dt>
+<code>errors : {‘ignore’, ‘raise’}, default ‘ignore’</code> </dt> <dd>
+<p class="first last">If ‘raise’, raise a <code>KeyError</code> when a dict-like <code>mapper</code>, <code>index</code>, or <code>columns</code> contains labels that are not present in the Index being transformed. If ‘ignore’, existing keys will be renamed and extra keys will be ignored.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">DataFrame with the renamed axis labels.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>KeyError</dt> <dd>
+<p class="first last">If any of the labels is not found in the selected axis and “errors=’raise’”.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.rename_axis.html#pandas.DataFrame.rename_axis" title="pandas.DataFrame.rename_axis"><code>DataFrame.rename_axis</code></a>
+</dt> <dd>Set the name of the axis.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><code>DataFrame.rename</code> supports two calling conventions</p> <ul class="simple"> <li><code>(index=index_mapper, columns=columns_mapper, ...)</code></li> <li><code>(mapper, axis={'index', 'columns'}, ...)</code></li> </ul> <p>We <em>highly</em> recommend using keyword arguments to clarify your intent.</p> <p>Rename columns using a mapping:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": [1, 2, 3], "B": [4, 5, 6]})
+&gt;&gt;&gt; df.rename(columns={"A": "a", "B": "c"})
+   a  c
+0  1  4
+1  2  5
+2  3  6
+</pre> <p>Rename index using a mapping:</p> <pre data-language="python">&gt;&gt;&gt; df.rename(index={0: "x", 1: "y", 2: "z"})
+   A  B
+x  1  4
+y  2  5
+z  3  6
+</pre> <p>Cast index labels to a different type:</p> <pre data-language="python">&gt;&gt;&gt; df.index
+RangeIndex(start=0, stop=3, step=1)
+&gt;&gt;&gt; df.rename(index=str).index
+Index(['0', '1', '2'], dtype='object')
+</pre> <pre data-language="python">&gt;&gt;&gt; df.rename(columns={"A": "a", "B": "b", "C": "c"}, errors="raise")
+Traceback (most recent call last):
+KeyError: ['C'] not found in axis
+</pre> <p>Using axis-style parameters</p> <pre data-language="python">&gt;&gt;&gt; df.rename(str.lower, axis='columns')
+   a  b
+0  1  4
+1  2  5
+2  3  6
+</pre> <pre data-language="python">&gt;&gt;&gt; df.rename({1: 2, 2: 4}, axis='index')
+   A  B
+0  1  4
+2  2  5
+4  3  6
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.rename.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.rename.html</a>
+  </p>
+</div>

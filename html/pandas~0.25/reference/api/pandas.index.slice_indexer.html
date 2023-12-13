@@ -1,0 +1,34 @@
+<h1 id="pandas-index-slice-indexer">pandas.Index.slice_indexer</h1> <dl class="method"> <dt id="pandas.Index.slice_indexer">
+<code>Index.slice_indexer(self, start=None, end=None, step=None, kind=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L4988-L5035"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>For an ordered or unique index, compute the slice indexer for input labels and step.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>start : label, default None</code> </dt> <dd>
+<p class="first last">If None, defaults to the beginning</p> </dd> <dt>
+<code>end : label, default None</code> </dt> <dd>
+<p class="first last">If None, defaults to the end</p> </dd> <dt>
+<code>step : int, default None</code> </dt>  <dt>
+<code>kind : string, default None</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>indexer : slice</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>KeyError : If key does not exist, or key is not unique and index is</code> </dt> <dd>
+<p class="first last">not ordered.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>This function assumes that the data is sorted, so use at your own peril</p> <h4 class="rubric">Examples</h4> <p>This is a method on all index types. For example you can do:</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(list('abcd'))
+&gt;&gt;&gt; idx.slice_indexer(start='b', end='c')
+slice(1, 3)
+</pre> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_arrays([list('abcd'), list('efgh')])
+&gt;&gt;&gt; idx.slice_indexer(start='b', end=('c', 'g'))
+slice(1, 3)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.slice_indexer.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.slice_indexer.html</a>
+  </p>
+</div>

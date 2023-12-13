@@ -1,0 +1,65 @@
+<h1 id="pandas-dataframe-memory-usage">pandas.DataFrame.memory_usage</h1> <dl class="method"> <dt id="pandas.DataFrame.memory_usage">
+<code>DataFrame.memory_usage(self, index=True, deep=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L2561-L2653"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the memory usage of each column in bytes.</p> <p>The memory usage can optionally include the contribution of the index and elements of <code>object</code> dtype.</p> <p>This value is displayed in <code>DataFrame.info</code> by default. This can be suppressed by setting <code>pandas.options.display.memory_usage</code> to False.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">Specifies whether to include the memory usage of the DataFrame’s index in returned Series. If <code>index=True</code>, the memory usage of the index is the first item in the output.</p> </dd> <dt>
+<code>deep : bool, default False</code> </dt> <dd>
+<p class="first last">If True, introspect the data deeply by interrogating <code>object</code> dtypes for system-level memory consumption, and include it in the returned values.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">A Series whose index is the original column names and whose values is the memory usage of each column in bytes.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.nbytes.html#numpy.ndarray.nbytes" title="(in NumPy v1.16)"><code>numpy.ndarray.nbytes</code></a>
+</dt> <dd>Total bytes consumed by the elements of an ndarray.</dd> <dt>
+ <a class="reference internal" href="pandas.series.memory_usage.html#pandas.Series.memory_usage" title="pandas.Series.memory_usage"><code>Series.memory_usage</code></a>
+</dt> <dd>Bytes consumed by a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.categorical.html#pandas.Categorical" title="pandas.Categorical"><code>Categorical</code></a>
+</dt> <dd>Memory-efficient array for string values with many repeated values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code>DataFrame.info</code></a>
+</dt> <dd>Concise summary of a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; dtypes = ['int64', 'float64', 'complex128', 'object', 'bool']
+&gt;&gt;&gt; data = dict([(t, np.ones(shape=5000).astype(t))
+...              for t in dtypes])
+&gt;&gt;&gt; df = pd.DataFrame(data)
+&gt;&gt;&gt; df.head()
+   int64  float64  complex128  object  bool
+0      1      1.0    1.0+0.0j       1  True
+1      1      1.0    1.0+0.0j       1  True
+2      1      1.0    1.0+0.0j       1  True
+3      1      1.0    1.0+0.0j       1  True
+4      1      1.0    1.0+0.0j       1  True
+</pre> <pre data-language="python">&gt;&gt;&gt; df.memory_usage()
+Index           128
+int64         40000
+float64       40000
+complex128    80000
+object        40000
+bool           5000
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; df.memory_usage(index=False)
+int64         40000
+float64       40000
+complex128    80000
+object        40000
+bool           5000
+dtype: int64
+</pre> <p>The memory footprint of <code>object</code> dtype columns is ignored by default:</p> <pre data-language="python">&gt;&gt;&gt; df.memory_usage(deep=True)
+Index            128
+int64          40000
+float64        40000
+complex128     80000
+object        160000
+bool            5000
+dtype: int64
+</pre> <p>Use a Categorical for efficient storage of an object-dtype column with many repeated values.</p> <pre data-language="python">&gt;&gt;&gt; df['object'].astype('category').memory_usage(deep=True)
+5216
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.memory_usage.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.memory_usage.html</a>
+  </p>
+</div>

@@ -1,0 +1,23 @@
+<h1 id="pandas-api-extensions-extensiondtype-is-dtype">pandas.api.extensions.ExtensionDtype.is_dtype</h1> <dl class="classmethod"> <dt id="pandas.api.extensions.ExtensionDtype.is_dtype">
+<code>classmethod ExtensionDtype.is_dtype(dtype) → bool</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/base.py#L231-L269"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check if we match ‘dtype’.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>dtype : object</code> </dt> <dd>
+<p class="first last">The object to check.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>is_dtype : bool</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>The default implementation is True if</p> <ol class="arabic simple"> <li>
+<code>cls.construct_from_string(dtype)</code> is an instance of <code>cls</code>.</li> <li>
+<code>dtype</code> is an object and is an instance of <code>cls</code>
+</li> <li>
+<code>dtype</code> has a <code>dtype</code> attribute, and any of the above conditions is true for <code>dtype.dtype</code>.</li> </ol> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionDtype.is_dtype.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionDtype.is_dtype.html</a>
+  </p>
+</div>

@@ -1,0 +1,36 @@
+<h1 id="pandas-read-sql">pandas.read_sql</h1> <dl class="function"> <dt id="pandas.read_sql">
+<code>pandas.read_sql(sql, con, index_col=None, coerce_float=True, params=None, parse_dates=None, columns=None, chunksize=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/sql.py#L336-L437"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Read SQL query or database table into a DataFrame.</p> <p>This function is a convenience wrapper around <code>read_sql_table</code> and <code>read_sql_query</code> (for backward compatibility). It will delegate to the specific function depending on the provided input. A SQL query will be routed to <code>read_sql_query</code>, while a database table name will be routed to <code>read_sql_table</code>. Note that the delegated function might have more specific notes about their functionality not listed here.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>sql : string or SQLAlchemy Selectable (select or text object)</code> </dt> <dd>
+<p class="first last">SQL query to be executed or a table name.</p> </dd> <dt>
+<code>con : SQLAlchemy connectable (engine/connection) or database string URI</code> </dt> <dd>
+<p class="first">or DBAPI2 connection (fallback mode)</p> <p class="last">Using SQLAlchemy makes it possible to use any DB supported by that library. If a DBAPI2 object, only sqlite3 is supported.</p> </dd> <dt>
+<code>index_col : string or list of strings, optional, default: None</code> </dt> <dd>
+<p class="first last">Column(s) to set as index(MultiIndex).</p> </dd> <dt>
+<code>coerce_float : boolean, default True</code> </dt> <dd>
+<p class="first last">Attempts to convert values of non-string, non-numeric objects (like decimal.Decimal) to floating point, useful for SQL result sets.</p> </dd> <dt>
+<code>params : list, tuple or dict, optional, default: None</code> </dt> <dd>
+<p class="first last">List of parameters to pass to execute method. The syntax used to pass parameters is database driver dependent. Check your database driver documentation for which of the five syntax styles, described in PEP 249’s paramstyle, is supported. Eg. for psycopg2, uses %(name)s so use params={‘name’ : ‘value’}</p> </dd> <dt>
+<code>parse_dates : list or dict, default: None</code> </dt> <dd>
+<ul class="first last simple"> <li>List of column names to parse as dates.</li> <li>Dict of <code>{column_name: format string}</code> where format string is strftime compatible in case of parsing string times, or is one of (D, s, ns, ms, us) in case of parsing integer timestamps.</li> <li>Dict of <code>{column_name: arg dict}</code>, where the arg dict corresponds to the keyword arguments of <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code>pandas.to_datetime()</code></a> Especially useful with databases without native Datetime support, such as SQLite.</li> </ul> </dd> <dt>
+<code>columns : list, default: None</code> </dt> <dd>
+<p class="first last">List of column names to select from SQL table (only used when reading a table).</p> </dd> <dt>
+<code>chunksize : int, default None</code> </dt> <dd>
+<p class="first last">If specified, return an iterator where <code>chunksize</code> is the number of rows to include in each chunk.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_sql_table.html#pandas.read_sql_table" title="pandas.read_sql_table"><code>read_sql_table</code></a>
+</dt> <dd>Read SQL database table into a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.read_sql_query.html#pandas.read_sql_query" title="pandas.read_sql_query"><code>read_sql_query</code></a>
+</dt> <dd>Read SQL query into a DataFrame.</dd> </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_sql.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_sql.html</a>
+  </p>
+</div>

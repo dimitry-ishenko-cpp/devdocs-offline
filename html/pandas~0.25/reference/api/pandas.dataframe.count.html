@@ -1,0 +1,58 @@
+<h1 id="pandas-dataframe-count">pandas.DataFrame.count</h1> <dl class="method"> <dt id="pandas.DataFrame.count">
+<code>DataFrame.count(self, axis=0, level=None, numeric_only=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L7725-L7824"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Count non-NA cells for each column or row.</p> <p>The values <code>None</code>, <code>NaN</code>, <code>NaT</code>, and optionally <code>numpy.inf</code> (depending on <code>pandas.options.mode.use_inf_as_na</code>) are considered NA.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">If 0 or ‘index’ counts are generated for each column. If 1 or ‘columns’ counts are generated for each <strong>row</strong>.</p> </dd> <dt>
+<code>level : int or str, optional</code> </dt> <dd>
+<p class="first last">If the axis is a <code>MultiIndex</code> (hierarchical), count along a particular <code>level</code>, collapsing into a <code>DataFrame</code>. A <code>str</code> specifies the level name.</p> </dd> <dt>
+<code>numeric_only : bool, default False</code> </dt> <dd>
+<p class="first last">Include only <code>float</code>, <code>int</code> or <code>boolean</code> data.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">For each column/row the number of non-NA/null entries. If <code>level</code> is specified returns a <code>DataFrame</code>.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.count.html#pandas.Series.count" title="pandas.Series.count"><code>Series.count</code></a>
+</dt> <dd>Number of non-NA elements in a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.shape.html#pandas.DataFrame.shape" title="pandas.DataFrame.shape"><code>DataFrame.shape</code></a>
+</dt> <dd>Number of DataFrame rows and columns (including NA elements).</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.isna.html#pandas.DataFrame.isna" title="pandas.DataFrame.isna"><code>DataFrame.isna</code></a>
+</dt> <dd>Boolean same-sized DataFrame showing places of NA elements.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Constructing DataFrame from a dictionary:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"Person":
+...                    ["John", "Myla", "Lewis", "John", "Myla"],
+...                    "Age": [24., np.nan, 21., 33, 26],
+...                    "Single": [False, True, True, True, False]})
+&gt;&gt;&gt; df
+   Person   Age  Single
+0    John  24.0   False
+1    Myla   NaN    True
+2   Lewis  21.0    True
+3    John  33.0    True
+4    Myla  26.0   False
+</pre> <p>Notice the uncounted NA values:</p> <pre data-language="python">&gt;&gt;&gt; df.count()
+Person    5
+Age       4
+Single    5
+dtype: int64
+</pre> <p>Counts for each <strong>row</strong>:</p> <pre data-language="python">&gt;&gt;&gt; df.count(axis='columns')
+0    3
+1    2
+2    3
+3    3
+4    3
+dtype: int64
+</pre> <p>Counts for one level of a <code>MultiIndex</code>:</p> <pre data-language="python">&gt;&gt;&gt; df.set_index(["Person", "Single"]).count(level="Person")
+        Age
+Person
+John      2
+Lewis     1
+Myla      1
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.count.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.count.html</a>
+  </p>
+</div>

@@ -1,0 +1,56 @@
+<h1 id="pandas-testing-assert-frame-equal">pandas.testing.assert_frame_equal</h1> <dl class="function"> <dt id="pandas.testing.assert_frame_equal">
+<code>pandas.testing.assert_frame_equal(left, right, check_dtype=True, check_index_type='equiv', check_column_type='equiv', check_frame_type=True, check_less_precise=False, check_names=True, by_blocks=False, check_exact=False, check_datetimelike_compat=False, check_categorical=True, check_like=False, obj='DataFrame')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/util/testing.py#L1223-L1404"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check that left and right DataFrame are equal.</p> <p>This function is intended to compare two DataFrames and output any differences. Is is mostly intended for use in unit tests. Additional parameters allow varying the strictness of the equality checks performed.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>left : DataFrame</code> </dt> <dd>
+<p class="first last">First DataFrame to compare.</p> </dd> <dt>
+<code>right : DataFrame</code> </dt> <dd>
+<p class="first last">Second DataFrame to compare.</p> </dd> <dt>
+<code>check_dtype : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to check the DataFrame dtype is identical.</p> </dd> <dt>
+<code>check_index_type : bool / string {‘equiv’}, default ‘equiv’</code> </dt> <dd>
+<p class="first last">Whether to check the Index class, dtype and inferred_type are identical.</p> </dd> <dt>
+<code>check_column_type : bool / string {‘equiv’}, default ‘equiv’</code> </dt> <dd>
+<p class="first last">Whether to check the columns class, dtype and inferred_type are identical. Is passed as the <code>exact</code> argument of <a class="reference internal" href="pandas.testing.assert_index_equal.html#pandas.testing.assert_index_equal" title="pandas.testing.assert_index_equal"><code>assert_index_equal()</code></a>.</p> </dd> <dt>
+<code>check_frame_type : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to check the DataFrame class is identical.</p> </dd> <dt>
+<code>check_less_precise : bool or int, default False</code> </dt> <dd>
+<p class="first">Specify comparison precision. Only used when check_exact is False. 5 digits (False) or 3 digits (True) after decimal points are compared. If int, then specify the digits to compare.</p> <p class="last">When comparing two numbers, if the first number has magnitude less than 1e-5, we compare the two numbers directly and check whether they are equivalent within the specified precision. Otherwise, we compare the <strong>ratio</strong> of the second number to the first number and check whether it is equivalent to 1 within the specified precision.</p> </dd> <dt>
+<code>check_names : bool, default True</code> </dt> <dd>
+<p class="first">Whether to check that the <code>names</code> attribute for both the <code>index</code> and <code>column</code> attributes of the DataFrame is identical, i.e.</p> <ul class="last simple"> <li>left.index.names == right.index.names</li> <li>left.columns.names == right.columns.names</li> </ul> </dd> <dt>
+<code>by_blocks : bool, default False</code> </dt> <dd>
+<p class="first last">Specify how to compare internal data. If False, compare by columns. If True, compare by blocks.</p> </dd> <dt>
+<code>check_exact : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to compare number exactly.</p> </dd> <dt>
+<code>check_datetimelike_compat : bool, default False</code> </dt> <dd>
+<p class="first last">Compare datetime-like which is comparable ignoring dtype.</p> </dd> <dt>
+<code>check_categorical : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to compare internal Categorical exactly.</p> </dd> <dt>
+<code>check_like : bool, default False</code> </dt> <dd>
+<p class="first last">If True, ignore the order of index &amp; columns. Note: index labels must match their respective rows (same as in columns) - same labels must be with the same data.</p> </dd> <dt>
+<code>obj : str, default ‘DataFrame’</code> </dt> <dd>
+<p class="first last">Specify object name being compared, internally used to show appropriate assertion message.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.testing.assert_series_equal.html#pandas.testing.assert_series_equal" title="pandas.testing.assert_series_equal"><code>assert_series_equal</code></a>
+</dt> <dd>Equivalent method for asserting Series equality.</dd> <dt>
+<code>DataFrame.equals</code> </dt> <dd>Check DataFrame equality.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>This example shows comparing two DataFrames that are equal but with columns of differing dtypes.</p> <pre data-language="python">&gt;&gt;&gt; from pandas.util.testing import assert_frame_equal
+&gt;&gt;&gt; df1 = pd.DataFrame({'a': [1, 2], 'b': [3, 4]})
+&gt;&gt;&gt; df2 = pd.DataFrame({'a': [1, 2], 'b': [3.0, 4.0]})
+</pre> <p>df1 equals itself.</p> <pre data-language="python">&gt;&gt;&gt; assert_frame_equal(df1, df1)
+</pre> <p>df1 differs from df2 as column ‘b’ is of a different type.</p> <pre data-language="python">&gt;&gt;&gt; assert_frame_equal(df1, df2)
+Traceback (most recent call last):
+AssertionError: Attributes are different
+...
+Attribute "dtype" are different
+[left]:  int64
+[right]: float64
+</pre> <p>Ignore differing dtypes in columns with check_dtype.</p> <pre data-language="python">&gt;&gt;&gt; assert_frame_equal(df1, df2, check_dtype=False)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.testing.assert_frame_equal.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.testing.assert_frame_equal.html</a>
+  </p>
+</div>

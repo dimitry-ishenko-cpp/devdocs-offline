@@ -1,0 +1,48 @@
+<h1 id="integer-na">Nullable integer data type</h1> <div class="versionadded" id="nullable-integer-data-type"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">IntegerArray is currently experimental. Its API or implementation may change without warning.</p> </div> <p>In <a class="reference internal" href="missing_data.html#missing-data"><span class="std std-ref">Working with missing data</span></a>, we saw that pandas primarily uses <code>NaN</code> to represent missing data. Because <code>NaN</code> is a float, this forces an array of integers with any missing values to become floating point. In some cases, this may not matter much. But if your integer column is, say, an identifier, casting to float can be problematic. Some integers cannot even be represented as floating point numbers.</p> <p>Pandas can represent integer data with possibly missing values using <a class="reference internal" href="../reference/api/pandas.arrays.integerarray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code>arrays.IntegerArray</code></a>. This is an <a class="reference internal" href="../development/extending.html#extending-extension-types"><span class="std std-ref">extension types</span></a> implemented within pandas. It is not the default dtype for integers, and will not be inferred; you must explicitly pass the dtype into <a class="reference internal" href="../reference/api/pandas.array.html#pandas.array" title="pandas.array"><code>array()</code></a> or <a class="reference internal" href="../reference/api/pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>:</p> <pre data-language="python">In [1]: arr = pd.array([1, 2, np.nan], dtype=pd.Int64Dtype())
+
+In [2]: arr
+Out[2]: 
+&lt;IntegerArray&gt;
+[1, 2, NaN]
+Length: 3, dtype: Int64
+</pre> <p>Or the string alias <code>"Int64"</code> (note the capital <code>"I"</code>, to differentiate from NumPy’s <code>'int64'</code> dtype:</p> <pre data-language="python">In [3]: pd.array([1, 2, np.nan], dtype="Int64")
+Out[3]: 
+&lt;IntegerArray&gt;
+[1, 2, NaN]
+Length: 3, dtype: Int64
+</pre> <p>This array can be stored in a <a class="reference internal" href="../reference/api/pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> or <a class="reference internal" href="../reference/api/pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> like any NumPy array.</p> <pre data-language="python">In [4]: pd.Series(arr)
+Out[4]: 
+0      1
+1      2
+2    NaN
+dtype: Int64
+</pre> <p>You can also pass the list-like object to the <a class="reference internal" href="../reference/api/pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> constructor with the dtype.</p> <pre data-language="python">In [5]: s = pd.Series([1, 2, np.nan], dtype="Int64")
+
+In [6]: s
+Out[6]: 
+0      1
+1      2
+2    NaN
+dtype: Int64
+</pre> <p>By default (if you don’t specify <code>dtype</code>), NumPy is used, and you’ll end up with a <code>float64</code> dtype Series:</p> <pre data-language="python">In [7]: pd.Series([1, 2, np.nan])
+Out[7]: 
+0    1.0
+1    2.0
+2    NaN
+dtype: float64
+</pre> <p>Operations involving an integer array will behave similar to NumPy arrays. Missing values will be propagated, and and the data will be coerced to another dtype if needed.</p> <pre data-language="python"># arithmetic
+In [8]: s + 1
+Out[8]: 
+0      2
+1      3
+2    NaN
+dtype: Int64
+
+# comparison
+In [9]: s == 1
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/integer_na.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/integer_na.html</a>
+  </p>
+</div>

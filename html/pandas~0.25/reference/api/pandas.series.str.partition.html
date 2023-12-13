@@ -1,0 +1,58 @@
+<h1 id="pandas-series-str-partition">pandas.Series.str.partition</h1> <dl class="method"> <dt id="pandas.Series.str.partition">
+<code>Series.str.partition(self, sep=' ', expand=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2652-L2666"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Split the string at the first occurrence of <code>sep</code>.</p> <p>This method splits the string at the first occurrence of <code>sep</code>, and returns 3 elements containing the part before the separator, the separator itself, and the part after the separator. If the separator is not found, return 3 elements containing the string itself, followed by two empty strings.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>sep : str, default whitespace</code> </dt> <dd>
+<p class="first last">String to split on.</p> </dd> <dt>
+<code>pat : str, default whitespace</code> </dt> <dd>
+<div class="first last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0: </span>Use <code>sep</code> instead</p> </div> </dd> <dt>
+<code>expand : bool, default True</code> </dt> <dd>
+<p class="first last">If True, return DataFrame/MultiIndex expanding dimensionality. If False, return Series/Index.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame/MultiIndex or Series/Index of objects</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.rpartition.html#pandas.Series.str.rpartition" title="pandas.Series.str.rpartition"><code>rpartition</code></a>
+</dt> <dd>Split the string at the last occurrence of <code>sep</code>.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.split.html#pandas.Series.str.split" title="pandas.Series.str.split"><code>Series.str.split</code></a>
+</dt> <dd>Split strings around given separators.</dd> <dt>
+ <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.partition" title="(in Python v3.7)"><code>str.partition</code></a>
+</dt> <dd>Standard library version.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['Linda van der Berg', 'George Pitt-Rivers'])
+&gt;&gt;&gt; s
+0    Linda van der Berg
+1    George Pitt-Rivers
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.partition()
+        0  1             2
+0   Linda     van der Berg
+1  George      Pitt-Rivers
+</pre> <p>To partition by the last space instead of the first one:</p> <pre data-language="python">&gt;&gt;&gt; s.str.rpartition()
+               0  1            2
+0  Linda van der            Berg
+1         George     Pitt-Rivers
+</pre> <p>To partition by something different than a space:</p> <pre data-language="python">&gt;&gt;&gt; s.str.partition('-')
+                    0  1       2
+0  Linda van der Berg
+1         George Pitt  -  Rivers
+</pre> <p>To return a Series containing tuples instead of a DataFrame:</p> <pre data-language="python">&gt;&gt;&gt; s.str.partition('-', expand=False)
+0    (Linda van der Berg, , )
+1    (George Pitt, -, Rivers)
+dtype: object
+</pre> <p>Also available on indices:</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['X 123', 'Y 999'])
+&gt;&gt;&gt; idx
+Index(['X 123', 'Y 999'], dtype='object')
+</pre> <p>Which will create a MultiIndex:</p> <pre data-language="python">&gt;&gt;&gt; idx.str.partition()
+MultiIndex([('X', ' ', '123'),
+            ('Y', ' ', '999')],
+           dtype='object')
+</pre> <p>Or an index with tuples with <code>expand=False</code>:</p> <pre data-language="python">&gt;&gt;&gt; idx.str.partition(expand=False)
+Index([('X', ' ', '123'), ('Y', ' ', '999')], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.partition.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.partition.html</a>
+  </p>
+</div>

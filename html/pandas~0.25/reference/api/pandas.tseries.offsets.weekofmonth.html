@@ -1,0 +1,35 @@
+<h1 id="pandas-tseries-offsets-weekofmonth">pandas.tseries.offsets.WeekOfMonth</h1> <dl class="class"> <dt id="pandas.tseries.offsets.WeekOfMonth">
+<code>class pandas.tseries.offsets.WeekOfMonth(n=1, normalize=False, week=0, weekday=0)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/tseries/offsets.py#L1664-L1736"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Describes monthly dates like “the Tuesday of the 2nd week of each month”.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>n : int</code> </dt>  <dt>
+<code>week : {0, 1, 2, 3, …}, default 0</code> </dt> <dd>
+<p class="first last">0 is 1st week of month, 1 2nd week, etc.</p> </dd> <dt>
+<code>weekday : {0, 1, …, 6}, default 0</code> </dt> <dd>
+<p class="first last">0: Mondays 1: Tuesdays 2: Wednesdays 3: Thursdays 4: Fridays 5: Saturdays 6: Sundays</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.weekofmonth.base.html#pandas.tseries.offsets.WeekOfMonth.base" title="pandas.tseries.offsets.WeekOfMonth.base"><code>base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>freqstr</strong></td> <td> </td> </tr> <tr>
+<td><strong>kwds</strong></td> <td> </td> </tr> <tr>
+<td><strong>name</strong></td> <td> </td> </tr> <tr>
+<td><strong>nanos</strong></td> <td> </td> </tr> <tr>
+<td><strong>rule_code</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.weekofmonth.apply_index.html#pandas.tseries.offsets.WeekOfMonth.apply_index" title="pandas.tseries.offsets.WeekOfMonth.apply_index"><code>apply_index</code></a>(self, other)</td> <td>Vectorized apply of DateOffset to DatetimeIndex, raises NotImplentedError for offsets without a vectorized implementation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.weekofmonth.rollback.html#pandas.tseries.offsets.WeekOfMonth.rollback" title="pandas.tseries.offsets.WeekOfMonth.rollback"><code>rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.weekofmonth.rollforward.html#pandas.tseries.offsets.WeekOfMonth.rollforward" title="pandas.tseries.offsets.WeekOfMonth.rollforward"><code>rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>__call__</strong></td> <td> </td> </tr> <tr>
+<td><strong>apply</strong></td> <td> </td> </tr> <tr>
+<td><strong>copy</strong></td> <td> </td> </tr> <tr>
+<td><strong>isAnchored</strong></td> <td> </td> </tr> <tr>
+<td><strong>onOffset</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.WeekOfMonth.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.WeekOfMonth.html</a>
+  </p>
+</div>

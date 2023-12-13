@@ -1,0 +1,80 @@
+<h1 id="pandas-io-formats-style-styler">pandas.io.formats.style.Styler</h1> <dl class="class"> <dt id="pandas.io.formats.style.Styler">
+<code>class pandas.io.formats.style.Styler(data, precision=None, table_styles=None, uuid=None, caption=None, table_attributes=None, cell_ids=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L50-L1410"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Helps style a DataFrame or Series according to the data with HTML and CSS.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : Series or DataFrame</code> </dt>  <dt>
+<code>precision : int</code> </dt> <dd>
+<p class="first last">precision to round floats to, defaults to pd.options.display.precision</p> </dd> <dt>
+<code>table_styles : list-like, default None</code> </dt> <dd>
+<p class="first last">list of {selector: (attr, value)} dicts; see Notes</p> </dd> <dt>
+<code>uuid : str, default None</code> </dt> <dd>
+<p class="first last">a unique identifier to avoid CSS collisions; generated automatically</p> </dd> <dt>
+<code>caption : str, default None</code> </dt> <dd>
+<p class="first last">caption to attach to the table</p> </dd> <dt>
+<code>cell_ids : bool, default True</code> </dt> <dd>
+<p class="first last">If True, each cell will have an <code>id</code> attribute in their HTML tag. The <code>id</code> takes the form <code>T_&lt;uuid&gt;_row&lt;num_row&gt;_col&lt;num_col&gt;</code> where <code>&lt;uuid&gt;</code> is the unique identifier, <code>&lt;num_row&gt;</code> is the row number and <code>&lt;num_col&gt;</code> is the column number.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>DataFrame.style</code> </dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>Most styling will be done by passing style functions into <code>Styler.apply</code> or <code>Styler.applymap</code>. Style functions should return values with strings containing CSS <code>'attr: value'</code> that will be applied to the indicated cells.</p> <p>If using in the Jupyter notebook, Styler has defined a <code>_repr_html_</code> to automatically render itself. Otherwise call Styler.render to get the generated HTML.</p> <p>CSS classes are attached to the generated HTML</p> <ul class="simple"> <li>Index and Column names include <code>index_name</code> and <code>level&lt;k&gt;</code> where <code>k</code> is its level in a MultiIndex</li> <li>Index label cells include<ul> <li><code>row_heading</code></li> <li>
+<code>row&lt;n&gt;</code> where <code>n</code> is the numeric position of the row</li> <li>
+<code>level&lt;k&gt;</code> where <code>k</code> is the level in a MultiIndex</li> </ul> </li> <li>Column label cells include * <code>col_heading</code> * <code>col&lt;n&gt;</code> where <code>n</code> is the numeric position of the column * <code>evel&lt;k&gt;</code> where <code>k</code> is the level in a MultiIndex</li> <li>Blank cells include <code>blank</code>
+</li> <li>Data cells include <code>data</code>
+</li> </ul> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>env</strong></td> <td>(Jinja2 jinja2.Environment)</td> </tr> <tr>
+<td><strong>template</strong></td> <td>(Jinja2 Template)</td> </tr> <tr>
+<td><strong>loader</strong></td> <td>(Jinja2 Loader)</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.apply.html#pandas.io.formats.style.Styler.apply" title="pandas.io.formats.style.Styler.apply"><code>apply</code></a>(self, func[, axis, subset])</td> <td>Apply a function column-wise, row-wise, or table-wise, updating the HTML representation with the result.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.applymap.html#pandas.io.formats.style.Styler.applymap" title="pandas.io.formats.style.Styler.applymap"><code>applymap</code></a>(self, func[, subset])</td> <td>Apply a function elementwise, updating the HTML representation with the result.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.background_gradient.html#pandas.io.formats.style.Styler.background_gradient" title="pandas.io.formats.style.Styler.background_gradient"><code>background_gradient</code></a>(self[, cmap, low, high, …])</td> <td>Color the background in a gradient according to the data in each column (optionally row).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.bar.html#pandas.io.formats.style.Styler.bar" title="pandas.io.formats.style.Styler.bar"><code>bar</code></a>(self[, subset, axis, color, width, …])</td> <td>Draw bar chart in the cell backgrounds.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.clear.html#pandas.io.formats.style.Styler.clear" title="pandas.io.formats.style.Styler.clear"><code>clear</code></a>(self)</td> <td>Reset the styler, removing any previously applied styles.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.export.html#pandas.io.formats.style.Styler.export" title="pandas.io.formats.style.Styler.export"><code>export</code></a>(self)</td> <td>Export the styles to applied to the current Styler.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.format.html#pandas.io.formats.style.Styler.format" title="pandas.io.formats.style.Styler.format"><code>format</code></a>(self, formatter[, subset])</td> <td>Format the text display value of cells.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.from_custom_template.html#pandas.io.formats.style.Styler.from_custom_template" title="pandas.io.formats.style.Styler.from_custom_template"><code>from_custom_template</code></a>(searchpath, name)</td> <td>Factory function for creating a subclass of <code>Styler</code> with a custom template and Jinja environment.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.hide_columns.html#pandas.io.formats.style.Styler.hide_columns" title="pandas.io.formats.style.Styler.hide_columns"><code>hide_columns</code></a>(self, subset)</td> <td>Hide columns from rendering.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.hide_index.html#pandas.io.formats.style.Styler.hide_index" title="pandas.io.formats.style.Styler.hide_index"><code>hide_index</code></a>(self)</td> <td>Hide any indices from rendering.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.highlight_max.html#pandas.io.formats.style.Styler.highlight_max" title="pandas.io.formats.style.Styler.highlight_max"><code>highlight_max</code></a>(self[, subset, color, axis])</td> <td>Highlight the maximum by shading the background.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.highlight_min.html#pandas.io.formats.style.Styler.highlight_min" title="pandas.io.formats.style.Styler.highlight_min"><code>highlight_min</code></a>(self[, subset, color, axis])</td> <td>Highlight the minimum by shading the background.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.highlight_null.html#pandas.io.formats.style.Styler.highlight_null" title="pandas.io.formats.style.Styler.highlight_null"><code>highlight_null</code></a>(self[, null_color])</td> <td>Shade the background <code>null_color</code> for missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.pipe.html#pandas.io.formats.style.Styler.pipe" title="pandas.io.formats.style.Styler.pipe"><code>pipe</code></a>(self, func, \*args, \*\*kwargs)</td> <td>Apply <code>func(self, *args, **kwargs)</code>, and return the result.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.render.html#pandas.io.formats.style.Styler.render" title="pandas.io.formats.style.Styler.render"><code>render</code></a>(self, \*\*kwargs)</td> <td>Render the built up styles to HTML.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.set_caption.html#pandas.io.formats.style.Styler.set_caption" title="pandas.io.formats.style.Styler.set_caption"><code>set_caption</code></a>(self, caption)</td> <td>Set the caption on a Styler</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.set_precision.html#pandas.io.formats.style.Styler.set_precision" title="pandas.io.formats.style.Styler.set_precision"><code>set_precision</code></a>(self, precision)</td> <td>Set the precision used to render.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.set_properties.html#pandas.io.formats.style.Styler.set_properties" title="pandas.io.formats.style.Styler.set_properties"><code>set_properties</code></a>(self[, subset])</td> <td>Convenience method for setting one or more non-data dependent properties or each cell.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.set_table_attributes.html#pandas.io.formats.style.Styler.set_table_attributes" title="pandas.io.formats.style.Styler.set_table_attributes"><code>set_table_attributes</code></a>(self, attributes)</td> <td>Set the table attributes.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.set_table_styles.html#pandas.io.formats.style.Styler.set_table_styles" title="pandas.io.formats.style.Styler.set_table_styles"><code>set_table_styles</code></a>(self, table_styles)</td> <td>Set the table styles on a Styler.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.set_uuid.html#pandas.io.formats.style.Styler.set_uuid" title="pandas.io.formats.style.Styler.set_uuid"><code>set_uuid</code></a>(self, uuid)</td> <td>Set the uuid for a Styler.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.to_excel.html#pandas.io.formats.style.Styler.to_excel" title="pandas.io.formats.style.Styler.to_excel"><code>to_excel</code></a>(self, excel_writer[, sheet_name, …])</td> <td>Write Styler to an Excel sheet.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.use.html#pandas.io.formats.style.Styler.use" title="pandas.io.formats.style.Styler.use"><code>use</code></a>(self, styles)</td> <td>Set the styles on the current Styler, possibly using styles from <code>Styler.export</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.io.formats.style.styler.where.html#pandas.io.formats.style.Styler.where" title="pandas.io.formats.style.Styler.where"><code>where</code></a>(self, cond, value[, other, subset])</td> <td>Apply a function elementwise, updating the HTML representation with a style which is selected in accordance with the return value of a function.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.html</a>
+  </p>
+</div>

@@ -1,0 +1,28 @@
+<h1 id="pandas-multiindex-get-indexer">pandas.MultiIndex.get_indexer</h1> <dl class="method"> <dt id="pandas.MultiIndex.get_indexer">
+<code>MultiIndex.get_indexer(self, target, method=None, limit=None, tolerance=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/multi.py#L2403-L2442"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute indexer and mask for new index given the current index. The indexer should be then used as an input to ndarray.take to align the current data to the new index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>target : MultiIndex or list of tuples</code> </dt>  <dt>
+<code>method : {None, ‘pad’/’ffill’, ‘backfill’/’bfill’, ‘nearest’}, optional</code> </dt> <dd>
+<ul class="first last simple"> <li>default: exact matches only.</li> <li>pad / ffill: find the PREVIOUS index value if no exact match.</li> <li>backfill / bfill: use NEXT index value if no exact match</li> <li>nearest: use the NEAREST index value if no exact match. Tied distances are broken by preferring the larger index value.</li> </ul> </dd> <dt>
+<code>limit : int, optional</code> </dt> <dd>
+<p class="first last">Maximum number of consecutive labels in <code>target</code> to match for inexact matches.</p> </dd> <dt>
+<code>tolerance : optional</code> </dt> <dd>
+<p class="first">Maximum distance between original and new labels for inexact matches. The values of the index at the matching locations most satisfy the equation <code>abs(index[indexer] - target) &lt;= tolerance</code>.</p> <p>Tolerance may be a scalar value, which applies the same tolerance to all values, or list-like, which applies variable tolerance per element. List-like includes list, tuple, array, Series, and must be the same size as the index and its dtype must exactly match the index’s type.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0: </span>(list-like tolerance)</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>indexer : ndarray of int</code> </dt> <dd>
+<p class="first last">Integers from 0 to n - 1 indicating that the index at these positions matches the corresponding target values. Missing values in the target are marked by -1.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; index = pd.Index(['c', 'a', 'b'])
+&gt;&gt;&gt; index.get_indexer(['a', 'b', 'x'])
+array([ 1,  2, -1])
+</pre> <p>Notice that the return value is an array of locations in <code>index</code> and <code>x</code> is marked by -1, as it is not in <code>index</code>.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.get_indexer.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.get_indexer.html</a>
+  </p>
+</div>

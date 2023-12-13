@@ -1,0 +1,16 @@
+    <h1 id="firstHeading" class="firstHeading">std::basic_ospanstream&lt;CharT,Traits&gt;::span</h1>             <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">std::span&lt;CharT&gt; span() const noexcept;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">void span( std::span&lt;CharT&gt; s ) noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> Gets a <code>span</code> referencing the written area if <code><a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode">std::ios_base::out</a></code> is set in the open mode of the wrapped <code>std::basic_spanbuf</code>, or a <code>span</code> referencing the underlying buffer otherwise.</div> <div class="t-li1">
+<span class="t-li">2)</span> Makes the wrapped <code>std::basic_spanbuf</code> perform I/O on the buffer referenced by <code>s</code>.</div>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> s </td> <td> - </td> <td> <code>std::span</code> referencing the storage to be use as the new underlying buffer of stream </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <div class="t-li1">
+<span class="t-li">1)</span> A <code>std::span</code> referencing the underlying buffer or written area, depending on the open mode of the wrapped <code>std::basic_spanbuf</code>.</div> <div class="t-li1">
+<span class="t-li">2)</span> (none)</div> <h3 id="Example"> Example</h3>  <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../basic_spanbuf/span.html" title="cpp/io/basic spanbuf/span"> <span class="t-lines"><span>span</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> obtains or initializes an underlying buffer according to mode <br> <span class="t-mark">(public member function of <code>std::basic_spanbuf&lt;CharT,Traits&gt;</code>)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/io/basic_ospanstream/span" class="_attribution-link">https://en.cppreference.com/w/cpp/io/basic_ospanstream/span</a>
+  </p>
+</div>

@@ -1,0 +1,30 @@
+<h1 id="pandas-io-stata-statareader-data">pandas.io.stata.StataReader.data</h1> <dl class="method"> <dt id="pandas.io.stata.StataReader.data">
+<code>StataReader.data(self, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/stata.py#L1536-L1545"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Read observations from Stata file, converting them into a dataframe</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version This: </span>is a legacy method. Use <code>read</code> in new code.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>convert_dates : boolean, defaults to True</code> </dt> <dd>
+<p class="first last">Convert date variables to DataFrame time values.</p> </dd> <dt>
+<code>convert_categoricals : boolean, defaults to True</code> </dt> <dd>
+<p class="first last">Read value labels and convert columns to Categorical/Factor variables.</p> </dd> <dt>
+<code>index_col : string, optional, default: None</code> </dt> <dd>
+<p class="first last">Column to set as index.</p> </dd> <dt>
+<code>convert_missing : boolean, defaults to False</code> </dt> <dd>
+<p class="first last">Flag indicating whether to convert missing values to their Stata representations. If False, missing values are replaced with nan. If True, columns containing missing values are returned with object data types and missing values are represented by StataMissingValue objects.</p> </dd> <dt>
+<code>preserve_dtypes : boolean, defaults to True</code> </dt> <dd>
+<p class="first last">Preserve Stata datatypes. If False, numeric data are upcast to pandas default types for foreign data (float64 or int64).</p> </dd> <dt>
+<code>columns : list or None</code> </dt> <dd>
+<p class="first last">Columns to retain. Columns will be returned in the given order. None returns all columns.</p> </dd> <dt>
+<code>order_categoricals : boolean, defaults to True</code> </dt> <dd>
+<p class="first last">Flag indicating whether converted categorical data are ordered.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.stata.StataReader.data.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.stata.StataReader.data.html</a>
+  </p>
+</div>

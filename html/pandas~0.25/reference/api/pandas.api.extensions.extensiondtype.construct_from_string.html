@@ -1,0 +1,32 @@
+<h1 id="pandas-api-extensions-extensiondtype-construct-from-string">pandas.api.extensions.ExtensionDtype.construct_from_string</h1> <dl class="classmethod"> <dt id="pandas.api.extensions.ExtensionDtype.construct_from_string">
+<code>classmethod ExtensionDtype.construct_from_string(string: str)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/base.py#L180-L229"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Construct this type from a string.</p> <p>This is useful mainly for data types that accept parameters. For example, a period dtype accepts a frequency parameter that can be set as <code>period[H]</code> (where H means hourly frequency).</p> <p>By default, in the abstract class, just the name of the type is expected. But subclasses can overwrite this method to accept parameters.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>string : str</code> </dt> <dd>
+<p class="first last">The name of the type, for example <code>category</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>ExtensionDtype</dt> <dd>
+<p class="first last">Instance of the dtype.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError</dt> <dd>
+<p class="first last">If a class cannot be constructed from this ‘string’.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <p>For extension dtypes with arguments the following may be an adequate implementation.</p> <pre data-language="python">&gt;&gt;&gt; @classmethod
+... def construct_from_string(cls, string):
+...     pattern = re.compile(r"^my_type\[(?P&lt;arg_name&gt;.+)\]$")
+...     match = pattern.match(string)
+...     if match:
+...         return cls(**match.groupdict())
+...     else:
+...         raise TypeError("Cannot construct a '{}' from "
+...                         "'{}'".format(cls.__name__, string))
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionDtype.construct_from_string.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionDtype.construct_from_string.html</a>
+  </p>
+</div>

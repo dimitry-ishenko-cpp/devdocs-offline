@@ -1,0 +1,28 @@
+<h1 id="pandas-plotting-andrews-curves">pandas.plotting.andrews_curves</h1> <dl class="function"> <dt id="pandas.plotting.andrews_curves">
+<code>pandas.plotting.andrews_curves(frame, class_column, ax=None, samples=200, color=None, colormap=None, **kwds)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/plotting/_misc.py#L216-L261"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Generate a matplotlib plot of Andrews curves, for visualising clusters of multivariate data.</p> <p>Andrews curves have the functional form:</p> <dl class="docutils"> <dt>f(t) = x_1/sqrt(2) + x_2 sin(t) + x_3 cos(t) +</dt> <dd>x_4 sin(2t) + x_5 cos(2t) + …</dd> </dl> <p>Where x coefficients correspond to the values of each dimension and t is linearly spaced between -pi and +pi. Each row of frame then corresponds to a single curve.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>frame : DataFrame</code> </dt> <dd>
+<p class="first last">Data to be plotted, preferably normalized to (0.0, 1.0)</p> </dd> <dt>
+<code>class_column : Name of the column containing class names</code> </dt>  <dt>
+<code>ax : matplotlib axes object, default None</code> </dt>  <dt>
+<code>samples : Number of points to plot in each curve</code> </dt>  <dt>
+<code>color : list or tuple, optional</code> </dt> <dd>
+<p class="first last">Colors to use for the different classes</p> </dd> <dt>
+<code>colormap : str or matplotlib colormap object, default None</code> </dt> <dd>
+<p class="first last">Colormap to select colors from. If string, load colormap with that name from matplotlib.</p> </dd> <dt>
+<code>kwds : keywords</code> </dt> <dd>
+<p class="first last">Options to pass to matplotlib plotting method</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>class:matplotlip.axis.Axes</code> </dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.plotting.andrews_curves.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.plotting.andrews_curves.html</a>
+  </p>
+</div>

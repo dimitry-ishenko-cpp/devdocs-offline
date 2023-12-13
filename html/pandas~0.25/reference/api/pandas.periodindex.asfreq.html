@@ -1,0 +1,31 @@
+<h1 id="pandas-periodindex-asfreq">pandas.PeriodIndex.asfreq</h1> <dl class="method"> <dt id="pandas.PeriodIndex.asfreq">
+<code>PeriodIndex.asfreq(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/accessor.py#L92-L93"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert the Period Array/Index to the specified frequency <code>freq</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>freq : str</code> </dt> <dd>
+<p class="first last">a frequency</p> </dd> <dt>
+<code>how : str {‘E’, ‘S’}</code> </dt> <dd>
+<p class="first last">‘E’, ‘END’, or ‘FINISH’ for end, ‘S’, ‘START’, or ‘BEGIN’ for start. Whether the elements should be aligned to the end or start within pa period. January 31st (‘END’) vs. January 1st (‘START’) for example.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>new : Period Array/Index with the new frequency</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pidx = pd.period_range('2010-01-01', '2015-01-01', freq='A')
+&gt;&gt;&gt; pidx
+PeriodIndex(['2010', '2011', '2012', '2013', '2014', '2015'],
+dtype='period[A-DEC]', freq='A-DEC')
+</pre> <pre data-language="python">&gt;&gt;&gt; pidx.asfreq('M')
+PeriodIndex(['2010-12', '2011-12', '2012-12', '2013-12', '2014-12',
+'2015-12'], dtype='period[M]', freq='M')
+</pre> <pre data-language="python">&gt;&gt;&gt; pidx.asfreq('M', how='S')
+PeriodIndex(['2010-01', '2011-01', '2012-01', '2013-01', '2014-01',
+'2015-01'], dtype='period[M]', freq='M')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.PeriodIndex.asfreq.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.PeriodIndex.asfreq.html</a>
+  </p>
+</div>

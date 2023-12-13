@@ -1,0 +1,64 @@
+    <h1 id="firstHeading" class="firstHeading">
+<code>const_cast</code> conversion</h1>            <p>Converts between types with different cv-qualification.</p>
+<h3 id="Syntax"> Syntax</h3> <table class="t-sdsc-begin">  <tr class="t-sdsc"> <td class="t-sdsc-nopad"> <code>const_cast&lt;</code> <span class="t-spar">new-type</span> <code>&gt;(</code> <span class="t-spar">expression</span> <code>)</code> </td> <td class="t-sdsc-nopad"> </td> <td class="t-sdsc-nopad"> </td>
+</tr> 
+</table> <p>Returns a value of type <span class="t-spar">new-type</span>.</p>
+<h3 id="Explanation"> Explanation</h3> <p>Only the following conversions can be done with <span class="kw1">const_cast</span>. In particular, only <span class="kw1">const_cast</span> may be used to cast away (remove) constness or volatility.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Two possibly multilevel pointers to the same type may be converted between each other, regardless of cv-qualifiers at each level.</div> <pre data-language="cpp">const_cast</pre> <div class="t-li1">
+<span class="t-li">3)</span> Same rules apply to possibly multilevel pointers to data members <span class="t-rev-inl t-since-cxx17"><span>and possibly multilevel pointers to arrays of known and unknown bound (arrays to cv-qualified elements are considered to be cv-qualified themselves)</span> <span><span class="t-mark-rev t-since-cxx17">(since C++17)</span></span></span>.</div> <div class="t-li1">
+<span class="t-li">4)</span> Null pointer value may be converted to the null pointer value of <span class="t-spar">new-type</span>.</div> <p>As with all cast expressions, the result is:</p>
+<ul><li> an lvalue if <span class="t-spar">new-type</span> is an lvalue reference type<span class="t-rev-inl t-since-cxx11"><span> or an rvalue reference to function type</span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span>; </li></ul> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx11">
+<td> <ul><li> an xvalue if <span class="t-spar">new-type</span> is an rvalue reference to object type; </li></ul> </td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <ul><li> a prvalue otherwise. </li></ul> <h3 id="Notes"> Notes</h3> <p>Pointers to functions and pointers to member functions are not subject to <span class="kw1">const_cast</span>.</p>
+<p><span class="kw1">const_cast</span> makes it possible to form a reference or pointer to non-const type that is actually referring to a <a href="cv.html" title="cpp/language/cv">const object</a> or a reference or pointer to non-volatile type that is actually referring to a <a href="cv.html" title="cpp/language/cv">volatile object</a>. Modifying a const object through a non-const access path and referring to a volatile object through a non-volatile <a href="value_category.html#glvalue" title="cpp/language/value category">glvalue</a> results in undefined behavior.</p>
+<h3 id="Keywords"> Keywords</h3> <p><a href="../keyword/const_cast.html" title="cpp/keyword/const cast"><code>const_cast</code></a>.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+ 
+struct type
+{
+    int i;
+ 
+    type(): i(3) {}
+ 
+    void f(int v) const
+    {
+        // this-&gt;i = v;                 // compile error: this is a pointer to const
+        const_cast&lt;type*&gt;(this)-&gt;i = v; // OK as long as the type object isn't const
+    }
+};
+ 
+int main()
+{
+    int i = 3;                 // i is not declared const
+    const int&amp; rci = i;
+    const_cast&lt;int&amp;&gt;(rci) = 4; // OK: modifies i
+    std::cout &lt;&lt; "i = " &lt;&lt; i &lt;&lt; '\n';
+ 
+    type t; // if this was const type t, then t.f(4) would be undefined behavior
+    t.f(4);
+    std::cout &lt;&lt; "type::i = " &lt;&lt; t.i &lt;&lt; '\n';
+ 
+    const int j = 3; // j is declared const
+    [[maybe_unused]]
+    int* pj = const_cast&lt;int*&gt;(&amp;j);
+    // *pj = 4;      // undefined behavior
+ 
+    [[maybe_unused]]
+    void (type::* pmf)(int) const = &amp;type::f; // pointer to member function
+    // const_cast&lt;void(type::*)(int)&gt;(pmf);   // compile error: const_cast does
+                                              // not work on function pointers
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">i = 4
+type::i = 4</pre></div> </div> <h3 id="See_also"> See also</h3> <ul>
+<li> <a href="static_cast.html" title="cpp/language/static cast"><code>static_cast</code></a> </li>
+<li> <a href="dynamic_cast.html" title="cpp/language/dynamic cast"><code>dynamic_cast</code></a> </li>
+<li> <a href="reinterpret_cast.html" title="cpp/language/reinterpret cast"><code>reinterpret_cast</code></a> </li>
+<li> <a href="explicit_cast.html" title="cpp/language/explicit cast">explicit cast</a> </li>
+<li> <a href="implicit_cast.html" title="cpp/language/implicit cast" class="mw-redirect">implicit conversions</a> </li>
+</ul>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/language/const_cast" class="_attribution-link">https://en.cppreference.com/w/cpp/language/const_cast</a>
+  </p>
+</div>

@@ -1,0 +1,62 @@
+<h1 id="pandas-dataframe-append">pandas.DataFrame.append</h1> <dl class="method"> <dt id="pandas.DataFrame.append">
+<code>DataFrame.append(self, other, ignore_index=False, verify_integrity=False, sort=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L6977-L7117"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Append rows of <code>other</code> to the end of caller, returning a new object.</p> <p>Columns in <code>other</code> that are not in the caller are added as new columns.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : DataFrame or Series/dict-like object, or list of these</code> </dt> <dd>
+<p class="first last">The data to append.</p> </dd> <dt>
+<code>ignore_index : boolean, default False</code> </dt> <dd>
+<p class="first last">If True, do not use the index labels.</p> </dd> <dt>
+<code>verify_integrity : boolean, default False</code> </dt> <dd>
+<p class="first last">If True, raise ValueError on creating index with duplicates.</p> </dd> <dt>
+<code>sort : boolean, default None</code> </dt> <dd>
+<p class="first">Sort columns if the columns of <code>self</code> and <code>other</code> are not aligned. The default sorting is deprecated and will change to not-sorting in a future version of pandas. Explicitly pass <code>sort=True</code> to silence the warning and sort. Explicitly pass <code>sort=False</code> to silence the warning and not sort.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.concat.html#pandas.concat" title="pandas.concat"><code>concat</code></a>
+</dt> <dd>General function to concatenate DataFrame or Series objects.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>If a list of dict/series is passed and the keys are all contained in the DataFrame’s index, the order of the columns in the resulting DataFrame will be unchanged.</p> <p>Iteratively appending rows to a DataFrame can be more computationally intensive than a single concatenate. A better solution is to append those rows to a list and then concatenate the list with the original DataFrame all at once.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[1, 2], [3, 4]], columns=list('AB'))
+&gt;&gt;&gt; df
+   A  B
+0  1  2
+1  3  4
+&gt;&gt;&gt; df2 = pd.DataFrame([[5, 6], [7, 8]], columns=list('AB'))
+&gt;&gt;&gt; df.append(df2)
+   A  B
+0  1  2
+1  3  4
+0  5  6
+1  7  8
+</pre> <p>With <code>ignore_index</code> set to True:</p> <pre data-language="python">&gt;&gt;&gt; df.append(df2, ignore_index=True)
+   A  B
+0  1  2
+1  3  4
+2  5  6
+3  7  8
+</pre> <p>The following, while not recommended methods for generating DataFrames, show two ways to generate a DataFrame from multiple data sources.</p> <p>Less efficient:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(columns=['A'])
+&gt;&gt;&gt; for i in range(5):
+...     df = df.append({'A': i}, ignore_index=True)
+&gt;&gt;&gt; df
+   A
+0  0
+1  1
+2  2
+3  3
+4  4
+</pre> <p>More efficient:</p> <pre data-language="python">&gt;&gt;&gt; pd.concat([pd.DataFrame([i], columns=['A']) for i in range(5)],
+...           ignore_index=True)
+   A
+0  0
+1  1
+2  2
+3  3
+4  4
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.append.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.append.html</a>
+  </p>
+</div>

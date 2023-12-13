@@ -1,0 +1,15 @@
+<h1 id="pandas-sparsedataframe-to-coo">pandas.SparseDataFrame.to_coo</h1> <dl class="method"> <dt id="pandas.SparseDataFrame.to_coo">
+<code>SparseDataFrame.to_coo(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/sparse/frame.py#L275-L277"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the contents of the frame as a sparse SciPy COO matrix.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.25.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>coo_matrix : scipy.sparse.spmatrix</code> </dt> <dd>
+<p class="first last">If the caller is heterogeneous and contains booleans or objects, the result will be of dtype=object. See Notes.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>The dtype will be the lowest-common-denominator type (implicit upcasting); that is to say if the dtypes (even of numeric types) are mixed, the one that accommodates all will be chosen.</p> <p>e.g. If the dtypes are float16 and float32, dtype will be upcast to float32. By numpy.find_common_type convention, mixing int64 and and uint64 will result in a float64 dtype.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseDataFrame.to_coo.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseDataFrame.to_coo.html</a>
+  </p>
+</div>

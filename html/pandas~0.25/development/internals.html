@@ -1,0 +1,41 @@
+<h1 id="id1">Internals</h1> <p id="internals">This section will provide a look into some of pandas internals. It’s primarily intended for developers of pandas itself.</p>  <h2 id="indexing">Indexing</h2> <p>In pandas there are a few objects implemented which can serve as valid containers for the axis labels:</p> <ul class="simple"> <li>
+<code>Index</code>: the generic “ordered set” object, an ndarray of object dtype assuming nothing about its contents. The labels must be hashable (and likely immutable) and unique. Populates a dict of label to location in Cython to do <code>O(1)</code> lookups.</li> <li>
+<code>Int64Index</code>: a version of <code>Index</code> highly optimized for 64-bit integer data, such as time stamps</li> <li>
+<code>Float64Index</code>: a version of <code>Index</code> highly optimized for 64-bit float data</li> <li>
+<code>MultiIndex</code>: the standard hierarchical index object</li> <li>
+<code>DatetimeIndex</code>: An Index object with <code>Timestamp</code> boxed elements (impl are the int64 values)</li> <li>
+<code>TimedeltaIndex</code>: An Index object with <code>Timedelta</code> boxed elements (impl are the in64 values)</li> <li>
+<code>PeriodIndex</code>: An Index object with Period elements</li> </ul> <p>There are functions that make the creation of a regular index easy:</p> <ul class="simple"> <li>
+<code>date_range</code>: fixed frequency date range generated from a time rule or DateOffset. An ndarray of Python datetime objects</li> <li>
+<code>period_range</code>: fixed frequency date range generated from a time rule or DateOffset. An ndarray of <code>Period</code> objects, representing timespans</li> </ul> <p>The motivation for having an <code>Index</code> class in the first place was to enable different implementations of indexing. This means that it’s possible for you, the user, to implement a custom <code>Index</code> subclass that may be better suited to a particular application than the ones provided in pandas.</p> <p>From an internal implementation point of view, the relevant methods that an <code>Index</code> must define are one or more of the following (depending on how incompatible the new object internals are with the <code>Index</code> functions):</p> <ul class="simple"> <li>
+<code>get_loc</code>: returns an “indexer” (an integer, or in some cases a slice object) for a label</li> <li>
+<code>slice_locs</code>: returns the “range” to slice between two labels</li> <li>
+<code>get_indexer</code>: Computes the indexing vector for reindexing / data alignment purposes. See the source / docstrings for more on this</li> <li>
+<code>get_indexer_non_unique</code>: Computes the indexing vector for reindexing / data alignment purposes when the index is non-unique. See the source / docstrings for more on this</li> <li>
+<code>reindex</code>: Does any pre-conversion of the input index then calls <code>get_indexer</code>
+</li> <li>
+<code>union</code>, <code>intersection</code>: computes the union or intersection of two Index objects</li> <li>
+<code>insert</code>: Inserts a new label into an Index, yielding a new object</li> <li>
+<code>delete</code>: Delete a label, yielding a new object</li> <li>
+<code>drop</code>: Deletes a set of labels</li> <li>
+<code>take</code>: Analogous to ndarray.take</li> </ul>  <h3 id="multiindex">MultiIndex</h3> <p>Internally, the <code>MultiIndex</code> consists of a few things: the <strong>levels</strong>, the integer <strong>codes</strong> (until version 0.24 named <em>labels</em>), and the level <strong>names</strong>:</p> <pre data-language="python">In [1]: index = pd.MultiIndex.from_product([range(3), ['one', 'two']],
+   ...:                                    names=['first', 'second'])
+   ...: 
+
+In [2]: index
+Out[2]: 
+MultiIndex([(0, 'one'),
+            (0, 'two'),
+            (1, 'one'),
+            (1, 'two'),
+            (2, 'one'),
+            (2, 'two')],
+           names=['first', 'second'])
+
+In [3]: index.levels
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/development/internals.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/development/internals.html</a>
+  </p>
+</div>

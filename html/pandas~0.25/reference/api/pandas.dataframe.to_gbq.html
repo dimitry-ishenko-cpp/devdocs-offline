@@ -1,0 +1,48 @@
+<h1 id="pandas-dataframe-to-gbq">pandas.DataFrame.to_gbq</h1> <dl class="method"> <dt id="pandas.DataFrame.to_gbq">
+<code>DataFrame.to_gbq(self, destination_table, project_id=None, chunksize=None, reauth=False, if_exists='fail', auth_local_webserver=False, table_schema=None, location=None, progress_bar=True, credentials=None, verbose=None, private_key=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1379-L1504"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Write a DataFrame to a Google BigQuery table.</p> <p>This function requires the <a class="reference external" href="https://pandas-gbq.readthedocs.io">pandas-gbq package</a>.</p> <p>See the <a class="reference external" href="https://pandas-gbq.readthedocs.io/en/latest/howto/authentication.html">How to authenticate with Google BigQuery</a> guide for authentication instructions.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>destination_table : str</code> </dt> <dd>
+<p class="first last">Name of table to be written, in the form <code>dataset.tablename</code>.</p> </dd> <dt>
+<code>project_id : str, optional</code> </dt> <dd>
+<p class="first last">Google BigQuery Account project ID. Optional when available from the environment.</p> </dd> <dt>
+<code>chunksize : int, optional</code> </dt> <dd>
+<p class="first last">Number of rows to be inserted in each chunk from the dataframe. Set to <code>None</code> to load the whole dataframe at once.</p> </dd> <dt>
+<code>reauth : bool, default False</code> </dt> <dd>
+<p class="first last">Force Google BigQuery to re-authenticate the user. This is useful if multiple accounts are used.</p> </dd> <dt>
+<code>if_exists : str, default ‘fail’</code> </dt> <dd>
+<p class="first">Behavior when the destination table exists. Value can be one of:</p> <dl class="last docutils"> <dt>
+<code>'fail'</code> </dt> <dd>
+<p class="first last">If table exists, do nothing.</p> </dd> <dt>
+<code>'replace'</code> </dt> <dd>
+<p class="first last">If table exists, drop it, recreate it, and insert data.</p> </dd> <dt>
+<code>'append'</code> </dt> <dd>
+<p class="first last">If table exists, insert data. Create if does not exist.</p> </dd> </dl> </dd> <dt>
+<code>auth_local_webserver : bool, default False</code> </dt> <dd>
+<p class="first">Use the <a class="reference external" href="http://google-auth-oauthlib.readthedocs.io/en/latest/reference/google_auth_oauthlib.flow.html#google_auth_oauthlib.flow.InstalledAppFlow.run_local_server">local webserver flow</a> instead of the <a class="reference external" href="http://google-auth-oauthlib.readthedocs.io/en/latest/reference/google_auth_oauthlib.flow.html#google_auth_oauthlib.flow.InstalledAppFlow.run_console">console flow</a> when getting user credentials.</p> <p class="last"><em>New in version 0.2.0 of pandas-gbq</em>.</p> </dd> <dt>
+<code>table_schema : list of dicts, optional</code> </dt> <dd>
+<p class="first">List of BigQuery table fields to which according DataFrame columns conform to, e.g. <code>[{'name': 'col1', 'type':
+'STRING'},...]</code>. If schema is not provided, it will be generated according to dtypes of DataFrame columns. See BigQuery API documentation on available names of a field.</p> <p class="last"><em>New in version 0.3.1 of pandas-gbq</em>.</p> </dd> <dt>
+<code>location : str, optional</code> </dt> <dd>
+<p class="first">Location where the load job should run. See the <a class="reference external" href="https://cloud.google.com/bigquery/docs/dataset-locations">BigQuery locations documentation</a> for a list of available locations. The location must match that of the target dataset.</p> <p class="last"><em>New in version 0.5.0 of pandas-gbq</em>.</p> </dd> <dt>
+<code>progress_bar : bool, default True</code> </dt> <dd>
+<p class="first">Use the library <code>tqdm</code> to show the progress bar for the upload, chunk by chunk.</p> <p class="last"><em>New in version 0.5.0 of pandas-gbq</em>.</p> </dd> <dt>
+<code>credentials : google.auth.credentials.Credentials, optional</code> </dt> <dd>
+<p class="first">Credentials for accessing Google APIs. Use this parameter to override default credentials, such as to use Compute Engine <code>google.auth.compute_engine.Credentials</code> or Service Account <code>google.oauth2.service_account.Credentials</code> directly.</p> <p><em>New in version 0.8.0 of pandas-gbq</em>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>verbose : bool, deprecated</code> </dt> <dd>
+<p class="first last">Deprecated in pandas-gbq version 0.4.0. Use the <a class="reference external" href="https://pandas-gbq.readthedocs.io/en/latest/intro.html#logging">logging module to adjust verbosity instead</a>.</p> </dd> <dt>
+<code>private_key : str, deprecated</code> </dt> <dd>
+<p class="first">Deprecated in pandas-gbq version 0.8.0. Use the <code>credentials</code> parameter and <code>google.oauth2.service_account.Credentials.from_service_account_info()</code> or <code>google.oauth2.service_account.Credentials.from_service_account_file()</code> instead.</p> <p class="last">Service account private key in JSON format. Can be file path or string contents. This is useful for remote server authentication (eg. Jupyter/IPython notebook on remote host).</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://pandas-gbq.readthedocs.io/en/latest/api.html#pandas_gbq.to_gbq" title="(in pandas-gbq v0.10.0+3.g9460ad6)"><code>pandas_gbq.to_gbq</code></a>
+</dt> <dd>This function in the pandas-gbq library.</dd> <dt>
+ <a class="reference internal" href="pandas.read_gbq.html#pandas.read_gbq" title="pandas.read_gbq"><code>read_gbq</code></a>
+</dt> <dd>Read a DataFrame from Google BigQuery.</dd> </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_gbq.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_gbq.html</a>
+  </p>
+</div>

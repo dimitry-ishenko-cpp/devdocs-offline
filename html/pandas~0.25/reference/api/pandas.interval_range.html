@@ -1,0 +1,54 @@
+<h1 id="pandas-interval-range">pandas.interval_range</h1> <dl class="function"> <dt id="pandas.interval_range">
+<code>pandas.interval_range(start=None, end=None, periods=None, freq=None, name=None, closed='right')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/interval.py#L1324-L1489"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a fixed frequency IntervalIndex</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>start : numeric or datetime-like, default None</code> </dt> <dd>
+<p class="first last">Left bound for generating intervals</p> </dd> <dt>
+<code>end : numeric or datetime-like, default None</code> </dt> <dd>
+<p class="first last">Right bound for generating intervals</p> </dd> <dt>
+<code>periods : integer, default None</code> </dt> <dd>
+<p class="first last">Number of periods to generate</p> </dd> <dt>
+<code>freq : numeric, string, or DateOffset, default None</code> </dt> <dd>
+<p class="first last">The length of each interval. Must be consistent with the type of start and end, e.g. 2 for numeric, or ‘5H’ for datetime-like. Default is 1 for numeric and ‘D’ for datetime-like.</p> </dd> <dt>
+<code>name : string, default None</code> </dt> <dd>
+<p class="first last">Name of the resulting IntervalIndex</p> </dd> <dt>
+<code>closed : {‘left’, ‘right’, ‘both’, ‘neither’}, default ‘right’</code> </dt> <dd>
+<p class="first last">Whether the intervals are closed on the left-side, right-side, both or neither.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>rng : IntervalIndex</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.intervalindex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code>IntervalIndex</code></a>
+</dt> <dd>An Index of intervals that are all closed on the same side.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Of the four parameters <code>start</code>, <code>end</code>, <code>periods</code>, and <code>freq</code>, exactly three must be specified. If <code>freq</code> is omitted, the resulting <code>IntervalIndex</code> will have <code>periods</code> linearly spaced elements between <code>start</code> and <code>end</code>, inclusively.</p> <p>To learn more about datetime-like frequency strings, please see <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">this link</a>.</p> <h4 class="rubric">Examples</h4> <p>Numeric <code>start</code> and <code>end</code> is supported.</p> <pre data-language="python">&gt;&gt;&gt; pd.interval_range(start=0, end=5)
+IntervalIndex([(0, 1], (1, 2], (2, 3], (3, 4], (4, 5]],
+              closed='right', dtype='interval[int64]')
+</pre> <p>Additionally, datetime-like input is also supported.</p> <pre data-language="python">&gt;&gt;&gt; pd.interval_range(start=pd.Timestamp('2017-01-01'),
+...                   end=pd.Timestamp('2017-01-04'))
+IntervalIndex([(2017-01-01, 2017-01-02], (2017-01-02, 2017-01-03],
+               (2017-01-03, 2017-01-04]],
+              closed='right', dtype='interval[datetime64[ns]]')
+</pre> <p>The <code>freq</code> parameter specifies the frequency between the left and right. endpoints of the individual intervals within the <code>IntervalIndex</code>. For numeric <code>start</code> and <code>end</code>, the frequency must also be numeric.</p> <pre data-language="python">&gt;&gt;&gt; pd.interval_range(start=0, periods=4, freq=1.5)
+IntervalIndex([(0.0, 1.5], (1.5, 3.0], (3.0, 4.5], (4.5, 6.0]],
+              closed='right', dtype='interval[float64]')
+</pre> <p>Similarly, for datetime-like <code>start</code> and <code>end</code>, the frequency must be convertible to a DateOffset.</p> <pre data-language="python">&gt;&gt;&gt; pd.interval_range(start=pd.Timestamp('2017-01-01'),
+...                   periods=3, freq='MS')
+IntervalIndex([(2017-01-01, 2017-02-01], (2017-02-01, 2017-03-01],
+               (2017-03-01, 2017-04-01]],
+              closed='right', dtype='interval[datetime64[ns]]')
+</pre> <p>Specify <code>start</code>, <code>end</code>, and <code>periods</code>; the frequency is generated automatically (linearly spaced).</p> <pre data-language="python">&gt;&gt;&gt; pd.interval_range(start=0, end=6, periods=4)
+IntervalIndex([(0.0, 1.5], (1.5, 3.0], (3.0, 4.5], (4.5, 6.0]],
+          closed='right',
+          dtype='interval[float64]')
+</pre> <p>The <code>closed</code> parameter specifies which endpoints of the individual intervals within the <code>IntervalIndex</code> are closed.</p> <pre data-language="python">&gt;&gt;&gt; pd.interval_range(end=5, periods=4, closed='both')
+IntervalIndex([[1, 2], [2, 3], [3, 4], [4, 5]],
+              closed='both', dtype='interval[int64]')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.interval_range.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.interval_range.html</a>
+  </p>
+</div>

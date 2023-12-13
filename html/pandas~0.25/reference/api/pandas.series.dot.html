@@ -1,0 +1,37 @@
+<h1 id="pandas-series-dot">pandas.Series.dot</h1> <dl class="method"> <dt id="pandas.Series.dot">
+<code>Series.dot(self, other)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L2595-L2673"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute the dot product between the Series and the columns of other.</p> <p>This method computes the dot product between the Series and another one, or the Series and each columns of a DataFrame, or the Series and each columns of an array.</p> <p>It can also be called using <code>self @ other</code> in Python &gt;= 3.5.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : Series, DataFrame or array-like</code> </dt> <dd>
+<p class="first last">The other object to compute the dot product with its columns.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar, Series or numpy.ndarray</dt> <dd>
+<p class="first last">Return the dot product of the Series and other if other is a Series, the Series of the dot product of Series and each rows of other if other is a DataFrame or a numpy.ndarray between the Series and each columns of the numpy array.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.dot.html#pandas.DataFrame.dot" title="pandas.DataFrame.dot"><code>DataFrame.dot</code></a>
+</dt> <dd>Compute the matrix product with the DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.series.mul.html#pandas.Series.mul" title="pandas.Series.mul"><code>Series.mul</code></a>
+</dt> <dd>Multiplication of series and other, element-wise.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The Series and other has to share the same index if other is a Series or a DataFrame.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([0, 1, 2, 3])
+&gt;&gt;&gt; other = pd.Series([-1, 2, -3, 4])
+&gt;&gt;&gt; s.dot(other)
+8
+&gt;&gt;&gt; s @ other
+8
+&gt;&gt;&gt; df = pd.DataFrame([[0, 1], [-2, 3], [4, -5], [6, 7]])
+&gt;&gt;&gt; s.dot(df)
+0    24
+1    14
+dtype: int64
+&gt;&gt;&gt; arr = np.array([[0, 1], [-2, 3], [4, -5], [6, 7]])
+&gt;&gt;&gt; s.dot(arr)
+array([24, 14])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dot.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dot.html</a>
+  </p>
+</div>

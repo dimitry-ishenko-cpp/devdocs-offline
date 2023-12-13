@@ -1,0 +1,46 @@
+<h1 id="pandas-timedelta">pandas.Timedelta</h1> <dl class="class"> <dt id="pandas.Timedelta">
+<code>class pandas.Timedelta</code> </dt> <dd>
+<p>Represents a duration, the difference between two dates or times.</p> <p>Timedelta is the pandas equivalent of python’s <code>datetime.timedelta</code> and is interchangeable with it in most cases.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>value : Timedelta, timedelta, np.timedelta64, string, or integer</code> </dt>  <dt>
+<code>unit : str, optional</code> </dt> <dd>
+<p class="first last">Denote the unit of the input, if input is an integer. Default ‘ns’. Possible values: {‘Y’, ‘M’, ‘W’, ‘D’, ‘days’, ‘day’, ‘hours’, hour’, ‘hr’, ‘h’, ‘m’, ‘minute’, ‘min’, ‘minutes’, ‘T’, ‘S’, ‘seconds’, ‘sec’, ‘second’, ‘ms’, ‘milliseconds’, ‘millisecond’, ‘milli’, ‘millis’, ‘L’, ‘us’, ‘microseconds’, ‘microsecond’, ‘micro’, ‘micros’, ‘U’, ‘ns’, ‘nanoseconds’, ‘nano’, ‘nanos’, ‘nanosecond’, ‘N’}</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Available kwargs: {days, seconds, microseconds, milliseconds, minutes, hours, weeks}. Values for construction in compat with datetime.timedelta. Numpy ints and floats will be coerced to python ints and floats.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>The <code>.value</code> attribute is always in ns.</p> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.timedelta.asm8.html#pandas.Timedelta.asm8" title="pandas.Timedelta.asm8"><code>asm8</code></a></td> <td>Return a numpy timedelta64 array scalar view.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.components.html#pandas.Timedelta.components" title="pandas.Timedelta.components"><code>components</code></a></td> <td>Return a components namedtuple-like.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.days.html#pandas.Timedelta.days" title="pandas.Timedelta.days"><code>days</code></a></td> <td>Number of days.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.delta.html#pandas.Timedelta.delta" title="pandas.Timedelta.delta"><code>delta</code></a></td> <td>Return the timedelta in nanoseconds (ns), for internal compatibility.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.microseconds.html#pandas.Timedelta.microseconds" title="pandas.Timedelta.microseconds"><code>microseconds</code></a></td> <td>Number of microseconds (&gt;= 0 and less than 1 second).</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.nanoseconds.html#pandas.Timedelta.nanoseconds" title="pandas.Timedelta.nanoseconds"><code>nanoseconds</code></a></td> <td>Return the number of nanoseconds (n), where 0 &lt;= n &lt; 1 microsecond.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.resolution.html#pandas.Timedelta.resolution" title="pandas.Timedelta.resolution"><code>resolution</code></a></td> <td>Return a string representing the lowest timedelta resolution.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.resolution_string.html#pandas.Timedelta.resolution_string" title="pandas.Timedelta.resolution_string"><code>resolution_string</code></a></td> <td>Return a string representing the lowest timedelta resolution.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedelta.seconds.html#pandas.Timedelta.seconds" title="pandas.Timedelta.seconds"><code>seconds</code></a></td> <td>Number of seconds (&gt;= 0 and less than 1 day).</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>freq</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_populated</strong></td> <td> </td> </tr> <tr>
+<td><strong>value</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.ceil.html#pandas.Timedelta.ceil" title="pandas.Timedelta.ceil"><code>ceil</code></a>(self, freq)</td> <td>return a new Timedelta ceiled to this resolution</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.floor.html#pandas.Timedelta.floor" title="pandas.Timedelta.floor"><code>floor</code></a>(self, freq)</td> <td>return a new Timedelta floored to this resolution</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.isoformat.html#pandas.Timedelta.isoformat" title="pandas.Timedelta.isoformat"><code>isoformat</code></a>()</td> <td>Format Timedelta as ISO 8601 Duration like <code>P[n]Y[n]M[n]DT[n]H[n]M[n]S</code>, where the <code>[n]</code> s are replaced by the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.round.html#pandas.Timedelta.round" title="pandas.Timedelta.round"><code>round</code></a>(self, freq)</td> <td>Round the Timedelta to the specified resolution</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.to_numpy.html#pandas.Timedelta.to_numpy" title="pandas.Timedelta.to_numpy"><code>to_numpy</code></a>()</td> <td>Convert the Timestamp to a NumPy timedelta64.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.to_pytimedelta.html#pandas.Timedelta.to_pytimedelta" title="pandas.Timedelta.to_pytimedelta"><code>to_pytimedelta</code></a>()</td> <td>Convert a pandas Timedelta object into a python timedelta object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.to_timedelta64.html#pandas.Timedelta.to_timedelta64" title="pandas.Timedelta.to_timedelta64"><code>to_timedelta64</code></a>()</td> <td>Return a numpy.timedelta64 object with ‘ns’ precision.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.total_seconds.html#pandas.Timedelta.total_seconds" title="pandas.Timedelta.total_seconds"><code>total_seconds</code></a>()</td> <td>Total duration of timedelta in seconds (to ns precision).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedelta.view.html#pandas.Timedelta.view" title="pandas.Timedelta.view"><code>view</code></a>()</td> <td>Array view compatibility.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.html</a>
+  </p>
+</div>

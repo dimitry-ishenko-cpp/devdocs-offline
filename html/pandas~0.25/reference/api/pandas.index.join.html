@@ -1,0 +1,22 @@
+<h1 id="pandas-index-join">pandas.Index.join</h1> <dl class="method"> <dt id="pandas.Index.join">
+<code>Index.join(self, other, how='left', level=None, return_indexers=False, sort=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L3502-L3606"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute join_index and indexers to conform data structures to the new index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : Index</code> </dt>  <dt>
+<code>how : {‘left’, ‘right’, ‘inner’, ‘outer’}</code> </dt>  <dt>
+<code>level : int or level name, default None</code> </dt>  <dt>
+<code>return_indexers : boolean, default False</code> </dt>  <dt>
+<code>sort : boolean, default False</code> </dt> <dd>
+<p class="first">Sort the join keys lexicographically in the result Index. If False, the order of the join keys depends on the join type (how keyword)</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>join_index, (left_indexer, right_indexer)</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.join.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.join.html</a>
+  </p>
+</div>

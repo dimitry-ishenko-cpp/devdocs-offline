@@ -1,0 +1,43 @@
+<h1 id="pandas-api-types-is-int64-dtype">pandas.api.types.is_int64_dtype</h1> <dl class="function"> <dt id="pandas.api.types.is_int64_dtype">
+<code>pandas.api.types.is_int64_dtype(arr_or_dtype)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/common.py#L1112-L1160"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check whether the provided array or dtype is of the int64 dtype.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arr_or_dtype : array-like</code> </dt> <dd>
+<p class="first last">The array or dtype to check.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>boolean</dt> <dd>
+<p class="first last">Whether or not the array or dtype is of the int64 dtype.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>Depending on system architecture, the return value of <code>is_int64_dtype( int)</code> will be True if the OS uses 64-bit integers and False if the OS uses 32-bit integers.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; is_int64_dtype(str)
+False
+&gt;&gt;&gt; is_int64_dtype(np.int32)
+False
+&gt;&gt;&gt; is_int64_dtype(np.int64)
+True
+&gt;&gt;&gt; is_int64_dtype('int8')
+False
+&gt;&gt;&gt; is_int64_dtype('Int8')
+False
+&gt;&gt;&gt; is_int64_dtype(pd.Int64Dtype)
+True
+&gt;&gt;&gt; is_int64_dtype(float)
+False
+&gt;&gt;&gt; is_int64_dtype(np.uint64)  # unsigned
+False
+&gt;&gt;&gt; is_int64_dtype(np.array(['a', 'b']))
+False
+&gt;&gt;&gt; is_int64_dtype(np.array([1, 2], dtype=np.int64))
+True
+&gt;&gt;&gt; is_int64_dtype(pd.Index([1, 2.]))  # float
+False
+&gt;&gt;&gt; is_int64_dtype(np.array([1, 2], dtype=np.uint32))  # unsigned
+False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_int64_dtype.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_int64_dtype.html</a>
+  </p>
+</div>

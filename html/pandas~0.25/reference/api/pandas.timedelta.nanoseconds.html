@@ -1,0 +1,21 @@
+<h1 id="pandas-timedelta-nanoseconds">pandas.Timedelta.nanoseconds</h1> <dl class="attribute"> <dt id="pandas.Timedelta.nanoseconds">
+<code>Timedelta.nanoseconds</code> </dt> <dd>
+<p>Return the number of nanoseconds (n), where 0 &lt;= n &lt; 1 microsecond.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>int</dt> <dd>
+<p class="first last">Number of nanoseconds.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.timedelta.components.html#pandas.Timedelta.components" title="pandas.Timedelta.components"><code>Timedelta.components</code></a>
+</dt> <dd>Return all attributes with assigned values (i.e. days, hours, minutes, seconds, milliseconds, microseconds, nanoseconds).</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Using string input</strong></p> <pre data-language="python">&gt;&gt;&gt; td = pd.Timedelta('1 days 2 min 3 us 42 ns')
+&gt;&gt;&gt; td.nanoseconds
+42
+</pre> <p><strong>Using integer input</strong></p> <pre data-language="python">&gt;&gt;&gt; td = pd.Timedelta(42, unit='ns')
+&gt;&gt;&gt; td.nanoseconds
+42
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.nanoseconds.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.nanoseconds.html</a>
+  </p>
+</div>

@@ -1,0 +1,25 @@
+<h1 id="pandas-timedelta-resolution-string">pandas.Timedelta.resolution_string</h1> <dl class="attribute"> <dt id="pandas.Timedelta.resolution_string">
+<code>Timedelta.resolution_string</code> </dt> <dd>
+<p>Return a string representing the lowest timedelta resolution.</p> <p>Each timedelta has a defined resolution that represents the lowest OR most granular level of precision. Each level of resolution is represented by a short string as defined below:</p> <p>Resolution: Return value</p> <ul class="simple"> <li>Days: ‘D’</li> <li>Hours: ‘H’</li> <li>Minutes: ‘T’</li> <li>Seconds: ‘S’</li> <li>Milliseconds: ‘L’</li> <li>Microseconds: ‘U’</li> <li>Nanoseconds: ‘N’</li> </ul> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>str</dt> <dd>
+<p class="first last">Timedelta resolution.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; td = pd.Timedelta('1 days 2 min 3 us 42 ns')
+&gt;&gt;&gt; td.resolution
+'N'
+</pre> <pre data-language="python">&gt;&gt;&gt; td = pd.Timedelta('1 days 2 min 3 us')
+&gt;&gt;&gt; td.resolution
+'U'
+</pre> <pre data-language="python">&gt;&gt;&gt; td = pd.Timedelta('2 min 3 s')
+&gt;&gt;&gt; td.resolution
+'S'
+</pre> <pre data-language="python">&gt;&gt;&gt; td = pd.Timedelta(36, unit='us')
+&gt;&gt;&gt; td.resolution
+'U'
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.resolution_string.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.resolution_string.html</a>
+  </p>
+</div>

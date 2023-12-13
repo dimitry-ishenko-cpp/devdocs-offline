@@ -1,0 +1,50 @@
+<h1 id="pandas-read-pickle">pandas.read_pickle</h1> <dl class="function"> <dt id="pandas.read_pickle">
+<code>pandas.read_pickle(path, compression='infer')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/pickle.py#L83-L164"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Load pickled pandas object (or any object) from file.</p> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">Loading pickled data received from untrusted sources can be unsafe. See <a class="reference external" href="https://docs.python.org/3/library/pickle.html">here</a>.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>path : str</code> </dt> <dd>
+<p class="first last">File path where the pickled object will be loaded.</p> </dd> <dt>
+<code>compression : {‘infer’, ‘gzip’, ‘bz2’, ‘zip’, ‘xz’, None}, default ‘infer’</code> </dt> <dd>
+<p class="first">For on-the-fly decompression of on-disk data. If ‘infer’, then use gzip, bz2, xz or zip if path ends in ‘.gz’, ‘.bz2’, ‘.xz’, or ‘.zip’ respectively, and no decompression otherwise. Set to None for no decompression.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>unpickled : same type as object stored in file</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_pickle.html#pandas.DataFrame.to_pickle" title="pandas.DataFrame.to_pickle"><code>DataFrame.to_pickle</code></a>
+</dt> <dd>Pickle (serialize) DataFrame object to file.</dd> <dt>
+ <a class="reference internal" href="pandas.series.to_pickle.html#pandas.Series.to_pickle" title="pandas.Series.to_pickle"><code>Series.to_pickle</code></a>
+</dt> <dd>Pickle (serialize) Series object to file.</dd> <dt>
+ <a class="reference internal" href="pandas.read_hdf.html#pandas.read_hdf" title="pandas.read_hdf"><code>read_hdf</code></a>
+</dt> <dd>Read HDF5 file into a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.read_sql.html#pandas.read_sql" title="pandas.read_sql"><code>read_sql</code></a>
+</dt> <dd>Read SQL query or database table into a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.read_parquet.html#pandas.read_parquet" title="pandas.read_parquet"><code>read_parquet</code></a>
+</dt> <dd>Load a parquet object, returning a DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>read_pickle is only guaranteed to be backwards compatible to pandas 0.20.3.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; original_df = pd.DataFrame({"foo": range(5), "bar": range(5, 10)})
+&gt;&gt;&gt; original_df
+   foo  bar
+0    0    5
+1    1    6
+2    2    7
+3    3    8
+4    4    9
+&gt;&gt;&gt; pd.to_pickle(original_df, "./dummy.pkl")
+</pre> <pre data-language="python">&gt;&gt;&gt; unpickled_df = pd.read_pickle("./dummy.pkl")
+&gt;&gt;&gt; unpickled_df
+   foo  bar
+0    0    5
+1    1    6
+2    2    7
+3    3    8
+4    4    9
+</pre> <pre data-language="python">&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.remove("./dummy.pkl")
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_pickle.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_pickle.html</a>
+  </p>
+</div>

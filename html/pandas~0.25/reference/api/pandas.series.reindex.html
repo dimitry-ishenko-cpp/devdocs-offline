@@ -1,0 +1,121 @@
+<h1 id="pandas-series-reindex">pandas.Series.reindex</h1> <dl class="method"> <dt id="pandas.Series.reindex">
+<code>Series.reindex(self, index=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L4213-L4216"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Conform Series to new index with optional filling logic, placing NA/NaN in locations having no value in the previous index. A new object is produced unless the new index is equivalent to the current one and <code>copy=False</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : array-like, optional</code> </dt> <dd>
+<p class="first last">New labels / index to conform to, should be specified using keywords. Preferably an Index object to avoid duplicating data</p> </dd> <dt>
+<code>method : {None, ‘backfill’/’bfill’, ‘pad’/’ffill’, ‘nearest’}</code> </dt> <dd>
+<p class="first">Method to use for filling holes in reindexed DataFrame. Please note: this is only applicable to DataFrames/Series with a monotonically increasing/decreasing index.</p> <ul class="last simple"> <li>None (default): don’t fill gaps</li> <li>pad / ffill: propagate last valid observation forward to next valid</li> <li>backfill / bfill: use next valid observation to fill gap</li> <li>nearest: use nearest valid observations to fill gap</li> </ul> </dd> <dt>
+<code>copy : bool, default True</code> </dt> <dd>
+<p class="first last">Return a new object, even if the passed indexes are the same.</p> </dd> <dt>
+<code>level : int or name</code> </dt> <dd>
+<p class="first last">Broadcast across a level, matching Index values on the passed MultiIndex level.</p> </dd> <dt>
+<code>fill_value : scalar, default np.NaN</code> </dt> <dd>
+<p class="first last">Value to use for missing values. Defaults to NaN, but can be any “compatible” value.</p> </dd> <dt>
+<code>limit : int, default None</code> </dt> <dd>
+<p class="first last">Maximum number of consecutive elements to forward or backward fill.</p> </dd> <dt>
+<code>tolerance : optional</code> </dt> <dd>
+<p class="first">Maximum distance between original and new labels for inexact matches. The values of the index at the matching locations most satisfy the equation <code>abs(index[indexer] - target) &lt;= tolerance</code>.</p> <p>Tolerance may be a scalar value, which applies the same tolerance to all values, or list-like, which applies variable tolerance per element. List-like includes list, tuple, array, Series, and must be the same size as the index and its dtype must exactly match the index’s type.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0: </span>(list-like tolerance)</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series with changed index.</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.set_index.html#pandas.DataFrame.set_index" title="pandas.DataFrame.set_index"><code>DataFrame.set_index</code></a>
+</dt> <dd>Set row labels.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.reset_index.html#pandas.DataFrame.reset_index" title="pandas.DataFrame.reset_index"><code>DataFrame.reset_index</code></a>
+</dt> <dd>Remove row labels or move them to new columns.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.reindex_like.html#pandas.DataFrame.reindex_like" title="pandas.DataFrame.reindex_like"><code>DataFrame.reindex_like</code></a>
+</dt> <dd>Change to same indices as other DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><code>DataFrame.reindex</code> supports two calling conventions</p> <ul class="simple"> <li><code>(index=index_labels, columns=column_labels, ...)</code></li> <li><code>(labels, axis={'index', 'columns'}, ...)</code></li> </ul> <p>We <em>highly</em> recommend using keyword arguments to clarify your intent.</p> <p>Create a dataframe with some fictional data.</p> <pre data-language="python">&gt;&gt;&gt; index = ['Firefox', 'Chrome', 'Safari', 'IE10', 'Konqueror']
+&gt;&gt;&gt; df = pd.DataFrame({
+...      'http_status': [200,200,404,404,301],
+...      'response_time': [0.04, 0.02, 0.07, 0.08, 1.0]},
+...       index=index)
+&gt;&gt;&gt; df
+           http_status  response_time
+Firefox            200           0.04
+Chrome             200           0.02
+Safari             404           0.07
+IE10               404           0.08
+Konqueror          301           1.00
+</pre> <p>Create a new index and reindex the dataframe. By default values in the new index that do not have corresponding records in the dataframe are assigned <code>NaN</code>.</p> <pre data-language="python">&gt;&gt;&gt; new_index= ['Safari', 'Iceweasel', 'Comodo Dragon', 'IE10',
+...             'Chrome']
+&gt;&gt;&gt; df.reindex(new_index)
+               http_status  response_time
+Safari               404.0           0.07
+Iceweasel              NaN            NaN
+Comodo Dragon          NaN            NaN
+IE10                 404.0           0.08
+Chrome               200.0           0.02
+</pre> <p>We can fill in the missing values by passing a value to the keyword <code>fill_value</code>. Because the index is not monotonically increasing or decreasing, we cannot use arguments to the keyword <code>method</code> to fill the <code>NaN</code> values.</p> <pre data-language="python">&gt;&gt;&gt; df.reindex(new_index, fill_value=0)
+               http_status  response_time
+Safari                 404           0.07
+Iceweasel                0           0.00
+Comodo Dragon            0           0.00
+IE10                   404           0.08
+Chrome                 200           0.02
+</pre> <pre data-language="python">&gt;&gt;&gt; df.reindex(new_index, fill_value='missing')
+              http_status response_time
+Safari                404          0.07
+Iceweasel         missing       missing
+Comodo Dragon     missing       missing
+IE10                  404          0.08
+Chrome                200          0.02
+</pre> <p>We can also reindex the columns.</p> <pre data-language="python">&gt;&gt;&gt; df.reindex(columns=['http_status', 'user_agent'])
+           http_status  user_agent
+Firefox            200         NaN
+Chrome             200         NaN
+Safari             404         NaN
+IE10               404         NaN
+Konqueror          301         NaN
+</pre> <p>Or we can use “axis-style” keyword arguments</p> <pre data-language="python">&gt;&gt;&gt; df.reindex(['http_status', 'user_agent'], axis="columns")
+           http_status  user_agent
+Firefox            200         NaN
+Chrome             200         NaN
+Safari             404         NaN
+IE10               404         NaN
+Konqueror          301         NaN
+</pre> <p>To further illustrate the filling functionality in <code>reindex</code>, we will create a dataframe with a monotonically increasing index (for example, a sequence of dates).</p> <pre data-language="python">&gt;&gt;&gt; date_index = pd.date_range('1/1/2010', periods=6, freq='D')
+&gt;&gt;&gt; df2 = pd.DataFrame({"prices": [100, 101, np.nan, 100, 89, 88]},
+...                    index=date_index)
+&gt;&gt;&gt; df2
+            prices
+2010-01-01   100.0
+2010-01-02   101.0
+2010-01-03     NaN
+2010-01-04   100.0
+2010-01-05    89.0
+2010-01-06    88.0
+</pre> <p>Suppose we decide to expand the dataframe to cover a wider date range.</p> <pre data-language="python">&gt;&gt;&gt; date_index2 = pd.date_range('12/29/2009', periods=10, freq='D')
+&gt;&gt;&gt; df2.reindex(date_index2)
+            prices
+2009-12-29     NaN
+2009-12-30     NaN
+2009-12-31     NaN
+2010-01-01   100.0
+2010-01-02   101.0
+2010-01-03     NaN
+2010-01-04   100.0
+2010-01-05    89.0
+2010-01-06    88.0
+2010-01-07     NaN
+</pre> <p>The index entries that did not have a value in the original data frame (for example, ‘2009-12-29’) are by default filled with <code>NaN</code>. If desired, we can fill in the missing values using one of several options.</p> <p>For example, to back-propagate the last valid value to fill the <code>NaN</code> values, pass <code>bfill</code> as an argument to the <code>method</code> keyword.</p> <pre data-language="python">&gt;&gt;&gt; df2.reindex(date_index2, method='bfill')
+            prices
+2009-12-29   100.0
+2009-12-30   100.0
+2009-12-31   100.0
+2010-01-01   100.0
+2010-01-02   101.0
+2010-01-03     NaN
+2010-01-04   100.0
+2010-01-05    89.0
+2010-01-06    88.0
+2010-01-07     NaN
+</pre> <p>Please note that the <code>NaN</code> value present in the original dataframe (at index value 2010-01-03) will not be filled by any of the value propagation schemes. This is because filling while reindexing does not look at dataframe values, but only compares the original and desired indexes. If you do want to fill in the <code>NaN</code> values present in the original dataframe, use the <code>fillna()</code> method.</p> <p>See the <a class="reference internal" href="../../getting_started/basics.html#basics-reindexing"><span class="std std-ref">user guide</span></a> for more.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.reindex.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.reindex.html</a>
+  </p>
+</div>

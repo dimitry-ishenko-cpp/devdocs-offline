@@ -1,0 +1,45 @@
+<h1 id="pandas-core-window-expanding-var">pandas.core.window.Expanding.var</h1> <dl class="method"> <dt id="pandas.core.window.Expanding.var">
+<code>Expanding.var(self, ddof=1, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/window.py#L2165-L2169"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Calculate unbiased expanding variance.</p> <p>Normalized by N-1 by default. This can be changed using the <code>ddof</code> argument.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>ddof : int, default 1</code> </dt> <dd>
+<p class="first last">Delta Degrees of Freedom. The divisor used in calculations is <code>N - ddof</code>, where <code>N</code> represents the number of elements.</p> </dd> <dt><strong>*args, **kwargs</strong></dt> <dd>
+<p class="first last">For NumPy compatibility. No additional arguments are used.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Returns the same object type as the caller of the expanding calculation.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.expanding</code> </dt> <dd>Calling object with Series data.</dd> <dt>
+<code>DataFrame.expanding</code> </dt> <dd>Calling object with DataFrames.</dd> <dt>
+<code>Series.var</code> </dt> <dd>Equivalent method for Series.</dd> <dt>
+<code>DataFrame.var</code> </dt> <dd>Equivalent method for DataFrame.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html#numpy.var" title="(in NumPy v1.16)"><code>numpy.var</code></a>
+</dt> <dd>Equivalent method for Numpy array.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The default <code>ddof</code> of 1 used in <code>Series.var()</code> is different than the default <code>ddof</code> of 0 in <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.var.html#numpy.var" title="(in NumPy v1.16)"><code>numpy.var()</code></a>.</p> <p>A minimum of 1 period is required for the rolling calculation.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([5, 5, 6, 7, 5, 5, 5])
+&gt;&gt;&gt; s.rolling(3).var()
+0         NaN
+1         NaN
+2    0.333333
+3    1.000000
+4    1.000000
+5    1.333333
+6    0.000000
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.expanding(3).var()
+0         NaN
+1         NaN
+2    0.333333
+3    0.916667
+4    0.800000
+5    0.700000
+6    0.619048
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Expanding.var.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Expanding.var.html</a>
+  </p>
+</div>

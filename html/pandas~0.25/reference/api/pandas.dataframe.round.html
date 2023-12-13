@@ -1,0 +1,52 @@
+<h1 id="pandas-dataframe-round">pandas.DataFrame.round</h1> <dl class="method"> <dt id="pandas.DataFrame.round">
+<code>DataFrame.round(self, decimals=0, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L7326-L7435"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Round a DataFrame to a variable number of decimal places.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>decimals : int, dict, Series</code> </dt> <dd>
+<p class="first last">Number of decimal places to round each column to. If an int is given, round each column to the same number of places. Otherwise dict and Series round to variable numbers of places. Column names should be in the keys if <code>decimals</code> is a dict-like, or in the index if <code>decimals</code> is a Series. Any columns not included in <code>decimals</code> will be left as is. Elements of <code>decimals</code> which are not columns of the input will be ignored.</p> </dd> <dt><strong>*args</strong></dt> <dd>
+<p class="first last">Additional keywords have no effect but might be accepted for compatibility with numpy.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Additional keywords have no effect but might be accepted for compatibility with numpy.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">A DataFrame with the affected columns rounded to the specified number of decimal places.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.around.html#numpy.around" title="(in NumPy v1.16)"><code>numpy.around</code></a>
+</dt> <dd>Round a numpy array to the given number of decimals.</dd> <dt>
+ <a class="reference internal" href="pandas.series.round.html#pandas.Series.round" title="pandas.Series.round"><code>Series.round</code></a>
+</dt> <dd>Round a Series to the given number of decimals.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([(.21, .32), (.01, .67), (.66, .03), (.21, .18)],
+...                   columns=['dogs', 'cats'])
+&gt;&gt;&gt; df
+    dogs  cats
+0  0.21  0.32
+1  0.01  0.67
+2  0.66  0.03
+3  0.21  0.18
+</pre> <p>By providing an integer each column is rounded to the same number of decimal places</p> <pre data-language="python">&gt;&gt;&gt; df.round(1)
+    dogs  cats
+0   0.2   0.3
+1   0.0   0.7
+2   0.7   0.0
+3   0.2   0.2
+</pre> <p>With a dict, the number of places for specific columns can be specified with the column names as key and the number of decimal places as value</p> <pre data-language="python">&gt;&gt;&gt; df.round({'dogs': 1, 'cats': 0})
+    dogs  cats
+0   0.2   0.0
+1   0.0   1.0
+2   0.7   0.0
+3   0.2   0.0
+</pre> <p>Using a Series, the number of places for specific columns can be specified with the column names as index and the number of decimal places as value</p> <pre data-language="python">&gt;&gt;&gt; decimals = pd.Series([0, 1], index=['cats', 'dogs'])
+&gt;&gt;&gt; df.round(decimals)
+    dogs  cats
+0   0.2   0.0
+1   0.0   1.0
+2   0.7   0.0
+3   0.2   0.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.round.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.round.html</a>
+  </p>
+</div>

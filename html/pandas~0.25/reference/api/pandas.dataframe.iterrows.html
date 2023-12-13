@@ -1,0 +1,34 @@
+<h1 id="pandas-dataframe-iterrows">pandas.DataFrame.iterrows</h1> <dl class="method"> <dt id="pandas.DataFrame.iterrows">
+<code>DataFrame.iterrows(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L840-L890"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Iterate over DataFrame rows as (index, Series) pairs.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Yields:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>index : label or tuple of label</code> </dt> <dd>
+<p class="first last">The index of the row. A tuple for a <code>MultiIndex</code>.</p> </dd> <dt>
+<code>data : Series</code> </dt> <dd>
+<p class="first last">The data of the row as a Series.</p> </dd> <dt>
+<code>it : generator</code> </dt> <dd>
+<p class="first last">A generator that iterates over the rows of the frame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code>itertuples</code></a>
+</dt> <dd>Iterate over DataFrame rows as namedtuples of the values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.items.html#pandas.DataFrame.items" title="pandas.DataFrame.items"><code>items</code></a>
+</dt> <dd>Iterate over (column name, Series) pairs.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <ol class="arabic"> <li>
+<p class="first">Because <code>iterrows</code> returns a Series for each row, it does <strong>not</strong> preserve dtypes across the rows (dtypes are preserved across columns for DataFrames). For example,</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[1, 1.5]], columns=['int', 'float'])
+&gt;&gt;&gt; row = next(df.iterrows())[1]
+&gt;&gt;&gt; row
+int      1.0
+float    1.5
+Name: 0, dtype: float64
+&gt;&gt;&gt; print(row['int'].dtype)
+float64
+&gt;&gt;&gt; print(df['int'].dtype)
+int64
+</pre> <p>To preserve dtypes while iterating over the rows, it is better to use <a class="reference internal" href="pandas.dataframe.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code>itertuples()</code></a> which returns namedtuples of the values and which is generally faster than <code>iterrows</code>.</p> </li> <li>You should <strong>never modify</strong> something you are iterating over. This is not guaranteed to work in all cases. Depending on the data types, the iterator returns a copy and not a view, and writing to it will have no effect. </li> </ol> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.iterrows.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.iterrows.html</a>
+  </p>
+</div>

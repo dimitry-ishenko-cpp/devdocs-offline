@@ -1,0 +1,148 @@
+<h1 id="pandas-timestamp">pandas.Timestamp</h1> <dl class="class"> <dt id="pandas.Timestamp">
+<code>class pandas.Timestamp</code> </dt> <dd>
+<p>Pandas replacement for python datetime.datetime object.</p> <p>Timestamp is the pandas equivalent of python’s Datetime and is interchangeable with it in most cases. It’s the type used for the entries that make up a DatetimeIndex, and other timeseries oriented data structures in pandas.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>ts_input : datetime-like, str, int, float</code> </dt> <dd>
+<p class="first last">Value to be converted to Timestamp.</p> </dd> <dt>
+<code>freq : str, DateOffset</code> </dt> <dd>
+<p class="first last">Offset which Timestamp will have.</p> </dd> <dt>
+<code>tz : str, pytz.timezone, dateutil.tz.tzfile or None</code> </dt> <dd>
+<p class="first last">Time zone for time which Timestamp will have.</p> </dd> <dt>
+<code>unit : str</code> </dt> <dd>
+<p class="first last">Unit used for conversion if ts_input is of type int or float. The valid values are ‘D’, ‘h’, ‘m’, ‘s’, ‘ms’, ‘us’, and ‘ns’. For example, ‘s’ means seconds and ‘ms’ means milliseconds.</p> </dd> <dt>
+<code>year, month, day : int</code> </dt> <dd>
+<div class="first last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> <dt>
+<code>hour, minute, second, microsecond : int, optional, default 0</code> </dt> <dd>
+<div class="first last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> <dt>
+<code>nanosecond : int, optional, default 0</code> </dt> <dd>
+<div class="first last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt>
+<code>tzinfo : datetime.tzinfo, optional, default None</code> </dt> <dd>
+<div class="first last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>There are essentially three calling conventions for the constructor. The primary form accepts four parameters. They can be passed by position or keyword.</p> <p>The other two forms mimic the parameters from <code>datetime.datetime</code>. They can be passed by either position or keyword, but not both mixed together.</p> <h4 class="rubric">Examples</h4> <p>Using the primary calling convention:</p> <p>This converts a datetime-like string</p> <pre data-language="python">&gt;&gt;&gt; pd.Timestamp('2017-01-01T12')
+Timestamp('2017-01-01 12:00:00')
+</pre> <p>This converts a float representing a Unix epoch in units of seconds</p> <pre data-language="python">&gt;&gt;&gt; pd.Timestamp(1513393355.5, unit='s')
+Timestamp('2017-12-16 03:02:35.500000')
+</pre> <p>This converts an int representing a Unix-epoch in units of seconds and for a particular timezone</p> <pre data-language="python">&gt;&gt;&gt; pd.Timestamp(1513393355, unit='s', tz='US/Pacific')
+Timestamp('2017-12-15 19:02:35-0800', tz='US/Pacific')
+</pre> <p>Using the other two forms that mimic the API for <code>datetime.datetime</code>:</p> <pre data-language="python">&gt;&gt;&gt; pd.Timestamp(2017, 1, 1, 12)
+Timestamp('2017-01-01 12:00:00')
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Timestamp(year=2017, month=1, day=1, hour=12)
+Timestamp('2017-01-01 12:00:00')
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.timestamp.asm8.html#pandas.Timestamp.asm8" title="pandas.Timestamp.asm8"><code>asm8</code></a></td> <td>Return numpy datetime64 format in nanoseconds.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.dayofweek.html#pandas.Timestamp.dayofweek" title="pandas.Timestamp.dayofweek"><code>dayofweek</code></a></td> <td>Return day of whe week.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.dayofyear.html#pandas.Timestamp.dayofyear" title="pandas.Timestamp.dayofyear"><code>dayofyear</code></a></td> <td>Return the day of the year.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.days_in_month.html#pandas.Timestamp.days_in_month" title="pandas.Timestamp.days_in_month"><code>days_in_month</code></a></td> <td>Return the number of days in the month.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.daysinmonth.html#pandas.Timestamp.daysinmonth" title="pandas.Timestamp.daysinmonth"><code>daysinmonth</code></a></td> <td>Return the number of days in the month.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.freqstr.html#pandas.Timestamp.freqstr" title="pandas.Timestamp.freqstr"><code>freqstr</code></a></td> <td>Return the total number of days in the month.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.is_leap_year.html#pandas.Timestamp.is_leap_year" title="pandas.Timestamp.is_leap_year"><code>is_leap_year</code></a></td> <td>Return True if year is a leap year.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.is_month_end.html#pandas.Timestamp.is_month_end" title="pandas.Timestamp.is_month_end"><code>is_month_end</code></a></td> <td>Return True if date is last day of month.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.is_month_start.html#pandas.Timestamp.is_month_start" title="pandas.Timestamp.is_month_start"><code>is_month_start</code></a></td> <td>Return True if date is first day of month.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.is_quarter_end.html#pandas.Timestamp.is_quarter_end" title="pandas.Timestamp.is_quarter_end"><code>is_quarter_end</code></a></td> <td>Return True if date is last day of the quarter.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.is_quarter_start.html#pandas.Timestamp.is_quarter_start" title="pandas.Timestamp.is_quarter_start"><code>is_quarter_start</code></a></td> <td>Return True if date is first day of the quarter.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.is_year_end.html#pandas.Timestamp.is_year_end" title="pandas.Timestamp.is_year_end"><code>is_year_end</code></a></td> <td>Return True if date is last day of the year.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.is_year_start.html#pandas.Timestamp.is_year_start" title="pandas.Timestamp.is_year_start"><code>is_year_start</code></a></td> <td>Return True if date is first day of the year.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.quarter.html#pandas.Timestamp.quarter" title="pandas.Timestamp.quarter"><code>quarter</code></a></td> <td>Return the quarter of the year.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.resolution.html#pandas.Timestamp.resolution" title="pandas.Timestamp.resolution"><code>resolution</code></a></td> <td>Return resolution describing the smallest difference between two times that can be represented by Timestamp object_state</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.tz.html#pandas.Timestamp.tz" title="pandas.Timestamp.tz"><code>tz</code></a></td> <td>Alias for tzinfo</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.week.html#pandas.Timestamp.week" title="pandas.Timestamp.week"><code>week</code></a></td> <td>Return the week number of the year.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.weekday_name.html#pandas.Timestamp.weekday_name" title="pandas.Timestamp.weekday_name"><code>weekday_name</code></a></td> <td>(DEPRECATED) .. deprecated:: 0.23.0</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timestamp.weekofyear.html#pandas.Timestamp.weekofyear" title="pandas.Timestamp.weekofyear"><code>weekofyear</code></a></td> <td>Return the week number of the year.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>day</strong></td> <td> </td> </tr> <tr>
+<td><strong>fold</strong></td> <td> </td> </tr> <tr>
+<td><strong>freq</strong></td> <td> </td> </tr> <tr>
+<td><strong>hour</strong></td> <td> </td> </tr> <tr>
+<td><strong>microsecond</strong></td> <td> </td> </tr> <tr>
+<td><strong>minute</strong></td> <td> </td> </tr> <tr>
+<td><strong>month</strong></td> <td> </td> </tr> <tr>
+<td><strong>nanosecond</strong></td> <td> </td> </tr> <tr>
+<td><strong>second</strong></td> <td> </td> </tr> <tr>
+<td><strong>tzinfo</strong></td> <td> </td> </tr> <tr>
+<td><strong>value</strong></td> <td> </td> </tr> <tr>
+<td><strong>year</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.astimezone.html#pandas.Timestamp.astimezone" title="pandas.Timestamp.astimezone"><code>astimezone</code></a>(self, tz)</td> <td>Convert tz-aware Timestamp to another time zone.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.ceil.html#pandas.Timestamp.ceil" title="pandas.Timestamp.ceil"><code>ceil</code></a>(self, freq[, ambiguous, nonexistent])</td> <td>return a new Timestamp ceiled to this resolution</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.combine.html#pandas.Timestamp.combine" title="pandas.Timestamp.combine"><code>combine</code></a>(date, time)</td> <td>date, time -&gt; datetime with same date and time fields</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.ctime.html#pandas.Timestamp.ctime" title="pandas.Timestamp.ctime"><code>ctime</code></a>()</td> <td>Return ctime() style string.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.date.html#pandas.Timestamp.date" title="pandas.Timestamp.date"><code>date</code></a>()</td> <td>Return date object with same year, month and day.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.day_name.html#pandas.Timestamp.day_name" title="pandas.Timestamp.day_name"><code>day_name</code></a>(self[, locale])</td> <td>Return the day name of the Timestamp with specified locale.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.dst.html#pandas.Timestamp.dst" title="pandas.Timestamp.dst"><code>dst</code></a>()</td> <td>Return self.tzinfo.dst(self).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.floor.html#pandas.Timestamp.floor" title="pandas.Timestamp.floor"><code>floor</code></a>(self, freq[, ambiguous, nonexistent])</td> <td>return a new Timestamp floored to this resolution</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.fromisoformat.html#pandas.Timestamp.fromisoformat" title="pandas.Timestamp.fromisoformat"><code>fromisoformat</code></a>()</td> <td>string -&gt; datetime from datetime.isoformat() output</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.fromordinal.html#pandas.Timestamp.fromordinal" title="pandas.Timestamp.fromordinal"><code>fromordinal</code></a>(ordinal[, freq, tz])</td> <td>passed an ordinal, translate and convert to a ts note: by definition there cannot be any tz info on the ordinal itself</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.fromtimestamp.html#pandas.Timestamp.fromtimestamp" title="pandas.Timestamp.fromtimestamp"><code>fromtimestamp</code></a>(ts)</td> <td>timestamp[, tz] -&gt; tz’s local time from POSIX timestamp.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.isocalendar.html#pandas.Timestamp.isocalendar" title="pandas.Timestamp.isocalendar"><code>isocalendar</code></a>()</td> <td>Return a 3-tuple containing ISO year, week number, and weekday.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.isoweekday.html#pandas.Timestamp.isoweekday" title="pandas.Timestamp.isoweekday"><code>isoweekday</code></a>()</td> <td>Return the day of the week represented by the date.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.month_name.html#pandas.Timestamp.month_name" title="pandas.Timestamp.month_name"><code>month_name</code></a>(self[, locale])</td> <td>Return the month name of the Timestamp with specified locale.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.normalize.html#pandas.Timestamp.normalize" title="pandas.Timestamp.normalize"><code>normalize</code></a>(self)</td> <td>Normalize Timestamp to midnight, preserving tz information.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.now.html#pandas.Timestamp.now" title="pandas.Timestamp.now"><code>now</code></a>([tz])</td> <td>Return new Timestamp object representing current time local to tz.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.replace.html#pandas.Timestamp.replace" title="pandas.Timestamp.replace"><code>replace</code></a>(self[, year, month, day, hour, …])</td> <td>implements datetime.replace, handles nanoseconds</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.round.html#pandas.Timestamp.round" title="pandas.Timestamp.round"><code>round</code></a>(self, freq[, ambiguous, nonexistent])</td> <td>Round the Timestamp to the specified resolution</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.strftime.html#pandas.Timestamp.strftime" title="pandas.Timestamp.strftime"><code>strftime</code></a>()</td> <td>format -&gt; strftime() style string.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.strptime.html#pandas.Timestamp.strptime" title="pandas.Timestamp.strptime"><code>strptime</code></a>(string, format)</td> <td>Function is not implemented.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.time.html#pandas.Timestamp.time" title="pandas.Timestamp.time"><code>time</code></a>()</td> <td>Return time object with same time but with tzinfo=None.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.timestamp.html#pandas.Timestamp.timestamp" title="pandas.Timestamp.timestamp"><code>timestamp</code></a>()</td> <td>Return POSIX timestamp as float.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.timetuple.html#pandas.Timestamp.timetuple" title="pandas.Timestamp.timetuple"><code>timetuple</code></a>()</td> <td>Return time tuple, compatible with time.localtime().</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.timetz.html#pandas.Timestamp.timetz" title="pandas.Timestamp.timetz"><code>timetz</code></a>()</td> <td>Return time object with same time and tzinfo.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.to_datetime64.html#pandas.Timestamp.to_datetime64" title="pandas.Timestamp.to_datetime64"><code>to_datetime64</code></a>()</td> <td>Return a numpy.datetime64 object with ‘ns’ precision.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.to_julian_date.html#pandas.Timestamp.to_julian_date" title="pandas.Timestamp.to_julian_date"><code>to_julian_date</code></a>(self)</td> <td>Convert TimeStamp to a Julian Date.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.to_numpy.html#pandas.Timestamp.to_numpy" title="pandas.Timestamp.to_numpy"><code>to_numpy</code></a>()</td> <td>Convert the Timestamp to a NumPy datetime64.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.to_period.html#pandas.Timestamp.to_period" title="pandas.Timestamp.to_period"><code>to_period</code></a>(self[, freq])</td> <td>Return an period of which this timestamp is an observation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.to_pydatetime.html#pandas.Timestamp.to_pydatetime" title="pandas.Timestamp.to_pydatetime"><code>to_pydatetime</code></a>()</td> <td>Convert a Timestamp object to a native Python datetime object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.today.html#pandas.Timestamp.today" title="pandas.Timestamp.today"><code>today</code></a>(cls[, tz])</td> <td>Return the current time in the local timezone.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.toordinal.html#pandas.Timestamp.toordinal" title="pandas.Timestamp.toordinal"><code>toordinal</code></a>()</td> <td>Return proleptic Gregorian ordinal.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.tz_convert.html#pandas.Timestamp.tz_convert" title="pandas.Timestamp.tz_convert"><code>tz_convert</code></a>(self, tz)</td> <td>Convert tz-aware Timestamp to another time zone.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.tz_localize.html#pandas.Timestamp.tz_localize" title="pandas.Timestamp.tz_localize"><code>tz_localize</code></a>(self, tz[, ambiguous, …])</td> <td>Convert naive Timestamp to local time zone, or remove timezone from tz-aware Timestamp.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.tzname.html#pandas.Timestamp.tzname" title="pandas.Timestamp.tzname"><code>tzname</code></a>()</td> <td>Return self.tzinfo.tzname(self).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.utcfromtimestamp.html#pandas.Timestamp.utcfromtimestamp" title="pandas.Timestamp.utcfromtimestamp"><code>utcfromtimestamp</code></a>(ts)</td> <td>Construct a naive UTC datetime from a POSIX timestamp.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.utcnow.html#pandas.Timestamp.utcnow" title="pandas.Timestamp.utcnow"><code>utcnow</code></a>()</td> <td>Return a new Timestamp representing UTC day and time.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.utcoffset.html#pandas.Timestamp.utcoffset" title="pandas.Timestamp.utcoffset"><code>utcoffset</code></a>()</td> <td>Return self.tzinfo.utcoffset(self).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.utctimetuple.html#pandas.Timestamp.utctimetuple" title="pandas.Timestamp.utctimetuple"><code>utctimetuple</code></a>()</td> <td>Return UTC time tuple, compatible with time.localtime().</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timestamp.weekday.html#pandas.Timestamp.weekday" title="pandas.Timestamp.weekday"><code>weekday</code></a>()</td> <td>Return the day of the week represented by the date.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>isoformat</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timestamp.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timestamp.html</a>
+  </p>
+</div>

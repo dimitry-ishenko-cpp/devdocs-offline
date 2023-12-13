@@ -1,0 +1,45 @@
+<h1 id="pandas-series-to-numpy">pandas.Series.to_numpy</h1> <dl class="method"> <dt id="pandas.Series.to_numpy">
+<code>Series.to_numpy(self, dtype=None, copy=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/base.py#L916-L1010"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>A NumPy ndarray representing the values in this Series or Index.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>dtype : str or numpy.dtype, optional</code> </dt> <dd>
+<p class="first last">The dtype to pass to <code>numpy.asarray()</code></p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to ensure that the returned value is a not a view on another array. Note that <code>copy=False</code> does not <em>ensure</em> that <code>to_numpy()</code> is no-copy. Rather, <code>copy=True</code> ensure that a copy is made, even if not strictly necessary.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.array.html#pandas.Series.array" title="pandas.Series.array"><code>Series.array</code></a>
+</dt> <dd>Get the actual data stored within.</dd> <dt>
+ <a class="reference internal" href="pandas.index.array.html#pandas.Index.array" title="pandas.Index.array"><code>Index.array</code></a>
+</dt> <dd>Get the actual data stored within.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code>DataFrame.to_numpy</code></a>
+</dt> <dd>Similar method for DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The returned array will be the same up to equality (values equal in <code>self</code> will be equal in the returned array; likewise for values that are not equal). When <code>self</code> contains an ExtensionArray, the dtype may be different. For example, for a category-dtype Series, <code>to_numpy()</code> will return a NumPy array and the categorical dtype will be lost.</p> <p>For NumPy dtypes, this will be a reference to the actual data stored in this Series or Index (assuming <code>copy=False</code>). Modifying the result in place will modify the data stored in the Series or Index (not that we recommend doing that).</p> <p>For extension types, <code>to_numpy()</code> <em>may</em> require copying data and coercing the result to a NumPy type (possibly object), which may be expensive. When you need a no-copy reference to the underlying data, <a class="reference internal" href="pandas.series.array.html#pandas.Series.array" title="pandas.Series.array"><code>Series.array</code></a> should be used instead.</p> <p>This table lays out the different dtypes and default return types of <code>to_numpy()</code> for various dtypes within pandas.</p> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">dtype</th> <th class="head">array type</th> </tr> </thead>  <tr>
+<td>category[T]</td> <td>ndarray[T] (same dtype as input)</td> </tr> <tr>
+<td>period</td> <td>ndarray[object] (Periods)</td> </tr> <tr>
+<td>interval</td> <td>ndarray[object] (Intervals)</td> </tr> <tr>
+<td>IntegerNA</td> <td>ndarray[object]</td> </tr> <tr>
+<td>datetime64[ns]</td> <td>datetime64[ns]</td> </tr> <tr>
+<td>datetime64[ns, tz]</td> <td>ndarray[object] (Timestamps)</td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; ser = pd.Series(pd.Categorical(['a', 'b', 'a']))
+&gt;&gt;&gt; ser.to_numpy()
+array(['a', 'b', 'a'], dtype=object)
+</pre> <p>Specify the <code>dtype</code> to control how datetime-aware data is represented. Use <code>dtype=object</code> to return an ndarray of pandas <a class="reference internal" href="pandas.timestamp.html#pandas.Timestamp" title="pandas.Timestamp"><code>Timestamp</code></a> objects, each with the correct <code>tz</code>.</p> <pre data-language="python">&gt;&gt;&gt; ser = pd.Series(pd.date_range('2000', periods=2, tz="CET"))
+&gt;&gt;&gt; ser.to_numpy(dtype=object)
+array([Timestamp('2000-01-01 00:00:00+0100', tz='CET', freq='D'),
+       Timestamp('2000-01-02 00:00:00+0100', tz='CET', freq='D')],
+      dtype=object)
+</pre> <p>Or <code>dtype='datetime64[ns]'</code> to return an ndarray of native datetime64 values. The values are converted to UTC and the timezone info is dropped.</p> <pre data-language="python">&gt;&gt;&gt; ser.to_numpy(dtype="datetime64[ns]")
+... # doctest: +ELLIPSIS
+array(['1999-12-31T23:00:00.000000000', '2000-01-01T23:00:00...'],
+      dtype='datetime64[ns]')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_numpy.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_numpy.html</a>
+  </p>
+</div>

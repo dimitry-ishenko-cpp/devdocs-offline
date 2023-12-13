@@ -1,0 +1,50 @@
+<h1 id="pandas-datetimeindex-tz-convert">pandas.DatetimeIndex.tz_convert</h1> <dl class="method"> <dt id="pandas.DatetimeIndex.tz_convert">
+<code>DatetimeIndex.tz_convert(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/accessor.py#L92-L93"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert tz-aware Datetime Array/Index from one time zone to another.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>tz : str, pytz.timezone, dateutil.tz.tzfile or None</code> </dt> <dd>
+<p class="first last">Time zone for time. Corresponding timestamps would be converted to this time zone of the Datetime Array/Index. A <code>tz</code> of None will convert to UTC and remove the timezone information.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>Array or Index</dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError</dt> <dd>
+<p class="first last">If Datetime Array/Index is tz-naive.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.tz.html#pandas.DatetimeIndex.tz" title="pandas.DatetimeIndex.tz"><code>DatetimeIndex.tz</code></a>
+</dt> <dd>A timezone that has a variable offset from UTC.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.tz_localize.html#pandas.DatetimeIndex.tz_localize" title="pandas.DatetimeIndex.tz_localize"><code>DatetimeIndex.tz_localize</code></a>
+</dt> <dd>Localize tz-naive DatetimeIndex to a given time zone, or remove timezone from a tz-aware DatetimeIndex.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>With the <code>tz</code> parameter, we can change the DatetimeIndex to other time zones:</p> <pre data-language="python">&gt;&gt;&gt; dti = pd.date_range(start='2014-08-01 09:00',
+...                     freq='H', periods=3, tz='Europe/Berlin')
+</pre> <pre data-language="python">&gt;&gt;&gt; dti
+DatetimeIndex(['2014-08-01 09:00:00+02:00',
+               '2014-08-01 10:00:00+02:00',
+               '2014-08-01 11:00:00+02:00'],
+              dtype='datetime64[ns, Europe/Berlin]', freq='H')
+</pre> <pre data-language="python">&gt;&gt;&gt; dti.tz_convert('US/Central')
+DatetimeIndex(['2014-08-01 02:00:00-05:00',
+               '2014-08-01 03:00:00-05:00',
+               '2014-08-01 04:00:00-05:00'],
+              dtype='datetime64[ns, US/Central]', freq='H')
+</pre> <p>With the <code>tz=None</code>, we can remove the timezone (after converting to UTC if necessary):</p> <pre data-language="python">&gt;&gt;&gt; dti = pd.date_range(start='2014-08-01 09:00', freq='H',
+...                     periods=3, tz='Europe/Berlin')
+</pre> <pre data-language="python">&gt;&gt;&gt; dti
+DatetimeIndex(['2014-08-01 09:00:00+02:00',
+               '2014-08-01 10:00:00+02:00',
+               '2014-08-01 11:00:00+02:00'],
+                dtype='datetime64[ns, Europe/Berlin]', freq='H')
+</pre> <pre data-language="python">&gt;&gt;&gt; dti.tz_convert(None)
+DatetimeIndex(['2014-08-01 07:00:00',
+               '2014-08-01 08:00:00',
+               '2014-08-01 09:00:00'],
+                dtype='datetime64[ns]', freq='H')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.tz_convert.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.tz_convert.html</a>
+  </p>
+</div>

@@ -1,0 +1,27 @@
+<h1 id="pandas-api-types-is-dict-like">pandas.api.types.is_dict_like</h1> <dl class="function"> <dt id="pandas.api.types.is_dict_like">
+<code>pandas.api.types.is_dict_like(obj)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/inference.py#L327-L356"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check if the object is dict-like.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>obj : The object to check</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>is_dict_like : bool</code> </dt> <dd>
+<p class="first last">Whether <code>obj</code> has dict-like properties.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; is_dict_like({1: 2})
+True
+&gt;&gt;&gt; is_dict_like([1, 2, 3])
+False
+&gt;&gt;&gt; is_dict_like(dict)
+False
+&gt;&gt;&gt; is_dict_like(dict())
+True
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_dict_like.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_dict_like.html</a>
+  </p>
+</div>

@@ -1,0 +1,35 @@
+<h1 id="pandas-index-max">pandas.Index.max</h1> <dl class="method"> <dt id="pandas.Index.max">
+<code>Index.max(self, axis=None, skipna=True, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/base.py#L1033-L1072"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the maximum value of the Index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : int, optional</code> </dt> <dd>
+<p class="first last">For compatibility with NumPy. Only 0 or None are allowed.</p> </dd> <dt>
+<code>skipna : bool, default True</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar</dt> <dd>
+<p class="first last">Maximum value.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.min.html#pandas.Index.min" title="pandas.Index.min"><code>Index.min</code></a>
+</dt> <dd>Return the minimum value in an Index.</dd> <dt>
+ <a class="reference internal" href="pandas.series.max.html#pandas.Series.max" title="pandas.Series.max"><code>Series.max</code></a>
+</dt> <dd>Return the maximum value in a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.max.html#pandas.DataFrame.max" title="pandas.DataFrame.max"><code>DataFrame.max</code></a>
+</dt> <dd>Return the maximum values in a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index([3, 2, 1])
+&gt;&gt;&gt; idx.max()
+3
+</pre> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['c', 'b', 'a'])
+&gt;&gt;&gt; idx.max()
+'c'
+</pre> <p>For a MultiIndex, the maximum is determined lexicographically.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_product([('a', 'b'), (2, 1)])
+&gt;&gt;&gt; idx.max()
+('b', 2)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.max.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.max.html</a>
+  </p>
+</div>

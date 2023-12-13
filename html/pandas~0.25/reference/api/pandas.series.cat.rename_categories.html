@@ -1,0 +1,48 @@
+<h1 id="pandas-series-cat-rename-categories">pandas.Series.cat.rename_categories</h1> <dl class="method"> <dt id="pandas.Series.cat.rename_categories">
+<code>Series.cat.rename_categories(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/accessor.py#L92-L93"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Rename categories.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>new_categories : list-like, dict-like or callable</code> </dt> <dd>
+<ul class="first last"> <li>list-like: all items must be unique and the number of items in the new categories must match the existing number of categories. </li> <li>
+<p class="first">dict-like: specifies a mapping from old categories to new. Categories not contained in the mapping are passed through and extra categories in the mapping are ignored.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </li> <li>
+<p class="first">callable : a callable that is called on all items in the old categories and whose return values comprise the new categories.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </li> </ul> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">Whether or not to rename the categories inplace or return a copy of this categorical with renamed categories.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>cat : Categorical or None</code> </dt> <dd>
+<p class="first last">With <code>inplace=False</code>, the new categorical is returned. With <code>inplace=True</code>, there is no return value.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">If new categories are list-like and do not have the same number of items than the current categories or do not validate as categories</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.cat.reorder_categories.html#pandas.Series.cat.reorder_categories" title="pandas.Series.cat.reorder_categories"><code>reorder_categories</code></a>
+</dt>  <dt>
+ <a class="reference internal" href="pandas.series.cat.add_categories.html#pandas.Series.cat.add_categories" title="pandas.Series.cat.add_categories"><code>add_categories</code></a>
+</dt>  <dt>
+ <a class="reference internal" href="pandas.series.cat.remove_categories.html#pandas.Series.cat.remove_categories" title="pandas.Series.cat.remove_categories"><code>remove_categories</code></a>
+</dt>  <dt>
+ <a class="reference internal" href="pandas.series.cat.remove_unused_categories.html#pandas.Series.cat.remove_unused_categories" title="pandas.Series.cat.remove_unused_categories"><code>remove_unused_categories</code></a>
+</dt>  <dt>
+ <a class="reference internal" href="pandas.series.cat.set_categories.html#pandas.Series.cat.set_categories" title="pandas.Series.cat.set_categories"><code>set_categories</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; c = pd.Categorical(['a', 'a', 'b'])
+&gt;&gt;&gt; c.rename_categories([0, 1])
+[0, 0, 1]
+Categories (2, int64): [0, 1]
+</pre> <p>For dict-like <code>new_categories</code>, extra keys are ignored and categories not in the dictionary are passed through</p> <pre data-language="python">&gt;&gt;&gt; c.rename_categories({'a': 'A', 'c': 'C'})
+[A, A, b]
+Categories (2, object): [A, b]
+</pre> <p>You may also provide a callable to create the new categories</p> <pre data-language="python">&gt;&gt;&gt; c.rename_categories(lambda x: x.upper())
+[A, A, B]
+Categories (2, object): [A, B]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.cat.rename_categories.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.cat.rename_categories.html</a>
+  </p>
+</div>

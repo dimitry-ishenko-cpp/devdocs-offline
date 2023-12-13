@@ -1,0 +1,22 @@
+<h1 id="dsintro">Intro to data structures</h1> <p id="intro-to-data-structures">We’ll start with a quick, non-comprehensive overview of the fundamental data structures in pandas to get you started. The fundamental behavior about data types, indexing, and axis labeling / alignment apply across all of the objects. To get started, import NumPy and load pandas into your namespace:</p> <pre data-language="python">In [1]: import numpy as np
+
+In [2]: import pandas as pd
+</pre> <p>Here is a basic tenet to keep in mind: <strong>data alignment is intrinsic</strong>. The link between labels and data will not be broken unless done so explicitly by you.</p> <p>We’ll give a brief intro to the data structures, then consider all of the broad categories of functionality and methods in separate sections.</p>  <h2 id="basics-series">Series</h2> <p id="series"><a class="reference internal" href="../reference/api/pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> is a one-dimensional labeled array capable of holding any data type (integers, strings, floating point numbers, Python objects, etc.). The axis labels are collectively referred to as the <strong>index</strong>. The basic method to create a Series is to call:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(data, index=index)
+</pre> <p>Here, <code>data</code> can be many different things:</p> <ul class="simple"> <li>a Python dict</li> <li>an ndarray</li> <li>a scalar value (like 5)</li> </ul> <p>The passed <strong>index</strong> is a list of axis labels. Thus, this separates into a few cases depending on what <strong>data is</strong>:</p> <p><strong>From ndarray</strong></p> <p>If <code>data</code> is an ndarray, <strong>index</strong> must be the same length as <strong>data</strong>. If no index is passed, one will be created having values <code>[0, ..., len(data) - 1]</code>.</p> <pre data-language="python">In [3]: s = pd.Series(np.random.randn(5), index=['a', 'b', 'c', 'd', 'e'])
+
+In [4]: s
+Out[4]: 
+a    0.469112
+b   -0.282863
+c   -1.509059
+d   -1.135632
+e    1.212112
+dtype: float64
+
+In [5]: s.index
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/dsintro.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/dsintro.html</a>
+  </p>
+</div>

@@ -1,0 +1,29 @@
+<h1 id="pandas-errors-dtypewarning">pandas.errors.DtypeWarning</h1> <dl class="exception"> <dt id="pandas.errors.DtypeWarning">
+<code>exception pandas.errors.DtypeWarning</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/errors/__init__.py#L47-L102"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Warning raised when reading different dtypes in a column from a file.</p> <p>Raised for a dtype incompatibility. This can happen whenever <code>read_csv</code> or <code>read_table</code> encounter non-uniform dtypes in a column(s) of a given CSV file.</p> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>read_csv</code> </dt> <dd>Read CSV (comma-separated) file into a DataFrame.</dd> <dt>
+<code>read_table</code> </dt> <dd>Read general delimited file into a DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This warning is issued when dealing with larger files because the dtype checking happens per chunk read.</p> <p>Despite the warning, the CSV file is read with mixed types in a single column which will be an object type. See the examples below to better understand this issue.</p> <h4 class="rubric">Examples</h4> <p>This example creates and reads a large CSV file with a column that contains <code>int</code> and <code>str</code>.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'a': (['1'] * 100000 + ['X'] * 100000 +
+...                          ['1'] * 100000),
+...                    'b': ['b'] * 300000})
+&gt;&gt;&gt; df.to_csv('test.csv', index=False)
+&gt;&gt;&gt; df2 = pd.read_csv('test.csv')
+... # DtypeWarning: Columns (0) have mixed types
+</pre> <p>Important to notice that <code>df2</code> will contain both <code>str</code> and <code>int</code> for the same input, ‘1’.</p> <pre data-language="python">&gt;&gt;&gt; df2.iloc[262140, 0]
+'1'
+&gt;&gt;&gt; type(df2.iloc[262140, 0])
+&lt;class 'str'&gt;
+&gt;&gt;&gt; df2.iloc[262150, 0]
+1
+&gt;&gt;&gt; type(df2.iloc[262150, 0])
+&lt;class 'int'&gt;
+</pre> <p>One way to solve this issue is using the <code>dtype</code> parameter in the <code>read_csv</code> and <code>read_table</code> functions to explicit the conversion:</p> <pre data-language="python">&gt;&gt;&gt; df2 = pd.read_csv('test.csv', sep=',', dtype={'a': str})
+</pre> <p>No warning was issued.</p> <pre data-language="python">&gt;&gt;&gt; import os
+&gt;&gt;&gt; os.remove('test.csv')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.errors.DtypeWarning.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.errors.DtypeWarning.html</a>
+  </p>
+</div>

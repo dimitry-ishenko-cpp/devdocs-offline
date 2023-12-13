@@ -1,0 +1,65 @@
+<h1 id="pandas-core-groupby-dataframegroupby-diff">pandas.core.groupby.DataFrameGroupBy.diff</h1> <dl class="attribute"> <dt id="pandas.core.groupby.DataFrameGroupBy.diff">
+<code>DataFrameGroupBy.diff</code> </dt> <dd>
+<p>First discrete difference of element.</p> <p>Calculates the difference of a DataFrame element compared with another element in the DataFrame (default is the element in the same column of the previous row).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>periods : int, default 1</code> </dt> <dd>
+<p class="first last">Periods to shift for calculating difference, accepts negative values.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first">Take difference over rows (0) or columns (1).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.16.1..</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.diff</code> </dt> <dd>First discrete difference for a Series.</dd> <dt>
+<code>DataFrame.pct_change</code> </dt> <dd>Percent change over given number of periods.</dd> <dt>
+<code>DataFrame.shift</code> </dt> <dd>Shift index by desired number of periods with an optional time freq.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Difference with previous row</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'a': [1, 2, 3, 4, 5, 6],
+...                    'b': [1, 1, 2, 3, 5, 8],
+...                    'c': [1, 4, 9, 16, 25, 36]})
+&gt;&gt;&gt; df
+   a  b   c
+0  1  1   1
+1  2  1   4
+2  3  2   9
+3  4  3  16
+4  5  5  25
+5  6  8  36
+</pre> <pre data-language="python">&gt;&gt;&gt; df.diff()
+     a    b     c
+0  NaN  NaN   NaN
+1  1.0  0.0   3.0
+2  1.0  1.0   5.0
+3  1.0  1.0   7.0
+4  1.0  2.0   9.0
+5  1.0  3.0  11.0
+</pre> <p>Difference with previous column</p> <pre data-language="python">&gt;&gt;&gt; df.diff(axis=1)
+    a    b     c
+0 NaN  0.0   0.0
+1 NaN -1.0   3.0
+2 NaN -1.0   7.0
+3 NaN -1.0  13.0
+4 NaN  0.0  20.0
+5 NaN  2.0  28.0
+</pre> <p>Difference with 3rd previous row</p> <pre data-language="python">&gt;&gt;&gt; df.diff(periods=3)
+     a    b     c
+0  NaN  NaN   NaN
+1  NaN  NaN   NaN
+2  NaN  NaN   NaN
+3  3.0  2.0  15.0
+4  3.0  4.0  21.0
+5  3.0  6.0  27.0
+</pre> <p>Difference with following row</p> <pre data-language="python">&gt;&gt;&gt; df.diff(periods=-1)
+     a    b     c
+0 -1.0  0.0  -3.0
+1 -1.0 -1.0  -5.0
+2 -1.0 -1.0  -7.0
+3 -1.0 -2.0  -9.0
+4 -1.0 -3.0 -11.0
+5  NaN  NaN   NaN
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.diff.html</a>
+  </p>
+</div>

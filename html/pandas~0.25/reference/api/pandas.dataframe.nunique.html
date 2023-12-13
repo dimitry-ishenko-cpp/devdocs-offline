@@ -1,0 +1,34 @@
+<h1 id="pandas-dataframe-nunique">pandas.DataFrame.nunique</h1> <dl class="method"> <dt id="pandas.DataFrame.nunique">
+<code>DataFrame.nunique(self, axis=0, dropna=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L7979-L8019"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Count distinct observations over requested axis.</p> <p>Return Series with number of distinct observations. Can ignore NaN values.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">The axis to use. 0 or ‘index’ for row-wise, 1 or ‘columns’ for column-wise.</p> </dd> <dt>
+<code>dropna : bool, default True</code> </dt> <dd>
+<p class="first last">Don’t include NaN in the counts.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.nunique.html#pandas.Series.nunique" title="pandas.Series.nunique"><code>Series.nunique</code></a>
+</dt> <dd>Method nunique for Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.count.html#pandas.DataFrame.count" title="pandas.DataFrame.count"><code>DataFrame.count</code></a>
+</dt> <dd>Count non-NA cells for each column or row.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': [1, 2, 3], 'B': [1, 1, 1]})
+&gt;&gt;&gt; df.nunique()
+A    3
+B    1
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; df.nunique(axis=1)
+0    1
+1    2
+2    2
+dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.nunique.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.nunique.html</a>
+  </p>
+</div>

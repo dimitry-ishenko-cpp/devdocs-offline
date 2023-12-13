@@ -1,0 +1,63 @@
+    <h1 id="firstHeading" class="firstHeading">std::make_format_args, std::make_wformat_args</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../../header/format.html" title="cpp/header/format">&lt;format&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class Context = std::format_context, class... Args &gt;
+/*format-arg-store*/&lt;Context, Args...&gt;
+    make_format_args( Args&amp;&amp;... args );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class... Args &gt;
+/*format-arg-store*/&lt;std::wformat_context, Args...&gt;
+    make_wformat_args( Args&amp;&amp;... args );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <p>Returns an object that stores an array of formatting arguments and can be implicitly converted to <code><a href="basic_format_args.html" title="cpp/utility/format/basic format args">std::basic_format_args&lt;Context&gt;</a></code>.</p>
+<p>The behavior is undefined if <code>typename Context::template formatter_type&lt;Ti&gt;</code> does not meet the <a href="../../named_req/basicformatter.html" title="cpp/named req/BasicFormatter">BasicFormatter</a> requirements for any <code>Ti</code> in <code>Args</code>.</p>
+<h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> args... </td> <td> - </td> <td> values to be used as formatting arguments </td>
+</tr>
+</table> <h3 id="Returns"> Returns</h3> <p>An object that holds the formatting arguments.</p>
+<h3 id="Notes"> Notes</h3> <p>A formatting argument has reference semantics for user-defined types and does not extend the lifetime of <code>args</code>. It is the programmer's responsibility to ensure that <code>args</code> outlive the return value. Usually, the result is only used as argument to formatting function.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;array&gt;
+#include &lt;format&gt;
+#include &lt;iostream&gt;
+#include &lt;string_view&gt;
+ 
+void raw_write_to_log(std::string_view users_fmt, std::format_args&amp;&amp; args) {
+    static int n{};
+    std::clog &lt;&lt; std::format("{:04} : ", n++) &lt;&lt; std::vformat(users_fmt, args) &lt;&lt; '\n';
+}
+ 
+template &lt;typename... Args&gt;
+constexpr void log(Args&amp;&amp;... args) {
+ 
+    // Generate formatting string "{} "...
+    std::array&lt;char, sizeof...(Args) * 3 + 1&gt; braces{};
+    constexpr const char c[4] = "{} ";
+    for (auto i{0u}; i != braces.size() - 1; ++i) {
+        braces[i] = c[i % 3];
+    }
+    braces.back() = '\0';
+ 
+    raw_write_to_log(std::string_view{braces.data()}, std::make_format_args(args...));
+}
+ 
+int main()
+{
+    log("Number", "of", "arguments", "is", "arbitrary.");
+    log("Any type that meets the `BasicFormatter` requirements", "can be printed.");
+    log("For example:", 1, 2.0, '3', "*42*");
+ 
+    raw_write_to_log("{:02} │ {} │ {} │ {}", std::make_format_args(1, 2.0, '3', "4"));
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">0000 : Number of arguments is arbitrary. 
+0001 : Any type that meets the `BasicFormatter` requirements can be printed. 
+0002 : For example: 1 2.0 3 *42* 
+0003 : 01 │ 2.0 │ 3 │ 4</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://wg21.link/P2418R2">P2418R2</a> </td> <td> C++20 </td> <td> objects that are neither const-usable nor copyable<br>(such as generator-like objects) are not formattable </td> <td> allow formatting these objects </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="basic_format_args.html" title="cpp/utility/format/basic format args"> <span class="t-lines"><span>basic_format_args</span><span>format_args</span><span>wformat_args</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> class that provides access to all formatting arguments <br> <span class="t-mark">(class template)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="vformat.html" title="cpp/utility/format/vformat"> <span class="t-lines"><span>vformat</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> non-template variant of <code><a href="format.html" title="cpp/utility/format/format">std::format</a></code> using type-erased argument representation <br> <span class="t-mark">(function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="vformat_to.html" title="cpp/utility/format/vformat to"> <span class="t-lines"><span>vformat_to</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> non-template variant of <code><a href="format_to.html" title="cpp/utility/format/format to">std::format_to</a></code> using type-erased argument representation <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/utility/format/make_format_args" class="_attribution-link">https://en.cppreference.com/w/cpp/utility/format/make_format_args</a>
+  </p>
+</div>

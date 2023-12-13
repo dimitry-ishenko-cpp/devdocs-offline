@@ -1,0 +1,135 @@
+    <h1 id="firstHeading" class="firstHeading">std::atomic&lt;T&gt;::compare_exchange_weak, std::atomic&lt;T&gt;::compare_exchange_strong</h1>            <table class="t-dcl-begin">  <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(1)</td> <td rowspan="3"> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_weak( T&amp; expected, T desired,
+                            std::memory_order success, 
+                            std::memory_order failure ) noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_weak( T&amp; expected, T desired,
+                            std::memory_order success, 
+                            std::memory_order failure ) volatile noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr>   <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(2)</td> <td rowspan="3"> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_weak( T&amp; expected, T desired,
+                            std::memory_order order =
+                                std::memory_order_seq_cst ) noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_weak( T&amp; expected, T desired,
+                            std::memory_order order =
+                                std::memory_order_seq_cst ) volatile noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr>   <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(3)</td> <td rowspan="3"> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_strong( T&amp; expected, T desired,
+                              std::memory_order success, 
+                              std::memory_order failure ) noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_strong( T&amp; expected, T desired,
+                              std::memory_order success, 
+                              std::memory_order failure ) volatile noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr>   <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(4)</td> <td rowspan="3"> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_strong( T&amp; expected, T desired,
+                              std::memory_order order = 
+                                  std::memory_order_seq_cst ) noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">bool compare_exchange_strong( T&amp; expected, T desired,
+                              std::memory_order order = 
+                                  std::memory_order_seq_cst ) volatile noexcept;</pre>
+</td>  <td class="t-dcl-nopad"> </td> </tr>   </table> <p>Atomically compares the <span class="t-rev-inl t-until-cxx20"><span><a href="../../language/object.html" title="cpp/language/object">object representation</a></span> <span><span class="t-mark-rev t-until-cxx20">(until C++20)</span></span></span><span class="t-rev-inl t-since-cxx20"><span><a href="../../language/object.html" title="cpp/language/object">value representation</a></span> <span><span class="t-mark-rev t-since-cxx20">(since C++20)</span></span></span> of <code>*this</code> with that of <code>expected</code>, and if those are bitwise-equal, replaces the former with <code>desired</code> (performs read-modify-write operation). Otherwise, loads the actual value stored in <code>*this</code> into <code>expected</code> (performs load operation).</p>
+<p>The memory models for the read-modify-write and load operations are <code>success</code> and <code>failure</code> respectively. In the (2) and (4) versions <code>order</code> is used for both read-modify-write and load operations, except that <code><a href="../memory_order.html" title="cpp/atomic/memory order">std::memory_order_acquire</a></code> and <code><a href="../memory_order.html" title="cpp/atomic/memory order">std::memory_order_relaxed</a></code> are used for the load operation if <code>order <span class="sy1">==</span> <a href="http://en.cppreference.com/w/cpp/atomic/memory_order"><span class="kw2102">std::<span class="me2">memory_order_acq_rel</span></span></a></code>, or <code>order <span class="sy1">==</span> <a href="http://en.cppreference.com/w/cpp/atomic/memory_order"><span class="kw2101">std::<span class="me2">memory_order_release</span></span></a></code> respectively.</p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p>The volatile-qualified versions are deprecated if <code><a href="http://en.cppreference.com/w/cpp/atomic/atomic"><span class="kw2071">std::<span class="me2">atomic</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="sy4">::</span><span class="me2">is_always_lock_free</span></code> is <code>false</code>.</p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> expected </td> <td> - </td> <td> reference to the value expected to be found in the atomic object. Gets stored with the actual value of <code>*this</code> if the comparison fails. </td>
+</tr> <tr class="t-par"> <td> desired </td> <td> - </td> <td> the value to store in the atomic object if it is as expected </td>
+</tr> <tr class="t-par"> <td> success </td> <td> - </td> <td> the memory synchronization ordering for the read-modify-write operation if the comparison succeeds. All values are permitted. </td>
+</tr> <tr class="t-par"> <td> failure </td> <td> - </td> <td> the memory synchronization ordering for the load operation if the comparison fails. Cannot be <code><a href="../memory_order.html" title="cpp/atomic/memory order">std::memory_order_release</a></code> or <code><a href="../memory_order.html" title="cpp/atomic/memory order">std::memory_order_acq_rel</a></code><span class="t-rev-inl t-until-cxx17"><span> and cannot specify stronger ordering than <code>success</code></span> <span><span class="t-mark-rev t-until-cxx17">(until C++17)</span></span></span> </td>
+</tr> <tr class="t-par"> <td> order </td> <td> - </td> <td> the memory synchronization ordering for both operations </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p><code>true</code> if the underlying atomic value was successfully changed, <code>false</code> otherwise.</p>
+<h3 id="Notes"> Notes</h3> <p>The comparison and copying are bitwise (similar to <code><a href="../../string/byte/memcmp.html" title="cpp/string/byte/memcmp">std::memcmp</a></code> and <code><a href="../../string/byte/memcpy.html" title="cpp/string/byte/memcpy">std::memcpy</a></code>); no constructor, assignment operator, or comparison operator are used.</p>
+<p>The weak forms (1-2) of the functions are allowed to fail spuriously, that is, act as if <code>*this != expected</code> even if they are equal. When a compare-and-exchange is in a loop, the weak version will yield better performance on some platforms.</p>
+<p>When a weak compare-and-exchange would require a loop and a strong one would not, the strong one is preferable unless the object representation of <code>T</code> may include <span class="t-rev-inl t-until-cxx20"><span>padding bits,</span> <span><span class="t-mark-rev t-until-cxx20">(until C++20)</span></span></span> trap bits, or offers multiple object representations for the same value (e.g. floating-point NaN). In those cases, weak compare-and-exchange typically works because it quickly converges on some stable object representation.</p>
+<p>For a union with bits that participate in the value representations of some members but not the others, compare-and-exchange might always fail because such padding bits have indeterminate values when they do not participate in the value representation of the active member.</p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p>Padding bits that never participate in an object's value representation are ignored.</p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> <h3 id="Example"> Example</h3> <div class="t-example">
+<p>Compare-and-exchange operations are often used as basic building blocks of <a href="https://en.wikipedia.org/wiki/Non-blocking_algorithm" class="extiw" title="enwiki:Non-blocking algorithm">lockfree</a> data structures.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">#include &lt;atomic&gt;
+template&lt;typename T&gt;
+struct node
+{
+    T data;
+    node* next;
+    node(const T&amp; data) : data(data), next(nullptr) {}
+};
+ 
+template&lt;typename T&gt;
+class stack
+{
+    std::atomic&lt;node&lt;T&gt;*&gt; head;
+ public:
+    void push(const T&amp; data)
+    {
+      node&lt;T&gt;* new_node = new node&lt;T&gt;(data);
+ 
+      // put the current value of head into new_node-&gt;next
+      new_node-&gt;next = head.load(std::memory_order_relaxed);
+ 
+      // now make new_node the new head, but if the head
+      // is no longer what's stored in new_node-&gt;next
+      // (some other thread must have inserted a node just now)
+      // then put that new head into new_node-&gt;next and try again
+      while(!head.compare_exchange_weak(new_node-&gt;next, new_node,
+                                        std::memory_order_release,
+                                        std::memory_order_relaxed))
+          ; // the body of the loop is empty
+ 
+// Note: the above use is not thread-safe in at least 
+// GCC prior to 4.8.3 (bug 60272), clang prior to 2014-05-05 (bug 18899)
+// MSVC prior to 2014-03-17 (bug 819819). The following is a workaround:
+//      node&lt;T&gt;* old_head = head.load(std::memory_order_relaxed);
+//      do {
+//          new_node-&gt;next = old_head;
+//       } while(!head.compare_exchange_weak(old_head, new_node,
+//                                           std::memory_order_release,
+//                                           std::memory_order_relaxed));
+    }
+};
+int main()
+{
+    stack&lt;int&gt; s;
+    s.push(1);
+    s.push(2);
+    s.push(3);
+}</pre></div> </div> <div class="t-example">
+<p>Demonstrates how compare_exchange_strong either changes the value of the atomic variable or the variable used for comparison.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">#include &lt;atomic&gt;
+#include &lt;iostream&gt;
+ 
+std::atomic&lt;int&gt;  ai;
+ 
+int  tst_val= 4;
+int  new_val= 5;
+bool exchanged= false;
+ 
+void valsout()
+{
+    std::cout &lt;&lt; "ai= " &lt;&lt; ai
+              &lt;&lt; "  tst_val= " &lt;&lt; tst_val
+              &lt;&lt; "  new_val= " &lt;&lt; new_val
+              &lt;&lt; "  exchanged= " &lt;&lt; std::boolalpha &lt;&lt; exchanged
+              &lt;&lt; "\n";
+}
+ 
+int main()
+{
+    ai= 3;
+    valsout();
+ 
+    // tst_val != ai   ==&gt;  tst_val is modified
+    exchanged= ai.compare_exchange_strong( tst_val, new_val );
+    valsout();
+ 
+    // tst_val == ai   ==&gt;  ai is modified
+    exchanged= ai.compare_exchange_strong( tst_val, new_val );
+    valsout();
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">ai= 3  tst_val= 4  new_val= 5  exchanged= false
+ai= 3  tst_val= 3  new_val= 5  exchanged= false
+ai= 5  tst_val= 3  new_val= 5  exchanged= true</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../atomic_compare_exchange.html" title="cpp/atomic/atomic compare exchange"> <span class="t-lines"><span>atomic_compare_exchange_weak</span><span>atomic_compare_exchange_weak_explicit</span><span>atomic_compare_exchange_strong</span><span>atomic_compare_exchange_strong_explicit</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> atomically compares the value of the atomic object with non-atomic argument and performs atomic exchange if equal or atomic load if not <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/atomic/atomic/compare_exchange" class="_attribution-link">https://en.cppreference.com/w/cpp/atomic/atomic/compare_exchange</a>
+  </p>
+</div>

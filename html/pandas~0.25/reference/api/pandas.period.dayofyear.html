@@ -1,0 +1,28 @@
+<h1 id="pandas-period-dayofyear">pandas.Period.dayofyear</h1> <dl class="attribute"> <dt id="pandas.Period.dayofyear">
+<code>Period.dayofyear</code> </dt> <dd>
+<p>Return the day of the year.</p> <p>This attribute returns the day of the year on which the particular date occurs. The return value ranges between 1 to 365 for regular years and 1 to 366 for leap years.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>int</dt> <dd>
+<p class="first last">The day of year.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.period.day.html#pandas.Period.day" title="pandas.Period.day"><code>Period.day</code></a>
+</dt> <dd>Return the day of the month.</dd> <dt>
+ <a class="reference internal" href="pandas.period.dayofweek.html#pandas.Period.dayofweek" title="pandas.Period.dayofweek"><code>Period.dayofweek</code></a>
+</dt> <dd>Return the day of week.</dd> <dt>
+ <a class="reference internal" href="pandas.periodindex.dayofyear.html#pandas.PeriodIndex.dayofyear" title="pandas.PeriodIndex.dayofyear"><code>PeriodIndex.dayofyear</code></a>
+</dt> <dd>Return the day of year of all indexes.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; period = pd.Period("2015-10-23", freq='H')
+&gt;&gt;&gt; period.dayofyear
+296
+&gt;&gt;&gt; period = pd.Period("2012-12-31", freq='D')
+&gt;&gt;&gt; period.dayofyear
+366
+&gt;&gt;&gt; period = pd.Period("2013-01-01", freq='D')
+&gt;&gt;&gt; period.dayofyear
+1
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.dayofyear.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.dayofyear.html</a>
+  </p>
+</div>

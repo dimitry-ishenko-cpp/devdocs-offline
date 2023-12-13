@@ -1,0 +1,56 @@
+<h1 id="pandas-dataframe-to-dict">pandas.DataFrame.to_dict</h1> <dl class="method"> <dt id="pandas.DataFrame.to_dict">
+<code>DataFrame.to_dict(self, orient='dict', into=&lt;class 'dict'&gt;)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1242-L1377"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert the DataFrame to a dictionary.</p> <p>The type of the key-value pairs can be customized with the parameters (see below).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>orient : str {‘dict’, ‘list’, ‘series’, ‘split’, ‘records’, ‘index’}</code> </dt> <dd>
+<p class="first">Determines the type of the values of the dictionary.</p> <ul class="simple"> <li>‘dict’ (default) : dict like {column -&gt; {index -&gt; value}}</li> <li>‘list’ : dict like {column -&gt; [values]}</li> <li>‘series’ : dict like {column -&gt; Series(values)}</li> <li>‘split’ : dict like {‘index’ -&gt; [index], ‘columns’ -&gt; [columns], ‘data’ -&gt; [values]}</li> <li>‘records’ : list like [{column -&gt; value}, … , {column -&gt; value}]</li> <li>‘index’ : dict like {index -&gt; {column -&gt; value}}</li> </ul> <p class="last">Abbreviations are allowed. <code>s</code> indicates <code>series</code> and <code>sp</code> indicates <code>split</code>.</p> </dd> <dt>
+<code>into : class, default dict</code> </dt> <dd>
+<p class="first">The collections.abc.Mapping subclass used for all Mappings in the return value. Can be the actual class or an empty instance of the mapping type you want. If you want a collections.defaultdict, you must pass it initialized.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>dict, list or collections.abc.Mapping</dt> <dd>
+<p class="first last">Return a collections.abc.Mapping object representing the DataFrame. The resulting transformation depends on the <code>orient</code> parameter.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.from_dict.html#pandas.DataFrame.from_dict" title="pandas.DataFrame.from_dict"><code>DataFrame.from_dict</code></a>
+</dt> <dd>Create a DataFrame from a dictionary.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_json.html#pandas.DataFrame.to_json" title="pandas.DataFrame.to_json"><code>DataFrame.to_json</code></a>
+</dt> <dd>Convert a DataFrame to JSON format.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'col1': [1, 2],
+...                    'col2': [0.5, 0.75]},
+...                   index=['row1', 'row2'])
+&gt;&gt;&gt; df
+      col1  col2
+row1     1  0.50
+row2     2  0.75
+&gt;&gt;&gt; df.to_dict()
+{'col1': {'row1': 1, 'row2': 2}, 'col2': {'row1': 0.5, 'row2': 0.75}}
+</pre> <p>You can specify the return orientation.</p> <pre data-language="python">&gt;&gt;&gt; df.to_dict('series')
+{'col1': row1    1
+         row2    2
+Name: col1, dtype: int64,
+'col2': row1    0.50
+        row2    0.75
+Name: col2, dtype: float64}
+</pre> <pre data-language="python">&gt;&gt;&gt; df.to_dict('split')
+{'index': ['row1', 'row2'], 'columns': ['col1', 'col2'],
+ 'data': [[1, 0.5], [2, 0.75]]}
+</pre> <pre data-language="python">&gt;&gt;&gt; df.to_dict('records')
+[{'col1': 1, 'col2': 0.5}, {'col1': 2, 'col2': 0.75}]
+</pre> <pre data-language="python">&gt;&gt;&gt; df.to_dict('index')
+{'row1': {'col1': 1, 'col2': 0.5}, 'row2': {'col1': 2, 'col2': 0.75}}
+</pre> <p>You can also specify the mapping type.</p> <pre data-language="python">&gt;&gt;&gt; from collections import OrderedDict, defaultdict
+&gt;&gt;&gt; df.to_dict(into=OrderedDict)
+OrderedDict([('col1', OrderedDict([('row1', 1), ('row2', 2)])),
+             ('col2', OrderedDict([('row1', 0.5), ('row2', 0.75)]))])
+</pre> <p>If you want a <code>defaultdict</code>, you need to initialize it:</p> <pre data-language="python">&gt;&gt;&gt; dd = defaultdict(list)
+&gt;&gt;&gt; df.to_dict('records', into=dd)
+[defaultdict(&lt;class 'list'&gt;, {'col1': 1, 'col2': 0.5}),
+ defaultdict(&lt;class 'list'&gt;, {'col1': 2, 'col2': 0.75})]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_dict.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_dict.html</a>
+  </p>
+</div>

@@ -1,0 +1,44 @@
+<h1 id="pandas-index-rename">pandas.Index.rename</h1> <dl class="method"> <dt id="pandas.Index.rename">
+<code>Index.rename(self, name, inplace=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1467-L1516"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Alter Index or MultiIndex name.</p> <p>Able to set new names without level. Defaults to returning new index. Length of names must match number of levels in MultiIndex.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>name : label or list of labels</code> </dt> <dd>
+<p class="first last">Name(s) to set.</p> </dd> <dt>
+<code>inplace : boolean, default False</code> </dt> <dd>
+<p class="first last">Modifies the object directly, instead of creating a new Index or MultiIndex.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Index</dt> <dd>
+<p class="first last">The same type as the caller or None if inplace is True.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.set_names.html#pandas.Index.set_names" title="pandas.Index.set_names"><code>Index.set_names</code></a>
+</dt> <dd>Able to set new names partially and by level.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['A', 'C', 'A', 'B'], name='score')
+&gt;&gt;&gt; idx.rename('grade')
+Index(['A', 'C', 'A', 'B'], dtype='object', name='grade')
+</pre> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_product([['python', 'cobra'],
+...                                   [2018, 2019]],
+...                                   names=['kind', 'year'])
+&gt;&gt;&gt; idx
+MultiIndex([('python', 2018),
+            ('python', 2019),
+            ( 'cobra', 2018),
+            ( 'cobra', 2019)],
+           names=['kind', 'year'])
+&gt;&gt;&gt; idx.rename(['species', 'year'])
+MultiIndex([('python', 2018),
+            ('python', 2019),
+            ( 'cobra', 2018),
+            ( 'cobra', 2019)],
+           names=['species', 'year'])
+&gt;&gt;&gt; idx.rename('species')
+Traceback (most recent call last):
+TypeError: Must pass list-like as `names`.
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.rename.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.rename.html</a>
+  </p>
+</div>

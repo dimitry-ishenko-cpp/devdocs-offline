@@ -1,0 +1,94 @@
+<h1 id="categorical">Categorical data</h1> <p id="categorical-data">This is an introduction to pandas categorical data type, including a short comparison with R’s <code>factor</code>.</p> <p><code>Categoricals</code> are a pandas data type corresponding to categorical variables in statistics. A categorical variable takes on a limited, and usually fixed, number of possible values (<code>categories</code>; <code>levels</code> in R). Examples are gender, social class, blood type, country affiliation, observation time or rating via Likert scales.</p> <p>In contrast to statistical categorical variables, categorical data might have an order (e.g. ‘strongly agree’ vs ‘agree’ or ‘first observation’ vs. ‘second observation’), but numerical operations (additions, divisions, …) are not possible.</p> <p>All values of categorical data are either in <code>categories</code> or <code>np.nan</code>. Order is defined by the order of <code>categories</code>, not lexical order of the values. Internally, the data structure consists of a <code>categories</code> array and an integer array of <code>codes</code> which point to the real value in the <code>categories</code> array.</p> <p>The categorical data type is useful in the following cases:</p> <ul class="simple"> <li>A string variable consisting of only a few different values. Converting such a string variable to a categorical variable will save some memory, see <a class="reference internal" href="#categorical-memory"><span class="std std-ref">here</span></a>.</li> <li>The lexical order of a variable is not the same as the logical order (“one”, “two”, “three”). By converting to a categorical and specifying an order on the categories, sorting and min/max will use the logical order instead of the lexical order, see <a class="reference internal" href="#categorical-sort"><span class="std std-ref">here</span></a>.</li> <li>As a signal to other Python libraries that this column should be treated as a categorical variable (e.g. to use suitable statistical methods or plot types).</li> </ul> <p>See also the <a class="reference internal" href="../reference/arrays.html#api-arrays-categorical"><span class="std std-ref">API docs on categoricals</span></a>.</p>  <h2 id="categorical-objectcreation">Object creation</h2>  <h3 id="object-creation">Series creation</h3> <p>Categorical <code>Series</code> or columns in a <code>DataFrame</code> can be created in several ways:</p> <p>By specifying <code>dtype="category"</code> when constructing a <code>Series</code>:</p> <pre data-language="python">In [1]: s = pd.Series(["a", "b", "c", "a"], dtype="category")
+
+In [2]: s
+Out[2]: 
+0    a
+1    b
+2    c
+3    a
+dtype: category
+Categories (3, object): [a, b, c]
+</pre> <p>By converting an existing <code>Series</code> or column to a <code>category</code> dtype:</p> <pre data-language="python">In [3]: df = pd.DataFrame({"A": ["a", "b", "c", "a"]})
+
+In [4]: df["B"] = df["A"].astype('category')
+
+In [5]: df
+Out[5]: 
+   A  B
+0  a  a
+1  b  b
+2  c  c
+3  a  a
+</pre> <p>By using special functions, such as <a class="reference internal" href="../reference/api/pandas.cut.html#pandas.cut" title="pandas.cut"><code>cut()</code></a>, which groups data into discrete bins. See the <a class="reference internal" href="reshaping.html#reshaping-tile-cut"><span class="std std-ref">example on tiling</span></a> in the docs.</p> <pre data-language="python">In [6]: df = pd.DataFrame({'value': np.random.randint(0, 100, 20)})
+
+In [7]: labels = ["{0} - {1}".format(i, i + 9) for i in range(0, 100, 10)]
+
+In [8]: df['group'] = pd.cut(df.value, range(0, 105, 10), right=False, labels=labels)
+
+In [9]: df.head(10)
+Out[9]: 
+   value    group
+0     65  60 - 69
+1     49  40 - 49
+2     56  50 - 59
+3     43  40 - 49
+4     43  40 - 49
+5     91  90 - 99
+6     32  30 - 39
+7     87  80 - 89
+8     36  30 - 39
+9      8    0 - 9
+</pre> <p>By passing a <a class="reference internal" href="../reference/api/pandas.categorical.html#pandas.Categorical" title="pandas.Categorical"><code>pandas.Categorical</code></a> object to a <code>Series</code> or assigning it to a <code>DataFrame</code>.</p> <pre data-language="python">In [10]: raw_cat = pd.Categorical(["a", "b", "c", "a"], categories=["b", "c", "d"],
+   ....:                          ordered=False)
+   ....: 
+
+In [11]: s = pd.Series(raw_cat)
+
+In [12]: s
+Out[12]: 
+0    NaN
+1      b
+2      c
+3    NaN
+dtype: category
+Categories (3, object): [b, c, d]
+
+In [13]: df = pd.DataFrame({"A": ["a", "b", "c", "a"]})
+
+In [14]: df["B"] = raw_cat
+
+In [15]: df
+Out[15]: 
+   A    B
+0  a  NaN
+1  b    b
+2  c    c
+3  a  NaN
+</pre> <p>Categorical data has a specific <code>category</code> <a class="reference internal" href="../getting_started/basics.html#basics-dtypes"><span class="std std-ref">dtype</span></a>:</p> <pre data-language="python">In [16]: df.dtypes
+Out[16]: 
+A      object
+B    category
+dtype: object
+</pre>   <h3 id="dataframe-creation">DataFrame creation</h3> <p>Similar to the previous section where a single column was converted to categorical, all columns in a <code>DataFrame</code> can be batch converted to categorical either during or after construction.</p> <p>This can be done during construction by specifying <code>dtype="category"</code> in the <code>DataFrame</code> constructor:</p> <pre data-language="python">In [17]: df = pd.DataFrame({'A': list('abca'), 'B': list('bccd')}, dtype="category")
+
+In [18]: df.dtypes
+Out[18]: 
+A    category
+B    category
+dtype: object
+</pre> <p>Note that the categories present in each column differ; the conversion is done column by column, so only labels present in a given column are categories:</p> <pre data-language="python">In [19]: df['A']
+Out[19]: 
+0    a
+1    b
+2    c
+3    a
+Name: A, dtype: category
+Categories (3, object): [a, b, c]
+
+In [20]: df['B']
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/categorical.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/categorical.html</a>
+  </p>
+</div>

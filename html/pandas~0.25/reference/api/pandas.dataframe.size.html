@@ -1,0 +1,16 @@
+<h1 id="pandas-dataframe-size">pandas.DataFrame.size</h1> <dl class="attribute"> <dt id="pandas.DataFrame.size">
+<code>DataFrame.size</code> </dt> <dd>
+<p>Return an int representing the number of elements in this object.</p> <p>Return the number of rows if Series. Otherwise return the number of rows times number of columns if DataFrame.</p> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>ndarray.size</code> </dt> <dd>Number of elements in the array.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series({'a': 1, 'b': 2, 'c': 3})
+&gt;&gt;&gt; s.size
+3
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'col1': [1, 2], 'col2': [3, 4]})
+&gt;&gt;&gt; df.size
+4
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.size.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.size.html</a>
+  </p>
+</div>

@@ -1,0 +1,47 @@
+    <h1 id="firstHeading" class="firstHeading">std::ranges::range_adaptor_closure</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/ranges.html" title="cpp/header/ranges">&lt;ranges&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">template&lt; class D &gt;
+    requires std::is_object_v&lt;D&gt; &amp;&amp; std::same_as&lt;D, std::remove_cv_t&lt;D&gt;&gt;
+class range_adaptor_closure {};</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p><code>std::ranges::range_adaptor_closure</code> is a helper class template for defining a <a href="../named_req/rangeadaptorclosureobject.html" title="cpp/named req/RangeAdaptorClosureObject">RangeAdaptorClosureObject</a>.</p>
+<p>Let <code>t</code> be the object of type <code>T</code>, the implementation ensures that <code>t</code> is a range adaptor closure object if all the requirements are met:</p>
+<ul>
+<li> <code>t</code> is a unary function object that takes one <a href="range.html" title="cpp/ranges/range"><code>range</code></a> argument. </li>
+<li> <code>T</code> has exactly one public base class <code>ranges::range_adaptor_closure&lt;T&gt;</code>, and <code>T</code> has no base classes of type <code>ranges::range_adaptor_closure&lt;U&gt;</code> for any other type <code>U</code>. </li>
+<li> <code>T</code> does not satisfy <a href="range.html" title="cpp/ranges/range"><code>range</code></a>. </li>
+</ul> <h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;ranges&gt;
+#include &lt;string&gt;
+#include &lt;string_view&gt;
+ 
+// define Slice as a range adaptor closure
+struct Slice : std::ranges::range_adaptor_closure&lt;Slice&gt; {
+    std::size_t start = 0;
+    std::size_t end = std::string_view::npos;
+ 
+    std::string_view operator()(std::string_view sv) const {
+        return sv.substr(start, end - start);
+    }
+};
+ 
+int main() {
+    std::string str = "01234567";
+ 
+    Slice slicer{.start = 1, .end = 6};
+ 
+    auto sv1 = slicer(str);  // use slicer as a normal function object
+    auto sv2 = str | slicer; // use slicer as a range adaptor closure object
+    std::cout &lt;&lt; sv1 &lt;&lt; '\n';
+    std::cout &lt;&lt; sv2 &lt;&lt; '\n';
+ 
+    // range adaptor closures can be composed
+    auto slice_and_drop = slicer
+                        | std::views::drop_while([](auto ch) { return ch != '3'; });
+    std::cout &lt;&lt; std::string_view(str | slice_and_drop) &lt;&lt; '\n';
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">12345
+12345
+345</pre></div> </div>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/ranges/range_adaptor_closure" class="_attribution-link">https://en.cppreference.com/w/cpp/ranges/range_adaptor_closure</a>
+  </p>
+</div>

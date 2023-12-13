@@ -1,0 +1,25 @@
+<h1 id="pandas-series-dt-day-name">pandas.Series.dt.day_name</h1> <dl class="method"> <dt id="pandas.Series.dt.day_name">
+<code>Series.dt.day_name(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/accessor.py#L92-L93"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the day names of the DateTimeIndex with specified locale.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>locale : str, optional</code> </dt> <dd>
+<p class="first last">Locale determining the language in which to return the day name. Default is English locale.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Index</dt> <dd>
+<p class="first last">Index of day names.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.date_range(start='2018-01-01', freq='D', periods=3)
+&gt;&gt;&gt; idx
+DatetimeIndex(['2018-01-01', '2018-01-02', '2018-01-03'],
+              dtype='datetime64[ns]', freq='D')
+&gt;&gt;&gt; idx.day_name()
+Index(['Monday', 'Tuesday', 'Wednesday'], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.day_name.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.day_name.html</a>
+  </p>
+</div>

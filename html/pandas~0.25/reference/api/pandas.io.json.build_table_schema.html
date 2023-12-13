@@ -1,0 +1,36 @@
+<h1 id="pandas-io-json-build-table-schema">pandas.io.json.build_table_schema</h1> <dl class="function"> <dt id="pandas.io.json.build_table_schema">
+<code>pandas.io.json.build_table_schema(data, index=True, primary_key=None, version=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/json/_table_schema.py#L192-L268"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Create a Table schema from <code>data</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : Series, DataFrame</code> </dt>  <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to include <code>data.index</code> in the schema.</p> </dd> <dt>
+<code>primary_key : bool or None, default True</code> </dt> <dd>
+<p class="first last">column names to designate as the primary key. The default <code>None</code> will set <code>‘primaryKey’</code> to the index level or levels if the index is unique.</p> </dd> <dt>
+<code>version : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to include a field <code>pandas_version</code> with the version of pandas that generated the schema.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>schema : dict</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>See <code>_as_json_table_type</code> for conversion types. Timedeltas as converted to ISO8601 duration format with 9 decimal places after the seconds field for nanosecond precision.</p> <p>Categoricals are converted to the <code>any</code> dtype, and use the <code>enum</code> field constraint to list the allowed values. The <code>ordered</code> attribute is included in an <code>ordered</code> field.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(
+...     {'A': [1, 2, 3],
+...      'B': ['a', 'b', 'c'],
+...      'C': pd.date_range('2016-01-01', freq='d', periods=3),
+...     }, index=pd.Index(range(3), name='idx'))
+&gt;&gt;&gt; build_table_schema(df)
+{'fields': [{'name': 'idx', 'type': 'integer'},
+{'name': 'A', 'type': 'integer'},
+{'name': 'B', 'type': 'string'},
+{'name': 'C', 'type': 'datetime'}],
+'pandas_version': '0.20.0',
+'primaryKey': ['idx']}
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.json.build_table_schema.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.json.build_table_schema.html</a>
+  </p>
+</div>

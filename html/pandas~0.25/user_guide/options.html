@@ -1,0 +1,65 @@
+<h1 id="options">Options and settings</h1>  <h2 id="options-and-settings">Overview</h2> <p>pandas has an options system that lets you customize some aspects of its behaviour, display-related options being those the user is most likely to adjust.</p> <p>Options have a full “dotted-style”, case-insensitive name (e.g. <code>display.max_rows</code>). You can get/set options directly as attributes of the top-level <code>options</code> attribute:</p> <pre data-language="python">In [1]: import pandas as pd
+
+In [2]: pd.options.display.max_rows
+Out[2]: 15
+
+In [3]: pd.options.display.max_rows = 999
+
+In [4]: pd.options.display.max_rows
+Out[4]: 999
+</pre> <p>The API is composed of 5 relevant functions, available directly from the <code>pandas</code> namespace:</p> <ul class="simple"> <li>
+<a class="reference internal" href="../reference/api/pandas.get_option.html#pandas.get_option" title="pandas.get_option"><code>get_option()</code></a> / <a class="reference internal" href="../reference/api/pandas.set_option.html#pandas.set_option" title="pandas.set_option"><code>set_option()</code></a> - get/set the value of a single option.</li> <li>
+<a class="reference internal" href="../reference/api/pandas.reset_option.html#pandas.reset_option" title="pandas.reset_option"><code>reset_option()</code></a> - reset one or more options to their default value.</li> <li>
+<a class="reference internal" href="../reference/api/pandas.describe_option.html#pandas.describe_option" title="pandas.describe_option"><code>describe_option()</code></a> - print the descriptions of one or more options.</li> <li>
+<a class="reference internal" href="../reference/api/pandas.option_context.html#pandas.option_context" title="pandas.option_context"><code>option_context()</code></a> - execute a codeblock with a set of options that revert to prior settings after execution.</li> </ul> <p><strong>Note:</strong> Developers can check out <a class="reference external" href="https://github.com/pandas-dev/pandas/blob/master/pandas/core/config.py">pandas/core/config.py</a> for more information.</p> <p>All of the functions above accept a regexp pattern (<code>re.search</code> style) as an argument, and so passing in a substring will work - as long as it is unambiguous:</p> <pre data-language="python">In [5]: pd.get_option("display.max_rows")
+Out[5]: 999
+
+In [6]: pd.set_option("display.max_rows", 101)
+
+In [7]: pd.get_option("display.max_rows")
+Out[7]: 101
+
+In [8]: pd.set_option("max_r", 102)
+
+In [9]: pd.get_option("display.max_rows")
+Out[9]: 102
+</pre> <p>The following will <strong>not work</strong> because it matches multiple option names, e.g. <code>display.max_colwidth</code>, <code>display.max_rows</code>, <code>display.max_columns</code>:</p> <pre data-language="python">In [10]: try:
+   ....:     pd.get_option("column")
+   ....: except KeyError as e:
+   ....:     print(e)
+   ....: 
+'Pattern matched multiple keys'
+</pre> <p><strong>Note:</strong> Using this form of shorthand may cause your code to break if new options with similar names are added in future versions.</p> <p>You can get a list of available options and their descriptions with <code>describe_option</code>. When called with no argument <code>describe_option</code> will print out the descriptions for all available options.</p>   <h2 id="getting-and-setting-options">Getting and setting options</h2> <p>As described above, <a class="reference internal" href="../reference/api/pandas.get_option.html#pandas.get_option" title="pandas.get_option"><code>get_option()</code></a> and <a class="reference internal" href="../reference/api/pandas.set_option.html#pandas.set_option" title="pandas.set_option"><code>set_option()</code></a> are available from the pandas namespace. To change an option, call <code>set_option('option regex', new_value)</code>.</p> <pre data-language="python">In [11]: pd.get_option('mode.sim_interactive')
+Out[11]: False
+
+In [12]: pd.set_option('mode.sim_interactive', True)
+
+In [13]: pd.get_option('mode.sim_interactive')
+Out[13]: True
+</pre> <p><strong>Note:</strong> The option ‘mode.sim_interactive’ is mostly used for debugging purposes.</p> <p>All options also have a default value, and you can use <code>reset_option</code> to do just that:</p> <pre data-language="python">In [14]: pd.get_option("display.max_rows")
+Out[14]: 60
+
+In [15]: pd.set_option("display.max_rows", 999)
+
+In [16]: pd.get_option("display.max_rows")
+Out[16]: 999
+
+In [17]: pd.reset_option("display.max_rows")
+
+In [18]: pd.get_option("display.max_rows")
+Out[18]: 60
+</pre> <p>It’s also possible to reset multiple options at once (using a regex):</p> <pre data-language="python">In [19]: pd.reset_option("^display")
+</pre> <p><code>option_context</code> context manager has been exposed through the top-level API, allowing you to execute code with given option values. Option values are restored automatically when you exit the <code>with</code> block:</p> <pre data-language="python">In [20]: with pd.option_context("display.max_rows", 10, "display.max_columns", 5):
+   ....:     print(pd.get_option("display.max_rows"))
+   ....:     print(pd.get_option("display.max_columns"))
+   ....: 
+10
+5
+
+In [21]: print(pd.get_option("display.max_rows"))
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/options.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/options.html</a>
+  </p>
+</div>

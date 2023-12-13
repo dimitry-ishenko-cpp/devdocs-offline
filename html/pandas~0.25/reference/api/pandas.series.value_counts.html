@@ -1,0 +1,56 @@
+<h1 id="pandas-series-value-counts">pandas.Series.value_counts</h1> <dl class="method"> <dt id="pandas.Series.value_counts">
+<code>Series.value_counts(self, normalize=False, sort=True, ascending=False, bins=None, dropna=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/base.py#L1304-L1394"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a Series containing counts of unique values.</p> <p>The resulting object will be in descending order so that the first element is the most frequently-occurring element. Excludes NA values by default.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>normalize : boolean, default False</code> </dt> <dd>
+<p class="first last">If True then the object returned will contain the relative frequencies of the unique values.</p> </dd> <dt>
+<code>sort : boolean, default True</code> </dt> <dd>
+<p class="first last">Sort by frequencies.</p> </dd> <dt>
+<code>ascending : boolean, default False</code> </dt> <dd>
+<p class="first last">Sort in ascending order.</p> </dd> <dt>
+<code>bins : integer, optional</code> </dt> <dd>
+<p class="first last">Rather than count values, group them into half-open bins, a convenience for <code>pd.cut</code>, only works with numeric data.</p> </dd> <dt>
+<code>dropna : boolean, default True</code> </dt> <dd>
+<p class="first last">Don’t include counts of NaN.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.count.html#pandas.Series.count" title="pandas.Series.count"><code>Series.count</code></a>
+</dt> <dd>Number of non-NA elements in a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.count.html#pandas.DataFrame.count" title="pandas.DataFrame.count"><code>DataFrame.count</code></a>
+</dt> <dd>Number of non-NA elements in a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; index = pd.Index([3, 1, 2, 3, 4, np.nan])
+&gt;&gt;&gt; index.value_counts()
+3.0    2
+4.0    1
+2.0    1
+1.0    1
+dtype: int64
+</pre> <p>With <code>normalize</code> set to <code>True</code>, returns the relative frequency by dividing all values by the sum of values.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([3, 1, 2, 3, 4, np.nan])
+&gt;&gt;&gt; s.value_counts(normalize=True)
+3.0    0.4
+4.0    0.2
+2.0    0.2
+1.0    0.2
+dtype: float64
+</pre> <p><strong>bins</strong></p> <p>Bins can be useful for going from a continuous variable to a categorical variable; instead of counting unique apparitions of values, divide the index in the specified number of half-open bins.</p> <pre data-language="python">&gt;&gt;&gt; s.value_counts(bins=3)
+(2.0, 3.0]      2
+(0.996, 2.0]    2
+(3.0, 4.0]      1
+dtype: int64
+</pre> <p><strong>dropna</strong></p> <p>With <code>dropna</code> set to <code>False</code> we can also see NaN index values.</p> <pre data-language="python">&gt;&gt;&gt; s.value_counts(dropna=False)
+3.0    2
+NaN    1
+4.0    1
+2.0    1
+1.0    1
+dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.value_counts.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.value_counts.html</a>
+  </p>
+</div>

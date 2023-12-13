@@ -1,0 +1,32 @@
+<h1 id="pandas-tseries-offsets-semimonthend">pandas.tseries.offsets.SemiMonthEnd</h1> <dl class="class"> <dt id="pandas.tseries.offsets.SemiMonthEnd">
+<code>class pandas.tseries.offsets.SemiMonthEnd(n=1, normalize=False, day_of_month=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/tseries/offsets.py#L1396-L1454"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Two DateOffset’s per month repeating on the last day of the month and day_of_month.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>n : int</code> </dt>  <dt>
+<code>normalize : bool, default False</code> </dt>  <dt>
+<code>day_of_month : int, {1, 3,…,27}, default 15</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.semimonthend.base.html#pandas.tseries.offsets.SemiMonthEnd.base" title="pandas.tseries.offsets.SemiMonthEnd.base"><code>base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>freqstr</strong></td> <td> </td> </tr> <tr>
+<td><strong>kwds</strong></td> <td> </td> </tr> <tr>
+<td><strong>name</strong></td> <td> </td> </tr> <tr>
+<td><strong>nanos</strong></td> <td> </td> </tr> <tr>
+<td><strong>rule_code</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.semimonthend.rollback.html#pandas.tseries.offsets.SemiMonthEnd.rollback" title="pandas.tseries.offsets.SemiMonthEnd.rollback"><code>rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.semimonthend.rollforward.html#pandas.tseries.offsets.SemiMonthEnd.rollforward" title="pandas.tseries.offsets.SemiMonthEnd.rollforward"><code>rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>__call__</strong></td> <td> </td> </tr> <tr>
+<td><strong>apply</strong></td> <td> </td> </tr> <tr>
+<td><strong>apply_index</strong></td> <td> </td> </tr> <tr>
+<td><strong>copy</strong></td> <td> </td> </tr> <tr>
+<td><strong>isAnchored</strong></td> <td> </td> </tr> <tr>
+<td><strong>onOffset</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.SemiMonthEnd.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.SemiMonthEnd.html</a>
+  </p>
+</div>

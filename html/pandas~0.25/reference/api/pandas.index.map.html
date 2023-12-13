@@ -1,0 +1,22 @@
+<h1 id="pandas-index-map">pandas.Index.map</h1> <dl class="method"> <dt id="pandas.Index.map">
+<code>Index.map(self, mapper, na_action=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L4852-L4893"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Map values using input correspondence (a dict, Series, or function).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>mapper : function, dict, or Series</code> </dt> <dd>
+<p class="first last">Mapping correspondence.</p> </dd> <dt>
+<code>na_action : {None, ‘ignore’}</code> </dt> <dd>
+<p class="first last">If ‘ignore’, propagate NA values, without passing them to the mapping correspondence.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>applied : Union[Index, MultiIndex], inferred</code> </dt> <dd>
+<p class="first last">The output of the mapping function applied to the index. If the function returns a tuple with more than one element a MultiIndex will be returned.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.map.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.map.html</a>
+  </p>
+</div>

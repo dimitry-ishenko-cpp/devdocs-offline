@@ -1,0 +1,101 @@
+    <h1 id="firstHeading" class="firstHeading">std::atomic&lt;T&gt;::operator++,++(int),--,--(int)</h1>            <table class="t-dcl-begin"> <tr class="t-dcl"> <td> <pre data-language="cpp">T operator++() noexcept;
+T operator++() volatile noexcept;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;<i>Integral</i>&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T* operator++() noexcept;
+T* operator++() volatile noexcept;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;T*&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T operator++( int ) noexcept;
+T operator++( int ) volatile noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;<i>Integral</i>&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T* operator++( int ) noexcept;
+T* operator++( int ) volatile noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;T*&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T operator--() noexcept;
+T operator--() volatile noexcept;</pre>
+</td> <td> (3) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;<i>Integral</i>&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T* operator--() noexcept;
+T* operator--() volatile noexcept;</pre>
+</td> <td> (3) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;T*&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T operator--( int ) noexcept;
+T operator--( int ) volatile noexcept;</pre>
+</td> <td> (4) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;<i>Integral</i>&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl"> <td> <pre data-language="cpp">T* operator--( int ) noexcept;
+T* operator--( int ) volatile noexcept;</pre>
+</td> <td> (4) </td> <td> <span class="t-mark">(member only of <code>atomic&lt;T*&gt;</code> template specialization)</span><br><span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  </table> <p>Atomically increments or decrements the current value. The operation is read-modify-write operation.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Performs atomic pre-increment. Equivalent to <code>fetch_add(1)+1</code>.</div> <div class="t-li1">
+<span class="t-li">2)</span> Performs atomic post-increment. Equivalent to <code>fetch_add(1)</code>.</div> <div class="t-li1">
+<span class="t-li">3)</span> Performs atomic pre-decrement. Equivalent to <code>fetch_sub(1)-1</code>
+</div> <div class="t-li1">
+<span class="t-li">4)</span> Performs atomic post-decrement. Equivalent to <code>fetch_sub(1)</code>.</div> <p>For signed <code>Integral</code> types, arithmetic is defined to use two’s complement representation. There are no undefined results.</p>
+<p>For <code>T*</code> types, the result may be an undefined address, but the operations otherwise have no undefined behavior. The program is ill-formed if <code>T</code> is not an object type.</p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p>The volatile-qualified versions are deprecated if <code><a href="http://en.cppreference.com/w/cpp/atomic/atomic"><span class="kw2071">std::<span class="me2">atomic</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="sy4">::</span><span class="me2">is_always_lock_free</span></code> is <code>false</code>.</p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table>  <h3 id="Parameters"> Parameters</h3> <p>(none).</p>
+<h3 id="Return_value"> Return value</h3> <div class="t-li1">
+<span class="t-li">1,3)</span> The value of the atomic variable after the modification. Formally, the result of incrementing/decrementing the value immediately preceding the effects of this function in the <a href="../memory_order.html#Modification_order" title="cpp/atomic/memory order">modification order</a> of <code>*this</code>.</div> <div class="t-li1">
+<span class="t-li">2,4)</span> The value of the atomic variable before the modification. Formally, the value immediately preceding the effects of this function in the <a href="../memory_order.html#Modification_order" title="cpp/atomic/memory order">modification order</a> of <code>*this</code>.</div> <h3 id="Notes"> Notes</h3> <p>Unlike most pre-increment and pre-decrement operators, the pre-increment and pre-decrement operators for atomic types do not return a reference to the modified object. They return a copy of the stored value instead.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;atomic&gt;
+#include &lt;chrono&gt;
+#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;mutex&gt;
+#include &lt;random&gt;
+#include &lt;thread&gt;
+ 
+std::atomic&lt;int&gt; atomic_count{0};
+std::atomic&lt;int&gt; atomic_writes{0};
+ 
+constexpr int global_max_count{72};
+constexpr int writes_per_line{8};
+constexpr int max_delay{100};
+ 
+template&lt;int Max&gt; int random_value()
+{
+    static std::uniform_int_distribution&lt;int&gt; distr{1, Max};
+    static std::random_device engine;
+    static std::mt19937 noise{engine()};
+    static std::mutex rand_mutex;
+    std::lock_guard μ{rand_mutex};
+    return distr(noise);
+}
+ 
+int main()
+{
+    auto work = [](const char id)
+    {
+        for (int count{}; (count = ++atomic_count) &lt;= global_max_count;) {
+            std::this_thread::sleep_for(
+                std::chrono::milliseconds(random_value&lt;max_delay&gt;()));
+ 
+            bool new_line{false};
+            if (++atomic_writes % writes_per_line == 0) {
+                new_line = true;
+            }
+            // print thread `id` and `count` value
+            {
+                static std::mutex cout_mutex;
+                std::lock_guard m{cout_mutex};
+                std::cout &lt;&lt; "[" &lt;&lt; id &lt;&lt; "] " &lt;&lt; std::setw(3) &lt;&lt; count &lt;&lt; " │ "
+                          &lt;&lt; (new_line ? "\n" : "") &lt;&lt; std::flush;
+            }
+        }
+    };
+ 
+    std::jthread j1(work, 'A'), j2(work, 'B'), j3(work, 'C'), j4(work, 'D');
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">[B]   3 │ [D]   1 │ [C]   2 │ [D]   6 │ [A]   4 │ [B]   5 │ [B]  10 │ [D]   8 │
+[C]   7 │ [A]   9 │ [A]  14 │ [B]  11 │ [D]  12 │ [C]  13 │ [A]  15 │ [C]  18 │
+[D]  17 │ [B]  16 │ [C]  20 │ [C]  23 │ [D]  21 │ [A]  19 │ [C]  24 │ [B]  22 │
+[A]  26 │ [C]  27 │ [D]  25 │ [C]  30 │ [B]  28 │ [D]  31 │ [A]  29 │ [C]  32 │
+[B]  33 │ [D]  34 │ [B]  37 │ [B]  39 │ [B]  40 │ [A]  35 │ [C]  36 │ [C]  43 │
+[D]  38 │ [A]  42 │ [B]  41 │ [A]  46 │ [B]  47 │ [C]  44 │ [A]  48 │ [D]  45 │
+[C]  50 │ [D]  52 │ [B]  49 │ [D]  54 │ [C]  53 │ [A]  51 │ [B]  55 │ [D]  56 │
+[D]  60 │ [A]  58 │ [C]  57 │ [D]  61 │ [C]  63 │ [B]  59 │ [D]  64 │ [C]  65 │
+[A]  62 │ [D]  67 │ [B]  66 │ [C]  68 │ [D]  70 │ [C]  72 │ [B]  71 │ [A]  69 │</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://wg21.link/P0558R1">P0558R1</a> </td> <td> C++11 </td> <td> arithmetic permitted on pointers to <i>cv</i> void or function </td> <td> made ill-formed </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="fetch_add.html" title="cpp/atomic/atomic/fetch add"> <span class="t-lines"><span>fetch_add</span></span></a></div> </td> <td> atomically adds the argument to the value stored in the atomic object and obtains the value held previously <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="fetch_sub.html" title="cpp/atomic/atomic/fetch sub"> <span class="t-lines"><span>fetch_sub</span></span></a></div> </td> <td> atomically subtracts the argument from the value stored in the atomic object and obtains the value held previously <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="operator_arith2.html" title="cpp/atomic/atomic/operator arith2"> <span class="t-lines"><span>operator+=</span><span>operator-=</span><span>operator&amp;=</span><span>operator|=</span><span>operator^=</span></span></a></div> </td> <td> adds, subtracts, or performs bitwise AND, OR, XOR with the atomic value <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/atomic/atomic/operator_arith" class="_attribution-link">https://en.cppreference.com/w/cpp/atomic/atomic/operator_arith</a>
+  </p>
+</div>

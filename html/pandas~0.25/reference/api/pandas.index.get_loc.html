@@ -1,0 +1,31 @@
+<h1 id="pandas-index-get-loc">pandas.Index.get_loc</h1> <dl class="method"> <dt id="pandas.Index.get_loc">
+<code>Index.get_loc(self, key, method=None, tolerance=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L2881-L2899"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Get integer location, slice or boolean mask for requested label.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>key : label</code> </dt>  <dt>
+<code>method : {None, ‘pad’/’ffill’, ‘backfill’/’bfill’, ‘nearest’}, optional</code> </dt> <dd>
+<ul class="first last simple"> <li>default: exact matches only.</li> <li>pad / ffill: find the PREVIOUS index value if no exact match.</li> <li>backfill / bfill: use NEXT index value if no exact match</li> <li>nearest: use the NEAREST index value if no exact match. Tied distances are broken by preferring the larger index value.</li> </ul> </dd> <dt>
+<code>tolerance : int or float, optional</code> </dt> <dd>
+<p class="first">Maximum distance from index value for inexact matches. The value of the index at the matching location most satisfy the equation <code>abs(index[loc] - key) &lt;= tolerance</code>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0: </span>(list-like tolerance)</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>loc : int if unique index, slice if monotonic index, else mask</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; unique_index = pd.Index(list('abc'))
+&gt;&gt;&gt; unique_index.get_loc('b')
+1
+</pre> <pre data-language="python">&gt;&gt;&gt; monotonic_index = pd.Index(list('abbc'))
+&gt;&gt;&gt; monotonic_index.get_loc('b')
+slice(1, 3, None)
+</pre> <pre data-language="python">&gt;&gt;&gt; non_monotonic_index = pd.Index(list('abcb'))
+&gt;&gt;&gt; non_monotonic_index.get_loc('b')
+array([False,  True, False,  True], dtype=bool)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.get_loc.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.get_loc.html</a>
+  </p>
+</div>

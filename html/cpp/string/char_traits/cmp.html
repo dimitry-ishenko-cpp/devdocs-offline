@@ -1,0 +1,21 @@
+    <h1 id="firstHeading" class="firstHeading">std::char_traits&lt;CharT&gt;::eq, std::char_traits&lt;CharT&gt;::lt</h1>            <table class="t-dcl-begin">  <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(1)</td> <td></td> </tr> <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">static bool eq( char_type a, char_type b );</pre>
+</td>  <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">static constexpr bool eq( char_type a, char_type b ) noexcept;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>   <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(2)</td> <td></td> </tr> <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">static bool lt( char_type a, char_type b );</pre>
+</td>  <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">static constexpr bool lt( char_type a, char_type b ) noexcept;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>   </table> <p>Compares two characters.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Compares <code>a</code> and <code>b</code> for equality.</div> <div class="t-li1">
+<span class="t-li">2)</span> Compares <code>a</code> and <code>b</code> in such a way that they are totally ordered.</div> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx11">
+<td> <p>For the <code>char</code> specialization, <code>eq</code> and <code>lt</code> are defined identically to the built-in operators <code>==</code> and <code>&lt;</code> for type <code>unsigned char</code> (<i>not</i> <code>char</code>).</p>
+</td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> a, b </td> <td> - </td> <td> character values to compare </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <div class="t-li1">
+<span class="t-li">1)</span> <code>true</code> if <code>a</code> and <code>b</code> are equal, <code>false</code> otherwise.</div> <div class="t-li1">
+<span class="t-li">2)</span> <code>true</code> if <code>a</code> is <i>less</i> than <code>b</code>, <code>false</code> otherwise.</div> <h3 id="Complexity"> Complexity</h3> <p>Constant.</p>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/string/char_traits/cmp" class="_attribution-link">https://en.cppreference.com/w/cpp/string/char_traits/cmp</a>
+  </p>
+</div>

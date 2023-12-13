@@ -1,0 +1,21 @@
+<h1 id="pandas-perioddtype">pandas.PeriodDtype</h1> <dl class="class"> <dt id="pandas.PeriodDtype">
+<code>class pandas.PeriodDtype</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/dtypes.py#L780-L938"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>An ExtensionDtype for Period data.</p> <p><strong>This is not an actual numpy dtype</strong>, but a duck type.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>freq : str or DateOffset</code> </dt> <dd>
+<p class="first last">The frequency of this PeriodDtype</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.PeriodDtype(freq='D')
+period[D]
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.PeriodDtype(freq=pd.offsets.MonthEnd())
+period[M]
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.perioddtype.freq.html#pandas.PeriodDtype.freq" title="pandas.PeriodDtype.freq"><code>freq</code></a></td> <td>The frequency object of this PeriodDtype.</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.PeriodDtype.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.PeriodDtype.html</a>
+  </p>
+</div>

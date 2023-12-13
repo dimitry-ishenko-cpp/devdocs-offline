@@ -1,0 +1,236 @@
+<h1 id="pandas-index">pandas.Index</h1> <dl class="class"> <dt id="pandas.Index">
+<code>class pandas.Index</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L186-L5648"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Immutable ndarray implementing an ordered, sliceable set. The basic object storing axis labels for all pandas objects.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : array-like (1-dimensional)</code> </dt>  <dt>
+<code>dtype : NumPy dtype (default: object)</code> </dt> <dd>
+<p class="first last">If dtype is None, we find the dtype that best fits the data. If an actual dtype is provided, we coerce to that dtype if it’s safe. Otherwise, an error will be raised.</p> </dd> <dt>
+<code>copy : bool</code> </dt> <dd>
+<p class="first last">Make a copy of input ndarray</p> </dd> <dt>
+<code>name : object</code> </dt> <dd>
+<p class="first last">Name to be stored in the index</p> </dd> <dt>
+<code>tupleize_cols : bool (default: True)</code> </dt> <dd>
+<p class="first last">When True, attempt to create a MultiIndex if possible</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.rangeindex.html#pandas.RangeIndex" title="pandas.RangeIndex"><code>RangeIndex</code></a>
+</dt> <dd>Index implementing a monotonic integer range.</dd> <dt>
+ <a class="reference internal" href="pandas.categoricalindex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code>CategoricalIndex</code></a>
+</dt> <dd>Index of <a class="reference internal" href="pandas.categorical.html#pandas.Categorical" title="pandas.Categorical"><code>Categorical</code></a> s.</dd> <dt>
+ <a class="reference internal" href="pandas.multiindex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code>MultiIndex</code></a>
+</dt> <dd>A multi-level, or hierarchical, Index.</dd> <dt>
+ <a class="reference internal" href="pandas.intervalindex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code>IntervalIndex</code></a>
+</dt> <dd>An Index of <a class="reference internal" href="pandas.interval.html#pandas.Interval" title="pandas.Interval"><code>Interval</code></a> s.</dd> <dt>
+<code>DatetimeIndex, TimedeltaIndex,</code> <a class="reference internal" href="pandas.periodindex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code>PeriodIndex</code></a>
+</dt>  <dt>
+<code>Int64Index, UInt64Index,</code> <a class="reference internal" href="pandas.float64index.html#pandas.Float64Index" title="pandas.Float64Index"><code>Float64Index</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>An Index instance can <strong>only</strong> contain hashable objects</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.Index([1, 2, 3])
+Int64Index([1, 2, 3], dtype='int64')
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Index(list('abc'))
+Index(['a', 'b', 'c'], dtype='object')
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.index.t.html#pandas.Index.T" title="pandas.Index.T"><code>T</code></a></td> <td>Return the transpose, which is by</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.array.html#pandas.Index.array" title="pandas.Index.array"><code>array</code></a></td> <td>The ExtensionArray of the data backing this Series or Index.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.asi8.html#pandas.Index.asi8" title="pandas.Index.asi8"><code>asi8</code></a></td> <td>Integer representation of the values.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.base.html#pandas.Index.base" title="pandas.Index.base"><code>base</code></a></td> <td>(DEPRECATED) Return the base object if the memory of the underlying data is shared.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.data.html#pandas.Index.data" title="pandas.Index.data"><code>data</code></a></td> <td>(DEPRECATED) Return the data pointer of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.dtype.html#pandas.Index.dtype" title="pandas.Index.dtype"><code>dtype</code></a></td> <td>Return the dtype object of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.dtype_str.html#pandas.Index.dtype_str" title="pandas.Index.dtype_str"><code>dtype_str</code></a></td> <td>(DEPRECATED) Return the dtype str of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.flags.html#pandas.Index.flags" title="pandas.Index.flags"><code>flags</code></a></td> <td>(DEPRECATED)</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.hasnans.html#pandas.Index.hasnans" title="pandas.Index.hasnans"><code>hasnans</code></a></td> <td>Return if I have any nans; enables various perf speedups.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.inferred_type.html#pandas.Index.inferred_type" title="pandas.Index.inferred_type"><code>inferred_type</code></a></td> <td>Return a string of the type inferred from the values.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.is_monotonic.html#pandas.Index.is_monotonic" title="pandas.Index.is_monotonic"><code>is_monotonic</code></a></td> <td>Alias for is_monotonic_increasing.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.is_monotonic_decreasing.html#pandas.Index.is_monotonic_decreasing" title="pandas.Index.is_monotonic_decreasing"><code>is_monotonic_decreasing</code></a></td> <td>Return if the index is monotonic decreasing (only equal or decreasing) values.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.is_monotonic_increasing.html#pandas.Index.is_monotonic_increasing" title="pandas.Index.is_monotonic_increasing"><code>is_monotonic_increasing</code></a></td> <td>Return if the index is monotonic increasing (only equal or increasing) values.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.is_unique.html#pandas.Index.is_unique" title="pandas.Index.is_unique"><code>is_unique</code></a></td> <td>Return if the index has unique values.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.itemsize.html#pandas.Index.itemsize" title="pandas.Index.itemsize"><code>itemsize</code></a></td> <td>(DEPRECATED) Return the size of the dtype of the item of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.nbytes.html#pandas.Index.nbytes" title="pandas.Index.nbytes"><code>nbytes</code></a></td> <td>Return the number of bytes in the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.ndim.html#pandas.Index.ndim" title="pandas.Index.ndim"><code>ndim</code></a></td> <td>Number of dimensions of the underlying data, by definition 1.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.nlevels.html#pandas.Index.nlevels" title="pandas.Index.nlevels"><code>nlevels</code></a></td> <td>Number of levels.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.shape.html#pandas.Index.shape" title="pandas.Index.shape"><code>shape</code></a></td> <td>Return a tuple of the shape of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.size.html#pandas.Index.size" title="pandas.Index.size"><code>size</code></a></td> <td>Return the number of elements in the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.strides.html#pandas.Index.strides" title="pandas.Index.strides"><code>strides</code></a></td> <td>(DEPRECATED) Return the strides of the underlying data.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.values.html#pandas.Index.values" title="pandas.Index.values"><code>values</code></a></td> <td>Return an array representing the data in the Index.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>empty</strong></td> <td> </td> </tr> <tr>
+<td><strong>has_duplicates</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_all_dates</strong></td> <td> </td> </tr> <tr>
+<td><strong>name</strong></td> <td> </td> </tr> <tr>
+<td><strong>names</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.index.all.html#pandas.Index.all" title="pandas.Index.all"><code>all</code></a>(self, \*args, \*\*kwargs)</td> <td>Return whether all elements are True.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.any.html#pandas.Index.any" title="pandas.Index.any"><code>any</code></a>(self, \*args, \*\*kwargs)</td> <td>Return whether any element is True.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.append.html#pandas.Index.append" title="pandas.Index.append"><code>append</code></a>(self, other)</td> <td>Append a collection of Index options together.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.argmax.html#pandas.Index.argmax" title="pandas.Index.argmax"><code>argmax</code></a>(self[, axis, skipna])</td> <td>Return an ndarray of the maximum argument indexer.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.argmin.html#pandas.Index.argmin" title="pandas.Index.argmin"><code>argmin</code></a>(self[, axis, skipna])</td> <td>Return a ndarray of the minimum argument indexer.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.argsort.html#pandas.Index.argsort" title="pandas.Index.argsort"><code>argsort</code></a>(self, \*args, \*\*kwargs)</td> <td>Return the integer indices that would sort the index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.asof.html#pandas.Index.asof" title="pandas.Index.asof"><code>asof</code></a>(self, label)</td> <td>Return the label from the index, or, if not present, the previous one.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.asof_locs.html#pandas.Index.asof_locs" title="pandas.Index.asof_locs"><code>asof_locs</code></a>(self, where, mask)</td> <td>Find the locations (indices) of the labels from the index for every entry in the <code>where</code> argument.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.astype.html#pandas.Index.astype" title="pandas.Index.astype"><code>astype</code></a>(self, dtype[, copy])</td> <td>Create an Index with values cast to dtypes.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.contains.html#pandas.Index.contains" title="pandas.Index.contains"><code>contains</code></a>(self, key)</td> <td>(DEPRECATED) Return a boolean indicating whether the provided key is in the index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.copy.html#pandas.Index.copy" title="pandas.Index.copy"><code>copy</code></a>(self[, name, deep, dtype])</td> <td>Make a copy of this object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.delete.html#pandas.Index.delete" title="pandas.Index.delete"><code>delete</code></a>(self, loc)</td> <td>Make new Index with passed location(-s) deleted.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.difference.html#pandas.Index.difference" title="pandas.Index.difference"><code>difference</code></a>(self, other[, sort])</td> <td>Return a new Index with elements from the index that are not in <code>other</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.drop.html#pandas.Index.drop" title="pandas.Index.drop"><code>drop</code></a>(self, labels[, errors])</td> <td>Make new Index with passed list of labels deleted.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.drop_duplicates.html#pandas.Index.drop_duplicates" title="pandas.Index.drop_duplicates"><code>drop_duplicates</code></a>(self[, keep])</td> <td>Return Index with duplicate values removed.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.droplevel.html#pandas.Index.droplevel" title="pandas.Index.droplevel"><code>droplevel</code></a>(self[, level])</td> <td>Return index with requested level(s) removed.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.dropna.html#pandas.Index.dropna" title="pandas.Index.dropna"><code>dropna</code></a>(self[, how])</td> <td>Return Index without NA/NaN values</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.duplicated.html#pandas.Index.duplicated" title="pandas.Index.duplicated"><code>duplicated</code></a>(self[, keep])</td> <td>Indicate duplicate index values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.equals.html#pandas.Index.equals" title="pandas.Index.equals"><code>equals</code></a>(self, other)</td> <td>Determine if two Index objects contain the same elements.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.factorize.html#pandas.Index.factorize" title="pandas.Index.factorize"><code>factorize</code></a>(self[, sort, na_sentinel])</td> <td>Encode the object as an enumerated type or categorical variable.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.fillna.html#pandas.Index.fillna" title="pandas.Index.fillna"><code>fillna</code></a>(self[, value, downcast])</td> <td>Fill NA/NaN values with the specified value</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.format.html#pandas.Index.format" title="pandas.Index.format"><code>format</code></a>(self[, name, formatter])</td> <td>Render a string representation of the Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_duplicates.html#pandas.Index.get_duplicates" title="pandas.Index.get_duplicates"><code>get_duplicates</code></a>(self)</td> <td>(DEPRECATED) Extract duplicated index elements.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_indexer.html#pandas.Index.get_indexer" title="pandas.Index.get_indexer"><code>get_indexer</code></a>(self, target[, method, limit, …])</td> <td>Compute indexer and mask for new index given the current index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_indexer_for.html#pandas.Index.get_indexer_for" title="pandas.Index.get_indexer_for"><code>get_indexer_for</code></a>(self, target, \*\*kwargs)</td> <td>Guaranteed return of an indexer even when non-unique.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_indexer_non_unique.html#pandas.Index.get_indexer_non_unique" title="pandas.Index.get_indexer_non_unique"><code>get_indexer_non_unique</code></a>(self, target)</td> <td>Compute indexer and mask for new index given the current index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_level_values.html#pandas.Index.get_level_values" title="pandas.Index.get_level_values"><code>get_level_values</code></a>(self, level)</td> <td>Return an Index of values for requested level.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_loc.html#pandas.Index.get_loc" title="pandas.Index.get_loc"><code>get_loc</code></a>(self, key[, method, tolerance])</td> <td>Get integer location, slice or boolean mask for requested label.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_slice_bound.html#pandas.Index.get_slice_bound" title="pandas.Index.get_slice_bound"><code>get_slice_bound</code></a>(self, label, side, kind)</td> <td>Calculate slice bound that corresponds to given label.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_value.html#pandas.Index.get_value" title="pandas.Index.get_value"><code>get_value</code></a>(self, series, key)</td> <td>Fast lookup of value from 1-dimensional ndarray.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.get_values.html#pandas.Index.get_values" title="pandas.Index.get_values"><code>get_values</code></a>(self)</td> <td>(DEPRECATED) Return <code>Index</code> data as an <code>numpy.ndarray</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.groupby.html#pandas.Index.groupby" title="pandas.Index.groupby"><code>groupby</code></a>(self, values)</td> <td>Group the index labels by a given array of values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.holds_integer.html#pandas.Index.holds_integer" title="pandas.Index.holds_integer"><code>holds_integer</code></a>(self)</td> <td>Whether the type is an integer type.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.identical.html#pandas.Index.identical" title="pandas.Index.identical"><code>identical</code></a>(self, other)</td> <td>Similar to equals, but check that other comparable attributes are also equal.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.insert.html#pandas.Index.insert" title="pandas.Index.insert"><code>insert</code></a>(self, loc, item)</td> <td>Make new Index inserting new item at location.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.intersection.html#pandas.Index.intersection" title="pandas.Index.intersection"><code>intersection</code></a>(self, other[, sort])</td> <td>Form the intersection of two Index objects.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.is_.html#pandas.Index.is_" title="pandas.Index.is_"><code>is_</code></a>(self, other)</td> <td>More flexible, faster check like <code>is</code> but that works through views.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.is_categorical.html#pandas.Index.is_categorical" title="pandas.Index.is_categorical"><code>is_categorical</code></a>(self)</td> <td>Check if the Index holds categorical data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.is_type_compatible.html#pandas.Index.is_type_compatible" title="pandas.Index.is_type_compatible"><code>is_type_compatible</code></a>(self, kind)</td> <td>Whether the index type is compatible with the provided type.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.isin.html#pandas.Index.isin" title="pandas.Index.isin"><code>isin</code></a>(self, values[, level])</td> <td>Return a boolean array where the index values are in <code>values</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.isna.html#pandas.Index.isna" title="pandas.Index.isna"><code>isna</code></a>(self)</td> <td>Detect missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.isnull.html#pandas.Index.isnull" title="pandas.Index.isnull"><code>isnull</code></a>(self)</td> <td>Detect missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.item.html#pandas.Index.item" title="pandas.Index.item"><code>item</code></a>(self)</td> <td>Return the first element of the underlying data as a python scalar.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.join.html#pandas.Index.join" title="pandas.Index.join"><code>join</code></a>(self, other[, how, level, …])</td> <td>Compute join_index and indexers to conform data structures to the new index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.map.html#pandas.Index.map" title="pandas.Index.map"><code>map</code></a>(self, mapper[, na_action])</td> <td>Map values using input correspondence (a dict, Series, or function).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.max.html#pandas.Index.max" title="pandas.Index.max"><code>max</code></a>(self[, axis, skipna])</td> <td>Return the maximum value of the Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.memory_usage.html#pandas.Index.memory_usage" title="pandas.Index.memory_usage"><code>memory_usage</code></a>(self[, deep])</td> <td>Memory usage of the values</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.min.html#pandas.Index.min" title="pandas.Index.min"><code>min</code></a>(self[, axis, skipna])</td> <td>Return the minimum value of the Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.notna.html#pandas.Index.notna" title="pandas.Index.notna"><code>notna</code></a>(self)</td> <td>Detect existing (non-missing) values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.notnull.html#pandas.Index.notnull" title="pandas.Index.notnull"><code>notnull</code></a>(self)</td> <td>Detect existing (non-missing) values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.nunique.html#pandas.Index.nunique" title="pandas.Index.nunique"><code>nunique</code></a>(self[, dropna])</td> <td>Return number of unique elements in the object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.putmask.html#pandas.Index.putmask" title="pandas.Index.putmask"><code>putmask</code></a>(self, mask, value)</td> <td>Return a new Index of the values set with the mask.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.ravel.html#pandas.Index.ravel" title="pandas.Index.ravel"><code>ravel</code></a>(self[, order])</td> <td>Return an ndarray of the flattened values of the underlying data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.reindex.html#pandas.Index.reindex" title="pandas.Index.reindex"><code>reindex</code></a>(self, target[, method, level, …])</td> <td>Create index with target’s values (move/add/delete values as necessary).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.rename.html#pandas.Index.rename" title="pandas.Index.rename"><code>rename</code></a>(self, name[, inplace])</td> <td>Alter Index or MultiIndex name.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.repeat.html#pandas.Index.repeat" title="pandas.Index.repeat"><code>repeat</code></a>(self, repeats[, axis])</td> <td>Repeat elements of a Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.searchsorted.html#pandas.Index.searchsorted" title="pandas.Index.searchsorted"><code>searchsorted</code></a>(self, value[, side, sorter])</td> <td>Find indices where elements should be inserted to maintain order.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.set_names.html#pandas.Index.set_names" title="pandas.Index.set_names"><code>set_names</code></a>(self, names[, level, inplace])</td> <td>Set Index or MultiIndex name.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.set_value.html#pandas.Index.set_value" title="pandas.Index.set_value"><code>set_value</code></a>(self, arr, key, value)</td> <td>Fast lookup of value from 1-dimensional ndarray.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.shift.html#pandas.Index.shift" title="pandas.Index.shift"><code>shift</code></a>(self[, periods, freq])</td> <td>Shift index by desired number of time frequency increments.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.slice_indexer.html#pandas.Index.slice_indexer" title="pandas.Index.slice_indexer"><code>slice_indexer</code></a>(self[, start, end, step, kind])</td> <td>For an ordered or unique index, compute the slice indexer for input labels and step.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.slice_locs.html#pandas.Index.slice_locs" title="pandas.Index.slice_locs"><code>slice_locs</code></a>(self[, start, end, step, kind])</td> <td>Compute slice locations for input labels.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.sort.html#pandas.Index.sort" title="pandas.Index.sort"><code>sort</code></a>(self, \*args, \*\*kwargs)</td> <td>Use sort_values instead.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.sort_values.html#pandas.Index.sort_values" title="pandas.Index.sort_values"><code>sort_values</code></a>(self[, return_indexer, ascending])</td> <td>Return a sorted copy of the index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.sortlevel.html#pandas.Index.sortlevel" title="pandas.Index.sortlevel"><code>sortlevel</code></a>(self[, level, ascending, …])</td> <td>For internal compatibility with with the Index API.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.index.str.html#pandas.Index.str" title="pandas.Index.str"><code>str</code></a></td> <td>alias of <code>pandas.core.strings.StringMethods</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.summary.html#pandas.Index.summary" title="pandas.Index.summary"><code>summary</code></a>(self[, name])</td> <td>(DEPRECATED) Return a summarized representation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.symmetric_difference.html#pandas.Index.symmetric_difference" title="pandas.Index.symmetric_difference"><code>symmetric_difference</code></a>(self, other[, …])</td> <td>Compute the symmetric difference of two Index objects.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.take.html#pandas.Index.take" title="pandas.Index.take"><code>take</code></a>(self, indices[, axis, allow_fill, …])</td> <td>Return a new Index of the values selected by the indices.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.to_flat_index.html#pandas.Index.to_flat_index" title="pandas.Index.to_flat_index"><code>to_flat_index</code></a>(self)</td> <td>Identity method.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.to_frame.html#pandas.Index.to_frame" title="pandas.Index.to_frame"><code>to_frame</code></a>(self[, index, name])</td> <td>Create a DataFrame with a column containing the Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.to_list.html#pandas.Index.to_list" title="pandas.Index.to_list"><code>to_list</code></a>(self)</td> <td>Return a list of the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.to_native_types.html#pandas.Index.to_native_types" title="pandas.Index.to_native_types"><code>to_native_types</code></a>(self[, slicer])</td> <td>Format specified values of <code>self</code> and return them.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.to_numpy.html#pandas.Index.to_numpy" title="pandas.Index.to_numpy"><code>to_numpy</code></a>(self[, dtype, copy])</td> <td>A NumPy ndarray representing the values in this Series or Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.to_series.html#pandas.Index.to_series" title="pandas.Index.to_series"><code>to_series</code></a>(self[, index, name])</td> <td>Create a Series with both index and values equal to the index keys useful with map for returning an indexer based on an index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.tolist.html#pandas.Index.tolist" title="pandas.Index.tolist"><code>tolist</code></a>(self)</td> <td>Return a list of the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.transpose.html#pandas.Index.transpose" title="pandas.Index.transpose"><code>transpose</code></a>(self, \*args, \*\*kwargs)</td> <td>Return the transpose, which is by definition self.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.union.html#pandas.Index.union" title="pandas.Index.union"><code>union</code></a>(self, other[, sort])</td> <td>Form the union of two Index objects.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.unique.html#pandas.Index.unique" title="pandas.Index.unique"><code>unique</code></a>(self[, level])</td> <td>Return unique values in the index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.value_counts.html#pandas.Index.value_counts" title="pandas.Index.value_counts"><code>value_counts</code></a>(self[, normalize, sort, …])</td> <td>Return a Series containing counts of unique values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.index.where.html#pandas.Index.where" title="pandas.Index.where"><code>where</code></a>(self, cond[, other])</td> <td>Return an Index of same shape as self and whose corresponding entries are from self where cond is True and otherwise are from other.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>is_boolean</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_floating</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_integer</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_interval</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_lexsorted_for_tuple</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_mixed</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_numeric</strong></td> <td> </td> </tr> <tr>
+<td><strong>is_object</strong></td> <td> </td> </tr> <tr>
+<td><strong>view</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.html</a>
+  </p>
+</div>

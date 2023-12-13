@@ -1,0 +1,36 @@
+<h1 id="pandas-multiindex-to-hierarchical">pandas.MultiIndex.to_hierarchical</h1> <dl class="method"> <dt id="pandas.MultiIndex.to_hierarchical">
+<code>MultiIndex.to_hierarchical(self, n_repeat, n_shuffle=1)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/multi.py#L1664-L1718"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a MultiIndex reshaped to conform to the shapes given by n_repeat and n_shuffle.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> <p>Useful to replicate and rearrange a MultiIndex for combination with another Index with n_repeat items.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>n_repeat : int</code> </dt> <dd>
+<p class="first last">Number of times to repeat the labels on self</p> </dd> <dt>
+<code>n_shuffle : int</code> </dt> <dd>
+<p class="first last">Controls the reordering of the labels. If the result is going to be an inner level in a MultiIndex, n_shuffle will need to be greater than one. The size of each label must divisible by n_shuffle.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>MultiIndex</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_tuples([(1, 'one'), (1, 'two'),
+                                    (2, 'one'), (2, 'two')])
+&gt;&gt;&gt; idx.to_hierarchical(3)
+MultiIndex([(1, 'one'),
+            (1, 'one'),
+            (1, 'one'),
+            (1, 'two'),
+            (1, 'two'),
+            (1, 'two'),
+            (2, 'one'),
+            (2, 'one'),
+            (2, 'one'),
+            (2, 'two'),
+            (2, 'two'),
+            (2, 'two')],
+           )
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.to_hierarchical.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.to_hierarchical.html</a>
+  </p>
+</div>

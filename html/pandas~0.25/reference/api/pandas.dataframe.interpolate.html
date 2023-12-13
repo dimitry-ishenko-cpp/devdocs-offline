@@ -1,0 +1,115 @@
+<h1 id="pandas-dataframe-interpolate">pandas.DataFrame.interpolate</h1> <dl class="method"> <dt id="pandas.DataFrame.interpolate">
+<code>DataFrame.interpolate(self, method='linear', axis=0, limit=None, inplace=False, limit_direction='forward', limit_area=None, downcast=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L6983-L7077"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Interpolate values according to different methods.</p> <p>Please note that only <code>method='linear'</code> is supported for DataFrame/Series with a MultiIndex.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>method : str, default ‘linear’</code> </dt> <dd>
+<p class="first">Interpolation technique to use. One of:</p> <ul class="simple"> <li>‘linear’: Ignore the index and treat the values as equally spaced. This is the only method supported on MultiIndexes.</li> <li>‘time’: Works on daily and higher resolution data to interpolate given length of interval.</li> <li>‘index’, ‘values’: use the actual numerical values of the index.</li> <li>‘pad’: Fill in NaNs using existing values.</li> <li>‘nearest’, ‘zero’, ‘slinear’, ‘quadratic’, ‘cubic’, ‘spline’, ‘barycentric’, ‘polynomial’: Passed to <code>scipy.interpolate.interp1d</code>. These methods use the numerical values of the index. Both ‘polynomial’ and ‘spline’ require that you also specify an <code>order</code> (int), e.g. <code>df.interpolate(method='polynomial', order=5)</code>.</li> <li>‘krogh’, ‘piecewise_polynomial’, ‘spline’, ‘pchip’, ‘akima’: Wrappers around the SciPy interpolation methods of similar names. See <code>Notes</code>.</li> <li>‘from_derivatives’: Refers to <code>scipy.interpolate.BPoly.from_derivatives</code> which replaces ‘piecewise_polynomial’ interpolation method in scipy 0.18.</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.1: </span>Added support for the ‘akima’ method. Added interpolate method ‘from_derivatives’ which replaces ‘piecewise_polynomial’ in SciPy 0.18; backwards-compatible with SciPy &lt; 0.18</p> </div> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’, None}, default None</code> </dt> <dd>
+<p class="first last">Axis to interpolate along.</p> </dd> <dt>
+<code>limit : int, optional</code> </dt> <dd>
+<p class="first last">Maximum number of consecutive NaNs to fill. Must be greater than 0.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">Update the data in place if possible.</p> </dd> <dt>
+<code>limit_direction : {‘forward’, ‘backward’, ‘both’}, default ‘forward’</code> </dt> <dd>
+<p class="first last">If limit is specified, consecutive NaNs will be filled in this direction.</p> </dd> <dt>
+<code>limit_area : {None, ‘inside’, ‘outside’}, default None</code> </dt> <dd>
+<p class="first">If limit is specified, consecutive NaNs will be filled with this restriction.</p> <ul class="simple"> <li>
+<code>None</code>: No fill restriction.</li> <li>‘inside’: Only fill NaNs surrounded by valid values (interpolate).</li> <li>‘outside’: Only fill NaNs outside valid values (extrapolate).</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt>
+<code>downcast : optional, ‘infer’ or None, defaults to None</code> </dt> <dd>
+<p class="first last">Downcast dtypes if possible.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Keyword arguments to pass on to the interpolating function.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Returns the same object type as the caller, interpolated at some or all <code>NaN</code> values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>fillna</code></a>
+</dt> <dd>Fill missing values using different methods.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.Akima1DInterpolator.html#scipy.interpolate.Akima1DInterpolator" title="(in SciPy v1.3.0)"><code>scipy.interpolate.Akima1DInterpolator</code></a>
+</dt> <dd>Piecewise cubic polynomials (Akima interpolator).</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.BPoly.from_derivatives.html#scipy.interpolate.BPoly.from_derivatives" title="(in SciPy v1.3.0)"><code>scipy.interpolate.BPoly.from_derivatives</code></a>
+</dt> <dd>Piecewise polynomial in the Bernstein basis.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.interp1d.html#scipy.interpolate.interp1d" title="(in SciPy v1.3.0)"><code>scipy.interpolate.interp1d</code></a>
+</dt> <dd>Interpolate a 1-D function.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.KroghInterpolator.html#scipy.interpolate.KroghInterpolator" title="(in SciPy v1.3.0)"><code>scipy.interpolate.KroghInterpolator</code></a>
+</dt> <dd>Interpolate polynomial (Krogh interpolator).</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.PchipInterpolator.html#scipy.interpolate.PchipInterpolator" title="(in SciPy v1.3.0)"><code>scipy.interpolate.PchipInterpolator</code></a>
+</dt> <dd>PCHIP 1-d monotonic cubic interpolation.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html#scipy.interpolate.CubicSpline" title="(in SciPy v1.3.0)"><code>scipy.interpolate.CubicSpline</code></a>
+</dt> <dd>Cubic spline data interpolator.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The ‘krogh’, ‘piecewise_polynomial’, ‘spline’, ‘pchip’ and ‘akima’ methods are wrappers around the respective SciPy implementations of similar names. These use the actual numerical values of the index. For more information on their behavior, see the <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/interpolate.html#univariate-interpolation">SciPy documentation</a> and <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/interpolate.html">SciPy tutorial</a>.</p> <h4 class="rubric">Examples</h4> <p>Filling in <code>NaN</code> in a <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> via linear interpolation.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([0, 1, np.nan, 3])
+&gt;&gt;&gt; s
+0    0.0
+1    1.0
+2    NaN
+3    3.0
+dtype: float64
+&gt;&gt;&gt; s.interpolate()
+0    0.0
+1    1.0
+2    2.0
+3    3.0
+dtype: float64
+</pre> <p>Filling in <code>NaN</code> in a Series by padding, but filling at most two consecutive <code>NaN</code> at a time.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([np.nan, "single_one", np.nan,
+...                "fill_two_more", np.nan, np.nan, np.nan,
+...                4.71, np.nan])
+&gt;&gt;&gt; s
+0              NaN
+1       single_one
+2              NaN
+3    fill_two_more
+4              NaN
+5              NaN
+6              NaN
+7             4.71
+8              NaN
+dtype: object
+&gt;&gt;&gt; s.interpolate(method='pad', limit=2)
+0              NaN
+1       single_one
+2       single_one
+3    fill_two_more
+4    fill_two_more
+5    fill_two_more
+6              NaN
+7             4.71
+8             4.71
+dtype: object
+</pre> <p>Filling in <code>NaN</code> in a Series via polynomial interpolation or splines: Both ‘polynomial’ and ‘spline’ methods require that you also specify an <code>order</code> (int).</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([0, 2, np.nan, 8])
+&gt;&gt;&gt; s.interpolate(method='polynomial', order=2)
+0    0.000000
+1    2.000000
+2    4.666667
+3    8.000000
+dtype: float64
+</pre> <p>Fill the DataFrame forward (that is, going down) along each column using linear interpolation.</p> <p>Note how the last entry in column ‘a’ is interpolated differently, because there is no entry after it to use for interpolation. Note how the first entry in column ‘b’ remains <code>NaN</code>, because there is no entry before it to use for interpolation.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([(0.0, np.nan, -1.0, 1.0),
+...                    (np.nan, 2.0, np.nan, np.nan),
+...                    (2.0, 3.0, np.nan, 9.0),
+...                    (np.nan, 4.0, -4.0, 16.0)],
+...                   columns=list('abcd'))
+&gt;&gt;&gt; df
+     a    b    c     d
+0  0.0  NaN -1.0   1.0
+1  NaN  2.0  NaN   NaN
+2  2.0  3.0  NaN   9.0
+3  NaN  4.0 -4.0  16.0
+&gt;&gt;&gt; df.interpolate(method='linear', limit_direction='forward', axis=0)
+     a    b    c     d
+0  0.0  NaN -1.0   1.0
+1  1.0  2.0 -2.0   5.0
+2  2.0  3.0 -3.0   9.0
+3  2.0  4.0 -4.0  16.0
+</pre> <p>Using polynomial interpolation.</p> <pre data-language="python">&gt;&gt;&gt; df['d'].interpolate(method='polynomial', order=2)
+0     1.0
+1     4.0
+2     9.0
+3    16.0
+Name: d, dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.interpolate.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.interpolate.html</a>
+  </p>
+</div>

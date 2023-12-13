@@ -1,0 +1,12 @@
+    <h1 id="firstHeading" class="firstHeading">std::from_range, std::from_range_t</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/ranges.html" title="cpp/header/ranges">&lt;ranges&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">struct from_range_t { explicit from_range_t() = default; };</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">inline constexpr std::from_range_t from_range {};</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p><code>std::from_range</code> is a disambiguation tag that can be passed to the constructors of the suitable containers to indicate that the contained member is range constructed.</p>
+<p>The corresponding type <code>std::from_range_t</code> can be used in the constructor's parameter list to match the intended tag.</p>
+<h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="to.html" title="cpp/ranges/to"> <span class="t-lines"><span>ranges::to</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> constructs a new non-view object from an input range <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/ranges/from_range" class="_attribution-link">https://en.cppreference.com/w/cpp/ranges/from_range</a>
+  </p>
+</div>

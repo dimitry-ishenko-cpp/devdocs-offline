@@ -1,0 +1,55 @@
+<h1 id="pandas-dataframe-to-records">pandas.DataFrame.to_records</h1> <dl class="method"> <dt id="pandas.DataFrame.to_records">
+<code>DataFrame.to_records(self, index=True, convert_datetime64=None, column_dtypes=None, index_dtypes=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1636-L1819"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert DataFrame to a NumPy record array.</p> <p>Index will be included as the first field of the record array if requested.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">Include index in resulting record array, stored in ‘index’ field or using the index label, if set.</p> </dd> <dt>
+<code>convert_datetime64 : bool, default None</code> </dt> <dd>
+<div class="first deprecated"> <p><span class="versionmodified">Deprecated since version 0.23.0.</span></p> </div> <p class="last">Whether to convert the index to datetime.datetime if it is a DatetimeIndex.</p> </dd> <dt>
+<code>column_dtypes : str, type, dict, default None</code> </dt> <dd>
+<div class="first versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <p class="last">If a string or type, the data type to store all columns. If a dictionary, a mapping of column names and indices (zero-indexed) to specific data types.</p> </dd> <dt>
+<code>index_dtypes : str, type, dict, default None</code> </dt> <dd>
+<div class="first versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <p>If a string or type, the data type to store all index levels. If a dictionary, a mapping of index level names and indices (zero-indexed) to specific data types.</p> <p class="last">This mapping is applied only if <code>index=True</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.recarray</dt> <dd>
+<p class="first last">NumPy ndarray with the DataFrame labels as fields and each row of the DataFrame as entries.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.from_records.html#pandas.DataFrame.from_records" title="pandas.DataFrame.from_records"><code>DataFrame.from_records</code></a>
+</dt> <dd>Convert structured or record ndarray to DataFrame.</dd> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.recarray.html#numpy.recarray" title="(in NumPy v1.16)"><code>numpy.recarray</code></a>
+</dt> <dd>An ndarray that allows field access using attributes, analogous to typed columns in a spreadsheet.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': [1, 2], 'B': [0.5, 0.75]},
+...                   index=['a', 'b'])
+&gt;&gt;&gt; df
+   A     B
+a  1  0.50
+b  2  0.75
+&gt;&gt;&gt; df.to_records()
+rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],
+          dtype=[('index', 'O'), ('A', '&lt;i8'), ('B', '&lt;f8')])
+</pre> <p>If the DataFrame index has no label then the recarray field name is set to ‘index’. If the index has a label then this is used as the field name:</p> <pre data-language="python">&gt;&gt;&gt; df.index = df.index.rename("I")
+&gt;&gt;&gt; df.to_records()
+rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],
+          dtype=[('I', 'O'), ('A', '&lt;i8'), ('B', '&lt;f8')])
+</pre> <p>The index can be excluded from the record array:</p> <pre data-language="python">&gt;&gt;&gt; df.to_records(index=False)
+rec.array([(1, 0.5 ), (2, 0.75)],
+          dtype=[('A', '&lt;i8'), ('B', '&lt;f8')])
+</pre> <p>Data types can be specified for the columns:</p> <pre data-language="python">&gt;&gt;&gt; df.to_records(column_dtypes={"A": "int32"})
+rec.array([('a', 1, 0.5 ), ('b', 2, 0.75)],
+          dtype=[('I', 'O'), ('A', '&lt;i4'), ('B', '&lt;f8')])
+</pre> <p>As well as for the index:</p> <pre data-language="python">&gt;&gt;&gt; df.to_records(index_dtypes="&lt;S2")
+rec.array([(b'a', 1, 0.5 ), (b'b', 2, 0.75)],
+          dtype=[('I', 'S2'), ('A', '&lt;i8'), ('B', '&lt;f8')])
+</pre> <pre data-language="python">&gt;&gt;&gt; index_dtypes = "&lt;S{}".format(df.index.str.len().max())
+&gt;&gt;&gt; df.to_records(index_dtypes=index_dtypes)
+rec.array([(b'a', 1, 0.5 ), (b'b', 2, 0.75)],
+          dtype=[('I', 'S1'), ('A', '&lt;i8'), ('B', '&lt;f8')])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_records.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_records.html</a>
+  </p>
+</div>

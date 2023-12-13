@@ -1,0 +1,132 @@
+<header><h1>Error.prototype.stack</h1></header><div class="section-content">
+<div class="notecard nonstandard" id="sect1"><p><strong>Non-standard:</strong> This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p></div> <p>The non-standard <code>stack</code> property of an <a href="../error.html"><code>Error</code></a> instance offers a trace of which functions were called, in what order, from which line and file, and with what arguments. The stack string proceeds from the most recent calls to earlier ones, leading back to the original global scope call.</p>
+</div>
+<section aria-labelledby="value"><h2 id="value">Value</h2>
+<div class="section-content">
+<p>A string.</p> <p>Because the <code>stack</code> property is non-standard, implementations differ about where it's installed.</p> <ul> <li>In Firefox, it's an accessor property on <code>Error.prototype</code>.</li> <li>In Chrome and Safari, it's a data property on each <code>Error</code> instance, with the descriptor:</li> </ul>
+<figure class="table-container"><div class="_table"><table class="standard-table"> <thead> <tr> <th class="header" colspan="2">Property attributes of <code>Error.prototype.stack</code>
+</th> </tr> </thead> <tbody> <tr> <td>Writable</td> <td>yes</td> </tr> <tr> <td>Enumerable</td> <td>no</td> </tr> <tr> <td>Configurable</td> <td>yes</td> </tr> </tbody> </table></div></figure>
+</div></section><section aria-labelledby="description"><h2 id="description">Description</h2>
+<div class="section-content">
+<p>Each step will be separated by a newline, with the first part of the line being the function name (if not a call from the global scope), then by an at (@) sign, the file location (except when the function is the error constructor as the error is being thrown), a colon, and, if there is a file location, the line number. (Note that the <a href="../error.html"><code>Error</code></a> object also possesses the <code>fileName</code>, <code>lineNumber</code> and <code>columnNumber</code> properties for retrieving these from the error thrown (but only the error, and not its trace).)</p> <p>Note that this is the format used by Firefox. There is no standard formatting. However, Safari 6+ and Opera 12- use a very similar format. Browsers using the V8 JavaScript engine (such as Chrome, Opera 15+, Android Browser) and IE10+, on the other hand, uses a different format.</p> <p><strong>Argument values in the stack</strong>: Prior to Firefox 14, the function name would be followed by the argument values converted to string in parentheses immediately before the at (<code>@</code>) sign. While an object (or array, etc.) would appear in the converted form <code>"[object Object]"</code>, and as such could not be evaluated back into the actual objects, scalar values could be retrieved (though it may be — it is still possible in Firefox 14 — easier to use <code>arguments.callee.caller.arguments</code>, as could the function name be retrieved by <code>arguments.callee.caller.name</code>). <code>"undefined"</code> is listed as <code>"(void 0)"</code>. Note that if string arguments were passed in with values such as <code>"@"</code>, <code>"("</code>, <code>")"</code> (or if in file names), you could not easily rely on these for breaking the line into its component parts. Thus, in Firefox 14 and later this is less of an issue.</p> <p>Different browsers set this value at different times. For example, Firefox sets it when creating an <a href="../error.html"><code>Error</code></a> object, while PhantomJS sets it only when throwing the <a href="../error.html"><code>Error</code></a>, and <a href="https://web.archive.org/web/20180618201428/https://docs.microsoft.com/scripting/javascript/reference/stack-property-error-javascript" target="_blank">archived MSDN docs</a> also seem to match the PhantomJS implementation.</p>
+</div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="using_the_stack_property"><h3 id="using_the_stack_property">Using the stack property</h3>
+<div class="section-content">
+<p>The following HTML markup demonstrates the use of <code>stack</code> property.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">html</span></p>
+<pre data-signature="qF78qxWFw8AZTUlCm5vMjxVRN3z3/ijIQx9IzFWb4ks=" data-language="html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Stack Trace Example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">function</span> <span class="token function">trace</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"myError"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>stack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">function</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">trace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">b</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"\n\n"</span><span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token string">"first call, firstarg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+</pre>
+</div> <p>Assuming the above markup is saved as <code>C:\example.html</code> on a Windows file system it produces an alert message box with the following text:</p> <p>Starting with Firefox 30 and later containing the column number:</p> <pre data-language="plain">trace@file:///C:/example.html:9:17
+b@file:///C:/example.html:16:13
+a@file:///C:/example.html:19:13
+@file:///C:/example.html:21:9
+</pre> <p>Firefox 14 to Firefox 29:</p> <pre data-language="plain">trace@file:///C:/example.html:9
+b@file:///C:/example.html:16
+a@file:///C:/example.html:19
+@file:///C:/example.html:21
+</pre> <p>Firefox 13 and earlier would instead produce the following text:</p> <pre data-language="plain">Error("myError")@:0
+trace()@file:///C:/example.html:9
+b(3,4,"\n\n",(void 0),[object Object])@file:///C:/example.html:16
+a("first call, firstarg")@file:///C:/example.html:19
+@file:///C:/example.html:21
+</pre>
+</div></section><section aria-labelledby="stack_of_evaled_code"><h3 id="stack_of_evaled_code">Stack of eval'ed code</h3>
+<div class="section-content">
+<p>Starting with Firefox 30, the error stack of code in <code>Function()</code> and <code>eval()</code> calls, now produces stacks with more detailed information about the line and column numbers inside these calls. Function calls are indicated with <code>"&gt; Function"</code> and eval calls with <code>"&gt; eval"</code>.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="OHl2OljYPT9WLNzgH1ZC4SyEaHNJ8iF2PE69X0XpxIg=" data-language="js"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">new</span> <span class="token class-name">Function</span><span class="token punctuation">(</span><span class="token string">"throw new Error()"</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>stack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// anonymous@file:///C:/example.html line 7 &gt; Function:1:1</span>
+<span class="token comment">// @file:///C:/example.html:7:6</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">"eval('FAIL')"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>stack<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// @file:///C:/example.html line 7 &gt; eval line 1 &gt; eval:1:1</span>
+<span class="token comment">// @file:///C:/example.html line 7 &gt; eval:1:1</span>
+<span class="token comment">// @file:///C:/example.html:7:6</span>
+</pre>
+</div> <p>You can also use the <code>//# sourceURL</code> directive to name an eval source. See also <a href="https://firefox-source-docs.mozilla.org/devtools-user/debugger/how_to/debug_eval_sources/index.html" target="_blank">Debug eval sources</a> in the <a href="https://firefox-source-docs.mozilla.org/devtools-user/debugger/index.html" target="_blank">Debugger</a> docs and this <a href="https://fitzgeraldnick.com/2014/12/05/name-eval-scripts.html" target="_blank">blog post</a>.</p>
+</div></section><section aria-labelledby="specifications"><h2 id="specifications">Specifications</h2>
+<div class="section-content"><p>Not part of any standard.</p></div></section><h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="_table"><table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>stack</code></th>
+<td class="bc-supports-yes">3</td>
+<td class="bc-supports-yes">12</td>
+<td class="bc-supports-yes">1</td>
+<td class="bc-supports-yes">10</td>
+<td class="bc-supports-yes">10.5</td>
+<td class="bc-supports-yes">6</td>
+<td class="bc-supports-yes">≤37</td>
+<td class="bc-supports-yes">18</td>
+<td class="bc-supports-yes">4</td>
+<td class="bc-supports-yes">11</td>
+<td class="bc-supports-yes">6</td>
+<td class="bc-supports-yes">1.0</td>
+<td class="bc-supports-yes">1.0</td>
+<td class="bc-supports-yes">0.10.0</td>
+</tr></tbody>
+</table></div>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li>
+<a href="https://github.com/csnover/TraceKit/" target="_blank">TraceKit</a> on GitHub</li> <li>
+<a href="https://github.com/stacktracejs/stacktrace.js" target="_blank">stacktrace.js</a> on GitHub</li> <li>
+<a href="https://v8.dev/docs/stack-trace-api" target="_blank">Stack trace API</a> in the V8 docs</li> </ul></div></section><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2023 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/stack</a>
+  </p>
+</div>

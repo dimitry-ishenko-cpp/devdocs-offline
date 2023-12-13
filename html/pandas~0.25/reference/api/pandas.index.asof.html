@@ -1,0 +1,37 @@
+<h1 id="pandas-index-asof">pandas.Index.asof</h1> <dl class="method"> <dt id="pandas.Index.asof">
+<code>Index.asof(self, label)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L4419-L4482"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the label from the index, or, if not present, the previous one.</p> <p>Assuming that the index is sorted, return the passed index label if it is in the index, or return the previous index label if the passed one is not in the index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>label : object</code> </dt> <dd>
+<p class="first last">The label up to which the method returns the latest index label.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>object</dt> <dd>
+<p class="first last">The passed label if it is in the index. The previous label if the passed label is not in the sorted index or <code>NaN</code> if there is no such label.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.asof.html#pandas.Series.asof" title="pandas.Series.asof"><code>Series.asof</code></a>
+</dt> <dd>Return the latest value in a Series up to the passed index.</dd> <dt>
+ <a class="reference internal" href="pandas.merge_asof.html#pandas.merge_asof" title="pandas.merge_asof"><code>merge_asof</code></a>
+</dt> <dd>Perform an asof merge (similar to left join but it matches on nearest key rather than equal key).</dd> <dt>
+ <a class="reference internal" href="pandas.index.get_loc.html#pandas.Index.get_loc" title="pandas.Index.get_loc"><code>Index.get_loc</code></a>
+</dt> <dd>An <code>asof</code> is a thin wrapper around <code>get_loc</code> with method=’pad’.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><code>Index.asof</code> returns the latest index label up to the passed label.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['2013-12-31', '2014-01-02', '2014-01-03'])
+&gt;&gt;&gt; idx.asof('2014-01-01')
+'2013-12-31'
+</pre> <p>If the label is in the index, the method returns the passed label.</p> <pre data-language="python">&gt;&gt;&gt; idx.asof('2014-01-02')
+'2014-01-02'
+</pre> <p>If all of the labels in the index are later than the passed label, NaN is returned.</p> <pre data-language="python">&gt;&gt;&gt; idx.asof('1999-01-02')
+nan
+</pre> <p>If the index is not sorted, an error is raised.</p> <pre data-language="python">&gt;&gt;&gt; idx_not_sorted = pd.Index(['2013-12-31', '2015-01-02',
+...                            '2014-01-03'])
+&gt;&gt;&gt; idx_not_sorted.asof('2013-12-31')
+Traceback (most recent call last):
+ValueError: index must be monotonic increasing or decreasing
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.asof.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.asof.html</a>
+  </p>
+</div>

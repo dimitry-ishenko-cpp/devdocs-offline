@@ -1,0 +1,54 @@
+    <h1 id="firstHeading" class="firstHeading">std::move_iterator&lt;Iter&gt;::operator*,-&gt;</h1>            <table class="t-dcl-begin">  <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(1)</td> <td></td> </tr> <tr class="t-dcl t-since-cxx11 t-until-cxx17"> <td> <pre data-language="cpp">reference operator* () const;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> <br><span class="t-mark-rev t-until-cxx17">(until C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">constexpr reference operator* () const;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr>   <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(2)</td> <td></td> </tr> <tr class="t-dcl t-since-cxx11 t-until-cxx17"> <td> <pre data-language="cpp">pointer operator-&gt;() const;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> <br><span class="t-mark-rev t-until-cxx17">(until C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">constexpr pointer operator-&gt;() const;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> <br><span class="t-mark">(deprecated in C++20)</span> </td> </tr>   </table> <p>Returns an rvalue-reference or pointer to the current element.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Equivalent to <span class="t-rev-inl t-until-cxx20"><span><code>static_cast&lt;reference&gt;(*base())</code></span> <span><span class="t-mark-rev t-until-cxx20">(until C++20)</span></span></span><span class="t-rev-inl t-since-cxx20"><span><code><a href="http://en.cppreference.com/w/cpp/iterator/ranges/iter_move"><span class="kw3144">ranges::<span class="me2">iter_move</span></span></a><span class="br0">(</span>base<span class="br0">(</span><span class="br0">)</span><span class="br0">)</span></code></span> <span><span class="t-mark-rev t-since-cxx20">(since C++20)</span></span></span>.</div> <div class="t-li1">
+<span class="t-li">2)</span> Equivalent to <a href="base.html" title="cpp/iterator/move iterator/base"><code>base()</code></a>.</div>  <h3 id="Parameters"> Parameters</h3> <p>(none).</p>
+<h3 id="Return_value"> Return value</h3> <div class="t-li1">
+<span class="t-li">1)</span> Rvalue-reference to the current element or its copy.</div> <div class="t-li1">
+<span class="t-li">2)</span> Copy of the underlying iterator. A pointer to the current element is eventually returned if <code>-&gt;</code> is directly used.</div> <h3 id="Notes"> Notes</h3> <p>Note that <span class="t-v">(2)</span> eventually returns a pointer if <code>-&gt;</code> is directly used. When dereferencing a pointer the returned value is an lvalue. This may lead to unintended behavior.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iomanip&gt;
+#include &lt;iostream&gt;
+#include &lt;iterator&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
+ 
+void print(auto rem, auto const&amp; v)
+{
+    for (std::cout &lt;&lt; rem; auto const&amp; e : v)
+        std::cout &lt;&lt; quoted(e) &lt;&lt; ' ';
+    std::cout &lt;&lt; '\n';
+}
+ 
+int main()
+{
+    std::vector&lt;std::string&gt; p{"alpha", "beta", "gamma", "delta"}, q;
+    print("1) p: ", p);
+    for (std::move_iterator it{p.begin()}, end{p.end()}; it != end; ++it)
+    {
+        it-&gt;push_back('!'); // calls -&gt; string::push_back(char)
+        q.emplace_back( *it );
+    }
+    print("2) p: ", p);
+    print("3) q: ", q);
+ 
+    std::vector v{1,2,3};
+    std::move_iterator it{v.begin()};
+    // *it = 13; // error: using rvalue as lvalue
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">1) p: "alpha" "beta" "gamma" "delta"
+2) p: "" "" "" ""
+3) q: "alpha!" "beta!" "gamma!" "delta!"</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/LWG/issue2106">LWG 2106</a> </td> <td> C++11 </td> <td> dereferencing a <code>move_iterator</code> could return a dangling reference<br>if the dereferencing the underlying iterator returns an prvalue </td> <td> returns the object instead </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="operator_at.html" title="cpp/iterator/move iterator/operator at"> <span class="t-lines"><span>operator[]</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> accesses an element by index <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/iterator/move_iterator/operator*" class="_attribution-link">https://en.cppreference.com/w/cpp/iterator/move_iterator/operator*</a>
+  </p>
+</div>

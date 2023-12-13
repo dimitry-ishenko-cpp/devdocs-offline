@@ -1,0 +1,26 @@
+<h1 id="pandas-hdfstore-select">pandas.HDFStore.select</h1> <dl class="method"> <dt id="pandas.HDFStore.select">
+<code>HDFStore.select(self, key, where=None, start=None, stop=None, columns=None, iterator=False, chunksize=None, auto_close=False, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/pytables.py#L722-L782"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Retrieve pandas object stored in file, optionally based on where criteria</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>key : object</code> </dt>  <dt>
+<code>where : list of Term (or convertible) objects, optional</code> </dt>  <dt>
+<code>start : integer (defaults to None), row number to start selection</code> </dt>  <dt>
+<code>stop : integer (defaults to None), row number to stop selection</code> </dt>  <dt>
+<code>columns : a list of columns that if not None, will limit the return</code> </dt> <dd>
+<p class="first last">columns</p> </dd> <dt>
+<code>iterator : boolean, return an iterator, default False</code> </dt>  <dt>
+<code>chunksize : nrows to include in iteration, return an iterator</code> </dt>  <dt>
+<code>auto_close : boolean, should automatically close the store when</code> </dt> <dd>
+<p class="first last">finished, default is False</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>The selected object</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.HDFStore.select.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.HDFStore.select.html</a>
+  </p>
+</div>

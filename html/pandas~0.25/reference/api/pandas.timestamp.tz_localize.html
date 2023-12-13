@@ -1,0 +1,31 @@
+<h1 id="pandas-timestamp-tz-localize">pandas.Timestamp.tz_localize</h1> <dl class="attribute"> <dt id="pandas.Timestamp.tz_localize">
+<code>Timestamp.tz_localize(self, tz, ambiguous='raise', nonexistent='raise', errors=None)</code> </dt> <dd>
+<p>Convert naive Timestamp to local time zone, or remove timezone from tz-aware Timestamp.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>tz : str, pytz.timezone, dateutil.tz.tzfile or None</code> </dt> <dd>
+<p class="first last">Time zone for time which Timestamp will be converted to. None will remove timezone holding local time.</p> </dd> <dt>
+<code>ambiguous : bool, ‘NaT’, default ‘raise’</code> </dt> <dd>
+<p class="first">When clocks moved backward due to DST, ambiguous times may arise. For example in Central European Time (UTC+01), when going from 03:00 DST to 02:00 non-DST, 02:30:00 local time occurs both at 00:30:00 UTC and at 01:30:00 UTC. In such a situation, the <code>ambiguous</code> parameter dictates how ambiguous times should be handled.</p> <ul class="last simple"> <li>bool contains flags to determine if time is dst or not (note that this flag is only applicable for ambiguous fall dst dates)</li> <li>‘NaT’ will return NaT for an ambiguous time</li> <li>‘raise’ will raise an AmbiguousTimeError for an ambiguous time</li> </ul> </dd> <dt>
+<code>nonexistent : ‘shift_forward’, ‘shift_backward, ‘NaT’, timedelta, default ‘raise’</code> </dt> <dd>
+<p class="first">A nonexistent time does not exist in a particular timezone where clocks moved forward due to DST.</p> <ul class="simple"> <li>‘shift_forward’ will shift the nonexistent time forward to the closest existing time</li> <li>‘shift_backward’ will shift the nonexistent time backward to the closest existing time</li> <li>‘NaT’ will return NaT where there are nonexistent times</li> <li>timedelta objects will shift nonexistent times by the timedelta</li> <li>‘raise’ will raise an NonExistentTimeError if there are nonexistent times</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>errors : ‘raise’, ‘coerce’, default None</code> </dt> <dd>
+<ul class="first last"> <li>
+<dl class="first docutils"> <dt>‘raise’ will raise a NonExistentTimeError if a timestamp is not</dt> <dd>
+<p class="first last">valid in the specified timezone (e.g. due to a transition from or to DST time). Use <code>nonexistent='raise'</code> instead.</p> </dd> </dl> </li> <li>
+<p class="first">‘coerce’ will return NaT if the timestamp can not be converted into the specified timezone. Use <code>nonexistent='NaT'</code> instead.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> </li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>localized : Timestamp</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError</dt> <dd>
+<p class="first last">If the Timestamp is tz-aware and tz is not None.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timestamp.tz_localize.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timestamp.tz_localize.html</a>
+  </p>
+</div>

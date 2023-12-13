@@ -1,0 +1,79 @@
+<h1 id="pandas-dataframe-sum">pandas.DataFrame.sum</h1> <dl class="method"> <dt id="pandas.DataFrame.sum">
+<code>DataFrame.sum(self, axis=None, skipna=None, level=None, numeric_only=None, min_count=0, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L11548-L11588"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the sum of the values for the requested axis.</p>  This is equivalent to the method <code>numpy.sum</code>. <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {index (0), columns (1)}</code> </dt> <dd>
+<p class="first last">Axis for the function to be applied on.</p> </dd> <dt>
+<code>skipna : bool, default True</code> </dt> <dd>
+<p class="first last">Exclude NA/null values when computing the result.</p> </dd> <dt>
+<code>level : int or level name, default None</code> </dt> <dd>
+<p class="first last">If the axis is a MultiIndex (hierarchical), count along a particular level, collapsing into a Series.</p> </dd> <dt>
+<code>numeric_only : bool, default None</code> </dt> <dd>
+<p class="first last">Include only float, int, boolean columns. If None, will attempt to use everything, then use only numeric data. Not implemented for Series.</p> </dd> <dt>
+<code>min_count : int, default 0</code> </dt> <dd>
+<p class="first">The required number of valid values to perform the operation. If fewer than <code>min_count</code> non-NA values are present the result will be NA.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.22.0: </span>Added with the default being 0. This means the sum of an all-NA or empty Series is 0, and the product of an all-NA or empty Series is 1.</p> </div> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Additional keyword arguments to be passed to the function.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame (if level specified)</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.sum.html#pandas.Series.sum" title="pandas.Series.sum"><code>Series.sum</code></a>
+</dt> <dd>Return the sum.</dd> <dt>
+ <a class="reference internal" href="pandas.series.min.html#pandas.Series.min" title="pandas.Series.min"><code>Series.min</code></a>
+</dt> <dd>Return the minimum.</dd> <dt>
+ <a class="reference internal" href="pandas.series.max.html#pandas.Series.max" title="pandas.Series.max"><code>Series.max</code></a>
+</dt> <dd>Return the maximum.</dd> <dt>
+ <a class="reference internal" href="pandas.series.idxmin.html#pandas.Series.idxmin" title="pandas.Series.idxmin"><code>Series.idxmin</code></a>
+</dt> <dd>Return the index of the minimum.</dd> <dt>
+ <a class="reference internal" href="pandas.series.idxmax.html#pandas.Series.idxmax" title="pandas.Series.idxmax"><code>Series.idxmax</code></a>
+</dt> <dd>Return the index of the maximum.</dd> <dt>
+ <a class="reference internal" href="#pandas.DataFrame.sum" title="pandas.DataFrame.sum"><code>DataFrame.sum</code></a>
+</dt> <dd>Return the sum over the requested axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.min.html#pandas.DataFrame.min" title="pandas.DataFrame.min"><code>DataFrame.min</code></a>
+</dt> <dd>Return the minimum over the requested axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.max.html#pandas.DataFrame.max" title="pandas.DataFrame.max"><code>DataFrame.max</code></a>
+</dt> <dd>Return the maximum over the requested axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.idxmin.html#pandas.DataFrame.idxmin" title="pandas.DataFrame.idxmin"><code>DataFrame.idxmin</code></a>
+</dt> <dd>Return the index of the minimum over the requested axis.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.idxmax.html#pandas.DataFrame.idxmax" title="pandas.DataFrame.idxmax"><code>DataFrame.idxmax</code></a>
+</dt> <dd>Return the index of the maximum over the requested axis.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_arrays([
+...     ['warm', 'warm', 'cold', 'cold'],
+...     ['dog', 'falcon', 'fish', 'spider']],
+...     names=['blooded', 'animal'])
+&gt;&gt;&gt; s = pd.Series([4, 2, 0, 8], name='legs', index=idx)
+&gt;&gt;&gt; s
+blooded  animal
+warm     dog       4
+         falcon    2
+cold     fish      0
+         spider    8
+Name: legs, dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.sum()
+14
+</pre> <p>Sum using level names, as well as indices.</p> <pre data-language="python">&gt;&gt;&gt; s.sum(level='blooded')
+blooded
+warm    6
+cold    8
+Name: legs, dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.sum(level=0)
+blooded
+warm    6
+cold    8
+Name: legs, dtype: int64
+</pre> <p>By default, the sum of an empty or all-NA Series is <code>0</code>.</p> <pre data-language="python">&gt;&gt;&gt; pd.Series([]).sum()  # min_count=0 is the default
+0.0
+</pre> <p>This can be controlled with the <code>min_count</code> parameter. For example, if you’d like the sum of an empty series to be NaN, pass <code>min_count=1</code>.</p> <pre data-language="python">&gt;&gt;&gt; pd.Series([]).sum(min_count=1)
+nan
+</pre> <p>Thanks to the <code>skipna</code> parameter, <code>min_count</code> handles all-NA and empty series identically.</p> <pre data-language="python">&gt;&gt;&gt; pd.Series([np.nan]).sum()
+0.0
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Series([np.nan]).sum(min_count=1)
+nan
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.sum.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.sum.html</a>
+  </p>
+</div>

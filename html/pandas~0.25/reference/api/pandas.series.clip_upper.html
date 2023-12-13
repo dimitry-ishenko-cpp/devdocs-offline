@@ -1,0 +1,52 @@
+<h1 id="pandas-series-clip-upper">pandas.Series.clip_upper</h1> <dl class="method"> <dt id="pandas.Series.clip_upper">
+<code>Series.clip_upper(self, threshold, axis=None, inplace=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L7558-L7639"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Trim values above a given threshold.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0: </span>Use clip(upper=threshold) instead.</p> </div> <p>Elements above the <code>threshold</code> will be changed to match the <code>threshold</code> value(s). Threshold can be a single value or an array, in the latter case it performs the truncation element-wise.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>threshold : numeric or array-like</code> </dt> <dd>
+<p class="first">Maximum value allowed. All values above threshold will be set to this value.</p> <ul class="last simple"> <li>float : every value is compared to <code>threshold</code>.</li> <li>array-like : The shape of <code>threshold</code> should match the object it’s compared to. When <code>self</code> is a Series, <code>threshold</code> should be the length. When <code>self</code> is a DataFrame, <code>threshold</code> should 2-D and the same shape as <code>self</code> for <code>axis=None</code>, or 1-D and the same length as the axis being compared.</li> </ul> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">Align object with <code>threshold</code> along the given axis.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first">Whether to perform the operation in place on the data.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Original data with values trimmed.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.clip.html#pandas.Series.clip" title="pandas.Series.clip"><code>Series.clip</code></a>
+</dt> <dd>General purpose method to trim Series values to given threshold(s).</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.clip.html#pandas.DataFrame.clip" title="pandas.DataFrame.clip"><code>DataFrame.clip</code></a>
+</dt> <dd>General purpose method to trim DataFrame values to given threshold(s).</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4, 5])
+&gt;&gt;&gt; s
+0    1
+1    2
+2    3
+3    4
+4    5
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.clip(upper=3)
+0    1
+1    2
+2    3
+3    3
+4    3
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; elemwise_thresholds = [5, 4, 3, 2, 1]
+&gt;&gt;&gt; elemwise_thresholds
+[5, 4, 3, 2, 1]
+</pre> <pre data-language="python">&gt;&gt;&gt; s.clip(upper=elemwise_thresholds)
+0    1
+1    2
+2    3
+3    2
+4    1
+dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.clip_upper.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.clip_upper.html</a>
+  </p>
+</div>

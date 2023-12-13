@@ -1,0 +1,56 @@
+<h1 id="pandas-series-append">pandas.Series.append</h1> <dl class="method"> <dt id="pandas.Series.append">
+<code>Series.append(self, to_append, ignore_index=False, verify_integrity=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L2695-L2776"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Concatenate two or more Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>to_append : Series or list/tuple of Series</code> </dt> <dd>
+<p class="first last">Series to append with self.</p> </dd> <dt>
+<code>ignore_index : bool, default False</code> </dt> <dd>
+<p class="first">If True, do not use the index labels.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> <dt>
+<code>verify_integrity : bool, default False</code> </dt> <dd>
+<p class="first last">If True, raise Exception on creating index with duplicates.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Concatenated Series.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.concat.html#pandas.concat" title="pandas.concat"><code>concat</code></a>
+</dt> <dd>General function to concatenate DataFrame or Series objects.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Iteratively appending to a Series can be more computationally intensive than a single concatenate. A better solution is to append values to a list and then concatenate the list with the original Series all at once.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s1 = pd.Series([1, 2, 3])
+&gt;&gt;&gt; s2 = pd.Series([4, 5, 6])
+&gt;&gt;&gt; s3 = pd.Series([4, 5, 6], index=[3, 4, 5])
+&gt;&gt;&gt; s1.append(s2)
+0    1
+1    2
+2    3
+0    4
+1    5
+2    6
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s1.append(s3)
+0    1
+1    2
+2    3
+3    4
+4    5
+5    6
+dtype: int64
+</pre> <p>With <code>ignore_index</code> set to True:</p> <pre data-language="python">&gt;&gt;&gt; s1.append(s2, ignore_index=True)
+0    1
+1    2
+2    3
+3    4
+4    5
+5    6
+dtype: int64
+</pre> <p>With <code>verify_integrity</code> set to True:</p> <pre data-language="python">&gt;&gt;&gt; s1.append(s2, verify_integrity=True)
+Traceback (most recent call last):
+...
+ValueError: Indexes have overlapping values: [0, 1, 2]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.append.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.append.html</a>
+  </p>
+</div>

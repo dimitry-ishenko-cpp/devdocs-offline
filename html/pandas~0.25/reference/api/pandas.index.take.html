@@ -1,0 +1,26 @@
+<h1 id="pandas-index-take">pandas.Index.take</h1> <dl class="method"> <dt id="pandas.Index.take">
+<code>Index.take(self, indices, axis=0, allow_fill=True, fill_value=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L882-L900"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a new Index of the values selected by the indices.</p> <p>For internal compatibility with numpy arrays.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>indices : list</code> </dt> <dd>
+<p class="first last">Indices to be taken</p> </dd> <dt>
+<code>axis : int, optional</code> </dt> <dd>
+<p class="first last">The axis over which to select values, always 0.</p> </dd> <dt>
+<code>allow_fill : bool, default True</code> </dt>  <dt>
+<code>fill_value : bool, default None</code> </dt> <dd>
+<p class="first last">If allow_fill=True and fill_value is not None, indices specified by -1 is regarded as NA. If Index doesn’t hold NA, raise ValueError</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt> <dd>
+<p class="first last">Elements of given indices.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.take.html#numpy.ndarray.take" title="(in NumPy v1.16)"><code>numpy.ndarray.take</code></a>
+</dt>  </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.take.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.take.html</a>
+  </p>
+</div>

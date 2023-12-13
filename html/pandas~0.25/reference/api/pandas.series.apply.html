@@ -1,0 +1,70 @@
+<h1 id="pandas-series-apply">pandas.Series.apply</h1> <dl class="method"> <dt id="pandas.Series.apply">
+<code>Series.apply(self, func, convert_dtype=True, args=(), **kwds)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L3910-L4045"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Invoke function on values of Series.</p> <p>Can be ufunc (a NumPy function that applies to the entire Series) or a Python function that only works on single values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function</code> </dt> <dd>
+<p class="first last">Python function or NumPy ufunc to apply.</p> </dd> <dt>
+<code>convert_dtype : bool, default True</code> </dt> <dd>
+<p class="first last">Try to find better dtype for elementwise function results. If False, leave as dtype=object.</p> </dd> <dt>
+<code>args : tuple</code> </dt> <dd>
+<p class="first last">Positional arguments passed to func after the series value.</p> </dd> <dt><strong>**kwds</strong></dt> <dd>
+<p class="first last">Additional keyword arguments passed to func.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">If func returns a Series object the result will be a DataFrame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.map.html#pandas.Series.map" title="pandas.Series.map"><code>Series.map</code></a>
+</dt> <dd>For element-wise operations.</dd> <dt>
+ <a class="reference internal" href="pandas.series.agg.html#pandas.Series.agg" title="pandas.Series.agg"><code>Series.agg</code></a>
+</dt> <dd>Only perform aggregating type operations.</dd> <dt>
+ <a class="reference internal" href="pandas.series.transform.html#pandas.Series.transform" title="pandas.Series.transform"><code>Series.transform</code></a>
+</dt> <dd>Only perform transforming type operations.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Create a series with typical summer temperatures for each city.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([20, 21, 12],
+...               index=['London', 'New York', 'Helsinki'])
+&gt;&gt;&gt; s
+London      20
+New York    21
+Helsinki    12
+dtype: int64
+</pre> <p>Square the values by defining a function and passing it as an argument to <code>apply()</code>.</p> <pre data-language="python">&gt;&gt;&gt; def square(x):
+...     return x ** 2
+&gt;&gt;&gt; s.apply(square)
+London      400
+New York    441
+Helsinki    144
+dtype: int64
+</pre> <p>Square the values by passing an anonymous function as an argument to <code>apply()</code>.</p> <pre data-language="python">&gt;&gt;&gt; s.apply(lambda x: x ** 2)
+London      400
+New York    441
+Helsinki    144
+dtype: int64
+</pre> <p>Define a custom function that needs additional positional arguments and pass these additional arguments using the <code>args</code> keyword.</p> <pre data-language="python">&gt;&gt;&gt; def subtract_custom_value(x, custom_value):
+...     return x - custom_value
+</pre> <pre data-language="python">&gt;&gt;&gt; s.apply(subtract_custom_value, args=(5,))
+London      15
+New York    16
+Helsinki     7
+dtype: int64
+</pre> <p>Define a custom function that takes keyword arguments and pass these arguments to <code>apply</code>.</p> <pre data-language="python">&gt;&gt;&gt; def add_custom_values(x, **kwargs):
+...     for month in kwargs:
+...         x += kwargs[month]
+...     return x
+</pre> <pre data-language="python">&gt;&gt;&gt; s.apply(add_custom_values, june=30, july=20, august=25)
+London      95
+New York    96
+Helsinki    87
+dtype: int64
+</pre> <p>Use a function from the Numpy library.</p> <pre data-language="python">&gt;&gt;&gt; s.apply(np.log)
+London      2.995732
+New York    3.044522
+Helsinki    2.484907
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.apply.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.apply.html</a>
+  </p>
+</div>

@@ -1,0 +1,62 @@
+<h1 id="pandas-intervalindex">pandas.IntervalIndex</h1> <dl class="class"> <dt id="pandas.IntervalIndex">
+<code>class pandas.IntervalIndex</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/interval.py#L201-L1292"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Immutable index of intervals that are closed on the same side.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : array-like (1-dimensional)</code> </dt> <dd>
+<p class="first last">Array-like containing Interval objects from which to build the IntervalIndex.</p> </dd> <dt>
+<code>closed : {‘left’, ‘right’, ‘both’, ‘neither’}, default ‘right’</code> </dt> <dd>
+<p class="first last">Whether the intervals are closed on the left-side, right-side, both or neither.</p> </dd> <dt>
+<code>dtype : dtype or None, default None</code> </dt> <dd>
+<p class="first">If None, dtype will be inferred.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Copy the input data.</p> </dd> <dt>
+<code>name : object, optional</code> </dt> <dd>
+<p class="first last">Name to be stored in the index.</p> </dd> <dt>
+<code>verify_integrity : bool, default True</code> </dt> <dd>
+<p class="first last">Verify that the IntervalIndex is valid.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>
+</dt> <dd>The base pandas Index type.</dd> <dt>
+ <a class="reference internal" href="pandas.interval.html#pandas.Interval" title="pandas.Interval"><code>Interval</code></a>
+</dt> <dd>A bounded slice-like interval; the elements of an IntervalIndex.</dd> <dt>
+ <a class="reference internal" href="pandas.interval_range.html#pandas.interval_range" title="pandas.interval_range"><code>interval_range</code></a>
+</dt> <dd>Function to create a fixed frequency IntervalIndex.</dd> <dt>
+ <a class="reference internal" href="pandas.cut.html#pandas.cut" title="pandas.cut"><code>cut</code></a>
+</dt> <dd>Bin values into discrete Intervals.</dd> <dt>
+ <a class="reference internal" href="pandas.qcut.html#pandas.qcut" title="pandas.qcut"><code>qcut</code></a>
+</dt> <dd>Bin values into equal-sized Intervals based on rank or sample quantiles.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>See the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html#intervalindex">user guide</a> for more.</p> <h4 class="rubric">Examples</h4> <p>A new <code>IntervalIndex</code> is typically constructed using <a class="reference internal" href="pandas.interval_range.html#pandas.interval_range" title="pandas.interval_range"><code>interval_range()</code></a>:</p> <pre data-language="python">&gt;&gt;&gt; pd.interval_range(start=0, end=5)
+IntervalIndex([(0, 1], (1, 2], (2, 3], (3, 4], (4, 5]],
+              closed='right',
+              dtype='interval[int64]')
+</pre> <p>It may also be constructed using one of the constructor methods: <a class="reference internal" href="pandas.intervalindex.from_arrays.html#pandas.IntervalIndex.from_arrays" title="pandas.IntervalIndex.from_arrays"><code>IntervalIndex.from_arrays()</code></a>, <a class="reference internal" href="pandas.intervalindex.from_breaks.html#pandas.IntervalIndex.from_breaks" title="pandas.IntervalIndex.from_breaks"><code>IntervalIndex.from_breaks()</code></a>, and <a class="reference internal" href="pandas.intervalindex.from_tuples.html#pandas.IntervalIndex.from_tuples" title="pandas.IntervalIndex.from_tuples"><code>IntervalIndex.from_tuples()</code></a>.</p> <p>See further examples in the doc strings of <code>interval_range</code> and the mentioned constructor methods.</p> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.intervalindex.left.html#pandas.IntervalIndex.left" title="pandas.IntervalIndex.left"><code>left</code></a></td> <td>Return the left endpoints of each Interval in the IntervalIndex as an Index</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.right.html#pandas.IntervalIndex.right" title="pandas.IntervalIndex.right"><code>right</code></a></td> <td>Return the right endpoints of each Interval in the IntervalIndex as an Index</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.closed.html#pandas.IntervalIndex.closed" title="pandas.IntervalIndex.closed"><code>closed</code></a></td> <td>Whether the intervals are closed on the left-side, right-side, both or neither</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.mid.html#pandas.IntervalIndex.mid" title="pandas.IntervalIndex.mid"><code>mid</code></a></td> <td>Return the midpoint of each Interval in the IntervalIndex as an Index</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.length.html#pandas.IntervalIndex.length" title="pandas.IntervalIndex.length"><code>length</code></a></td> <td>Return an Index with entries denoting the length of each Interval in the IntervalIndex</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.is_empty.html#pandas.IntervalIndex.is_empty" title="pandas.IntervalIndex.is_empty"><code>is_empty</code></a></td> <td>Indicates if an interval is empty, meaning it contains no points.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.is_non_overlapping_monotonic.html#pandas.IntervalIndex.is_non_overlapping_monotonic" title="pandas.IntervalIndex.is_non_overlapping_monotonic"><code>is_non_overlapping_monotonic</code></a></td> <td>Return True if the IntervalIndex is non-overlapping (no Intervals share points) and is either monotonic increasing or monotonic decreasing, else False</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.is_overlapping.html#pandas.IntervalIndex.is_overlapping" title="pandas.IntervalIndex.is_overlapping"><code>is_overlapping</code></a></td> <td>Return True if the IntervalIndex has overlapping intervals, else False.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.intervalindex.values.html#pandas.IntervalIndex.values" title="pandas.IntervalIndex.values"><code>values</code></a></td> <td>Return the IntervalIndex’s data as an IntervalArray.</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.intervalindex.from_arrays.html#pandas.IntervalIndex.from_arrays" title="pandas.IntervalIndex.from_arrays"><code>from_arrays</code></a>(left, right[, closed, name, …])</td> <td>Construct from two arrays defining the left and right bounds.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.intervalindex.from_tuples.html#pandas.IntervalIndex.from_tuples" title="pandas.IntervalIndex.from_tuples"><code>from_tuples</code></a>(data[, closed, name, copy, dtype])</td> <td>Construct an IntervalIndex from an array-like of tuples</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.intervalindex.from_breaks.html#pandas.IntervalIndex.from_breaks" title="pandas.IntervalIndex.from_breaks"><code>from_breaks</code></a>(breaks[, closed, name, copy, dtype])</td> <td>Construct an IntervalIndex from an array of splits.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.intervalindex.contains.html#pandas.IntervalIndex.contains" title="pandas.IntervalIndex.contains"><code>contains</code></a>(self, other)</td> <td>Check elementwise if the Intervals contain the value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.intervalindex.overlaps.html#pandas.IntervalIndex.overlaps" title="pandas.IntervalIndex.overlaps"><code>overlaps</code></a>(self, other)</td> <td>Check elementwise if an Interval overlaps the values in the IntervalIndex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.intervalindex.set_closed.html#pandas.IntervalIndex.set_closed" title="pandas.IntervalIndex.set_closed"><code>set_closed</code></a>(self, closed)</td> <td>Return an IntervalIndex identical to the current one, but closed on the specified side</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.intervalindex.to_tuples.html#pandas.IntervalIndex.to_tuples" title="pandas.IntervalIndex.to_tuples"><code>to_tuples</code></a>(self[, na_tuple])</td> <td>Return an Index of tuples of the form (left, right)</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.IntervalIndex.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.IntervalIndex.html</a>
+  </p>
+</div>

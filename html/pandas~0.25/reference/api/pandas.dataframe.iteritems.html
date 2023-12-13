@@ -1,0 +1,45 @@
+<h1 id="pandas-dataframe-iteritems">pandas.DataFrame.iteritems</h1> <dl class="method"> <dt id="pandas.DataFrame.iteritems">
+<code>DataFrame.iteritems(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L836-L838"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Iterator over (column name, Series) pairs.</p> <p>Iterates over the DataFrame columns, returning a tuple with the column name and the content as a Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>label : object</code> </dt> <dd>
+<p class="first last">The column names for the DataFrame being iterated over.</p> </dd> <dt>
+<code>content : Series</code> </dt> <dd>
+<p class="first last">The column entries belonging to each label, as a Series.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code>DataFrame.iterrows</code></a>
+</dt> <dd>Iterate over DataFrame rows as (index, Series) pairs.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code>DataFrame.itertuples</code></a>
+</dt> <dd>Iterate over DataFrame rows as namedtuples of the values.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'species': ['bear', 'bear', 'marsupial'],
+...                   'population': [1864, 22000, 80000]},
+...                   index=['panda', 'polar', 'koala'])
+&gt;&gt;&gt; df
+        species   population
+panda   bear      1864
+polar   bear      22000
+koala   marsupial 80000
+&gt;&gt;&gt; for label, content in df.items():
+...     print('label:', label)
+...     print('content:', content, sep='\n')
+...
+label: species
+content:
+panda         bear
+polar         bear
+koala    marsupial
+Name: species, dtype: object
+label: population
+content:
+panda     1864
+polar    22000
+koala    80000
+Name: population, dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.iteritems.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.iteritems.html</a>
+  </p>
+</div>

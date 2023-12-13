@@ -1,0 +1,24 @@
+<h1 id="pandas-io-formats-style-styler-set-properties">pandas.io.formats.style.Styler.set_properties</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.set_properties">
+<code>Styler.set_properties(self, subset=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L1074-L1098"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convenience method for setting one or more non-data dependent properties or each cell.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>subset : IndexSlice</code> </dt> <dd>
+<p class="first last">a valid slice for <code>data</code> to limit the style application to</p> </dd> <dt>
+<code>kwargs : dict</code> </dt> <dd>
+<p class="first last">property: value pairs to be set for each cell</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>self : Styler</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(np.random.randn(10, 4))
+&gt;&gt;&gt; df.style.set_properties(color="white", align="right")
+&gt;&gt;&gt; df.style.set_properties(**{'background-color': 'yellow'})
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.set_properties.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.set_properties.html</a>
+  </p>
+</div>

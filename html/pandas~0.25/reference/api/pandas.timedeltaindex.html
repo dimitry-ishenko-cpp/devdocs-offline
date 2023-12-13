@@ -1,0 +1,61 @@
+<h1 id="pandas-timedeltaindex">pandas.TimedeltaIndex</h1> <dl class="class"> <dt id="pandas.TimedeltaIndex">
+<code>class pandas.TimedeltaIndex</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/timedeltas.py#L75-L711"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Immutable ndarray of timedelta64 data, represented internally as int64, and which can be boxed to timedelta objects</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : array-like (1-dimensional), optional</code> </dt> <dd>
+<p class="first last">Optional timedelta-like data to construct index with</p> </dd> <dt>
+<code>unit : unit of the arg (D,h,m,s,ms,us,ns) denote the unit, optional</code> </dt> <dd>
+<p class="first last">which is an integer/float number</p> </dd> <dt>
+<code>freq : string or pandas offset object, optional</code> </dt> <dd>
+<p class="first last">One of pandas date offset strings or corresponding objects. The string ‘infer’ can be passed in order to set the frequency of the index as the inferred frequency upon creation</p> </dd> <dt>
+<code>copy : bool</code> </dt> <dd>
+<p class="first last">Make a copy of input ndarray</p> </dd> <dt>
+<code>start : starting value, timedelta-like, optional</code> </dt> <dd>
+<p class="first">If data is None, start is used as the start point in generating regular timedelta data.</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> </dd> <dt>
+<code>periods : int, optional, &gt; 0</code> </dt> <dd>
+<p class="first">Number of periods to generate, if generating index. Takes precedence over end argument</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> </dd> <dt>
+<code>end : end time, timedelta-like, optional</code> </dt> <dd>
+<p class="first">If periods is none, generated index will extend to first conforming time on or just past end argument</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.: </span>0</p> </div> </dd> <dt>
+<code>closed : string or None, default None</code> </dt> <dd>
+<p class="first">Make the interval closed with respect to the given frequency to the ‘left’, ‘right’, or both sides (None)</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.: </span>0</p> </div> </dd> <dt>
+<code>name : object</code> </dt> <dd>
+<p class="first last">Name to be stored in the index</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>
+</dt> <dd>The base pandas Index type.</dd> <dt>
+ <a class="reference internal" href="pandas.timedelta.html#pandas.Timedelta" title="pandas.Timedelta"><code>Timedelta</code></a>
+</dt> <dd>Represents a duration between two dates or times.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code>DatetimeIndex</code></a>
+</dt> <dd>Index of datetime64 data.</dd> <dt>
+ <a class="reference internal" href="pandas.periodindex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code>PeriodIndex</code></a>
+</dt> <dd>Index of Period data.</dd> <dt>
+ <a class="reference internal" href="pandas.timedelta_range.html#pandas.timedelta_range" title="pandas.timedelta_range"><code>timedelta_range</code></a>
+</dt> <dd>Create a fixed-frequency TimedeltaIndex.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>To learn more about the frequency strings, please see <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">this link</a>.</p> <p>Creating a TimedeltaIndex based on <code>start</code>, <code>periods</code>, and <code>end</code> has been deprecated in favor of <a class="reference internal" href="pandas.timedelta_range.html#pandas.timedelta_range" title="pandas.timedelta_range"><code>timedelta_range()</code></a>.</p> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.timedeltaindex.days.html#pandas.TimedeltaIndex.days" title="pandas.TimedeltaIndex.days"><code>days</code></a></td> <td>Number of days for each element.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedeltaindex.seconds.html#pandas.TimedeltaIndex.seconds" title="pandas.TimedeltaIndex.seconds"><code>seconds</code></a></td> <td>Number of seconds (&gt;= 0 and less than 1 day) for each element.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedeltaindex.microseconds.html#pandas.TimedeltaIndex.microseconds" title="pandas.TimedeltaIndex.microseconds"><code>microseconds</code></a></td> <td>Number of microseconds (&gt;= 0 and less than 1 second) for each element.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedeltaindex.nanoseconds.html#pandas.TimedeltaIndex.nanoseconds" title="pandas.TimedeltaIndex.nanoseconds"><code>nanoseconds</code></a></td> <td>Number of nanoseconds (&gt;= 0 and less than 1 microsecond) for each element.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedeltaindex.components.html#pandas.TimedeltaIndex.components" title="pandas.TimedeltaIndex.components"><code>components</code></a></td> <td>Return a dataframe of the components (days, hours, minutes, seconds, milliseconds, microseconds, nanoseconds) of the Timedeltas.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.timedeltaindex.inferred_freq.html#pandas.TimedeltaIndex.inferred_freq" title="pandas.TimedeltaIndex.inferred_freq"><code>inferred_freq</code></a></td> <td>Tryies to return a string representing a frequency guess, generated by infer_freq.</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.timedeltaindex.to_pytimedelta.html#pandas.TimedeltaIndex.to_pytimedelta" title="pandas.TimedeltaIndex.to_pytimedelta"><code>to_pytimedelta</code></a>(self, \*args, \*\*kwargs)</td> <td>Return Timedelta Array/Index as object ndarray of datetime.timedelta objects.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedeltaindex.to_series.html#pandas.TimedeltaIndex.to_series" title="pandas.TimedeltaIndex.to_series"><code>to_series</code></a>(self[, index, name])</td> <td>Create a Series with both index and values equal to the index keys useful with map for returning an indexer based on an index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedeltaindex.round.html#pandas.TimedeltaIndex.round" title="pandas.TimedeltaIndex.round"><code>round</code></a>(self, freq[, ambiguous, nonexistent])</td> <td>Perform round operation on the data to the specified <code>freq</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedeltaindex.floor.html#pandas.TimedeltaIndex.floor" title="pandas.TimedeltaIndex.floor"><code>floor</code></a>(self, freq[, ambiguous, nonexistent])</td> <td>Perform floor operation on the data to the specified <code>freq</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedeltaindex.ceil.html#pandas.TimedeltaIndex.ceil" title="pandas.TimedeltaIndex.ceil"><code>ceil</code></a>(self, freq[, ambiguous, nonexistent])</td> <td>Perform ceil operation on the data to the specified <code>freq</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedeltaindex.to_frame.html#pandas.TimedeltaIndex.to_frame" title="pandas.TimedeltaIndex.to_frame"><code>to_frame</code></a>(self[, index, name])</td> <td>Create a DataFrame with a column containing the Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.timedeltaindex.mean.html#pandas.TimedeltaIndex.mean" title="pandas.TimedeltaIndex.mean"><code>mean</code></a>(self, \*args, \*\*kwargs)</td> <td>Return the mean value of the Array.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.TimedeltaIndex.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.TimedeltaIndex.html</a>
+  </p>
+</div>

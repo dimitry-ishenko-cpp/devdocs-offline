@@ -1,0 +1,21 @@
+<h1 id="pandas-index-asof-locs">pandas.Index.asof_locs</h1> <dl class="method"> <dt id="pandas.Index.asof_locs">
+<code>Index.asof_locs(self, where, mask)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L4484-L4521"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Find the locations (indices) of the labels from the index for every entry in the <code>where</code> argument.</p> <p>As in the <code>asof</code> function, if the label (a particular entry in <code>where</code>) is not in the index, the latest index label upto the passed label is chosen and its index returned.</p> <p>If all of the labels in the index are later than a label in <code>where</code>, -1 is returned.</p> <p><code>mask</code> is used to ignore NA values in the index during calculation.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>where : Index</code> </dt> <dd>
+<p class="first last">An Index consisting of an array of timestamps.</p> </dd> <dt>
+<code>mask : array-like</code> </dt> <dd>
+<p class="first last">Array of booleans denoting where values in the original data are not NA.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray</dt> <dd>
+<p class="first last">An array of locations (indices) of the labels from the Index which correspond to the return values of the <code>asof</code> function for every element in <code>where</code>.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.asof_locs.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.asof_locs.html</a>
+  </p>
+</div>

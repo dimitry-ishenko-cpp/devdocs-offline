@@ -1,0 +1,19 @@
+    <h1 id="firstHeading" class="firstHeading">std::char_traits&lt;CharT&gt;::eq_int_type</h1>            <table class="t-dcl-begin">   <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">static bool eq_int_type( int_type c1, int_type c2 );</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">static constexpr bool eq_int_type( int_type c1, int_type c2 ) noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>   </table> <p>Checks whether two values of type <code>int_type</code> are equal.</p>
+<p>Formally,</p>
+<ul>
+<li> if there exist values <code>a</code> and <code>b</code> such that <code>c1 == X::to_int_type(a)</code> and <code>c2 == X::to_int_type(b)</code>, yields the same as <code>X::eq(a,b)</code>, </li>
+<li> otherwise, if <code>c1</code> and <code>c2</code> are both copies of <code>X::eof()</code>, yields true, </li>
+<li> otherwise, if one of <code>c1</code> and <code>c2</code> is a copy of <code>X::eof()</code> and the other is not, yields false, </li>
+<li> otherwise, the result is unspecified. </li>
+</ul> <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> c1, c2 </td> <td> - </td> <td> values to compare </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p><code>true</code> if <code>c1</code> is equal to <code>c2</code> under the rules described above, <code>false</code> otherwise.</p>
+<h3 id="Complexity"> Complexity</h3> <p>Constant.</p>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/string/char_traits/eq_int_type" class="_attribution-link">https://en.cppreference.com/w/cpp/string/char_traits/eq_int_type</a>
+  </p>
+</div>

@@ -1,0 +1,73 @@
+<h1 id="pandas-core-groupby-dataframegroupby-resample">pandas.core.groupby.DataFrameGroupBy.resample</h1> <dl class="method"> <dt id="pandas.core.groupby.DataFrameGroupBy.resample">
+<code>DataFrameGroupBy.resample(self, rule, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/groupby.py#L1450-L1558"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Provide resampling when using a TimeGrouper.</p> <p>Given a grouper, the function resamples it according to a string “string” -&gt; “frequency”.</p> <p>See the <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">frequency aliases</span></a> documentation for more details.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>rule : str or DateOffset</code> </dt> <dd>
+<p class="first last">The offset string or object representing target grouper conversion.</p> </dd> <dt><strong>*args, **kwargs</strong></dt> <dd>
+<p class="first last">Possible arguments are <code>how</code>, <code>fill_method</code>, <code>limit</code>, <code>kind</code> and <code>on</code>, and other arguments of <code>TimeGrouper</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Grouper</dt> <dd>
+<p class="first last">Return a new grouper with our resampler appended.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Grouper</code> </dt> <dd>Specify a frequency to resample with when grouping by a key.</dd> <dt>
+<code>DatetimeIndex.resample</code> </dt> <dd>Frequency conversion and resampling of time series.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.date_range('1/1/2000', periods=4, freq='T')
+&gt;&gt;&gt; df = pd.DataFrame(data=4 * [range(2)],
+...                   index=idx,
+...                   columns=['a', 'b'])
+&gt;&gt;&gt; df.iloc[2, 0] = 5
+&gt;&gt;&gt; df
+                    a  b
+2000-01-01 00:00:00  0  1
+2000-01-01 00:01:00  0  1
+2000-01-01 00:02:00  5  1
+2000-01-01 00:03:00  0  1
+</pre> <p>Downsample the DataFrame into 3 minute bins and sum the values of the timestamps falling into a bin.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('a').resample('3T').sum()
+                         a  b
+a
+0   2000-01-01 00:00:00  0  2
+    2000-01-01 00:03:00  0  1
+5   2000-01-01 00:00:00  5  1
+</pre> <p>Upsample the series into 30 second bins.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('a').resample('30S').sum()
+                    a  b
+a
+0   2000-01-01 00:00:00  0  1
+    2000-01-01 00:00:30  0  0
+    2000-01-01 00:01:00  0  1
+    2000-01-01 00:01:30  0  0
+    2000-01-01 00:02:00  0  0
+    2000-01-01 00:02:30  0  0
+    2000-01-01 00:03:00  0  1
+5   2000-01-01 00:02:00  5  1
+</pre> <p>Resample by month. Values are assigned to the month of the period.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('a').resample('M').sum()
+            a  b
+a
+0   2000-01-31  0  3
+5   2000-01-31  5  1
+</pre> <p>Downsample the series into 3 minute bins as above, but close the right side of the bin interval.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('a').resample('3T', closed='right').sum()
+                         a  b
+a
+0   1999-12-31 23:57:00  0  1
+    2000-01-01 00:00:00  0  2
+5   2000-01-01 00:00:00  5  1
+</pre> <p>Downsample the series into 3 minute bins and close the right side of the bin interval, but label each bin using the right edge instead of the left.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('a').resample('3T', closed='right', label='right').sum()
+                         a  b
+a
+0   2000-01-01 00:00:00  0  1
+    2000-01-01 00:03:00  0  2
+5   2000-01-01 00:03:00  5  1
+</pre> <p>Add an offset of twenty seconds.</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('a').resample('3T', loffset='20s').sum()
+                       a  b
+a
+0   2000-01-01 00:00:20  0  2
+    2000-01-01 00:03:20  0  1
+5   2000-01-01 00:00:20  5  1
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.resample.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.resample.html</a>
+  </p>
+</div>

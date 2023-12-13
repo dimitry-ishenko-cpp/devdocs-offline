@@ -1,0 +1,78 @@
+    <h1 id="firstHeading" class="firstHeading">std::compare_three_way</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../../header/compare.html" title="cpp/header/compare">&lt;compare&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../../header/functional.html" title="cpp/header/functional">&lt;functional&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">struct compare_three_way;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <p>Function object for performing comparisons. Deduces the parameter types and the return type of the function call operator.</p>
+<h3 id="Implementation-defined_strict_total_order_over_pointers"> Implementation-defined strict total order over pointers</h3> <p>The function call operator yields the implementation-defined strict total order over pointers if the <code>&lt;=&gt;</code> operator between arguments invokes a built-in comparison operator for a pointer, even if the built-in <code>&lt;=&gt;</code> operator does not.</p>
+<p>The implementation-defined strict total order is consistent with the partial order imposed by built-in comparison operators (<code>&lt;=&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code>), and consistent among following standard function objects:</p>
+<ul>
+<li> <code><a href="../functional/less.html" title="cpp/utility/functional/less">std::less</a></code>, <code><a href="../functional/greater.html" title="cpp/utility/functional/greater">std::greater</a></code>, <code><a href="../functional/less_equal.html" title="cpp/utility/functional/less equal">std::less_equal</a></code>, and <code><a href="../functional/greater_equal.html" title="cpp/utility/functional/greater equal">std::greater_equal</a></code>, when the template argument is a pointer type or <code>void</code> </li>
+<li> <a href="../functional/ranges/equal_to.html" title="cpp/utility/functional/ranges/equal to"><code>std::ranges::equal_to</code></a>, <a href="../functional/ranges/not_equal_to.html" title="cpp/utility/functional/ranges/not equal to"><code>std::ranges::not_equal_to</code></a>, <a href="../functional/ranges/less.html" title="cpp/utility/functional/ranges/less"><code>std::ranges::less</code></a>, <a href="../functional/ranges/greater.html" title="cpp/utility/functional/ranges/greater"><code>std::ranges::greater</code></a>, <a href="../functional/ranges/less_equal.html" title="cpp/utility/functional/ranges/less equal"><code>std::ranges::less_equal</code></a>, <a href="../functional/ranges/greater_equal.html" title="cpp/utility/functional/ranges/greater equal"><code>std::ranges::greater_equal</code></a>, and <code>std::compare_three_way</code> </li>
+</ul>  <h3 id="Member_types"> Member types</h3> <table class="t-dsc-begin"> <tr class="t-dsc-hitem"> <th> Member type </th> <th> Definition </th>
+</tr> <tr class="t-dsc"> <td> <code>is_transparent</code> </td> <td> /* unspecified */ </td>
+</tr> </table> <h3 id="Member_functions"> Member functions</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>operator()</span></span></div> </td> <td> obtains the result of three-way comparison on both arguments <br> <span class="t-mark">(public member function)</span> </td>
+</tr> </table>  <h2 id="std::compare_three_way::operator.28.29"> std::compare_three_way::operator()</h2> <table class="t-dcl-begin"> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">template&lt; class T, class U &gt;
+    requires std::three_way_comparable_with&lt;T, U&gt; // with different semantic requirements
+constexpr auto operator()( T&amp;&amp; t, U&amp;&amp; u ) const;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>Compares <code>t</code> and <code>u</code>, equivalent to <code><span class="kw1">return</span> <a href="http://en.cppreference.com/w/cpp/utility/forward"><span class="kw1121">std::<span class="me2">forward</span></span></a><span class="sy1">&lt;</span>T<span class="sy1">&gt;</span><span class="br0">(</span>t<span class="br0">)</span> <span class="sy1">&lt;=&gt;</span> <a href="http://en.cppreference.com/w/cpp/utility/forward"><span class="kw1121">std::<span class="me2">forward</span></span></a><span class="sy1">&lt;</span>U<span class="sy1">&gt;</span><span class="br0">(</span>u<span class="br0">)</span><span class="sy4">;</span></code>, except when that expression resolves to a call to a builtin <code>operator&lt;=&gt;</code> comparing pointers.</p>
+<p>When a call would not invoke a built-in operator comparing pointers, the behavior is undefined if <code><a href="http://en.cppreference.com/w/cpp/utility/compare/three_way_comparable"><span class="kw3175">std::<span class="me2">three_way_comparable_with</span></span></a><span class="sy1">&lt;</span>T, U<span class="sy1">&gt;</span></code> is not modeled.</p>
+<p>When a call would invoke a built-in operator comparing pointers of type <code>P</code>, the result is instead determined as follows:</p>
+<ul>
+<li> Returns <code>std::strong_ordering::less</code> if the (possibly converted) value of the first argument precedes the (possibly converted) value of the second argument in the implementation-defined strict total ordering over all pointer values of type <code>P</code>. This strict total ordering is consistent with the partial order imposed by the builtin operators <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, and <code>&gt;=</code>. </li>
+<li> Otherwise, returns <code>std::strong_ordering::greater</code> if (possibly converted) value of the second argument precedes the (possibly converted) value of the first argument in the same strict total ordering. </li>
+<li> Otherwise, returns <code>std::strong_ordering::equal</code>. </li>
+</ul> <p>The behavior is undefined unless the conversion sequences from both <code>T</code> and <code>U</code> to <code>P</code> are <a href="../../concepts.html#Equality_preservation" title="cpp/concepts">equality-preserving</a>.</p>
+<h3 id="Equality_preservation"> Equality preservation</h3> <p>Expressions declared in <a href="../../language/requires.html" title="cpp/language/requires">requires-expressions</a> of the standard library concepts are required to be <a href="../../concepts.html#Equality_preservation" title="cpp/concepts">equality-preserving</a> (except where stated otherwise).</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;compare&gt;
+#include &lt;iostream&gt;
+ 
+struct Rational
+{
+    int num;
+    int den; // &gt; 0
+ 
+    // Although the comparison X &lt;=&gt; Y will work, a direct call
+    // to std::compare_three_way{}(X,Y) requires the operator==
+    // be defined, to satisfy the std::three_way_comparable_with.
+    constexpr bool operator==(Rational const&amp;) const = default;
+};
+ 
+constexpr std::weak_ordering operator&lt;=&gt;(Rational lhs, Rational rhs)
+{
+    return lhs.num * rhs.den &lt;=&gt; rhs.num * lhs.den;
+}
+ 
+void print(std::weak_ordering value)
+{
+    value &lt; 0 ? std::cout &lt;&lt; "less\n":
+    value &gt; 0 ? std::cout &lt;&lt; "greater\n":
+                std::cout &lt;&lt; "equal\n";
+}
+ 
+int main()
+{
+    Rational a{6, 5};
+    Rational b{8, 7};
+    print(a &lt;=&gt; b);
+    print(std::compare_three_way{}(a, b));
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">greater
+greater</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/LWG/issue3530">LWG 3530</a> </td> <td> C++20 </td> <td> syntactic checks were relaxed while comparing pointers </td> <td> only semantic requirements relaxed </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../functional/ranges/equal_to.html" title="cpp/utility/functional/ranges/equal to"> <span class="t-lines"><span>ranges::equal_to</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> function object implementing <code>x == y</code> <br> <span class="t-mark">(class)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../functional/ranges/not_equal_to.html" title="cpp/utility/functional/ranges/not equal to"> <span class="t-lines"><span>ranges::not_equal_to</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> function object implementing <code>x != y</code> <br> <span class="t-mark">(class)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../functional/ranges/less.html" title="cpp/utility/functional/ranges/less"> <span class="t-lines"><span>ranges::less</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> function object implementing <code>x &lt; y</code> <br> <span class="t-mark">(class)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../functional/ranges/greater.html" title="cpp/utility/functional/ranges/greater"> <span class="t-lines"><span>ranges::greater</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> function object implementing <code>x &gt; y</code> <br> <span class="t-mark">(class)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../functional/ranges/less_equal.html" title="cpp/utility/functional/ranges/less equal"> <span class="t-lines"><span>ranges::less_equal</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> function object implementing <code>x &lt;= y</code> <br> <span class="t-mark">(class)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="../functional/ranges/greater_equal.html" title="cpp/utility/functional/ranges/greater equal"> <span class="t-lines"><span>ranges::greater_equal</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> function object implementing <code>x &gt;= y</code> <br> <span class="t-mark">(class)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/utility/compare/compare_three_way" class="_attribution-link">https://en.cppreference.com/w/cpp/utility/compare/compare_three_way</a>
+  </p>
+</div>

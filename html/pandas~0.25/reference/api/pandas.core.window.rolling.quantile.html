@@ -1,0 +1,37 @@
+<h1 id="pandas-core-window-rolling-quantile">pandas.core.window.Rolling.quantile</h1> <dl class="method"> <dt id="pandas.core.window.Rolling.quantile">
+<code>Rolling.quantile(self, quantile, interpolation='linear', **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/window.py#L1932-L1937"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Calculate the rolling quantile.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>quantile : float</code> </dt> <dd>
+<p class="first last">Quantile to compute. 0 &lt;= quantile &lt;= 1.</p> </dd> <dt>
+<code>interpolation : {‘linear’, ‘lower’, ‘higher’, ‘midpoint’, ‘nearest’}</code> </dt> <dd>
+<div class="first versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> <p>This optional parameter specifies the interpolation method to use, when the desired quantile lies between two data points <code>i</code> and <code>j</code>:</p>  <ul class="simple"> <li>linear: <code>i + (j - i) * fraction</code>, where <code>fraction</code> is the fractional part of the index surrounded by <code>i</code> and <code>j</code>.</li> <li>lower: <code>i</code>.</li> <li>higher: <code>j</code>.</li> <li>nearest: <code>i</code> or <code>j</code> whichever is nearest.</li> <li>midpoint: (<code>i</code> + <code>j</code>) / 2.</li> </ul>  </dd> <dt><strong>**kwargs:</strong></dt> <dd>
+<p class="first last">For compatibility with other rolling methods. Has no effect on the result.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Returned object type is determined by the caller of the rolling calculation.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.quantile</code> </dt> <dd>Computes value at the given quantile over all data in Series.</dd> <dt>
+<code>DataFrame.quantile</code> </dt> <dd>Computes values at the given quantile over requested axis in DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4])
+&gt;&gt;&gt; s.rolling(2).quantile(.4, interpolation='lower')
+0    NaN
+1    1.0
+2    2.0
+3    3.0
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.rolling(2).quantile(.4, interpolation='midpoint')
+0    NaN
+1    1.5
+2    2.5
+3    3.5
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.quantile.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.quantile.html</a>
+  </p>
+</div>

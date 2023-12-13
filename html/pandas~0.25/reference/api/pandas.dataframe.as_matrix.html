@@ -1,0 +1,22 @@
+<h1 id="pandas-dataframe-as-matrix">pandas.DataFrame.as_matrix</h1> <dl class="method"> <dt id="pandas.DataFrame.as_matrix">
+<code>DataFrame.as_matrix(self, columns=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L5321-L5367"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert the frame to its Numpy-array representation.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.23.0: </span>Use <a class="reference internal" href="pandas.dataframe.values.html#pandas.DataFrame.values" title="pandas.DataFrame.values"><code>DataFrame.values()</code></a> instead.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>columns : list, optional, default:None</code> </dt> <dd>
+<p class="first last">If None, return all columns, otherwise, returns specified columns.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>values : ndarray</code> </dt> <dd>
+<p class="first last">If the caller is heterogeneous and contains booleans or objects, the result will be of dtype=object. See Notes.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.values.html#pandas.DataFrame.values" title="pandas.DataFrame.values"><code>DataFrame.values</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>Return is NOT a Numpy-matrix, rather, a Numpy-array.</p> <p>The dtype will be a lower-common-denominator dtype (implicit upcasting); that is to say if the dtypes (even of numeric types) are mixed, the one that accommodates all will be chosen. Use this with care if you are not dealing with the blocks.</p> <p>e.g. If the dtypes are float16 and float32, dtype will be upcast to float32. If dtypes are int32 and uint8, dtype will be upcase to int32. By numpy.find_common_type convention, mixing int64 and uint64 will result in a float64 dtype.</p> <p>This method is provided for backwards compatibility. Generally, it is recommended to use ‘.values’.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.as_matrix.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.as_matrix.html</a>
+  </p>
+</div>

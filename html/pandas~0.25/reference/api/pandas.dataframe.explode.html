@@ -1,0 +1,44 @@
+<h1 id="pandas-dataframe-explode">pandas.DataFrame.explode</h1> <dl class="method"> <dt id="pandas.DataFrame.explode">
+<code>DataFrame.explode(self, column: Union[str, Tuple]) → 'DataFrame'</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L6240-L6307"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Transform each element of a list-like to a row, replicating the index values.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.25.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>column : str or tuple</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Exploded lists to rows of the subset columns; index will be duplicated for these rows.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError :</dt> <dd>
+<p class="first last">if columns of the frame are not unique.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.unstack.html#pandas.DataFrame.unstack" title="pandas.DataFrame.unstack"><code>DataFrame.unstack</code></a>
+</dt> <dd>Pivot a level of the (necessarily hierarchical) index labels</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.melt.html#pandas.DataFrame.melt" title="pandas.DataFrame.melt"><code>DataFrame.melt</code></a>
+</dt> <dd>Unpivot a DataFrame from wide format to long format</dd> <dt>
+ <a class="reference internal" href="pandas.series.explode.html#pandas.Series.explode" title="pandas.Series.explode"><code>Series.explode</code></a>
+</dt> <dd>Explode a DataFrame from list-like columns to long format.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This routine will explode list-likes including lists, tuples, Series, and np.ndarray. The result dtype of the subset rows will be object. Scalars will be returned unchanged. Empty list-likes will result in a np.nan for that row.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': [[1, 2, 3], 'foo', [], [3, 4]], 'B': 1})
+&gt;&gt;&gt; df
+           A  B
+0  [1, 2, 3]  1
+1        foo  1
+2         []  1
+3     [3, 4]  1
+</pre> <pre data-language="python">&gt;&gt;&gt; df.explode('A')
+     A  B
+0    1  1
+0    2  1
+0    3  1
+1  foo  1
+2  NaN  1
+3    3  1
+3    4  1
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.explode.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.explode.html</a>
+  </p>
+</div>

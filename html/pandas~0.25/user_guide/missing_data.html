@@ -1,0 +1,49 @@
+<h1 id="missing-data">Working with missing data</h1> <p id="working-with-missing-data">In this section, we will discuss missing (also referred to as NA) values in pandas.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">The choice of using <code>NaN</code> internally to denote missing data was largely for simplicity and performance reasons. It differs from the MaskedArray approach of, for example, <code>scikits.timeseries</code>. We are hopeful that NumPy will soon be able to provide a native NA type solution (similar to R) performant enough to be used in pandas.</p> </div> <p>See the <a class="reference internal" href="cookbook.html#cookbook-missing-data"><span class="std std-ref">cookbook</span></a> for some advanced strategies.</p>  <h2 id="values-considered-missing">Values considered “missing”</h2> <p>As data comes in many shapes and forms, pandas aims to be flexible with regard to handling missing data. While <code>NaN</code> is the default missing value marker for reasons of computational speed and convenience, we need to be able to easily detect this value with data of different types: floating point, integer, boolean, and general object. In many cases, however, the Python <code>None</code> will arise and we wish to also consider that “missing” or “not available” or “NA”.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">If you want to consider <code>inf</code> and <code>-inf</code> to be “NA” in computations, you can set <code>pandas.options.mode.use_inf_as_na = True</code>.</p> </div> <pre data-language="python">In [1]: df = pd.DataFrame(np.random.randn(5, 3), index=['a', 'c', 'e', 'f', 'h'],
+   ...:                   columns=['one', 'two', 'three'])
+   ...: 
+
+In [2]: df['four'] = 'bar'
+
+In [3]: df['five'] = df['one'] &gt; 0
+
+In [4]: df
+Out[4]: 
+        one       two     three four   five
+a  0.469112 -0.282863 -1.509059  bar   True
+c -1.135632  1.212112 -0.173215  bar  False
+e  0.119209 -1.044236 -0.861849  bar   True
+f -2.104569 -0.494929  1.071804  bar  False
+h  0.721555 -0.706771 -1.039575  bar   True
+
+In [5]: df2 = df.reindex(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'])
+
+In [6]: df2
+Out[6]: 
+        one       two     three four   five
+a  0.469112 -0.282863 -1.509059  bar   True
+b       NaN       NaN       NaN  NaN    NaN
+c -1.135632  1.212112 -0.173215  bar  False
+d       NaN       NaN       NaN  NaN    NaN
+e  0.119209 -1.044236 -0.861849  bar   True
+f -2.104569 -0.494929  1.071804  bar  False
+g       NaN       NaN       NaN  NaN    NaN
+h  0.721555 -0.706771 -1.039575  bar   True
+</pre> <p>To make detecting missing values easier (and across different array dtypes), pandas provides the <a class="reference internal" href="../reference/api/pandas.isna.html#pandas.isna" title="pandas.isna"><code>isna()</code></a> and <a class="reference internal" href="../reference/api/pandas.notna.html#pandas.notna" title="pandas.notna"><code>notna()</code></a> functions, which are also methods on Series and DataFrame objects:</p> <pre data-language="python">In [7]: df2['one']
+Out[7]: 
+a    0.469112
+b         NaN
+c   -1.135632
+d         NaN
+e    0.119209
+f   -2.104569
+g         NaN
+h    0.721555
+Name: one, dtype: float64
+
+In [8]: pd.isna(df2['one'])
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/missing_data.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/missing_data.html</a>
+  </p>
+</div>

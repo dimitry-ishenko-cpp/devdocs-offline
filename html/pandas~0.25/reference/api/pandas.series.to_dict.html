@@ -1,0 +1,28 @@
+<h1 id="pandas-series-to-dict">pandas.Series.to_dict</h1> <dl class="method"> <dt id="pandas.Series.to_dict">
+<code>Series.to_dict(self, into=&lt;class 'dict'&gt;)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L1744-L1777"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert Series to {label -&gt; value} dict or dict-like object.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>into : class, default dict</code> </dt> <dd>
+<p class="first">The collections.abc.Mapping subclass to use as the return object. Can be the actual class or an empty instance of the mapping type you want. If you want a collections.defaultdict, you must pass it initialized.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>collections.abc.Mapping</dt> <dd>
+<p class="first last">Key-value representation of Series.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4])
+&gt;&gt;&gt; s.to_dict()
+{0: 1, 1: 2, 2: 3, 3: 4}
+&gt;&gt;&gt; from collections import OrderedDict, defaultdict
+&gt;&gt;&gt; s.to_dict(OrderedDict)
+OrderedDict([(0, 1), (1, 2), (2, 3), (3, 4)])
+&gt;&gt;&gt; dd = defaultdict(list)
+&gt;&gt;&gt; s.to_dict(dd)
+defaultdict(&lt;class 'list'&gt;, {0: 1, 1: 2, 2: 3, 3: 4})
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_dict.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_dict.html</a>
+  </p>
+</div>

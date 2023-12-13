@@ -1,0 +1,60 @@
+<h1 id="pandas-io-formats-style-styler-to-excel">pandas.io.formats.style.Styler.to_excel</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.to_excel">
+<code>Styler.to_excel(self, excel_writer, sheet_name='Sheet1', na_rep='', float_format=None, columns=None, header=True, index=True, index_label=None, startrow=0, startcol=0, engine=None, merge_cells=True, encoding=None, inf_rep='inf', verbose=True, freeze_panes=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L166-L218"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Write Styler to an Excel sheet.</p> <p>To write a single Styler to an Excel .xlsx file it is only necessary to specify a target file name. To write to multiple sheets it is necessary to create an <code>ExcelWriter</code> object with a target file name, and specify a sheet in the file to write to.</p> <p>Multiple sheets may be written to by specifying unique <code>sheet_name</code>. With all data written to the file it is necessary to save the changes. Note that creating an <code>ExcelWriter</code> object with a file name that already exists will result in the contents of the existing file being erased.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>excel_writer : str or ExcelWriter object</code> </dt> <dd>
+<p class="first last">File path or existing ExcelWriter.</p> </dd> <dt>
+<code>sheet_name : str, default ‘Sheet1’</code> </dt> <dd>
+<p class="first last">Name of sheet which will contain DataFrame.</p> </dd> <dt>
+<code>na_rep : str, default ‘’</code> </dt> <dd>
+<p class="first last">Missing data representation.</p> </dd> <dt>
+<code>float_format : str, optional</code> </dt> <dd>
+<p class="first last">Format string for floating point numbers. For example <code>float_format="%.2f"</code> will format 0.1234 to 0.12.</p> </dd> <dt>
+<code>columns : sequence or list of str, optional</code> </dt> <dd>
+<p class="first last">Columns to write.</p> </dd> <dt>
+<code>header : bool or list of str, default True</code> </dt> <dd>
+<p class="first last">Write out the column names. If a list of string is given it is assumed to be aliases for the column names.</p> </dd> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">Write row names (index).</p> </dd> <dt>
+<code>index_label : str or sequence, optional</code> </dt> <dd>
+<p class="first last">Column label for index column(s) if desired. If not specified, and <code>header</code> and <code>index</code> are True, then the index names are used. A sequence should be given if the DataFrame uses MultiIndex.</p> </dd> <dt>
+<code>startrow : int, default 0</code> </dt> <dd>
+<p class="first last">Upper left cell row to dump data frame.</p> </dd> <dt>
+<code>startcol : int, default 0</code> </dt> <dd>
+<p class="first last">Upper left cell column to dump data frame.</p> </dd> <dt>
+<code>engine : str, optional</code> </dt> <dd>
+<p class="first last">Write engine to use, ‘openpyxl’ or ‘xlsxwriter’. You can also set this via the options <code>io.excel.xlsx.writer</code>, <code>io.excel.xls.writer</code>, and <code>io.excel.xlsm.writer</code>.</p> </dd> <dt>
+<code>merge_cells : bool, default True</code> </dt> <dd>
+<p class="first last">Write MultiIndex and Hierarchical Rows as merged cells.</p> </dd> <dt>
+<code>encoding : str, optional</code> </dt> <dd>
+<p class="first last">Encoding of the resulting excel file. Only necessary for xlwt, other writers support unicode natively.</p> </dd> <dt>
+<code>inf_rep : str, default ‘inf’</code> </dt> <dd>
+<p class="first last">Representation for infinity (there is no native representation for infinity in Excel).</p> </dd> <dt>
+<code>verbose : bool, default True</code> </dt> <dd>
+<p class="first last">Display more information in the error logs.</p> </dd> <dt>
+<code>freeze_panes : tuple of int (length 2), optional</code> </dt> <dd>
+<p class="first">Specifies the one-based bottommost row and rightmost column that is to be frozen.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0..</span></p> </div> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>to_csv</code> </dt> <dd>Write DataFrame to a comma-separated values (csv) file.</dd> <dt>
+<code>ExcelWriter</code> </dt> <dd>Class for writing DataFrame objects into excel sheets.</dd> <dt>
+<code>read_excel</code> </dt> <dd>Read an Excel file into a pandas DataFrame.</dd> <dt>
+<code>read_csv</code> </dt> <dd>Read a comma-separated values (csv) file into DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>For compatibility with <code>to_csv()</code>, to_excel serializes lists and dicts to strings before writing.</p> <p>Once a workbook has been saved it is not possible write further data without rewriting the whole workbook.</p> <h4 class="rubric">Examples</h4> <p>Create, write to and save a workbook:</p> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame([['a', 'b'], ['c', 'd']],
+...                    index=['row 1', 'row 2'],
+...                    columns=['col 1', 'col 2'])
+&gt;&gt;&gt; df1.to_excel("output.xlsx")  # doctest: +SKIP
+</pre> <p>To specify the sheet name:</p> <pre data-language="python">&gt;&gt;&gt; df1.to_excel("output.xlsx",
+...              sheet_name='Sheet_name_1')  # doctest: +SKIP
+</pre> <p>If you wish to write to more than one sheet in the workbook, it is necessary to specify an ExcelWriter object:</p> <pre data-language="python">&gt;&gt;&gt; df2 = df1.copy()
+&gt;&gt;&gt; with pd.ExcelWriter('output.xlsx') as writer:  # doctest: +SKIP
+...     df1.to_excel(writer, sheet_name='Sheet_name_1')
+...     df2.to_excel(writer, sheet_name='Sheet_name_2')
+</pre> <p>To set the library that is used to write the Excel file, you can pass the <code>engine</code> keyword (the default engine is automatically chosen depending on the file extension):</p> <pre data-language="python">&gt;&gt;&gt; df1.to_excel('output1.xlsx', engine='xlsxwriter')  # doctest: +SKIP
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.to_excel.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.to_excel.html</a>
+  </p>
+</div>

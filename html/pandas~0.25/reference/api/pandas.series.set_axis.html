@@ -1,0 +1,59 @@
+<h1 id="pandas-series-set-axis">pandas.Series.set_axis</h1> <dl class="method"> <dt id="pandas.Series.set_axis">
+<code>Series.set_axis(self, labels, axis=0, inplace=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L568-L688"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Assign desired index to given axis.</p> <p>Indexes for column or row labels can be changed by assigning a list-like or Index.</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.21.0: </span>The signature is now <code>labels</code> and <code>axis</code>, consistent with the rest of pandas API. Previously, the <code>axis</code> and <code>labels</code> arguments were respectively the first and second positional arguments.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>labels : list-like, Index</code> </dt> <dd>
+<p class="first last">The values for the new index.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">The axis to update. The value 0 identifies the rows, and 1 identifies the columns.</p> </dd> <dt>
+<code>inplace : bool, default None</code> </dt> <dd>
+<p class="first">Whether to return a new %(klass)s instance.</p> <div class="last admonition warning"> <p class="first admonition-title">Warning</p> <p class="last"><code>inplace=None</code> currently falls back to to True, but in a future version, will default to False. Use inplace=True explicitly rather than relying on the default.</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>renamed : %(klass)s or None</code> </dt> <dd>
+<p class="first last">An object of same type as caller if inplace=False, None otherwise.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.rename_axis.html#pandas.DataFrame.rename_axis" title="pandas.DataFrame.rename_axis"><code>DataFrame.rename_axis</code></a>
+</dt> <dd>Alter the name of the index or columns.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Series</strong></p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3])
+&gt;&gt;&gt; s
+0    1
+1    2
+2    3
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.set_axis(['a', 'b', 'c'], axis=0, inplace=False)
+a    1
+b    2
+c    3
+dtype: int64
+</pre> <p>The original object is not modified.</p> <pre data-language="python">&gt;&gt;&gt; s
+0    1
+1    2
+2    3
+dtype: int64
+</pre> <p><strong>DataFrame</strong></p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": [1, 2, 3], "B": [4, 5, 6]})
+</pre> <p>Change the row labels.</p> <pre data-language="python">&gt;&gt;&gt; df.set_axis(['a', 'b', 'c'], axis='index', inplace=False)
+   A  B
+a  1  4
+b  2  5
+c  3  6
+</pre> <p>Change the column labels.</p> <pre data-language="python">&gt;&gt;&gt; df.set_axis(['I', 'II'], axis='columns', inplace=False)
+   I  II
+0  1   4
+1  2   5
+2  3   6
+</pre> <p>Now, update the labels inplace.</p> <pre data-language="python">&gt;&gt;&gt; df.set_axis(['i', 'ii'], axis='columns', inplace=True)
+&gt;&gt;&gt; df
+   i  ii
+0  1   4
+1  2   5
+2  3   6
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.set_axis.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.set_axis.html</a>
+  </p>
+</div>

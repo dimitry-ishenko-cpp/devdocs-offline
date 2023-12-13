@@ -1,0 +1,81 @@
+<h1 id="id1">Developer</h1> <p id="developer">This section will focus on downstream applications of pandas.</p>  <h2 id="apache-parquet">Storing pandas DataFrame objects in Apache Parquet format</h2> <p id="storing-pandas-dataframe-objects-in-apache-parquet-format">The <a class="reference external" href="https://github.com/apache/parquet-format">Apache Parquet</a> format provides key-value metadata at the file and column level, stored in the footer of the Parquet file:</p> <pre data-language="shell">5: optional list&lt;KeyValue&gt; key_value_metadata
+</pre> <p>where <code>KeyValue</code> is</p> <pre data-language="shell">struct KeyValue {
+  1: required string key
+  2: optional string value
+}
+</pre> <p>So that a <code>pandas.DataFrame</code> can be faithfully reconstructed, we store a <code>pandas</code> metadata key in the <code>FileMetaData</code> with the value stored as :</p> <pre data-language="text">{'index_columns': ['__index_level_0__', '__index_level_1__', ...],
+ 'column_indexes': [&lt;ci0&gt;, &lt;ci1&gt;, ..., &lt;ciN&gt;],
+ 'columns': [&lt;c0&gt;, &lt;c1&gt;, ...],
+ 'pandas_version': $VERSION}
+</pre> <p>Here, <code>&lt;c0&gt;</code>/<code>&lt;ci0&gt;</code> and so forth are dictionaries containing the metadata for each column, <em>including the index columns</em>. This has JSON form:</p> <pre data-language="text">{'name': column_name,
+ 'field_name': parquet_column_name,
+ 'pandas_type': pandas_type,
+ 'numpy_type': numpy_type,
+ 'metadata': metadata}
+</pre> <div class="admonition note"> <p class="first admonition-title">Note</p> <p>Every index column is stored with a name matching the pattern <code>__index_level_\d+__</code> and its corresponding column information is can be found with the following code snippet.</p> <p>Following this naming convention isn’t strictly necessary, but strongly suggested for compatibility with Arrow.</p> <p>Here’s an example of how the index metadata is structured in pyarrow:</p>  <pre data-language="python"># assuming there's at least 3 levels in the index
+index_columns = metadata['index_columns']  # noqa: F821
+columns = metadata['columns']  # noqa: F821
+ith_index = 2
+assert index_columns[ith_index] == '__index_level_2__'
+ith_index_info = columns[-len(index_columns):][ith_index]
+ith_index_level_name = ith_index_info['name']
+</pre>  </div> <p><code>pandas_type</code> is the logical type of the column, and is one of:</p> <ul class="simple"> <li>Boolean: <code>'bool'</code>
+</li> <li>Integers: <code>'int8', 'int16', 'int32', 'int64', 'uint8', 'uint16', 'uint32', 'uint64'</code>
+</li> <li>Floats: <code>'float16', 'float32', 'float64'</code>
+</li> <li>Date and Time Types: <code>'datetime', 'datetimetz'</code>, <code>'timedelta'</code>
+</li> <li>String: <code>'unicode', 'bytes'</code>
+</li> <li>Categorical: <code>'categorical'</code>
+</li> <li>Other Python objects: <code>'object'</code>
+</li> </ul> <p>The <code>numpy_type</code> is the physical storage type of the column, which is the result of <code>str(dtype)</code> for the underlying NumPy array that holds the data. So for <code>datetimetz</code> this is <code>datetime64[ns]</code> and for categorical, it may be any of the supported integer categorical types.</p> <p>The <code>metadata</code> field is <code>None</code> except for:</p> <ul> <li>
+<code>datetimetz</code>: <code>{'timezone': zone, 'unit': 'ns'}</code>, e.g. <code>{'timezone',
+'America/New_York', 'unit': 'ns'}</code>. The <code>'unit'</code> is optional, and if omitted it is assumed to be nanoseconds. </li> <li>
+<p class="first"><code>categorical</code>: <code>{'num_categories': K, 'ordered': is_ordered, 'type': $TYPE}</code></p>  <ul class="simple"> <li>Here <code>'type'</code> is optional, and can be a nested pandas type specification here (but not categorical)</li> </ul>  </li> <li>
+<p class="first"><code>unicode</code>: <code>{'encoding': encoding}</code></p>  <ul class="simple"> <li>The encoding is optional, and if not present is UTF-8</li> </ul>  </li> <li>
+<p class="first"><code>object</code>: <code>{'encoding': encoding}</code>. Objects can be serialized and stored in <code>BYTE_ARRAY</code> Parquet columns. The encoding can be one of:</p>  <ul class="simple"> <li><code>'pickle'</code></li> <li><code>'msgpack'</code></li> <li><code>'bson'</code></li> <li><code>'json'</code></li> </ul>  </li> <li>
+<code>timedelta</code>: <code>{'unit': 'ns'}</code>. The <code>'unit'</code> is optional, and if omitted it is assumed to be nanoseconds. This metadata is optional altogether </li> </ul> <p>For types other than these, the <code>'metadata'</code> key can be omitted. Implementations can assume <code>None</code> if the key is not present.</p> <p>As an example of fully-formed metadata:</p> <pre data-language="text">{'index_columns': ['__index_level_0__'],
+ 'column_indexes': [
+     {'name': None,
+      'field_name': 'None',
+      'pandas_type': 'unicode',
+      'numpy_type': 'object',
+      'metadata': {'encoding': 'UTF-8'}}
+ ],
+ 'columns': [
+     {'name': 'c0',
+      'field_name': 'c0',
+      'pandas_type': 'int8',
+      'numpy_type': 'int8',
+      'metadata': None},
+     {'name': 'c1',
+      'field_name': 'c1',
+      'pandas_type': 'bytes',
+      'numpy_type': 'object',
+      'metadata': None},
+     {'name': 'c2',
+      'field_name': 'c2',
+      'pandas_type': 'categorical',
+      'numpy_type': 'int16',
+      'metadata': {'num_categories': 1000, 'ordered': False}},
+     {'name': 'c3',
+      'field_name': 'c3',
+      'pandas_type': 'datetimetz',
+      'numpy_type': 'datetime64[ns]',
+      'metadata': {'timezone': 'America/Los_Angeles'}},
+     {'name': 'c4',
+      'field_name': 'c4',
+      'pandas_type': 'object',
+      'numpy_type': 'object',
+      'metadata': {'encoding': 'pickle'}},
+     {'name': None,
+      'field_name': '__index_level_0__',
+      'pandas_type': 'int64',
+      'numpy_type': 'int64',
+      'metadata': None}
+ ],
+ 'pandas_version': '0.20.0'}
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/development/developer.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/development/developer.html</a>
+  </p>
+</div>

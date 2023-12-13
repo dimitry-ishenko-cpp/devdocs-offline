@@ -1,0 +1,25 @@
+<h1 id="pandas-series-argsort">pandas.Series.argsort</h1> <dl class="method"> <dt id="pandas.Series.argsort">
+<code>Series.argsort(self, axis=0, kind='quicksort', order=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L3363-L3399"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Override ndarray.argsort. Argsorts the value, omitting NA/null values, and places the result in the same locations as the non-NA values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : int</code> </dt> <dd>
+<p class="first last">Has no effect but is accepted for compatibility with numpy.</p> </dd> <dt>
+<code>kind : {‘mergesort’, ‘quicksort’, ‘heapsort’}, default ‘quicksort’</code> </dt> <dd>
+<p class="first last">Choice of sorting algorithm. See np.sort for more information. ‘mergesort’ is the only stable algorithm</p> </dd> <dt>
+<code>order : None</code> </dt> <dd>
+<p class="first last">Has no effect but is accepted for compatibility with numpy.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Positions of values within the sort order with -1 indicating nan values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.argsort.html#numpy.ndarray.argsort" title="(in NumPy v1.16)"><code>numpy.ndarray.argsort</code></a>
+</dt>  </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.argsort.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.argsort.html</a>
+  </p>
+</div>

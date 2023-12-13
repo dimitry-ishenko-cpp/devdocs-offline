@@ -1,0 +1,49 @@
+<h1 id="pandas-series-add-prefix">pandas.Series.add_prefix</h1> <dl class="method"> <dt id="pandas.Series.add_prefix">
+<code>Series.add_prefix(self, prefix)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L3993-L4050"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Prefix labels with string <code>prefix</code>.</p> <p>For Series, the row labels are prefixed. For DataFrame, the column labels are prefixed.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>prefix : str</code> </dt> <dd>
+<p class="first last">The string to add before each label.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">New Series or DataFrame with updated labels.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.add_suffix.html#pandas.Series.add_suffix" title="pandas.Series.add_suffix"><code>Series.add_suffix</code></a>
+</dt> <dd>Suffix row labels with string <code>suffix</code>.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.add_suffix.html#pandas.DataFrame.add_suffix" title="pandas.DataFrame.add_suffix"><code>DataFrame.add_suffix</code></a>
+</dt> <dd>Suffix column labels with string <code>suffix</code>.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4])
+&gt;&gt;&gt; s
+0    1
+1    2
+2    3
+3    4
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.add_prefix('item_')
+item_0    1
+item_1    2
+item_2    3
+item_3    4
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': [1, 2, 3, 4],  'B': [3, 4, 5, 6]})
+&gt;&gt;&gt; df
+   A  B
+0  1  3
+1  2  4
+2  3  5
+3  4  6
+</pre> <pre data-language="python">&gt;&gt;&gt; df.add_prefix('col_')
+     col_A  col_B
+0       1       3
+1       2       4
+2       3       5
+3       4       6
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.add_prefix.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.add_prefix.html</a>
+  </p>
+</div>

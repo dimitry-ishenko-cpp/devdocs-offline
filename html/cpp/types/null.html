@@ -1,0 +1,57 @@
+    <h1 id="firstHeading" class="firstHeading">NULL</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/clocale.html" title="cpp/header/clocale">&lt;clocale&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/cstddef.html" title="cpp/header/cstddef">&lt;cstddef&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/cstdio.html" title="cpp/header/cstdio">&lt;cstdio&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/cstdlib.html" title="cpp/header/cstdlib">&lt;cstdlib&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/cstring.html" title="cpp/header/cstring">&lt;cstring&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/ctime.html" title="cpp/header/ctime">&lt;ctime&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/cwchar.html" title="cpp/header/cwchar">&lt;cwchar&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">#define NULL /*implementation-defined*/</pre>
+</td> <td class="t-dcl-nopad"> </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>The macro <code>NULL</code> is an implementation-defined null pointer constant, which may be.</p>
+<table class="t-rev-begin"> <tr class="t-rev t-until-cxx11">
+<td> <p>an integral <a href="../language/constant_expression.html" title="cpp/language/constant expression">constant expression</a> <a href="../language/value_category.html" title="cpp/language/value category">rvalue</a> of integer type that evaluates to zero.</p>
+</td> <td><span class="t-mark-rev t-until-cxx11">(until C++11)</span></td>
+</tr> <tr class="t-rev t-since-cxx11">
+<td> <p>an <a href="../language/integer_literal.html" title="cpp/language/integer literal">integer literal</a> with value zero, or a prvalue of type <code><a href="nullptr_t.html" title="cpp/types/nullptr t">std::nullptr_t</a></code>.</p>
+</td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <p>A null pointer constant may be <a href="../language/implicit_cast.html" title="cpp/language/implicit cast" class="mw-redirect">implicitly converted</a> to any pointer and pointer to member type; such conversion results in the null pointer value of that type. If a null pointer constant has integer type, it may be converted to a prvalue of type <code><a href="nullptr_t.html" title="cpp/types/nullptr t">std::nullptr_t</a></code>.</p>
+<h3 id="Possible_implementation"> Possible implementation</h3> <table class="eq-fun-cpp-table"> <tr> <td> <div class="cpp source-cpp"><pre data-language="cpp">#define NULL 0
+//since C++11
+#define NULL nullptr</pre></div> </td>
+</tr>
+</table> <h3 id="Notes"> Notes</h3> <p>In C, the macro <code>NULL</code> may have the type <code>void*</code>, but that is not allowed in C++.</p>
+<p>Some implementations define <code>NULL</code> as the compiler extension <code>__null</code> with following properties:</p>
+<ul>
+<li> <code>__null</code> is equivalent to a zero-valued integer literal (and thus compatible with the C++ standard) and has the same size as <code>void*</code>, e.g. it is equivalent to <code>​0​</code>/<code>0L</code> on ILP32/LP64 platforms respectively; </li>
+<li> conversion from <code>__null</code> to an arithmetic type, including the type of <code>__null</code> itself, may trigger a warning. </li>
+</ul> <h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;cstddef&gt;
+#include &lt;type_traits&gt;
+#include &lt;iostream&gt;
+#include &lt;typeinfo&gt;
+class S;
+int main()
+{
+    int* p = NULL;
+    int* p2 = static_cast&lt;std::nullptr_t&gt;(NULL);
+    void(*f)(int) = NULL;
+    int S::*mp = NULL;
+    void(S::*mfp)(int) = NULL;
+    auto nullvar = NULL; // a warning may be triggered when compiling with gcc/clang
+ 
+    std::cout &lt;&lt; "The type of `nullvar` is " &lt;&lt; typeid(nullvar).name() &lt;&lt; '\n';
+ 
+    if constexpr(std::is_same_v&lt;decltype(NULL), std::nullptr_t&gt;) {
+        std::cout &lt;&lt; "NULL implemented with type std::nullptr_t\n";
+    } else {
+        std::cout &lt;&lt; "NULL implemented using an integral type\n";
+    }
+ 
+    [](...){}(p, p2, f, mp, mfp); //&lt; suppresses "unused variable" warnings
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">The type of `nullvar` is long
+NULL implemented using an integral type</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/903.html">CWG 903</a> </td> <td> C++11 </td> <td> constant expressions with zero value such as 1-1 were allowed </td> <td> only the literal zero is allowed </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <a href="../language/nullptr.html" title="cpp/language/nullptr"><code>nullptr</code></a><span class="t-mark-rev t-since-cxx11">(C++11)</span> </td> <td> the pointer literal which specifies a null pointer value </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="nullptr_t.html" title="cpp/types/nullptr t"> <span class="t-lines"><span>nullptr_t</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> the type of the null pointer literal <a href="../language/nullptr.html" title="cpp/language/nullptr"><code>nullptr</code></a> <br> <span class="t-mark">(typedef)</span>  </td>
+</tr> <tr class="t-dsc"> <td colspan="2"> <span><a href="https://en.cppreference.com/w/c/types/NULL" title="c/types/NULL">C documentation</a></span> for <code>NULL</code> </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/types/NULL" class="_attribution-link">https://en.cppreference.com/w/cpp/types/NULL</a>
+  </p>
+</div>

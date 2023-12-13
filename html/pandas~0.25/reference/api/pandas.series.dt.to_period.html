@@ -1,0 +1,37 @@
+<h1 id="pandas-series-dt-to-period">pandas.Series.dt.to_period</h1> <dl class="method"> <dt id="pandas.Series.dt.to_period">
+<code>Series.dt.to_period(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/accessor.py#L92-L93"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Cast to PeriodArray/Index at a particular frequency.</p> <p>Converts DatetimeArray/Index to PeriodArray/Index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>freq : str or Offset, optional</code> </dt> <dd>
+<p class="first last">One of pandas’ <a class="reference internal" href="../../user_guide/timeseries.html#timeseries-offset-aliases"><span class="std std-ref">offset strings</span></a> or an Offset object. Will be inferred by default.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>PeriodArray/Index</dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">When converting a DatetimeArray/Index with non-regular values, so that a frequency cannot be inferred.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.periodindex.html#pandas.PeriodIndex" title="pandas.PeriodIndex"><code>PeriodIndex</code></a>
+</dt> <dd>Immutable ndarray holding ordinal values.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.to_pydatetime.html#pandas.DatetimeIndex.to_pydatetime" title="pandas.DatetimeIndex.to_pydatetime"><code>DatetimeIndex.to_pydatetime</code></a>
+</dt> <dd>Return DatetimeIndex as object.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"y": [1, 2, 3]},
+...                   index=pd.to_datetime(["2000-03-31 00:00:00",
+...                                         "2000-05-31 00:00:00",
+...                                         "2000-08-31 00:00:00"]))
+&gt;&gt;&gt; df.index.to_period("M")
+PeriodIndex(['2000-03', '2000-05', '2000-08'],
+            dtype='period[M]', freq='M')
+</pre> <p>Infer the daily frequency</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.date_range("2017-01-01", periods=2)
+&gt;&gt;&gt; idx.to_period()
+PeriodIndex(['2017-01-01', '2017-01-02'],
+            dtype='period[D]', freq='D')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.to_period.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.to_period.html</a>
+  </p>
+</div>

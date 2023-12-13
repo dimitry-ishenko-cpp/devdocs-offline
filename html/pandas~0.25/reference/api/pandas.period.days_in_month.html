@@ -1,0 +1,25 @@
+<h1 id="pandas-period-days-in-month">pandas.Period.days_in_month</h1> <dl class="attribute"> <dt id="pandas.Period.days_in_month">
+<code>Period.days_in_month</code> </dt> <dd>
+<p>Get the total number of days in the month that this period falls on.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>int</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.period.daysinmonth.html#pandas.Period.daysinmonth" title="pandas.Period.daysinmonth"><code>Period.daysinmonth</code></a>
+</dt> <dd>Gets the number of days in the month.</dd> <dt>
+<code>DatetimeIndex.daysinmonth</code> </dt> <dd>Gets the number of days in the month.</dd> <dt>
+ <a class="reference external" href="https://docs.python.org/3/library/calendar.html#calendar.monthrange" title="(in Python v3.7)"><code>calendar.monthrange</code></a>
+</dt> <dd>Returns a tuple containing weekday (0-6 ~ Mon-Sun) and number of days (28-31).</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; p = pd.Period('2018-2-17')
+&gt;&gt;&gt; p.days_in_month
+28
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Period('2018-03-01').days_in_month
+31
+</pre> <p>Handles the leap year case as well:</p> <pre data-language="python">&gt;&gt;&gt; p = pd.Period('2016-2-17')
+&gt;&gt;&gt; p.days_in_month
+29
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.days_in_month.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.days_in_month.html</a>
+  </p>
+</div>

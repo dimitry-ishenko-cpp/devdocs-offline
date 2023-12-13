@@ -1,0 +1,41 @@
+<h1 id="pandas-series-dt-total-seconds">pandas.Series.dt.total_seconds</h1> <dl class="method"> <dt id="pandas.Series.dt.total_seconds">
+<code>Series.dt.total_seconds(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/accessor.py#L92-L93"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return total duration of each element expressed in seconds.</p> <p>This method is available directly on TimedeltaArray, TimedeltaIndex and on Series containing timedelta values under the <code>.dt</code> namespace.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>seconds : [ndarray, Float64Index, Series]</code> </dt> <dd>
+<p class="first last">When the calling object is a TimedeltaArray, the return type is ndarray. When the calling object is a TimedeltaIndex, the return type is a Float64Index. When the calling object is a Series, the return type is Series of type <code>float64</code> whose index is the same as the original.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta.total_seconds" title="(in Python v3.7)"><code>datetime.timedelta.total_seconds</code></a>
+</dt> <dd>Standard library version of this method.</dd> <dt>
+ <a class="reference internal" href="pandas.timedeltaindex.components.html#pandas.TimedeltaIndex.components" title="pandas.TimedeltaIndex.components"><code>TimedeltaIndex.components</code></a>
+</dt> <dd>Return a DataFrame with components of each Timedelta.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p><strong>Series</strong></p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(pd.to_timedelta(np.arange(5), unit='d'))
+&gt;&gt;&gt; s
+0   0 days
+1   1 days
+2   2 days
+3   3 days
+4   4 days
+dtype: timedelta64[ns]
+</pre> <pre data-language="python">&gt;&gt;&gt; s.dt.total_seconds()
+0         0.0
+1     86400.0
+2    172800.0
+3    259200.0
+4    345600.0
+dtype: float64
+</pre> <p><strong>TimedeltaIndex</strong></p> <pre data-language="python">&gt;&gt;&gt; idx = pd.to_timedelta(np.arange(5), unit='d')
+&gt;&gt;&gt; idx
+TimedeltaIndex(['0 days', '1 days', '2 days', '3 days', '4 days'],
+               dtype='timedelta64[ns]', freq=None)
+</pre> <pre data-language="python">&gt;&gt;&gt; idx.total_seconds()
+Float64Index([0.0, 86400.0, 172800.0, 259200.00000000003, 345600.0],
+             dtype='float64')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.total_seconds.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.total_seconds.html</a>
+  </p>
+</div>

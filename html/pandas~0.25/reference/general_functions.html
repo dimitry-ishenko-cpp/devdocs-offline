@@ -1,0 +1,68 @@
+<h1 id="api-general-functions">General functions</h1>  <h2 id="general-functions">Data manipulations</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.melt.html#pandas.melt" title="pandas.melt"><code>melt</code></a>(frame[, id_vars, value_vars, var_name, …])</td> <td>Unpivot a DataFrame from wide format to long format, optionally leaving identifier variables set.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.pivot.html#pandas.pivot" title="pandas.pivot"><code>pivot</code></a>(data[, index, columns, values])</td> <td>Return reshaped DataFrame organized by given index / column values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.pivot_table.html#pandas.pivot_table" title="pandas.pivot_table"><code>pivot_table</code></a>(data[, values, index, columns, …])</td> <td>Create a spreadsheet-style pivot table as a DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.crosstab.html#pandas.crosstab" title="pandas.crosstab"><code>crosstab</code></a>(index, columns[, values, rownames, …])</td> <td>Compute a simple cross tabulation of two (or more) factors.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.cut.html#pandas.cut" title="pandas.cut"><code>cut</code></a>(x, bins[, right, labels, retbins, …])</td> <td>Bin values into discrete intervals.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.qcut.html#pandas.qcut" title="pandas.qcut"><code>qcut</code></a>(x, q[, labels, retbins, precision, …])</td> <td>Quantile-based discretization function.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.merge.html#pandas.merge" title="pandas.merge"><code>merge</code></a>(left, right[, how, on, left_on, …])</td> <td>Merge DataFrame or named Series objects with a database-style join.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.merge_ordered.html#pandas.merge_ordered" title="pandas.merge_ordered"><code>merge_ordered</code></a>(left, right[, on, left_on, …])</td> <td>Perform merge with optional filling/interpolation designed for ordered data like time series data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.merge_asof.html#pandas.merge_asof" title="pandas.merge_asof"><code>merge_asof</code></a>(left, right[, on, left_on, …])</td> <td>Perform an asof merge.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.concat.html#pandas.concat" title="pandas.concat"><code>concat</code></a>(objs[, axis, join, join_axes, …])</td> <td>Concatenate pandas objects along a particular axis with optional set logic along the other axes.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.get_dummies.html#pandas.get_dummies" title="pandas.get_dummies"><code>get_dummies</code></a>(data[, prefix, prefix_sep, …])</td> <td>Convert categorical variable into dummy/indicator variables.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.factorize.html#pandas.factorize" title="pandas.factorize"><code>factorize</code></a>(values[, sort, order, …])</td> <td>Encode the object as an enumerated type or categorical variable.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.unique.html#pandas.unique" title="pandas.unique"><code>unique</code></a>(values)</td> <td>Hash table-based unique.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.wide_to_long.html#pandas.wide_to_long" title="pandas.wide_to_long"><code>wide_to_long</code></a>(df, stubnames, i, j[, sep, suffix])</td> <td>Wide panel to long format.</td> </tr>  </table>   <h2 id="top-level-missing-data">Top-level missing data</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.isna.html#pandas.isna" title="pandas.isna"><code>isna</code></a>(obj)</td> <td>Detect missing values for an array-like object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.isnull.html#pandas.isnull" title="pandas.isnull"><code>isnull</code></a>(obj)</td> <td>Detect missing values for an array-like object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.notna.html#pandas.notna" title="pandas.notna"><code>notna</code></a>(obj)</td> <td>Detect non-missing values for an array-like object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.notnull.html#pandas.notnull" title="pandas.notnull"><code>notnull</code></a>(obj)</td> <td>Detect non-missing values for an array-like object.</td> </tr>  </table>   <h2 id="top-level-conversions">Top-level conversions</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code>to_numeric</code></a>(arg[, errors, downcast])</td> <td>Convert argument to a numeric type.</td> </tr>  </table>   <h2 id="top-level-dealing-with-datetimelike">Top-level dealing with datetimelike</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code>to_datetime</code></a>(arg[, errors, dayfirst, …])</td> <td>Convert argument to datetime.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.to_timedelta.html#pandas.to_timedelta" title="pandas.to_timedelta"><code>to_timedelta</code></a>(arg[, unit, box, errors])</td> <td>Convert argument to timedelta.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.date_range.html#pandas.date_range" title="pandas.date_range"><code>date_range</code></a>([start, end, periods, freq, tz, …])</td> <td>Return a fixed frequency DatetimeIndex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.bdate_range.html#pandas.bdate_range" title="pandas.bdate_range"><code>bdate_range</code></a>([start, end, periods, freq, tz, …])</td> <td>Return a fixed frequency DatetimeIndex, with business day as the default frequency</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.period_range.html#pandas.period_range" title="pandas.period_range"><code>period_range</code></a>([start, end, periods, freq, name])</td> <td>Return a fixed frequency PeriodIndex, with day (calendar) as the default frequency</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.timedelta_range.html#pandas.timedelta_range" title="pandas.timedelta_range"><code>timedelta_range</code></a>([start, end, periods, freq, …])</td> <td>Return a fixed frequency TimedeltaIndex, with day as the default frequency</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.infer_freq.html#pandas.infer_freq" title="pandas.infer_freq"><code>infer_freq</code></a>(index[, warn])</td> <td>Infer the most likely frequency given the input index.</td> </tr>  </table>   <h2 id="top-level-dealing-with-intervals">Top-level dealing with intervals</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.interval_range.html#pandas.interval_range" title="pandas.interval_range"><code>interval_range</code></a>([start, end, periods, freq, …])</td> <td>Return a fixed frequency IntervalIndex</td> </tr>  </table>   <h2 id="top-level-evaluation">Top-level evaluation</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval</code></a>(expr[, parser, engine, truediv, …])</td> <td>Evaluate a Python expression as a string using various backends.</td> </tr>  </table>   <h2 id="hashing">Hashing</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.util.hash_array.html#pandas.util.hash_array" title="pandas.util.hash_array"><code>util.hash_array</code></a>(vals[, encoding, hash_key, …])</td> <td>Given a 1d array, return an array of deterministic integers.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.util.hash_pandas_object.html#pandas.util.hash_pandas_object" title="pandas.util.hash_pandas_object"><code>util.hash_pandas_object</code></a>(obj[, index, …])</td> <td>Return a data hash of the Index/Series/DataFrame</td> </tr>  </table>   <h2 id="testing">Testing</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.test.html#pandas.test" title="pandas.test"><code>test</code></a>([extra_args])</td> <td></td> </tr>  </table><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/general_functions.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/general_functions.html</a>
+  </p>
+</div>

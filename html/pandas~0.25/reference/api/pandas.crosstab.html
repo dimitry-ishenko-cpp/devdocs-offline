@@ -1,0 +1,67 @@
+<h1 id="pandas-crosstab">pandas.crosstab</h1> <dl class="function"> <dt id="pandas.crosstab">
+<code>pandas.crosstab(index, columns, values=None, rownames=None, colnames=None, aggfunc=None, margins=False, margins_name='All', dropna=True, normalize=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/reshape/pivot.py#L433-L586"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute a simple cross tabulation of two (or more) factors. By default computes a frequency table of the factors unless an array of values and an aggregation function are passed.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : array-like, Series, or list of arrays/Series</code> </dt> <dd>
+<p class="first last">Values to group by in the rows.</p> </dd> <dt>
+<code>columns : array-like, Series, or list of arrays/Series</code> </dt> <dd>
+<p class="first last">Values to group by in the columns.</p> </dd> <dt>
+<code>values : array-like, optional</code> </dt> <dd>
+<p class="first last">Array of values to aggregate according to the factors. Requires <code>aggfunc</code> be specified.</p> </dd> <dt>
+<code>rownames : sequence, default None</code> </dt> <dd>
+<p class="first last">If passed, must match number of row arrays passed.</p> </dd> <dt>
+<code>colnames : sequence, default None</code> </dt> <dd>
+<p class="first last">If passed, must match number of column arrays passed.</p> </dd> <dt>
+<code>aggfunc : function, optional</code> </dt> <dd>
+<p class="first last">If specified, requires <code>values</code> be specified as well.</p> </dd> <dt>
+<code>margins : bool, default False</code> </dt> <dd>
+<p class="first last">Add row/column margins (subtotals).</p> </dd> <dt>
+<code>margins_name : str, default ‘All’</code> </dt> <dd>
+<p class="first">Name of the row/column that will contain the totals when margins is True.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> <dt>
+<code>dropna : bool, default True</code> </dt> <dd>
+<p class="first last">Do not include columns whose entries are all NaN.</p> </dd> <dt>
+<code>normalize : bool, {‘all’, ‘index’, ‘columns’}, or {0,1}, default False</code> </dt> <dd>
+<p class="first">Normalize by dividing all values by the sum of values.</p> <ul class="simple"> <li>If passed ‘all’ or <code>True</code>, will normalize over all values.</li> <li>If passed ‘index’ will normalize over each row.</li> <li>If passed ‘columns’ will normalize over each column.</li> <li>If margins is <code>True</code>, will also normalize margin values.</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.1.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Cross tabulation of the data.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.pivot.html#pandas.DataFrame.pivot" title="pandas.DataFrame.pivot"><code>DataFrame.pivot</code></a>
+</dt> <dd>Reshape data based on column values.</dd> <dt>
+ <a class="reference internal" href="pandas.pivot_table.html#pandas.pivot_table" title="pandas.pivot_table"><code>pivot_table</code></a>
+</dt> <dd>Create a pivot table as a DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Any Series passed will have their name attributes used unless row or column names for the cross-tabulation are specified.</p> <p>Any input passed containing Categorical data will have <strong>all</strong> of its categories included in the cross-tabulation, even if the actual data does not contain any instances of a particular category.</p> <p>In the event that there aren’t overlapping indexes an empty DataFrame will be returned.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; a = np.array(["foo", "foo", "foo", "foo", "bar", "bar",
+...               "bar", "bar", "foo", "foo", "foo"], dtype=object)
+&gt;&gt;&gt; b = np.array(["one", "one", "one", "two", "one", "one",
+...               "one", "two", "two", "two", "one"], dtype=object)
+&gt;&gt;&gt; c = np.array(["dull", "dull", "shiny", "dull", "dull", "shiny",
+...               "shiny", "dull", "shiny", "shiny", "shiny"],
+...              dtype=object)
+&gt;&gt;&gt; pd.crosstab(a, [b, c], rownames=['a'], colnames=['b', 'c'])
+b   one        two
+c   dull shiny dull shiny
+a
+bar    1     2    1     0
+foo    2     2    1     2
+</pre> <p>Here ‘c’ and ‘f’ are not represented in the data and will not be shown in the output because dropna is True by default. Set dropna=False to preserve categories with no data.</p> <pre data-language="python">&gt;&gt;&gt; foo = pd.Categorical(['a', 'b'], categories=['a', 'b', 'c'])
+&gt;&gt;&gt; bar = pd.Categorical(['d', 'e'], categories=['d', 'e', 'f'])
+&gt;&gt;&gt; pd.crosstab(foo, bar)
+col_0  d  e
+row_0
+a      1  0
+b      0  1
+&gt;&gt;&gt; pd.crosstab(foo, bar, dropna=False)
+col_0  d  e  f
+row_0
+a      1  0  0
+b      0  1  0
+c      0  0  0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.crosstab.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.crosstab.html</a>
+  </p>
+</div>

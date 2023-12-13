@@ -1,0 +1,66 @@
+<h1 id="pandas-dataframe-to-json">pandas.DataFrame.to_json</h1> <dl class="method"> <dt id="pandas.DataFrame.to_json">
+<code>DataFrame.to_json(self, path_or_buf=None, orient=None, date_format=None, double_precision=10, force_ascii=True, date_unit='ms', default_handler=None, lines=False, compression='infer', index=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L2260-L2426"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert the object to a JSON string.</p> <p>Note NaN’s and None will be converted to null and datetime objects will be converted to UNIX timestamps.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>path_or_buf : string or file handle, optional</code> </dt> <dd>
+<p class="first last">File path or object. If not specified, the result is returned as a string.</p> </dd> <dt>
+<code>orient : string</code> </dt> <dd>
+<p class="first">Indication of expected JSON string format.</p> <ul class="last"> <li>
+<p class="first">Series</p> <ul class="simple"> <li>default is ‘index’</li> <li>allowed values are: {‘split’,’records’,’index’,’table’}</li> </ul> </li> <li>
+<p class="first">DataFrame</p> <ul class="simple"> <li>default is ‘columns’</li> <li>allowed values are: {‘split’,’records’,’index’,’columns’,’values’,’table’}</li> </ul> </li> <li>
+<p class="first">The format of the JSON string</p> <ul> <li>‘split’ : dict like {‘index’ -&gt; [index], ‘columns’ -&gt; [columns], ‘data’ -&gt; [values]} </li> <li>‘records’ : list like [{column -&gt; value}, … , {column -&gt; value}] </li> <li>‘index’ : dict like {index -&gt; {column -&gt; value}} </li> <li>‘columns’ : dict like {column -&gt; {index -&gt; value}} </li> <li>‘values’ : just the values array </li> <li>
+<p class="first">‘table’ : dict like {‘schema’: {schema}, ‘data’: {data}} describing the data, and the data component is like <code>orient='records'</code>.</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.20.0.</span></p> </div> </li> </ul> </li> </ul> </dd> <dt>
+<code>date_format : {None, ‘epoch’, ‘iso’}</code> </dt> <dd>
+<p class="first last">Type of date conversion. ‘epoch’ = epoch milliseconds, ‘iso’ = ISO8601. The default depends on the <code>orient</code>. For <code>orient='table'</code>, the default is ‘iso’. For all other orients, the default is ‘epoch’.</p> </dd> <dt>
+<code>double_precision : int, default 10</code> </dt> <dd>
+<p class="first last">The number of decimal places to use when encoding floating point values.</p> </dd> <dt>
+<code>force_ascii : bool, default True</code> </dt> <dd>
+<p class="first last">Force encoded string to be ASCII.</p> </dd> <dt>
+<code>date_unit : string, default ‘ms’ (milliseconds)</code> </dt> <dd>
+<p class="first last">The time unit to encode to, governs timestamp and ISO8601 precision. One of ‘s’, ‘ms’, ‘us’, ‘ns’ for second, millisecond, microsecond, and nanosecond respectively.</p> </dd> <dt>
+<code>default_handler : callable, default None</code> </dt> <dd>
+<p class="first last">Handler to call if object cannot otherwise be converted to a suitable format for JSON. Should receive a single argument which is the object to convert and return a serialisable object.</p> </dd> <dt>
+<code>lines : bool, default False</code> </dt> <dd>
+<p class="first">If ‘orient’ is ‘records’ write out line delimited json format. Will throw ValueError if incorrect ‘orient’ since others are not list like.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> <dt>
+<code>compression : {‘infer’, ‘gzip’, ‘bz2’, ‘zip’, ‘xz’, None}</code> </dt> <dd>
+<p class="first">A string representing the compression to use in the output file, only used when the first argument is a filename. By default, the compression is inferred from the filename.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0: </span>‘infer’ option added and set to default</p> </div> </dd> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first">Whether to include the index values in the JSON string. Not including the index (<code>index=False</code>) is only supported when orient is ‘split’ or ‘table’.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>None or str</dt> <dd>
+<p class="first last">If path_or_buf is None, returns the resulting json format as a string. Otherwise returns None.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_json.html#pandas.read_json" title="pandas.read_json"><code>read_json</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([['a', 'b'], ['c', 'd']],
+...                   index=['row 1', 'row 2'],
+...                   columns=['col 1', 'col 2'])
+&gt;&gt;&gt; df.to_json(orient='split')
+'{"columns":["col 1","col 2"],
+  "index":["row 1","row 2"],
+  "data":[["a","b"],["c","d"]]}'
+</pre> <p>Encoding/decoding a Dataframe using <code>'records'</code> formatted JSON. Note that index labels are not preserved with this encoding.</p> <pre data-language="python">&gt;&gt;&gt; df.to_json(orient='records')
+'[{"col 1":"a","col 2":"b"},{"col 1":"c","col 2":"d"}]'
+</pre> <p>Encoding/decoding a Dataframe using <code>'index'</code> formatted JSON:</p> <pre data-language="python">&gt;&gt;&gt; df.to_json(orient='index')
+'{"row 1":{"col 1":"a","col 2":"b"},"row 2":{"col 1":"c","col 2":"d"}}'
+</pre> <p>Encoding/decoding a Dataframe using <code>'columns'</code> formatted JSON:</p> <pre data-language="python">&gt;&gt;&gt; df.to_json(orient='columns')
+'{"col 1":{"row 1":"a","row 2":"c"},"col 2":{"row 1":"b","row 2":"d"}}'
+</pre> <p>Encoding/decoding a Dataframe using <code>'values'</code> formatted JSON:</p> <pre data-language="python">&gt;&gt;&gt; df.to_json(orient='values')
+'[["a","b"],["c","d"]]'
+</pre> <p>Encoding with Table Schema</p> <pre data-language="python">&gt;&gt;&gt; df.to_json(orient='table')
+'{"schema": {"fields": [{"name": "index", "type": "string"},
+                        {"name": "col 1", "type": "string"},
+                        {"name": "col 2", "type": "string"}],
+             "primaryKey": "index",
+             "pandas_version": "0.20.0"},
+  "data": [{"index": "row 1", "col 1": "a", "col 2": "b"},
+           {"index": "row 2", "col 1": "c", "col 2": "d"}]}'
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_json.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_json.html</a>
+  </p>
+</div>

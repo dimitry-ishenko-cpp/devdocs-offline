@@ -1,0 +1,220 @@
+<header><h1>Array.prototype.filter()</h1></header><div class="section-content"><p>The <code>filter()</code> method of <a href="../array.html"><code>Array</code></a> instances creates a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy">shallow copy</a> of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.</p></div>
+<section aria-labelledby="try_it"><h2 id="try_it">Try it</h2>
+<div class="section-content"><iframe class="interactive is-shorter-height" height="200" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-filter.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe></div></section><section aria-labelledby="syntax"><h2 id="syntax">Syntax</h2>
+<div class="section-content"><div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="n5r0+mEIz0C/iddqWJy3azgumee7bgZjgJpLRiNp5MU=" data-language="js"><span class="token function">filter</span><span class="token punctuation">(</span>callbackFn<span class="token punctuation">)</span>
+<span class="token function">filter</span><span class="token punctuation">(</span>callbackFn<span class="token punctuation">,</span> thisArg<span class="token punctuation">)</span>
+</pre>
+</div></div></section><section aria-labelledby="parameters"><h3 id="parameters">Parameters</h3>
+<div class="section-content"><dl> <dt id="callbackfn"><a href="#callbackfn"><code>callbackFn</code></a></dt> <dd> <p>A function to execute for each element in the array. It should return a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy">truthy</a> value to keep the element in the resulting array, and a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">falsy</a> value otherwise. The function is called with the following arguments:</p> <dl> <dt id="element"><a href="#element"><code>element</code></a></dt> <dd> <p>The current element being processed in the array.</p> </dd> <dt id="index"><a href="#index"><code>index</code></a></dt> <dd> <p>The index of the current element being processed in the array.</p> </dd> <dt id="array"><a href="#array"><code>array</code></a></dt> <dd> <p>The array <code>filter()</code> was called upon.</p> </dd> </dl> </dd> <dt id="thisarg">
+<a href="#thisarg"><code>thisArg</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>A value to use as <code>this</code> when executing <code>callbackFn</code>. See <a href="../array.html#iterative_methods">iterative methods</a>.</p> </dd> </dl></div></section><section aria-labelledby="return_value"><h3 id="return_value">Return value</h3>
+<div class="section-content"><p>A <a href="https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy">shallow copy</a> of the given array containing just the elements that pass the test. If no elements pass the test, an empty array is returned.</p></div></section><section aria-labelledby="description"><h2 id="description">Description</h2>
+<div class="section-content">
+<p>The <code>filter()</code> method is an <a href="../array.html#iterative_methods">iterative method</a>. It calls a provided <code>callbackFn</code> function once for each element in an array, and constructs a new array of all the values for which <code>callbackFn</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy">truthy</a> value. Array elements which do not pass the <code>callbackFn</code> test are not included in the new array.</p> <p><code>callbackFn</code> is invoked only for array indexes which have assigned values. It is not invoked for empty slots in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#sparse_arrays">sparse arrays</a>.</p> <p>The <code>filter()</code> method is a <a href="../array.html#copying_methods_and_mutating_methods">copying method</a>. It does not alter <code>this</code> but instead returns a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Shallow_copy">shallow copy</a> that contains the same elements as the ones from the original array (with some filtered out). However, the function provided as <code>callbackFn</code> can mutate the array. Note, however, that the length of the array is saved <em>before</em> the first invocation of <code>callbackFn</code>. Therefore:</p> <ul> <li>
+<code>callbackFn</code> will not visit any elements added beyond the array's initial length when the call to <code>filter()</code> began.</li> <li>Changes to already-visited indexes do not cause <code>callbackFn</code> to be invoked on them again.</li> <li>If an existing, yet-unvisited element of the array is changed by <code>callbackFn</code>, its value passed to the <code>callbackFn</code> will be the value at the time that element gets visited. <a href="../../operators/delete.html">Deleted</a> elements are not visited.</li> </ul> <div class="notecard warning" id="sect1"> <p><strong>Warning:</strong> Concurrent modifications of the kind described above frequently lead to hard-to-understand code and are generally to be avoided (except in special cases).</p> </div> <p>The <code>filter()</code> method is <a href="../array.html#generic_array_methods">generic</a>. It only expects the <code>this</code> value to have a <code>length</code> property and integer-keyed properties.</p>
+</div></section><section aria-labelledby="examples"><h2 id="examples">Examples</h2>
+</section><section aria-labelledby="filtering_out_all_small_values"><h3 id="filtering_out_all_small_values">Filtering out all small values</h3>
+<div class="section-content">
+<p>The following example uses <code>filter()</code> to create a filtered array that has all elements with values less than 10 removed.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="Z+RQqnd9sqfYdL5jnC22QsGpnXm3aGOMdhq5IPYLkRY=" data-language="js"><span class="token keyword">function</span> <span class="token function">isBigEnough</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> value <span class="token operator">&gt;=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> filtered <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>isBigEnough<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// filtered is [12, 130, 44]</span>
+</pre>
+</div>
+</div></section><section aria-labelledby="find_all_prime_numbers_in_an_array"><h3 id="find_all_prime_numbers_in_an_array">Find all prime numbers in an array</h3>
+<div class="section-content">
+<p>The following example returns all prime numbers in the array:</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="KCvPsS6sCvZkVhzhPXRCPDvipcfJDohd1h1VCtmHfow=" data-language="js"><span class="token keyword">const</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">isPrime</span><span class="token punctuation">(</span><span class="token parameter">num</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> num <span class="token operator">&gt;</span> i<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">%</span> i <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> num <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>array<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>isPrime<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [2, 3, 5, 7, 11, 13]</span>
+</pre>
+</div>
+</div></section><section aria-labelledby="filtering_invalid_entries_from_json"><h3 id="filtering_invalid_entries_from_json">Filtering invalid entries from JSON</h3>
+<div class="section-content">
+<p>The following example uses <code>filter()</code> to create a filtered JSON of all elements with non-zero, numeric <code>id</code>.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="Jm12s19wsqHl/6efeN4zf6rXz8mHIzBnkZJ59qWzHJk=" data-language="js"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">15</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">12.2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token number">NaN</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token literal-property property">id</span><span class="token operator">:</span> <span class="token string">"undefined"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> invalidEntries <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">filterByID</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Number<span class="token punctuation">.</span><span class="token function">isFinite</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> item<span class="token punctuation">.</span>id <span class="token operator">!==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  invalidEntries<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> arrByID <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>filterByID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Filtered Array\n"</span><span class="token punctuation">,</span> arrByID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Filtered Array</span>
+<span class="token comment">// [{ id: 15 }, { id: -1 }, { id: 3 }, { id: 12.2 }]</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Number of Invalid Entries ="</span><span class="token punctuation">,</span> invalidEntries<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Number of Invalid Entries = 5</span>
+</pre>
+</div>
+</div></section><section aria-labelledby="searching_in_array"><h3 id="searching_in_array">Searching in array</h3>
+<div class="section-content">
+<p>Following example uses <code>filter()</code> to filter array content based on search criteria.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="mahwp/H41truBw8Bh+oJjRrS5RSXpiAWcWC2kLvFsYY=" data-language="js"><span class="token keyword">const</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"apple"</span><span class="token punctuation">,</span> <span class="token string">"banana"</span><span class="token punctuation">,</span> <span class="token string">"grapes"</span><span class="token punctuation">,</span> <span class="token string">"mango"</span><span class="token punctuation">,</span> <span class="token string">"orange"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Filter array items based on search criteria (query)
+ */</span>
+<span class="token keyword">function</span> <span class="token function">filterItems</span><span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> query</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arr<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">el</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> el<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>query<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterItems</span><span class="token punctuation">(</span>fruits<span class="token punctuation">,</span> <span class="token string">"ap"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['apple', 'grapes']</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">filterItems</span><span class="token punctuation">(</span>fruits<span class="token punctuation">,</span> <span class="token string">"an"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['banana', 'mango', 'orange']</span>
+</pre>
+</div>
+</div></section><section aria-labelledby="using_filter_on_sparse_arrays"><h3 id="using_filter_on_sparse_arrays">Using filter() on sparse arrays</h3>
+<div class="section-content">
+<p><code>filter()</code> will skip empty slots.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="e7dTGU8fx1HD9ZH56ROwKQFhyAJN0yOokhPjapV5VqI=" data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> x <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [undefined]</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> x <span class="token operator">!==</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [1, undefined]</span>
+</pre>
+</div>
+</div></section><section aria-labelledby="calling_filter_on_non-array_objects"><h3 id="calling_filter_on_non-array_objects">Calling filter() on non-array objects</h3>
+<div class="section-content">
+<p>The <code>filter()</code> method reads the <code>length</code> property of <code>this</code> and then accesses each property whose key is a nonnegative integer less than <code>length</code>.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="Dy7CrG+hmRQ+3pbXvCLHlVByrR+1tt3G4ZCt2iR5IkI=" data-language="js"><span class="token keyword">const</span> arrayLike <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token literal-property property">length</span><span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+  <span class="token number">0</span><span class="token operator">:</span> <span class="token string">"a"</span><span class="token punctuation">,</span>
+  <span class="token number">1</span><span class="token operator">:</span> <span class="token string">"b"</span><span class="token punctuation">,</span>
+  <span class="token number">2</span><span class="token operator">:</span> <span class="token string">"c"</span><span class="token punctuation">,</span>
+  <span class="token number">3</span><span class="token operator">:</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token comment">// ignored by filter() since length is 3</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arrayLike<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> x <span class="token operator">&lt;=</span> <span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [ 'a', 'b' ]</span>
+</pre>
+</div>
+</div></section><section aria-labelledby="affecting_initial_array_modifying_appending_and_deleting"><h3 id="affecting_initial_array_modifying_appending_and_deleting">Affecting Initial Array (modifying, appending and deleting)</h3>
+<div class="section-content">
+<p>The following example tests the behavior of the <code>filter</code> method when the array is modified.</p> <div class="code-example">
+<p class="example-header"><span class="language-name">js</span></p>
+<pre data-signature="kWyaw0Rk41oMzTnmy7r+/achdOvarDH3PrCW0Bg3s0w=" data-language="js"><span class="token comment">// Modifying each word</span>
+<span class="token keyword">let</span> words <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"spray"</span><span class="token punctuation">,</span> <span class="token string">"limit"</span><span class="token punctuation">,</span> <span class="token string">"exuberant"</span><span class="token punctuation">,</span> <span class="token string">"destruction"</span><span class="token punctuation">,</span> <span class="token string">"elite"</span><span class="token punctuation">,</span> <span class="token string">"present"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> modifiedWords <span class="token operator">=</span> words<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">word<span class="token punctuation">,</span> index<span class="token punctuation">,</span> arr</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  arr<span class="token punctuation">[</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+=</span> <span class="token string">" extra"</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> word<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>modifiedWords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Notice there are three words below length 6, but since they've been modified one is returned</span>
+<span class="token comment">// ["spray"]</span>
+
+<span class="token comment">// Appending new words</span>
+words <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"spray"</span><span class="token punctuation">,</span> <span class="token string">"limit"</span><span class="token punctuation">,</span> <span class="token string">"exuberant"</span><span class="token punctuation">,</span> <span class="token string">"destruction"</span><span class="token punctuation">,</span> <span class="token string">"elite"</span><span class="token punctuation">,</span> <span class="token string">"present"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> appendedWords <span class="token operator">=</span> words<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">word<span class="token punctuation">,</span> index<span class="token punctuation">,</span> arr</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  arr<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token string">"new"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> word<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>appendedWords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Only three fits the condition even though the `words` itself now has a lot more words with character length less than 6</span>
+<span class="token comment">// ["spray" ,"limit" ,"elite"]</span>
+
+<span class="token comment">// Deleting words</span>
+words <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"spray"</span><span class="token punctuation">,</span> <span class="token string">"limit"</span><span class="token punctuation">,</span> <span class="token string">"exuberant"</span><span class="token punctuation">,</span> <span class="token string">"destruction"</span><span class="token punctuation">,</span> <span class="token string">"elite"</span><span class="token punctuation">,</span> <span class="token string">"present"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> deleteWords <span class="token operator">=</span> words<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">word<span class="token punctuation">,</span> index<span class="token punctuation">,</span> arr</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  arr<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> word<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>deleteWords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Notice 'elite' is not even obtained as it's been popped off 'words' before filter can even get there</span>
+<span class="token comment">// ["spray" ,"limit"]</span>
+</pre>
+</div>
+</div></section><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.prototype.filter">ECMAScript Language Specification <br><small># sec-array.prototype.filter</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="_table"><table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+<th colspan="2">Server</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+<th>Deno</th>
+<th>Node.js</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>filter</code></th>
+<td class="bc-supports-yes">1</td>
+<td class="bc-supports-yes">12</td>
+<td class="bc-supports-yes">1.5</td>
+<td class="bc-supports-yes">9</td>
+<td class="bc-supports-yes">9.5</td>
+<td class="bc-supports-yes">3</td>
+<td class="bc-supports-yes">≤37</td>
+<td class="bc-supports-yes">18</td>
+<td class="bc-supports-yes">4</td>
+<td class="bc-supports-yes">10.1</td>
+<td class="bc-supports-yes">1</td>
+<td class="bc-supports-yes">1.0</td>
+<td class="bc-supports-yes">1.0</td>
+<td class="bc-supports-yes">0.10.0</td>
+</tr></tbody>
+</table></div>
+<section aria-labelledby="see_also"><h2 id="see_also">See also</h2>
+<div class="section-content"><ul> <li><a href="https://github.com/zloirock/core-js#ecmascript-array" target="_blank">Polyfill of <code>Array.prototype.filter</code> in <code>core-js</code></a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections">Indexed collections</a> guide</li> <li><a href="../array.html"><code>Array</code></a></li> <li><a href="foreach.html"><code>Array.prototype.forEach()</code></a></li> <li><a href="every.html"><code>Array.prototype.every()</code></a></li> <li><a href="map.html"><code>Array.prototype.map()</code></a></li> <li><a href="some.html"><code>Array.prototype.some()</code></a></li> <li><a href="reduce.html"><code>Array.prototype.reduce()</code></a></li> <li><a href="../typedarray/filter.html"><code>TypedArray.prototype.filter()</code></a></li> </ul></div></section><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2023 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter</a>
+  </p>
+</div>

@@ -1,0 +1,46 @@
+<h1 id="pandas-series-combine">pandas.Series.combine</h1> <dl class="method"> <dt id="pandas.Series.combine">
+<code>Series.combine(self, other, func, fill_value=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L2820-L2922"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Combine the Series with a Series or scalar according to <code>func</code>.</p> <p>Combine the Series and <code>other</code> using <code>func</code> to perform elementwise selection for combined Series. <code>fill_value</code> is assumed when value is missing at some index from one of the two objects being combined.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : Series or scalar</code> </dt> <dd>
+<p class="first last">The value(s) to be combined with the <code>Series</code>.</p> </dd> <dt>
+<code>func : function</code> </dt> <dd>
+<p class="first last">Function that takes two scalars as inputs and returns an element.</p> </dd> <dt>
+<code>fill_value : scalar, optional</code> </dt> <dd>
+<p class="first last">The value to assume when an index is missing from one Series or the other. The default specifies to use the appropriate NaN value for the underlying dtype of the Series.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">The result of combining the Series with the other object.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.combine_first.html#pandas.Series.combine_first" title="pandas.Series.combine_first"><code>Series.combine_first</code></a>
+</dt> <dd>Combine Series values, choosing the calling Series’ values first.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Consider 2 Datasets <code>s1</code> and <code>s2</code> containing highest clocked speeds of different birds.</p> <pre data-language="python">&gt;&gt;&gt; s1 = pd.Series({'falcon': 330.0, 'eagle': 160.0})
+&gt;&gt;&gt; s1
+falcon    330.0
+eagle     160.0
+dtype: float64
+&gt;&gt;&gt; s2 = pd.Series({'falcon': 345.0, 'eagle': 200.0, 'duck': 30.0})
+&gt;&gt;&gt; s2
+falcon    345.0
+eagle     200.0
+duck       30.0
+dtype: float64
+</pre> <p>Now, to combine the two datasets and view the highest speeds of the birds across the two datasets</p> <pre data-language="python">&gt;&gt;&gt; s1.combine(s2, max)
+duck        NaN
+eagle     200.0
+falcon    345.0
+dtype: float64
+</pre> <p>In the previous example, the resulting value for duck is missing, because the maximum of a NaN and a float is a NaN. So, in the example, we set <code>fill_value=0</code>, so the maximum value returned will be the value from some dataset.</p> <pre data-language="python">&gt;&gt;&gt; s1.combine(s2, max, fill_value=0)
+duck       30.0
+eagle     200.0
+falcon    345.0
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.combine.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.combine.html</a>
+  </p>
+</div>

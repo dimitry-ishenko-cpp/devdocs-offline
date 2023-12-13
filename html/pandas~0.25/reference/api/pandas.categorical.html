@@ -1,0 +1,50 @@
+<h1 id="pandas-categorical">pandas.Categorical</h1> <dl class="class"> <dt id="pandas.Categorical">
+<code>class pandas.Categorical(values, categories=None, ordered=None, dtype=None, fastpath=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/categorical.py#L237-L2543"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Represent a categorical variable in classic R / S-plus fashion.</p> <p><code>Categoricals</code> can only take on only a limited, and usually fixed, number of possible values (<code>categories</code>). In contrast to statistical categorical variables, a <code>Categorical</code> might have an order, but numerical operations (additions, divisions, …) are not possible.</p> <p>All values of the <code>Categorical</code> are either in <code>categories</code> or <code>np.nan</code>. Assigning values outside of <code>categories</code> will raise a <code>ValueError</code>. Order is defined by the order of the <code>categories</code>, not lexical order of the values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>values : list-like</code> </dt> <dd>
+<p class="first last">The values of the categorical. If categories are given, values not in categories will be replaced with NaN.</p> </dd> <dt>
+<code>categories : Index-like (unique), optional</code> </dt> <dd>
+<p class="first last">The unique categories for this categorical. If not given, the categories are assumed to be the unique values of <code>values</code> (sorted, if possible, otherwise in the order in which they appear).</p> </dd> <dt>
+<code>ordered : bool, default False</code> </dt> <dd>
+<p class="first last">Whether or not this categorical is treated as a ordered categorical. If True, the resulting categorical will be ordered. An ordered categorical respects, when sorted, the order of its <code>categories</code> attribute (which in turn is the <code>categories</code> argument, if provided).</p> </dd> <dt>
+<code>dtype : CategoricalDtype</code> </dt> <dd>
+<p class="first">An instance of <code>CategoricalDtype</code> to use for this categorical</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">If the categories do not validate.</p> </dd> <dt>TypeError</dt> <dd>
+<p class="first last">If an explicit <code>ordered=True</code> is given but no <code>categories</code> and the <code>values</code> are not sortable.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>api.types.CategoricalDtype</code> </dt> <dd>Type for categorical data.</dd> <dt>
+ <a class="reference internal" href="pandas.categoricalindex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code>CategoricalIndex</code></a>
+</dt> <dd>An Index with an underlying <code>Categorical</code>.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>See the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html">user guide</a> for more.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.Categorical([1, 2, 3, 1, 2, 3])
+[1, 2, 3, 1, 2, 3]
+Categories (3, int64): [1, 2, 3]
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Categorical(['a', 'b', 'c', 'a', 'b', 'c'])
+[a, b, c, a, b, c]
+Categories (3, object): [a, b, c]
+</pre> <p>Ordered <code>Categoricals</code> can be sorted according to the custom order of the categories and can have a min and max value.</p> <pre data-language="python">&gt;&gt;&gt; c = pd.Categorical(['a', 'b', 'c', 'a', 'b', 'c'], ordered=True,
+...                    categories=['c', 'b', 'a'])
+&gt;&gt;&gt; c
+[a, b, c, a, b, c]
+Categories (3, object): [c &lt; b &lt; a]
+&gt;&gt;&gt; c.min()
+'c'
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.categorical.categories.html#pandas.Categorical.categories" title="pandas.Categorical.categories"><code>categories</code></a></td> <td>The categories of this categorical.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.categorical.codes.html#pandas.Categorical.codes" title="pandas.Categorical.codes"><code>codes</code></a></td> <td>The category codes of this categorical.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.categorical.ordered.html#pandas.Categorical.ordered" title="pandas.Categorical.ordered"><code>ordered</code></a></td> <td>Whether the categories have an ordered relationship.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.categorical.dtype.html#pandas.Categorical.dtype" title="pandas.Categorical.dtype"><code>dtype</code></a></td> <td>The <code>CategoricalDtype</code> for this instance</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.categorical.from_codes.html#pandas.Categorical.from_codes" title="pandas.Categorical.from_codes"><code>from_codes</code></a>(codes[, categories, ordered, dtype])</td> <td>Make a Categorical type from codes and categories or dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categorical.__array__.html#pandas.Categorical.__array__" title="pandas.Categorical.__array__"><code>__array__</code></a>(self[, dtype])</td> <td>The numpy array interface.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Categorical.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Categorical.html</a>
+  </p>
+</div>

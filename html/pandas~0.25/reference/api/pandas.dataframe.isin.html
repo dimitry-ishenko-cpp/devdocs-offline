@@ -1,0 +1,45 @@
+<h1 id="pandas-dataframe-isin">pandas.DataFrame.isin</h1> <dl class="method"> <dt id="pandas.DataFrame.isin">
+<code>DataFrame.isin(self, values)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L8349-L8443"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Whether each element in the DataFrame is contained in values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>values : iterable, Series, DataFrame or dict</code> </dt> <dd>
+<p class="first last">The result will only be true at a location if all the labels match. If <code>values</code> is a Series, that’s the index. If <code>values</code> is a dict, the keys must be the column names, which must match. If <code>values</code> is a DataFrame, then both the index and column labels must match.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">DataFrame of booleans showing whether each element in the DataFrame is contained in values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.eq.html#pandas.DataFrame.eq" title="pandas.DataFrame.eq"><code>DataFrame.eq</code></a>
+</dt> <dd>Equality test for DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.series.isin.html#pandas.Series.isin" title="pandas.Series.isin"><code>Series.isin</code></a>
+</dt> <dd>Equivalent method on Series.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.contains.html#pandas.Series.str.contains" title="pandas.Series.str.contains"><code>Series.str.contains</code></a>
+</dt> <dd>Test if pattern or regex is contained within a string of a Series or Index.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'num_legs': [2, 4], 'num_wings': [2, 0]},
+...                   index=['falcon', 'dog'])
+&gt;&gt;&gt; df
+        num_legs  num_wings
+falcon         2          2
+dog            4          0
+</pre> <p>When <code>values</code> is a list check whether every value in the DataFrame is present in the list (which animals have 0 or 2 legs or wings)</p> <pre data-language="python">&gt;&gt;&gt; df.isin([0, 2])
+        num_legs  num_wings
+falcon      True       True
+dog        False       True
+</pre> <p>When <code>values</code> is a dict, we can pass values to check for each column separately:</p> <pre data-language="python">&gt;&gt;&gt; df.isin({'num_wings': [0, 3]})
+        num_legs  num_wings
+falcon     False      False
+dog        False       True
+</pre> <p>When <code>values</code> is a Series or DataFrame the index and column must match. Note that ‘falcon’ does not match based on the number of legs in df2.</p> <pre data-language="python">&gt;&gt;&gt; other = pd.DataFrame({'num_legs': [8, 2], 'num_wings': [0, 2]},
+...                      index=['spider', 'falcon'])
+&gt;&gt;&gt; df.isin(other)
+        num_legs  num_wings
+falcon      True       True
+dog        False      False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.isin.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.isin.html</a>
+  </p>
+</div>

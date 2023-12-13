@@ -1,0 +1,64 @@
+<h1 id="pandas-series-asfreq">pandas.Series.asfreq</h1> <dl class="method"> <dt id="pandas.Series.asfreq">
+<code>Series.asfreq(self, freq, method=None, how=None, normalize=False, fill_value=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L7899-L8002"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert TimeSeries to specified frequency.</p> <p>Optionally provide filling method to pad/backfill missing values.</p> <p>Returns the original data conformed to a new index with the specified frequency. <code>resample</code> is more appropriate if an operation, such as summarization, is necessary to represent the data at the new frequency.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>freq : DateOffset object, or string</code> </dt>  <dt>
+<code>method : {‘backfill’/’bfill’, ‘pad’/’ffill’}, default None</code> </dt> <dd>
+<p class="first">Method to use for filling holes in reindexed Series (note this does not fill NaNs that already were present):</p> <ul class="last simple"> <li>‘pad’ / ‘ffill’: propagate last valid observation forward to next valid</li> <li>‘backfill’ / ‘bfill’: use NEXT valid observation to fill</li> </ul> </dd> <dt>
+<code>how : {‘start’, ‘end’}, default end</code> </dt> <dd>
+<p class="first last">For PeriodIndex only, see PeriodIndex.asfreq</p> </dd> <dt>
+<code>normalize : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to reset output index to midnight</p> </dd> <dt>
+<code>fill_value : scalar, optional</code> </dt> <dd>
+<p class="first">Value to use for missing values, applied during upsampling (note this does not fill NaNs that already were present).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>converted : same type as caller</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.reindex.html#pandas.Series.reindex" title="pandas.Series.reindex"><code>reindex</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>To learn more about the frequency strings, please see <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">this link</a>.</p> <h4 class="rubric">Examples</h4> <p>Start by creating a series with 4 one minute timestamps.</p> <pre data-language="python">&gt;&gt;&gt; index = pd.date_range('1/1/2000', periods=4, freq='T')
+&gt;&gt;&gt; series = pd.Series([0.0, None, 2.0, 3.0], index=index)
+&gt;&gt;&gt; df = pd.DataFrame({'s':series})
+&gt;&gt;&gt; df
+                       s
+2000-01-01 00:00:00    0.0
+2000-01-01 00:01:00    NaN
+2000-01-01 00:02:00    2.0
+2000-01-01 00:03:00    3.0
+</pre> <p>Upsample the series into 30 second bins.</p> <pre data-language="python">&gt;&gt;&gt; df.asfreq(freq='30S')
+                       s
+2000-01-01 00:00:00    0.0
+2000-01-01 00:00:30    NaN
+2000-01-01 00:01:00    NaN
+2000-01-01 00:01:30    NaN
+2000-01-01 00:02:00    2.0
+2000-01-01 00:02:30    NaN
+2000-01-01 00:03:00    3.0
+</pre> <p>Upsample again, providing a <code>fill value</code>.</p> <pre data-language="python">&gt;&gt;&gt; df.asfreq(freq='30S', fill_value=9.0)
+                       s
+2000-01-01 00:00:00    0.0
+2000-01-01 00:00:30    9.0
+2000-01-01 00:01:00    NaN
+2000-01-01 00:01:30    9.0
+2000-01-01 00:02:00    2.0
+2000-01-01 00:02:30    9.0
+2000-01-01 00:03:00    3.0
+</pre> <p>Upsample again, providing a <code>method</code>.</p> <pre data-language="python">&gt;&gt;&gt; df.asfreq(freq='30S', method='bfill')
+                       s
+2000-01-01 00:00:00    0.0
+2000-01-01 00:00:30    NaN
+2000-01-01 00:01:00    NaN
+2000-01-01 00:01:30    2.0
+2000-01-01 00:02:00    2.0
+2000-01-01 00:02:30    3.0
+2000-01-01 00:03:00    3.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.asfreq.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.asfreq.html</a>
+  </p>
+</div>

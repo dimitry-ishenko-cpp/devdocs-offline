@@ -1,0 +1,24 @@
+<h1 id="pandas-series-cat">pandas.Series.cat</h1> <dl class="method"> <dt id="pandas.Series.cat">
+<code>Series.cat()</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/categorical.py#L2566-L2664"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Accessor object for categorical properties of the Series values.</p> <p>Be aware that assigning to <code>categories</code> is a inplace operation, while all methods return new categorical data per default (but can be called with <code>inplace=True</code>).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : Series or CategoricalIndex</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s.cat.categories
+&gt;&gt;&gt; s.cat.categories = list('abc')
+&gt;&gt;&gt; s.cat.rename_categories(list('cab'))
+&gt;&gt;&gt; s.cat.reorder_categories(list('cab'))
+&gt;&gt;&gt; s.cat.add_categories(['d','e'])
+&gt;&gt;&gt; s.cat.remove_categories(['d'])
+&gt;&gt;&gt; s.cat.remove_unused_categories()
+&gt;&gt;&gt; s.cat.set_categories(list('abcde'))
+&gt;&gt;&gt; s.cat.as_ordered()
+&gt;&gt;&gt; s.cat.as_unordered()
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.cat.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.cat.html</a>
+  </p>
+</div>

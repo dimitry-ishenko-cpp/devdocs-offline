@@ -1,0 +1,34 @@
+<h1 id="pandas-api-types-is-list-like">pandas.api.types.is_list_like</h1> <dl class="function"> <dt id="pandas.api.types.is_list_like">
+<code>pandas.api.types.is_list_like()</code> </dt> <dd>
+<p>Check if the object is list-like.</p> <p>Objects that are considered list-like are for example Python lists, tuples, sets, NumPy arrays, and Pandas Series.</p> <p>Strings and datetime objects, however, are not considered list-like.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>obj : The object to check</code> </dt>  <dt>
+<code>allow_sets : boolean, default True</code> </dt> <dd>
+<p class="first">If this parameter is False, sets will not be considered list-like</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>is_list_like : bool</code> </dt> <dd>
+<p class="first last">Whether <code>obj</code> has list-like properties.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; is_list_like([1, 2, 3])
+True
+&gt;&gt;&gt; is_list_like({1, 2, 3})
+True
+&gt;&gt;&gt; is_list_like(datetime(2017, 1, 1))
+False
+&gt;&gt;&gt; is_list_like("foo")
+False
+&gt;&gt;&gt; is_list_like(1)
+False
+&gt;&gt;&gt; is_list_like(np.array([2]))
+True
+&gt;&gt;&gt; is_list_like(np.array(2)))
+False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_list_like.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_list_like.html</a>
+  </p>
+</div>

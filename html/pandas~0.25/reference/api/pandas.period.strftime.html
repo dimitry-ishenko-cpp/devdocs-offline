@@ -1,0 +1,47 @@
+<h1 id="pandas-period-strftime">pandas.Period.strftime</h1> <dl class="method"> <dt id="pandas.Period.strftime">
+<code>Period.strftime()</code> </dt> <dd>
+<p>Returns the string representation of the <a class="reference internal" href="pandas.period.html#pandas.Period" title="pandas.Period"><code>Period</code></a>, depending on the selected <code>fmt</code>. <code>fmt</code> must be a string containing one or several directives. The method recognizes the same directives as the <a class="reference external" href="https://docs.python.org/3/library/time.html#time.strftime" title="(in Python v3.7)"><code>time.strftime()</code></a> function of the standard Python distribution, as well as the specific additional directives <code>%f</code>, <code>%F</code>, <code>%q</code>. (formatting &amp; docs originally from scikits.timeries)</p> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">Directive</th> <th class="head">Meaning</th> <th class="head">Notes</th> </tr> </thead>  <tr>
+<td><code>%a</code></td> <td>Locale’s abbreviated weekday name.</td> <td> </td> </tr> <tr>
+<td><code>%A</code></td> <td>Locale’s full weekday name.</td> <td> </td> </tr> <tr>
+<td><code>%b</code></td> <td>Locale’s abbreviated month name.</td> <td> </td> </tr> <tr>
+<td><code>%B</code></td> <td>Locale’s full month name.</td> <td> </td> </tr> <tr>
+<td><code>%c</code></td> <td>Locale’s appropriate date and time representation.</td> <td> </td> </tr> <tr>
+<td><code>%d</code></td> <td>Day of the month as a decimal number [01,31].</td> <td> </td> </tr> <tr>
+<td><code>%f</code></td> <td>‘Fiscal’ year without a century as a decimal number [00,99]</td> <td>(1)</td> </tr> <tr>
+<td><code>%F</code></td> <td>‘Fiscal’ year with a century as a decimal number</td> <td>(2)</td> </tr> <tr>
+<td><code>%H</code></td> <td>Hour (24-hour clock) as a decimal number [00,23].</td> <td> </td> </tr> <tr>
+<td><code>%I</code></td> <td>Hour (12-hour clock) as a decimal number [01,12].</td> <td> </td> </tr> <tr>
+<td><code>%j</code></td> <td>Day of the year as a decimal number [001,366].</td> <td> </td> </tr> <tr>
+<td><code>%m</code></td> <td>Month as a decimal number [01,12].</td> <td> </td> </tr> <tr>
+<td><code>%M</code></td> <td>Minute as a decimal number [00,59].</td> <td> </td> </tr> <tr>
+<td><code>%p</code></td> <td>Locale’s equivalent of either AM or PM.</td> <td>(3)</td> </tr> <tr>
+<td><code>%q</code></td> <td>Quarter as a decimal number [01,04]</td> <td> </td> </tr> <tr>
+<td><code>%S</code></td> <td>Second as a decimal number [00,61].</td> <td>(4)</td> </tr> <tr>
+<td><code>%U</code></td> <td>Week number of the year (Sunday as the first day of the week) as a decimal number [00,53]. All days in a new year preceding the first Sunday are considered to be in week 0.</td> <td>(5)</td> </tr> <tr>
+<td><code>%w</code></td> <td>Weekday as a decimal number [0(Sunday),6].</td> <td> </td> </tr> <tr>
+<td><code>%W</code></td> <td>Week number of the year (Monday as the first day of the week) as a decimal number [00,53]. All days in a new year preceding the first Monday are considered to be in week 0.</td> <td>(5)</td> </tr> <tr>
+<td><code>%x</code></td> <td>Locale’s appropriate date representation.</td> <td> </td> </tr> <tr>
+<td><code>%X</code></td> <td>Locale’s appropriate time representation.</td> <td> </td> </tr> <tr>
+<td><code>%y</code></td> <td>Year without century as a decimal number [00,99].</td> <td> </td> </tr> <tr>
+<td><code>%Y</code></td> <td>Year with century as a decimal number.</td> <td> </td> </tr> <tr>
+<td><code>%Z</code></td> <td>Time zone name (no characters if no time zone exists).</td> <td> </td> </tr> <tr>
+<td><code>%%</code></td> <td>A literal <code>'%'</code> character.</td> <td> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <ol class="arabic simple"> <li>The <code>%f</code> directive is the same as <code>%y</code> if the frequency is not quarterly. Otherwise, it corresponds to the ‘fiscal’ year, as defined by the <a class="reference internal" href="pandas.period.qyear.html#pandas.Period.qyear" title="pandas.Period.qyear"><code>qyear</code></a> attribute.</li> <li>The <code>%F</code> directive is the same as <code>%Y</code> if the frequency is not quarterly. Otherwise, it corresponds to the ‘fiscal’ year, as defined by the <a class="reference internal" href="pandas.period.qyear.html#pandas.Period.qyear" title="pandas.Period.qyear"><code>qyear</code></a> attribute.</li> <li>The <code>%p</code> directive only affects the output hour field if the <code>%I</code> directive is used to parse the hour.</li> <li>The range really is <code>0</code> to <code>61</code>; this accounts for leap seconds and the (very rare) double leap seconds.</li> <li>The <code>%U</code> and <code>%W</code> directives are only used in calculations when the day of the week and the year are specified.</li> </ol> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; a = Period(freq='Q-JUL', year=2006, quarter=1)
+&gt;&gt;&gt; a.strftime('%F-Q%q')
+'2006-Q1'
+&gt;&gt;&gt; # Output the last month in the quarter of this date
+&gt;&gt;&gt; a.strftime('%b-%Y')
+'Oct-2005'
+&gt;&gt;&gt;
+&gt;&gt;&gt; a = Period(freq='D', year=2001, month=1, day=1)
+&gt;&gt;&gt; a.strftime('%d-%b-%Y')
+'01-Jan-2006'
+&gt;&gt;&gt; a.strftime('%b. %d, %Y was a %A')
+'Jan. 01, 2001 was a Monday'
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.strftime.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.strftime.html</a>
+  </p>
+</div>

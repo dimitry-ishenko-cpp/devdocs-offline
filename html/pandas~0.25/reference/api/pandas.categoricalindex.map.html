@@ -1,0 +1,46 @@
+<h1 id="pandas-categoricalindex-map">pandas.CategoricalIndex.map</h1> <dl class="method"> <dt id="pandas.CategoricalIndex.map">
+<code>CategoricalIndex.map(self, mapper)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/category.py#L769-L836"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Map values using input correspondence (a dict, Series, or function).</p> <p>Maps the values (their categories, not the codes) of the index to new categories. If the mapping correspondence is one-to-one the result is a <a class="reference internal" href="pandas.categoricalindex.html#pandas.CategoricalIndex" title="pandas.CategoricalIndex"><code>CategoricalIndex</code></a> which has the same order property as the original, otherwise an <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a> is returned.</p> <p>If a <code>dict</code> or <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> is used any unmapped category is mapped to <code>NaN</code>. Note that if this happens an <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a> will be returned.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>mapper : function, dict, or Series</code> </dt> <dd>
+<p class="first last">Mapping correspondence.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>pandas.CategoricalIndex or pandas.Index</dt> <dd>
+<p class="first last">Mapped index.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.map.html#pandas.Index.map" title="pandas.Index.map"><code>Index.map</code></a>
+</dt> <dd>Apply a mapping correspondence on an <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>.</dd> <dt>
+ <a class="reference internal" href="pandas.series.map.html#pandas.Series.map" title="pandas.Series.map"><code>Series.map</code></a>
+</dt> <dd>Apply a mapping correspondence on a <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>.</dd> <dt>
+ <a class="reference internal" href="pandas.series.apply.html#pandas.Series.apply" title="pandas.Series.apply"><code>Series.apply</code></a>
+</dt> <dd>Apply more complex functions on a <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.CategoricalIndex(['a', 'b', 'c'])
+&gt;&gt;&gt; idx
+CategoricalIndex(['a', 'b', 'c'], categories=['a', 'b', 'c'],
+                 ordered=False, dtype='category')
+&gt;&gt;&gt; idx.map(lambda x: x.upper())
+CategoricalIndex(['A', 'B', 'C'], categories=['A', 'B', 'C'],
+                 ordered=False, dtype='category')
+&gt;&gt;&gt; idx.map({'a': 'first', 'b': 'second', 'c': 'third'})
+CategoricalIndex(['first', 'second', 'third'], categories=['first',
+                 'second', 'third'], ordered=False, dtype='category')
+</pre> <p>If the mapping is one-to-one the ordering of the categories is preserved:</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.CategoricalIndex(['a', 'b', 'c'], ordered=True)
+&gt;&gt;&gt; idx
+CategoricalIndex(['a', 'b', 'c'], categories=['a', 'b', 'c'],
+                 ordered=True, dtype='category')
+&gt;&gt;&gt; idx.map({'a': 3, 'b': 2, 'c': 1})
+CategoricalIndex([3, 2, 1], categories=[3, 2, 1], ordered=True,
+                 dtype='category')
+</pre> <p>If the mapping is not one-to-one an <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a> is returned:</p> <pre data-language="python">&gt;&gt;&gt; idx.map({'a': 'first', 'b': 'second', 'c': 'first'})
+Index(['first', 'second', 'first'], dtype='object')
+</pre> <p>If a <code>dict</code> is used, all unmapped categories are mapped to <code>NaN</code> and the result is an <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>:</p> <pre data-language="python">&gt;&gt;&gt; idx.map({'a': 'first', 'b': 'second'})
+Index(['first', 'second', nan], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.CategoricalIndex.map.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.CategoricalIndex.map.html</a>
+  </p>
+</div>

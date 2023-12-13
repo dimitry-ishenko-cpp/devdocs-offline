@@ -1,0 +1,35 @@
+<h1 id="pandas-tseries-frequencies-to-offset">pandas.tseries.frequencies.to_offset</h1> <dl class="function"> <dt id="pandas.tseries.frequencies.to_offset">
+<code>pandas.tseries.frequencies.to_offset(freq)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/tseries/frequencies.py#L71-L179"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return DateOffset object from string or tuple representation or datetime.timedelta object</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>freq : str, tuple, datetime.timedelta, DateOffset or None</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>DateOffset</dt> <dd>
+<p class="first last">None if freq is None.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">If freq is an invalid frequency</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>DateOffset</code> </dt>  </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; to_offset('5min')
+&lt;5 * Minutes&gt;
+</pre> <pre data-language="python">&gt;&gt;&gt; to_offset('1D1H')
+&lt;25 * Hours&gt;
+</pre> <pre data-language="python">&gt;&gt;&gt; to_offset(('W', 2))
+&lt;2 * Weeks: weekday=6&gt;
+</pre> <pre data-language="python">&gt;&gt;&gt; to_offset((2, 'B'))
+&lt;2 * BusinessDays&gt;
+</pre> <pre data-language="python">&gt;&gt;&gt; to_offset(datetime.timedelta(days=1))
+&lt;Day&gt;
+</pre> <pre data-language="python">&gt;&gt;&gt; to_offset(Hour())
+&lt;Hour&gt;
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.frequencies.to_offset.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.frequencies.to_offset.html</a>
+  </p>
+</div>

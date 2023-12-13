@@ -1,0 +1,73 @@
+<h1 id="pandas-dataframe-join">pandas.DataFrame.join</h1> <dl class="method"> <dt id="pandas.DataFrame.join">
+<code>DataFrame.join(self, other, on=None, how='left', lsuffix='', rsuffix='', sort=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L7119-L7240"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Join columns of another DataFrame.</p> <p>Join columns with <code>other</code> DataFrame either on index or on a key column. Efficiently join multiple DataFrame objects by index at once by passing a list.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>other : DataFrame, Series, or list of DataFrame</code> </dt> <dd>
+<p class="first last">Index should be similar to one of the columns in this one. If a Series is passed, its name attribute must be set, and that will be used as the column name in the resulting joined DataFrame.</p> </dd> <dt>
+<code>on : str, list of str, or array-like, optional</code> </dt> <dd>
+<p class="first last">Column or index level name(s) in the caller to join on the index in <code>other</code>, otherwise joins index-on-index. If multiple values given, the <code>other</code> DataFrame must have a MultiIndex. Can pass an array as the join key if it is not already contained in the calling DataFrame. Like an Excel VLOOKUP operation.</p> </dd> <dt>
+<code>how : {‘left’, ‘right’, ‘outer’, ‘inner’}, default ‘left’</code> </dt> <dd>
+<p class="first">How to handle the operation of the two objects.</p> <ul class="last simple"> <li>left: use calling frame’s index (or column if on is specified)</li> <li>right: use <code>other</code>’s index.</li> <li>outer: form union of calling frame’s index (or column if on is specified) with <code>other</code>’s index, and sort it. lexicographically.</li> <li>inner: form intersection of calling frame’s index (or column if on is specified) with <code>other</code>’s index, preserving the order of the calling’s one.</li> </ul> </dd> <dt>
+<code>lsuffix : str, default ‘’</code> </dt> <dd>
+<p class="first last">Suffix to use from left frame’s overlapping columns.</p> </dd> <dt>
+<code>rsuffix : str, default ‘’</code> </dt> <dd>
+<p class="first last">Suffix to use from right frame’s overlapping columns.</p> </dd> <dt>
+<code>sort : bool, default False</code> </dt> <dd>
+<p class="first last">Order result DataFrame lexicographically by the join key. If False, the order of the join key depends on the join type (how keyword).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">A dataframe containing columns from both the caller and <code>other</code>.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.merge.html#pandas.DataFrame.merge" title="pandas.DataFrame.merge"><code>DataFrame.merge</code></a>
+</dt> <dd>For column(s)-on-columns(s) operations.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Parameters <code>on</code>, <code>lsuffix</code>, and <code>rsuffix</code> are not supported when passing a list of <code>DataFrame</code> objects.</p> <p>Support for specifying index levels as the <code>on</code> parameter was added in version 0.23.0.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'key': ['K0', 'K1', 'K2', 'K3', 'K4', 'K5'],
+...                    'A': ['A0', 'A1', 'A2', 'A3', 'A4', 'A5']})
+</pre> <pre data-language="python">&gt;&gt;&gt; df
+  key   A
+0  K0  A0
+1  K1  A1
+2  K2  A2
+3  K3  A3
+4  K4  A4
+5  K5  A5
+</pre> <pre data-language="python">&gt;&gt;&gt; other = pd.DataFrame({'key': ['K0', 'K1', 'K2'],
+...                       'B': ['B0', 'B1', 'B2']})
+</pre> <pre data-language="python">&gt;&gt;&gt; other
+  key   B
+0  K0  B0
+1  K1  B1
+2  K2  B2
+</pre> <p>Join DataFrames using their indexes.</p> <pre data-language="python">&gt;&gt;&gt; df.join(other, lsuffix='_caller', rsuffix='_other')
+  key_caller   A key_other    B
+0         K0  A0        K0   B0
+1         K1  A1        K1   B1
+2         K2  A2        K2   B2
+3         K3  A3       NaN  NaN
+4         K4  A4       NaN  NaN
+5         K5  A5       NaN  NaN
+</pre> <p>If we want to join using the key columns, we need to set key to be the index in both <code>df</code> and <code>other</code>. The joined DataFrame will have key as its index.</p> <pre data-language="python">&gt;&gt;&gt; df.set_index('key').join(other.set_index('key'))
+      A    B
+key
+K0   A0   B0
+K1   A1   B1
+K2   A2   B2
+K3   A3  NaN
+K4   A4  NaN
+K5   A5  NaN
+</pre> <p>Another option to join using the key columns is to use the <code>on</code> parameter. DataFrame.join always uses <code>other</code>’s index but we can use any column in <code>df</code>. This method preserves the original DataFrame’s index in the result.</p> <pre data-language="python">&gt;&gt;&gt; df.join(other.set_index('key'), on='key')
+  key   A    B
+0  K0  A0   B0
+1  K1  A1   B1
+2  K2  A2   B2
+3  K3  A3  NaN
+4  K4  A4  NaN
+5  K5  A5  NaN
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.join.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.join.html</a>
+  </p>
+</div>

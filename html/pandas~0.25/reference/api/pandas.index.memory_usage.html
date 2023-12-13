@@ -1,0 +1,20 @@
+<h1 id="pandas-index-memory-usage">pandas.Index.memory_usage</h1> <dl class="method"> <dt id="pandas.Index.memory_usage">
+<code>Index.memory_usage(self, deep=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L4002-L4008"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Memory usage of the values</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>deep : bool</code> </dt> <dd>
+<p class="first last">Introspect the data deeply, interrogate <code>object</code> dtypes for system-level memory consumption</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>bytes used</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.nbytes.html#numpy.ndarray.nbytes" title="(in NumPy v1.16)"><code>numpy.ndarray.nbytes</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>Memory usage does not include memory consumed by elements that are not components of the array if deep=False or if used on PyPy</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.memory_usage.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.memory_usage.html</a>
+  </p>
+</div>

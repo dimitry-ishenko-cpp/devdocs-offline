@@ -1,0 +1,55 @@
+<h1 id="pandas-series-str-lstrip">pandas.Series.str.lstrip</h1> <dl class="method"> <dt id="pandas.Series.str.lstrip">
+<code>Series.str.lstrip(self, to_strip=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2923-L2927"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Remove leading and trailing characters.</p> <p>Strip whitespaces (including newlines) or a set of specified characters from each string in the Series/Index from left side. Equivalent to <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.lstrip" title="(in Python v3.7)"><code>str.lstrip()</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>to_strip : str or None, default None</code> </dt> <dd>
+<p class="first last">Specifying the set of characters to be removed. All combinations of this set of characters will be stripped. If None then whitespaces are removed.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series/Index of objects</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.strip.html#pandas.Series.str.strip" title="pandas.Series.str.strip"><code>Series.str.strip</code></a>
+</dt> <dd>Remove leading and trailing characters in Series/Index.</dd> <dt>
+ <a class="reference internal" href="#pandas.Series.str.lstrip" title="pandas.Series.str.lstrip"><code>Series.str.lstrip</code></a>
+</dt> <dd>Remove leading characters in Series/Index.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.rstrip.html#pandas.Series.str.rstrip" title="pandas.Series.str.rstrip"><code>Series.str.rstrip</code></a>
+</dt> <dd>Remove trailing characters in Series/Index.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['1. Ant.  ', '2. Bee!\n', '3. Cat?\t', np.nan])
+&gt;&gt;&gt; s
+0    1. Ant.
+1    2. Bee!\n
+2    3. Cat?\t
+3          NaN
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.strip()
+0    1. Ant.
+1    2. Bee!
+2    3. Cat?
+3        NaN
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.lstrip('123.')
+0    Ant.
+1    Bee!\n
+2    Cat?\t
+3       NaN
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.rstrip('.!? \n\t')
+0    1. Ant
+1    2. Bee
+2    3. Cat
+3       NaN
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.strip('123.!? \n\t')
+0    Ant
+1    Bee
+2    Cat
+3    NaN
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.lstrip.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.lstrip.html</a>
+  </p>
+</div>

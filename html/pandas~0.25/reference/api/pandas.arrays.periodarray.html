@@ -1,0 +1,25 @@
+<h1 id="pandas-arrays-periodarray">pandas.arrays.PeriodArray</h1> <dl class="class"> <dt id="pandas.arrays.PeriodArray">
+<code>class pandas.arrays.PeriodArray(values, freq=None, dtype=None, copy=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/period.py#L111-L731"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Pandas ExtensionArray for storing Period data.</p> <p>Users should use <code>period_array()</code> to create new instances.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>values : Union[PeriodArray, Series[period], ndarray[int], PeriodIndex]</code> </dt> <dd>
+<p class="first last">The data to store. These should be arrays that can be directly converted to ordinals without inference or copy (PeriodArray, ndarray[int64]), or a box around such an array (Series[period], PeriodIndex).</p> </dd> <dt>
+<code>freq : str or DateOffset</code> </dt> <dd>
+<p class="first last">The <code>freq</code> to use for the array. Mostly applicable when <code>values</code> is an ndarray of integers, when <code>freq</code> is required. When <code>values</code> is a PeriodArray (or box around), it’s checked that <code>values.freq</code> matches <code>freq</code>.</p> </dd> <dt>
+<code>dtype : PeriodDtype, optional</code> </dt> <dd>
+<p class="first last">A PeriodDtype instance from which to extract a <code>freq</code>. If both <code>freq</code> and <code>dtype</code> are specified, then the frequencies must match.</p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to copy the ordinals before storing.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>period_array</code> </dt> <dd>Create a new PeriodArray.</dd> <dt>
+<code>PeriodIndex</code> </dt> <dd>Immutable Index for period data.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>There are two components to a PeriodArray</p> <ul class="simple"> <li>ordinals : integer ndarray</li> <li>freq : pd.tseries.offsets.Offset</li> </ul> <p>The values are physically stored as a 1-D ndarray of integers. These are called “ordinals” and represent some kind of offset from a base.</p> <p>The <code>freq</code> indicates the span covered by each element of the array. All elements in the PeriodArray have the same <code>freq</code>.</p> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.PeriodArray.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.PeriodArray.html</a>
+  </p>
+</div>

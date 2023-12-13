@@ -1,0 +1,9 @@
+<h1 id="pandas-dataframe-ix">pandas.DataFrame.ix</h1> <dl class="attribute"> <dt id="pandas.DataFrame.ix">
+<code>DataFrame.ix</code> </dt> <dd>
+<p>A primarily label-location based indexer, with integer position fallback.</p> <p>Warning: Starting in 0.20.0, the .ix indexer is deprecated, in favor of the more strict .iloc and .loc indexers.</p> <p><code>.ix[]</code> supports mixed integer and label based access. It is primarily label based, but will fall back to integer positional access unless the corresponding axis is of integer type.</p> <p><code>.ix</code> is the most general indexer and will support any of the inputs in <code>.loc</code> and <code>.iloc</code>. <code>.ix</code> also supports floating point label schemes. <code>.ix</code> is exceptionally useful when dealing with mixed positional and label based hierarchical indexes.</p> <p>However, when an axis is integer based, ONLY label based access and not positional access is supported. Thus, in such cases, it’s usually better to be explicit and use <code>.iloc</code> or <code>.loc</code>.</p> <p>See more at <a class="reference internal" href="../../user_guide/advanced.html#advanced"><span class="std std-ref">Advanced Indexing</span></a>.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ix.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.ix.html</a>
+  </p>
+</div>

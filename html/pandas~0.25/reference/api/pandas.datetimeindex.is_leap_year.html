@@ -1,0 +1,30 @@
+<h1 id="pandas-datetimeindex-is-leap-year">pandas.DatetimeIndex.is_leap_year</h1> <dl class="attribute"> <dt id="pandas.DatetimeIndex.is_leap_year">
+<code>DatetimeIndex.is_leap_year</code> </dt> <dd>
+<p>Boolean indicator if the date belongs to a leap year.</p> <p>A leap year is a year, which has 366 days (instead of 365) including 29th of February as an intercalary day. Leap years are years which are multiples of four with the exception of years divisible by 100 but not by 400.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or ndarray</dt> <dd>
+<p class="first last">Booleans indicating if dates belong to a leap year.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <p>This method is available on Series with datetime values under the <code>.dt</code> accessor, and directly on DatetimeIndex.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.date_range("2012-01-01", "2015-01-01", freq="Y")
+&gt;&gt;&gt; idx
+DatetimeIndex(['2012-12-31', '2013-12-31', '2014-12-31'],
+              dtype='datetime64[ns]', freq='A-DEC')
+&gt;&gt;&gt; idx.is_leap_year
+array([ True, False, False], dtype=bool)
+</pre> <pre data-language="python">&gt;&gt;&gt; dates = pd.Series(idx)
+&gt;&gt;&gt; dates_series
+0   2012-12-31
+1   2013-12-31
+2   2014-12-31
+dtype: datetime64[ns]
+&gt;&gt;&gt; dates_series.dt.is_leap_year
+0     True
+1    False
+2    False
+dtype: bool
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.is_leap_year.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.is_leap_year.html</a>
+  </p>
+</div>

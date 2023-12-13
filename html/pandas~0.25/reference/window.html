@@ -1,0 +1,80 @@
+<h1 id="api-window">Window</h1> <p id="window">Rolling objects are returned by <code>.rolling</code> calls: <a class="reference internal" href="api/pandas.dataframe.rolling.html#pandas.DataFrame.rolling" title="pandas.DataFrame.rolling"><code>pandas.DataFrame.rolling()</code></a>, <a class="reference internal" href="api/pandas.series.rolling.html#pandas.Series.rolling" title="pandas.Series.rolling"><code>pandas.Series.rolling()</code></a>, etc. Expanding objects are returned by <code>.expanding</code> calls: <a class="reference internal" href="api/pandas.dataframe.expanding.html#pandas.DataFrame.expanding" title="pandas.DataFrame.expanding"><code>pandas.DataFrame.expanding()</code></a>, <a class="reference internal" href="api/pandas.series.expanding.html#pandas.Series.expanding" title="pandas.Series.expanding"><code>pandas.Series.expanding()</code></a>, etc. EWM objects are returned by <code>.ewm</code> calls: <a class="reference internal" href="api/pandas.dataframe.ewm.html#pandas.DataFrame.ewm" title="pandas.DataFrame.ewm"><code>pandas.DataFrame.ewm()</code></a>, <a class="reference internal" href="api/pandas.series.ewm.html#pandas.Series.ewm" title="pandas.Series.ewm"><code>pandas.Series.ewm()</code></a>, etc.</p>  <h2 id="standard-moving-window-functions">Standard moving window functions</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.count.html#pandas.core.window.Rolling.count" title="pandas.core.window.Rolling.count"><code>Rolling.count</code></a>(self)</td> <td>The rolling count of any non-NaN observations inside the window.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.sum.html#pandas.core.window.Rolling.sum" title="pandas.core.window.Rolling.sum"><code>Rolling.sum</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate rolling sum of given DataFrame or Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.mean.html#pandas.core.window.Rolling.mean" title="pandas.core.window.Rolling.mean"><code>Rolling.mean</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate the rolling mean of the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.median.html#pandas.core.window.Rolling.median" title="pandas.core.window.Rolling.median"><code>Rolling.median</code></a>(self, \*\*kwargs)</td> <td>Calculate the rolling median.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.var.html#pandas.core.window.Rolling.var" title="pandas.core.window.Rolling.var"><code>Rolling.var</code></a>(self[, ddof])</td> <td>Calculate unbiased rolling variance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.std.html#pandas.core.window.Rolling.std" title="pandas.core.window.Rolling.std"><code>Rolling.std</code></a>(self[, ddof])</td> <td>Calculate rolling standard deviation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.min.html#pandas.core.window.Rolling.min" title="pandas.core.window.Rolling.min"><code>Rolling.min</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate the rolling minimum.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.max.html#pandas.core.window.Rolling.max" title="pandas.core.window.Rolling.max"><code>Rolling.max</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate the rolling maximum.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.corr.html#pandas.core.window.Rolling.corr" title="pandas.core.window.Rolling.corr"><code>Rolling.corr</code></a>(self[, other, pairwise])</td> <td>Calculate rolling correlation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.cov.html#pandas.core.window.Rolling.cov" title="pandas.core.window.Rolling.cov"><code>Rolling.cov</code></a>(self[, other, pairwise, ddof])</td> <td>Calculate the rolling sample covariance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.skew.html#pandas.core.window.Rolling.skew" title="pandas.core.window.Rolling.skew"><code>Rolling.skew</code></a>(self, \*\*kwargs)</td> <td>Unbiased rolling skewness.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.kurt.html#pandas.core.window.Rolling.kurt" title="pandas.core.window.Rolling.kurt"><code>Rolling.kurt</code></a>(self, \*\*kwargs)</td> <td>Calculate unbiased rolling kurtosis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.apply.html#pandas.core.window.Rolling.apply" title="pandas.core.window.Rolling.apply"><code>Rolling.apply</code></a>(self, func[, raw, args, kwargs])</td> <td>The rolling function’s apply function.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.aggregate.html#pandas.core.window.Rolling.aggregate" title="pandas.core.window.Rolling.aggregate"><code>Rolling.aggregate</code></a>(self, arg, \*args, \*\*kwargs)</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.rolling.quantile.html#pandas.core.window.Rolling.quantile" title="pandas.core.window.Rolling.quantile"><code>Rolling.quantile</code></a>(self, quantile[, interpolation])</td> <td>Calculate the rolling quantile.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.window.mean.html#pandas.core.window.Window.mean" title="pandas.core.window.Window.mean"><code>Window.mean</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate the window mean of the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.window.sum.html#pandas.core.window.Window.sum" title="pandas.core.window.Window.sum"><code>Window.sum</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate window sum of given DataFrame or Series.</td> </tr>  </table>   <h2 id="api-functions-expanding">Standard expanding window functions</h2> <table class="longtable docutils" id="standard-expanding-window-functions">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.count.html#pandas.core.window.Expanding.count" title="pandas.core.window.Expanding.count"><code>Expanding.count</code></a>(self, \*\*kwargs)</td> <td>The expanding count of any non-NaN observations inside the window.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.sum.html#pandas.core.window.Expanding.sum" title="pandas.core.window.Expanding.sum"><code>Expanding.sum</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate expanding sum of given DataFrame or Series.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.mean.html#pandas.core.window.Expanding.mean" title="pandas.core.window.Expanding.mean"><code>Expanding.mean</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate the expanding mean of the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.median.html#pandas.core.window.Expanding.median" title="pandas.core.window.Expanding.median"><code>Expanding.median</code></a>(self, \*\*kwargs)</td> <td>Calculate the expanding median.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.var.html#pandas.core.window.Expanding.var" title="pandas.core.window.Expanding.var"><code>Expanding.var</code></a>(self[, ddof])</td> <td>Calculate unbiased expanding variance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.std.html#pandas.core.window.Expanding.std" title="pandas.core.window.Expanding.std"><code>Expanding.std</code></a>(self[, ddof])</td> <td>Calculate expanding standard deviation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.min.html#pandas.core.window.Expanding.min" title="pandas.core.window.Expanding.min"><code>Expanding.min</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate the expanding minimum.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.max.html#pandas.core.window.Expanding.max" title="pandas.core.window.Expanding.max"><code>Expanding.max</code></a>(self, \*args, \*\*kwargs)</td> <td>Calculate the expanding maximum.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.corr.html#pandas.core.window.Expanding.corr" title="pandas.core.window.Expanding.corr"><code>Expanding.corr</code></a>(self[, other, pairwise])</td> <td>Calculate expanding correlation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.cov.html#pandas.core.window.Expanding.cov" title="pandas.core.window.Expanding.cov"><code>Expanding.cov</code></a>(self[, other, pairwise, ddof])</td> <td>Calculate the expanding sample covariance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.skew.html#pandas.core.window.Expanding.skew" title="pandas.core.window.Expanding.skew"><code>Expanding.skew</code></a>(self, \*\*kwargs)</td> <td>Unbiased expanding skewness.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.kurt.html#pandas.core.window.Expanding.kurt" title="pandas.core.window.Expanding.kurt"><code>Expanding.kurt</code></a>(self, \*\*kwargs)</td> <td>Calculate unbiased expanding kurtosis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.apply.html#pandas.core.window.Expanding.apply" title="pandas.core.window.Expanding.apply"><code>Expanding.apply</code></a>(self, func[, raw, args, kwargs])</td> <td>The expanding function’s apply function.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.aggregate.html#pandas.core.window.Expanding.aggregate" title="pandas.core.window.Expanding.aggregate"><code>Expanding.aggregate</code></a>(self, arg, \*args, …)</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.expanding.quantile.html#pandas.core.window.Expanding.quantile" title="pandas.core.window.Expanding.quantile"><code>Expanding.quantile</code></a>(self, quantile[, …])</td> <td>Calculate the expanding quantile.</td> </tr>  </table>   <h2 id="exponentially-weighted-moving-window-functions">Exponentially-weighted moving window functions</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.ewm.mean.html#pandas.core.window.EWM.mean" title="pandas.core.window.EWM.mean"><code>EWM.mean</code></a>(self, \*args, \*\*kwargs)</td> <td>Exponential weighted moving average.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.ewm.std.html#pandas.core.window.EWM.std" title="pandas.core.window.EWM.std"><code>EWM.std</code></a>(self[, bias])</td> <td>Exponential weighted moving stddev.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.ewm.var.html#pandas.core.window.EWM.var" title="pandas.core.window.EWM.var"><code>EWM.var</code></a>(self[, bias])</td> <td>Exponential weighted moving variance.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.ewm.corr.html#pandas.core.window.EWM.corr" title="pandas.core.window.EWM.corr"><code>EWM.corr</code></a>(self[, other, pairwise])</td> <td>Exponential weighted sample correlation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.window.ewm.cov.html#pandas.core.window.EWM.cov" title="pandas.core.window.EWM.cov"><code>EWM.cov</code></a>(self[, other, pairwise, bias])</td> <td>Exponential weighted sample covariance.</td> </tr>  </table><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/window.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/window.html</a>
+  </p>
+</div>

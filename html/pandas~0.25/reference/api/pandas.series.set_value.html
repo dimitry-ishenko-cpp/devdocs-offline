@@ -1,0 +1,22 @@
+<h1 id="pandas-series-set-value">pandas.Series.set_value</h1> <dl class="method"> <dt id="pandas.Series.set_value">
+<code>Series.set_value(self, label, value, takeable=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L1402-L1433"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Quickly set single value at passed label.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.21.0: </span>Please use .at[] or .iat[] accessors.</p> </div> <p>If label is not contained, a new object is created with the label placed at the end of the result index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>label : object</code> </dt> <dd>
+<p class="first last">Partial indexing with MultiIndex not allowed</p> </dd> <dt>
+<code>value : object</code> </dt> <dd>
+<p class="first last">Scalar value</p> </dd> <dt>
+<code>takeable : interpret the index as indexers, default False</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">If label is contained, will be reference to calling Series, otherwise a new object.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.set_value.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.set_value.html</a>
+  </p>
+</div>

@@ -1,0 +1,52 @@
+<h1 id="pandas-eval">pandas.eval</h1> <dl class="function"> <dt id="pandas.eval">
+<code>pandas.eval(expr, parser='pandas', engine=None, truediv=True, local_dict=None, global_dict=None, resolvers=(), level=0, target=None, inplace=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/computation/eval.py#L169-L380"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Evaluate a Python expression as a string using various backends.</p> <p>The following arithmetic operations are supported: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>**</code>, <code>%</code>, <code>//</code> (python engine only) along with the following boolean operations: <code>|</code> (or), <code>&amp;</code> (and), and <code>~</code> (not). Additionally, the <code>'pandas'</code> parser allows the use of <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#and" title="(in Python v3.7)"><code>and</code></a>, <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#or" title="(in Python v3.7)"><code>or</code></a>, and <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#not" title="(in Python v3.7)"><code>not</code></a> with the same semantics as the corresponding bitwise operators. <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> and <a class="reference internal" href="pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> objects are supported and behave as they would with plain ol’ Python evaluation.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>expr : str or unicode</code> </dt> <dd>
+<p class="first last">The expression to evaluate. This string cannot contain any Python <a class="reference external" href="https://docs.python.org/3/reference/simple_stmts.html#simple-statements">statements</a>, only Python <a class="reference external" href="https://docs.python.org/3/reference/simple_stmts.html#expression-statements">expressions</a>.</p> </dd> <dt>
+<code>parser : string, default ‘pandas’, {‘pandas’, ‘python’}</code> </dt> <dd>
+<p class="first last">The parser to use to construct the syntax tree from the expression. The default of <code>'pandas'</code> parses code slightly different than standard Python. Alternatively, you can parse an expression using the <code>'python'</code> parser to retain strict Python semantics. See the <a class="reference internal" href="../../user_guide/enhancingperf.html#enhancingperf-eval"><span class="std std-ref">enhancing performance</span></a> documentation for more details.</p> </dd> <dt>
+<code>engine : string or None, default ‘numexpr’, {‘python’, ‘numexpr’}</code> </dt> <dd>
+<p class="first">The engine used to evaluate the expression. Supported engines are</p> <ul class="simple"> <li>None : tries to use <code>numexpr</code>, falls back to <code>python</code>
+</li> <li>
+<dl class="first docutils"> <dt>
+<code>'numexpr': This default engine evaluates pandas objects using</code> </dt> <dd>numexpr for large speed ups in complex expressions with large frames.</dd> </dl> </li> <li>
+<dl class="first docutils"> <dt>
+<code>'python': Performs operations as if you had eval’d in top</code> </dt> <dd>level python. This engine is generally not that useful.</dd> </dl> </li> </ul> <p class="last">More backends may be available in the future.</p> </dd> <dt>
+<code>truediv : bool, optional</code> </dt> <dd>
+<p class="first last">Whether to use true division, like in Python &gt;= 3</p> </dd> <dt>
+<code>local_dict : dict or None, optional</code> </dt> <dd>
+<p class="first last">A dictionary of local variables, taken from locals() by default.</p> </dd> <dt>
+<code>global_dict : dict or None, optional</code> </dt> <dd>
+<p class="first last">A dictionary of global variables, taken from globals() by default.</p> </dd> <dt>
+<code>resolvers : list of dict-like or None, optional</code> </dt> <dd>
+<p class="first last">A list of objects implementing the <code>__getitem__</code> special method that you can use to inject an additional collection of namespaces to use for variable lookup. For example, this is used in the <a class="reference internal" href="pandas.dataframe.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code>query()</code></a> method to inject the <code>DataFrame.index</code> and <code>DataFrame.columns</code> variables that refer to their respective <a class="reference internal" href="pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> instance attributes.</p> </dd> <dt>
+<code>level : int, optional</code> </dt> <dd>
+<p class="first last">The number of prior stack frames to traverse and add to the current scope. Most users will <strong>not</strong> need to change this parameter.</p> </dd> <dt>
+<code>target : object, optional, default None</code> </dt> <dd>
+<p class="first last">This is the target object for assignment. It is used when there is variable assignment in the expression. If so, then <code>target</code> must support item assignment with string keys, and if a copy is being returned, it must also support <code>.copy()</code>.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">If <code>target</code> is provided, and the expression mutates <code>target</code>, whether to modify <code>target</code> inplace. Otherwise, return a copy of <code>target</code> with the mutation.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>ndarray, numeric scalar, DataFrame, Series</dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first">There are many instances where such an error can be raised:</p> <ul class="last"> <li>
+<code>target=None</code>, but the expression is multiline. </li> <li>
+<p class="first">The expression is multiline, but not all them have item assignment. An example of such an arrangement is this:</p> <p>a = b + 1 a + 2</p> <p>Here, there are expressions on different lines, making it multiline, but the last line has no variable assigned to the output of <code>a + 2</code>.</p> </li> <li>
+<code>inplace=True</code>, but the expression is missing item assignment. </li> <li>Item assignment is provided, but the <code>target</code> does not support string item assignment. </li> <li>Item assignment is provided and <code>inplace=False</code>, but the <code>target</code> does not support the <code>.copy()</code> method </li> </ul> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code>DataFrame.query</code></a>
+</dt>  <dt>
+ <a class="reference internal" href="pandas.dataframe.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code>DataFrame.eval</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>The <code>dtype</code> of any objects involved in an arithmetic <code>%</code> operation are recursively cast to <code>float64</code>.</p> <p>See the <a class="reference internal" href="../../user_guide/enhancingperf.html#enhancingperf-eval"><span class="std std-ref">enhancing performance</span></a> documentation for more details.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.eval.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.eval.html</a>
+  </p>
+</div>

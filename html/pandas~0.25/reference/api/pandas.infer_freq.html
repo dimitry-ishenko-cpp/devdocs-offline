@@ -1,0 +1,20 @@
+<h1 id="pandas-infer-freq">pandas.infer_freq</h1> <dl class="function"> <dt id="pandas.infer_freq">
+<code>pandas.infer_freq(index, warn=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/tseries/frequencies.py#L217-L275"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Infer the most likely frequency given the input index. If the frequency is uncertain, a warning will be printed.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : DatetimeIndex or TimedeltaIndex</code> </dt> <dd>
+<p class="first last">if passed a Series will use the values of the series (NOT THE INDEX)</p> </dd> <dt>
+<code>warn : boolean, default True</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>str or None</dt> <dd>
+<p class="first last">None if no discernible frequency TypeError if the index is not datetime-like ValueError if there are less than three values.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.infer_freq.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.infer_freq.html</a>
+  </p>
+</div>

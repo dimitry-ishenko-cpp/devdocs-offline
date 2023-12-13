@@ -1,0 +1,36 @@
+<h1 id="pandas-io-formats-style-styler-pipe">pandas.io.formats.style.Styler.pipe</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.pipe">
+<code>Styler.pipe(self, func, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L1343-L1410"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Apply <code>func(self, *args, **kwargs)</code>, and return the result.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function</code> </dt> <dd>
+<p class="first last">Function to apply to the Styler. Alternatively, a <code>(callable, keyword)</code> tuple where <code>keyword</code> is a string indicating the keyword of <code>callable</code> that expects the Styler.</p> </dd> <dt><strong>*args, **kwargs :</strong></dt> <dd>
+<p class="first last">Arguments passed to <code>func</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>object :</dt> <dd>
+<p class="first last">The value returned by <code>func</code>.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>DataFrame.pipe</code> </dt> <dd>Analogous method for DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.io.formats.style.styler.apply.html#pandas.io.formats.style.Styler.apply" title="pandas.io.formats.style.Styler.apply"><code>Styler.apply</code></a>
+</dt> <dd>Apply a function row-wise, column-wise, or table-wise to modify the dataframe’s styling.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Like <code>DataFrame.pipe()</code>, this method can simplify the application of several user-defined functions to a styler. Instead of writing:</p> <pre data-language="python">f(g(df.style.set_precision(3), arg1=a), arg2=b, arg3=c)
+</pre> <p>users can write:</p> <pre data-language="python">(df.style.set_precision(3)
+   .pipe(g, arg1=a)
+   .pipe(f, arg2=b, arg3=c))
+</pre> <p>In particular, this allows users to define functions that take a styler object, along with other parameters, and return the styler after making styling changes (such as calling <a class="reference internal" href="pandas.io.formats.style.styler.apply.html#pandas.io.formats.style.Styler.apply" title="pandas.io.formats.style.Styler.apply"><code>Styler.apply()</code></a> or <a class="reference internal" href="pandas.io.formats.style.styler.set_properties.html#pandas.io.formats.style.Styler.set_properties" title="pandas.io.formats.style.Styler.set_properties"><code>Styler.set_properties()</code></a>). Using <code>.pipe</code>, these user-defined style “transformations” can be interleaved with calls to the built-in Styler interface.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; def format_conversion(styler):
+...     return (styler.set_properties(**{'text-align': 'right'})
+...                   .format({'conversion': '{:.1%}'}))
+</pre> <p>The user-defined <code>format_conversion</code> function above can be called within a sequence of other style modifications:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'trial': list(range(5)),
+...                    'conversion': [0.75, 0.85, np.nan, 0.7, 0.72]})
+&gt;&gt;&gt; (df.style
+...    .highlight_min(subset=['conversion'], color='yellow')
+...    .pipe(format_conversion)
+...    .set_caption("Results with minimum conversion highlighted."))
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.pipe.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.pipe.html</a>
+  </p>
+</div>

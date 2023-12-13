@@ -1,0 +1,52 @@
+<h1 id="pandas-dataframe-hist">pandas.DataFrame.hist</h1> <dl class="method"> <dt id="pandas.DataFrame.hist">
+<code>DataFrame.hist(data, column=None, by=None, grid=True, xlabelsize=None, xrot=None, ylabelsize=None, yrot=None, ax=None, sharex=False, sharey=False, figsize=None, layout=None, bins=10, **kwds)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/plotting/_core.py#L89-L200"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Make a histogram of the DataFrame’s.</p> <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Histogram">histogram</a> is a representation of the distribution of data. This function calls <code>matplotlib.pyplot.hist()</code>, on each series in the DataFrame, resulting in one histogram per column.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : DataFrame</code> </dt> <dd>
+<p class="first last">The pandas object holding the data.</p> </dd> <dt>
+<code>column : string or sequence</code> </dt> <dd>
+<p class="first last">If passed, will be used to limit data to a subset of columns.</p> </dd> <dt>
+<code>by : object, optional</code> </dt> <dd>
+<p class="first last">If passed, then used to form histograms for separate groups.</p> </dd> <dt>
+<code>grid : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to show axis grid lines.</p> </dd> <dt>
+<code>xlabelsize : int, default None</code> </dt> <dd>
+<p class="first last">If specified changes the x-axis label size.</p> </dd> <dt>
+<code>xrot : float, default None</code> </dt> <dd>
+<p class="first last">Rotation of x axis labels. For example, a value of 90 displays the x labels rotated 90 degrees clockwise.</p> </dd> <dt>
+<code>ylabelsize : int, default None</code> </dt> <dd>
+<p class="first last">If specified changes the y-axis label size.</p> </dd> <dt>
+<code>yrot : float, default None</code> </dt> <dd>
+<p class="first last">Rotation of y axis labels. For example, a value of 90 displays the y labels rotated 90 degrees clockwise.</p> </dd> <dt>
+<code>ax : Matplotlib axes object, default None</code> </dt> <dd>
+<p class="first last">The axes to plot the histogram on.</p> </dd> <dt>
+<code>sharex : bool, default True if ax is None else False</code> </dt> <dd>
+<p class="first last">In case subplots=True, share x axis and set some x axis labels to invisible; defaults to True if ax is None otherwise False if an ax is passed in. Note that passing in both an ax and sharex=True will alter all x axis labels for all subplots in a figure.</p> </dd> <dt>
+<code>sharey : bool, default False</code> </dt> <dd>
+<p class="first last">In case subplots=True, share y axis and set some y axis labels to invisible.</p> </dd> <dt>
+<code>figsize : tuple</code> </dt> <dd>
+<p class="first last">The size in inches of the figure to create. Uses the value in <code>matplotlib.rcParams</code> by default.</p> </dd> <dt>
+<code>layout : tuple, optional</code> </dt> <dd>
+<p class="first last">Tuple of (rows, columns) for the layout of the histograms.</p> </dd> <dt>
+<code>bins : integer or sequence, default 10</code> </dt> <dd>
+<p class="first last">Number of histogram bins to be used. If an integer is given, bins + 1 bin edges are calculated and returned. If bins is a sequence, gives bin edges, including left edge of first bin and right edge of last bin. In this case, bins is returned unmodified.</p> </dd> <dt><strong>**kwds</strong></dt> <dd>
+<p class="first last">All other plotting keyword arguments to be passed to <code>matplotlib.pyplot.hist()</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>matplotlib.AxesSubplot or numpy.ndarray of them</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.hist.html#matplotlib.pyplot.hist" title="(in Matplotlib v3.1.1)"><code>matplotlib.pyplot.hist</code></a>
+</dt> <dd>Plot a histogram using matplotlib.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>This example draws a histogram based on the length and width of some animals, displayed in three bins</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({
+...     'length': [1.5, 0.5, 1.2, 0.9, 3],
+...     'width': [0.7, 0.2, 0.15, 0.2, 1.1]
+...     }, index= ['pig', 'rabbit', 'duck', 'chicken', 'horse'])
+&gt;&gt;&gt; hist = df.hist(bins=3)
+</pre> <div class="figure"> <img alt="../../_images/pandas-DataFrame-hist-1.png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkAAAAGwCAMAAAB2PiqAAAAAOHRFWHRTb2Z0d2FyZQBtYXRwbG90bGliIHZlcnNpb24zLjEuMCwgaHR0cDovL21hdHBsb3RsaWIub3JnL7XthxcAAAAJcEhZcwAADdcAAA3XAUIom3gAAABOUExURf///xEREe/v7x4eHgoKCn9/fzExMR93tLCwsAAAAGpqalxcXE1NTfb29vv7+8vLy9vb2z4+PuXl5aurq4qKiqCgoHd3d7m5ub+/v5SUlG747+8AAAshSURBVHja7d1rW+K8GgbQnuhLKVDKUf//H90NoHbcUqHijJJ1fxgQS68+cZEmcWaSJCIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIp+mLoe/v30Kf1bPETTFrlqcn83bJDlsr2ke+ayF0kk0gNbNsgdonwME0MgAdBugdZ0W81WSrKrNLM0n4XO4yYu2qXZJXnV56gDt03S2eLzyn6p1krRVliTl/ngLW8+LfNcBmoTC6655DmXRrjgZApTl5Wba5osOUL4/7KtNkjRVfdjmHaAmrZsmS6q8+7raPl75i67aRVVMk6w6HAGV+W5T5m33ocqbZpXUadc2uW5oENAk7T6AWfrcAaq7V8ruj3losm0H6OUW1ibnFx8t7Sx5Sut9Mq2yAOhQNaEnfruFVV3vM610QUOA2nrZpa27htuFV7rWy/dJcvryDCj8eWrSB8u++wDNn9vwGABN0vBi+QYoPzbEAZQBQMdxTtV96lbV9DwqKsLdKusBCoPoU+M+WLqep902xaKcHQHNyg8G0ad2kUuAynkTsuoB+r8e6GEBZdW0aJJ02o2FPuyBAPoc0D4/T6/eAL2NgY6UHhhQh6VYdl1ONxsLgKZhDLQ+joFSgK6ehbW7p81s0wP0OgtL2vIpzMIeF9CsmofPSn5eiS7zzTTMwrqvdmEWBtCV60B53b+FHdeBDuHLpiyO60APC2gTVieaMP98XQd6DmOgRZ0e14EAGp1djLPXpZ/7fTr2zdM2nWsHGXtnS6t0lmkHERERERGRY6rfH7X/U0A3HHunVdTpfc9SfUvt0+8s6W4nBwgggAACCCCAAAIIIIAAAggggAACCCCAAAIIoMcANMuLfHb6O7pZXZz+gVY0gC4XD9C1WS2SdXtquXqerfJdTIAuFw/QDVm34b87SBZFkyTbNrJb2IXiAbo626JKm/CkqbrO/JBGBehi8QDdchfbr8PDU3FsyNNrx//6aPrbU40qPpra75ZNO9wD/fd5phde//mzsI+LH6p9+t91iWcav8uHx0APDejj4gG6MotdljTlbHgW9qiABooH6FpAbVrk+0Uy3w6sAz0soMvFA3SHxHELu712gAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAihjQImwbet5jpC26rCMCNFA8QNcCmqySJj2c2nAbWQ80UDxAt2Q+iRPQQPEA3dIL5ZtTG6ZpuYsN0IXiAbohdXvaOr3Jlof0fEnR7Bv6QfH2TL0tszJ7+2Jfx9UDXSpeDzTOT2yALhYP0O1+ssOi68U3MQG6XDxAV2ZVhfWPWdg2dF0WRVyD6IHiAbISbSUaIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAALohwHq7zub1UU6iQnQQPEAXQuot+9sPc9W+S4mQJeLB+iWnPadXRRNkmzb2G5hHxcP0C290Gnf2aZaJskhjQzQheIBuiHnfWefimNDnl6LbdPdfvE23b0tL/s+RtkDXSpeD3SznyjHQBeLB+hmPxHOwgaKB+jK9PadjW8daKB4gKxEW4kGCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAD6aYCey2J+ftqGrUfWEQEaWTtA/Wyms9dG3EbWA42sHaA/M4kW0MjaAbrUiGla7mIFdEPtAF1oxCZbHtLzJUWy8WzMtd8fUMi+jrMHuqV2PRBAAN0ty8V+vjhunZ4dFl03vokI0MjaAfrjMxhu+G3Yd3ZdFkVcg+iRtQNkJdpKNEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEE0L8A1Nt4NquLdBIToJG1A9RPb+PZep6t8l1EgEbWDtCfedl0bVE0SbJto7qFjaodoI8bsamWSXJIowR0U+0AfdyIT8WxJc8vxrXpboy1/44e6Mbc5zQ/pAcaVdKXT/5gY6BfAuhbxkBxAHrbePZbZmE/GtDI2gH64zP4uvHst6wD/WhAI2sH6C+uRP/wW9i3rkQDBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAABBBBAAAEEEEAAAQQQQAAB9C7LWZrOzjvWVEURtj2KBtDI2gHqZ1Ku1+Vpn5p6FlkPNLJ2gPrJN0myyeMENLJ2gHrJqlWSrKrs2IhpWm6X8QAaWztAvaxD+62rdXjerJdNvj337hFsPBtz7d/SA4U8l3H2QLfUrge6MA6IDdDY2gG6MBPZZMlrNx7bLOyW2gH6YC1k1s1C2rTIYxpEj60dICvRVqIBAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAIIIIAAAggggAACCCCAAAJoZHr7hvaexgFoZO0A9dPbsab3NA5AI2sHqJ/enlnvts+Kar+wW2oHqJfern3vN/CLacfCm2oHqJfevqH9LURP+4b+/qj9X/ZAo2Ytd5r4/Y2zjK29+s6Sqn/R7N80Bnp0QGNrB+jKmcjDAxpZO0AfrIWEfUPfr4Xc5PBOnP/qWUbWPvnOkib/otlFREREROS35bks5l8/y2KWF/nuy6cJZxk7mfxswta/yrbosv7k6KSuuqOawWle71vhlFX59q7hts7qIp30Hn9vNtPZPQBNVkmTHr56mtUiWbf3bs+3daLXq2y3Vxyd1LP/e2ng6JBy+/au4bau59kqWH55/M2ZzO90ovk9fvTrtr5zfe9WqsNVDgDqHf1CYWCp+89vNeE3cgOA3tp6Efqobfv6CFBolNCaX8y2qNLmvuW9+13Z8SrbNC13nx5dd0dtl0O/bHv3rWP/cn7XcFs3VXfEIX19BCi0XHuP0ctqv75veX/8tv58lU22PKTTz45u1ssm374/weVzL46nPL9ruK2fiqOi10eAuo9fmd3lPJv2O3ugt6vc11f0V9249/oeaJcv396lB/pHfrofwzeOgXpX+TGg9wOeQOHaMVC7T64F9EBjoOViP18sf4afxS5LmnL2bbOwl6vMDovuFrb57OhNdzXhZnTlLGwVuqO3dw239ePMwo5/h+/LH4FVWPwovvqjX7Rpke8X37MONJu9XuW6LIoLg+j+r/nD1YTh8OfrQOHoZH9qxZd3XW7r+faR1oFERERERERERERERERERERERERERERERERERERERERERP5e/gdffKBqUJFlGwAAAABJRU5ErkJggg=="> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.hist.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.hist.html</a>
+  </p>
+</div>

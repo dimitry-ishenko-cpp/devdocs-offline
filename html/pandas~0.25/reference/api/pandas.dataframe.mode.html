@@ -1,0 +1,56 @@
+<h1 id="pandas-dataframe-mode">pandas.DataFrame.mode</h1> <dl class="method"> <dt id="pandas.DataFrame.mode">
+<code>DataFrame.mode(self, axis=0, numeric_only=False, dropna=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L8106-L8190"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Get the mode(s) of each element along the selected axis.</p> <p>The mode of a set of values is the value that appears most often. It can be multiple values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first">The axis to iterate over while searching for the mode:</p> <ul class="last simple"> <li>0 or ‘index’ : get mode of each column</li> <li>1 or ‘columns’ : get mode of each row</li> </ul> </dd> <dt>
+<code>numeric_only : bool, default False</code> </dt> <dd>
+<p class="first last">If True, only apply to numeric columns.</p> </dd> <dt>
+<code>dropna : bool, default True</code> </dt> <dd>
+<p class="first">Don’t consider counts of NaN/NaT.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">The modes of each column or row.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.mode.html#pandas.Series.mode" title="pandas.Series.mode"><code>Series.mode</code></a>
+</dt> <dd>Return the highest frequency value in a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.series.value_counts.html#pandas.Series.value_counts" title="pandas.Series.value_counts"><code>Series.value_counts</code></a>
+</dt> <dd>Return the counts of values in a Series.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([('bird', 2, 2),
+...                    ('mammal', 4, np.nan),
+...                    ('arthropod', 8, 0),
+...                    ('bird', 2, np.nan)],
+...                   index=('falcon', 'horse', 'spider', 'ostrich'),
+...                   columns=('species', 'legs', 'wings'))
+&gt;&gt;&gt; df
+           species  legs  wings
+falcon        bird     2    2.0
+horse       mammal     4    NaN
+spider   arthropod     8    0.0
+ostrich       bird     2    NaN
+</pre> <p>By default, missing values are not considered, and the mode of wings are both 0 and 2. The second row of species and legs contains <code>NaN</code>, because they have only one mode, but the DataFrame has two rows.</p> <pre data-language="python">&gt;&gt;&gt; df.mode()
+  species  legs  wings
+0    bird   2.0    0.0
+1     NaN   NaN    2.0
+</pre> <p>Setting <code>dropna=False</code> <code>NaN</code> values are considered and they can be the mode (like for wings).</p> <pre data-language="python">&gt;&gt;&gt; df.mode(dropna=False)
+  species  legs  wings
+0    bird     2    NaN
+</pre> <p>Setting <code>numeric_only=True</code>, only the mode of numeric columns is computed, and columns of other types are ignored.</p> <pre data-language="python">&gt;&gt;&gt; df.mode(numeric_only=True)
+   legs  wings
+0   2.0    0.0
+1   NaN    2.0
+</pre> <p>To compute the mode over columns and not rows, use the axis parameter:</p> <pre data-language="python">&gt;&gt;&gt; df.mode(axis='columns', numeric_only=True)
+           0    1
+falcon   2.0  NaN
+horse    4.0  NaN
+spider   0.0  8.0
+ostrich  2.0  NaN
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.mode.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.mode.html</a>
+  </p>
+</div>

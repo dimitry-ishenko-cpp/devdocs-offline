@@ -1,0 +1,79 @@
+<h1 id="pandas-get-dummies">pandas.get_dummies</h1> <dl class="function"> <dt id="pandas.get_dummies">
+<code>pandas.get_dummies(data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False, dtype=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/reshape/reshape.py#L747-L935"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert categorical variable into dummy/indicator variables.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : array-like, Series, or DataFrame</code> </dt> <dd>
+<p class="first last">Data of which to get dummy indicators.</p> </dd> <dt>
+<code>prefix : str, list of str, or dict of str, default None</code> </dt> <dd>
+<p class="first last">String to append DataFrame column names. Pass a list with length equal to the number of columns when calling get_dummies on a DataFrame. Alternatively, <code>prefix</code> can be a dictionary mapping column names to prefixes.</p> </dd> <dt>
+<code>prefix_sep : str, default ‘_’</code> </dt> <dd>
+<p class="first last">If appending prefix, separator/delimiter to use. Or pass a list or dictionary as with <code>prefix</code>.</p> </dd> <dt>
+<code>dummy_na : bool, default False</code> </dt> <dd>
+<p class="first last">Add a column to indicate NaNs, if False NaNs are ignored.</p> </dd> <dt>
+<code>columns : list-like, default None</code> </dt> <dd>
+<p class="first last">Column names in the DataFrame to be encoded. If <code>columns</code> is None then all the columns with <code>object</code> or <code>category</code> dtype will be converted.</p> </dd> <dt>
+<code>sparse : bool, default False</code> </dt> <dd>
+<p class="first last">Whether the dummy-encoded columns should be backed by a <a class="reference internal" href="pandas.sparsearray.html#pandas.SparseArray" title="pandas.SparseArray"><code>SparseArray</code></a> (True) or a regular NumPy array (False).</p> </dd> <dt>
+<code>drop_first : bool, default False</code> </dt> <dd>
+<p class="first">Whether to get k-1 dummies out of k categorical levels by removing the first level.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> </dd> <dt>
+<code>dtype : dtype, default np.uint8</code> </dt> <dd>
+<p class="first">Data type for new columns. Only a single dtype is allowed.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Dummy-coded data.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.get_dummies.html#pandas.Series.str.get_dummies" title="pandas.Series.str.get_dummies"><code>Series.str.get_dummies</code></a>
+</dt> <dd>Convert Series to dummy codes.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(list('abca'))
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.get_dummies(s)
+   a  b  c
+0  1  0  0
+1  0  1  0
+2  0  0  1
+3  1  0  0
+</pre> <pre data-language="python">&gt;&gt;&gt; s1 = ['a', 'b', np.nan]
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.get_dummies(s1)
+   a  b
+0  1  0
+1  0  1
+2  0  0
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.get_dummies(s1, dummy_na=True)
+   a  b  NaN
+0  1  0    0
+1  0  1    0
+2  0  0    1
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': ['a', 'b', 'a'], 'B': ['b', 'a', 'c'],
+...                    'C': [1, 2, 3]})
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.get_dummies(df, prefix=['col1', 'col2'])
+   C  col1_a  col1_b  col2_a  col2_b  col2_c
+0  1       1       0       0       1       0
+1  2       0       1       1       0       0
+2  3       1       0       0       0       1
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.get_dummies(pd.Series(list('abcaa')))
+   a  b  c
+0  1  0  0
+1  0  1  0
+2  0  0  1
+3  1  0  0
+4  1  0  0
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.get_dummies(pd.Series(list('abcaa')), drop_first=True)
+   b  c
+0  0  0
+1  1  0
+2  0  1
+3  0  0
+4  0  0
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.get_dummies(pd.Series(list('abc')), dtype=float)
+     a    b    c
+0  1.0  0.0  0.0
+1  0.0  1.0  0.0
+2  0.0  0.0  1.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.get_dummies.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.get_dummies.html</a>
+  </p>
+</div>

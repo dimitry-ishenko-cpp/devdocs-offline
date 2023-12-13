@@ -1,0 +1,72 @@
+<h1 id="pandas-periodindex">pandas.PeriodIndex</h1> <dl class="class"> <dt id="pandas.PeriodIndex">
+<code>class pandas.PeriodIndex</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/period.py#L74-L979"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Immutable ndarray holding ordinal values indicating regular periods in time such as particular years, quarters, months, etc.</p> <p>Index keys are boxed to Period objects which carries the metadata (eg, frequency information).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : array-like (1d integer np.ndarray or PeriodArray), optional</code> </dt> <dd>
+<p class="first last">Optional period-like data to construct index with</p> </dd> <dt>
+<code>copy : bool</code> </dt> <dd>
+<p class="first last">Make a copy of input ndarray</p> </dd> <dt>
+<code>freq : string or period object, optional</code> </dt> <dd>
+<p class="first last">One of pandas period strings or corresponding objects</p> </dd> <dt>
+<code>start : starting value, period-like, optional</code> </dt> <dd>
+<p class="first">If data is None, used as the start point in generating regular period data.</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> </dd> <dt>
+<code>periods : int, optional, &gt; 0</code> </dt> <dd>
+<p class="first">Number of periods to generate, if generating index. Takes precedence over end argument</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> </dd> <dt>
+<code>end : end value, period-like, optional</code> </dt> <dd>
+<p class="first">If periods is none, generated index will extend to first conforming period on or just past end argument</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> </dd> <dt>
+<code>year : int, array, or Series, default None</code> </dt>  <dt>
+<code>month : int, array, or Series, default None</code> </dt>  <dt>
+<code>quarter : int, array, or Series, default None</code> </dt>  <dt>
+<code>day : int, array, or Series, default None</code> </dt>  <dt>
+<code>hour : int, array, or Series, default None</code> </dt>  <dt>
+<code>minute : int, array, or Series, default None</code> </dt>  <dt>
+<code>second : int, array, or Series, default None</code> </dt>  <dt>
+<code>tz : object, default None</code> </dt> <dd>
+<p class="first last">Timezone for converting datetime64 data to Periods</p> </dd> <dt>
+<code>dtype : str or PeriodDtype, default None</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>
+</dt> <dd>The base pandas Index type.</dd> <dt>
+ <a class="reference internal" href="pandas.period.html#pandas.Period" title="pandas.Period"><code>Period</code></a>
+</dt> <dd>Represents a period of time.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code>DatetimeIndex</code></a>
+</dt> <dd>Index with datetime64 data.</dd> <dt>
+ <a class="reference internal" href="pandas.timedeltaindex.html#pandas.TimedeltaIndex" title="pandas.TimedeltaIndex"><code>TimedeltaIndex</code></a>
+</dt> <dd>Index of timedelta64 data.</dd> <dt>
+ <a class="reference internal" href="pandas.period_range.html#pandas.period_range" title="pandas.period_range"><code>period_range</code></a>
+</dt> <dd>Create a fixed-frequency PeriodIndex.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Creating a PeriodIndex based on <code>start</code>, <code>periods</code>, and <code>end</code> has been deprecated in favor of <a class="reference internal" href="pandas.period_range.html#pandas.period_range" title="pandas.period_range"><code>period_range()</code></a>.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.PeriodIndex(year=year_arr, quarter=q_arr)
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.periodindex.day.html#pandas.PeriodIndex.day" title="pandas.PeriodIndex.day"><code>day</code></a></td> <td>The days of the period</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.dayofweek.html#pandas.PeriodIndex.dayofweek" title="pandas.PeriodIndex.dayofweek"><code>dayofweek</code></a></td> <td>The day of the week with Monday=0, Sunday=6</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.dayofyear.html#pandas.PeriodIndex.dayofyear" title="pandas.PeriodIndex.dayofyear"><code>dayofyear</code></a></td> <td>The ordinal day of the year</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.days_in_month.html#pandas.PeriodIndex.days_in_month" title="pandas.PeriodIndex.days_in_month"><code>days_in_month</code></a></td> <td>The number of days in the month</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.daysinmonth.html#pandas.PeriodIndex.daysinmonth" title="pandas.PeriodIndex.daysinmonth"><code>daysinmonth</code></a></td> <td>The number of days in the month</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.freq.html#pandas.PeriodIndex.freq" title="pandas.PeriodIndex.freq"><code>freq</code></a></td> <td>Return the frequency object if it is set, otherwise None.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.freqstr.html#pandas.PeriodIndex.freqstr" title="pandas.PeriodIndex.freqstr"><code>freqstr</code></a></td> <td>Return the frequency object as a string if it is set, otherwise None.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.hour.html#pandas.PeriodIndex.hour" title="pandas.PeriodIndex.hour"><code>hour</code></a></td> <td>The hour of the period</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.is_leap_year.html#pandas.PeriodIndex.is_leap_year" title="pandas.PeriodIndex.is_leap_year"><code>is_leap_year</code></a></td> <td>Logical indicating if the date belongs to a leap year</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.minute.html#pandas.PeriodIndex.minute" title="pandas.PeriodIndex.minute"><code>minute</code></a></td> <td>The minute of the period</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.month.html#pandas.PeriodIndex.month" title="pandas.PeriodIndex.month"><code>month</code></a></td> <td>The month as January=1, December=12</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.quarter.html#pandas.PeriodIndex.quarter" title="pandas.PeriodIndex.quarter"><code>quarter</code></a></td> <td>The quarter of the date</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.second.html#pandas.PeriodIndex.second" title="pandas.PeriodIndex.second"><code>second</code></a></td> <td>The second of the period</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.week.html#pandas.PeriodIndex.week" title="pandas.PeriodIndex.week"><code>week</code></a></td> <td>The week ordinal of the year</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.weekday.html#pandas.PeriodIndex.weekday" title="pandas.PeriodIndex.weekday"><code>weekday</code></a></td> <td>The day of the week with Monday=0, Sunday=6</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.weekofyear.html#pandas.PeriodIndex.weekofyear" title="pandas.PeriodIndex.weekofyear"><code>weekofyear</code></a></td> <td>The week ordinal of the year</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.periodindex.year.html#pandas.PeriodIndex.year" title="pandas.PeriodIndex.year"><code>year</code></a></td> <td>The year of the period</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>end_time</strong></td> <td> </td> </tr> <tr>
+<td><strong>qyear</strong></td> <td> </td> </tr> <tr>
+<td><strong>start_time</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.periodindex.asfreq.html#pandas.PeriodIndex.asfreq" title="pandas.PeriodIndex.asfreq"><code>asfreq</code></a>(self, \*args, \*\*kwargs)</td> <td>Convert the Period Array/Index to the specified frequency <code>freq</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.periodindex.strftime.html#pandas.PeriodIndex.strftime" title="pandas.PeriodIndex.strftime"><code>strftime</code></a>(self, \*args, \*\*kwargs)</td> <td>Convert to Index using specified date_format.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.periodindex.to_timestamp.html#pandas.PeriodIndex.to_timestamp" title="pandas.PeriodIndex.to_timestamp"><code>to_timestamp</code></a>(self, \*args, \*\*kwargs)</td> <td>Cast to DatetimeArray/Index.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.PeriodIndex.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.PeriodIndex.html</a>
+  </p>
+</div>

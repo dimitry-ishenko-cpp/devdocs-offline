@@ -1,0 +1,54 @@
+<h1 id="pandas-dataframe-transform">pandas.DataFrame.transform</h1> <dl class="method"> <dt id="pandas.DataFrame.transform">
+<code>DataFrame.transform(self, func, axis=0, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L6708-L6713"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Call <code>func</code> on self producing a DataFrame with transformed values and that has the same axis length as self.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function, str, list or dict</code> </dt> <dd>
+<p class="first">Function to use for transforming the data. If a function, must either work when passed a DataFrame or when passed to DataFrame.apply.</p> <p>Accepted combinations are:</p> <ul class="last simple"> <li>function</li> <li>string function name</li> <li>list of functions and/or function names, e.g. <code>[np.exp. 'sqrt']</code>
+</li> <li>dict of axis labels -&gt; functions, function names or list of such.</li> </ul> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">If 0 or ‘index’: apply function to each column. If 1 or ‘columns’: apply function to each row.</p> </dd> <dt><strong>*args</strong></dt> <dd>
+<p class="first last">Positional arguments to pass to <code>func</code>.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Keyword arguments to pass to <code>func</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">A DataFrame that must have the same length as self.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>ValueError : If the returned DataFrame has a different length than self.</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.agg.html#pandas.DataFrame.agg" title="pandas.DataFrame.agg"><code>DataFrame.agg</code></a>
+</dt> <dd>Only perform aggregating type operations.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code>DataFrame.apply</code></a>
+</dt> <dd>Invoke function on a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': range(3), 'B': range(1, 4)})
+&gt;&gt;&gt; df
+   A  B
+0  0  1
+1  1  2
+2  2  3
+&gt;&gt;&gt; df.transform(lambda x: x + 1)
+   A  B
+0  1  2
+1  2  3
+2  3  4
+</pre> <p>Even though the resulting DataFrame must have the same length as the input DataFrame, it is possible to provide several input functions:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(range(3))
+&gt;&gt;&gt; s
+0    0
+1    1
+2    2
+dtype: int64
+&gt;&gt;&gt; s.transform([np.sqrt, np.exp])
+       sqrt        exp
+0  0.000000   1.000000
+1  1.000000   2.718282
+2  1.414214   7.389056
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.transform.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.transform.html</a>
+  </p>
+</div>

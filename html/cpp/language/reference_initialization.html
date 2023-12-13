@@ -1,0 +1,211 @@
+    <h1 id="firstHeading" class="firstHeading">Reference initialization</h1>            <p>Binds a reference to an object.</p>
+<h3 id="Syntax"> Syntax</h3> <table class="t-sdsc-begin">  <tr class="t-sdsc"> <td> <p><span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">ref</span> <code>=</code> <span class="t-spar">target</span> <code>;</code></p>
+<p><span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">ref</span> <code>= {</code> <span class="t-spar">arg1</span><code>,</code> <span class="t-spar">arg2</span><code>,</code> ... <code>};</code></p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p><span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">ref</span> <code>={.</code><span class="t-spar">des1</span> <code>=</code> <span class="t-spar">arg1</span> <code>, .</code><span class="t-spar">des2</span> <code>{</code> <span class="t-spar">arg2</span> <code>}</code> <span class="t-spar">...</span> <code>};</code></p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> <p><span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">ref</span> <code>(</code> <span class="t-spar">target</span> <code>);</code></p>
+<p><span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">ref</span> <code>{</code> <span class="t-spar">arg1</span><code>,</code> <span class="t-spar">arg2</span><code>,</code> ... <code>};</code></p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p><span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">ref</span> <code>{.</code><span class="t-spar">des1</span> <code>=</code> <span class="t-spar">arg1</span> <code>, .</code><span class="t-spar">des2</span> <code>{</code> <span class="t-spar">arg2</span> <code>}</code> <span class="t-spar">...</span> <code>};</code></p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> </td> <td> (1) </td> <td class="t-sdsc-nopad"> </td>
+</tr>  <tr class="t-sdsc"> <td> <p><span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">ref</span> <code>=</code> <span class="t-spar">target</span> <code>;</code></p>
+<p><span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">ref</span> <code>= {</code> <span class="t-spar">arg1</span><code>,</code> <span class="t-spar">arg2</span><code>,</code> ... <code>};</code></p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p><span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">ref</span> <code>={.</code><span class="t-spar">des1</span> <code>=</code> <span class="t-spar">arg1</span> <code>, .</code><span class="t-spar">des2</span> <code>{</code> <span class="t-spar">arg2</span> <code>}</code> <span class="t-spar">...</span> <code>};</code></p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> <p><span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">ref</span> <code>(</code> <span class="t-spar">target</span> <code>);</code></p>
+<p><span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">ref</span> <code>{</code> <span class="t-spar">arg1</span><code>,</code> <span class="t-spar">arg2</span><code>,</code> ... <code>};</code></p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p><span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">ref</span> <code>{.</code><span class="t-spar">des1</span> <code>=</code> <span class="t-spar">arg1</span> <code>, .</code><span class="t-spar">des2</span> <code>{</code> <span class="t-spar">arg2</span> <code>}</code> <span class="t-spar">...</span> <code>};</code></p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> </td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td>
+</tr>  <tr class="t-sdsc"> <td> given <span class="t-spar">R</span> <span class="t-spar">fn</span> <code>(</code> <span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">arg</span> <code>);</code><span class="t-rev-inl t-since-cxx11"><span> or <span class="t-spar">R</span> <span class="t-spar">fn</span> <code>(</code> <span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">arg</span> <code>);</code></span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span> <p><span class="t-spar">fn</span> <code>(</code> <span class="t-spar">target</span> <code>)</code>.</p>
+<p><span class="t-spar">fn</span> <code>({</code> <span class="t-spar">arg1</span><code>,</code> <span class="t-spar">arg2</span><code>,</code> ... <code>});</code></p>
+<table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p><span class="t-spar">fn</span> <code>({.</code><span class="t-spar">des1</span> <code>=</code> <span class="t-spar">arg1</span> <code>, .</code><span class="t-spar">des2</span> <code>{</code> <span class="t-spar">arg2</span> <code>}</code> <span class="t-spar">...</span> <code>});</code></p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> </td> <td> (3) </td> <td class="t-sdsc-nopad"> </td>
+</tr>  <tr class="t-sdsc"> <td> inside <span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">fn</span> <code>()</code><span class="t-rev-inl t-since-cxx11"><span> or <span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">fn</span> <code>()</code></span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span> <p><code>return</code> <span class="t-spar">target</span> <code>;</code></p>
+</td> <td> (4) </td> <td class="t-sdsc-nopad"> </td>
+</tr>  <tr class="t-sdsc"> <td> given <span class="t-spar">T</span> <code>&amp;</code> <span class="t-spar">ref</span> <code>;</code><span class="t-rev-inl t-since-cxx11"><span> or <span class="t-spar">T</span> <code>&amp;&amp;</code> <span class="t-spar">ref</span> <code>;</code></span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span> inside the definition of <span class="t-spar">Class</span> <p><span class="t-spar">Class</span><code>::</code><span class="t-spar">Class</span><code>(</code>...<code>) :</code> <span class="t-spar">ref</span> <code>(</code> <span class="t-spar">target</span> <code>) {</code> ... <code>}</code></p>
+</td> <td> (5) </td> <td class="t-sdsc-nopad"> </td>
+</tr> 
+</table> <h3 id="Explanation"> Explanation</h3> <p>A reference to <code>T</code> can be initialized with an object of type <code>T</code>, a function of type <code>T</code>, or an object implicitly convertible to <code>T</code>. Once initialized, a reference cannot be reseated (changed) to refer to another object.</p>
+<p>References are initialized in the following situations:</p>
+<div class="t-li1">
+<span class="t-li">1)</span> When a named <a href="reference.html#Lvalue_references" title="cpp/language/reference">lvalue reference</a> variable is declared with an initializer</div> <div class="t-li1">
+<span class="t-li">2)</span> When a named <a href="reference.html#Rvalue_references" title="cpp/language/reference">rvalue reference</a> variable is declared with an initializer</div> <div class="t-li1">
+<span class="t-li">3)</span> In a function call expression, when the function parameter has reference type</div> <div class="t-li1">
+<span class="t-li">4)</span> In the <code>return</code> statement, when the function returns a reference type</div> <div class="t-li1">
+<span class="t-li">5)</span> When a <a href="data_members.html" title="cpp/language/data members">non-static data member</a> of reference type is initialized using a <a href="initializer_list.html" title="cpp/language/initializer list" class="mw-redirect">member initializer</a>
+</div> <p>The effects of reference initialization are:</p>
+<ul>
+<li> If the initializer is a braced-init-list ( <code>{</code> <span class="t-spar">arg1</span><code>,</code> <span class="t-spar">arg2</span><code>,</code> ... <code>}</code> <span class="t-rev-inl t-since-cxx20"><span>or <a href="aggregate_initialization.html#Designated_initializers" title="cpp/language/aggregate initialization"><code>{.</code><span class="t-spar">des1</span> <code>=</code> <span class="t-spar">arg1</span> <code>, .</code><span class="t-spar">des2</span> <code>{</code> <span class="t-spar">arg2</span> <code>}</code> <span class="t-spar">...</span> <code>}</code></a></span> <span><span class="t-mark-rev t-since-cxx20">(since C++20)</span></span></span>), rules of <a href="list_initialization.html" title="cpp/language/list initialization">list initialization</a> are followed. </li>
+<li> Otherwise, if the reference is an lvalue reference: </li>
+<ul><li> If <span class="t-spar">target</span> is an lvalue expression, and its type is <code>T</code> or derived from <code>T</code>, and is equally or less cv-qualified, then the reference is bound to the object identified by the lvalue or to its base class subobject. </li></ul>
+</ul>   <div class="cpp source-cpp"><pre data-language="cpp">double d = 2.0;
+double&amp; rd = d;        // rd refers to d
+const double&amp; rcd = d; // rcd refers to d
+ 
+struct A {};
+struct B : A {} b;
+ 
+A&amp; ra = b;             // ra refers to A subobject in b
+const A&amp; rca = b;      // rca refers to A subobject in b</pre></div> <ul><li> Otherwise, if the type of <span class="t-spar">target</span> is not same or derived from <code>T</code>, and <span class="t-spar">target</span> has conversion function to an lvalue whose type is either <code>T</code> or derived from <code>T</code>, equally or less cv-qualified, then the reference is bound to the object identified by the lvalue returned by the conversion function (or to its base class subobject). </li></ul> <div class="cpp source-cpp"><pre data-language="cpp">struct A {};
+struct B : A { operator int&amp;(); };
+ 
+int&amp; ir = B(); // ir refers to the result of B::operator int&amp;</pre></div> <ul>
+<li> Otherwise, if the reference is lvalue reference to a non-volatile const-qualified type <span class="t-rev-inl t-since-cxx11"><span> or rvalue reference</span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span>: </li>
+<ul><li> If <span class="t-spar">target</span> is a non-bit-field rvalue or a function lvalue, and its type is either <code>T</code> or derived from <code>T</code>, equally or less cv-qualified, then the reference is bound to the value of the initializer expression or to its base subobject <span class="t-rev-inl t-since-cxx17"><span>(after <a href="implicit_conversion.html#Temporary_materialization" title="cpp/language/implicit conversion">materializing a temporary</a> if necessary)</span> <span><span class="t-mark-rev t-since-cxx17">(since C++17)</span></span></span>. </li></ul>
+</ul>  <div class="cpp source-cpp"><pre data-language="cpp">struct A {};
+struct B : A {};
+extern B f();
+ 
+const A&amp; rca2 = f(); // bound to the A subobject of the B rvalue.
+A&amp;&amp; rra = f();       // same as above
+ 
+int i2 = 42;
+int&amp;&amp; rri = static_cast&lt;int&amp;&amp;&gt;(i2); // bound directly to i2</pre></div> <ul><li> Otherwise, if the type of <span class="t-spar">target</span> is not same or derived from <code>T</code>, and <span class="t-spar">target</span> has conversion function to an rvalue or a function lvalue whose type is either <code>T</code> or derived from <code>T</code>, equally or less cv-qualified, then the reference is bound to the result of the conversion function or to its base class subobject <span class="t-rev-inl t-since-cxx17"><span>(after <a href="implicit_conversion.html#Temporary_materialization" title="cpp/language/implicit conversion">materializing a temporary</a> if necessary)</span> <span><span class="t-mark-rev t-since-cxx17">(since C++17)</span></span></span>. </li></ul> <div class="cpp source-cpp"><pre data-language="cpp">struct A {};
+struct B : A {};
+struct X { operator B(); } x;
+ 
+const A&amp; r = x; // bound to the A subobject of the result of the conversion
+B&amp;&amp; rrb = x;    // bound directly to the result of the conversion</pre></div> <ul><li> Otherwise, <span class="t-spar">target</span> is implicitly converted to <code>T</code>. The reference is bound to the result of the conversion<span class="t-rev-inl t-since-cxx17"><span> (after <a href="implicit_conversion.html#Temporary_materialization" title="cpp/language/implicit conversion">materializing a temporary</a>, and the cv-qualification of <code>T</code> is preserved even if it is a scalar type)</span> <span><span class="t-mark-rev t-since-cxx17">(since C++17)</span></span></span>. If the <span class="t-spar">target</span> (or, if the conversion is done by user-defined conversion, the result of the conversion function) is of type <code>T</code> or derived from <code>T</code>, it must be equally or less cv-qualified than <code>T</code><span class="t-rev-inl t-since-cxx11"><span>, and, if the reference is an rvalue reference, must not be an lvalue</span> <span><span class="t-mark-rev t-since-cxx11">(since C++11)</span></span></span>. </li></ul> <div class="cpp source-cpp"><pre data-language="cpp">const std::string&amp; rs = "abc"; // rs refers to temporary copy-initialized from char array
+const double&amp; rcd2 = 2;        // rcd2 refers to temporary with value 2.0
+int i3 = 2;
+double&amp;&amp; rrd3 = i3;            // rrd3 refers to temporary with value 2.0</pre></div> <h3 id="Lifetime_of_a_temporary"> Lifetime of a temporary</h3> <p>Whenever a reference is bound to a temporary object or to a subobject thereof, the lifetime of the temporary object is extended to match the lifetime of the reference (check <a href="lifetime.html#Temporary_object_lifetime" title="cpp/language/lifetime">temporary object lifetime exceptions</a>), where the temporary object or its subobject is denoted by one of following expression:</p>
+<table class="t-rev-begin"> <tr class="t-rev t-until-cxx17">
+<td> <ul><li> a <a href="value_category.html#prvalue" title="cpp/language/value category">prvalue</a> expression of an object type, </li></ul> </td> <td><span class="t-mark-rev t-until-cxx17">(until C++17)</span></td>
+</tr> <tr class="t-rev t-since-cxx17">
+<td> <ul><li> a <a href="implicit_conversion.html#Temporary_materialization" title="cpp/language/implicit conversion">temporary materialization conversion</a>, </li></ul> </td> <td><span class="t-mark-rev t-since-cxx17">(since C++17)</span></td>
+</tr> </table> <ul>
+<li> a parenthesized expression <code>(e)</code>, where <code>e</code> is one of these expressions, </li>
+<li> a <a href="operator_member_access.html#Built-in_subscript_operator" title="cpp/language/operator member access">built-in subscript expression</a> of form <code>a[n]</code> or <code>n[a]</code>, where <code>a</code> is an array and is one of these expressions, </li>
+<li> a <a href="operator_member_access.html#Built-in_member_access_operators" title="cpp/language/operator member access">class member access expression</a> of form <code>e.m</code>, where <code>e</code> is one of these expressions and <code>m</code> designates a non-static data member of object type, </li>
+<li> a <a href="operator_member_access.html#Built-in_pointer-to-member_access_operators" title="cpp/language/operator member access">pointer-to-member operation</a> of form <code>e.*mp</code>, where <code>e</code> is one of these expressions and <code>mp</code> is a pointer to data member, </li>
+<li> a <a href="const_cast.html" title="cpp/language/const cast"><code>const_cast</code></a>, <a href="static_cast.html" title="cpp/language/static cast"><code>static_cast</code></a>, <a href="dynamic_cast.html" title="cpp/language/dynamic cast"><code>dynamic_cast</code></a>, or <a href="reinterpret_cast.html" title="cpp/language/reinterpret cast"><code>reinterpret_cast</code></a> conversion without a user-defined conversion that converts one of these expressions to the glvalue refers to the object designated by the operand, or to its complete object or a subobject thereof (an <a href="explicit_cast.html" title="cpp/language/explicit cast">explicit cast</a> expression is interpreted as a sequence of these casts), </li>
+<li> a <a href="operator_other.html#Conditional_operator" title="cpp/language/operator other">conditional expression</a> of form <code>cond ? e1 : e2</code> that is a glvalue, where <code>e1</code> or <code>e2</code> is one of these expressions, or </li>
+<li> a <a href="operator_other.html#Built-in_comma_operator" title="cpp/language/operator other">built-in comma expression</a> of form <code>x, e</code> that is a glvalue, where <code>e</code> is one of these expressions. </li>
+</ul> <p>There are following exceptions to this lifetime rule:</p>
+<ul>
+<li> a temporary bound to a return value of a function in a <code>return</code> statement is not extended: it is destroyed immediately at the end of the return expression. Such <code>return</code> statement always returns a dangling reference. </li>
+<li> a temporary bound to a reference parameter in a function call exists until the end of the full expression containing that function call: if the function returns a reference, which outlives the full expression, it becomes a dangling reference. </li>
+</ul> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx11">
+<td> <ul><li> a temporary bound to a reference in the initializer used in a new-expression exists until the end of the full expression containing that new-expression, not as long as the initialized object. If the initialized object outlives the full expression, its reference member becomes a dangling reference. </li></ul> </td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <ul><li> a temporary bound to a reference in a reference element of an aggregate initialized using <a href="direct_initialization.html" title="cpp/language/direct initialization">direct-initialization</a> syntax <b>(</b>parentheses<b>)</b> exists until the end of the full expression containing the initializer, as opposed to <a href="list_initialization.html" title="cpp/language/list initialization">list-initialization</a> syntax <b>{</b>braces<b>}</b>. </li></ul> <div class="cpp source-cpp"><pre data-language="cpp">struct A
+{
+    int&amp;&amp; r;
+};
+ 
+A a1{7}; // OK, lifetime is extended
+A a2(7); // well-formed, but dangling reference</pre></div> </td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> <p>In general, the lifetime of a temporary cannot be further extended by "passing it on": a second reference, initialized from the reference variable or data member to which the temporary was bound, does not affect its lifetime.</p>
+<h3 id="Notes"> Notes</h3> <p>References appear without initializers only in function parameter declaration, in function return type declaration, in the declaration of a class member, and with the <a href="storage_duration.html" title="cpp/language/storage duration"><code>extern</code></a> specifier.</p>
+<p>Until the resolution of <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1696.html">CWG issue 1696</a>, a temporary is permitted to bound to a reference member in a constructor <a href="initializer_list.html" title="cpp/language/initializer list" class="mw-redirect">initializer list</a>, and it persists only until the constructor exits, not as long as the object exists. Such initialization is ill-formed since <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1696.html">CWG 1696</a>, although many compilers still support it (a notable exception is clang).</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;sstream&gt;
+#include &lt;utility&gt;
+ 
+struct S
+{
+    int mi;
+    const std::pair&lt;int, int&gt;&amp; mp; // reference member
+};
+ 
+void foo(int) {}
+ 
+struct A {};
+ 
+struct B : A
+{
+    int n;
+    operator int&amp;() { return n; }
+};
+ 
+B bar() { return B(); }
+ 
+//int&amp; bad_r;      // error: no initializer
+extern int&amp; ext_r; // OK
+ 
+int main()
+{
+//  Lvalues
+    int n = 1;
+    int&amp; r1 = n;                    // lvalue reference to the object n
+    const int&amp; cr(n);               // reference can be more cv-qualified
+    volatile int&amp; cv{n};            // any initializer syntax can be used
+    int&amp; r2 = r1;                   // another lvalue reference to the object n
+//  int&amp; bad = cr;                  // error: less cv-qualified
+    int&amp; r3 = const_cast&lt;int&amp;&gt;(cr); // const_cast is needed
+ 
+    void (&amp;rf)(int) = foo; // lvalue reference to function
+    int ar[3];
+    int (&amp;ra)[3] = ar;     // lvalue reference to array
+ 
+    B b;
+    A&amp; base_ref = b;        // reference to base subobject
+    int&amp; converted_ref = b; // reference to the result of a conversion
+ 
+//  Rvalues
+//  int&amp; bad = 1;        // error: cannot bind lvalue ref to rvalue
+    const int&amp; cref = 1; // bound to rvalue
+    int&amp;&amp; rref = 1;      // bound to rvalue
+ 
+    const A&amp; cref2 = bar(); // reference to A subobject of B temporary
+    A&amp;&amp; rref2 = bar();      // same
+ 
+    int&amp;&amp; xref = static_cast&lt;int&amp;&amp;&gt;(n); // bind directly to n
+//  int&amp;&amp; copy_ref = n;                 // error: can't bind to an lvalue
+    double&amp;&amp; copy_ref = n;              // bind to an rvalue temporary with value 1.0
+ 
+//  Restrictions on temporary lifetimes
+//  std::ostream&amp; buf_ref = std::ostringstream() &lt;&lt; 'a';
+                     // the ostringstream temporary was bound to the left operand
+                     // of operator&lt;&lt; but its lifetime ended at the semicolon so
+                     // the buf_ref is a dangling reference
+ 
+    S a {1, {2, 3}}; // temporary pair {2, 3} bound to the reference member
+                     // a.mp and its lifetime is extended to match 
+                     // the lifetime of object a
+ 
+    S* p = new S{1, {2, 3}}; // temporary pair {2, 3} bound to the reference
+                             // member p-&gt;mp, but its lifetime ended at the semicolon
+                             // p-&gt;mp is a dangling reference
+    delete p;
+ 
+    // Imitate [[maybe_unused]] applied to the following variables:
+    [](...){}
+    (
+        cv, r2, r3, rf, ra, base_ref, converted_ref,
+        a, cref, rref, cref2, rref2, copy_ref, xref
+    );
+}</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/391.html">CWG 391</a> </td> <td> C++98 </td> <td> initialize a reference to const-qualified type with a class type<br>rvalue might create a temporary, and a constructor of that class<br>was required in order to copy the rvalue into that temporary </td> <td> no temporary is<br>created, constructor<br>is not required </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/450.html">CWG 450</a> </td> <td> C++98 </td> <td> a reference to const-qualified array could not be<br>initialized with a reference-compatible array rvalue </td> <td> allowed </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/656.html">CWG 656</a> </td> <td> C++98 </td> <td> a reference to const-qualified type initialized with a type which is not<br>reference-compatible but has a conversion function to a reference-<br>compatible type was bound to a temporary copied from the return<br>value (or its base class subobject) of the conversion function </td> <td> bound to the return<br>value (or its base class<br>subobject) directly </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/CWG/issues/1299.html">CWG 1299</a> </td> <td> C++98 </td> <td> the definition of temporary was unclear </td> <td> made clear </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <ul>
+<li> <a href="constructor.html" title="cpp/language/constructor">constructor</a> </li>
+<li> <a href="converting_constructor.html" title="cpp/language/converting constructor">converting constructor</a> </li>
+<li> <a href="copy_assignment.html" title="cpp/language/copy assignment">copy assignment</a> </li>
+<li> <a href="copy_constructor.html" title="cpp/language/copy constructor">copy constructor</a> </li>
+<li> <a href="explicit.html" title="cpp/language/explicit"><code>explicit</code></a> </li>
+<li> <a href="initialization.html" title="cpp/language/initialization">initialization</a> <ul>
+<li> <a href="constant_initialization.html" title="cpp/language/constant initialization">constant initialization</a> </li>
+<li> <a href="copy_initialization.html" title="cpp/language/copy initialization">copy initialization</a> </li>
+<li> <a href="direct_initialization.html" title="cpp/language/direct initialization">direct initialization</a> </li>
+<li> <a href="list_initialization.html" title="cpp/language/list initialization">list initialization</a> </li>
+</ul> </li>
+<li> <a href="move_assignment.html" title="cpp/language/move assignment">move assignment</a> </li>
+<li> <a href="move_constructor.html" title="cpp/language/move constructor">move constructor</a> </li>
+<li> <a href="new.html" title="cpp/language/new"><code>new</code></a> </li>
+</ul>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/language/reference_initialization" class="_attribution-link">https://en.cppreference.com/w/cpp/language/reference_initialization</a>
+  </p>
+</div>

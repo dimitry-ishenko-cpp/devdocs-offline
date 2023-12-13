@@ -1,0 +1,23 @@
+<h1 id="pandas-read-parquet">pandas.read_parquet</h1> <dl class="function"> <dt id="pandas.read_parquet">
+<code>pandas.read_parquet(path, engine='auto', columns=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/parquet.py#L256-L294"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Load a parquet object from the file path, returning a DataFrame.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>path : str, path object or file-like object</code> </dt> <dd>
+<p class="first">Any valid string path is acceptable. The string could be a URL. Valid URL schemes include http, ftp, s3, and file. For file URLs, a host is expected. A local file could be: <code>file://localhost/path/to/table.parquet</code>.</p> <p>If you want to pass in a path object, pandas accepts any <code>os.PathLike</code>.</p> <p class="last">By file-like object, we refer to objects with a <code>read()</code> method, such as a file handler (e.g. via builtin <code>open</code> function) or <code>StringIO</code>.</p> </dd> <dt>
+<code>engine : {‘auto’, ‘pyarrow’, ‘fastparquet’}, default ‘auto’</code> </dt> <dd>
+<p class="first last">Parquet library to use. If ‘auto’, then the option <code>io.parquet.engine</code> is used. The default <code>io.parquet.engine</code> behavior is to try ‘pyarrow’, falling back to ‘fastparquet’ if ‘pyarrow’ is unavailable.</p> </dd> <dt>
+<code>columns : list, default=None</code> </dt> <dd>
+<p class="first last">If not None, only these columns will be read from the file.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Any additional kwargs are passed to the engine.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_parquet.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_parquet.html</a>
+  </p>
+</div>

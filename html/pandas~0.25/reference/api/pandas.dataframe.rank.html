@@ -1,0 +1,52 @@
+<h1 id="pandas-dataframe-rank">pandas.DataFrame.rank</h1> <dl class="method"> <dt id="pandas.DataFrame.rank">
+<code>DataFrame.rank(self, axis=0, method='average', numeric_only=None, na_option='keep', ascending=True, pct=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L8578-L8699"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute numerical data ranks (1 through n) along axis.</p> <p>By default, equal values are assigned a rank that is the average of the ranks of those values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">Index to direct ranking.</p> </dd> <dt>
+<code>method : {‘average’, ‘min’, ‘max’, ‘first’, ‘dense’}, default ‘average’</code> </dt> <dd>
+<p class="first">How to rank the group of records that have the same value (i.e. ties):</p> <ul class="last simple"> <li>average: average rank of the group</li> <li>min: lowest rank in the group</li> <li>max: highest rank in the group</li> <li>first: ranks assigned in order they appear in the array</li> <li>dense: like ‘min’, but rank always increases by 1 between groups</li> </ul> </dd> <dt>
+<code>numeric_only : bool, optional</code> </dt> <dd>
+<p class="first last">For DataFrame objects, rank only numeric columns if set to True.</p> </dd> <dt>
+<code>na_option : {‘keep’, ‘top’, ‘bottom’}, default ‘keep’</code> </dt> <dd>
+<p class="first">How to rank NaN values:</p> <ul class="last simple"> <li>keep: assign NaN rank to NaN values</li> <li>top: assign smallest rank to NaN values if ascending</li> <li>bottom: assign highest rank to NaN values if ascending</li> </ul> </dd> <dt>
+<code>ascending : bool, default True</code> </dt> <dd>
+<p class="first last">Whether or not the elements should be ranked in ascending order.</p> </dd> <dt>
+<code>pct : bool, default False</code> </dt> <dd>
+<p class="first last">Whether or not to display the returned rankings in percentile form.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>same type as caller</dt> <dd>
+<p class="first last">Return a Series or DataFrame with data ranks as values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.core.groupby.groupby.rank.html#pandas.core.groupby.GroupBy.rank" title="pandas.core.groupby.GroupBy.rank"><code>core.groupby.GroupBy.rank</code></a>
+</dt> <dd>Rank of values within each group.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(data={'Animal': ['cat', 'penguin', 'dog',
+...                                    'spider', 'snake'],
+...                         'Number_legs': [4, 2, 4, 8, np.nan]})
+&gt;&gt;&gt; df
+    Animal  Number_legs
+0      cat          4.0
+1  penguin          2.0
+2      dog          4.0
+3   spider          8.0
+4    snake          NaN
+</pre> <p>The following example shows how the method behaves with the above parameters:</p> <ul class="simple"> <li>default_rank: this is the default behaviour obtained without using any parameter.</li> <li>max_rank: setting <code>method = 'max'</code> the records that have the same values are ranked using the highest rank (e.g.: since ‘cat’ and ‘dog’ are both in the 2nd and 3rd position, rank 3 is assigned.)</li> <li>NA_bottom: choosing <code>na_option = 'bottom'</code>, if there are records with NaN values they are placed at the bottom of the ranking.</li> <li>pct_rank: when setting <code>pct = True</code>, the ranking is expressed as percentile rank.</li> </ul> <pre data-language="python">&gt;&gt;&gt; df['default_rank'] = df['Number_legs'].rank()
+&gt;&gt;&gt; df['max_rank'] = df['Number_legs'].rank(method='max')
+&gt;&gt;&gt; df['NA_bottom'] = df['Number_legs'].rank(na_option='bottom')
+&gt;&gt;&gt; df['pct_rank'] = df['Number_legs'].rank(pct=True)
+&gt;&gt;&gt; df
+    Animal  Number_legs  default_rank  max_rank  NA_bottom  pct_rank
+0      cat          4.0           2.5       3.0        2.5     0.625
+1  penguin          2.0           1.0       1.0        1.0     0.250
+2      dog          4.0           2.5       3.0        2.5     0.625
+3   spider          8.0           4.0       4.0        4.0     1.000
+4    snake          NaN           NaN       NaN        5.0       NaN
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.rank.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.rank.html</a>
+  </p>
+</div>

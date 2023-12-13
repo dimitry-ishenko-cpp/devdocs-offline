@@ -1,0 +1,31 @@
+<h1 id="pandas-io-formats-style-styler-apply">pandas.io.formats.style.Styler.apply</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.apply">
+<code>Styler.apply(self, func, axis=0, subset=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L631-L679"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Apply a function column-wise, row-wise, or table-wise, updating the HTML representation with the result.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function</code> </dt> <dd>
+<p class="first last"><code>func</code> should take a Series or DataFrame (depending on <code>axis</code>), and return an object with the same shape. Must return a DataFrame with identical index and column labels when <code>axis=None</code></p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’, None}, default 0</code> </dt> <dd>
+<p class="first last">apply to each column (<code>axis=0</code> or <code>'index'</code>), to each row (<code>axis=1</code> or <code>'columns'</code>), or to the entire DataFrame at once with <code>axis=None</code>.</p> </dd> <dt>
+<code>subset : IndexSlice</code> </dt> <dd>
+<p class="first last">a valid indexer to limit <code>data</code> to <em>before</em> applying the function. Consider using a pandas.IndexSlice</p> </dd> <dt>
+<code>kwargs : dict</code> </dt> <dd>
+<p class="first last">pass along to <code>func</code></p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>self : Styler</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>The output shape of <code>func</code> should match the input, i.e. if <code>x</code> is the input row, column, or table (depending on <code>axis</code>), then <code>func(x).shape == x.shape</code> should be true.</p> <p>This is similar to <code>DataFrame.apply</code>, except that <code>axis=None</code> applies the function to the entire DataFrame at once, rather than column-wise or row-wise.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; def highlight_max(x):
+...     return ['background-color: yellow' if v == x.max() else ''
+                for v in x]
+...
+&gt;&gt;&gt; df = pd.DataFrame(np.random.randn(5, 2))
+&gt;&gt;&gt; df.style.apply(highlight_max)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.apply.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.apply.html</a>
+  </p>
+</div>

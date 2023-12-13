@@ -1,0 +1,34 @@
+    <h1 id="firstHeading" class="firstHeading">std::jmp_buf</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../../header/csetjmp.html" title="cpp/header/csetjmp">&lt;csetjmp&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">typedef /* unspecified */ jmp_buf;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>The <code>std::jmp_buf</code> type is an array type suitable for storing information to restore a calling environment. The stored information is sufficient to restore execution at the correct block of the program and invocation of that block. The state of floating-point status flags, or open files, or any other data is not stored in an object of type <code>std::jmp_buf</code>.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;csetjmp&gt;
+#include &lt;iostream&gt;
+ 
+std::jmp_buf my_jump_buffer;
+ 
+[[noreturn]] void foo(int status) 
+{
+    std::cout &lt;&lt; "foo(" &lt;&lt; status &lt;&lt; ") called\n";
+    std::longjmp(my_jump_buffer, status + 1); // setjmp() will return status + 1
+}
+ 
+int main()
+{
+    volatile int count = 0; // modified locals in setjmp scope must be volatile
+    if (setjmp(my_jump_buffer) != 5) // equality against constant expression in an if
+    {
+        count += 1; // Increment of a volatile variable is deprecated since C++20 (P1152)
+        foo(count); // This will cause setjmp() to exit
+    }
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">foo(1) called
+foo(2) called
+foo(3) called
+foo(4) called</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="setjmp.html" title="cpp/utility/program/setjmp"> <span class="t-lines"><span>setjmp</span></span></a></div> </td> <td> saves the context <br> <span class="t-mark">(function macro)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="longjmp.html" title="cpp/utility/program/longjmp"> <span class="t-lines"><span>longjmp</span></span></a></div> </td> <td> jumps to specified location <br> <span class="t-mark">(function)</span>  </td>
+</tr> <tr class="t-dsc"> <td colspan="2"> <span><a href="https://en.cppreference.com/w/c/program/jmp_buf" title="c/program/jmp buf">C documentation</a></span> for <code>jmp_buf</code> </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/utility/program/jmp_buf" class="_attribution-link">https://en.cppreference.com/w/cpp/utility/program/jmp_buf</a>
+  </p>
+</div>

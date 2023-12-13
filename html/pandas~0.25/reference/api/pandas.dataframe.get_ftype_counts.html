@@ -1,0 +1,29 @@
+<h1 id="pandas-dataframe-get-ftype-counts">pandas.DataFrame.get_ftype_counts</h1> <dl class="method"> <dt id="pandas.DataFrame.get_ftype_counts">
+<code>DataFrame.get_ftype_counts(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L5558-L5602"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return counts of unique ftypes in this object.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.23.0.</span></p> </div> <p>This is useful for SparseDataFrame or for DataFrames containing sparse arrays.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>dtype : Series</code> </dt> <dd>
+<p class="first last">Series with the count of columns with each type and sparsity (dense/sparse).</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.ftypes.html#pandas.DataFrame.ftypes" title="pandas.DataFrame.ftypes"><code>ftypes</code></a>
+</dt> <dd>Return ftypes (indication of sparse/dense and dtype) in this object.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; a = [['a', 1, 1.0], ['b', 2, 2.0], ['c', 3, 3.0]]
+&gt;&gt;&gt; df = pd.DataFrame(a, columns=['str', 'int', 'float'])
+&gt;&gt;&gt; df
+  str  int  float
+0   a    1    1.0
+1   b    2    2.0
+2   c    3    3.0
+</pre> <pre data-language="python">&gt;&gt;&gt; df.get_ftype_counts()  # doctest: +SKIP
+float64:dense    1
+int64:dense      1
+object:dense     1
+dtype: int64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.get_ftype_counts.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.get_ftype_counts.html</a>
+  </p>
+</div>

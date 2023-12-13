@@ -1,0 +1,55 @@
+<h1 id="pandas-series-duplicated">pandas.Series.duplicated</h1> <dl class="method"> <dt id="pandas.Series.duplicated">
+<code>Series.duplicated(self, keep='first')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L2061-L2135"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Indicate duplicate Series values.</p> <p>Duplicated values are indicated as <code>True</code> values in the resulting Series. Either all duplicates, all except the first or all except the last occurrence of duplicates can be indicated.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>keep : {‘first’, ‘last’, False}, default ‘first’</code> </dt> <dd>
+<ul class="first last simple"> <li>‘first’ : Mark duplicates as <code>True</code> except for the first occurrence.</li> <li>‘last’ : Mark duplicates as <code>True</code> except for the last occurrence.</li> <li>
+<code>False</code> : Mark all duplicates as <code>True</code>.</li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Series indicating whether each value has occurred in the preceding values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.duplicated.html#pandas.Index.duplicated" title="pandas.Index.duplicated"><code>Index.duplicated</code></a>
+</dt> <dd>Equivalent method on pandas.Index.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.duplicated.html#pandas.DataFrame.duplicated" title="pandas.DataFrame.duplicated"><code>DataFrame.duplicated</code></a>
+</dt> <dd>Equivalent method on pandas.DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.series.drop_duplicates.html#pandas.Series.drop_duplicates" title="pandas.Series.drop_duplicates"><code>Series.drop_duplicates</code></a>
+</dt> <dd>Remove duplicate values from Series.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>By default, for each set of duplicated values, the first occurrence is set on False and all others on True:</p> <pre data-language="python">&gt;&gt;&gt; animals = pd.Series(['lama', 'cow', 'lama', 'beetle', 'lama'])
+&gt;&gt;&gt; animals.duplicated()
+0    False
+1    False
+2     True
+3    False
+4     True
+dtype: bool
+</pre> <p>which is equivalent to</p> <pre data-language="python">&gt;&gt;&gt; animals.duplicated(keep='first')
+0    False
+1    False
+2     True
+3    False
+4     True
+dtype: bool
+</pre> <p>By using ‘last’, the last occurrence of each set of duplicated values is set on False and all others on True:</p> <pre data-language="python">&gt;&gt;&gt; animals.duplicated(keep='last')
+0     True
+1    False
+2     True
+3    False
+4    False
+dtype: bool
+</pre> <p>By setting keep on <code>False</code>, all duplicates are True:</p> <pre data-language="python">&gt;&gt;&gt; animals.duplicated(keep=False)
+0     True
+1    False
+2     True
+3    False
+4     True
+dtype: bool
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.duplicated.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.duplicated.html</a>
+  </p>
+</div>

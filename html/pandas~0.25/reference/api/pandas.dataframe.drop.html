@@ -1,0 +1,98 @@
+<h1 id="pandas-dataframe-drop">pandas.DataFrame.drop</h1> <dl class="method"> <dt id="pandas.DataFrame.drop">
+<code>DataFrame.drop(self, labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L3958-L4098"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Drop specified labels from rows or columns.</p> <p>Remove rows or columns by specifying label names and corresponding axis, or by specifying directly index or column names. When using a multi-index, labels on different levels can be removed by specifying the level.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>labels : single label or list-like</code> </dt> <dd>
+<p class="first last">Index or column labels to drop.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">Whether to drop labels from the index (0 or ‘index’) or columns (1 or ‘columns’).</p> </dd> <dt>
+<code>index : single label or list-like</code> </dt> <dd>
+<p class="first">Alternative to specifying axis (<code>labels, axis=0</code> is equivalent to <code>index=labels</code>).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> <dt>
+<code>columns : single label or list-like</code> </dt> <dd>
+<p class="first">Alternative to specifying axis (<code>labels, axis=1</code> is equivalent to <code>columns=labels</code>).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> <dt>
+<code>level : int or level name, optional</code> </dt> <dd>
+<p class="first last">For MultiIndex, level from which the labels will be removed.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">If True, do operation inplace and return None.</p> </dd> <dt>
+<code>errors : {‘ignore’, ‘raise’}, default ‘raise’</code> </dt> <dd>
+<p class="first last">If ‘ignore’, suppress error and only existing labels are dropped.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">DataFrame without the removed index or column labels.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>KeyError</dt> <dd>
+<p class="first last">If any of the labels is not found in the selected axis.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code>DataFrame.loc</code></a>
+</dt> <dd>Label-location based indexer for selection by label.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.dropna.html#pandas.DataFrame.dropna" title="pandas.DataFrame.dropna"><code>DataFrame.dropna</code></a>
+</dt> <dd>Return DataFrame with labels on given axis omitted where (all or any) data are missing.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.drop_duplicates.html#pandas.DataFrame.drop_duplicates" title="pandas.DataFrame.drop_duplicates"><code>DataFrame.drop_duplicates</code></a>
+</dt> <dd>Return DataFrame with duplicate rows removed, optionally only considering certain columns.</dd> <dt>
+ <a class="reference internal" href="pandas.series.drop.html#pandas.Series.drop" title="pandas.Series.drop"><code>Series.drop</code></a>
+</dt> <dd>Return Series with specified index labels removed.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(np.arange(12).reshape(3, 4),
+...                   columns=['A', 'B', 'C', 'D'])
+&gt;&gt;&gt; df
+   A  B   C   D
+0  0  1   2   3
+1  4  5   6   7
+2  8  9  10  11
+</pre> <p>Drop columns</p> <pre data-language="python">&gt;&gt;&gt; df.drop(['B', 'C'], axis=1)
+   A   D
+0  0   3
+1  4   7
+2  8  11
+</pre> <pre data-language="python">&gt;&gt;&gt; df.drop(columns=['B', 'C'])
+   A   D
+0  0   3
+1  4   7
+2  8  11
+</pre> <p>Drop a row by index</p> <pre data-language="python">&gt;&gt;&gt; df.drop([0, 1])
+   A  B   C   D
+2  8  9  10  11
+</pre> <p>Drop columns and/or rows of MultiIndex DataFrame</p> <pre data-language="python">&gt;&gt;&gt; midx = pd.MultiIndex(levels=[['lama', 'cow', 'falcon'],
+...                              ['speed', 'weight', 'length']],
+...                      codes=[[0, 0, 0, 1, 1, 1, 2, 2, 2],
+...                             [0, 1, 2, 0, 1, 2, 0, 1, 2]])
+&gt;&gt;&gt; df = pd.DataFrame(index=midx, columns=['big', 'small'],
+...                   data=[[45, 30], [200, 100], [1.5, 1], [30, 20],
+...                         [250, 150], [1.5, 0.8], [320, 250],
+...                         [1, 0.8], [0.3, 0.2]])
+&gt;&gt;&gt; df
+                big     small
+lama    speed   45.0    30.0
+        weight  200.0   100.0
+        length  1.5     1.0
+cow     speed   30.0    20.0
+        weight  250.0   150.0
+        length  1.5     0.8
+falcon  speed   320.0   250.0
+        weight  1.0     0.8
+        length  0.3     0.2
+</pre> <pre data-language="python">&gt;&gt;&gt; df.drop(index='cow', columns='small')
+                big
+lama    speed   45.0
+        weight  200.0
+        length  1.5
+falcon  speed   320.0
+        weight  1.0
+        length  0.3
+</pre> <pre data-language="python">&gt;&gt;&gt; df.drop(index='length', level=1)
+                big     small
+lama    speed   45.0    30.0
+        weight  200.0   100.0
+cow     speed   30.0    20.0
+        weight  250.0   150.0
+falcon  speed   320.0   250.0
+        weight  1.0     0.8
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.drop.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.drop.html</a>
+  </p>
+</div>

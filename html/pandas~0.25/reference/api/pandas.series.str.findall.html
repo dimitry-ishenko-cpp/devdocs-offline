@@ -1,0 +1,59 @@
+<h1 id="pandas-series-str-findall">pandas.Series.str.findall</h1> <dl class="method"> <dt id="pandas.Series.str.findall">
+<code>Series.str.findall(self, pat, flags=0, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L1874-L1877"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Find all occurrences of pattern or regular expression in the Series/Index.</p> <p>Equivalent to applying <a class="reference external" href="https://docs.python.org/3/library/re.html#re.findall" title="(in Python v3.7)"><code>re.findall()</code></a> to all the elements in the Series/Index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>pat : str</code> </dt> <dd>
+<p class="first last">Pattern or regular expression.</p> </dd> <dt>
+<code>flags : int, default 0</code> </dt> <dd>
+<p class="first last">Flags from <code>re</code> module, e.g. <code>re.IGNORECASE</code> (default is 0, which means no flags).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series/Index of lists of strings</dt> <dd>
+<p class="first last">All non-overlapping matches of pattern or regular expression in each string of this Series/Index.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.count.html#pandas.Series.str.count" title="pandas.Series.str.count"><code>count</code></a>
+</dt> <dd>Count occurrences of pattern or regular expression in each string of the Series/Index.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.extractall.html#pandas.Series.str.extractall" title="pandas.Series.str.extractall"><code>extractall</code></a>
+</dt> <dd>For each string in the Series, extract groups from all matches of regular expression and return a DataFrame with one row for each match and one column for each group.</dd> <dt>
+ <a class="reference external" href="https://docs.python.org/3/library/re.html#re.findall" title="(in Python v3.7)"><code>re.findall</code></a>
+</dt> <dd>The equivalent <code>re</code> function to all non-overlapping matches of pattern or regular expression in string, as a list of strings.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['Lion', 'Monkey', 'Rabbit'])
+</pre> <p>The search for the pattern ‘Monkey’ returns one match:</p> <pre data-language="python">&gt;&gt;&gt; s.str.findall('Monkey')
+0          []
+1    [Monkey]
+2          []
+dtype: object
+</pre> <p>On the other hand, the search for the pattern ‘MONKEY’ doesn’t return any match:</p> <pre data-language="python">&gt;&gt;&gt; s.str.findall('MONKEY')
+0    []
+1    []
+2    []
+dtype: object
+</pre> <p>Flags can be added to the pattern or regular expression. For instance, to find the pattern ‘MONKEY’ ignoring the case:</p> <pre data-language="python">&gt;&gt;&gt; import re
+&gt;&gt;&gt; s.str.findall('MONKEY', flags=re.IGNORECASE)
+0          []
+1    [Monkey]
+2          []
+dtype: object
+</pre> <p>When the pattern matches more than one string in the Series, all matches are returned:</p> <pre data-language="python">&gt;&gt;&gt; s.str.findall('on')
+0    [on]
+1    [on]
+2      []
+dtype: object
+</pre> <p>Regular expressions are supported too. For instance, the search for all the strings ending with the word ‘on’ is shown next:</p> <pre data-language="python">&gt;&gt;&gt; s.str.findall('on$')
+0    [on]
+1      []
+2      []
+dtype: object
+</pre> <p>If the pattern is found more than once in the same string, then a list of multiple strings is returned:</p> <pre data-language="python">&gt;&gt;&gt; s.str.findall('b')
+0        []
+1        []
+2    [b, b]
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.findall.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.findall.html</a>
+  </p>
+</div>

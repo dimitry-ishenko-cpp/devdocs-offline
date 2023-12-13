@@ -1,0 +1,25 @@
+<h1 id="pandas-core-groupby-groupby-head">pandas.core.groupby.GroupBy.head</h1> <dl class="method"> <dt id="pandas.core.groupby.GroupBy.head">
+<code>GroupBy.head(self, n=5)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/groupby.py#L2323-L2352"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return first n rows of each group.</p> <p>Essentially equivalent to <code>.apply(lambda x: x.head(n))</code>, except ignores as_index flag.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.groupby</code> </dt>  <dt>
+<code>DataFrame.groupby</code> </dt>  </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[1, 2], [1, 4], [5, 6]],
+...                   columns=['A', 'B'])
+&gt;&gt;&gt; df.groupby('A', as_index=False).head(1)
+   A  B
+0  1  2
+2  5  6
+&gt;&gt;&gt; df.groupby('A').head(1)
+   A  B
+0  1  2
+2  5  6
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.GroupBy.head.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.GroupBy.head.html</a>
+  </p>
+</div>

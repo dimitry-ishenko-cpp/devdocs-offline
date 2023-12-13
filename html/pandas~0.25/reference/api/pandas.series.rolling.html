@@ -1,0 +1,87 @@
+<h1 id="pandas-series-rolling">pandas.Series.rolling</h1> <dl class="method"> <dt id="pandas.Series.rolling">
+<code>Series.rolling(self, window, min_periods=None, center=False, win_type=None, on=None, axis=0, closed=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L10751-L10772"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Provide rolling window calculations.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>window : int, or offset</code> </dt> <dd>
+<p class="first">Size of the moving window. This is the number of observations used for calculating the statistic. Each window will be a fixed size.</p> <p class="last">If its an offset then this will be the time period of each window. Each window will be a variable sized based on the observations included in the time-period. This is only valid for datetimelike indexes. This is new in 0.19.0</p> </dd> <dt>
+<code>min_periods : int, default None</code> </dt> <dd>
+<p class="first last">Minimum number of observations in window required to have a value (otherwise result is NA). For a window that is specified by an offset, <code>min_periods</code> will default to 1. Otherwise, <code>min_periods</code> will default to the size of the window.</p> </dd> <dt>
+<code>center : bool, default False</code> </dt> <dd>
+<p class="first last">Set the labels at the center of the window.</p> </dd> <dt>
+<code>win_type : str, default None</code> </dt> <dd>
+<p class="first last">Provide a window type. If <code>None</code>, all points are evenly weighted. See the notes below for further information.</p> </dd> <dt>
+<code>on : str, optional</code> </dt> <dd>
+<p class="first last">For a DataFrame, a datetime-like column on which to calculate the rolling window, rather than the DataFrame’s index. Provided integer column is ignored and excluded from result since an integer index is not used to calculate the rolling window.</p> </dd> <dt>
+<code>axis : int or str, default 0</code> </dt>  <dt>
+<code>closed : str, default None</code> </dt> <dd>
+<p class="first">Make the interval closed on the ‘right’, ‘left’, ‘both’ or ‘neither’ endpoints. For offset-based windows, it defaults to ‘right’. For fixed windows, defaults to ‘both’. Remaining cases not implemented for fixed windows.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>a Window or Rolling sub-classed for the particular operation</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.expanding.html#pandas.Series.expanding" title="pandas.Series.expanding"><code>expanding</code></a>
+</dt> <dd>Provides expanding transformations.</dd> <dt>
+ <a class="reference internal" href="pandas.series.ewm.html#pandas.Series.ewm" title="pandas.Series.ewm"><code>ewm</code></a>
+</dt> <dd>Provides exponential weighted functions.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>By default, the result is set to the right edge of the window. This can be changed to the center of the window by setting <code>center=True</code>.</p> <p>To learn more about the offsets &amp; frequency strings, please see <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">this link</a>.</p> <p>The recognized win_types are:</p> <ul class="simple"> <li><code>boxcar</code></li> <li><code>triang</code></li> <li><code>blackman</code></li> <li><code>hamming</code></li> <li><code>bartlett</code></li> <li><code>parzen</code></li> <li><code>bohman</code></li> <li><code>blackmanharris</code></li> <li><code>nuttall</code></li> <li><code>barthann</code></li> <li>
+<code>kaiser</code> (needs beta)</li> <li>
+<code>gaussian</code> (needs std)</li> <li>
+<code>general_gaussian</code> (needs power, width)</li> <li>
+<code>slepian</code> (needs width)</li> <li>
+<code>exponential</code> (needs tau), center is set to None.</li> </ul> <p>If <code>win_type=None</code> all points are evenly weighted. To learn more about different window types see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/signal.html#window-functions">scipy.signal window functions</a>.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'B': [0, 1, 2, np.nan, 4]})
+&gt;&gt;&gt; df
+     B
+0  0.0
+1  1.0
+2  2.0
+3  NaN
+4  4.0
+</pre> <p>Rolling sum with a window length of 2, using the ‘triang’ window type.</p> <pre data-language="python">&gt;&gt;&gt; df.rolling(2, win_type='triang').sum()
+     B
+0  NaN
+1  0.5
+2  1.5
+3  NaN
+4  NaN
+</pre> <p>Rolling sum with a window length of 2, min_periods defaults to the window length.</p> <pre data-language="python">&gt;&gt;&gt; df.rolling(2).sum()
+     B
+0  NaN
+1  1.0
+2  3.0
+3  NaN
+4  NaN
+</pre> <p>Same as above, but explicitly set the min_periods</p> <pre data-language="python">&gt;&gt;&gt; df.rolling(2, min_periods=1).sum()
+     B
+0  0.0
+1  1.0
+2  3.0
+3  2.0
+4  4.0
+</pre> <p>A ragged (meaning not-a-regular frequency), time-indexed DataFrame</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'B': [0, 1, 2, np.nan, 4]},
+...                   index = [pd.Timestamp('20130101 09:00:00'),
+...                            pd.Timestamp('20130101 09:00:02'),
+...                            pd.Timestamp('20130101 09:00:03'),
+...                            pd.Timestamp('20130101 09:00:05'),
+...                            pd.Timestamp('20130101 09:00:06')])
+</pre> <pre data-language="python">&gt;&gt;&gt; df
+                       B
+2013-01-01 09:00:00  0.0
+2013-01-01 09:00:02  1.0
+2013-01-01 09:00:03  2.0
+2013-01-01 09:00:05  NaN
+2013-01-01 09:00:06  4.0
+</pre> <p>Contrasting to an integer rolling window, this will roll a variable length window corresponding to the time period. The default for min_periods is 1.</p> <pre data-language="python">&gt;&gt;&gt; df.rolling('2s').sum()
+                       B
+2013-01-01 09:00:00  0.0
+2013-01-01 09:00:02  1.0
+2013-01-01 09:00:03  3.0
+2013-01-01 09:00:05  NaN
+2013-01-01 09:00:06  4.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.rolling.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.rolling.html</a>
+  </p>
+</div>

@@ -1,0 +1,70 @@
+<h1 id="pandas-dataframe-dropna">pandas.DataFrame.dropna</h1> <dl class="method"> <dt id="pandas.DataFrame.dropna">
+<code>DataFrame.dropna(self, axis=0, how='any', thresh=None, subset=None, inplace=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L4714-L4861"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Remove missing values.</p> <p>See the <a class="reference internal" href="../../user_guide/missing_data.html#missing-data"><span class="std std-ref">User Guide</span></a> for more on which values are considered missing, and how to work with missing data.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first">Determine if rows or columns which contain missing values are removed.</p> <ul class="simple"> <li>0, or ‘index’ : Drop rows which contain missing values.</li> <li>1, or ‘columns’ : Drop columns which contain missing value.</li> </ul> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.23.0: </span>Pass tuple or list to drop on multiple axes. Only a single axis is allowed.</p> </div> </dd> <dt>
+<code>how : {‘any’, ‘all’}, default ‘any’</code> </dt> <dd>
+<p class="first">Determine if row or column is removed from DataFrame, when we have at least one NA or all NA.</p> <ul class="last simple"> <li>‘any’ : If any NA values are present, drop that row or column.</li> <li>‘all’ : If all values are NA, drop that row or column.</li> </ul> </dd> <dt>
+<code>thresh : int, optional</code> </dt> <dd>
+<p class="first last">Require that many non-NA values.</p> </dd> <dt>
+<code>subset : array-like, optional</code> </dt> <dd>
+<p class="first last">Labels along other axis to consider, e.g. if you are dropping rows these would be a list of columns to include.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">If True, do operation inplace and return None.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">DataFrame with NA entries dropped from it.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.isna.html#pandas.DataFrame.isna" title="pandas.DataFrame.isna"><code>DataFrame.isna</code></a>
+</dt> <dd>Indicate missing values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.notna.html#pandas.DataFrame.notna" title="pandas.DataFrame.notna"><code>DataFrame.notna</code></a>
+</dt> <dd>Indicate existing (non-missing) values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>DataFrame.fillna</code></a>
+</dt> <dd>Replace missing values.</dd> <dt>
+ <a class="reference internal" href="pandas.series.dropna.html#pandas.Series.dropna" title="pandas.Series.dropna"><code>Series.dropna</code></a>
+</dt> <dd>Drop missing values.</dd> <dt>
+ <a class="reference internal" href="pandas.index.dropna.html#pandas.Index.dropna" title="pandas.Index.dropna"><code>Index.dropna</code></a>
+</dt> <dd>Drop missing indices.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"name": ['Alfred', 'Batman', 'Catwoman'],
+...                    "toy": [np.nan, 'Batmobile', 'Bullwhip'],
+...                    "born": [pd.NaT, pd.Timestamp("1940-04-25"),
+...                             pd.NaT]})
+&gt;&gt;&gt; df
+       name        toy       born
+0    Alfred        NaN        NaT
+1    Batman  Batmobile 1940-04-25
+2  Catwoman   Bullwhip        NaT
+</pre> <p>Drop the rows where at least one element is missing.</p> <pre data-language="python">&gt;&gt;&gt; df.dropna()
+     name        toy       born
+1  Batman  Batmobile 1940-04-25
+</pre> <p>Drop the columns where at least one element is missing.</p> <pre data-language="python">&gt;&gt;&gt; df.dropna(axis='columns')
+       name
+0    Alfred
+1    Batman
+2  Catwoman
+</pre> <p>Drop the rows where all elements are missing.</p> <pre data-language="python">&gt;&gt;&gt; df.dropna(how='all')
+       name        toy       born
+0    Alfred        NaN        NaT
+1    Batman  Batmobile 1940-04-25
+2  Catwoman   Bullwhip        NaT
+</pre> <p>Keep only the rows with at least 2 non-NA values.</p> <pre data-language="python">&gt;&gt;&gt; df.dropna(thresh=2)
+       name        toy       born
+1    Batman  Batmobile 1940-04-25
+2  Catwoman   Bullwhip        NaT
+</pre> <p>Define in which columns to look for missing values.</p> <pre data-language="python">&gt;&gt;&gt; df.dropna(subset=['name', 'born'])
+       name        toy       born
+1    Batman  Batmobile 1940-04-25
+</pre> <p>Keep the DataFrame with valid entries in the same variable.</p> <pre data-language="python">&gt;&gt;&gt; df.dropna(inplace=True)
+&gt;&gt;&gt; df
+     name        toy       born
+1  Batman  Batmobile 1940-04-25
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.dropna.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.dropna.html</a>
+  </p>
+</div>

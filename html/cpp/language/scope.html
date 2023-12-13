@@ -1,0 +1,304 @@
+    <h1 id="firstHeading" class="firstHeading">Scope</h1>            <p>Each <a href="name.html" title="cpp/language/name" class="mw-redirect">name</a> that appears in a C++ program is only visible in some possibly discontiguous portion of the source code called its <i>scope</i>.</p>
+<p>Within a scope, <a href="lookup.html" title="cpp/language/lookup">unqualified name lookup</a> can be used to associate the name with its declaration.</p>
+<h3 id="Block_scope"> Block scope</h3> <p>The potential scope of a name declared in a <a href="statements.html#Compound_statements" title="cpp/language/statements">block (compound statement)</a> begins at the point of declaration and ends at the end of the block. Actual scope is the same as potential scope unless an identical name is declared in a nested block, in which case the potential scope of the name in the nested block is excluded from the actual scope of the name in the enclosing block.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">int main()
+{
+    int i = 0; // scope of outer i begins
+    ++i; // outer i is in scope
+    {
+        int i = 1; // scope of inner i begins,
+                   // scope of outer i pauses
+        i = 42; // inner i is in scope
+    } // block ends, scope of inner i ends,
+      // scope of outer i resumes
+} // block ends, scope of outer i ends
+// int j = i; // error: i is not in scope</pre></div> <p>The potential scope of a name declared in an exception handler begins at the point of declaration and ends at the end of the exception handler, and is not in scope in another exception handler or in the enclosing block.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">try
+{
+    f();
+}
+catch (const std::runtime_error&amp; re)
+{ // scope of re begins
+    int n = 1; // scope of n begins
+    std::cout &lt;&lt; n &lt;&lt; re.what(); // re is in scope
+} // scope of re ends, scope of n ends
+catch (std::exception&amp; e)
+{
+//  std::cout &lt;&lt; re.what(); // error: re is not in scope
+//  ++n; // error: n is not in scope
+}</pre></div> <p>The potential scope of a name declared in the <i>init-statement</i> of a <a href="for.html" title="cpp/language/for">for loop</a>, in the <i>condition</i> of a <a href="for.html" title="cpp/language/for">for loop</a>, in the <i>range_declaration</i> of a <a href="range-for.html" title="cpp/language/range-for">range-for loop</a><span class="t-rev-inl t-since-cxx17"><span>, in the <i>init-statement</i> of an <a href="if.html" title="cpp/language/if">if statement</a> or <a href="switch.html" title="cpp/language/switch">switch statement</a></span> <span><span class="t-mark-rev t-since-cxx17">(since C++17)</span></span></span>, in the <i>condition</i> of an <a href="if.html" title="cpp/language/if">if statement</a>, <a href="switch.html" title="cpp/language/switch">switch statement</a>, or <a href="while.html" title="cpp/language/while">while loop</a> begins at the point of declaration and ends at the end of the controlled statement.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">Base* bp = new Derived;
+if (Derived* dp = dynamic_cast&lt;Derived*&gt;(bp))
+{
+    dp-&gt;f(); // dp is in scope
+} // scope of dp ends
+ 
+for (int n = 0; // scope of n begins
+     n &lt; 10; // n is in scope
+     ++n)    // n is in scope
+{
+    std::cout &lt;&lt; n &lt;&lt; ' '; // n is in scope
+} // scope of n ends</pre></div> <h3 id="Function_parameter_scope"> Function parameter scope</h3> <p>The potential scope of a name declared in a function parameter (including parameters of a lambda expression) or of a function-local predefined variable begins at the point of declaration.</p>
+<ul>
+<li> If the enclosing function declarator is not the declarator of a function definition, its potential scope ends at the end of that function declarator. </li>
+<li> Otherwise, its potential scope ends at the end of the last exception handler of the <a href="function-try-block.html" title="cpp/language/function-try-block">function-try-block</a>, or at the end of the function body if a function try block was not used. </li>
+</ul> <div class="cpp source-cpp"><pre data-language="cpp">const int n = 3;
+ 
+int f1(
+    int n // scope of function parameter n begins,
+          // scope of global n pauses
+//  , int y = n // error: default argument references a function parameter
+);
+ 
+int (*(*f2)(int n))[n]; // OK: scope of function parameter n
+                        // ends at the end of its function declarator
+                        // in the array declarator, global n is in scope
+// declares a pointer to function returning a pointer to an array of 3 int
+ 
+//auto (*f3)(int n)-&gt;int (*)[n]; // error: function parameter n as array bound
+ 
+void f(int n = 2) // scope of function parameter n begins
+try // function try block
+{ // function body begins
+    ++n; // function parameter n is in scope
+    {
+        int n = 2; // scope of local n begins
+                   // scope of function parameter n pauses
+        ++n; // local n is in scope
+    } // scope of local n ends
+      // scope of function parameter n resumes
+} catch (std::exception&amp; e) {
+    ++n; // function parameter n is in scope
+    throw;
+} // last exception handler ends, scope of function parameter n ends
+ 
+int a = n; // global n is in scope</pre></div> <h3 id="Namespace_scope"> Namespace scope</h3> <p>The potential scope of a name declared in a <a href="namespace.html" title="cpp/language/namespace">namespace</a> begins at the point of declaration and includes the rest of the namespace and all namespace definitions with an identical namespace name that follow, plus, for any <a href="namespace.html" title="cpp/language/namespace">using-directive</a> that introduced this name or its entire namespace into another scope, the rest of that scope.</p>
+<p>The top-level scope of a translation unit ("file scope" or "global scope") is also a namespace and is properly called "global namespace scope". The potential scope of a name declared in the global namespace scope begins at the point of declaration and ends at the end of the translation unit.</p>
+<p>The potential scope of a name declared in an unnamed namespace or in an inline namespace includes the potential scope that name would have if it were declared in the enclosing namespace.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">namespace N { // scope of N begins (as a member of global namespace)
+    int i; // scope of i begins
+    int g(int a) { return a; } // scope of g begins
+    int j(); // scope of j begins
+    void q(); // scope of q begins
+    namespace {
+        int x; // scope of x begins
+    } // scope of x continues (member of unnamed namespace)
+    inline namespace inl { // scope of inl begins
+        int y; // scope of y begins
+    } // scope of y continues (member of inline namespace)
+} // scopes of i, g, j, q, inl, x, and y pause
+ 
+namespace {
+    int l = 1; // scope of l begins
+} // scope of l continues (member of unnamed namespace)
+ 
+namespace N { // scopes of i, g, j, q, inl, x, and y resume
+    int g(char a) { // overloads N::g(int)
+        return l + a; // l from unnamed namespace is in scope
+    }
+//  int i; // error: duplicate definition (i is already in scope)
+    int j(); // OK: duplicate function declaration is allowed
+    int j() { // OK: definition of the earlier-declared N::j()
+        return g(i); // calls N::g(int)
+    }
+//  int q(); // error: q is already in scope with a different return type
+} // scopes of i, g, j, q, inl, x, and y pause
+ 
+int main() {
+    using namespace N; // scopes of i, g, j, q, inl, x, and y resume
+    i = 1; // N::i is in scope
+    x = 1; // N::(anonymous)::x is in scope
+    y = 1; // N::inl::y is in scope
+    inl::y = 2; // N::inl is also in scope
+} // scopes of i, g, j, q, inl, x, and y end</pre></div> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p>The name may also be visible in translation units that have <a href="modules.html" title="cpp/language/modules">imported</a> the current translation unit.</p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> <h3 id="Class_scope"> Class scope</h3> <p>The potential scope of a name declared in a <a href="class.html" title="cpp/language/class">class</a> begins at the point of declaration and includes the rest of the class body, all the derived classes bodies, the function bodies (even if defined outside the class definition or before the declaration of the name), function default arguments, function exception specifications, in-class brace-or-equal initializers, and all these things in nested classes, recursively.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">struct X {
+    int f(int a = n) { // n is in scope in function default argument
+        return a * n;  // n is in scope in function body
+    }
+    using r = int;
+    r g();
+    int i = n * 2; // n is in scope in initializer
+//  int x[n]; // error: n is not in scope in class body
+    static const int n = 1; // scope of n begins
+    int x[n]; // OK: n is now in scope in class body
+}; // scope of n pauses
+ 
+struct Y: X { // scope of n resumes
+    int y[n]; // n is in scope
+}; // scope of n ends
+ 
+//r X::g() {     // error: r is not in scope outside out-of-class function body
+auto X::g()-&gt;r { // OK: trailing return type r is in scope
+    return n;    // n is in scope in out-of-class function body
+}</pre></div> <p>If a name is used in a class body before it is declared, and another declaration for that name is in scope, the program is <a href="ub.html" title="cpp/language/ub">ill-formed, no diagnostic required</a>.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">typedef int c; // ::c
+enum { i = 1 }; // ::i
+ 
+class X {
+//  char v[i]; // error: at this point, i refers to ::i
+               // but there is also X::i
+    int f() {
+         return sizeof(c); // OK: X::c is in scope in member function
+    }
+    enum { i = 2 }; // X::i
+    char c;         // X::c
+    char w[i]; // OK: i refers to X::i now
+}; // scope of outer i resumes
+ 
+typedef char* T;
+struct Y {
+//  T a; // error: at this point, T refers to ::T
+         // but there is also Y::T
+    typedef long T;
+    T b;
+};</pre></div> <p>Names of class members can be used in the following contexts:</p>
+<ul>
+<li> in its own class scope or in the class scope of a derived class; </li>
+<li> after the <code>.</code> operator applied to an expression of the type of its class or a class derived from it; </li>
+<li> after the <code>-&gt;</code> operator applied to an expression of the type of pointer to its class or pointers to a class derived from it; </li>
+<li> after the <code>::</code> operator applied to the name of its class or the name of a class derived from it. </li>
+</ul> <h3 id="Enumeration_scope"> Enumeration scope</h3> <p>The potential scope of an enumerator of an <a href="enum.html" title="cpp/language/enum">unscoped enumeration</a> begins at the point of declaration and ends at the end of the enclosing scope.</p>
+<p>The potential scope of an enumerator of a <a href="enum.html" title="cpp/language/enum">scoped enumeration</a> begins at the point of declaration and ends at the end of the enum specifier.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">enum e1_t { // unscoped enumeration
+    A,
+    B = A * 2 // A is in scope
+}; // scopes of A and B continue
+ 
+enum class e2_t { // scoped enumeration
+    SA,
+    SB = SA * 2 // SA is in scope
+}; // scopes of SA and SB end
+ 
+e1_t e1 = B; // OK: B is in scope
+// e2_t e2 = SB; // error: SB is not in scope
+e2_t e2 = e2_t::SB; // OK</pre></div> <h3 id="Template_parameter_scope"> Template parameter scope</h3> <p>The potential scope of a template parameter name begins at the point of declaration and ends at the end of the smallest template declaration in which it was introduced. In particular, a template parameter can be used in the declarations of subsequent template parameters and in the specifications of base classes, but can't be used in the declarations of the preceding template parameters.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">template&lt;
+    typename T, // scope of T begins
+    T* p,       // T is in scope
+    class U = T // T is in scope
+&gt;
+class X: public std::vector&lt;T&gt; // T is in scope
+{
+    T f(); // T is in scope
+}; // scopes of T and U end</pre></div> <p>The potential scope of the name of the parameter of a template template parameter is the smallest template parameter list in which that name appears.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">template&lt;
+    template&lt; // template template parameter
+        typename Y,    // scope of Y begins
+        typename G = Y // Y is in scope
+    &gt; // scopes of Y and G end
+    class T,
+//  typename U = Y // error: Y is not in scope
+    typename U
+&gt;
+class X {
+}; // scopes of T and U end</pre></div> <p>Similar to other nested scopes, the name of a template parameter hides the same name from the enclosing scope for the duration of its own.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">typedef int N;
+template&lt;
+    N X, // ::N is in scope
+    typename N, // scope of N begins, scope of ::N pauses
+    template&lt;N Y&gt; class T // N is in scope
+&gt;
+struct A; // scope of N ends, scope of ::N resumes</pre></div> <h3 id="Point_of_declaration"> Point of declaration</h3> <p>In general, a name is visible after the <i>locus</i> of its first declaration, which is located as follows.</p>
+<p>The locus of a name declared in a simple declaration is immediately after that name's <a href="declarations.html#Declarators" title="cpp/language/declarations">declarator</a> and before its initializer, if any.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">unsigned char x = 32; // outer x is in scope
+{
+    unsigned char x = x; // inner x is in scope before the initializer (= x)
+                         // this does not initialize inner x with the value of outer x,
+                         // this initializes inner x with its own, indeterminate, value
+}
+std::function&lt;int(int)&gt; f = [&amp;](int n){ return n &gt; 1 ? n * f(n - 1) : n; };
+// the name of the function f is in scope in the lambda and can
+// be correctly captured by reference, giving a recursive function</pre></div> <div class="cpp source-cpp"><pre data-language="cpp">const int x = 2; // outer x is in scope
+{
+    int x[x] = {}; // inner x is in scope before the initializer (= {}),
+                   // but after the declarator (x[x])
+                   // in the declarator, outer x is still in scope
+                   // this declares an array of 2 int
+}</pre></div> <p>The locus of a class or class template declaration is immediately after the identifier that names the class (or the <a href="templates.html#template-id" title="cpp/language/templates">template-id</a> that names the template specialization) in its <a href="class.html" title="cpp/language/class">class-head</a>. The class or class template name is already in scope in the list of base classes.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">struct S: std::enable_shared_from_this&lt;S&gt; // S is in scope at the colon
+{};</pre></div> <p>The locus of <a href="enum.html" title="cpp/language/enum">enum specifier</a> or opaque enum declaration is immediately after the identifier that names the enumeration.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">enum E: int { // E is in scope at the colon
+    A = sizeof(E)
+};</pre></div> <p>The locus of a <a href="type_alias.html" title="cpp/language/type alias">type alias or alias template</a> declaration is immediately after the type-id to which the alias refers.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">using T = int; // outer T is in scope at the semicolon
+{
+    using T = T*; // inner T is in scope at the semicolon,
+                  // outer T is still in scope before the semicolon
+                  // same as T = int*
+}</pre></div> <p>The locus for a declarator in a <a href="using_declaration.html" title="cpp/language/using declaration">using declaration</a> that does not name a constructor is immediately after the declarator.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">template&lt;int N&gt;
+class Base {
+protected:
+    static const int next = N + 1;
+    static const int value = N;
+};
+ 
+struct Derived: Base&lt;0&gt;, Base&lt;1&gt;, Base&lt;2&gt; {
+    using Base&lt;0&gt;::next, // next is in scope at the comma
+          Base&lt;next&gt;::value; // Derived::value is 1
+};</pre></div> <p>The locus of an enumerator is immediately after its definition (not before the initializer as it is for variables).</p>
+<div class="cpp source-cpp"><pre data-language="cpp">const int x = 12;
+{
+    enum {
+        x = x + 1, // enumerator x is in scope at the comma,
+                   // outer x is in scope before the comma,
+                   // enumerator x is initialized to 13
+        y = x + 1  // y is initialized to 14
+    };
+}</pre></div> <p>The locus for an <a href="injected-class-name.html" title="cpp/language/injected-class-name"><span class="t-spar">injected-class-name</span></a> is immediately following the opening brace of its class (or class template) definition.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">template&lt;typename T&gt;
+struct Array
+//  : std::enable_shared_from_this&lt;Array&gt; // error: the injected class name is not in scope
+    : std::enable_shared_from_this&lt; Array&lt;T&gt; &gt; // OK: the template-name Array is in scope
+{ // the injected class name Array is now in scope as if a public member name
+    Array* p; // pointer to Array&lt;T&gt;
+};</pre></div> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx11">
+<td> <p>The locus of the implicit declaration for a function-local predefined variable <code>__func__</code> is immediately before the function body of a function definition.</p>
+</td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx17">
+<td> <p>The locus of a <a href="structured_binding.html" title="cpp/language/structured binding">structured binding declaration</a> is immediately after the <span class="t-spar">identifier-list</span>, but structured binding initializers are prohibited from referring to any of the names being declared.</p>
+</td> <td><span class="t-mark-rev t-since-cxx17">(since C++17)</span></td>
+</tr> </table> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx11">
+<td> <p>The locus of the variable<span class="t-rev-inl t-since-cxx17"><span> or the structured bindings</span> <span><span class="t-mark-rev t-since-cxx17">(since C++17)</span></span></span> declared in the <span class="t-spar">range_declaration</span> of a <a href="range-for.html" title="cpp/language/range-for">range-for loop</a> is immediately after the <span class="t-spar">range_expression</span>.</p>
+<div class="cpp source-cpp"><pre data-language="cpp">std::vector&lt;int&gt; x;
+ 
+for (auto x: x) { // auto x is in scope at the closing parenthesis,
+                  // vector x is in scope before the closing parenthesis
+    // the auto x is in scope
+}</pre></div> </td> <td><span class="t-mark-rev t-since-cxx11">(since C++11)</span></td>
+</tr> </table> <p>The locus of a <a href="template_parameters.html" title="cpp/language/template parameters">template parameter</a> is immediately after its complete template parameter (including the optional default argument).</p>
+<div class="cpp source-cpp"><pre data-language="cpp">typedef unsigned char T;
+template&lt;
+    class T = T, // template parameter T is in scope at the comma,
+                 // typedef name of unsigned char is in scope before the comma
+    T // template parameter T is in scope
+    N = 0
+&gt;
+struct A {
+};</pre></div> <table class="t-rev-begin"> <tr class="t-rev t-since-cxx20">
+<td> <p>The locus of a <a href="constraints.html" title="cpp/language/constraints">concept definition</a> is immediately after the concept name, but concept definitions are prohibited from referring to the concept name being declared.</p>
+</td> <td><span class="t-mark-rev t-since-cxx20">(since C++20)</span></td>
+</tr> </table> <p>The locus of a named <a href="namespace.html" title="cpp/language/namespace">namespace definition</a> is immediately after the namespace name.</p>
+<h3 id="References"> References</h3>  <ul>
+<li> C++23 standard (ISO/IEC 14882:2023): </li>
+<ul><li> 6.4 Scope [basic.scope] </li></ul>
+<li> C++20 standard (ISO/IEC 14882:2020): </li>
+<ul><li> 6.4 Scope [basic.scope] </li></ul>
+<li> C++17 standard (ISO/IEC 14882:2017): </li>
+<ul><li> 6.3 Scope [basic.scope] </li></ul>
+<li> C++14 standard (ISO/IEC 14882:2014): </li>
+<ul><li> 3.3 Scope [basic.scope] </li></ul>
+<li> C++11 standard (ISO/IEC 14882:2011): </li>
+<ul><li> 3.3 Scope [basic.scope] </li></ul>
+<li> C++98 standard (ISO/IEC 14882:1998): </li>
+<ul><li> 3.3 Declarative regions and scopes [basic.scope] </li></ul>
+</ul>                       <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td colspan="2"> <span><a href="https://en.cppreference.com/w/c/language/scope" title="c/language/scope">C documentation</a></span> for <span class=""><span>Scope</span></span> </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/language/scope" class="_attribution-link">https://en.cppreference.com/w/cpp/language/scope</a>
+  </p>
+</div>

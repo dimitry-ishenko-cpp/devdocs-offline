@@ -1,0 +1,29 @@
+<h1 id="pandas-tseries-offsets-businesshour">pandas.tseries.offsets.BusinessHour</h1> <dl class="class"> <dt id="pandas.tseries.offsets.BusinessHour">
+<code>class pandas.tseries.offsets.BusinessHour(n=1, normalize=False, start='09:00', end='17:00', offset=datetime.timedelta(0))</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/tseries/offsets.py#L979-L994"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>DateOffset subclass representing possibly n business hours.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.16.1.</span></p> </div> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.businesshour.base.html#pandas.tseries.offsets.BusinessHour.base" title="pandas.tseries.offsets.BusinessHour.base"><code>base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.businesshour.next_bday.html#pandas.tseries.offsets.BusinessHour.next_bday" title="pandas.tseries.offsets.BusinessHour.next_bday"><code>next_bday</code></a></td> <td>Used for moving to next business day.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.tseries.offsets.businesshour.offset.html#pandas.tseries.offsets.BusinessHour.offset" title="pandas.tseries.offsets.BusinessHour.offset"><code>offset</code></a></td> <td>Alias for self._offset.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>freqstr</strong></td> <td> </td> </tr> <tr>
+<td><strong>kwds</strong></td> <td> </td> </tr> <tr>
+<td><strong>name</strong></td> <td> </td> </tr> <tr>
+<td><strong>nanos</strong></td> <td> </td> </tr> <tr>
+<td><strong>rule_code</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.businesshour.apply_index.html#pandas.tseries.offsets.BusinessHour.apply_index" title="pandas.tseries.offsets.BusinessHour.apply_index"><code>apply_index</code></a>(self, other)</td> <td>Vectorized apply of DateOffset to DatetimeIndex, raises NotImplentedError for offsets without a vectorized implementation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.businesshour.rollback.html#pandas.tseries.offsets.BusinessHour.rollback" title="pandas.tseries.offsets.BusinessHour.rollback"><code>rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.tseries.offsets.businesshour.rollforward.html#pandas.tseries.offsets.BusinessHour.rollforward" title="pandas.tseries.offsets.BusinessHour.rollforward"><code>rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table> <table class="docutils">   <tr>
+<td><strong>__call__</strong></td> <td> </td> </tr> <tr>
+<td><strong>apply</strong></td> <td> </td> </tr> <tr>
+<td><strong>copy</strong></td> <td> </td> </tr> <tr>
+<td><strong>isAnchored</strong></td> <td> </td> </tr> <tr>
+<td><strong>onOffset</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.BusinessHour.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.tseries.offsets.BusinessHour.html</a>
+  </p>
+</div>

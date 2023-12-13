@@ -1,0 +1,110 @@
+<h1 id="pandas-dataframe-reset-index">pandas.DataFrame.reset_index</h1> <dl class="method"> <dt id="pandas.DataFrame.reset_index">
+<code>DataFrame.reset_index(self, level=None, drop=False, inplace=False, col_level=0, col_fill='')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L4459-L4693"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Reset the index, or a level of it.</p> <p>Reset the index of the DataFrame, and use the default one instead. If the DataFrame has a MultiIndex, this method can remove one or more levels.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>level : int, str, tuple, or list, default None</code> </dt> <dd>
+<p class="first last">Only remove the given levels from the index. Removes all levels by default.</p> </dd> <dt>
+<code>drop : bool, default False</code> </dt> <dd>
+<p class="first last">Do not try to insert index into dataframe columns. This resets the index to the default integer index.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">Modify the DataFrame in place (do not create a new object).</p> </dd> <dt>
+<code>col_level : int or str, default 0</code> </dt> <dd>
+<p class="first last">If the columns have multiple levels, determines which level the labels are inserted into. By default it is inserted into the first level.</p> </dd> <dt>
+<code>col_fill : object, default ‘’</code> </dt> <dd>
+<p class="first last">If the columns have multiple levels, determines how the other levels are named. If None then the index name is repeated.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">DataFrame with the new index.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.set_index.html#pandas.DataFrame.set_index" title="pandas.DataFrame.set_index"><code>DataFrame.set_index</code></a>
+</dt> <dd>Opposite of reset_index.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.reindex.html#pandas.DataFrame.reindex" title="pandas.DataFrame.reindex"><code>DataFrame.reindex</code></a>
+</dt> <dd>Change to new indices or expand indices.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.reindex_like.html#pandas.DataFrame.reindex_like" title="pandas.DataFrame.reindex_like"><code>DataFrame.reindex_like</code></a>
+</dt> <dd>Change to same indices as other DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([('bird', 389.0),
+...                    ('bird', 24.0),
+...                    ('mammal', 80.5),
+...                    ('mammal', np.nan)],
+...                   index=['falcon', 'parrot', 'lion', 'monkey'],
+...                   columns=('class', 'max_speed'))
+&gt;&gt;&gt; df
+         class  max_speed
+falcon    bird      389.0
+parrot    bird       24.0
+lion    mammal       80.5
+monkey  mammal        NaN
+</pre> <p>When we reset the index, the old index is added as a column, and a new sequential index is used:</p> <pre data-language="python">&gt;&gt;&gt; df.reset_index()
+    index   class  max_speed
+0  falcon    bird      389.0
+1  parrot    bird       24.0
+2    lion  mammal       80.5
+3  monkey  mammal        NaN
+</pre> <p>We can use the <code>drop</code> parameter to avoid the old index being added as a column:</p> <pre data-language="python">&gt;&gt;&gt; df.reset_index(drop=True)
+    class  max_speed
+0    bird      389.0
+1    bird       24.0
+2  mammal       80.5
+3  mammal        NaN
+</pre> <p>You can also use <code>reset_index</code> with <code>MultiIndex</code>.</p> <pre data-language="python">&gt;&gt;&gt; index = pd.MultiIndex.from_tuples([('bird', 'falcon'),
+...                                    ('bird', 'parrot'),
+...                                    ('mammal', 'lion'),
+...                                    ('mammal', 'monkey')],
+...                                   names=['class', 'name'])
+&gt;&gt;&gt; columns = pd.MultiIndex.from_tuples([('speed', 'max'),
+...                                      ('species', 'type')])
+&gt;&gt;&gt; df = pd.DataFrame([(389.0, 'fly'),
+...                    ( 24.0, 'fly'),
+...                    ( 80.5, 'run'),
+...                    (np.nan, 'jump')],
+...                   index=index,
+...                   columns=columns)
+&gt;&gt;&gt; df
+               speed species
+                 max    type
+class  name
+bird   falcon  389.0     fly
+       parrot   24.0     fly
+mammal lion     80.5     run
+       monkey    NaN    jump
+</pre> <p>If the index has multiple levels, we can reset a subset of them:</p> <pre data-language="python">&gt;&gt;&gt; df.reset_index(level='class')
+         class  speed species
+                  max    type
+name
+falcon    bird  389.0     fly
+parrot    bird   24.0     fly
+lion    mammal   80.5     run
+monkey  mammal    NaN    jump
+</pre> <p>If we are not dropping the index, by default, it is placed in the top level. We can place it in another level:</p> <pre data-language="python">&gt;&gt;&gt; df.reset_index(level='class', col_level=1)
+                speed species
+         class    max    type
+name
+falcon    bird  389.0     fly
+parrot    bird   24.0     fly
+lion    mammal   80.5     run
+monkey  mammal    NaN    jump
+</pre> <p>When the index is inserted under another level, we can specify under which one with the parameter <code>col_fill</code>:</p> <pre data-language="python">&gt;&gt;&gt; df.reset_index(level='class', col_level=1, col_fill='species')
+              species  speed species
+                class    max    type
+name
+falcon           bird  389.0     fly
+parrot           bird   24.0     fly
+lion           mammal   80.5     run
+monkey         mammal    NaN    jump
+</pre> <p>If we specify a nonexistent level for <code>col_fill</code>, it is created:</p> <pre data-language="python">&gt;&gt;&gt; df.reset_index(level='class', col_level=1, col_fill='genus')
+                genus  speed species
+                class    max    type
+name
+falcon           bird  389.0     fly
+parrot           bird   24.0     fly
+lion           mammal   80.5     run
+monkey         mammal    NaN    jump
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.reset_index.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.reset_index.html</a>
+  </p>
+</div>

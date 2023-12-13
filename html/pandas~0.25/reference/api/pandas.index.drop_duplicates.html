@@ -1,0 +1,33 @@
+<h1 id="pandas-index-drop-duplicates">pandas.Index.drop_duplicates</h1> <dl class="method"> <dt id="pandas.Index.drop_duplicates">
+<code>Index.drop_duplicates(self, keep='first')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L2153-L2199"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return Index with duplicate values removed.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>keep : {‘first’, ‘last’, False}, default ‘first’</code> </dt> <dd>
+<ul class="first last simple"> <li>‘first’ : Drop duplicates except for the first occurrence.</li> <li>‘last’ : Drop duplicates except for the last occurrence.</li> <li>
+<code>False</code> : Drop all duplicates.</li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>deduplicated : Index</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.drop_duplicates.html#pandas.Series.drop_duplicates" title="pandas.Series.drop_duplicates"><code>Series.drop_duplicates</code></a>
+</dt> <dd>Equivalent method on Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.drop_duplicates.html#pandas.DataFrame.drop_duplicates" title="pandas.DataFrame.drop_duplicates"><code>DataFrame.drop_duplicates</code></a>
+</dt> <dd>Equivalent method on DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.index.duplicated.html#pandas.Index.duplicated" title="pandas.Index.duplicated"><code>Index.duplicated</code></a>
+</dt> <dd>Related method on Index, indicating duplicate Index values.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Generate an pandas.Index with duplicate values.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['lama', 'cow', 'lama', 'beetle', 'lama', 'hippo'])
+</pre> <p>The <code>keep</code> parameter controls which duplicate values are removed. The value ‘first’ keeps the first occurrence for each set of duplicated entries. The default value of keep is ‘first’.</p> <pre data-language="python">&gt;&gt;&gt; idx.drop_duplicates(keep='first')
+Index(['lama', 'cow', 'beetle', 'hippo'], dtype='object')
+</pre> <p>The value ‘last’ keeps the last occurrence for each set of duplicated entries.</p> <pre data-language="python">&gt;&gt;&gt; idx.drop_duplicates(keep='last')
+Index(['cow', 'beetle', 'lama', 'hippo'], dtype='object')
+</pre> <p>The value <code>False</code> discards all sets of duplicated entries.</p> <pre data-language="python">&gt;&gt;&gt; idx.drop_duplicates(keep=False)
+Index(['cow', 'beetle', 'hippo'], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.drop_duplicates.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.drop_duplicates.html</a>
+  </p>
+</div>

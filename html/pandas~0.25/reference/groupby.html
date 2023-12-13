@@ -1,0 +1,142 @@
+<h1 id="api-groupby">GroupBy</h1> <p id="groupby">GroupBy objects are returned by groupby calls: <a class="reference internal" href="api/pandas.dataframe.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code>pandas.DataFrame.groupby()</code></a>, <a class="reference internal" href="api/pandas.series.groupby.html#pandas.Series.groupby" title="pandas.Series.groupby"><code>pandas.Series.groupby()</code></a>, etc.</p>  <h2 id="indexing-iteration">Indexing, iteration</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.__iter__.html#pandas.core.groupby.GroupBy.__iter__" title="pandas.core.groupby.GroupBy.__iter__"><code>GroupBy.__iter__</code></a>(self)</td> <td>Groupby iterator.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.groupby.groups.html#pandas.core.groupby.GroupBy.groups" title="pandas.core.groupby.GroupBy.groups"><code>GroupBy.groups</code></a></td> <td>Dict {group name -&gt; group labels}.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.groupby.indices.html#pandas.core.groupby.GroupBy.indices" title="pandas.core.groupby.GroupBy.indices"><code>GroupBy.indices</code></a></td> <td>Dict {group name -&gt; group indices}.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.get_group.html#pandas.core.groupby.GroupBy.get_group" title="pandas.core.groupby.GroupBy.get_group"><code>GroupBy.get_group</code></a>(self, name[, obj])</td> <td>Construct DataFrame from group with provided name.</td> </tr>  </table> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.grouper.html#pandas.Grouper" title="pandas.Grouper"><code>Grouper</code></a>([key, level, freq, axis, sort])</td> <td>A Grouper allows the user to specify a groupby instruction for a target object</td> </tr>  </table>   <h2 id="function-application">Function application</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.apply.html#pandas.core.groupby.GroupBy.apply" title="pandas.core.groupby.GroupBy.apply"><code>GroupBy.apply</code></a>(self, func, \*args, \*\*kwargs)</td> <td>Apply function <code>func</code> group-wise and combine the results together.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.agg.html#pandas.core.groupby.GroupBy.agg" title="pandas.core.groupby.GroupBy.agg"><code>GroupBy.agg</code></a>(self, func, \*args, \*\*kwargs)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.aggregate.html#pandas.core.groupby.GroupBy.aggregate" title="pandas.core.groupby.GroupBy.aggregate"><code>GroupBy.aggregate</code></a>(self, func, \*args, \*\*kwargs)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.transform.html#pandas.core.groupby.GroupBy.transform" title="pandas.core.groupby.GroupBy.transform"><code>GroupBy.transform</code></a>(self, func, \*args, \*\*kwargs)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.pipe.html#pandas.core.groupby.GroupBy.pipe" title="pandas.core.groupby.GroupBy.pipe"><code>GroupBy.pipe</code></a>(self, func, \*args, \*\*kwargs)</td> <td>Apply a function <code>func</code> with arguments to this GroupBy object and return the function’s result.</td> </tr>  </table>   <h2 id="computations-descriptive-stats">Computations / descriptive stats</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.all.html#pandas.core.groupby.GroupBy.all" title="pandas.core.groupby.GroupBy.all"><code>GroupBy.all</code></a>(self[, skipna])</td> <td>Return True if all values in the group are truthful, else False.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.any.html#pandas.core.groupby.GroupBy.any" title="pandas.core.groupby.GroupBy.any"><code>GroupBy.any</code></a>(self[, skipna])</td> <td>Return True if any value in the group is truthful, else False.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.bfill.html#pandas.core.groupby.GroupBy.bfill" title="pandas.core.groupby.GroupBy.bfill"><code>GroupBy.bfill</code></a>(self[, limit])</td> <td>Backward fill the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.count.html#pandas.core.groupby.GroupBy.count" title="pandas.core.groupby.GroupBy.count"><code>GroupBy.count</code></a>(self)</td> <td>Compute count of group, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.cumcount.html#pandas.core.groupby.GroupBy.cumcount" title="pandas.core.groupby.GroupBy.cumcount"><code>GroupBy.cumcount</code></a>(self[, ascending])</td> <td>Number each item in each group from 0 to the length of that group - 1.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.cummax.html#pandas.core.groupby.GroupBy.cummax" title="pandas.core.groupby.GroupBy.cummax"><code>GroupBy.cummax</code></a>(self[, axis])</td> <td>Cumulative max for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.cummin.html#pandas.core.groupby.GroupBy.cummin" title="pandas.core.groupby.GroupBy.cummin"><code>GroupBy.cummin</code></a>(self[, axis])</td> <td>Cumulative min for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.cumprod.html#pandas.core.groupby.GroupBy.cumprod" title="pandas.core.groupby.GroupBy.cumprod"><code>GroupBy.cumprod</code></a>(self[, axis])</td> <td>Cumulative product for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.cumsum.html#pandas.core.groupby.GroupBy.cumsum" title="pandas.core.groupby.GroupBy.cumsum"><code>GroupBy.cumsum</code></a>(self[, axis])</td> <td>Cumulative sum for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.ffill.html#pandas.core.groupby.GroupBy.ffill" title="pandas.core.groupby.GroupBy.ffill"><code>GroupBy.ffill</code></a>(self[, limit])</td> <td>Forward fill the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.first.html#pandas.core.groupby.GroupBy.first" title="pandas.core.groupby.GroupBy.first"><code>GroupBy.first</code></a>(self, \*\*kwargs)</td> <td>Compute first of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.head.html#pandas.core.groupby.GroupBy.head" title="pandas.core.groupby.GroupBy.head"><code>GroupBy.head</code></a>(self[, n])</td> <td>Return first n rows of each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.last.html#pandas.core.groupby.GroupBy.last" title="pandas.core.groupby.GroupBy.last"><code>GroupBy.last</code></a>(self, \*\*kwargs)</td> <td>Compute last of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.max.html#pandas.core.groupby.GroupBy.max" title="pandas.core.groupby.GroupBy.max"><code>GroupBy.max</code></a>(self, \*\*kwargs)</td> <td>Compute max of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.mean.html#pandas.core.groupby.GroupBy.mean" title="pandas.core.groupby.GroupBy.mean"><code>GroupBy.mean</code></a>(self, \*args, \*\*kwargs)</td> <td>Compute mean of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.median.html#pandas.core.groupby.GroupBy.median" title="pandas.core.groupby.GroupBy.median"><code>GroupBy.median</code></a>(self, \*\*kwargs)</td> <td>Compute median of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.min.html#pandas.core.groupby.GroupBy.min" title="pandas.core.groupby.GroupBy.min"><code>GroupBy.min</code></a>(self, \*\*kwargs)</td> <td>Compute min of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.ngroup.html#pandas.core.groupby.GroupBy.ngroup" title="pandas.core.groupby.GroupBy.ngroup"><code>GroupBy.ngroup</code></a>(self[, ascending])</td> <td>Number each group from 0 to the number of groups - 1.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.nth.html#pandas.core.groupby.GroupBy.nth" title="pandas.core.groupby.GroupBy.nth"><code>GroupBy.nth</code></a>(self, n, List[int]], dropna, …)</td> <td>Take the nth row from each group if n is an int, or a subset of rows if n is a list of ints.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.ohlc.html#pandas.core.groupby.GroupBy.ohlc" title="pandas.core.groupby.GroupBy.ohlc"><code>GroupBy.ohlc</code></a>(self)</td> <td>Compute sum of values, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.prod.html#pandas.core.groupby.GroupBy.prod" title="pandas.core.groupby.GroupBy.prod"><code>GroupBy.prod</code></a>(self, \*\*kwargs)</td> <td>Compute prod of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.rank.html#pandas.core.groupby.GroupBy.rank" title="pandas.core.groupby.GroupBy.rank"><code>GroupBy.rank</code></a>(self[, method, ascending, …])</td> <td>Provide the rank of values within each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.pct_change.html#pandas.core.groupby.GroupBy.pct_change" title="pandas.core.groupby.GroupBy.pct_change"><code>GroupBy.pct_change</code></a>(self[, periods, …])</td> <td>Calculate pct_change of each value to previous entry in group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.size.html#pandas.core.groupby.GroupBy.size" title="pandas.core.groupby.GroupBy.size"><code>GroupBy.size</code></a>(self)</td> <td>Compute group sizes.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.sem.html#pandas.core.groupby.GroupBy.sem" title="pandas.core.groupby.GroupBy.sem"><code>GroupBy.sem</code></a>(self[, ddof])</td> <td>Compute standard error of the mean of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.std.html#pandas.core.groupby.GroupBy.std" title="pandas.core.groupby.GroupBy.std"><code>GroupBy.std</code></a>(self[, ddof])</td> <td>Compute standard deviation of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.sum.html#pandas.core.groupby.GroupBy.sum" title="pandas.core.groupby.GroupBy.sum"><code>GroupBy.sum</code></a>(self, \*\*kwargs)</td> <td>Compute sum of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.var.html#pandas.core.groupby.GroupBy.var" title="pandas.core.groupby.GroupBy.var"><code>GroupBy.var</code></a>(self[, ddof])</td> <td>Compute variance of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.groupby.tail.html#pandas.core.groupby.GroupBy.tail" title="pandas.core.groupby.GroupBy.tail"><code>GroupBy.tail</code></a>(self[, n])</td> <td>Return last n rows of each group.</td> </tr>  </table> <p>The following methods are available in both <code>SeriesGroupBy</code> and <code>DataFrameGroupBy</code> objects, but may differ slightly, usually in that the <code>DataFrameGroupBy</code> version usually permits the specification of an axis argument, and often an argument indicating whether to restrict application to columns of a specific data type.</p> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.all.html#pandas.core.groupby.DataFrameGroupBy.all" title="pandas.core.groupby.DataFrameGroupBy.all"><code>DataFrameGroupBy.all</code></a>(self[, skipna])</td> <td>Return True if all values in the group are truthful, else False.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.any.html#pandas.core.groupby.DataFrameGroupBy.any" title="pandas.core.groupby.DataFrameGroupBy.any"><code>DataFrameGroupBy.any</code></a>(self[, skipna])</td> <td>Return True if any value in the group is truthful, else False.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.bfill.html#pandas.core.groupby.DataFrameGroupBy.bfill" title="pandas.core.groupby.DataFrameGroupBy.bfill"><code>DataFrameGroupBy.bfill</code></a>(self[, limit])</td> <td>Backward fill the values.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.corr.html#pandas.core.groupby.DataFrameGroupBy.corr" title="pandas.core.groupby.DataFrameGroupBy.corr"><code>DataFrameGroupBy.corr</code></a></td> <td>Compute pairwise correlation of columns, excluding NA/null values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.count.html#pandas.core.groupby.DataFrameGroupBy.count" title="pandas.core.groupby.DataFrameGroupBy.count"><code>DataFrameGroupBy.count</code></a>(self)</td> <td>Compute count of group, excluding missing values.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.cov.html#pandas.core.groupby.DataFrameGroupBy.cov" title="pandas.core.groupby.DataFrameGroupBy.cov"><code>DataFrameGroupBy.cov</code></a></td> <td>Compute pairwise covariance of columns, excluding NA/null values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.cummax.html#pandas.core.groupby.DataFrameGroupBy.cummax" title="pandas.core.groupby.DataFrameGroupBy.cummax"><code>DataFrameGroupBy.cummax</code></a>(self[, axis])</td> <td>Cumulative max for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.cummin.html#pandas.core.groupby.DataFrameGroupBy.cummin" title="pandas.core.groupby.DataFrameGroupBy.cummin"><code>DataFrameGroupBy.cummin</code></a>(self[, axis])</td> <td>Cumulative min for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.cumprod.html#pandas.core.groupby.DataFrameGroupBy.cumprod" title="pandas.core.groupby.DataFrameGroupBy.cumprod"><code>DataFrameGroupBy.cumprod</code></a>(self[, axis])</td> <td>Cumulative product for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.cumsum.html#pandas.core.groupby.DataFrameGroupBy.cumsum" title="pandas.core.groupby.DataFrameGroupBy.cumsum"><code>DataFrameGroupBy.cumsum</code></a>(self[, axis])</td> <td>Cumulative sum for each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.describe.html#pandas.core.groupby.DataFrameGroupBy.describe" title="pandas.core.groupby.DataFrameGroupBy.describe"><code>DataFrameGroupBy.describe</code></a>(self, \*\*kwargs)</td> <td>Generate descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding <code>NaN</code> values.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.diff.html#pandas.core.groupby.DataFrameGroupBy.diff" title="pandas.core.groupby.DataFrameGroupBy.diff"><code>DataFrameGroupBy.diff</code></a></td> <td>First discrete difference of element.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.ffill.html#pandas.core.groupby.DataFrameGroupBy.ffill" title="pandas.core.groupby.DataFrameGroupBy.ffill"><code>DataFrameGroupBy.ffill</code></a>(self[, limit])</td> <td>Forward fill the values.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.fillna.html#pandas.core.groupby.DataFrameGroupBy.fillna" title="pandas.core.groupby.DataFrameGroupBy.fillna"><code>DataFrameGroupBy.fillna</code></a></td> <td>Fill NA/NaN values using the specified method.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.filter.html#pandas.core.groupby.DataFrameGroupBy.filter" title="pandas.core.groupby.DataFrameGroupBy.filter"><code>DataFrameGroupBy.filter</code></a>(self, func[, dropna])</td> <td>Return a copy of a DataFrame excluding elements from groups that do not satisfy the boolean criterion specified by func.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.hist.html#pandas.core.groupby.DataFrameGroupBy.hist" title="pandas.core.groupby.DataFrameGroupBy.hist"><code>DataFrameGroupBy.hist</code></a></td> <td>Make a histogram of the DataFrame’s.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.idxmax.html#pandas.core.groupby.DataFrameGroupBy.idxmax" title="pandas.core.groupby.DataFrameGroupBy.idxmax"><code>DataFrameGroupBy.idxmax</code></a></td> <td>Return index of first occurrence of maximum over requested axis.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.idxmin.html#pandas.core.groupby.DataFrameGroupBy.idxmin" title="pandas.core.groupby.DataFrameGroupBy.idxmin"><code>DataFrameGroupBy.idxmin</code></a></td> <td>Return index of first occurrence of minimum over requested axis.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.mad.html#pandas.core.groupby.DataFrameGroupBy.mad" title="pandas.core.groupby.DataFrameGroupBy.mad"><code>DataFrameGroupBy.mad</code></a></td> <td>Return the mean absolute deviation of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.nunique.html#pandas.core.groupby.DataFrameGroupBy.nunique" title="pandas.core.groupby.DataFrameGroupBy.nunique"><code>DataFrameGroupBy.nunique</code></a>(self[, dropna])</td> <td>Return DataFrame with number of distinct observations per group for each column.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.pct_change.html#pandas.core.groupby.DataFrameGroupBy.pct_change" title="pandas.core.groupby.DataFrameGroupBy.pct_change"><code>DataFrameGroupBy.pct_change</code></a>(self[, periods, …])</td> <td>Calculate pct_change of each value to previous entry in group.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.plot.html#pandas.core.groupby.DataFrameGroupBy.plot" title="pandas.core.groupby.DataFrameGroupBy.plot"><code>DataFrameGroupBy.plot</code></a></td> <td>Class implementing the .plot attribute for groupby objects.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.quantile.html#pandas.core.groupby.DataFrameGroupBy.quantile" title="pandas.core.groupby.DataFrameGroupBy.quantile"><code>DataFrameGroupBy.quantile</code></a>(self[, q, …])</td> <td>Return group values at the given quantile, a la numpy.percentile.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.rank.html#pandas.core.groupby.DataFrameGroupBy.rank" title="pandas.core.groupby.DataFrameGroupBy.rank"><code>DataFrameGroupBy.rank</code></a>(self[, method, …])</td> <td>Provide the rank of values within each group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.resample.html#pandas.core.groupby.DataFrameGroupBy.resample" title="pandas.core.groupby.DataFrameGroupBy.resample"><code>DataFrameGroupBy.resample</code></a>(self, rule, …)</td> <td>Provide resampling when using a TimeGrouper.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.shift.html#pandas.core.groupby.DataFrameGroupBy.shift" title="pandas.core.groupby.DataFrameGroupBy.shift"><code>DataFrameGroupBy.shift</code></a>(self[, periods, …])</td> <td>Shift each group by periods observations.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.size.html#pandas.core.groupby.DataFrameGroupBy.size" title="pandas.core.groupby.DataFrameGroupBy.size"><code>DataFrameGroupBy.size</code></a>(self)</td> <td>Compute group sizes.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.skew.html#pandas.core.groupby.DataFrameGroupBy.skew" title="pandas.core.groupby.DataFrameGroupBy.skew"><code>DataFrameGroupBy.skew</code></a></td> <td>Return unbiased skew over requested axis Normalized by N-1.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.take.html#pandas.core.groupby.DataFrameGroupBy.take" title="pandas.core.groupby.DataFrameGroupBy.take"><code>DataFrameGroupBy.take</code></a></td> <td>Return the elements in the given <em>positional</em> indices along an axis.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.tshift.html#pandas.core.groupby.DataFrameGroupBy.tshift" title="pandas.core.groupby.DataFrameGroupBy.tshift"><code>DataFrameGroupBy.tshift</code></a></td> <td>Shift the time index, using the index’s frequency if available.</td> </tr>  </table> <p>The following methods are available only for <code>SeriesGroupBy</code> objects.</p> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.seriesgroupby.nlargest.html#pandas.core.groupby.SeriesGroupBy.nlargest" title="pandas.core.groupby.SeriesGroupBy.nlargest"><code>SeriesGroupBy.nlargest</code></a></td> <td>Return the largest <code>n</code> elements.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.seriesgroupby.nsmallest.html#pandas.core.groupby.SeriesGroupBy.nsmallest" title="pandas.core.groupby.SeriesGroupBy.nsmallest"><code>SeriesGroupBy.nsmallest</code></a></td> <td>Return the smallest <code>n</code> elements.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.seriesgroupby.nunique.html#pandas.core.groupby.SeriesGroupBy.nunique" title="pandas.core.groupby.SeriesGroupBy.nunique"><code>SeriesGroupBy.nunique</code></a>(self[, dropna])</td> <td>Return number of unique elements in the group.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.seriesgroupby.unique.html#pandas.core.groupby.SeriesGroupBy.unique" title="pandas.core.groupby.SeriesGroupBy.unique"><code>SeriesGroupBy.unique</code></a></td> <td>Return unique values of Series object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.seriesgroupby.value_counts.html#pandas.core.groupby.SeriesGroupBy.value_counts" title="pandas.core.groupby.SeriesGroupBy.value_counts"><code>SeriesGroupBy.value_counts</code></a>(self[, …])</td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.seriesgroupby.is_monotonic_increasing.html#pandas.core.groupby.SeriesGroupBy.is_monotonic_increasing" title="pandas.core.groupby.SeriesGroupBy.is_monotonic_increasing"><code>SeriesGroupBy.is_monotonic_increasing</code></a></td> <td>Return boolean if values in the object are monotonic_increasing.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.seriesgroupby.is_monotonic_decreasing.html#pandas.core.groupby.SeriesGroupBy.is_monotonic_decreasing" title="pandas.core.groupby.SeriesGroupBy.is_monotonic_decreasing"><code>SeriesGroupBy.is_monotonic_decreasing</code></a></td> <td>Return boolean if values in the object are monotonic_decreasing.</td> </tr>  </table> <p>The following methods are available only for <code>DataFrameGroupBy</code> objects.</p> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.corrwith.html#pandas.core.groupby.DataFrameGroupBy.corrwith" title="pandas.core.groupby.DataFrameGroupBy.corrwith"><code>DataFrameGroupBy.corrwith</code></a></td> <td>Compute pairwise correlation between rows or columns of DataFrame with rows or columns of Series or DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.groupby.dataframegroupby.boxplot.html#pandas.core.groupby.DataFrameGroupBy.boxplot" title="pandas.core.groupby.DataFrameGroupBy.boxplot"><code>DataFrameGroupBy.boxplot</code></a>(grouped[, …])</td> <td>Make box plots from DataFrameGroupBy data.</td> </tr>  </table><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/groupby.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/groupby.html</a>
+  </p>
+</div>

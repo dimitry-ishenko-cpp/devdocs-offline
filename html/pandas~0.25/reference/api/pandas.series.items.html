@@ -1,0 +1,22 @@
+<h1 id="pandas-series-items">pandas.Series.items</h1> <dl class="method"> <dt id="pandas.Series.items">
+<code>Series.items(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L1698-L1724"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Lazily iterate over (index, value) tuples.</p> <p>This method returns an iterable tuple (index, value). This is convenient if you want to create a lazy iterator.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>iterable</dt> <dd>
+<p class="first last">Iterable of tuples containing the (index, value) pairs from a Series.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.items.html#pandas.DataFrame.items" title="pandas.DataFrame.items"><code>DataFrame.items</code></a>
+</dt> <dd>Equivalent to Series.items for DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['A', 'B', 'C'])
+&gt;&gt;&gt; for index, value in s.items():
+...     print("Index : {}, Value : {}".format(index, value))
+Index : 0, Value : A
+Index : 1, Value : B
+Index : 2, Value : C
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.items.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.items.html</a>
+  </p>
+</div>

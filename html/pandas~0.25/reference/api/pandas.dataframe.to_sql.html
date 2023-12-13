@@ -1,0 +1,74 @@
+<h1 id="pandas-dataframe-to-sql">pandas.DataFrame.to_sql</h1> <dl class="method"> <dt id="pandas.DataFrame.to_sql">
+<code>DataFrame.to_sql(self, name, con, schema=None, if_exists='fail', index=True, index_label=None, chunksize=None, dtype=None, method=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L2563-L2714"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Write records stored in a DataFrame to a SQL database.</p> <p>Databases supported by SQLAlchemy <a class="reference internal" href="#r689dfd12abe5-1" id="id1">[1]</a> are supported. Tables can be newly created, appended to, or overwritten.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>name : string</code> </dt> <dd>
+<p class="first last">Name of SQL table.</p> </dd> <dt>
+<code>con : sqlalchemy.engine.Engine or sqlite3.Connection</code> </dt> <dd>
+<p class="first last">Using SQLAlchemy makes it possible to use any DB supported by that library. Legacy support is provided for sqlite3.Connection objects.</p> </dd> <dt>
+<code>schema : string, optional</code> </dt> <dd>
+<p class="first last">Specify the schema (if database flavor supports this). If None, use default schema.</p> </dd> <dt>
+<code>if_exists : {‘fail’, ‘replace’, ‘append’}, default ‘fail’</code> </dt> <dd>
+<p class="first">How to behave if the table already exists.</p> <ul class="last simple"> <li>fail: Raise a ValueError.</li> <li>replace: Drop the table before inserting new values.</li> <li>append: Insert new values to the existing table.</li> </ul> </dd> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">Write DataFrame index as a column. Uses <code>index_label</code> as the column name in the table.</p> </dd> <dt>
+<code>index_label : string or sequence, default None</code> </dt> <dd>
+<p class="first last">Column label for index column(s). If None is given (default) and <code>index</code> is True, then the index names are used. A sequence should be given if the DataFrame uses MultiIndex.</p> </dd> <dt>
+<code>chunksize : int, optional</code> </dt> <dd>
+<p class="first last">Rows will be written in batches of this size at a time. By default, all rows will be written at once.</p> </dd> <dt>
+<code>dtype : dict, optional</code> </dt> <dd>
+<p class="first last">Specifying the datatype for columns. The keys should be the column names and the values should be the SQLAlchemy types or strings for the sqlite3 legacy mode.</p> </dd> <dt>
+<code>method : {None, ‘multi’, callable}, default None</code> </dt> <dd>
+<p class="first">Controls the SQL insertion clause used:</p> <ul class="simple"> <li>None : Uses standard SQL <code>INSERT</code> clause (one per row).</li> <li>‘multi’: Pass multiple values in a single <code>INSERT</code> clause.</li> <li>callable with signature <code>(pd_table, conn, keys, data_iter)</code>.</li> </ul> <p>Details and a sample callable implementation can be found in the section <a class="reference internal" href="../../user_guide/io.html#io-sql-method"><span class="std std-ref">insert method</span></a>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">When the table already exists and <code>if_exists</code> is ‘fail’ (the default).</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_sql.html#pandas.read_sql" title="pandas.read_sql"><code>read_sql</code></a>
+</dt> <dd>Read a DataFrame from a table.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Timezone aware datetime columns will be written as <code>Timestamp with timezone</code> type with SQLAlchemy if supported by the database. Otherwise, the datetimes will be stored as timezone unaware timestamps local to the original timezone.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <h4 class="rubric">References</h4> <table class="docutils citation" frame="void" id="r689dfd12abe5-1" rules="none">   <tr>
+<td class="label"><a class="fn-backref" href="#id1">[1]</a></td>
+<td><a class="reference external" href="http://docs.sqlalchemy.org">http://docs.sqlalchemy.org</a></td>
+</tr>  </table> <table class="docutils citation" frame="void" id="r689dfd12abe5-2" rules="none">   <tr>
+<td class="label">[2]</td>
+<td><a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">https://www.python.org/dev/peps/pep-0249/</a></td>
+</tr>  </table> <h4 class="rubric">Examples</h4> <p>Create an in-memory SQLite database.</p> <pre data-language="python">&gt;&gt;&gt; from sqlalchemy import create_engine
+&gt;&gt;&gt; engine = create_engine('sqlite://', echo=False)
+</pre> <p>Create a table from scratch with 3 rows.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'name' : ['User 1', 'User 2', 'User 3']})
+&gt;&gt;&gt; df
+     name
+0  User 1
+1  User 2
+2  User 3
+</pre> <pre data-language="python">&gt;&gt;&gt; df.to_sql('users', con=engine)
+&gt;&gt;&gt; engine.execute("SELECT * FROM users").fetchall()
+[(0, 'User 1'), (1, 'User 2'), (2, 'User 3')]
+</pre> <pre data-language="python">&gt;&gt;&gt; df1 = pd.DataFrame({'name' : ['User 4', 'User 5']})
+&gt;&gt;&gt; df1.to_sql('users', con=engine, if_exists='append')
+&gt;&gt;&gt; engine.execute("SELECT * FROM users").fetchall()
+[(0, 'User 1'), (1, 'User 2'), (2, 'User 3'),
+ (0, 'User 4'), (1, 'User 5')]
+</pre> <p>Overwrite the table with just <code>df1</code>.</p> <pre data-language="python">&gt;&gt;&gt; df1.to_sql('users', con=engine, if_exists='replace',
+...            index_label='id')
+&gt;&gt;&gt; engine.execute("SELECT * FROM users").fetchall()
+[(0, 'User 4'), (1, 'User 5')]
+</pre> <p>Specify the dtype (especially useful for integers with missing values). Notice that while pandas is forced to store the data as floating point, the database supports nullable integers. When fetching the data with Python, we get back integer scalars.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": [1, None, 2]})
+&gt;&gt;&gt; df
+     A
+0  1.0
+1  NaN
+2  2.0
+</pre> <pre data-language="python">&gt;&gt;&gt; from sqlalchemy.types import Integer
+&gt;&gt;&gt; df.to_sql('integers', con=engine, index=False,
+...           dtype={"A": Integer()})
+</pre> <pre data-language="python">&gt;&gt;&gt; engine.execute("SELECT * FROM integers").fetchall()
+[(1,), (None,), (2,)]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_sql.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_sql.html</a>
+  </p>
+</div>

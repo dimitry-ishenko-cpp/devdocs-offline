@@ -1,0 +1,66 @@
+<h1 id="computation">Computational tools</h1>  <h2 id="computational-tools">Statistical functions</h2>  <h3 id="computation-pct-change">Percent change</h3> <p id="percent-change"><code>Series</code> and <code>DataFrame</code> have a method <a class="reference internal" href="../reference/api/pandas.dataframe.pct_change.html#pandas.DataFrame.pct_change" title="pandas.DataFrame.pct_change"><code>pct_change()</code></a> to compute the percent change over a given number of periods (using <code>fill_method</code> to fill NA/null values <em>before</em> computing the percent change).</p> <pre data-language="python">In [1]: ser = pd.Series(np.random.randn(8))
+
+In [2]: ser.pct_change()
+Out[2]: 
+0         NaN
+1   -1.602976
+2    4.334938
+3   -0.247456
+4   -2.067345
+5   -1.142903
+6   -1.688214
+7   -9.759729
+dtype: float64
+</pre> <pre data-language="python">In [3]: df = pd.DataFrame(np.random.randn(10, 4))
+
+In [4]: df.pct_change(periods=3)
+Out[4]: 
+          0         1         2         3
+0       NaN       NaN       NaN       NaN
+1       NaN       NaN       NaN       NaN
+2       NaN       NaN       NaN       NaN
+3 -0.218320 -1.054001  1.987147 -0.510183
+4 -0.439121 -1.816454  0.649715 -4.822809
+5 -0.127833 -3.042065 -5.866604 -1.776977
+6 -2.596833 -1.959538 -2.111697 -3.798900
+7 -0.117826 -2.169058  0.036094 -0.067696
+8  2.492606 -1.357320 -1.205802 -1.558697
+9 -1.012977  2.324558 -1.003744 -0.371806
+</pre>   <h3 id="computation-covariance">Covariance</h3> <p id="covariance"><a class="reference internal" href="../reference/api/pandas.series.cov.html#pandas.Series.cov" title="pandas.Series.cov"><code>Series.cov()</code></a> can be used to compute covariance between series (excluding missing values).</p> <pre data-language="python">In [5]: s1 = pd.Series(np.random.randn(1000))
+
+In [6]: s2 = pd.Series(np.random.randn(1000))
+
+In [7]: s1.cov(s2)
+Out[7]: 0.000680108817431082
+</pre> <p>Analogously, <a class="reference internal" href="../reference/api/pandas.dataframe.cov.html#pandas.DataFrame.cov" title="pandas.DataFrame.cov"><code>DataFrame.cov()</code></a> to compute pairwise covariances among the series in the DataFrame, also excluding NA/null values.</p> <div class="admonition note" id="computation-covariance-caveats"> <p class="first admonition-title">Note</p> <p class="last">Assuming the missing data are missing at random this results in an estimate for the covariance matrix which is unbiased. However, for many applications this estimate may not be acceptable because the estimated covariance matrix is not guaranteed to be positive semi-definite. This could lead to estimated correlations having absolute values which are greater than one, and/or a non-invertible covariance matrix. See <a class="reference external" href="http://en.wikipedia.org/w/index.php?title=Estimation_of_covariance_matrices">Estimation of covariance matrices</a> for more details.</p> </div> <pre data-language="python">In [8]: frame = pd.DataFrame(np.random.randn(1000, 5),
+   ...:                      columns=['a', 'b', 'c', 'd', 'e'])
+   ...: 
+
+In [9]: frame.cov()
+Out[9]: 
+          a         b         c         d         e
+a  1.000882 -0.003177 -0.002698 -0.006889  0.031912
+b -0.003177  1.024721  0.000191  0.009212  0.000857
+c -0.002698  0.000191  0.950735 -0.031743 -0.005087
+d -0.006889  0.009212 -0.031743  1.002983 -0.047952
+e  0.031912  0.000857 -0.005087 -0.047952  1.042487
+</pre> <p><code>DataFrame.cov</code> also supports an optional <code>min_periods</code> keyword that specifies the required minimum number of observations for each column pair in order to have a valid result.</p> <pre data-language="python">In [10]: frame = pd.DataFrame(np.random.randn(20, 3), columns=['a', 'b', 'c'])
+
+In [11]: frame.loc[frame.index[:5], 'a'] = np.nan
+
+In [12]: frame.loc[frame.index[5:10], 'b'] = np.nan
+
+In [13]: frame.cov()
+Out[13]: 
+          a         b         c
+a  1.123670 -0.412851  0.018169
+b -0.412851  1.154141  0.305260
+c  0.018169  0.305260  1.301149
+
+In [14]: frame.cov(min_periods=12)
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/computation.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/computation.html</a>
+  </p>
+</div>

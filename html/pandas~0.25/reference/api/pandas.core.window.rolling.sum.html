@@ -1,0 +1,64 @@
+<h1 id="pandas-core-window-rolling-sum">pandas.core.window.Rolling.sum</h1> <dl class="method"> <dt id="pandas.core.window.Rolling.sum">
+<code>Rolling.sum(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/window.py#L1852-L1856"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Calculate rolling sum of given DataFrame or Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt><strong>*args, **kwargs</strong></dt> <dd>
+<p class="first last">For compatibility with other rolling methods. Has no effect on the computed value.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Same type as the input, with the same index, containing the rolling sum.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.sum</code> </dt> <dd>Reducing sum for Series.</dd> <dt>
+<code>DataFrame.sum</code> </dt> <dd>Reducing sum for DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4, 5])
+&gt;&gt;&gt; s
+0    1
+1    2
+2    3
+3    4
+4    5
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.rolling(3).sum()
+0     NaN
+1     NaN
+2     6.0
+3     9.0
+4    12.0
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.expanding(3).sum()
+0     NaN
+1     NaN
+2     6.0
+3    10.0
+4    15.0
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.rolling(3, center=True).sum()
+0     NaN
+1     6.0
+2     9.0
+3    12.0
+4     NaN
+dtype: float64
+</pre> <p>For DataFrame, each rolling sum is computed column-wise.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": s, "B": s ** 2})
+&gt;&gt;&gt; df
+   A   B
+0  1   1
+1  2   4
+2  3   9
+3  4  16
+4  5  25
+</pre> <pre data-language="python">&gt;&gt;&gt; df.rolling(3).sum()
+      A     B
+0   NaN   NaN
+1   NaN   NaN
+2   6.0  14.0
+3   9.0  29.0
+4  12.0  50.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.sum.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.window.Rolling.sum.html</a>
+  </p>
+</div>

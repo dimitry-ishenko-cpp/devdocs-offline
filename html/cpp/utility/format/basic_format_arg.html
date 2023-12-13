@@ -1,0 +1,48 @@
+    <h1 id="firstHeading" class="firstHeading">std::basic_format_arg</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../../header/format.html" title="cpp/header/format">&lt;format&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class Context &gt;
+class basic_format_arg;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <p>Provides access to a formatting argument.</p>
+<p><code>basic_format_arg</code> objects are typically created by <code><a href="make_format_args.html" title="cpp/utility/format/make format args">std::make_format_args</a></code> and accessed through <code><a href="visit_format_arg.html" title="cpp/utility/format/visit format arg">std::visit_format_arg</a></code>.</p>
+<p>A <code>basic_format_arg</code> object behaves as if it stores a <code><a href="../variant.html" title="cpp/utility/variant">std::variant</a></code> of the following types:</p>
+<ul>
+<li> <code><a href="http://en.cppreference.com/w/cpp/utility/variant/monostate"><span class="kw1099">std::<span class="me2">monostate</span></span></a></code> (only if the object was default-constructed) </li>
+<li> <code>bool</code> </li>
+<li> <code>Context::char_type</code> </li>
+<li> <code>int</code> </li>
+<li> <code>unsigned int</code> </li>
+<li> <code>long long int</code> </li>
+<li> <code>unsigned long long int</code> </li>
+<li> <code>float</code> </li>
+<li> <code>double</code> </li>
+<li> <code>long double</code> </li>
+<li> <code>const Context::char_type*</code> </li>
+<li> <code><a href="http://en.cppreference.com/w/cpp/string/basic_string_view"><span class="kw1250">std::<span class="me2">basic_string_view</span></span></a><span class="sy1">&lt;</span>Context<span class="sy4">::</span><span class="me2">char_type</span><span class="sy1">&gt;</span></code> </li>
+<li> <code>const void*</code> </li>
+<li> <code>basic_format_arg::handle</code> </li>
+</ul>  <h3 id="Member_classes"> Member classes</h3> <table class="t-dsc-begin"> <tr class="t-dsc-hitem"> <th> Type </th> <th> Definition </th>
+</tr> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>handle</span></span></div> </td> <td> type-erased wrapper that allows formatting an object of user-defined type <br> <span class="t-mark">(class)</span> </td>
+</tr> </table> <h3 id="Member_functions"> Member functions</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>(constructor)</span></span></div> </td> <td> constructs a <code>std::basic_format_arg</code> <br> <span class="t-mark">(public member function)</span> </td>
+</tr> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>operator bool</span></span></div> </td> <td> checks if the current object holds a formatting argument <br> <span class="t-mark">(public member function)</span> </td>
+</tr> </table> <h3 id="Non-member_functions"> Non-member functions</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="visit_format_arg.html" title="cpp/utility/format/visit format arg"> <span class="t-lines"><span>visit_format_arg</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> argument visitation interface for user-defined formatters <br> <span class="t-mark">(function template)</span>  </td>
+</tr> </table> <div class="t-member"> <h2 id="std::basic_format_arg::handle">  std::basic_format_arg::handle </h2> <table class="t-dcl-begin"> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">template&lt; class Context &gt;
+class basic_format_arg&lt;Context&gt;::handle;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>Allows formatting an object of a user-defined type.</p>
+<h3 id="Member_functions_2"> Member functions</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><span class="t-lines"><span>format</span></span></div> </td> <td> formats the referenced object with the given contexts <br> <span class="t-mark">(public member function)</span> </td>
+</tr> </table> <div class="t-member"> <h2 id="std::basic_format_arg::handle::format">  std::basic_format_arg::handle::format </h2> <table class="t-dcl-begin"> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">void format( std::basic_format_parse_context&lt;Context::char_type&gt;&amp; parse_ctx,
+             Context&amp; format_ctx ) const;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>Let <code>T</code> be the type of the associated formatting argument, <code>ref</code> be a reference to the formatting argument. Equivalent to:</p>
+<p><span class="t-cc"><code>typename Context::template formatter_type&lt;T&gt; f; parse_ctx.advance_to(f.parse(parse_ctx)); format_ctx.advance_to(f.format(ref, format_ctx));</code></span></p>
+</div> </div> <div class="t-member"> <h2 id="std::basic_format_arg::basic_format_arg">  std::basic_format_arg::basic_format_arg </h2> <table class="t-dcl-begin"> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">basic_format_arg() noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>Default constructor. Constructs a <code>basic_format_arg</code> that does not hold a formatting argument. The stored object has type <code><a href="../variant/monostate.html" title="cpp/utility/variant/monostate">std::monostate</a></code>.</p>
+<p>To create a <code>basic_format_arg</code> that holds a formatting argument, <code><a href="make_format_args.html" title="cpp/utility/format/make format args">std::make_format_args</a></code> has to be used.</p>
+</div> <div class="t-member"> <h2 id="std::basic_format_arg::operator_bool">  std::basic_format_arg::operator bool </h2> <table class="t-dcl-begin"> <tr class="t-dcl"> <td class="t-dcl-nopad"> <pre data-language="cpp">explicit operator bool() const noexcept;</pre>
+</td> <td class="t-dcl-nopad"> </td> <td class="t-dcl-nopad"> </td> </tr>  </table> <p>Checks whether <code>*this</code> holds a formatting argument.</p>
+<p>Returns <code>true</code> if <code>*this</code> holds a formatting argument (i.e. the stored object does not have type <code><a href="../variant/monostate.html" title="cpp/utility/variant/monostate">std::monostate</a></code>), <code>false</code> otherwise.</p>
+</div> <h3 id="Example"> Example</h3>  <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="basic_format_args.html" title="cpp/utility/format/basic format args"> <span class="t-lines"><span>basic_format_args</span><span>format_args</span><span>wformat_args</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span><span><span class="t-mark-rev t-since-cxx20">(C++20)</span></span></span></div> </td> <td> class that provides access to all formatting arguments <br> <span class="t-mark">(class template)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/utility/format/basic_format_arg" class="_attribution-link">https://en.cppreference.com/w/cpp/utility/format/basic_format_arg</a>
+  </p>
+</div>

@@ -1,0 +1,38 @@
+<h1 id="pandas-series-explode">pandas.Series.explode</h1> <dl class="method"> <dt id="pandas.Series.explode">
+<code>Series.explode(self) → 'Series'</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L3642-L3696"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Transform each element of a list-like to a row, replicating the index values.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.25.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt> <dd>
+<p class="first last">Exploded lists to rows; index will be duplicated for these rows.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.split.html#pandas.Series.str.split" title="pandas.Series.str.split"><code>Series.str.split</code></a>
+</dt> <dd>Split string values on specified separator.</dd> <dt>
+ <a class="reference internal" href="pandas.series.unstack.html#pandas.Series.unstack" title="pandas.Series.unstack"><code>Series.unstack</code></a>
+</dt> <dd>Unstack, a.k.a. pivot, Series with MultiIndex to produce DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.melt.html#pandas.DataFrame.melt" title="pandas.DataFrame.melt"><code>DataFrame.melt</code></a>
+</dt> <dd>Unpivot a DataFrame from wide format to long format</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.explode.html#pandas.DataFrame.explode" title="pandas.DataFrame.explode"><code>DataFrame.explode</code></a>
+</dt> <dd>Explode a DataFrame from list-like columns to long format.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This routine will explode list-likes including lists, tuples, Series, and np.ndarray. The result dtype of the subset rows will be object. Scalars will be returned unchanged. Empty list-likes will result in a np.nan for that row.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([[1, 2, 3], 'foo', [], [3, 4]])
+&gt;&gt;&gt; s
+0    [1, 2, 3]
+1          foo
+2           []
+3       [3, 4]
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.explode()
+0      1
+0      2
+0      3
+1    foo
+2    NaN
+3      3
+3      4
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.explode.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.explode.html</a>
+  </p>
+</div>

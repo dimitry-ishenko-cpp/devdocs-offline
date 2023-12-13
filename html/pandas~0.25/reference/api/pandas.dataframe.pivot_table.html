@@ -1,0 +1,94 @@
+<h1 id="pandas-dataframe-pivot-table">pandas.DataFrame.pivot_table</h1> <dl class="method"> <dt id="pandas.DataFrame.pivot_table">
+<code>DataFrame.pivot_table(self, values=None, index=None, columns=None, aggfunc='mean', fill_value=None, margins=False, dropna=True, margins_name='All', observed=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L6041-L6068"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Create a spreadsheet-style pivot table as a DataFrame. The levels in the pivot table will be stored in MultiIndex objects (hierarchical indexes) on the index and columns of the result DataFrame.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>values : column to aggregate, optional</code> </dt>  <dt>
+<code>index : column, Grouper, array, or list of the previous</code> </dt> <dd>
+<p class="first last">If an array is passed, it must be the same length as the data. The list can contain any of the other types (except list). Keys to group by on the pivot table index. If an array is passed, it is being used as the same manner as column values.</p> </dd> <dt>
+<code>columns : column, Grouper, array, or list of the previous</code> </dt> <dd>
+<p class="first last">If an array is passed, it must be the same length as the data. The list can contain any of the other types (except list). Keys to group by on the pivot table column. If an array is passed, it is being used as the same manner as column values.</p> </dd> <dt>
+<code>aggfunc : function, list of functions, dict, default numpy.mean</code> </dt> <dd>
+<p class="first last">If list of functions passed, the resulting pivot table will have hierarchical columns whose top level are the function names (inferred from the function objects themselves) If dict is passed, the key is column to aggregate and value is function or list of functions</p> </dd> <dt>
+<code>fill_value : scalar, default None</code> </dt> <dd>
+<p class="first last">Value to replace missing values with</p> </dd> <dt>
+<code>margins : boolean, default False</code> </dt> <dd>
+<p class="first last">Add all row / columns (e.g. for subtotal / grand totals)</p> </dd> <dt>
+<code>dropna : boolean, default True</code> </dt> <dd>
+<p class="first last">Do not include columns whose entries are all NaN</p> </dd> <dt>
+<code>margins_name : string, default ‘All’</code> </dt> <dd>
+<p class="first last">Name of the row / column that will contain the totals when margins is True.</p> </dd> <dt>
+<code>observed : boolean, default False</code> </dt> <dd>
+<p class="first">This only applies if any of the groupers are Categoricals. If True: only show observed values for categorical groupers. If False: show all values for categorical groupers.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.25.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.pivot.html#pandas.DataFrame.pivot" title="pandas.DataFrame.pivot"><code>DataFrame.pivot</code></a>
+</dt> <dd>Pivot without aggregation that can handle non-numeric data.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": ["foo", "foo", "foo", "foo", "foo",
+...                          "bar", "bar", "bar", "bar"],
+...                    "B": ["one", "one", "one", "two", "two",
+...                          "one", "one", "two", "two"],
+...                    "C": ["small", "large", "large", "small",
+...                          "small", "large", "small", "small",
+...                          "large"],
+...                    "D": [1, 2, 2, 3, 3, 4, 5, 6, 7],
+...                    "E": [2, 4, 5, 5, 6, 6, 8, 9, 9]})
+&gt;&gt;&gt; df
+     A    B      C  D  E
+0  foo  one  small  1  2
+1  foo  one  large  2  4
+2  foo  one  large  2  5
+3  foo  two  small  3  5
+4  foo  two  small  3  6
+5  bar  one  large  4  6
+6  bar  one  small  5  8
+7  bar  two  small  6  9
+8  bar  two  large  7  9
+</pre> <p>This first example aggregates values by taking the sum.</p> <pre data-language="python">&gt;&gt;&gt; table = pd.pivot_table(df, values='D', index=['A', 'B'],
+...                     columns=['C'], aggfunc=np.sum)
+&gt;&gt;&gt; table
+C        large  small
+A   B
+bar one    4.0    5.0
+    two    7.0    6.0
+foo one    4.0    1.0
+    two    NaN    6.0
+</pre> <p>We can also fill missing values using the <code>fill_value</code> parameter.</p> <pre data-language="python">&gt;&gt;&gt; table = pd.pivot_table(df, values='D', index=['A', 'B'],
+...                     columns=['C'], aggfunc=np.sum, fill_value=0)
+&gt;&gt;&gt; table
+C        large  small
+A   B
+bar one      4      5
+    two      7      6
+foo one      4      1
+    two      0      6
+</pre> <p>The next example aggregates by taking the mean across multiple columns.</p> <pre data-language="python">&gt;&gt;&gt; table = pd.pivot_table(df, values=['D', 'E'], index=['A', 'C'],
+...                     aggfunc={'D': np.mean,
+...                              'E': np.mean})
+&gt;&gt;&gt; table
+                D         E
+A   C
+bar large  5.500000  7.500000
+    small  5.500000  8.500000
+foo large  2.000000  4.500000
+    small  2.333333  4.333333
+</pre> <p>We can also calculate multiple types of aggregations for any given value column.</p> <pre data-language="python">&gt;&gt;&gt; table = pd.pivot_table(df, values=['D', 'E'], index=['A', 'C'],
+...                     aggfunc={'D': np.mean,
+...                              'E': [min, max, np.mean]})
+&gt;&gt;&gt; table
+                D    E
+            mean  max      mean  min
+A   C
+bar large  5.500000  9.0  7.500000  6.0
+    small  5.500000  9.0  8.500000  8.0
+foo large  2.000000  5.0  4.500000  4.0
+    small  2.333333  6.0  4.333333  2.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.pivot_table.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.pivot_table.html</a>
+  </p>
+</div>

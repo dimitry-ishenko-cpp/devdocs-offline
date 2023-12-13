@@ -1,0 +1,33 @@
+<h1 id="pandas-datetimeindex-strftime">pandas.DatetimeIndex.strftime</h1> <dl class="method"> <dt id="pandas.DatetimeIndex.strftime">
+<code>DatetimeIndex.strftime(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/datetimelike.py#L57-L58"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert to Index using specified date_format.</p> <p>Return an Index of formatted strings specified by date_format, which supports the same string format as the python standard library. Details of the string format can be found in <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">python string format doc</a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>date_format : str</code> </dt> <dd>
+<p class="first last">Date format string (e.g. “%Y-%m-%d”).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Index</dt> <dd>
+<p class="first last">Index of formatted strings.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code>to_datetime</code></a>
+</dt> <dd>Convert the given argument to datetime.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.normalize.html#pandas.DatetimeIndex.normalize" title="pandas.DatetimeIndex.normalize"><code>DatetimeIndex.normalize</code></a>
+</dt> <dd>Return DatetimeIndex with times to midnight.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.round.html#pandas.DatetimeIndex.round" title="pandas.DatetimeIndex.round"><code>DatetimeIndex.round</code></a>
+</dt> <dd>Round the DatetimeIndex to the specified freq.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.floor.html#pandas.DatetimeIndex.floor" title="pandas.DatetimeIndex.floor"><code>DatetimeIndex.floor</code></a>
+</dt> <dd>Floor the DatetimeIndex to the specified freq.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; rng = pd.date_range(pd.Timestamp("2018-03-10 09:00"),
+...                     periods=3, freq='s')
+&gt;&gt;&gt; rng.strftime('%B %d, %Y, %r')
+Index(['March 10, 2018, 09:00:00 AM', 'March 10, 2018, 09:00:01 AM',
+       'March 10, 2018, 09:00:02 AM'],
+      dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.strftime.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.strftime.html</a>
+  </p>
+</div>

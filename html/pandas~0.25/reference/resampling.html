@@ -1,0 +1,68 @@
+<h1 id="api-resampling">Resampling</h1> <p id="resampling">Resampler objects are returned by resample calls: <a class="reference internal" href="api/pandas.dataframe.resample.html#pandas.DataFrame.resample" title="pandas.DataFrame.resample"><code>pandas.DataFrame.resample()</code></a>, <a class="reference internal" href="api/pandas.series.resample.html#pandas.Series.resample" title="pandas.Series.resample"><code>pandas.Series.resample()</code></a>.</p>  <h2 id="indexing-iteration">Indexing, iteration</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.__iter__.html#pandas.core.resample.Resampler.__iter__" title="pandas.core.resample.Resampler.__iter__"><code>Resampler.__iter__</code></a>(self)</td> <td>Resampler iterator.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.resample.resampler.groups.html#pandas.core.resample.Resampler.groups" title="pandas.core.resample.Resampler.groups"><code>Resampler.groups</code></a></td> <td>Dict {group name -&gt; group labels}.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.core.resample.resampler.indices.html#pandas.core.resample.Resampler.indices" title="pandas.core.resample.Resampler.indices"><code>Resampler.indices</code></a></td> <td>Dict {group name -&gt; group indices}.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.get_group.html#pandas.core.resample.Resampler.get_group" title="pandas.core.resample.Resampler.get_group"><code>Resampler.get_group</code></a>(self, name[, obj])</td> <td>Construct DataFrame from group with provided name.</td> </tr>  </table>   <h2 id="function-application">Function application</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.apply.html#pandas.core.resample.Resampler.apply" title="pandas.core.resample.Resampler.apply"><code>Resampler.apply</code></a>(self, func, \*args, \*\*kwargs)</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.aggregate.html#pandas.core.resample.Resampler.aggregate" title="pandas.core.resample.Resampler.aggregate"><code>Resampler.aggregate</code></a>(self, func, \*args, …)</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.transform.html#pandas.core.resample.Resampler.transform" title="pandas.core.resample.Resampler.transform"><code>Resampler.transform</code></a>(self, arg, \*args, …)</td> <td>Call function producing a like-indexed Series on each group and return a Series with the transformed values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.pipe.html#pandas.core.resample.Resampler.pipe" title="pandas.core.resample.Resampler.pipe"><code>Resampler.pipe</code></a>(self, func, \*args, \*\*kwargs)</td> <td>Apply a function <code>func</code> with arguments to this Resampler object and return the function’s result.</td> </tr>  </table>   <h2 id="upsampling">Upsampling</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.ffill.html#pandas.core.resample.Resampler.ffill" title="pandas.core.resample.Resampler.ffill"><code>Resampler.ffill</code></a>(self[, limit])</td> <td>Forward fill the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.backfill.html#pandas.core.resample.Resampler.backfill" title="pandas.core.resample.Resampler.backfill"><code>Resampler.backfill</code></a>(self[, limit])</td> <td>Backward fill the new missing values in the resampled data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.bfill.html#pandas.core.resample.Resampler.bfill" title="pandas.core.resample.Resampler.bfill"><code>Resampler.bfill</code></a>(self[, limit])</td> <td>Backward fill the new missing values in the resampled data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.pad.html#pandas.core.resample.Resampler.pad" title="pandas.core.resample.Resampler.pad"><code>Resampler.pad</code></a>(self[, limit])</td> <td>Forward fill the values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.nearest.html#pandas.core.resample.Resampler.nearest" title="pandas.core.resample.Resampler.nearest"><code>Resampler.nearest</code></a>(self[, limit])</td> <td>Resample by using the nearest value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.fillna.html#pandas.core.resample.Resampler.fillna" title="pandas.core.resample.Resampler.fillna"><code>Resampler.fillna</code></a>(self, method[, limit])</td> <td>Fill missing values introduced by upsampling.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.asfreq.html#pandas.core.resample.Resampler.asfreq" title="pandas.core.resample.Resampler.asfreq"><code>Resampler.asfreq</code></a>(self[, fill_value])</td> <td>Return the values at the new freq, essentially a reindex.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.interpolate.html#pandas.core.resample.Resampler.interpolate" title="pandas.core.resample.Resampler.interpolate"><code>Resampler.interpolate</code></a>(self[, method, axis, …])</td> <td>Interpolate values according to different methods.</td> </tr>  </table>   <h2 id="computations-descriptive-stats">Computations / descriptive stats</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.count.html#pandas.core.resample.Resampler.count" title="pandas.core.resample.Resampler.count"><code>Resampler.count</code></a>(self[, _method])</td> <td>Compute count of group, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.nunique.html#pandas.core.resample.Resampler.nunique" title="pandas.core.resample.Resampler.nunique"><code>Resampler.nunique</code></a>(self[, _method])</td> <td>Return number of unique elements in the group.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.first.html#pandas.core.resample.Resampler.first" title="pandas.core.resample.Resampler.first"><code>Resampler.first</code></a>(self[, _method])</td> <td>Compute first of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.last.html#pandas.core.resample.Resampler.last" title="pandas.core.resample.Resampler.last"><code>Resampler.last</code></a>(self[, _method])</td> <td>Compute last of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.max.html#pandas.core.resample.Resampler.max" title="pandas.core.resample.Resampler.max"><code>Resampler.max</code></a>(self[, _method])</td> <td>Compute max of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.mean.html#pandas.core.resample.Resampler.mean" title="pandas.core.resample.Resampler.mean"><code>Resampler.mean</code></a>(self[, _method])</td> <td>Compute mean of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.median.html#pandas.core.resample.Resampler.median" title="pandas.core.resample.Resampler.median"><code>Resampler.median</code></a>(self[, _method])</td> <td>Compute median of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.min.html#pandas.core.resample.Resampler.min" title="pandas.core.resample.Resampler.min"><code>Resampler.min</code></a>(self[, _method])</td> <td>Compute min of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.ohlc.html#pandas.core.resample.Resampler.ohlc" title="pandas.core.resample.Resampler.ohlc"><code>Resampler.ohlc</code></a>(self[, _method])</td> <td>Compute sum of values, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.prod.html#pandas.core.resample.Resampler.prod" title="pandas.core.resample.Resampler.prod"><code>Resampler.prod</code></a>(self[, _method, min_count])</td> <td>Compute prod of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.size.html#pandas.core.resample.Resampler.size" title="pandas.core.resample.Resampler.size"><code>Resampler.size</code></a>(self)</td> <td>Compute group sizes.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.sem.html#pandas.core.resample.Resampler.sem" title="pandas.core.resample.Resampler.sem"><code>Resampler.sem</code></a>(self[, _method])</td> <td>Compute standard error of the mean of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.std.html#pandas.core.resample.Resampler.std" title="pandas.core.resample.Resampler.std"><code>Resampler.std</code></a>(self[, ddof])</td> <td>Compute standard deviation of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.sum.html#pandas.core.resample.Resampler.sum" title="pandas.core.resample.Resampler.sum"><code>Resampler.sum</code></a>(self[, _method, min_count])</td> <td>Compute sum of group values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.var.html#pandas.core.resample.Resampler.var" title="pandas.core.resample.Resampler.var"><code>Resampler.var</code></a>(self[, ddof])</td> <td>Compute variance of groups, excluding missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.core.resample.resampler.quantile.html#pandas.core.resample.Resampler.quantile" title="pandas.core.resample.Resampler.quantile"><code>Resampler.quantile</code></a>(self[, q])</td> <td>Return value at the given quantile.</td> </tr>  </table><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/resampling.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/resampling.html</a>
+  </p>
+</div>

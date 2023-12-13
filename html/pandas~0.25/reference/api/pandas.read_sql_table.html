@@ -1,0 +1,38 @@
+<h1 id="pandas-read-sql-table">pandas.read_sql_table</h1> <dl class="function"> <dt id="pandas.read_sql_table">
+<code>pandas.read_sql_table(table_name, con, schema=None, index_col=None, coerce_float=True, parse_dates=None, columns=None, chunksize=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/sql.py#L167-L260"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Read SQL database table into a DataFrame.</p> <p>Given a table name and a SQLAlchemy connectable, returns a DataFrame. This function does not support DBAPI connections.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>table_name : str</code> </dt> <dd>
+<p class="first last">Name of SQL table in database.</p> </dd> <dt>
+<code>con : SQLAlchemy connectable or str</code> </dt> <dd>
+<p class="first last">A database URI could be provided as as str. SQLite DBAPI connection mode not supported.</p> </dd> <dt>
+<code>schema : str, default None</code> </dt> <dd>
+<p class="first last">Name of SQL schema in database to query (if database flavor supports this). Uses default schema if None (default).</p> </dd> <dt>
+<code>index_col : str or list of str, optional, default: None</code> </dt> <dd>
+<p class="first last">Column(s) to set as index(MultiIndex).</p> </dd> <dt>
+<code>coerce_float : bool, default True</code> </dt> <dd>
+<p class="first last">Attempts to convert values of non-string, non-numeric objects (like decimal.Decimal) to floating point. Can result in loss of Precision.</p> </dd> <dt>
+<code>parse_dates : list or dict, default None</code> </dt> <dd>
+<ul class="first last simple"> <li>List of column names to parse as dates.</li> <li>Dict of <code>{column_name: format string}</code> where format string is strftime compatible in case of parsing string times or is one of (D, s, ns, ms, us) in case of parsing integer timestamps.</li> <li>Dict of <code>{column_name: arg dict}</code>, where the arg dict corresponds to the keyword arguments of <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code>pandas.to_datetime()</code></a> Especially useful with databases without native Datetime support, such as SQLite.</li> </ul> </dd> <dt>
+<code>columns : list, default None</code> </dt> <dd>
+<p class="first last">List of column names to select from SQL table.</p> </dd> <dt>
+<code>chunksize : int, default None</code> </dt> <dd>
+<p class="first last">If specified, returns an iterator where <code>chunksize</code> is the number of rows to include in each chunk.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">A SQL table is returned as two-dimensional data structure with labeled axes.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_sql_query.html#pandas.read_sql_query" title="pandas.read_sql_query"><code>read_sql_query</code></a>
+</dt> <dd>Read SQL query into a DataFrame.</dd> <dt>
+ <a class="reference internal" href="pandas.read_sql.html#pandas.read_sql" title="pandas.read_sql"><code>read_sql</code></a>
+</dt> <dd>Read SQL query or database table into a DataFrame.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Any datetime values with time zone information will be converted to UTC.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.read_sql_table('table_name', 'postgres:///db_name')  # doctest:+SKIP
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_sql_table.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.read_sql_table.html</a>
+  </p>
+</div>

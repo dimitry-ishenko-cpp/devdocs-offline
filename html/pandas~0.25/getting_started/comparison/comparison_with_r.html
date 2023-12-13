@@ -1,0 +1,61 @@
+<h1 id="compare-with-r">Comparison with R / R libraries</h1> <p id="comparison-with-r-r-libraries">Since <code>pandas</code> aims to provide a lot of the data manipulation and analysis functionality that people use <a class="reference external" href="http://www.r-project.org/">R</a> for, this page was started to provide a more detailed look at the <a class="reference external" href="http://en.wikipedia.org/wiki/R_(programming_language)">R language</a> and its many third party libraries as they relate to <code>pandas</code>. In comparisons with R and CRAN libraries, we care about the following things:</p> <ul class="simple"> <li>
+<strong>Functionality / flexibility</strong>: what can/cannot be done with each tool</li> <li>
+<strong>Performance</strong>: how fast are operations. Hard numbers/benchmarks are preferable</li> <li>
+<strong>Ease-of-use</strong>: Is one tool easier/harder to use (you may have to be the judge of this, given side-by-side code comparisons)</li> </ul> <p>This page is also here to offer a bit of a translation guide for users of these R packages.</p> <p>For transfer of <code>DataFrame</code> objects from <code>pandas</code> to R, one option is to use HDF5 files, see <a class="reference internal" href="../../user_guide/io.html#io-external-compatibility"><span class="std std-ref">External compatibility</span></a> for an example.</p>  <h2 id="quick-reference">Quick reference</h2> <p>We’ll start off with a quick reference guide pairing some common R operations using <a class="reference external" href="https://cran.r-project.org/package=dplyr">dplyr</a> with pandas equivalents.</p>  <h3 id="querying-filtering-sampling">Querying, filtering, sampling</h3> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">R</th> <th class="head">pandas</th> </tr> </thead>  <tr>
+<td><code>dim(df)</code></td> <td><code>df.shape</code></td> </tr> <tr>
+<td><code>head(df)</code></td> <td><code>df.head()</code></td> </tr> <tr>
+<td><code>slice(df, 1:10)</code></td> <td><code>df.iloc[:9]</code></td> </tr> <tr>
+<td><code>filter(df, col1 == 1, col2 == 1)</code></td> <td><code>df.query('col1 == 1 &amp; col2 == 1')</code></td> </tr> <tr>
+<td><code>df[df$col1 == 1 &amp; df$col2 == 1,]</code></td> <td><code>df[(df.col1 == 1) &amp; (df.col2 == 1)]</code></td> </tr> <tr>
+<td><code>select(df, col1, col2)</code></td> <td><code>df[['col1', 'col2']]</code></td> </tr> <tr>
+<td><code>select(df, col1:col3)</code></td> <td><code>df.loc[:, 'col1':'col3']</code></td> </tr> <tr>
+<td><code>select(df, -(col1:col3))</code></td> <td>
+<code>df.drop(cols_to_drop, axis=1)</code> but see <a class="footnote-reference" href="#select-range" id="id1">[1]</a>
+</td> </tr> <tr>
+<td><code>distinct(select(df, col1))</code></td> <td><code>df[['col1']].drop_duplicates()</code></td> </tr> <tr>
+<td><code>distinct(select(df, col1, col2))</code></td> <td><code>df[['col1', 'col2']].drop_duplicates()</code></td> </tr> <tr>
+<td><code>sample_n(df, 10)</code></td> <td><code>df.sample(n=10)</code></td> </tr> <tr>
+<td><code>sample_frac(df, 0.01)</code></td> <td><code>df.sample(frac=0.01)</code></td> </tr>  </table> <table class="docutils footnote" frame="void" id="select-range" rules="none">   <tr>
+<td class="label"><a class="fn-backref" href="#id1">[1]</a></td>
+<td>R’s shorthand for a subrange of columns (<code>select(df, col1:col3)</code>) can be approached cleanly in pandas, if you have the list of columns, for example <code>df[cols[1:3]]</code> or <code>df.drop(cols[1:3])</code>, but doing this by column name is a bit messy.</td>
+</tr>  </table>   <h3 id="sorting">Sorting</h3> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">R</th> <th class="head">pandas</th> </tr> </thead>  <tr>
+<td><code>arrange(df, col1, col2)</code></td> <td><code>df.sort_values(['col1', 'col2'])</code></td> </tr> <tr>
+<td><code>arrange(df, desc(col1))</code></td> <td><code>df.sort_values('col1', ascending=False)</code></td> </tr>  </table>   <h3 id="transforming">Transforming</h3> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">R</th> <th class="head">pandas</th> </tr> </thead>  <tr>
+<td><code>select(df, col_one = col1)</code></td> <td><code>df.rename(columns={'col1': 'col_one'})['col_one']</code></td> </tr> <tr>
+<td><code>rename(df, col_one = col1)</code></td> <td><code>df.rename(columns={'col1': 'col_one'})</code></td> </tr> <tr>
+<td><code>mutate(df, c=a-b)</code></td> <td><code>df.assign(c=df.a-df.b)</code></td> </tr>  </table>   <h3 id="grouping-and-summarizing">Grouping and summarizing</h3> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">R</th> <th class="head">pandas</th> </tr> </thead>  <tr>
+<td><code>summary(df)</code></td> <td><code>df.describe()</code></td> </tr> <tr>
+<td><code>gdf &lt;- group_by(df, col1)</code></td> <td><code>gdf = df.groupby('col1')</code></td> </tr> <tr>
+<td><code>summarise(gdf, avg=mean(col1, na.rm=TRUE))</code></td> <td><code>df.groupby('col1').agg({'col1': 'mean'})</code></td> </tr> <tr>
+<td><code>summarise(gdf, total=sum(col1))</code></td> <td><code>df.groupby('col1').sum()</code></td> </tr>  </table>    <h2 id="base-r">Base R</h2>  <h3 id="slicing-with-r-s-c">Slicing with R’s <code>c</code>
+</h3> <p>R makes it easy to access <code>data.frame</code> columns by name</p> <pre data-language="r">df &lt;- data.frame(a=rnorm(5), b=rnorm(5), c=rnorm(5), d=rnorm(5), e=rnorm(5))
+df[, c("a", "c", "e")]
+</pre> <p>or by integer location</p> <pre data-language="r">df &lt;- data.frame(matrix(rnorm(1000), ncol=100))
+df[, c(1:10, 25:30, 40, 50:100)]
+</pre> <p>Selecting multiple columns by name in <code>pandas</code> is straightforward</p> <pre data-language="python">In [1]: df = pd.DataFrame(np.random.randn(10, 3), columns=list('abc'))
+
+In [2]: df[['a', 'c']]
+Out[2]: 
+          a         c
+0  0.469112 -1.509059
+1 -1.135632 -0.173215
+2  0.119209 -0.861849
+3 -2.104569  1.071804
+4  0.721555 -1.039575
+5  0.271860  0.567020
+6  0.276232 -0.673690
+7  0.113648  0.524988
+8  0.404705 -1.715002
+9 -1.039268 -1.157892
+
+In [3]: df.loc[:, ['a', 'c']]
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_r.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_r.html</a>
+  </p>
+</div>

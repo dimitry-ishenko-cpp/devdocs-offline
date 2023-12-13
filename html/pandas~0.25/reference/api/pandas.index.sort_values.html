@@ -1,0 +1,35 @@
+<h1 id="pandas-index-sort-values">pandas.Index.sort_values</h1> <dl class="method"> <dt id="pandas.Index.sort_values">
+<code>Index.sort_values(self, return_indexer=False, ascending=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L4523-L4575"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a sorted copy of the index.</p> <p>Return a sorted copy of the index, and optionally return the indices that sorted the index itself.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>return_indexer : bool, default False</code> </dt> <dd>
+<p class="first last">Should the indices that would sort the index be returned.</p> </dd> <dt>
+<code>ascending : bool, default True</code> </dt> <dd>
+<p class="first last">Should the index values be sorted in an ascending order.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>sorted_index : pandas.Index</code> </dt> <dd>
+<p class="first last">Sorted copy of the index.</p> </dd> <dt>
+<code>indexer : numpy.ndarray, optional</code> </dt> <dd>
+<p class="first last">The indices that the index itself was sorted by.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.sort_values.html#pandas.Series.sort_values" title="pandas.Series.sort_values"><code>Series.sort_values</code></a>
+</dt> <dd>Sort values of a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code>DataFrame.sort_values</code></a>
+</dt> <dd>Sort values in a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index([10, 100, 1, 1000])
+&gt;&gt;&gt; idx
+Int64Index([10, 100, 1, 1000], dtype='int64')
+</pre> <p>Sort values in ascending order (default behavior).</p> <pre data-language="python">&gt;&gt;&gt; idx.sort_values()
+Int64Index([1, 10, 100, 1000], dtype='int64')
+</pre> <p>Sort values in descending order, and also get the indices <code>idx</code> was sorted by.</p> <pre data-language="python">&gt;&gt;&gt; idx.sort_values(ascending=False, return_indexer=True)
+(Int64Index([1000, 100, 10, 1], dtype='int64'), array([3, 1, 0, 2]))
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.sort_values.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.sort_values.html</a>
+  </p>
+</div>

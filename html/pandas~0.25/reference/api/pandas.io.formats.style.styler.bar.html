@@ -1,0 +1,32 @@
+<h1 id="pandas-io-formats-style-styler-bar">pandas.io.formats.style.Styler.bar</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.bar">
+<code>Styler.bar(self, subset=None, axis=0, color='#d65f5f', width=100, align='left', vmin=None, vmax=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L1160-L1245"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Draw bar chart in the cell backgrounds.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>subset : IndexSlice, optional</code> </dt> <dd>
+<p class="first last">A valid slice for <code>data</code> to limit the style application to.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’, None}, default 0</code> </dt> <dd>
+<p class="first last">apply to each column (<code>axis=0</code> or <code>'index'</code>), to each row (<code>axis=1</code> or <code>'columns'</code>), or to the entire DataFrame at once with <code>axis=None</code>.</p> </dd> <dt>
+<code>color : str or 2-tuple/list</code> </dt> <dd>
+<p class="first last">If a str is passed, the color is the same for both negative and positive numbers. If 2-tuple/list is used, the first element is the color_negative and the second is the color_positive (eg: [‘#d65f5f’, ‘#5fba7d’]).</p> </dd> <dt>
+<code>width : float, default 100</code> </dt> <dd>
+<p class="first last">A number between 0 or 100. The largest value will cover <code>width</code> percent of the cell’s width.</p> </dd> <dt>
+<code>align : {‘left’, ‘zero’,’ mid’}, default ‘left’</code> </dt> <dd>
+<p class="first">How to align the bars with the cells.</p> <ul class="last"> <li>‘left’ : the min value starts at the left of the cell. </li> <li>‘zero’ : a value of zero is located at the center of the cell. </li> <li>
+<p class="first">‘mid’ : the center of the cell is at (max-min)/2, or if values are all negative (positive) the zero is aligned at the right (left) of the cell.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </li> </ul> </dd> <dt>
+<code>vmin : float, optional</code> </dt> <dd>
+<p class="first">Minimum bar value, defining the left hand limit of the bar drawing range, lower values are clipped to <code>vmin</code>. When None (default): the minimum value of the data will be used.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>vmax : float, optional</code> </dt> <dd>
+<p class="first">Maximum bar value, defining the right hand limit of the bar drawing range, higher values are clipped to <code>vmax</code>. When None (default): the maximum value of the data will be used.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>self : Styler</code> </dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.bar.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.bar.html</a>
+  </p>
+</div>

@@ -1,0 +1,120 @@
+<h1 id="advanced">MultiIndex / advanced indexing</h1> <p id="multiindex-advanced-indexing">This section covers <a class="reference internal" href="#advanced-hierarchical"><span class="std std-ref">indexing with a MultiIndex</span></a> and <a class="reference internal" href="#indexing-index-types"><span class="std std-ref">other advanced indexing features</span></a>.</p> <p>See the <a class="reference internal" href="indexing.html#indexing"><span class="std std-ref">Indexing and Selecting Data</span></a> for general indexing documentation.</p> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">Whether a copy or a reference is returned for a setting operation may depend on the context. This is sometimes called <code>chained assignment</code> and should be avoided. See <a class="reference internal" href="indexing.html#indexing-view-versus-copy"><span class="std std-ref">Returning a View versus Copy</span></a>.</p> </div> <p>See the <a class="reference internal" href="cookbook.html#cookbook-selection"><span class="std std-ref">cookbook</span></a> for some advanced strategies.</p>  <h2 id="advanced-hierarchical">Hierarchical indexing (MultiIndex)</h2> <p id="hierarchical-indexing-multiindex">Hierarchical / Multi-level indexing is very exciting as it opens the door to some quite sophisticated data analysis and manipulation, especially for working with higher dimensional data. In essence, it enables you to store and manipulate data with an arbitrary number of dimensions in lower dimensional data structures like <code>Series</code> (1d) and <code>DataFrame</code> (2d).</p> <p>In this section, we will show what exactly we mean by “hierarchical” indexing and how it integrates with all of the pandas indexing functionality described above and in prior sections. Later, when discussing <a class="reference internal" href="groupby.html#groupby"><span class="std std-ref">group by</span></a> and <a class="reference internal" href="reshaping.html#reshaping"><span class="std std-ref">pivoting and reshaping data</span></a>, we’ll show non-trivial applications to illustrate how it aids in structuring data for analysis.</p> <p>See the <a class="reference internal" href="cookbook.html#cookbook-multi-index"><span class="std std-ref">cookbook</span></a> for some advanced strategies.</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0: </span><code>MultiIndex.labels</code> has been renamed to <a class="reference internal" href="../reference/api/pandas.multiindex.codes.html#pandas.MultiIndex.codes" title="pandas.MultiIndex.codes"><code>MultiIndex.codes</code></a> and <code>MultiIndex.set_labels</code> to <a class="reference internal" href="../reference/api/pandas.multiindex.set_codes.html#pandas.MultiIndex.set_codes" title="pandas.MultiIndex.set_codes"><code>MultiIndex.set_codes</code></a>.</p> </div>  <h3 id="creating-a-multiindex-hierarchical-index-object">Creating a MultiIndex (hierarchical index) object</h3> <p>The <a class="reference internal" href="../reference/api/pandas.multiindex.html#pandas.MultiIndex" title="pandas.MultiIndex"><code>MultiIndex</code></a> object is the hierarchical analogue of the standard <a class="reference internal" href="../reference/api/pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a> object which typically stores the axis labels in pandas objects. You can think of <code>MultiIndex</code> as an array of tuples where each tuple is unique. A <code>MultiIndex</code> can be created from a list of arrays (using <a class="reference internal" href="../reference/api/pandas.multiindex.from_arrays.html#pandas.MultiIndex.from_arrays" title="pandas.MultiIndex.from_arrays"><code>MultiIndex.from_arrays()</code></a>), an array of tuples (using <a class="reference internal" href="../reference/api/pandas.multiindex.from_tuples.html#pandas.MultiIndex.from_tuples" title="pandas.MultiIndex.from_tuples"><code>MultiIndex.from_tuples()</code></a>), a crossed set of iterables (using <a class="reference internal" href="../reference/api/pandas.multiindex.from_product.html#pandas.MultiIndex.from_product" title="pandas.MultiIndex.from_product"><code>MultiIndex.from_product()</code></a>), or a <a class="reference internal" href="../reference/api/pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> (using <a class="reference internal" href="../reference/api/pandas.multiindex.from_frame.html#pandas.MultiIndex.from_frame" title="pandas.MultiIndex.from_frame"><code>MultiIndex.from_frame()</code></a>). The <code>Index</code> constructor will attempt to return a <code>MultiIndex</code> when it is passed a list of tuples. The following examples demonstrate different ways to initialize MultiIndexes.</p> <pre data-language="python">In [1]: arrays = [['bar', 'bar', 'baz', 'baz', 'foo', 'foo', 'qux', 'qux'],
+   ...:           ['one', 'two', 'one', 'two', 'one', 'two', 'one', 'two']]
+   ...: 
+
+In [2]: tuples = list(zip(*arrays))
+
+In [3]: tuples
+Out[3]: 
+[('bar', 'one'),
+ ('bar', 'two'),
+ ('baz', 'one'),
+ ('baz', 'two'),
+ ('foo', 'one'),
+ ('foo', 'two'),
+ ('qux', 'one'),
+ ('qux', 'two')]
+
+In [4]: index = pd.MultiIndex.from_tuples(tuples, names=['first', 'second'])
+
+In [5]: index
+Out[5]: 
+MultiIndex([('bar', 'one'),
+            ('bar', 'two'),
+            ('baz', 'one'),
+            ('baz', 'two'),
+            ('foo', 'one'),
+            ('foo', 'two'),
+            ('qux', 'one'),
+            ('qux', 'two')],
+           names=['first', 'second'])
+
+In [6]: s = pd.Series(np.random.randn(8), index=index)
+
+In [7]: s
+Out[7]: 
+first  second
+bar    one       0.469112
+       two      -0.282863
+baz    one      -1.509059
+       two      -1.135632
+foo    one       1.212112
+       two      -0.173215
+qux    one       0.119209
+       two      -1.044236
+dtype: float64
+</pre> <p>When you want every pairing of the elements in two iterables, it can be easier to use the <a class="reference internal" href="../reference/api/pandas.multiindex.from_product.html#pandas.MultiIndex.from_product" title="pandas.MultiIndex.from_product"><code>MultiIndex.from_product()</code></a> method:</p> <pre data-language="python">In [8]: iterables = [['bar', 'baz', 'foo', 'qux'], ['one', 'two']]
+
+In [9]: pd.MultiIndex.from_product(iterables, names=['first', 'second'])
+Out[9]: 
+MultiIndex([('bar', 'one'),
+            ('bar', 'two'),
+            ('baz', 'one'),
+            ('baz', 'two'),
+            ('foo', 'one'),
+            ('foo', 'two'),
+            ('qux', 'one'),
+            ('qux', 'two')],
+           names=['first', 'second'])
+</pre> <p>You can also construct a <code>MultiIndex</code> from a <code>DataFrame</code> directly, using the method <a class="reference internal" href="../reference/api/pandas.multiindex.from_frame.html#pandas.MultiIndex.from_frame" title="pandas.MultiIndex.from_frame"><code>MultiIndex.from_frame()</code></a>. This is a complementary method to <a class="reference internal" href="../reference/api/pandas.multiindex.to_frame.html#pandas.MultiIndex.to_frame" title="pandas.MultiIndex.to_frame"><code>MultiIndex.to_frame()</code></a>.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <pre data-language="python">In [10]: df = pd.DataFrame([['bar', 'one'], ['bar', 'two'],
+   ....:                    ['foo', 'one'], ['foo', 'two']],
+   ....:                   columns=['first', 'second'])
+   ....: 
+
+In [11]: pd.MultiIndex.from_frame(df)
+Out[11]: 
+MultiIndex([('bar', 'one'),
+            ('bar', 'two'),
+            ('foo', 'one'),
+            ('foo', 'two')],
+           names=['first', 'second'])
+</pre> <p>As a convenience, you can pass a list of arrays directly into <code>Series</code> or <code>DataFrame</code> to construct a <code>MultiIndex</code> automatically:</p> <pre data-language="python">In [12]: arrays = [np.array(['bar', 'bar', 'baz', 'baz', 'foo', 'foo', 'qux', 'qux']),
+   ....:           np.array(['one', 'two', 'one', 'two', 'one', 'two', 'one', 'two'])]
+   ....: 
+
+In [13]: s = pd.Series(np.random.randn(8), index=arrays)
+
+In [14]: s
+Out[14]: 
+bar  one   -0.861849
+     two   -2.104569
+baz  one   -0.494929
+     two    1.071804
+foo  one    0.721555
+     two   -0.706771
+qux  one   -1.039575
+     two    0.271860
+dtype: float64
+
+In [15]: df = pd.DataFrame(np.random.randn(8, 4), index=arrays)
+
+In [16]: df
+Out[16]: 
+                0         1         2         3
+bar one -0.424972  0.567020  0.276232 -1.087401
+    two -0.673690  0.113648 -1.478427  0.524988
+baz one  0.404705  0.577046 -1.715002 -1.039268
+    two -0.370647 -1.157892 -1.344312  0.844885
+foo one  1.075770 -0.109050  1.643563 -1.469388
+    two  0.357021 -0.674600 -1.776904 -0.968914
+qux one -1.294524  0.413738  0.276662 -0.472035
+    two -0.013960 -0.362543 -0.006154 -0.923061
+</pre> <p>All of the <code>MultiIndex</code> constructors accept a <code>names</code> argument which stores string names for the levels themselves. If no names are provided, <code>None</code> will be assigned:</p> <pre data-language="python">In [17]: df.index.names
+Out[17]: FrozenList([None, None])
+</pre> <p>This index can back any axis of a pandas object, and the number of <strong>levels</strong> of the index is up to you:</p> <pre data-language="python">In [18]: df = pd.DataFrame(np.random.randn(3, 8), index=['A', 'B', 'C'], columns=index)
+
+In [19]: df
+Out[19]: 
+first        bar                 baz                 foo                 qux          
+second       one       two       one       two       one       two       one       two
+A       0.895717  0.805244 -1.206412  2.565646  1.431256  1.340309 -1.170299 -0.226169
+B       0.410835  0.813850  0.132003 -0.827317 -0.076467 -1.187678  1.130127 -1.436737
+C      -1.413681  1.607920  1.024180  0.569605  0.875906 -2.211372  0.974466 -2.006747
+
+In [20]: pd.DataFrame(np.random.randn(6, 6), index=index[:6], columns=index[:6])
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/advanced.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/advanced.html</a>
+  </p>
+</div>

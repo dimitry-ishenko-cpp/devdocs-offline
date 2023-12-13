@@ -1,0 +1,145 @@
+<h1 id="compare-with-stata">Comparison with Stata</h1> <p id="comparison-with-stata">For potential users coming from <a class="reference external" href="https://en.wikipedia.org/wiki/Stata">Stata</a> this page is meant to demonstrate how different Stata operations would be performed in pandas.</p> <p>If you’re new to pandas, you might want to first read through <a class="reference internal" href="../10min.html#min"><span class="std std-ref">10 Minutes to pandas</span></a> to familiarize yourself with the library.</p> <p>As is customary, we import pandas and NumPy as follows. This means that we can refer to the libraries as <code>pd</code> and <code>np</code>, respectively, for the rest of the document.</p> <pre data-language="python">In [1]: import pandas as pd
+
+In [2]: import numpy as np
+</pre> <div class="admonition note"> <p class="first admonition-title">Note</p> <p>Throughout this tutorial, the pandas <code>DataFrame</code> will be displayed by calling <code>df.head()</code>, which displays the first N (default 5) rows of the <code>DataFrame</code>. This is often used in interactive work (e.g. <a class="reference external" href="https://jupyter.org/">Jupyter notebook</a> or terminal) – the equivalent in Stata would be:</p> <pre data-language="stata">list in 1/5
+</pre> </div>  <h2 id="data-structures">Data structures</h2>  <h3 id="general-terminology-translation">General terminology translation</h3> <table class="colwidths-given docutils">  <thead valign="bottom"> <tr>
+<th class="head">pandas</th> <th class="head">Stata</th> </tr> </thead>  <tr>
+<td><code>DataFrame</code></td> <td>data set</td> </tr> <tr>
+<td>column</td> <td>variable</td> </tr> <tr>
+<td>row</td> <td>observation</td> </tr> <tr>
+<td>groupby</td> <td>bysort</td> </tr> <tr>
+<td><code>NaN</code></td> <td><code>.</code></td> </tr>  </table>   <h3 id="dataframe-series">
+<code>DataFrame</code> / <code>Series</code>
+</h3> <p>A <code>DataFrame</code> in pandas is analogous to a Stata data set – a two-dimensional data source with labeled columns that can be of different types. As will be shown in this document, almost any operation that can be applied to a data set in Stata can also be accomplished in pandas.</p> <p>A <code>Series</code> is the data structure that represents one column of a <code>DataFrame</code>. Stata doesn’t have a separate data structure for a single column, but in general, working with a <code>Series</code> is analogous to referencing a column of a data set in Stata.</p>   <h3 id="index"><code>Index</code></h3> <p>Every <code>DataFrame</code> and <code>Series</code> has an <code>Index</code> – labels on the <em>rows</em> of the data. Stata does not have an exactly analogous concept. In Stata, a data set’s rows are essentially unlabeled, other than an implicit integer index that can be accessed with <code>_n</code>.</p> <p>In pandas, if no index is specified, an integer index is also used by default (first row = 0, second row = 1, and so on). While using a labeled <code>Index</code> or <code>MultiIndex</code> can enable sophisticated analyses and is ultimately an important part of pandas to understand, for this comparison we will essentially ignore the <code>Index</code> and just treat the <code>DataFrame</code> as a collection of columns. Please see the <a class="reference internal" href="../../user_guide/indexing.html#indexing"><span class="std std-ref">indexing documentation</span></a> for much more on how to use an <code>Index</code> effectively.</p>    <h2 id="data-input-output">Data input / output</h2>  <h3 id="constructing-a-dataframe-from-values">Constructing a DataFrame from values</h3> <p>A Stata data set can be built from specified values by placing the data after an <code>input</code> statement and specifying the column names.</p> <pre data-language="stata">input x y
+1 2
+3 4
+5 6
+end
+</pre> <p>A pandas <code>DataFrame</code> can be constructed in many different ways, but for a small number of values, it is often convenient to specify it as a Python dictionary, where the keys are the column names and the values are the data.</p> <pre data-language="python">In [3]: df = pd.DataFrame({'x': [1, 3, 5], 'y': [2, 4, 6]})
+
+In [4]: df
+Out[4]: 
+   x  y
+0  1  2
+1  3  4
+2  5  6
+</pre>   <h3 id="reading-external-data">Reading external data</h3> <p>Like Stata, pandas provides utilities for reading in data from many formats. The <code>tips</code> data set, found within the pandas tests (<a class="reference external" href="https://raw.github.com/pandas-dev/pandas/master/pandas/tests/data/tips.csv">csv</a>) will be used in many of the following examples.</p> <p>Stata provides <code>import delimited</code> to read csv data into a data set in memory. If the <code>tips.csv</code> file is in the current working directory, we can import it as follows.</p> <pre data-language="stata">import delimited tips.csv
+</pre> <p>The pandas method is <a class="reference internal" href="../../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code>read_csv()</code></a>, which works similarly. Additionally, it will automatically download the data set if presented with a url.</p> <pre data-language="python">In [5]: url = ('https://raw.github.com/pandas-dev'
+   ...:        '/pandas/master/pandas/tests/data/tips.csv')
+   ...: 
+
+In [6]: tips = pd.read_csv(url)
+
+In [7]: tips.head()
+Out[7]: 
+   total_bill   tip     sex smoker  day    time  size
+0       16.99  1.01  Female     No  Sun  Dinner     2
+1       10.34  1.66    Male     No  Sun  Dinner     3
+2       21.01  3.50    Male     No  Sun  Dinner     3
+3       23.68  3.31    Male     No  Sun  Dinner     2
+4       24.59  3.61  Female     No  Sun  Dinner     4
+</pre> <p>Like <code>import delimited</code>, <a class="reference internal" href="../../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code>read_csv()</code></a> can take a number of parameters to specify how the data should be parsed. For example, if the data were instead tab delimited, did not have column names, and existed in the current working directory, the pandas command would be:</p> <pre data-language="python">tips = pd.read_csv('tips.csv', sep='\t', header=None)
+
+# alternatively, read_table is an alias to read_csv with tab delimiter
+tips = pd.read_table('tips.csv', header=None)
+</pre> <p>Pandas can also read Stata data sets in <code>.dta</code> format with the <a class="reference internal" href="../../reference/api/pandas.read_stata.html#pandas.read_stata" title="pandas.read_stata"><code>read_stata()</code></a> function.</p> <pre data-language="python">df = pd.read_stata('data.dta')
+</pre> <p>In addition to text/csv and Stata files, pandas supports a variety of other data formats such as Excel, SAS, HDF5, Parquet, and SQL databases. These are all read via a <code>pd.read_*</code> function. See the <a class="reference internal" href="../../user_guide/io.html#io"><span class="std std-ref">IO documentation</span></a> for more details.</p>   <h3 id="exporting-data">Exporting data</h3> <p>The inverse of <code>import delimited</code> in Stata is <code>export delimited</code></p> <pre data-language="stata">export delimited tips2.csv
+</pre> <p>Similarly in pandas, the opposite of <code>read_csv</code> is <a class="reference internal" href="../../reference/api/pandas.dataframe.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code>DataFrame.to_csv()</code></a>.</p> <pre data-language="python">tips.to_csv('tips2.csv')
+</pre> <p>Pandas can also export to Stata file format with the <a class="reference internal" href="../../reference/api/pandas.dataframe.to_stata.html#pandas.DataFrame.to_stata" title="pandas.DataFrame.to_stata"><code>DataFrame.to_stata()</code></a> method.</p> <pre data-language="python">tips.to_stata('tips2.dta')
+</pre>    <h2 id="data-operations">Data operations</h2>  <h3 id="operations-on-columns">Operations on columns</h3> <p>In Stata, arbitrary math expressions can be used with the <code>generate</code> and <code>replace</code> commands on new or existing columns. The <code>drop</code> command drops the column from the data set.</p> <pre data-language="stata">replace total_bill = total_bill - 2
+generate new_bill = total_bill / 2
+drop new_bill
+</pre> <p>pandas provides similar vectorized operations by specifying the individual <code>Series</code> in the <code>DataFrame</code>. New columns can be assigned in the same way. The <a class="reference internal" href="../../reference/api/pandas.dataframe.drop.html#pandas.DataFrame.drop" title="pandas.DataFrame.drop"><code>DataFrame.drop()</code></a> method drops a column from the <code>DataFrame</code>.</p> <pre data-language="python">In [8]: tips['total_bill'] = tips['total_bill'] - 2
+
+In [9]: tips['new_bill'] = tips['total_bill'] / 2
+
+In [10]: tips.head()
+Out[10]: 
+   total_bill   tip     sex smoker  day    time  size  new_bill
+0       14.99  1.01  Female     No  Sun  Dinner     2     7.495
+1        8.34  1.66    Male     No  Sun  Dinner     3     4.170
+2       19.01  3.50    Male     No  Sun  Dinner     3     9.505
+3       21.68  3.31    Male     No  Sun  Dinner     2    10.840
+4       22.59  3.61  Female     No  Sun  Dinner     4    11.295
+
+In [11]: tips = tips.drop('new_bill', axis=1)
+</pre>   <h3 id="filtering">Filtering</h3> <p>Filtering in Stata is done with an <code>if</code> clause on one or more columns.</p> <pre data-language="stata">list if total_bill &gt; 10
+</pre> <p>DataFrames can be filtered in multiple ways; the most intuitive of which is using <a class="reference internal" href="../../user_guide/indexing.html#indexing-boolean"><span class="std std-ref">boolean indexing</span></a>.</p> <pre data-language="python">In [12]: tips[tips['total_bill'] &gt; 10].head()
+Out[12]: 
+   total_bill   tip     sex smoker  day    time  size
+0       14.99  1.01  Female     No  Sun  Dinner     2
+2       19.01  3.50    Male     No  Sun  Dinner     3
+3       21.68  3.31    Male     No  Sun  Dinner     2
+4       22.59  3.61  Female     No  Sun  Dinner     4
+5       23.29  4.71    Male     No  Sun  Dinner     4
+</pre>   <h3 id="if-then-logic">If/then logic</h3> <p>In Stata, an <code>if</code> clause can also be used to create new columns.</p> <pre data-language="stata">generate bucket = "low" if total_bill &lt; 10
+replace bucket = "high" if total_bill &gt;= 10
+</pre> <p>The same operation in pandas can be accomplished using the <code>where</code> method from <code>numpy</code>.</p> <pre data-language="python">In [13]: tips['bucket'] = np.where(tips['total_bill'] &lt; 10, 'low', 'high')
+
+In [14]: tips.head()
+Out[14]: 
+   total_bill   tip     sex smoker  day    time  size bucket
+0       14.99  1.01  Female     No  Sun  Dinner     2   high
+1        8.34  1.66    Male     No  Sun  Dinner     3    low
+2       19.01  3.50    Male     No  Sun  Dinner     3   high
+3       21.68  3.31    Male     No  Sun  Dinner     2   high
+4       22.59  3.61  Female     No  Sun  Dinner     4   high
+</pre>   <h3 id="date-functionality">Date functionality</h3> <p>Stata provides a variety of functions to do operations on date/datetime columns.</p> <pre data-language="stata">generate date1 = mdy(1, 15, 2013)
+generate date2 = date("Feb152015", "MDY")
+
+generate date1_year = year(date1)
+generate date2_month = month(date2)
+
+* shift date to beginning of next month
+generate date1_next = mdy(month(date1) + 1, 1, year(date1)) if month(date1) != 12
+replace date1_next = mdy(1, 1, year(date1) + 1) if month(date1) == 12
+generate months_between = mofd(date2) - mofd(date1)
+
+list date1 date2 date1_year date2_month date1_next months_between
+</pre> <p>The equivalent pandas operations are shown below. In addition to these functions, pandas supports other Time Series features not available in Stata (such as time zone handling and custom offsets) – see the <a class="reference internal" href="../../user_guide/timeseries.html#timeseries"><span class="std std-ref">timeseries documentation</span></a> for more details.</p> <pre data-language="python">In [15]: tips['date1'] = pd.Timestamp('2013-01-15')
+
+In [16]: tips['date2'] = pd.Timestamp('2015-02-15')
+
+In [17]: tips['date1_year'] = tips['date1'].dt.year
+
+In [18]: tips['date2_month'] = tips['date2'].dt.month
+
+In [19]: tips['date1_next'] = tips['date1'] + pd.offsets.MonthBegin()
+
+In [20]: tips['months_between'] = (tips['date2'].dt.to_period('M')
+   ....:                           - tips['date1'].dt.to_period('M'))
+   ....: 
+
+In [21]: tips[['date1', 'date2', 'date1_year', 'date2_month', 'date1_next',
+   ....:       'months_between']].head()
+   ....: 
+Out[21]: 
+       date1      date2  date1_year  date2_month date1_next    months_between
+0 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+1 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+2 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+3 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+4 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+</pre>   <h3 id="selection-of-columns">Selection of columns</h3> <p>Stata provides keywords to select, drop, and rename columns.</p> <pre data-language="stata">keep sex total_bill tip
+
+drop sex
+
+rename total_bill total_bill_2
+</pre> <p>The same operations are expressed in pandas below. Note that in contrast to Stata, these operations do not happen in place. To make these changes persist, assign the operation back to a variable.</p> <pre data-language="python"># keep
+In [22]: tips[['sex', 'total_bill', 'tip']].head()
+Out[22]: 
+      sex  total_bill   tip
+0  Female       14.99  1.01
+1    Male        8.34  1.66
+2    Male       19.01  3.50
+3    Male       21.68  3.31
+4  Female       22.59  3.61
+
+# drop
+In [23]: tips.drop('sex', axis=1).head()
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_stata.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_stata.html</a>
+  </p>
+</div>

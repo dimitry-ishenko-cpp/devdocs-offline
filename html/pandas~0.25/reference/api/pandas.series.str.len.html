@@ -1,0 +1,39 @@
+<h1 id="pandas-series-str-len">pandas.Series.str.len</h1> <dl class="method"> <dt id="pandas.Series.str.len">
+<code>Series.str.len(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L1852-L1855"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Compute the length of each element in the Series/Index. The element may be a sequence (such as a string, tuple or list) or a collection (such as a dictionary).</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or Index of int</dt> <dd>
+<p class="first last">A Series or Index of integer values indicating the length of each element in the Series or Index.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>str.len</code> </dt> <dd>Python built-in function returning the length of an object.</dd> <dt>
+ <a class="reference internal" href="pandas.series.size.html#pandas.Series.size" title="pandas.Series.size"><code>Series.size</code></a>
+</dt> <dd>Returns the length of the Series.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Returns the length (number of characters) in a string. Returns the number of entries for dictionaries, lists or tuples.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['dog',
+...                 '',
+...                 5,
+...                 {'foo' : 'bar'},
+...                 [2, 3, 5, 7],
+...                 ('one', 'two', 'three')])
+&gt;&gt;&gt; s
+0                  dog
+1
+2                    5
+3       {'foo': 'bar'}
+4         [2, 3, 5, 7]
+5    (one, two, three)
+dtype: object
+&gt;&gt;&gt; s.str.len()
+0    3.0
+1    0.0
+2    NaN
+3    1.0
+4    4.0
+5    3.0
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.len.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.len.html</a>
+  </p>
+</div>

@@ -1,0 +1,58 @@
+<h1 id="pandas-series-str-slice">pandas.Series.str.slice</h1> <dl class="method"> <dt id="pandas.Series.str.slice">
+<code>Series.str.slice(self, start=None, stop=None, step=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2827-L2830"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Slice substrings from each element in the Series or Index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>start : int, optional</code> </dt> <dd>
+<p class="first last">Start position for slice operation.</p> </dd> <dt>
+<code>stop : int, optional</code> </dt> <dd>
+<p class="first last">Stop position for slice operation.</p> </dd> <dt>
+<code>step : int, optional</code> </dt> <dd>
+<p class="first last">Step size for slice operation.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or Index of object</dt> <dd>
+<p class="first last">Series or Index from sliced substring from original string object.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.slice_replace.html#pandas.Series.str.slice_replace" title="pandas.Series.str.slice_replace"><code>Series.str.slice_replace</code></a>
+</dt> <dd>Replace a slice with a string.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.get.html#pandas.Series.str.get" title="pandas.Series.str.get"><code>Series.str.get</code></a>
+</dt> <dd>Return element at position. Equivalent to <code>Series.str.slice(start=i, stop=i+1)</code> with <code>i</code> being the position.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(["koala", "fox", "chameleon"])
+&gt;&gt;&gt; s
+0        koala
+1          fox
+2    chameleon
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.slice(start=1)
+0        oala
+1          ox
+2    hameleon
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.slice(stop=2)
+0    ko
+1    fo
+2    ch
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.slice(step=2)
+0      kaa
+1       fx
+2    caeen
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; s.str.slice(start=0, stop=5, step=3)
+0    kl
+1     f
+2    cm
+dtype: object
+</pre> <p>Equivalent behaviour to:</p> <pre data-language="python">&gt;&gt;&gt; s.str[0:5:3]
+0    kl
+1     f
+2    cm
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.slice.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.slice.html</a>
+  </p>
+</div>

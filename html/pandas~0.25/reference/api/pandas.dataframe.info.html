@@ -1,0 +1,90 @@
+<h1 id="pandas-dataframe-info">pandas.DataFrame.info</h1> <dl class="method"> <dt id="pandas.DataFrame.info">
+<code>DataFrame.info(self, verbose=None, buf=None, max_cols=None, memory_usage=None, null_counts=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L2319-L2559"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Print a concise summary of a DataFrame.</p> <p>This method prints information about a DataFrame including the index dtype and column dtypes, non-null values and memory usage.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>verbose : bool, optional</code> </dt> <dd>
+<p class="first last">Whether to print the full summary. By default, the setting in <code>pandas.options.display.max_info_columns</code> is followed.</p> </dd> <dt>
+<code>buf : writable buffer, defaults to sys.stdout</code> </dt> <dd>
+<p class="first last">Where to send the output. By default, the output is printed to sys.stdout. Pass a writable buffer if you need to further process the output.</p> </dd> <dt>
+<code>max_cols : int, optional</code> </dt> <dd>
+<p class="first last">When to switch from the verbose to the truncated output. If the DataFrame has more than <code>max_cols</code> columns, the truncated output is used. By default, the setting in <code>pandas.options.display.max_info_columns</code> is used.</p> </dd> <dt>
+<code>memory_usage : bool, str, optional</code> </dt> <dd>
+<p class="first">Specifies whether total memory usage of the DataFrame elements (including the index) should be displayed. By default, this follows the <code>pandas.options.display.memory_usage</code> setting.</p> <p class="last">True always show memory usage. False never shows memory usage. A value of ‘deep’ is equivalent to “True with deep introspection”. Memory usage is shown in human-readable units (base-2 representation). Without deep introspection a memory estimation is made based in column dtype and number of rows assuming values consume the same memory amount for corresponding dtypes. With deep memory introspection, a real memory usage calculation is performed at the cost of computational resources.</p> </dd> <dt>
+<code>null_counts : bool, optional</code> </dt> <dd>
+<p class="first last">Whether to show the non-null counts. By default, this is shown only if the frame is smaller than <code>pandas.options.display.max_info_rows</code> and <code>pandas.options.display.max_info_columns</code>. A value of True always shows the counts, and False never shows the counts.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>None</dt> <dd>
+<p class="first last">This method prints a summary of a DataFrame and returns None.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.describe.html#pandas.DataFrame.describe" title="pandas.DataFrame.describe"><code>DataFrame.describe</code></a>
+</dt> <dd>Generate descriptive statistics of DataFrame columns.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.memory_usage.html#pandas.DataFrame.memory_usage" title="pandas.DataFrame.memory_usage"><code>DataFrame.memory_usage</code></a>
+</dt> <dd>Memory usage of DataFrame columns.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; int_values = [1, 2, 3, 4, 5]
+&gt;&gt;&gt; text_values = ['alpha', 'beta', 'gamma', 'delta', 'epsilon']
+&gt;&gt;&gt; float_values = [0.0, 0.25, 0.5, 0.75, 1.0]
+&gt;&gt;&gt; df = pd.DataFrame({"int_col": int_values, "text_col": text_values,
+...                   "float_col": float_values})
+&gt;&gt;&gt; df
+   int_col text_col  float_col
+0        1    alpha       0.00
+1        2     beta       0.25
+2        3    gamma       0.50
+3        4    delta       0.75
+4        5  epsilon       1.00
+</pre> <p>Prints information of all columns:</p> <pre data-language="python">&gt;&gt;&gt; df.info(verbose=True)
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 5 entries, 0 to 4
+Data columns (total 3 columns):
+int_col      5 non-null int64
+text_col     5 non-null object
+float_col    5 non-null float64
+dtypes: float64(1), int64(1), object(1)
+memory usage: 248.0+ bytes
+</pre> <p>Prints a summary of columns count and its dtypes but not per column information:</p> <pre data-language="python">&gt;&gt;&gt; df.info(verbose=False)
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 5 entries, 0 to 4
+Columns: 3 entries, int_col to float_col
+dtypes: float64(1), int64(1), object(1)
+memory usage: 248.0+ bytes
+</pre> <p>Pipe output of DataFrame.info to buffer instead of sys.stdout, get buffer content and writes to a text file:</p> <pre data-language="python">&gt;&gt;&gt; import io
+&gt;&gt;&gt; buffer = io.StringIO()
+&gt;&gt;&gt; df.info(buf=buffer)
+&gt;&gt;&gt; s = buffer.getvalue()
+&gt;&gt;&gt; with open("df_info.txt", "w",
+...           encoding="utf-8") as f:  # doctest: +SKIP
+...     f.write(s)
+260
+</pre> <p>The <code>memory_usage</code> parameter allows deep introspection mode, specially useful for big DataFrames and fine-tune memory optimization:</p> <pre data-language="python">&gt;&gt;&gt; random_strings_array = np.random.choice(['a', 'b', 'c'], 10 ** 6)
+&gt;&gt;&gt; df = pd.DataFrame({
+...     'column_1': np.random.choice(['a', 'b', 'c'], 10 ** 6),
+...     'column_2': np.random.choice(['a', 'b', 'c'], 10 ** 6),
+...     'column_3': np.random.choice(['a', 'b', 'c'], 10 ** 6)
+... })
+&gt;&gt;&gt; df.info()
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 3 columns):
+column_1    1000000 non-null object
+column_2    1000000 non-null object
+column_3    1000000 non-null object
+dtypes: object(3)
+memory usage: 22.9+ MB
+</pre> <pre data-language="python">&gt;&gt;&gt; df.info(memory_usage='deep')
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 1000000 entries, 0 to 999999
+Data columns (total 3 columns):
+column_1    1000000 non-null object
+column_2    1000000 non-null object
+column_3    1000000 non-null object
+dtypes: object(3)
+memory usage: 188.8 MB
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.info.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.info.html</a>
+  </p>
+</div>

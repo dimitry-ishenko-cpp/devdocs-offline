@@ -1,0 +1,19 @@
+<h1 id="pandas-api-extensions-extensionarray-formatter">pandas.api.extensions.ExtensionArray._formatter</h1> <dl class="method"> <dt id="pandas.api.extensions.ExtensionArray._formatter">
+<code>ExtensionArray._formatter(self, boxed: bool = False) → Callable[[Any], Union[str, NoneType]]</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/base.py#L889-L914"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Formatting function for scalar values.</p> <p>This is used in the default ‘__repr__’. The returned formatting function receives instances of your scalar type.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>boxed : bool, default False</code> </dt> <dd>
+<p class="first last">An indicated for whether or not your array is being printed within a Series, DataFrame, or Index (True), or just by itself (False). This may be useful if you want scalar values to appear differently within a Series versus on its own (e.g. quoted or not).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Callable[[Any], str]</dt> <dd>
+<p class="first last">A callable that gets instances of the scalar type and returns a string. By default, <a class="reference external" href="https://docs.python.org/3/library/functions.html#repr" title="(in Python v3.7)"><code>repr()</code></a> is used when <code>boxed=False</code> and <code>str()</code> is used when <code>boxed=True</code>.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray._formatter.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray._formatter.html</a>
+  </p>
+</div>

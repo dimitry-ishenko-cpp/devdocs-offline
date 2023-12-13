@@ -1,0 +1,38 @@
+<h1 id="pandas-multiindex-swaplevel">pandas.MultiIndex.swaplevel</h1> <dl class="method"> <dt id="pandas.MultiIndex.swaplevel">
+<code>MultiIndex.swaplevel(self, i=-2, j=-1)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/multi.py#L2180-L2241"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Swap level i with level j.</p> <p>Calling this method does not change the ordering of the values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>i : int, str, default -2</code> </dt> <dd>
+<p class="first last">First level of index to be swapped. Can pass level name as string. Type of parameters can be mixed.</p> </dd> <dt>
+<code>j : int, str, default -1</code> </dt> <dd>
+<p class="first last">Second level of index to be swapped. Can pass level name as string. Type of parameters can be mixed.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>MultiIndex</dt> <dd>
+<p class="first last">A new MultiIndex.</p> </dd> </dl> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.18.1: </span>The indexes <code>i</code> and <code>j</code> are now optional, and default to the two innermost levels of the index.</p> </div> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.swaplevel.html#pandas.Series.swaplevel" title="pandas.Series.swaplevel"><code>Series.swaplevel</code></a>
+</dt> <dd>Swap levels i and j in a MultiIndex.</dd> <dt>
+<code>Dataframe.swaplevel</code> </dt> <dd>Swap levels i and j in a MultiIndex on a particular axis.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; mi = pd.MultiIndex(levels=[['a', 'b'], ['bb', 'aa']],
+...                    codes=[[0, 0, 1, 1], [0, 1, 0, 1]])
+&gt;&gt;&gt; mi
+MultiIndex([('a', 'bb'),
+            ('a', 'aa'),
+            ('b', 'bb'),
+            ('b', 'aa')],
+           )
+&gt;&gt;&gt; mi.swaplevel(0, 1)
+MultiIndex([('bb', 'a'),
+            ('aa', 'a'),
+            ('bb', 'b'),
+            ('aa', 'b')],
+           )
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.swaplevel.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.MultiIndex.swaplevel.html</a>
+  </p>
+</div>

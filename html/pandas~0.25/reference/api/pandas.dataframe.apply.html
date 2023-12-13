@@ -1,0 +1,82 @@
+<h1 id="pandas-dataframe-apply">pandas.DataFrame.apply</h1> <dl class="method"> <dt id="pandas.DataFrame.apply">
+<code>DataFrame.apply(self, func, axis=0, broadcast=None, raw=False, reduce=None, result_type=None, args=(), **kwds)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L6715-L6906"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Apply a function along an axis of the DataFrame.</p> <p>Objects passed to the function are Series objects whose index is either the DataFrame’s index (<code>axis=0</code>) or the DataFrame’s columns (<code>axis=1</code>). By default (<code>result_type=None</code>), the final return type is inferred from the return type of the applied function. Otherwise, it depends on the <code>result_type</code> argument.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function</code> </dt> <dd>
+<p class="first last">Function to apply to each column or row.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first">Axis along which the function is applied:</p> <ul class="last simple"> <li>0 or ‘index’: apply function to each column.</li> <li>1 or ‘columns’: apply function to each row.</li> </ul> </dd> <dt>
+<code>broadcast : bool, optional</code> </dt> <dd>
+<p class="first">Only relevant for aggregation functions:</p> <ul class="simple"> <li>
+<code>False</code> or <code>None</code> : returns a Series whose length is the length of the index or the number of columns (based on the <code>axis</code> parameter)</li> <li>
+<code>True</code> : results will be broadcast to the original shape of the frame, the original index and columns will be retained.</li> </ul> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.23.0: </span>This argument will be removed in a future version, replaced by result_type=’broadcast’.</p> </div> </dd> <dt>
+<code>raw : bool, default False</code> </dt> <dd>
+<ul class="first last simple"> <li>
+<code>False</code> : passes each row or column as a Series to the function.</li> <li>
+<code>True</code> : the passed function will receive ndarray objects instead. If you are just applying a NumPy reduction function this will achieve much better performance.</li> </ul> </dd> <dt>
+<code>reduce : bool or None, default None</code> </dt> <dd>
+<p class="first">Try to apply reduction procedures. If the DataFrame is empty, <code>apply</code> will use <code>reduce</code> to determine whether the result should be a Series or a DataFrame. If <code>reduce=None</code> (the default), <code>apply</code>’s return value will be guessed by calling <code>func</code> on an empty Series (note: while guessing, exceptions raised by <code>func</code> will be ignored). If <code>reduce=True</code> a Series will always be returned, and if <code>reduce=False</code> a DataFrame will always be returned.</p> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.23.0: </span>This argument will be removed in a future version, replaced by <code>result_type='reduce'</code>.</p> </div> </dd> <dt>
+<code>result_type : {‘expand’, ‘reduce’, ‘broadcast’, None}, default None</code> </dt> <dd>
+<p class="first">These only act when <code>axis=1</code> (columns):</p> <ul class="simple"> <li>‘expand’ : list-like results will be turned into columns.</li> <li>‘reduce’ : returns a Series if possible rather than expanding list-like results. This is the opposite of ‘expand’.</li> <li>‘broadcast’ : results will be broadcast to the original shape of the DataFrame, the original index and columns will be retained.</li> </ul> <p>The default behaviour (None) depends on the return value of the applied function: list-like results will be returned as a Series of those. However if the apply function returns a Series these are expanded to columns.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt>
+<code>args : tuple</code> </dt> <dd>
+<p class="first last">Positional arguments to pass to <code>func</code> in addition to the array/series.</p> </dd> <dt><strong>**kwds</strong></dt> <dd>
+<p class="first last">Additional keyword arguments to pass as keywords arguments to <code>func</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">Result of applying <code>func</code> along the given axis of the DataFrame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.applymap.html#pandas.DataFrame.applymap" title="pandas.DataFrame.applymap"><code>DataFrame.applymap</code></a>
+</dt> <dd>For elementwise operations.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.aggregate.html#pandas.DataFrame.aggregate" title="pandas.DataFrame.aggregate"><code>DataFrame.aggregate</code></a>
+</dt> <dd>Only perform aggregating type operations.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.transform.html#pandas.DataFrame.transform" title="pandas.DataFrame.transform"><code>DataFrame.transform</code></a>
+</dt> <dd>Only perform transforming type operations.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>In the current implementation apply calls <code>func</code> twice on the first column/row to decide whether it can take a fast or slow code path. This can lead to unexpected behavior if <code>func</code> has side-effects, as they will take effect twice for the first column/row.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[4, 9]] * 3, columns=['A', 'B'])
+&gt;&gt;&gt; df
+   A  B
+0  4  9
+1  4  9
+2  4  9
+</pre> <p>Using a numpy universal function (in this case the same as <code>np.sqrt(df)</code>):</p> <pre data-language="python">&gt;&gt;&gt; df.apply(np.sqrt)
+     A    B
+0  2.0  3.0
+1  2.0  3.0
+2  2.0  3.0
+</pre> <p>Using a reducing function on either axis</p> <pre data-language="python">&gt;&gt;&gt; df.apply(np.sum, axis=0)
+A    12
+B    27
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; df.apply(np.sum, axis=1)
+0    13
+1    13
+2    13
+dtype: int64
+</pre> <p>Returning a list-like will result in a Series</p> <pre data-language="python">&gt;&gt;&gt; df.apply(lambda x: [1, 2], axis=1)
+0    [1, 2]
+1    [1, 2]
+2    [1, 2]
+dtype: object
+</pre> <p>Passing result_type=’expand’ will expand list-like results to columns of a Dataframe</p> <pre data-language="python">&gt;&gt;&gt; df.apply(lambda x: [1, 2], axis=1, result_type='expand')
+   0  1
+0  1  2
+1  1  2
+2  1  2
+</pre> <p>Returning a Series inside the function is similar to passing <code>result_type='expand'</code>. The resulting column names will be the Series index.</p> <pre data-language="python">&gt;&gt;&gt; df.apply(lambda x: pd.Series([1, 2], index=['foo', 'bar']), axis=1)
+   foo  bar
+0    1    2
+1    1    2
+2    1    2
+</pre> <p>Passing <code>result_type='broadcast'</code> will ensure the same shape result, whether list-like or scalar is returned by the function, and broadcast it along the axis. The resulting column names will be the originals.</p> <pre data-language="python">&gt;&gt;&gt; df.apply(lambda x: [1, 2], axis=1, result_type='broadcast')
+   A  B
+0  1  2
+1  1  2
+2  1  2
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.apply.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.apply.html</a>
+  </p>
+</div>

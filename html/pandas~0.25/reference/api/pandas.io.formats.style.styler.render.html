@@ -1,0 +1,19 @@
+<h1 id="pandas-io-formats-style-styler-render">pandas.io.formats.style.Styler.render</h1> <dl class="method"> <dt id="pandas.io.formats.style.Styler.render">
+<code>Styler.render(self, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/formats/style.py#L478-L527"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Render the built up styles to HTML.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first">Any additional keyword arguments are passed through to <code>self.template.render</code>. This is useful when you need to provide additional variables for a custom template.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>rendered : str</code> </dt> <dd>
+<p class="first last">The rendered HTML.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p><code>Styler</code> objects have defined the <code>_repr_html_</code> method which automatically calls <code>self.render()</code> when it’s the last item in a Notebook cell. When calling <code>Styler.render()</code> directly, wrap the result in <code>IPython.display.HTML</code> to view the rendered HTML in the notebook.</p> <p>Pandas uses the following keys in render. Arguments passed in <code>**kwargs</code> take precedence, so think carefully if you want to override them:</p> <ul class="simple"> <li>head</li> <li>cellstyle</li> <li>body</li> <li>uuid</li> <li>precision</li> <li>table_styles</li> <li>caption</li> <li>table_attributes</li> </ul> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.render.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.io.formats.style.Styler.render.html</a>
+  </p>
+</div>

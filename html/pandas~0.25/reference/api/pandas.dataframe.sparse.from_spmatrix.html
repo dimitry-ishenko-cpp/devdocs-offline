@@ -1,0 +1,27 @@
+<h1 id="pandas-dataframe-sparse-from-spmatrix">pandas.DataFrame.sparse.from_spmatrix</h1> <dl class="classmethod"> <dt id="pandas.DataFrame.sparse.from_spmatrix">
+<code>classmethod sparse.from_spmatrix(data, index=None, columns=None)</code> </dt> <dd>
+<p>Create a new DataFrame from a scipy sparse matrix.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.25.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : scipy.sparse.spmatrix</code> </dt> <dd>
+<p class="first last">Must be convertible to csc format.</p> </dd> <dt>
+<code>index, columns : Index, optional</code> </dt> <dd>
+<p class="first last">Row and column labels to use for the resulting DataFrame. Defaults to a RangeIndex.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Each column of the DataFrame is stored as a <code>SparseArray</code>.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; import scipy.sparse
+&gt;&gt;&gt; mat = scipy.sparse.eye(3)
+&gt;&gt;&gt; pd.DataFrame.sparse.from_spmatrix(mat)
+     0    1    2
+0  1.0  0.0  0.0
+1  0.0  1.0  0.0
+2  0.0  0.0  1.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.sparse.from_spmatrix.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.sparse.from_spmatrix.html</a>
+  </p>
+</div>

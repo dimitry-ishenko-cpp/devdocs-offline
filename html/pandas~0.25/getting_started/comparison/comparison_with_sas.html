@@ -1,0 +1,174 @@
+<h1 id="compare-with-sas">Comparison with SAS</h1> <p id="comparison-with-sas">For potential users coming from <a class="reference external" href="https://en.wikipedia.org/wiki/SAS_(software)">SAS</a> this page is meant to demonstrate how different SAS operations would be performed in pandas.</p> <p>If you’re new to pandas, you might want to first read through <a class="reference internal" href="../10min.html#min"><span class="std std-ref">10 Minutes to pandas</span></a> to familiarize yourself with the library.</p> <p>As is customary, we import pandas and NumPy as follows:</p> <pre data-language="python">In [1]: import pandas as pd
+
+In [2]: import numpy as np
+</pre> <div class="admonition note"> <p class="first admonition-title">Note</p> <p>Throughout this tutorial, the pandas <code>DataFrame</code> will be displayed by calling <code>df.head()</code>, which displays the first N (default 5) rows of the <code>DataFrame</code>. This is often used in interactive work (e.g. <a class="reference external" href="https://jupyter.org/">Jupyter notebook</a> or terminal) - the equivalent in SAS would be:</p> <pre data-language="sas">proc print data=df(obs=5);
+run;
+</pre> </div>  <h2 id="data-structures">Data structures</h2>  <h3 id="general-terminology-translation">General terminology translation</h3> <table class="colwidths-given docutils">  <thead valign="bottom"> <tr>
+<th class="head">pandas</th> <th class="head">SAS</th> </tr> </thead>  <tr>
+<td><code>DataFrame</code></td> <td>data set</td> </tr> <tr>
+<td>column</td> <td>variable</td> </tr> <tr>
+<td>row</td> <td>observation</td> </tr> <tr>
+<td>groupby</td> <td>BY-group</td> </tr> <tr>
+<td><code>NaN</code></td> <td><code>.</code></td> </tr>  </table>   <h3 id="dataframe-series">
+<code>DataFrame</code> / <code>Series</code>
+</h3> <p>A <code>DataFrame</code> in pandas is analogous to a SAS data set - a two-dimensional data source with labeled columns that can be of different types. As will be shown in this document, almost any operation that can be applied to a data set using SAS’s <code>DATA</code> step, can also be accomplished in pandas.</p> <p>A <code>Series</code> is the data structure that represents one column of a <code>DataFrame</code>. SAS doesn’t have a separate data structure for a single column, but in general, working with a <code>Series</code> is analogous to referencing a column in the <code>DATA</code> step.</p>   <h3 id="index"><code>Index</code></h3> <p>Every <code>DataFrame</code> and <code>Series</code> has an <code>Index</code> - which are labels on the <em>rows</em> of the data. SAS does not have an exactly analogous concept. A data set’s rows are essentially unlabeled, other than an implicit integer index that can be accessed during the <code>DATA</code> step (<code>_N_</code>).</p> <p>In pandas, if no index is specified, an integer index is also used by default (first row = 0, second row = 1, and so on). While using a labeled <code>Index</code> or <code>MultiIndex</code> can enable sophisticated analyses and is ultimately an important part of pandas to understand, for this comparison we will essentially ignore the <code>Index</code> and just treat the <code>DataFrame</code> as a collection of columns. Please see the <a class="reference internal" href="../../user_guide/indexing.html#indexing"><span class="std std-ref">indexing documentation</span></a> for much more on how to use an <code>Index</code> effectively.</p>    <h2 id="data-input-output">Data input / output</h2>  <h3 id="constructing-a-dataframe-from-values">Constructing a DataFrame from values</h3> <p>A SAS data set can be built from specified values by placing the data after a <code>datalines</code> statement and specifying the column names.</p> <pre data-language="sas">data df;
+    input x y;
+    datalines;
+    1 2
+    3 4
+    5 6
+    ;
+run;
+</pre> <p>A pandas <code>DataFrame</code> can be constructed in many different ways, but for a small number of values, it is often convenient to specify it as a Python dictionary, where the keys are the column names and the values are the data.</p> <pre data-language="python">In [3]: df = pd.DataFrame({'x': [1, 3, 5], 'y': [2, 4, 6]})
+
+In [4]: df
+Out[4]: 
+   x  y
+0  1  2
+1  3  4
+2  5  6
+</pre>   <h3 id="reading-external-data">Reading external data</h3> <p>Like SAS, pandas provides utilities for reading in data from many formats. The <code>tips</code> dataset, found within the pandas tests (<a class="reference external" href="https://raw.github.com/pandas-dev/pandas/master/pandas/tests/data/tips.csv">csv</a>) will be used in many of the following examples.</p> <p>SAS provides <code>PROC IMPORT</code> to read csv data into a data set.</p> <pre data-language="sas">proc import datafile='tips.csv' dbms=csv out=tips replace;
+    getnames=yes;
+run;
+</pre> <p>The pandas method is <a class="reference internal" href="../../reference/api/pandas.read_csv.html#pandas.read_csv" title="pandas.read_csv"><code>read_csv()</code></a>, which works similarly.</p> <pre data-language="python">In [5]: url = ('https://raw.github.com/pandas-dev/'
+   ...:        'pandas/master/pandas/tests/data/tips.csv')
+   ...: 
+
+In [6]: tips = pd.read_csv(url)
+
+In [7]: tips.head()
+Out[7]: 
+   total_bill   tip     sex smoker  day    time  size
+0       16.99  1.01  Female     No  Sun  Dinner     2
+1       10.34  1.66    Male     No  Sun  Dinner     3
+2       21.01  3.50    Male     No  Sun  Dinner     3
+3       23.68  3.31    Male     No  Sun  Dinner     2
+4       24.59  3.61  Female     No  Sun  Dinner     4
+</pre> <p>Like <code>PROC IMPORT</code>, <code>read_csv</code> can take a number of parameters to specify how the data should be parsed. For example, if the data was instead tab delimited, and did not have column names, the pandas command would be:</p> <pre data-language="python">tips = pd.read_csv('tips.csv', sep='\t', header=None)
+
+# alternatively, read_table is an alias to read_csv with tab delimiter
+tips = pd.read_table('tips.csv', header=None)
+</pre> <p>In addition to text/csv, pandas supports a variety of other data formats such as Excel, HDF5, and SQL databases. These are all read via a <code>pd.read_*</code> function. See the <a class="reference internal" href="../../user_guide/io.html#io"><span class="std std-ref">IO documentation</span></a> for more details.</p>   <h3 id="exporting-data">Exporting data</h3> <p>The inverse of <code>PROC IMPORT</code> in SAS is <code>PROC EXPORT</code></p> <pre data-language="sas">proc export data=tips outfile='tips2.csv' dbms=csv;
+run;
+</pre> <p>Similarly in pandas, the opposite of <code>read_csv</code> is <a class="reference internal" href="../../reference/api/pandas.dataframe.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code>to_csv()</code></a>, and other data formats follow a similar api.</p> <pre data-language="python">tips.to_csv('tips2.csv')
+</pre>    <h2 id="data-operations">Data operations</h2>  <h3 id="operations-on-columns">Operations on columns</h3> <p>In the <code>DATA</code> step, arbitrary math expressions can be used on new or existing columns.</p> <pre data-language="sas">data tips;
+    set tips;
+    total_bill = total_bill - 2;
+    new_bill = total_bill / 2;
+run;
+</pre> <p>pandas provides similar vectorized operations by specifying the individual <code>Series</code> in the <code>DataFrame</code>. New columns can be assigned in the same way.</p> <pre data-language="python">In [8]: tips['total_bill'] = tips['total_bill'] - 2
+
+In [9]: tips['new_bill'] = tips['total_bill'] / 2.0
+
+In [10]: tips.head()
+Out[10]: 
+   total_bill   tip     sex smoker  day    time  size  new_bill
+0       14.99  1.01  Female     No  Sun  Dinner     2     7.495
+1        8.34  1.66    Male     No  Sun  Dinner     3     4.170
+2       19.01  3.50    Male     No  Sun  Dinner     3     9.505
+3       21.68  3.31    Male     No  Sun  Dinner     2    10.840
+4       22.59  3.61  Female     No  Sun  Dinner     4    11.295
+</pre>   <h3 id="filtering">Filtering</h3> <p>Filtering in SAS is done with an <code>if</code> or <code>where</code> statement, on one or more columns.</p> <pre data-language="sas">data tips;
+    set tips;
+    if total_bill &gt; 10;
+run;
+
+data tips;
+    set tips;
+    where total_bill &gt; 10;
+    /* equivalent in this case - where happens before the
+       DATA step begins and can also be used in PROC statements */
+run;
+</pre> <p>DataFrames can be filtered in multiple ways; the most intuitive of which is using <a class="reference internal" href="../../user_guide/indexing.html#indexing-boolean"><span class="std std-ref">boolean indexing</span></a></p> <pre data-language="python">In [11]: tips[tips['total_bill'] &gt; 10].head()
+Out[11]: 
+   total_bill   tip     sex smoker  day    time  size
+0       14.99  1.01  Female     No  Sun  Dinner     2
+2       19.01  3.50    Male     No  Sun  Dinner     3
+3       21.68  3.31    Male     No  Sun  Dinner     2
+4       22.59  3.61  Female     No  Sun  Dinner     4
+5       23.29  4.71    Male     No  Sun  Dinner     4
+</pre>   <h3 id="if-then-logic">If/then logic</h3> <p>In SAS, if/then logic can be used to create new columns.</p> <pre data-language="sas">data tips;
+    set tips;
+    format bucket $4.;
+
+    if total_bill &lt; 10 then bucket = 'low';
+    else bucket = 'high';
+run;
+</pre> <p>The same operation in pandas can be accomplished using the <code>where</code> method from <code>numpy</code>.</p> <pre data-language="python">In [12]: tips['bucket'] = np.where(tips['total_bill'] &lt; 10, 'low', 'high')
+
+In [13]: tips.head()
+Out[13]: 
+   total_bill   tip     sex smoker  day    time  size bucket
+0       14.99  1.01  Female     No  Sun  Dinner     2   high
+1        8.34  1.66    Male     No  Sun  Dinner     3    low
+2       19.01  3.50    Male     No  Sun  Dinner     3   high
+3       21.68  3.31    Male     No  Sun  Dinner     2   high
+4       22.59  3.61  Female     No  Sun  Dinner     4   high
+</pre>   <h3 id="date-functionality">Date functionality</h3> <p>SAS provides a variety of functions to do operations on date/datetime columns.</p> <pre data-language="sas">data tips;
+    set tips;
+    format date1 date2 date1_plusmonth mmddyy10.;
+    date1 = mdy(1, 15, 2013);
+    date2 = mdy(2, 15, 2015);
+    date1_year = year(date1);
+    date2_month = month(date2);
+    * shift date to beginning of next interval;
+    date1_next = intnx('MONTH', date1, 1);
+    * count intervals between dates;
+    months_between = intck('MONTH', date1, date2);
+run;
+</pre> <p>The equivalent pandas operations are shown below. In addition to these functions pandas supports other Time Series features not available in Base SAS (such as resampling and custom offsets) - see the <a class="reference internal" href="../../user_guide/timeseries.html#timeseries"><span class="std std-ref">timeseries documentation</span></a> for more details.</p> <pre data-language="python">In [14]: tips['date1'] = pd.Timestamp('2013-01-15')
+
+In [15]: tips['date2'] = pd.Timestamp('2015-02-15')
+
+In [16]: tips['date1_year'] = tips['date1'].dt.year
+
+In [17]: tips['date2_month'] = tips['date2'].dt.month
+
+In [18]: tips['date1_next'] = tips['date1'] + pd.offsets.MonthBegin()
+
+In [19]: tips['months_between'] = (
+   ....:     tips['date2'].dt.to_period('M') - tips['date1'].dt.to_period('M'))
+   ....: 
+
+In [20]: tips[['date1', 'date2', 'date1_year', 'date2_month',
+   ....:       'date1_next', 'months_between']].head()
+   ....: 
+Out[20]: 
+       date1      date2  date1_year  date2_month date1_next    months_between
+0 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+1 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+2 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+3 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+4 2013-01-15 2015-02-15        2013            2 2013-02-01  &lt;25 * MonthEnds&gt;
+</pre>   <h3 id="selection-of-columns">Selection of columns</h3> <p>SAS provides keywords in the <code>DATA</code> step to select, drop, and rename columns.</p> <pre data-language="sas">data tips;
+    set tips;
+    keep sex total_bill tip;
+run;
+
+data tips;
+    set tips;
+    drop sex;
+run;
+
+data tips;
+    set tips;
+    rename total_bill=total_bill_2;
+run;
+</pre> <p>The same operations are expressed in pandas below.</p> <pre data-language="python"># keep
+In [21]: tips[['sex', 'total_bill', 'tip']].head()
+Out[21]: 
+      sex  total_bill   tip
+0  Female       14.99  1.01
+1    Male        8.34  1.66
+2    Male       19.01  3.50
+3    Male       21.68  3.31
+4  Female       22.59  3.61
+
+# drop
+In [22]: tips.drop('sex', axis=1).head()
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_sas.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/comparison/comparison_with_sas.html</a>
+  </p>
+</div>

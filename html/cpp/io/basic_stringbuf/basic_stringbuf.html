@@ -1,0 +1,97 @@
+    <h1 id="firstHeading" class="firstHeading">std::basic_stringbuf&lt;CharT,Traits,Allocator&gt;::basic_stringbuf</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">basic_stringbuf()
+    : basic_stringbuf(std::ios_base::in | std::ios_base::out) {}</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(2)</td> <td></td> </tr> <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">explicit basic_stringbuf( std::ios_base::openmode which =
+                              std::ios_base::in | std::ios_base::out );</pre>
+</td>  <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">explicit basic_stringbuf( std::ios_base::openmode which );</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  <tr class="t-dcl"> <td> <pre data-language="cpp">explicit
+    basic_stringbuf( const std::basic_string&lt;CharT, Traits, Allocator&gt;&amp; s,
+                      std::ios_base::openmode which =
+                          std::ios_base::in | std::ios_base::out );</pre>
+</td> <td> (3) </td> <td class="t-dcl-nopad"> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">basic_stringbuf( const basic_stringbuf&amp; rhs ) = delete;</pre>
+</td> <td> (4) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">basic_stringbuf( basic_stringbuf&amp;&amp; rhs );</pre>
+</td> <td> (5) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">explicit basic_stringbuf( const Allocator&amp; a )
+    : basic_stringbuf(std::ios_base::in | std::ios_base::out, a) {}</pre>
+</td> <td> (6) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">basic_stringbuf( std::ios_base::openmode which, const Allocator&amp; a );</pre>
+</td> <td> (7) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">explicit basic_stringbuf( std::basic_string&lt;CharT, Traits, Allocator&gt;&amp;&amp; s,
+                          std::ios_base::openmode which =
+                              std::ios_base::in | std::ios_base::out );</pre>
+</td> <td> (8) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class SAlloc &gt;
+basic_stringbuf( const std::basic_string&lt;CharT, Traits, SAlloc&gt;&amp; s,
+                 const Allocator&amp; a )
+    : basic_stringbuf(s, std::ios_base::in | std::ios_base::out, a ) {}</pre>
+</td> <td> (9) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class SAlloc &gt;
+basic_stringbuf( const std::basic_string&lt;CharT, Traits, SAlloc&gt;&amp; s,
+                 std::ios_base::openmode, const Allocator&amp; a );</pre>
+</td> <td> (10) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">template&lt; class SAlloc &gt;
+explicit basic_stringbuf( const std::basic_string&lt;CharT, Traits, SAlloc&gt;&amp; s,
+                          std::ios_base::openmode which =
+                              std::ios_base::in | std::ios_base::out );</pre>
+</td> <td> (11) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">basic_stringbuf( basic_stringbuf&amp;&amp; rhs, const Allocator&amp; a );</pre>
+</td> <td> (12) </td> <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> Default constructor. It is implementation-defined whether the sequence pointers (<code><a href="../basic_streambuf/gptr.html" title="cpp/io/basic streambuf/gptr">eback()</a></code>, <code><a href="../basic_streambuf/gptr.html" title="cpp/io/basic streambuf/gptr">gptr()</a></code>, <code><a href="../basic_streambuf/gptr.html" title="cpp/io/basic streambuf/gptr">egptr()</a></code>, <code><a href="../basic_streambuf/pptr.html" title="cpp/io/basic streambuf/pptr">pbase()</a></code>, <code><a href="../basic_streambuf/pptr.html" title="cpp/io/basic streambuf/pptr">pptr()</a></code>, <code><a href="../basic_streambuf/pptr.html" title="cpp/io/basic streambuf/pptr">epptr()</a></code>) are initialized to null pointers.</div> <div class="t-li1">
+<span class="t-li">2)</span> Constructs a <code>std::basic_stringbuf</code> object: initializes the base class by calling the default constructor of <code><a href="../basic_streambuf.html" title="cpp/io/basic streambuf">std::basic_streambuf</a></code>, initializes the character sequence with an empty string, and sets the mode to <code>which</code>.</div> <div class="t-li1">
+<span class="t-li">3)</span> Constructs a <code>std::basic_stringbuf</code> object by performing the same initialization as <span class="t-v">(1)</span>, followed by initializing the associated character sequence as if by calling <code><a href="str.html" title="cpp/io/basic stringbuf/str">str(s)</a></code>.</div> <div class="t-li1">
+<span class="t-li">4)</span> The copy constructor is deleted; <code>std::basic_stringbuf</code> is not <a href="../../named_req/copyconstructible.html" title="cpp/named req/CopyConstructible">CopyConstructible</a>.</div> <div class="t-li1">
+<span class="t-li">5)</span> Move-constructs a <code>std::basic_stringbuf</code> object by moving all state from another <code>std::basic_stringbuf</code> object <code>rhs</code>, including the associated string, the open mode, the locale, and all other state. After the move, the six pointers of <code><a href="../basic_streambuf.html" title="cpp/io/basic streambuf">std::basic_streambuf</a></code> in <code>*this</code> are guaranteed to be different from the corresponding pointers in the moved-from <code>rhs</code> unless null.</div> <div class="t-li1">
+<span class="t-li">6,7)</span> Same as <span class="t-v">(1,2)</span>, except that <code>a</code> is used to construct the associated string.</div> <div class="t-li1">
+<span class="t-li">8)</span> Same as <span class="t-v">(3)</span>, except that <code>std::move(s)</code> is used to construct the associated string.</div> <div class="t-li1">
+<span class="t-li">9,10)</span> Constructs a <code>std::basic_stringbuf</code> object by performing the same initialization as <span class="t-v">(1)</span>, followed by initializing the associated string with content of <code>s</code>, using <code>a</code> as its allocator.</div> <div class="t-li1">
+<span class="t-li">11)</span> Same as <span class="t-v">(3)</span>, except the type of <code>s</code>'s allocator is not <code>Allocator</code>. This overload participates in overload resolution only if <code>SAlloc</code> and <code>Allocator</code> are not the same type.</div> <div class="t-li1">
+<span class="t-li">12)</span> Same as <span class="t-v">(5)</span>, except that <code>a</code> is used to construct the associated string.</div>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> s </td> <td> - </td> <td> a <code><a href="../../string/basic_string.html" title="cpp/string/basic string">std::basic_string</a></code> used to initialize the buffer </td>
+</tr> <tr class="t-par"> <td> a </td> <td> - </td> <td> another allocator used to construct the internal <code><a href="../../string/basic_string.html" title="cpp/string/basic string">std::basic_string</a></code> </td>
+</tr> <tr class="t-par"> <td> rhs </td> <td> - </td> <td> another <code>basic_stringbuf</code> </td>
+</tr> <tr class="t-par"> <td> which </td> <td> - </td> <td> specifies stream open mode. It is bitmask type, the following constants are defined: <table class="t-dsc-begin"> <tr class="t-dsc-hitem"> <th> Constant </th> <th> Explanation </th>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>app</code></a> </td> <td> seek to the end of stream before each write </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>binary</code></a> </td> <td> open in <a href="../c/file.html#Binary_and_text_modes" title="cpp/io/c/FILE">binary mode</a> </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>in</code></a> </td> <td> open for reading </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>out</code></a> </td> <td> open for writing </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>trunc</code></a> </td> <td> discard the contents of the stream when opening </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>ate</code></a> </td> <td> seek to the end of stream immediately after open </td>
+</tr> <tr class="t-dsc"> <td> <a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode"><code>noreplace</code></a> <span class="t-mark-rev t-since-cxx23">(C++23)</span> </td> <td> open in exclusive mode </td>
+</tr> </table> </td>
+</tr>
+</table> <h3 id="Notes"> Notes</h3> <p>Typically called by the constructor of <code><a href="../basic_stringstream.html" title="cpp/io/basic stringstream">std::basic_stringstream</a></code>.</p>
+<p>The level of support for the open modes other than <code><a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode">std::ios_base::in</a></code> and <code><a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode">std::ios_base::out</a></code> varies among implementations. C++11 explicitly specifies the support for <code><a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode">std::ios_base::ate</a></code> in <code><a href="str.html" title="cpp/io/basic stringbuf/str">str()</a></code> and in this constructor, but <code><a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode">std::ios_base::app</a></code>, <code><a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode">std::ios_base::trunc</a></code>, and <code><a href="../ios_base/openmode.html" title="cpp/io/ios base/openmode">std::ios_base::binary</a></code> have different effects on different implementations.</p>
+<h3 id="Example"> Example</h3> <div class="t-example">
+<p>Demonstrates calling the constructor of <code>std::basic_stringbuf</code> directly:</p>
+<div class="cpp source-cpp"><pre data-language="cpp">#include &lt;iostream&gt;
+#include &lt;sstream&gt;
+ 
+int main()
+{
+    // default constructor (mode = in | out)
+    std::stringbuf buf1;
+    buf1.sputc('1');
+    std::cout &lt;&lt; &amp;buf1 &lt;&lt; '\n';
+ 
+    // string constructor in at-end mode (C++11)
+    std::stringbuf buf2("test", std::ios_base::in
+                              | std::ios_base::out
+                              | std::ios_base::ate);
+    buf2.sputc('1');
+    std::cout &lt;&lt; &amp;buf2 &lt;&lt; '\n';
+ 
+    // append mode test (results differ among compilers)
+    std::stringbuf buf3("test", std::ios_base::in
+                              | std::ios_base::out
+                              | std::ios_base::app);
+    buf3.sputc('1');
+    buf3.pubseekpos(1);
+    buf3.sputc('2');
+    std::cout &lt;&lt; &amp;buf3 &lt;&lt; '\n';
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">1
+test1
+est12 (Sun Studio) 2st1 (GCC)</pre></div> </div> <h3 id="Defect_reports"> Defect reports</h3> <p>The following behavior-changing defect reports were applied retroactively to previously published C++ standards.</p>
+<table class="dsctable"> <tr> <th> DR </th> <th> Applied to </th> <th> Behavior as published </th> <th> Correct behavior </th>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/LWG/issue432">LWG 432</a> </td> <td> C++98 </td> <td> 1. overload <span class="t-v">(2)</span> allocated no array object<br>2. overload <span class="t-v">(3)</span> did not specify how the input<br> and output sequences are initialized </td> <td> 1. removed the limitation<br>2. specified </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://cplusplus.github.io/LWG/issue562">LWG 562</a> </td> <td> C++98 </td> <td> overload <span class="t-v">(3)</span> set <code><a href="../basic_streambuf/pptr.html" title="cpp/io/basic streambuf/pptr">epptr()</a></code> to point one past the last underlying<br>character if <code><span class="kw4">bool</span><span class="br0">(</span>which <span class="sy3">&amp;</span> <a href="http://en.cppreference.com/w/cpp/io/ios_base/openmode"><span class="kw1680">std::<span class="me2">ios_base</span><span class="sy4">::</span><span class="me2">out</span></span></a><span class="br0">)</span> <span class="sy1">==</span> <span class="kw2">true</span></code> </td> <td> <code><a href="../basic_streambuf/pptr.html" title="cpp/io/basic streambuf/pptr">epptr()</a></code> can be set<br>beyond that position </td>
+</tr> <tr> <td> <a rel="nofollow" class="external text" href="https://wg21.link/P0935R0">P0935R0</a> </td> <td> C++11 </td> <td> default constructor was explicit </td> <td> made implicit </td>
+</tr>
+</table> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="../basic_stringstream/basic_stringstream.html" title="cpp/io/basic stringstream/basic stringstream"> <span class="t-lines"><span>(constructor)</span></span></a></div> </td> <td> constructs the string stream <br> <span class="t-mark">(public member function of <code>std::basic_stringstream&lt;CharT,Traits,Allocator&gt;</code>)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/io/basic_stringbuf/basic_stringbuf" class="_attribution-link">https://en.cppreference.com/w/cpp/io/basic_stringbuf/basic_stringbuf</a>
+  </p>
+</div>

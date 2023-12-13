@@ -1,0 +1,29 @@
+<h1 id="pandas-categoricaldtype">pandas.CategoricalDtype</h1> <dl class="class"> <dt id="pandas.CategoricalDtype">
+<code>class pandas.CategoricalDtype(categories=None, ordered: Union[None, bool, object] = &lt;object object&gt;)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/dtypes.py#L173-L608"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Type for categorical data with the categories and orderedness.</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.21.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>categories : sequence, optional</code> </dt> <dd>
+<p class="first last">Must be unique, and must not contain any nulls.</p> </dd> <dt>
+<code>ordered : bool, default False</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.categorical.html#pandas.Categorical" title="pandas.Categorical"><code>Categorical</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>This class is useful for specifying the type of a <code>Categorical</code> independent of the values. See <a class="reference internal" href="../../user_guide/categorical.html#categorical-categoricaldtype"><span class="std std-ref">CategoricalDtype</span></a> for more.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; t = pd.CategoricalDtype(categories=['b', 'a'], ordered=True)
+&gt;&gt;&gt; pd.Series(['a', 'b', 'a', 'c'], dtype=t)
+0      a
+1      b
+2      a
+3    NaN
+dtype: category
+Categories (2, object): [b &lt; a]
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.categoricaldtype.categories.html#pandas.CategoricalDtype.categories" title="pandas.CategoricalDtype.categories"><code>categories</code></a></td> <td>An <code>Index</code> containing the unique categories allowed.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.categoricaldtype.ordered.html#pandas.CategoricalDtype.ordered" title="pandas.CategoricalDtype.ordered"><code>ordered</code></a></td> <td>Whether the categories have an ordered relationship.</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.CategoricalDtype.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.CategoricalDtype.html</a>
+  </p>
+</div>

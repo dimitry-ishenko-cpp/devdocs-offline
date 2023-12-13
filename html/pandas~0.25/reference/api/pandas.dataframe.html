@@ -1,0 +1,472 @@
+<h1 id="pandas-dataframe">pandas.DataFrame</h1> <dl class="class"> <dt id="pandas.DataFrame">
+<code>class pandas.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L304-L8450"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Two-dimensional size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). Arithmetic operations align on both row and column labels. Can be thought of as a dict-like container for Series objects. The primary pandas data structure.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : ndarray (structured or homogeneous), Iterable, dict, or DataFrame</code> </dt> <dd>
+<p class="first">Dict can contain Series, arrays, constants, or list-like objects</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.23.0: </span>If data is a dict, column order follows insertion-order for Python 3.6 and later.</p> </div> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.25.0: </span>If data is a list of dicts, column order follows insertion-order Python 3.6 and later.</p> </div> </dd> <dt>
+<code>index : Index or array-like</code> </dt> <dd>
+<p class="first last">Index to use for resulting frame. Will default to RangeIndex if no indexing information part of input data and no index provided</p> </dd> <dt>
+<code>columns : Index or array-like</code> </dt> <dd>
+<p class="first last">Column labels to use for resulting frame. Will default to RangeIndex (0, 1, 2, …, n) if no column labels are provided</p> </dd> <dt>
+<code>dtype : dtype, default None</code> </dt> <dd>
+<p class="first last">Data type to force. Only a single dtype is allowed. If None, infer</p> </dd> <dt>
+<code>copy : boolean, default False</code> </dt> <dd>
+<p class="first last">Copy data from inputs. Only affects DataFrame / 2d ndarray input</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.from_records.html#pandas.DataFrame.from_records" title="pandas.DataFrame.from_records"><code>DataFrame.from_records</code></a>
+</dt> <dd>Constructor from tuples, also record arrays.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.from_dict.html#pandas.DataFrame.from_dict" title="pandas.DataFrame.from_dict"><code>DataFrame.from_dict</code></a>
+</dt> <dd>From dicts of Series, arrays, or dicts.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.from_items.html#pandas.DataFrame.from_items" title="pandas.DataFrame.from_items"><code>DataFrame.from_items</code></a>
+</dt> <dd>From sequence of (key, value) pairs read_csv, pandas.read_table, pandas.read_clipboard.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Constructing DataFrame from a dictionary.</p> <pre data-language="python">&gt;&gt;&gt; d = {'col1': [1, 2], 'col2': [3, 4]}
+&gt;&gt;&gt; df = pd.DataFrame(data=d)
+&gt;&gt;&gt; df
+   col1  col2
+0     1     3
+1     2     4
+</pre> <p>Notice that the inferred dtype is int64.</p> <pre data-language="python">&gt;&gt;&gt; df.dtypes
+col1    int64
+col2    int64
+dtype: object
+</pre> <p>To enforce a single dtype:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(data=d, dtype=np.int8)
+&gt;&gt;&gt; df.dtypes
+col1    int8
+col2    int8
+dtype: object
+</pre> <p>Constructing DataFrame from numpy ndarray:</p> <pre data-language="python">&gt;&gt;&gt; df2 = pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),
+...                    columns=['a', 'b', 'c'])
+&gt;&gt;&gt; df2
+   a  b  c
+0  1  2  3
+1  4  5  6
+2  7  8  9
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.dataframe.t.html#pandas.DataFrame.T" title="pandas.DataFrame.T"><code>T</code></a></td> <td>Transpose index and columns.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.at.html#pandas.DataFrame.at" title="pandas.DataFrame.at"><code>at</code></a></td> <td>Access a single value for a row/column label pair.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.axes.html#pandas.DataFrame.axes" title="pandas.DataFrame.axes"><code>axes</code></a></td> <td>Return a list representing the axes of the DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.blocks.html#pandas.DataFrame.blocks" title="pandas.DataFrame.blocks"><code>blocks</code></a></td> <td>(DEPRECATED) Internal property, property synonym for as_blocks().</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.columns.html#pandas.DataFrame.columns" title="pandas.DataFrame.columns"><code>columns</code></a></td> <td>The column labels of the DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.dtypes.html#pandas.DataFrame.dtypes" title="pandas.DataFrame.dtypes"><code>dtypes</code></a></td> <td>Return the dtypes in the DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.empty.html#pandas.DataFrame.empty" title="pandas.DataFrame.empty"><code>empty</code></a></td> <td>Indicator whether DataFrame is empty.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.ftypes.html#pandas.DataFrame.ftypes" title="pandas.DataFrame.ftypes"><code>ftypes</code></a></td> <td>(DEPRECATED) Return the ftypes (indication of sparse/dense and dtype) in DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.iat.html#pandas.DataFrame.iat" title="pandas.DataFrame.iat"><code>iat</code></a></td> <td>Access a single value for a row/column pair by integer position.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.iloc.html#pandas.DataFrame.iloc" title="pandas.DataFrame.iloc"><code>iloc</code></a></td> <td>Purely integer-location based indexing for selection by position.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.index.html#pandas.DataFrame.index" title="pandas.DataFrame.index"><code>index</code></a></td> <td>The index (row labels) of the DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.is_copy.html#pandas.DataFrame.is_copy" title="pandas.DataFrame.is_copy"><code>is_copy</code></a></td> <td>Return the copy.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.ix.html#pandas.DataFrame.ix" title="pandas.DataFrame.ix"><code>ix</code></a></td> <td>A primarily label-location based indexer, with integer position fallback.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code>loc</code></a></td> <td>Access a group of rows and columns by label(s) or a boolean array.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.ndim.html#pandas.DataFrame.ndim" title="pandas.DataFrame.ndim"><code>ndim</code></a></td> <td>Return an int representing the number of axes / array dimensions.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.shape.html#pandas.DataFrame.shape" title="pandas.DataFrame.shape"><code>shape</code></a></td> <td>Return a tuple representing the dimensionality of the DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.size.html#pandas.DataFrame.size" title="pandas.DataFrame.size"><code>size</code></a></td> <td>Return an int representing the number of elements in this object.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.style.html#pandas.DataFrame.style" title="pandas.DataFrame.style"><code>style</code></a></td> <td>Property returning a Styler object containing methods for building a styled HTML representation fo the DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.values.html#pandas.DataFrame.values" title="pandas.DataFrame.values"><code>values</code></a></td> <td>Return a Numpy representation of the DataFrame.</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.abs.html#pandas.DataFrame.abs" title="pandas.DataFrame.abs"><code>abs</code></a>(self)</td> <td>Return a Series/DataFrame with absolute numeric value of each element.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.add.html#pandas.DataFrame.add" title="pandas.DataFrame.add"><code>add</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Addition of dataframe and other, element-wise (binary operator <code>add</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.add_prefix.html#pandas.DataFrame.add_prefix" title="pandas.DataFrame.add_prefix"><code>add_prefix</code></a>(self, prefix)</td> <td>Prefix labels with string <code>prefix</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.add_suffix.html#pandas.DataFrame.add_suffix" title="pandas.DataFrame.add_suffix"><code>add_suffix</code></a>(self, suffix)</td> <td>Suffix labels with string <code>suffix</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.agg.html#pandas.DataFrame.agg" title="pandas.DataFrame.agg"><code>agg</code></a>(self, func[, axis])</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.aggregate.html#pandas.DataFrame.aggregate" title="pandas.DataFrame.aggregate"><code>aggregate</code></a>(self, func[, axis])</td> <td>Aggregate using one or more operations over the specified axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.align.html#pandas.DataFrame.align" title="pandas.DataFrame.align"><code>align</code></a>(self, other[, join, axis, level, …])</td> <td>Align two objects on their axes with the specified join method for each axis Index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.all.html#pandas.DataFrame.all" title="pandas.DataFrame.all"><code>all</code></a>(self[, axis, bool_only, skipna, level])</td> <td>Return whether all elements are True, potentially over an axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.any.html#pandas.DataFrame.any" title="pandas.DataFrame.any"><code>any</code></a>(self[, axis, bool_only, skipna, level])</td> <td>Return whether any element is True, potentially over an axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.append.html#pandas.DataFrame.append" title="pandas.DataFrame.append"><code>append</code></a>(self, other[, ignore_index, …])</td> <td>Append rows of <code>other</code> to the end of caller, returning a new object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code>apply</code></a>(self, func[, axis, broadcast, raw, …])</td> <td>Apply a function along an axis of the DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.applymap.html#pandas.DataFrame.applymap" title="pandas.DataFrame.applymap"><code>applymap</code></a>(self, func)</td> <td>Apply a function to a Dataframe elementwise.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.as_blocks.html#pandas.DataFrame.as_blocks" title="pandas.DataFrame.as_blocks"><code>as_blocks</code></a>(self[, copy])</td> <td>(DEPRECATED) Convert the frame to a dict of dtype -&gt; Constructor Types that each has a homogeneous dtype.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.as_matrix.html#pandas.DataFrame.as_matrix" title="pandas.DataFrame.as_matrix"><code>as_matrix</code></a>(self[, columns])</td> <td>(DEPRECATED) Convert the frame to its Numpy-array representation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.asfreq.html#pandas.DataFrame.asfreq" title="pandas.DataFrame.asfreq"><code>asfreq</code></a>(self, freq[, method, how, normalize, …])</td> <td>Convert TimeSeries to specified frequency.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.asof.html#pandas.DataFrame.asof" title="pandas.DataFrame.asof"><code>asof</code></a>(self, where[, subset])</td> <td>Return the last row(s) without any NaNs before <code>where</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.assign.html#pandas.DataFrame.assign" title="pandas.DataFrame.assign"><code>assign</code></a>(self, \*\*kwargs)</td> <td>Assign new columns to a DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.astype.html#pandas.DataFrame.astype" title="pandas.DataFrame.astype"><code>astype</code></a>(self, dtype[, copy, errors])</td> <td>Cast a pandas object to a specified dtype <code>dtype</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.at_time.html#pandas.DataFrame.at_time" title="pandas.DataFrame.at_time"><code>at_time</code></a>(self, time[, asof, axis])</td> <td>Select values at particular time of day (e.g.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.between_time.html#pandas.DataFrame.between_time" title="pandas.DataFrame.between_time"><code>between_time</code></a>(self, start_time, end_time[, …])</td> <td>Select values between particular times of the day (e.g., 9:00-9:30 AM).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.bfill.html#pandas.DataFrame.bfill" title="pandas.DataFrame.bfill"><code>bfill</code></a>(self[, axis, inplace, limit, downcast])</td> <td>Synonym for <a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>DataFrame.fillna()</code></a> with <code>method='bfill'</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.bool.html#pandas.DataFrame.bool" title="pandas.DataFrame.bool"><code>bool</code></a>(self)</td> <td>Return the bool of a single element PandasObject.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.boxplot.html#pandas.DataFrame.boxplot" title="pandas.DataFrame.boxplot"><code>boxplot</code></a>(self[, column, by, ax, fontsize, …])</td> <td>Make a box plot from DataFrame columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.clip.html#pandas.DataFrame.clip" title="pandas.DataFrame.clip"><code>clip</code></a>(self[, lower, upper, axis, inplace])</td> <td>Trim values at input threshold(s).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.clip_lower.html#pandas.DataFrame.clip_lower" title="pandas.DataFrame.clip_lower"><code>clip_lower</code></a>(self, threshold[, axis, inplace])</td> <td>(DEPRECATED) Trim values below a given threshold.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.clip_upper.html#pandas.DataFrame.clip_upper" title="pandas.DataFrame.clip_upper"><code>clip_upper</code></a>(self, threshold[, axis, inplace])</td> <td>(DEPRECATED) Trim values above a given threshold.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.combine.html#pandas.DataFrame.combine" title="pandas.DataFrame.combine"><code>combine</code></a>(self, other, func[, fill_value, …])</td> <td>Perform column-wise combine with another DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.combine_first.html#pandas.DataFrame.combine_first" title="pandas.DataFrame.combine_first"><code>combine_first</code></a>(self, other)</td> <td>Update null elements with value in the same location in <code>other</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.compound.html#pandas.DataFrame.compound" title="pandas.DataFrame.compound"><code>compound</code></a>(self[, axis, skipna, level])</td> <td>(DEPRECATED) Return the compound percentage of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.copy.html#pandas.DataFrame.copy" title="pandas.DataFrame.copy"><code>copy</code></a>(self[, deep])</td> <td>Make a copy of this object’s indices and data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.corr.html#pandas.DataFrame.corr" title="pandas.DataFrame.corr"><code>corr</code></a>(self[, method, min_periods])</td> <td>Compute pairwise correlation of columns, excluding NA/null values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.corrwith.html#pandas.DataFrame.corrwith" title="pandas.DataFrame.corrwith"><code>corrwith</code></a>(self, other[, axis, drop, method])</td> <td>Compute pairwise correlation between rows or columns of DataFrame with rows or columns of Series or DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.count.html#pandas.DataFrame.count" title="pandas.DataFrame.count"><code>count</code></a>(self[, axis, level, numeric_only])</td> <td>Count non-NA cells for each column or row.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.cov.html#pandas.DataFrame.cov" title="pandas.DataFrame.cov"><code>cov</code></a>(self[, min_periods])</td> <td>Compute pairwise covariance of columns, excluding NA/null values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.cummax.html#pandas.DataFrame.cummax" title="pandas.DataFrame.cummax"><code>cummax</code></a>(self[, axis, skipna])</td> <td>Return cumulative maximum over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.cummin.html#pandas.DataFrame.cummin" title="pandas.DataFrame.cummin"><code>cummin</code></a>(self[, axis, skipna])</td> <td>Return cumulative minimum over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.cumprod.html#pandas.DataFrame.cumprod" title="pandas.DataFrame.cumprod"><code>cumprod</code></a>(self[, axis, skipna])</td> <td>Return cumulative product over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.cumsum.html#pandas.DataFrame.cumsum" title="pandas.DataFrame.cumsum"><code>cumsum</code></a>(self[, axis, skipna])</td> <td>Return cumulative sum over a DataFrame or Series axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.describe.html#pandas.DataFrame.describe" title="pandas.DataFrame.describe"><code>describe</code></a>(self[, percentiles, include, exclude])</td> <td>Generate descriptive statistics that summarize the central tendency, dispersion and shape of a dataset’s distribution, excluding <code>NaN</code> values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.diff.html#pandas.DataFrame.diff" title="pandas.DataFrame.diff"><code>diff</code></a>(self[, periods, axis])</td> <td>First discrete difference of element.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.div.html#pandas.DataFrame.div" title="pandas.DataFrame.div"><code>div</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Floating division of dataframe and other, element-wise (binary operator <code>truediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.divide.html#pandas.DataFrame.divide" title="pandas.DataFrame.divide"><code>divide</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Floating division of dataframe and other, element-wise (binary operator <code>truediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.dot.html#pandas.DataFrame.dot" title="pandas.DataFrame.dot"><code>dot</code></a>(self, other)</td> <td>Compute the matrix multiplication between the DataFrame and other.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.drop.html#pandas.DataFrame.drop" title="pandas.DataFrame.drop"><code>drop</code></a>(self[, labels, axis, index, columns, …])</td> <td>Drop specified labels from rows or columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.drop_duplicates.html#pandas.DataFrame.drop_duplicates" title="pandas.DataFrame.drop_duplicates"><code>drop_duplicates</code></a>(self[, subset, keep, inplace])</td> <td>Return DataFrame with duplicate rows removed, optionally only considering certain columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.droplevel.html#pandas.DataFrame.droplevel" title="pandas.DataFrame.droplevel"><code>droplevel</code></a>(self, level[, axis])</td> <td>Return DataFrame with requested index / column level(s) removed.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.dropna.html#pandas.DataFrame.dropna" title="pandas.DataFrame.dropna"><code>dropna</code></a>(self[, axis, how, thresh, subset, …])</td> <td>Remove missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.duplicated.html#pandas.DataFrame.duplicated" title="pandas.DataFrame.duplicated"><code>duplicated</code></a>(self[, subset, keep])</td> <td>Return boolean Series denoting duplicate rows, optionally only considering certain columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.eq.html#pandas.DataFrame.eq" title="pandas.DataFrame.eq"><code>eq</code></a>(self, other[, axis, level])</td> <td>Get Equal to of dataframe and other, element-wise (binary operator <code>eq</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.equals.html#pandas.DataFrame.equals" title="pandas.DataFrame.equals"><code>equals</code></a>(self, other)</td> <td>Test whether two objects contain the same elements.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code>eval</code></a>(self, expr[, inplace])</td> <td>Evaluate a string describing operations on DataFrame columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.ewm.html#pandas.DataFrame.ewm" title="pandas.DataFrame.ewm"><code>ewm</code></a>(self[, com, span, halflife, alpha, …])</td> <td>Provide exponential weighted functions.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.expanding.html#pandas.DataFrame.expanding" title="pandas.DataFrame.expanding"><code>expanding</code></a>(self[, min_periods, center, axis])</td> <td>Provide expanding transformations.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.explode.html#pandas.DataFrame.explode" title="pandas.DataFrame.explode"><code>explode</code></a>(self, column, Tuple])</td> <td>Transform each element of a list-like to a row, replicating the index values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.ffill.html#pandas.DataFrame.ffill" title="pandas.DataFrame.ffill"><code>ffill</code></a>(self[, axis, inplace, limit, downcast])</td> <td>Synonym for <a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>DataFrame.fillna()</code></a> with <code>method='ffill'</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>fillna</code></a>(self[, value, method, axis, inplace, …])</td> <td>Fill NA/NaN values using the specified method.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.filter.html#pandas.DataFrame.filter" title="pandas.DataFrame.filter"><code>filter</code></a>(self[, items, like, regex, axis])</td> <td>Subset rows or columns of dataframe according to labels in the specified index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.first.html#pandas.DataFrame.first" title="pandas.DataFrame.first"><code>first</code></a>(self, offset)</td> <td>Convenience method for subsetting initial periods of time series data based on a date offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.first_valid_index.html#pandas.DataFrame.first_valid_index" title="pandas.DataFrame.first_valid_index"><code>first_valid_index</code></a>(self)</td> <td>Return index for first non-NA/null value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.floordiv.html#pandas.DataFrame.floordiv" title="pandas.DataFrame.floordiv"><code>floordiv</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Integer division of dataframe and other, element-wise (binary operator <code>floordiv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.from_dict.html#pandas.DataFrame.from_dict" title="pandas.DataFrame.from_dict"><code>from_dict</code></a>(data[, orient, dtype, columns])</td> <td>Construct DataFrame from dict of array-like or dicts.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.from_items.html#pandas.DataFrame.from_items" title="pandas.DataFrame.from_items"><code>from_items</code></a>(items[, columns, orient])</td> <td>(DEPRECATED) Construct a DataFrame from a list of tuples.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.from_records.html#pandas.DataFrame.from_records" title="pandas.DataFrame.from_records"><code>from_records</code></a>(data[, index, exclude, …])</td> <td>Convert structured or record ndarray to DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.ge.html#pandas.DataFrame.ge" title="pandas.DataFrame.ge"><code>ge</code></a>(self, other[, axis, level])</td> <td>Get Greater than or equal to of dataframe and other, element-wise (binary operator <code>ge</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.get.html#pandas.DataFrame.get" title="pandas.DataFrame.get"><code>get</code></a>(self, key[, default])</td> <td>Get item from object for given key (ex: DataFrame column).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.get_dtype_counts.html#pandas.DataFrame.get_dtype_counts" title="pandas.DataFrame.get_dtype_counts"><code>get_dtype_counts</code></a>(self)</td> <td>(DEPRECATED) Return counts of unique dtypes in this object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.get_ftype_counts.html#pandas.DataFrame.get_ftype_counts" title="pandas.DataFrame.get_ftype_counts"><code>get_ftype_counts</code></a>(self)</td> <td>(DEPRECATED) Return counts of unique ftypes in this object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.get_value.html#pandas.DataFrame.get_value" title="pandas.DataFrame.get_value"><code>get_value</code></a>(self, index, col[, takeable])</td> <td>(DEPRECATED) Quickly retrieve single value at passed column and index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.get_values.html#pandas.DataFrame.get_values" title="pandas.DataFrame.get_values"><code>get_values</code></a>(self)</td> <td>(DEPRECATED) Return an ndarray after converting sparse values to dense.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.groupby.html#pandas.DataFrame.groupby" title="pandas.DataFrame.groupby"><code>groupby</code></a>(self[, by, axis, level, as_index, …])</td> <td>Group DataFrame or Series using a mapper or by a Series of columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.gt.html#pandas.DataFrame.gt" title="pandas.DataFrame.gt"><code>gt</code></a>(self, other[, axis, level])</td> <td>Get Greater than of dataframe and other, element-wise (binary operator <code>gt</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head"><code>head</code></a>(self[, n])</td> <td>Return the first <code>n</code> rows.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.hist.html#pandas.DataFrame.hist" title="pandas.DataFrame.hist"><code>hist</code></a>(data[, column, by, grid, xlabelsize, …])</td> <td>Make a histogram of the DataFrame’s.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.idxmax.html#pandas.DataFrame.idxmax" title="pandas.DataFrame.idxmax"><code>idxmax</code></a>(self[, axis, skipna])</td> <td>Return index of first occurrence of maximum over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.idxmin.html#pandas.DataFrame.idxmin" title="pandas.DataFrame.idxmin"><code>idxmin</code></a>(self[, axis, skipna])</td> <td>Return index of first occurrence of minimum over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.infer_objects.html#pandas.DataFrame.infer_objects" title="pandas.DataFrame.infer_objects"><code>infer_objects</code></a>(self)</td> <td>Attempt to infer better dtypes for object columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.info.html#pandas.DataFrame.info" title="pandas.DataFrame.info"><code>info</code></a>(self[, verbose, buf, max_cols, …])</td> <td>Print a concise summary of a DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.insert.html#pandas.DataFrame.insert" title="pandas.DataFrame.insert"><code>insert</code></a>(self, loc, column, value[, …])</td> <td>Insert column into DataFrame at specified location.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.interpolate.html#pandas.DataFrame.interpolate" title="pandas.DataFrame.interpolate"><code>interpolate</code></a>(self[, method, axis, limit, …])</td> <td>Interpolate values according to different methods.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.isin.html#pandas.DataFrame.isin" title="pandas.DataFrame.isin"><code>isin</code></a>(self, values)</td> <td>Whether each element in the DataFrame is contained in values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.isna.html#pandas.DataFrame.isna" title="pandas.DataFrame.isna"><code>isna</code></a>(self)</td> <td>Detect missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.isnull.html#pandas.DataFrame.isnull" title="pandas.DataFrame.isnull"><code>isnull</code></a>(self)</td> <td>Detect missing values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.items.html#pandas.DataFrame.items" title="pandas.DataFrame.items"><code>items</code></a>(self)</td> <td>Iterator over (column name, Series) pairs.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.iteritems.html#pandas.DataFrame.iteritems" title="pandas.DataFrame.iteritems"><code>iteritems</code></a>(self)</td> <td>Iterator over (column name, Series) pairs.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code>iterrows</code></a>(self)</td> <td>Iterate over DataFrame rows as (index, Series) pairs.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.itertuples.html#pandas.DataFrame.itertuples" title="pandas.DataFrame.itertuples"><code>itertuples</code></a>(self[, index, name])</td> <td>Iterate over DataFrame rows as namedtuples.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.join.html#pandas.DataFrame.join" title="pandas.DataFrame.join"><code>join</code></a>(self, other[, on, how, lsuffix, …])</td> <td>Join columns of another DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.keys.html#pandas.DataFrame.keys" title="pandas.DataFrame.keys"><code>keys</code></a>(self)</td> <td>Get the ‘info axis’ (see Indexing for more)</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.kurt.html#pandas.DataFrame.kurt" title="pandas.DataFrame.kurt"><code>kurt</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return unbiased kurtosis over requested axis using Fisher’s definition of kurtosis (kurtosis of normal == 0.0).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.kurtosis.html#pandas.DataFrame.kurtosis" title="pandas.DataFrame.kurtosis"><code>kurtosis</code></a>(self[, axis, skipna, level, …])</td> <td>Return unbiased kurtosis over requested axis using Fisher’s definition of kurtosis (kurtosis of normal == 0.0).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.last.html#pandas.DataFrame.last" title="pandas.DataFrame.last"><code>last</code></a>(self, offset)</td> <td>Convenience method for subsetting final periods of time series data based on a date offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.last_valid_index.html#pandas.DataFrame.last_valid_index" title="pandas.DataFrame.last_valid_index"><code>last_valid_index</code></a>(self)</td> <td>Return index for last non-NA/null value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.le.html#pandas.DataFrame.le" title="pandas.DataFrame.le"><code>le</code></a>(self, other[, axis, level])</td> <td>Get Less than or equal to of dataframe and other, element-wise (binary operator <code>le</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.lookup.html#pandas.DataFrame.lookup" title="pandas.DataFrame.lookup"><code>lookup</code></a>(self, row_labels, col_labels)</td> <td>Label-based “fancy indexing” function for DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.lt.html#pandas.DataFrame.lt" title="pandas.DataFrame.lt"><code>lt</code></a>(self, other[, axis, level])</td> <td>Get Less than of dataframe and other, element-wise (binary operator <code>lt</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.mad.html#pandas.DataFrame.mad" title="pandas.DataFrame.mad"><code>mad</code></a>(self[, axis, skipna, level])</td> <td>Return the mean absolute deviation of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.mask.html#pandas.DataFrame.mask" title="pandas.DataFrame.mask"><code>mask</code></a>(self, cond[, other, inplace, axis, …])</td> <td>Replace values where the condition is True.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.max.html#pandas.DataFrame.max" title="pandas.DataFrame.max"><code>max</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the maximum of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.mean.html#pandas.DataFrame.mean" title="pandas.DataFrame.mean"><code>mean</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the mean of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.median.html#pandas.DataFrame.median" title="pandas.DataFrame.median"><code>median</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the median of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.melt.html#pandas.DataFrame.melt" title="pandas.DataFrame.melt"><code>melt</code></a>(self[, id_vars, value_vars, var_name, …])</td> <td>Unpivot a DataFrame from wide format to long format, optionally leaving identifier variables set.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.memory_usage.html#pandas.DataFrame.memory_usage" title="pandas.DataFrame.memory_usage"><code>memory_usage</code></a>(self[, index, deep])</td> <td>Return the memory usage of each column in bytes.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.merge.html#pandas.DataFrame.merge" title="pandas.DataFrame.merge"><code>merge</code></a>(self, right[, how, on, left_on, …])</td> <td>Merge DataFrame or named Series objects with a database-style join.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.min.html#pandas.DataFrame.min" title="pandas.DataFrame.min"><code>min</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return the minimum of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.mod.html#pandas.DataFrame.mod" title="pandas.DataFrame.mod"><code>mod</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Modulo of dataframe and other, element-wise (binary operator <code>mod</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.mode.html#pandas.DataFrame.mode" title="pandas.DataFrame.mode"><code>mode</code></a>(self[, axis, numeric_only, dropna])</td> <td>Get the mode(s) of each element along the selected axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.mul.html#pandas.DataFrame.mul" title="pandas.DataFrame.mul"><code>mul</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Multiplication of dataframe and other, element-wise (binary operator <code>mul</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.multiply.html#pandas.DataFrame.multiply" title="pandas.DataFrame.multiply"><code>multiply</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Multiplication of dataframe and other, element-wise (binary operator <code>mul</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.ne.html#pandas.DataFrame.ne" title="pandas.DataFrame.ne"><code>ne</code></a>(self, other[, axis, level])</td> <td>Get Not equal to of dataframe and other, element-wise (binary operator <code>ne</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.nlargest.html#pandas.DataFrame.nlargest" title="pandas.DataFrame.nlargest"><code>nlargest</code></a>(self, n, columns[, keep])</td> <td>Return the first <code>n</code> rows ordered by <code>columns</code> in descending order.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.notna.html#pandas.DataFrame.notna" title="pandas.DataFrame.notna"><code>notna</code></a>(self)</td> <td>Detect existing (non-missing) values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.notnull.html#pandas.DataFrame.notnull" title="pandas.DataFrame.notnull"><code>notnull</code></a>(self)</td> <td>Detect existing (non-missing) values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.nsmallest.html#pandas.DataFrame.nsmallest" title="pandas.DataFrame.nsmallest"><code>nsmallest</code></a>(self, n, columns[, keep])</td> <td>Return the first <code>n</code> rows ordered by <code>columns</code> in ascending order.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.nunique.html#pandas.DataFrame.nunique" title="pandas.DataFrame.nunique"><code>nunique</code></a>(self[, axis, dropna])</td> <td>Count distinct observations over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.pct_change.html#pandas.DataFrame.pct_change" title="pandas.DataFrame.pct_change"><code>pct_change</code></a>(self[, periods, fill_method, …])</td> <td>Percentage change between the current and a prior element.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.pipe.html#pandas.DataFrame.pipe" title="pandas.DataFrame.pipe"><code>pipe</code></a>(self, func, \*args, \*\*kwargs)</td> <td>Apply func(self, *args, **kwargs).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.pivot.html#pandas.DataFrame.pivot" title="pandas.DataFrame.pivot"><code>pivot</code></a>(self[, index, columns, values])</td> <td>Return reshaped DataFrame organized by given index / column values.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.pivot_table.html#pandas.DataFrame.pivot_table" title="pandas.DataFrame.pivot_table"><code>pivot_table</code></a>(self[, values, index, columns, …])</td> <td>Create a spreadsheet-style pivot table as a DataFrame.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.plot.html#pandas.DataFrame.plot" title="pandas.DataFrame.plot"><code>plot</code></a></td> <td>alias of <code>pandas.plotting._core.PlotAccessor</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.pop.html#pandas.DataFrame.pop" title="pandas.DataFrame.pop"><code>pop</code></a>(self, item)</td> <td>Return item and drop from frame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.pow.html#pandas.DataFrame.pow" title="pandas.DataFrame.pow"><code>pow</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Exponential power of dataframe and other, element-wise (binary operator <code>pow</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.prod.html#pandas.DataFrame.prod" title="pandas.DataFrame.prod"><code>prod</code></a>(self[, axis, skipna, level, …])</td> <td>Return the product of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.product.html#pandas.DataFrame.product" title="pandas.DataFrame.product"><code>product</code></a>(self[, axis, skipna, level, …])</td> <td>Return the product of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.quantile.html#pandas.DataFrame.quantile" title="pandas.DataFrame.quantile"><code>quantile</code></a>(self[, q, axis, numeric_only, …])</td> <td>Return values at the given quantile over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.query.html#pandas.DataFrame.query" title="pandas.DataFrame.query"><code>query</code></a>(self, expr[, inplace])</td> <td>Query the columns of a DataFrame with a boolean expression.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.radd.html#pandas.DataFrame.radd" title="pandas.DataFrame.radd"><code>radd</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Addition of dataframe and other, element-wise (binary operator <code>radd</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rank.html#pandas.DataFrame.rank" title="pandas.DataFrame.rank"><code>rank</code></a>(self[, axis, method, numeric_only, …])</td> <td>Compute numerical data ranks (1 through n) along axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rdiv.html#pandas.DataFrame.rdiv" title="pandas.DataFrame.rdiv"><code>rdiv</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Floating division of dataframe and other, element-wise (binary operator <code>rtruediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.reindex.html#pandas.DataFrame.reindex" title="pandas.DataFrame.reindex"><code>reindex</code></a>(self[, labels, index, columns, …])</td> <td>Conform DataFrame to new index with optional filling logic, placing NA/NaN in locations having no value in the previous index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.reindex_like.html#pandas.DataFrame.reindex_like" title="pandas.DataFrame.reindex_like"><code>reindex_like</code></a>(self, other[, method, copy, …])</td> <td>Return an object with matching indices as other object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rename.html#pandas.DataFrame.rename" title="pandas.DataFrame.rename"><code>rename</code></a>(self[, mapper, index, columns, axis, …])</td> <td>Alter axes labels.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rename_axis.html#pandas.DataFrame.rename_axis" title="pandas.DataFrame.rename_axis"><code>rename_axis</code></a>(self[, mapper, index, columns, …])</td> <td>Set the name of the axis for the index or columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.reorder_levels.html#pandas.DataFrame.reorder_levels" title="pandas.DataFrame.reorder_levels"><code>reorder_levels</code></a>(self, order[, axis])</td> <td>Rearrange index levels using input order.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.replace.html#pandas.DataFrame.replace" title="pandas.DataFrame.replace"><code>replace</code></a>(self[, to_replace, value, inplace, …])</td> <td>Replace values given in <code>to_replace</code> with <code>value</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.resample.html#pandas.DataFrame.resample" title="pandas.DataFrame.resample"><code>resample</code></a>(self, rule[, how, axis, …])</td> <td>Resample time-series data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.reset_index.html#pandas.DataFrame.reset_index" title="pandas.DataFrame.reset_index"><code>reset_index</code></a>(self[, level, drop, inplace, …])</td> <td>Reset the index, or a level of it.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rfloordiv.html#pandas.DataFrame.rfloordiv" title="pandas.DataFrame.rfloordiv"><code>rfloordiv</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Integer division of dataframe and other, element-wise (binary operator <code>rfloordiv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rmod.html#pandas.DataFrame.rmod" title="pandas.DataFrame.rmod"><code>rmod</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Modulo of dataframe and other, element-wise (binary operator <code>rmod</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rmul.html#pandas.DataFrame.rmul" title="pandas.DataFrame.rmul"><code>rmul</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Multiplication of dataframe and other, element-wise (binary operator <code>rmul</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rolling.html#pandas.DataFrame.rolling" title="pandas.DataFrame.rolling"><code>rolling</code></a>(self, window[, min_periods, center, …])</td> <td>Provide rolling window calculations.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.round.html#pandas.DataFrame.round" title="pandas.DataFrame.round"><code>round</code></a>(self[, decimals])</td> <td>Round a DataFrame to a variable number of decimal places.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rpow.html#pandas.DataFrame.rpow" title="pandas.DataFrame.rpow"><code>rpow</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Exponential power of dataframe and other, element-wise (binary operator <code>rpow</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rsub.html#pandas.DataFrame.rsub" title="pandas.DataFrame.rsub"><code>rsub</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Subtraction of dataframe and other, element-wise (binary operator <code>rsub</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.rtruediv.html#pandas.DataFrame.rtruediv" title="pandas.DataFrame.rtruediv"><code>rtruediv</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Floating division of dataframe and other, element-wise (binary operator <code>rtruediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.sample.html#pandas.DataFrame.sample" title="pandas.DataFrame.sample"><code>sample</code></a>(self[, n, frac, replace, weights, …])</td> <td>Return a random sample of items from an axis of object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.select_dtypes.html#pandas.DataFrame.select_dtypes" title="pandas.DataFrame.select_dtypes"><code>select_dtypes</code></a>(self[, include, exclude])</td> <td>Return a subset of the DataFrame’s columns based on the column dtypes.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.sem.html#pandas.DataFrame.sem" title="pandas.DataFrame.sem"><code>sem</code></a>(self[, axis, skipna, level, ddof, …])</td> <td>Return unbiased standard error of the mean over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.set_axis.html#pandas.DataFrame.set_axis" title="pandas.DataFrame.set_axis"><code>set_axis</code></a>(self, labels[, axis, inplace])</td> <td>Assign desired index to given axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.set_index.html#pandas.DataFrame.set_index" title="pandas.DataFrame.set_index"><code>set_index</code></a>(self, keys[, drop, append, …])</td> <td>Set the DataFrame index using existing columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.set_value.html#pandas.DataFrame.set_value" title="pandas.DataFrame.set_value"><code>set_value</code></a>(self, index, col, value[, takeable])</td> <td>(DEPRECATED) Put single value at passed column and index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.shift.html#pandas.DataFrame.shift" title="pandas.DataFrame.shift"><code>shift</code></a>(self[, periods, freq, axis, fill_value])</td> <td>Shift index by desired number of periods with an optional time <code>freq</code>.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.skew.html#pandas.DataFrame.skew" title="pandas.DataFrame.skew"><code>skew</code></a>(self[, axis, skipna, level, numeric_only])</td> <td>Return unbiased skew over requested axis Normalized by N-1.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.slice_shift.html#pandas.DataFrame.slice_shift" title="pandas.DataFrame.slice_shift"><code>slice_shift</code></a>(self[, periods, axis])</td> <td>Equivalent to <code>shift</code> without copying data.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.sort_index.html#pandas.DataFrame.sort_index" title="pandas.DataFrame.sort_index"><code>sort_index</code></a>(self[, axis, level, ascending, …])</td> <td>Sort object by labels (along an axis).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.sort_values.html#pandas.DataFrame.sort_values" title="pandas.DataFrame.sort_values"><code>sort_values</code></a>(self, by[, axis, ascending, …])</td> <td>Sort by the values along either axis.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.dataframe.sparse.html#pandas.DataFrame.sparse" title="pandas.DataFrame.sparse"><code>sparse</code></a></td> <td>alias of <code>pandas.core.arrays.sparse.SparseFrameAccessor</code>
+</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.squeeze.html#pandas.DataFrame.squeeze" title="pandas.DataFrame.squeeze"><code>squeeze</code></a>(self[, axis])</td> <td>Squeeze 1 dimensional axis objects into scalars.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.stack.html#pandas.DataFrame.stack" title="pandas.DataFrame.stack"><code>stack</code></a>(self[, level, dropna])</td> <td>Stack the prescribed level(s) from columns to index.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.std.html#pandas.DataFrame.std" title="pandas.DataFrame.std"><code>std</code></a>(self[, axis, skipna, level, ddof, …])</td> <td>Return sample standard deviation over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.sub.html#pandas.DataFrame.sub" title="pandas.DataFrame.sub"><code>sub</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Subtraction of dataframe and other, element-wise (binary operator <code>sub</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.subtract.html#pandas.DataFrame.subtract" title="pandas.DataFrame.subtract"><code>subtract</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Subtraction of dataframe and other, element-wise (binary operator <code>sub</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.sum.html#pandas.DataFrame.sum" title="pandas.DataFrame.sum"><code>sum</code></a>(self[, axis, skipna, level, …])</td> <td>Return the sum of the values for the requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.swapaxes.html#pandas.DataFrame.swapaxes" title="pandas.DataFrame.swapaxes"><code>swapaxes</code></a>(self, axis1, axis2[, copy])</td> <td>Interchange axes and swap values axes appropriately.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.swaplevel.html#pandas.DataFrame.swaplevel" title="pandas.DataFrame.swaplevel"><code>swaplevel</code></a>(self[, i, j, axis])</td> <td>Swap levels i and j in a MultiIndex on a particular axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.tail.html#pandas.DataFrame.tail" title="pandas.DataFrame.tail"><code>tail</code></a>(self[, n])</td> <td>Return the last <code>n</code> rows.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.take.html#pandas.DataFrame.take" title="pandas.DataFrame.take"><code>take</code></a>(self, indices[, axis, is_copy])</td> <td>Return the elements in the given <em>positional</em> indices along an axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_clipboard.html#pandas.DataFrame.to_clipboard" title="pandas.DataFrame.to_clipboard"><code>to_clipboard</code></a>(self[, excel, sep])</td> <td>Copy object to the system clipboard.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code>to_csv</code></a>(self[, path_or_buf, sep, na_rep, …])</td> <td>Write object to a comma-separated values (csv) file.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_dense.html#pandas.DataFrame.to_dense" title="pandas.DataFrame.to_dense"><code>to_dense</code></a>(self)</td> <td>(DEPRECATED) Return dense representation of Series/DataFrame (as opposed to sparse).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_dict.html#pandas.DataFrame.to_dict" title="pandas.DataFrame.to_dict"><code>to_dict</code></a>(self[, orient, into])</td> <td>Convert the DataFrame to a dictionary.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_excel.html#pandas.DataFrame.to_excel" title="pandas.DataFrame.to_excel"><code>to_excel</code></a>(self, excel_writer[, sheet_name, …])</td> <td>Write object to an Excel sheet.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_feather.html#pandas.DataFrame.to_feather" title="pandas.DataFrame.to_feather"><code>to_feather</code></a>(self, fname)</td> <td>Write out the binary feather-format for DataFrames.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_gbq.html#pandas.DataFrame.to_gbq" title="pandas.DataFrame.to_gbq"><code>to_gbq</code></a>(self, destination_table[, …])</td> <td>Write a DataFrame to a Google BigQuery table.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_hdf.html#pandas.DataFrame.to_hdf" title="pandas.DataFrame.to_hdf"><code>to_hdf</code></a>(self, path_or_buf, key, \*\*kwargs)</td> <td>Write the contained data to an HDF5 file using HDFStore.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_html.html#pandas.DataFrame.to_html" title="pandas.DataFrame.to_html"><code>to_html</code></a>(self[, buf, columns, col_space, …])</td> <td>Render a DataFrame as an HTML table.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_json.html#pandas.DataFrame.to_json" title="pandas.DataFrame.to_json"><code>to_json</code></a>(self[, path_or_buf, orient, …])</td> <td>Convert the object to a JSON string.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_latex.html#pandas.DataFrame.to_latex" title="pandas.DataFrame.to_latex"><code>to_latex</code></a>(self[, buf, columns, col_space, …])</td> <td>Render an object to a LaTeX tabular environment table.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_msgpack.html#pandas.DataFrame.to_msgpack" title="pandas.DataFrame.to_msgpack"><code>to_msgpack</code></a>(self[, path_or_buf, encoding])</td> <td>(DEPRECATED) Serialize object to input file path using msgpack format.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_numpy.html#pandas.DataFrame.to_numpy" title="pandas.DataFrame.to_numpy"><code>to_numpy</code></a>(self[, dtype, copy])</td> <td>Convert the DataFrame to a NumPy array.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_parquet.html#pandas.DataFrame.to_parquet" title="pandas.DataFrame.to_parquet"><code>to_parquet</code></a>(self, fname[, engine, …])</td> <td>Write a DataFrame to the binary parquet format.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_period.html#pandas.DataFrame.to_period" title="pandas.DataFrame.to_period"><code>to_period</code></a>(self[, freq, axis, copy])</td> <td>Convert DataFrame from DatetimeIndex to PeriodIndex with desired frequency (inferred from index if not passed).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_pickle.html#pandas.DataFrame.to_pickle" title="pandas.DataFrame.to_pickle"><code>to_pickle</code></a>(self, path[, compression, protocol])</td> <td>Pickle (serialize) object to file.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_records.html#pandas.DataFrame.to_records" title="pandas.DataFrame.to_records"><code>to_records</code></a>(self[, index, …])</td> <td>Convert DataFrame to a NumPy record array.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_sparse.html#pandas.DataFrame.to_sparse" title="pandas.DataFrame.to_sparse"><code>to_sparse</code></a>(self[, fill_value, kind])</td> <td>(DEPRECATED) Convert to SparseDataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code>to_sql</code></a>(self, name, con[, schema, if_exists, …])</td> <td>Write records stored in a DataFrame to a SQL database.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_stata.html#pandas.DataFrame.to_stata" title="pandas.DataFrame.to_stata"><code>to_stata</code></a>(self, fname[, convert_dates, …])</td> <td>Export DataFrame object to Stata dta format.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_string.html#pandas.DataFrame.to_string" title="pandas.DataFrame.to_string"><code>to_string</code></a>(self[, buf, columns, col_space, …])</td> <td>Render a DataFrame to a console-friendly tabular output.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_timestamp.html#pandas.DataFrame.to_timestamp" title="pandas.DataFrame.to_timestamp"><code>to_timestamp</code></a>(self[, freq, how, axis, copy])</td> <td>Cast to DatetimeIndex of timestamps, at <em>beginning</em> of period.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.to_xarray.html#pandas.DataFrame.to_xarray" title="pandas.DataFrame.to_xarray"><code>to_xarray</code></a>(self)</td> <td>Return an xarray object from the pandas object.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.transform.html#pandas.DataFrame.transform" title="pandas.DataFrame.transform"><code>transform</code></a>(self, func[, axis])</td> <td>Call <code>func</code> on self producing a DataFrame with transformed values and that has the same axis length as self.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.transpose.html#pandas.DataFrame.transpose" title="pandas.DataFrame.transpose"><code>transpose</code></a>(self, \*args, \*\*kwargs)</td> <td>Transpose index and columns.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.truediv.html#pandas.DataFrame.truediv" title="pandas.DataFrame.truediv"><code>truediv</code></a>(self, other[, axis, level, fill_value])</td> <td>Get Floating division of dataframe and other, element-wise (binary operator <code>truediv</code>).</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.truncate.html#pandas.DataFrame.truncate" title="pandas.DataFrame.truncate"><code>truncate</code></a>(self[, before, after, axis, copy])</td> <td>Truncate a Series or DataFrame before and after some index value.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.tshift.html#pandas.DataFrame.tshift" title="pandas.DataFrame.tshift"><code>tshift</code></a>(self[, periods, freq, axis])</td> <td>Shift the time index, using the index’s frequency if available.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.tz_convert.html#pandas.DataFrame.tz_convert" title="pandas.DataFrame.tz_convert"><code>tz_convert</code></a>(self, tz[, axis, level, copy])</td> <td>Convert tz-aware axis to target time zone.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.tz_localize.html#pandas.DataFrame.tz_localize" title="pandas.DataFrame.tz_localize"><code>tz_localize</code></a>(self, tz[, axis, level, copy, …])</td> <td>Localize tz-naive index of a Series or DataFrame to target time zone.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.unstack.html#pandas.DataFrame.unstack" title="pandas.DataFrame.unstack"><code>unstack</code></a>(self[, level, fill_value])</td> <td>Pivot a level of the (necessarily hierarchical) index labels, returning a DataFrame having a new level of column labels whose inner-most level consists of the pivoted index labels.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.update.html#pandas.DataFrame.update" title="pandas.DataFrame.update"><code>update</code></a>(self, other[, join, overwrite, …])</td> <td>Modify in place using non-NA values from another DataFrame.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.var.html#pandas.DataFrame.var" title="pandas.DataFrame.var"><code>var</code></a>(self[, axis, skipna, level, ddof, …])</td> <td>Return unbiased variance over requested axis.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.where.html#pandas.DataFrame.where" title="pandas.DataFrame.where"><code>where</code></a>(self, cond[, other, inplace, axis, …])</td> <td>Replace values where the condition is False.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.dataframe.xs.html#pandas.DataFrame.xs" title="pandas.DataFrame.xs"><code>xs</code></a>(self, key[, axis, level, drop_level])</td> <td>Return cross-section from the Series/DataFrame.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.html</a>
+  </p>
+</div>

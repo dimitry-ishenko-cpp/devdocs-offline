@@ -1,0 +1,76 @@
+<h1 id="pandas-to-datetime">pandas.to_datetime</h1> <dl class="function"> <dt id="pandas.to_datetime">
+<code>pandas.to_datetime(arg, errors='raise', dayfirst=False, yearfirst=False, utc=None, box=True, format=None, exact=True, unit=None, infer_datetime_format=False, origin='unix', cache=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/tools/datetimes.py#L559-L795"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert argument to datetime.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arg : integer, float, string, datetime, list, tuple, 1-d array, Series</code> </dt> <dd>
+<div class="first last versionadded"> <p><span class="versionmodified">New in version 0.18.1: </span>or DataFrame/dict-like</p> </div> </dd> <dt>
+<code>errors : {‘ignore’, ‘raise’, ‘coerce’}, default ‘raise’</code> </dt> <dd>
+<ul class="first last simple"> <li>If ‘raise’, then invalid parsing will raise an exception</li> <li>If ‘coerce’, then invalid parsing will be set as NaT</li> <li>If ‘ignore’, then invalid parsing will return the input</li> </ul> </dd> <dt>
+<code>dayfirst : boolean, default False</code> </dt> <dd>
+<p class="first last">Specify a date parse order if <code>arg</code> is str or its list-likes. If True, parses dates with the day first, eg 10/11/12 is parsed as 2012-11-10. Warning: dayfirst=True is not strict, but will prefer to parse with day first (this is a known bug, based on dateutil behavior).</p> </dd> <dt>
+<code>yearfirst : boolean, default False</code> </dt> <dd>
+<p class="first">Specify a date parse order if <code>arg</code> is str or its list-likes.</p> <ul class="simple"> <li>If True parses dates with the year first, eg 10/11/12 is parsed as 2010-11-12.</li> <li>If both dayfirst and yearfirst are True, yearfirst is preceded (same as dateutil).</li> </ul> <p>Warning: yearfirst=True is not strict, but will prefer to parse with year first (this is a known bug, based on dateutil behavior).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.16.1.</span></p> </div> </dd> <dt>
+<code>utc : boolean, default None</code> </dt> <dd>
+<p class="first last">Return UTC DatetimeIndex if True (converting any tz-aware datetime.datetime objects as well).</p> </dd> <dt>
+<code>box : boolean, default True</code> </dt> <dd>
+<ul class="first simple"> <li>If True returns a DatetimeIndex or Index-like object</li> <li>If False returns ndarray of values.</li> </ul> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.25.0: </span>Use <a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy()</code></a> or <a class="reference internal" href="pandas.timestamp.to_datetime64.html#pandas.Timestamp.to_datetime64" title="pandas.Timestamp.to_datetime64"><code>Timestamp.to_datetime64()</code></a> instead to get an ndarray of values or numpy.datetime64, respectively.</p> </div> </dd> <dt>
+<code>format : string, default None</code> </dt> <dd>
+<p class="first last">strftime to parse time, eg “%d/%m/%Y”, note that “%f” will parse all the way up to nanoseconds. See strftime documentation for more information on choices: <a class="reference external" href="https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior">https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior</a></p> </dd> <dt>
+<code>exact : boolean, True by default</code> </dt> <dd>
+<ul class="first last simple"> <li>If True, require an exact format match.</li> <li>If False, allow the format to match anywhere in the target string.</li> </ul> </dd> <dt>
+<code>unit : string, default ‘ns’</code> </dt> <dd>
+<p class="first last">unit of the arg (D,s,ms,us,ns) denote the unit, which is an integer or float number. This will be based off the origin. Example, with unit=’ms’ and origin=’unix’ (the default), this would calculate the number of milliseconds to the unix epoch start.</p> </dd> <dt>
+<code>infer_datetime_format : boolean, default False</code> </dt> <dd>
+<p class="first last">If True and no <code>format</code> is given, attempt to infer the format of the datetime strings, and if it can be inferred, switch to a faster method of parsing them. In some cases this can increase the parsing speed by ~5-10x.</p> </dd> <dt>
+<code>origin : scalar, default is ‘unix’</code> </dt> <dd>
+<p class="first">Define the reference date. The numeric values would be parsed as number of units (defined by <code>unit</code>) since this reference date.</p> <ul class="simple"> <li>If ‘unix’ (or POSIX) time; origin is set to 1970-01-01.</li> <li>If ‘julian’, unit must be ‘D’, and origin is set to beginning of Julian Calendar. Julian day number 0 is assigned to the day starting at noon on January 1, 4713 BC.</li> <li>If Timestamp convertible, origin is set to Timestamp identified by origin.</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> <dt>
+<code>cache : boolean, default True</code> </dt> <dd>
+<p class="first">If True, use a cache of unique, converted dates to apply the datetime conversion. May produce significant speed-up when parsing duplicate date strings, especially ones with timezone offsets.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.25.0: </span>- changed default value from False to True</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>ret : datetime if parsing succeeded.</code> </dt> <dd>
+<p class="first">Return type depends on input:</p> <ul class="simple"> <li>list-like: DatetimeIndex</li> <li>Series: Series of datetime64 dtype</li> <li>scalar: Timestamp</li> </ul> <p class="last">In case when it is not possible to return designated types (e.g. when any element of input is before Timestamp.min or after Timestamp.max) return will have datetime.datetime type (or corresponding array/Series).</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.astype.html#pandas.DataFrame.astype" title="pandas.DataFrame.astype"><code>DataFrame.astype</code></a>
+</dt> <dd>Cast argument to a specified dtype.</dd> <dt>
+ <a class="reference internal" href="pandas.to_timedelta.html#pandas.to_timedelta" title="pandas.to_timedelta"><code>to_timedelta</code></a>
+</dt> <dd>Convert argument to timedelta.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Assembling a datetime from multiple columns of a DataFrame. The keys can be common abbreviations like [‘year’, ‘month’, ‘day’, ‘minute’, ‘second’, ‘ms’, ‘us’, ‘ns’]) or plurals of the same</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'year': [2015, 2016],
+...                    'month': [2, 3],
+...                    'day': [4, 5]})
+&gt;&gt;&gt; pd.to_datetime(df)
+0   2015-02-04
+1   2016-03-05
+dtype: datetime64[ns]
+</pre> <p>If a date does not meet the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#timeseries-timestamp-limits">timestamp limitations</a>, passing errors=’ignore’ will return the original input instead of raising any exception.</p> <p>Passing errors=’coerce’ will force an out-of-bounds date to NaT, in addition to forcing non-dates (or non-parseable dates) to NaT.</p> <pre data-language="python">&gt;&gt;&gt; pd.to_datetime('13000101', format='%Y%m%d', errors='ignore')
+datetime.datetime(1300, 1, 1, 0, 0)
+&gt;&gt;&gt; pd.to_datetime('13000101', format='%Y%m%d', errors='coerce')
+NaT
+</pre> <p>Passing infer_datetime_format=True can often-times speedup a parsing if its not an ISO8601 format exactly, but in a regular format.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['3/11/2000', '3/12/2000', '3/13/2000'] * 1000)
+&gt;&gt;&gt; s.head()
+0    3/11/2000
+1    3/12/2000
+2    3/13/2000
+3    3/11/2000
+4    3/12/2000
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; %timeit pd.to_datetime(s,infer_datetime_format=True)  # doctest: +SKIP
+100 loops, best of 3: 10.4 ms per loop
+</pre> <pre data-language="python">&gt;&gt;&gt; %timeit pd.to_datetime(s,infer_datetime_format=False)  # doctest: +SKIP
+1 loop, best of 3: 471 ms per loop
+</pre> <p>Using a unix epoch time</p> <pre data-language="python">&gt;&gt;&gt; pd.to_datetime(1490195805, unit='s')
+Timestamp('2017-03-22 15:16:45')
+&gt;&gt;&gt; pd.to_datetime(1490195805433502912, unit='ns')
+Timestamp('2017-03-22 15:16:45.433502912')
+</pre> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">For float arg, precision rounding might happen. To prevent unexpected behavior use a fixed-width exact type.</p> </div> <p>Using a non-unix epoch origin</p> <pre data-language="python">&gt;&gt;&gt; pd.to_datetime([1, 2, 3], unit='D',
+...                origin=pd.Timestamp('1960-01-01'))
+DatetimeIndex(['1960-01-02', '1960-01-03', '1960-01-04'], dtype='datetime64[ns]', freq=None)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.to_datetime.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.to_datetime.html</a>
+  </p>
+</div>

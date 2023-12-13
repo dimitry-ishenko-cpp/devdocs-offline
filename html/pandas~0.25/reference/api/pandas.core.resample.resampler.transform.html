@@ -1,0 +1,20 @@
+<h1 id="pandas-core-resample-resampler-transform">pandas.core.resample.Resampler.transform</h1> <dl class="method"> <dt id="pandas.core.resample.Resampler.transform">
+<code>Resampler.transform(self, arg, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/resample.py#L295-L313"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Call function producing a like-indexed Series on each group and return a Series with the transformed values.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arg : function</code> </dt> <dd>
+<p class="first last">To apply to each group. Should return a Series with the same index.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>transformed : Series</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; resampled.transform(lambda x: (x - x.mean()) / x.std())
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.transform.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.resample.Resampler.transform.html</a>
+  </p>
+</div>

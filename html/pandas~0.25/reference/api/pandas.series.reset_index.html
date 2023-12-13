@@ -1,0 +1,73 @@
+<h1 id="pandas-series-reset-index">pandas.Series.reset_index</h1> <dl class="method"> <dt id="pandas.Series.reset_index">
+<code>Series.reset_index(self, level=None, drop=False, name=None, inplace=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L1450-L1582"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Generate a new DataFrame or Series with the index reset.</p> <p>This is useful when the index needs to be treated as a column, or when the index is meaningless and needs to be reset to the default before another operation.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>level : int, str, tuple, or list, default optional</code> </dt> <dd>
+<p class="first last">For a Series with a MultiIndex, only remove the specified levels from the index. Removes all levels by default.</p> </dd> <dt>
+<code>drop : bool, default False</code> </dt> <dd>
+<p class="first last">Just reset the index, without inserting it as a column in the new DataFrame.</p> </dd> <dt>
+<code>name : object, optional</code> </dt> <dd>
+<p class="first last">The name to use for the column containing the original Series values. Uses <code>self.name</code> by default. This argument is ignored when <code>drop</code> is True.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">Modify the Series in place (do not create a new object).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series or DataFrame</dt> <dd>
+<p class="first last">When <code>drop</code> is False (the default), a DataFrame is returned. The newly created columns will come first in the DataFrame, followed by the original Series values. When <code>drop</code> is True, a <code>Series</code> is returned. In either case, if <code>inplace=True</code>, no value is returned.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.reset_index.html#pandas.DataFrame.reset_index" title="pandas.DataFrame.reset_index"><code>DataFrame.reset_index</code></a>
+</dt> <dd>Analogous function for DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4], name='foo',
+...               index=pd.Index(['a', 'b', 'c', 'd'], name='idx'))
+</pre> <p>Generate a DataFrame with default index.</p> <pre data-language="python">&gt;&gt;&gt; s.reset_index()
+  idx  foo
+0   a    1
+1   b    2
+2   c    3
+3   d    4
+</pre> <p>To specify the name of the new column use <code>name</code>.</p> <pre data-language="python">&gt;&gt;&gt; s.reset_index(name='values')
+  idx  values
+0   a       1
+1   b       2
+2   c       3
+3   d       4
+</pre> <p>To generate a new Series with the default set <code>drop</code> to True.</p> <pre data-language="python">&gt;&gt;&gt; s.reset_index(drop=True)
+0    1
+1    2
+2    3
+3    4
+Name: foo, dtype: int64
+</pre> <p>To update the Series in place, without generating a new one set <code>inplace</code> to True. Note that it also requires <code>drop=True</code>.</p> <pre data-language="python">&gt;&gt;&gt; s.reset_index(inplace=True, drop=True)
+&gt;&gt;&gt; s
+0    1
+1    2
+2    3
+3    4
+Name: foo, dtype: int64
+</pre> <p>The <code>level</code> parameter is interesting for Series with a multi-level index.</p> <pre data-language="python">&gt;&gt;&gt; arrays = [np.array(['bar', 'bar', 'baz', 'baz']),
+...           np.array(['one', 'two', 'one', 'two'])]
+&gt;&gt;&gt; s2 = pd.Series(
+...     range(4), name='foo',
+...     index=pd.MultiIndex.from_arrays(arrays,
+...                                     names=['a', 'b']))
+</pre> <p>To remove a specific level from the Index, use <code>level</code>.</p> <pre data-language="python">&gt;&gt;&gt; s2.reset_index(level='a')
+       a  foo
+b
+one  bar    0
+two  bar    1
+one  baz    2
+two  baz    3
+</pre> <p>If <code>level</code> is not set, all levels are removed from the Index.</p> <pre data-language="python">&gt;&gt;&gt; s2.reset_index()
+     a    b  foo
+0  bar  one    0
+1  bar  two    1
+2  baz  one    2
+3  baz  two    3
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.reset_index.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.reset_index.html</a>
+  </p>
+</div>

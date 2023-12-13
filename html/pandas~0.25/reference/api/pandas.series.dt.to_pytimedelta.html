@@ -1,0 +1,29 @@
+<h1 id="pandas-series-dt-to-pytimedelta">pandas.Series.dt.to_pytimedelta</h1> <dl class="method"> <dt id="pandas.Series.dt.to_pytimedelta">
+<code>Series.dt.to_pytimedelta(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/accessors.py#L218-L252"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return an array of native <code>datetime.timedelta</code> objects.</p> <p>Python’s standard <code>datetime</code> library uses a different representation timedelta’s. This method converts a Series of pandas Timedeltas to <code>datetime.timedelta</code> format with the same length as the original Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>a : numpy.ndarray</code> </dt> <dd>
+<p class="first last">Array of 1D containing data with <code>datetime.timedelta</code> type.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.7)"><code>datetime.timedelta</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(pd.to_timedelta(np.arange(5), unit='d'))
+&gt;&gt;&gt; s
+0   0 days
+1   1 days
+2   2 days
+3   3 days
+4   4 days
+dtype: timedelta64[ns]
+</pre> <pre data-language="python">&gt;&gt;&gt; s.dt.to_pytimedelta()
+array([datetime.timedelta(0), datetime.timedelta(1),
+       datetime.timedelta(2), datetime.timedelta(3),
+       datetime.timedelta(4)], dtype=object)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.to_pytimedelta.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.dt.to_pytimedelta.html</a>
+  </p>
+</div>

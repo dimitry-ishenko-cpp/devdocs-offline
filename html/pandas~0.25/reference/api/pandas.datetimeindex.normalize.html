@@ -1,0 +1,32 @@
+<h1 id="pandas-datetimeindex-normalize">pandas.DatetimeIndex.normalize</h1> <dl class="method"> <dt id="pandas.DatetimeIndex.normalize">
+<code>DatetimeIndex.normalize(self, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/accessor.py#L92-L93"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert times to midnight.</p> <p>The time component of the date-time is converted to midnight i.e. 00:00:00. This is useful in cases, when the time does not matter. Length is unaltered. The timezones are unaffected.</p> <p>This method is available on Series with datetime values under the <code>.dt</code> accessor, and directly on Datetime Array/Index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DatetimeArray, DatetimeIndex or Series</dt> <dd>
+<p class="first last">The same type as the original data. Series will have the same name and index. DatetimeIndex will have the same name.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.floor.html#pandas.DatetimeIndex.floor" title="pandas.DatetimeIndex.floor"><code>floor</code></a>
+</dt> <dd>Floor the datetimes to the specified freq.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.ceil.html#pandas.DatetimeIndex.ceil" title="pandas.DatetimeIndex.ceil"><code>ceil</code></a>
+</dt> <dd>Ceil the datetimes to the specified freq.</dd> <dt>
+ <a class="reference internal" href="pandas.datetimeindex.round.html#pandas.DatetimeIndex.round" title="pandas.DatetimeIndex.round"><code>round</code></a>
+</dt> <dd>Round the datetimes to the specified freq.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.date_range(start='2014-08-01 10:00', freq='H',
+...                     periods=3, tz='Asia/Calcutta')
+&gt;&gt;&gt; idx
+DatetimeIndex(['2014-08-01 10:00:00+05:30',
+               '2014-08-01 11:00:00+05:30',
+               '2014-08-01 12:00:00+05:30'],
+                dtype='datetime64[ns, Asia/Calcutta]', freq='H')
+&gt;&gt;&gt; idx.normalize()
+DatetimeIndex(['2014-08-01 00:00:00+05:30',
+               '2014-08-01 00:00:00+05:30',
+               '2014-08-01 00:00:00+05:30'],
+               dtype='datetime64[ns, Asia/Calcutta]', freq=None)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.normalize.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DatetimeIndex.normalize.html</a>
+  </p>
+</div>

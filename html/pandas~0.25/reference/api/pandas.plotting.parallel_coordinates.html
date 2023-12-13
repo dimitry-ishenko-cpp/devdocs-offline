@@ -1,0 +1,47 @@
+<h1 id="pandas-plotting-parallel-coordinates">pandas.plotting.parallel_coordinates</h1> <dl class="function"> <dt id="pandas.plotting.parallel_coordinates">
+<code>pandas.plotting.parallel_coordinates(frame, class_column, cols=None, ax=None, color=None, use_columns=False, xticks=None, colormap=None, axvlines=True, axvlines_kwds=None, sort_labels=False, **kwds)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/plotting/_misc.py#L316-L391"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Parallel coordinates plotting.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>frame : DataFrame</code> </dt>  <dt>
+<code>class_column : str</code> </dt> <dd>
+<p class="first last">Column name containing class names</p> </dd> <dt>
+<code>cols : list, optional</code> </dt> <dd>
+<p class="first last">A list of column names to use</p> </dd> <dt>
+<code>ax : matplotlib.axis, optional</code> </dt> <dd>
+<p class="first last">matplotlib axis object</p> </dd> <dt>
+<code>color : list or tuple, optional</code> </dt> <dd>
+<p class="first last">Colors to use for the different classes</p> </dd> <dt>
+<code>use_columns : bool, optional</code> </dt> <dd>
+<p class="first last">If true, columns will be used as xticks</p> </dd> <dt>
+<code>xticks : list or tuple, optional</code> </dt> <dd>
+<p class="first last">A list of values to use for xticks</p> </dd> <dt>
+<code>colormap : str or matplotlib colormap, default None</code> </dt> <dd>
+<p class="first last">Colormap to use for line colors.</p> </dd> <dt>
+<code>axvlines : bool, optional</code> </dt> <dd>
+<p class="first last">If true, vertical lines will be added at each xtick</p> </dd> <dt>
+<code>axvlines_kwds : keywords, optional</code> </dt> <dd>
+<p class="first last">Options to be passed to axvline method for vertical lines</p> </dd> <dt>
+<code>sort_labels : bool, False</code> </dt> <dd>
+<p class="first">Sort class_column labels, useful when assigning colors</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> <dt>
+<code>kwds : keywords</code> </dt> <dd>
+<p class="first last">Options to pass to matplotlib plotting method</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>class:matplotlib.axis.Axes</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; from matplotlib import pyplot as plt
+&gt;&gt;&gt; df = pd.read_csv('https://raw.github.com/pandas-dev/pandas/master'
+                    '/pandas/tests/data/iris.csv')
+&gt;&gt;&gt; pd.plotting.parallel_coordinates(
+        df, 'Name',
+        color=('#556270', '#4ECDC4', '#C7F464'))
+&gt;&gt;&gt; plt.show()
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.plotting.parallel_coordinates.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.plotting.parallel_coordinates.html</a>
+  </p>
+</div>

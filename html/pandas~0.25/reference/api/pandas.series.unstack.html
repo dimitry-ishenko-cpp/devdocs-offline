@@ -1,0 +1,38 @@
+<h1 id="pandas-series-unstack">pandas.Series.unstack</h1> <dl class="method"> <dt id="pandas.Series.unstack">
+<code>Series.unstack(self, level=-1, fill_value=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/series.py#L3698-L3741"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Unstack, a.k.a. pivot, Series with MultiIndex to produce DataFrame. The level involved will automatically get sorted.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>level : int, str, or list of these, default last level</code> </dt> <dd>
+<p class="first last">Level(s) to unstack, can pass level name.</p> </dd> <dt>
+<code>fill_value : scalar value, default None</code> </dt> <dd>
+<p class="first">Value to use when replacing NaN values.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Unstacked Series.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([1, 2, 3, 4],
+...               index=pd.MultiIndex.from_product([['one', 'two'],
+...                                                 ['a', 'b']]))
+&gt;&gt;&gt; s
+one  a    1
+     b    2
+two  a    3
+     b    4
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.unstack(level=-1)
+     a  b
+one  1  2
+two  3  4
+</pre> <pre data-language="python">&gt;&gt;&gt; s.unstack(level=0)
+   one  two
+a    1    3
+b    2    4
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.unstack.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.unstack.html</a>
+  </p>
+</div>

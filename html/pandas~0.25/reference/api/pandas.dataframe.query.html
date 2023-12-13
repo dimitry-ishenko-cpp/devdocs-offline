@@ -1,0 +1,48 @@
+<h1 id="pandas-dataframe-query">pandas.DataFrame.query</h1> <dl class="method"> <dt id="pandas.DataFrame.query">
+<code>DataFrame.query(self, expr, inplace=False, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L3064-L3191"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Query the columns of a DataFrame with a boolean expression.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>expr : str</code> </dt> <dd>
+<p class="first">The query string to evaluate. You can refer to variables in the environment by prefixing them with an ‘@’ character like <code>@a + b</code>.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.25.0.</span></p> </div> <p>You can refer to column names that contain spaces by surrounding them in backticks.</p> <p class="last">For example, if one of your columns is called <code>a a</code> and you want to sum it with <code>b</code>, your query should be <code>`a a` + b</code>.</p> </dd> <dt>
+<code>inplace : bool</code> </dt> <dd>
+<p class="first last">Whether the query should modify the data in place or return a modified copy.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first">See the documentation for <a class="reference internal" href="pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> for complete details on the keyword arguments accepted by <a class="reference internal" href="#pandas.DataFrame.query" title="pandas.DataFrame.query"><code>DataFrame.query()</code></a>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">DataFrame resulting from the provided query expression.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval</code></a>
+</dt> <dd>Evaluate a string describing operations on DataFrame columns.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code>DataFrame.eval</code></a>
+</dt> <dd>Evaluate a string describing operations on DataFrame columns.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The result of the evaluation of this expression is first passed to <a class="reference internal" href="pandas.dataframe.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code>DataFrame.loc</code></a> and if that fails because of a multidimensional key (e.g., a DataFrame) then the result will be passed to <code>DataFrame.__getitem__()</code>.</p> <p>This method uses the top-level <a class="reference internal" href="pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> function to evaluate the passed query.</p> <p>The <a class="reference internal" href="#pandas.DataFrame.query" title="pandas.DataFrame.query"><code>query()</code></a> method uses a slightly modified Python syntax by default. For example, the <code>&amp;</code> and <code>|</code> (bitwise) operators have the precedence of their boolean cousins, <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#and" title="(in Python v3.7)"><code>and</code></a> and <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#or" title="(in Python v3.7)"><code>or</code></a>. This <em>is</em> syntactically valid Python, however the semantics are different.</p> <p>You can change the semantics of the expression by passing the keyword argument <code>parser='python'</code>. This enforces the same semantics as evaluation in Python space. Likewise, you can pass <code>engine='python'</code> to evaluate an expression using Python itself as a backend. This is not recommended as it is inefficient compared to using <code>numexpr</code> as the engine.</p> <p>The <a class="reference internal" href="pandas.dataframe.index.html#pandas.DataFrame.index" title="pandas.DataFrame.index"><code>DataFrame.index</code></a> and <a class="reference internal" href="pandas.dataframe.columns.html#pandas.DataFrame.columns" title="pandas.DataFrame.columns"><code>DataFrame.columns</code></a> attributes of the <a class="reference internal" href="pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> instance are placed in the query namespace by default, which allows you to treat both the index and columns of the frame as a column in the frame. The identifier <code>index</code> is used for the frame index; you can also use the name of the index to identify it in a query. Please note that Python keywords may not be used as identifiers.</p> <p>For further details and examples see the <code>query</code> documentation in <a class="reference internal" href="../../user_guide/indexing.html#indexing-query"><span class="std std-ref">indexing</span></a>.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': range(1, 6),
+...                    'B': range(10, 0, -2),
+...                    'C C': range(10, 5, -1)})
+&gt;&gt;&gt; df
+   A   B  C C
+0  1  10   10
+1  2   8    9
+2  3   6    8
+3  4   4    7
+4  5   2    6
+&gt;&gt;&gt; df.query('A &gt; B')
+   A  B  C C
+4  5  2    6
+</pre> <p>The previous expression is equivalent to</p> <pre data-language="python">&gt;&gt;&gt; df[df.A &gt; df.B]
+   A  B  C C
+4  5  2    6
+</pre> <p>For columns with spaces in their name, you can use backtick quoting.</p> <pre data-language="python">&gt;&gt;&gt; df.query('B == `C C`')
+   A   B  C C
+0  1  10   10
+</pre> <p>The previous expression is equivalent to</p> <pre data-language="python">&gt;&gt;&gt; df[df.B == df['C C']]
+   A   B  C C
+0  1  10   10
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.query.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.query.html</a>
+  </p>
+</div>

@@ -1,0 +1,21 @@
+<h1 id="pandas-index-fillna">pandas.Index.fillna</h1> <dl class="method"> <dt id="pandas.Index.fillna">
+<code>Index.fillna(self, value=None, downcast=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L2084-L2093"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Fill NA/NaN values with the specified value</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>value : scalar</code> </dt> <dd>
+<p class="first last">Scalar value to use to fill holes (e.g. 0). This value cannot be a list-likes.</p> </dd> <dt>
+<code>downcast : dict, default is None</code> </dt> <dd>
+<p class="first last">a dict of item-&gt;dtype of what to downcast if possible, or the string ‘infer’ which will try to downcast to an appropriate equal type (e.g. float64 to int64 if possible)</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>filled : Index</code> </dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.fillna.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.fillna.html</a>
+  </p>
+</div>

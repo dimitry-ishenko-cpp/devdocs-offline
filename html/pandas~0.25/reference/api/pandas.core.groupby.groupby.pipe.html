@@ -1,0 +1,44 @@
+<h1 id="pandas-core-groupby-groupby-pipe">pandas.core.groupby.GroupBy.pipe</h1> <dl class="method"> <dt id="pandas.core.groupby.GroupBy.pipe">
+<code>GroupBy.pipe(self, func, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/groupby.py#L569-L592"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Apply a function <code>func</code> with arguments to this GroupBy object and return the function’s result.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> <p>Use <code>.pipe</code> when you want to improve readability by chaining together functions that expect Series, DataFrames, GroupBy or Resampler objects. Instead of writing</p> <pre data-language="python">&gt;&gt;&gt; h(g(f(df.groupby('group')), arg1=a), arg2=b, arg3=c)
+</pre> <p>You can write</p> <pre data-language="python">&gt;&gt;&gt; (df.groupby('group')
+...    .pipe(f)
+...    .pipe(g, arg1=a)
+...    .pipe(h, arg2=b, arg3=c))
+</pre> <p>which is much more readable.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : callable or tuple of (callable, string)</code> </dt> <dd>
+<p class="first last">Function to apply to this GroupBy object or, alternatively, a <code>(callable, data_keyword)</code> tuple where <code>data_keyword</code> is a string indicating the keyword of <code>callable</code> that expects the GroupBy object.</p> </dd> <dt>
+<code>args : iterable, optional</code> </dt> <dd>
+<p class="first last">positional arguments passed into <code>func</code>.</p> </dd> <dt>
+<code>kwargs : dict, optional</code> </dt> <dd>
+<p class="first last">a dictionary of keyword arguments passed into <code>func</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>object : the return type of func.</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+<code>Series.pipe</code> </dt> <dd>Apply a function with arguments to a series.</dd> <dt>
+<code>DataFrame.pipe</code> </dt> <dd>Apply a function with arguments to a dataframe.</dd> <dt>
+ <a class="reference internal" href="pandas.core.groupby.groupby.apply.html#pandas.core.groupby.GroupBy.apply" title="pandas.core.groupby.GroupBy.apply"><code>apply</code></a>
+</dt> <dd>Apply function to each group instead of to the full GroupBy object.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>See more <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html#piping-function-calls">here</a></p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': 'a b a b'.split(), 'B': [1, 2, 3, 4]})
+&gt;&gt;&gt; df
+   A  B
+0  a  1
+1  b  2
+2  a  3
+3  b  4
+</pre> <p>To get the difference between each groups maximum and minimum value in one pass, you can do</p> <pre data-language="python">&gt;&gt;&gt; df.groupby('A').pipe(lambda x: x.max() - x.min())
+   B
+A
+a  2
+b  2
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.GroupBy.pipe.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.GroupBy.pipe.html</a>
+  </p>
+</div>

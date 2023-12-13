@@ -1,0 +1,72 @@
+<h1 id="pandas-series-groupby">pandas.Series.groupby</h1> <dl class="method"> <dt id="pandas.Series.groupby">
+<code>Series.groupby(self, by=None, axis=0, level=None, as_index=True, sort=True, group_keys=True, squeeze=False, observed=False, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L7760-L7897"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Group DataFrame or Series using a mapper or by a Series of columns.</p> <p>A groupby operation involves some combination of splitting the object, applying a function, and combining the results. This can be used to group large amounts of data and compute operations on these groups.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>by : mapping, function, label, or list of labels</code> </dt> <dd>
+<p class="first last">Used to determine the groups for the groupby. If <code>by</code> is a function, it’s called on each value of the object’s index. If a dict or Series is passed, the Series or dict VALUES will be used to determine the groups (the Series’ values are first aligned; see <code>.align()</code> method). If an ndarray is passed, the values are used as-is determine the groups. A label or list of labels may be passed to group by the columns in <code>self</code>. Notice that a tuple is interpreted as a (single) key.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">Split along rows (0) or columns (1).</p> </dd> <dt>
+<code>level : int, level name, or sequence of such, default None</code> </dt> <dd>
+<p class="first last">If the axis is a MultiIndex (hierarchical), group by a particular level or levels.</p> </dd> <dt>
+<code>as_index : bool, default True</code> </dt> <dd>
+<p class="first last">For aggregated output, return object with group labels as the index. Only relevant for DataFrame input. as_index=False is effectively “SQL-style” grouped output.</p> </dd> <dt>
+<code>sort : bool, default True</code> </dt> <dd>
+<p class="first last">Sort group keys. Get better performance by turning this off. Note this does not influence the order of observations within each group. Groupby preserves the order of rows within each group.</p> </dd> <dt>
+<code>group_keys : bool, default True</code> </dt> <dd>
+<p class="first last">When calling apply, add group keys to index to identify pieces.</p> </dd> <dt>
+<code>squeeze : bool, default False</code> </dt> <dd>
+<p class="first last">Reduce the dimensionality of the return type if possible, otherwise return a consistent type.</p> </dd> <dt>
+<code>observed : bool, default False</code> </dt> <dd>
+<p class="first">This only applies if any of the groupers are Categoricals. If True: only show observed values for categorical groupers. If False: show all values for categorical groupers.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Optional, only accepts keyword argument ‘mutated’ and is passed to groupby.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrameGroupBy or SeriesGroupBy</dt> <dd>
+<p class="first last">Depends on the calling object and returns groupby object that contains information about the groups.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.resample.html#pandas.Series.resample" title="pandas.Series.resample"><code>resample</code></a>
+</dt> <dd>Convenience method for frequency conversion and resampling of time series.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>See the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/groupby.html">user guide</a> for more.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'Animal': ['Falcon', 'Falcon',
+...                               'Parrot', 'Parrot'],
+...                    'Max Speed': [380., 370., 24., 26.]})
+&gt;&gt;&gt; df
+   Animal  Max Speed
+0  Falcon      380.0
+1  Falcon      370.0
+2  Parrot       24.0
+3  Parrot       26.0
+&gt;&gt;&gt; df.groupby(['Animal']).mean()
+        Max Speed
+Animal
+Falcon      375.0
+Parrot       25.0
+</pre> <p><strong>Hierarchical Indexes</strong></p> <p>We can groupby different levels of a hierarchical index using the <code>level</code> parameter:</p> <pre data-language="python">&gt;&gt;&gt; arrays = [['Falcon', 'Falcon', 'Parrot', 'Parrot'],
+...           ['Captive', 'Wild', 'Captive', 'Wild']]
+&gt;&gt;&gt; index = pd.MultiIndex.from_arrays(arrays, names=('Animal', 'Type'))
+&gt;&gt;&gt; df = pd.DataFrame({'Max Speed': [390., 350., 30., 20.]},
+...                   index=index)
+&gt;&gt;&gt; df
+                Max Speed
+Animal Type
+Falcon Captive      390.0
+       Wild         350.0
+Parrot Captive       30.0
+       Wild          20.0
+&gt;&gt;&gt; df.groupby(level=0).mean()
+        Max Speed
+Animal
+Falcon      370.0
+Parrot       25.0
+&gt;&gt;&gt; df.groupby(level=1).mean()
+         Max Speed
+Type
+Captive      210.0
+Wild         185.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.groupby.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.groupby.html</a>
+  </p>
+</div>

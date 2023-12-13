@@ -1,0 +1,46 @@
+<h1 id="pandas-dataframe-tail">pandas.DataFrame.tail</h1> <dl class="method"> <dt id="pandas.DataFrame.tail">
+<code>DataFrame.tail(self, n=5)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L4738-L4797"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the last <code>n</code> rows.</p> <p>This function returns last <code>n</code> rows from the object based on position. It is useful for quickly verifying data, for example, after sorting or appending rows.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>n : int, default 5</code> </dt> <dd>
+<p class="first last">Number of rows to select.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>type of caller</dt> <dd>
+<p class="first last">The last <code>n</code> rows of the caller object.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head"><code>DataFrame.head</code></a>
+</dt> <dd>The first <code>n</code> rows of the caller object.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'animal':['alligator', 'bee', 'falcon', 'lion',
+...                    'monkey', 'parrot', 'shark', 'whale', 'zebra']})
+&gt;&gt;&gt; df
+      animal
+0  alligator
+1        bee
+2     falcon
+3       lion
+4     monkey
+5     parrot
+6      shark
+7      whale
+8      zebra
+</pre> <p>Viewing the last 5 lines</p> <pre data-language="python">&gt;&gt;&gt; df.tail()
+   animal
+4  monkey
+5  parrot
+6   shark
+7   whale
+8   zebra
+</pre> <p>Viewing the last <code>n</code> lines (three in this case)</p> <pre data-language="python">&gt;&gt;&gt; df.tail(3)
+  animal
+6  shark
+7  whale
+8  zebra
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.tail.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.tail.html</a>
+  </p>
+</div>

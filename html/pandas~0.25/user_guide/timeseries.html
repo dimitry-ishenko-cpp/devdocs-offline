@@ -1,0 +1,30 @@
+<h1 id="timeseries">Time series / date functionality</h1> <p id="time-series-date-functionality">pandas contains extensive capabilities and features for working with time series data for all domains. Using the NumPy <code>datetime64</code> and <code>timedelta64</code> dtypes, pandas has consolidated a large number of features from other Python libraries like <code>scikits.timeseries</code> as well as created a tremendous amount of new functionality for manipulating time series data.</p> <p>For example, pandas supports:</p> <p>Parsing time series information from various sources and formats</p> <pre data-language="python">In [1]: import datetime
+
+In [2]: dti = pd.to_datetime(['1/1/2018', np.datetime64('2018-01-01'),
+   ...:                       datetime.datetime(2018, 1, 1)])
+   ...: 
+
+In [3]: dti
+Out[3]: DatetimeIndex(['2018-01-01', '2018-01-01', '2018-01-01'], dtype='datetime64[ns]', freq=None)
+</pre> <p>Generate sequences of fixed-frequency dates and time spans</p> <pre data-language="python">In [4]: dti = pd.date_range('2018-01-01', periods=3, freq='H')
+
+In [5]: dti
+Out[5]: 
+DatetimeIndex(['2018-01-01 00:00:00', '2018-01-01 01:00:00',
+               '2018-01-01 02:00:00'],
+              dtype='datetime64[ns]', freq='H')
+</pre> <p>Manipulating and converting date times with timezone information</p> <pre data-language="python">In [6]: dti = dti.tz_localize('UTC')
+
+In [7]: dti
+Out[7]: 
+DatetimeIndex(['2018-01-01 00:00:00+00:00', '2018-01-01 01:00:00+00:00',
+               '2018-01-01 02:00:00+00:00'],
+              dtype='datetime64[ns, UTC]', freq='H')
+
+In [8]: dti.tz_convert('US/Pacific')
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/timeseries.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/timeseries.html</a>
+  </p>
+</div>

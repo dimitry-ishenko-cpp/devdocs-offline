@@ -1,0 +1,25 @@
+<h1 id="basics">Essential basic functionality</h1> <p id="essential-basic-functionality">Here we discuss a lot of the essential functionality common to the pandas data structures. Here’s how to create some of the objects used in the examples from the previous section:</p> <pre data-language="python">In [1]: index = pd.date_range('1/1/2000', periods=8)
+
+In [2]: s = pd.Series(np.random.randn(5), index=['a', 'b', 'c', 'd', 'e'])
+
+In [3]: df = pd.DataFrame(np.random.randn(8, 3), index=index,
+   ...:                   columns=['A', 'B', 'C'])
+   ...: 
+</pre>  <h2 id="basics-head-tail">Head and tail</h2> <p id="head-and-tail">To view a small sample of a Series or DataFrame object, use the <a class="reference internal" href="../reference/api/pandas.dataframe.head.html#pandas.DataFrame.head" title="pandas.DataFrame.head"><code>head()</code></a> and <a class="reference internal" href="../reference/api/pandas.dataframe.tail.html#pandas.DataFrame.tail" title="pandas.DataFrame.tail"><code>tail()</code></a> methods. The default number of elements to display is five, but you may pass a custom number.</p> <pre data-language="python">In [4]: long_series = pd.Series(np.random.randn(1000))
+
+In [5]: long_series.head()
+Out[5]: 
+0   -1.157892
+1   -1.344312
+2    0.844885
+3    1.075770
+4   -0.109050
+dtype: float64
+
+In [6]: long_series.tail(3)
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/basics.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/getting_started/basics.html</a>
+  </p>
+</div>

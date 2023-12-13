@@ -1,0 +1,287 @@
+<h1 id="enhancingperf">Enhancing performance</h1> <p id="enhancing-performance">In this part of the tutorial, we will investigate how to speed up certain functions operating on pandas <code>DataFrames</code> using three different techniques: Cython, Numba and <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>pandas.eval()</code></a>. We will see a speed improvement of ~200 when we use Cython and Numba on a test function operating row-wise on the <code>DataFrame</code>. Using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>pandas.eval()</code></a> we will speed up a sum by an order of ~2.</p>  <h2 id="enhancingperf-cython">Cython (writing C extensions for pandas)</h2> <p id="cython-writing-c-extensions-for-pandas">For many use cases writing pandas in pure Python and NumPy is sufficient. In some computationally heavy applications however, it can be possible to achieve sizable speed-ups by offloading work to <a class="reference external" href="http://cython.org/">cython</a>.</p> <p>This tutorial assumes you have refactored as much as possible in Python, for example by trying to remove for-loops and making use of NumPy vectorization. It’s always worth optimising in Python first.</p> <p>This tutorial walks through a “typical” process of cythonizing a slow computation. We use an <a class="reference external" href="http://docs.cython.org/src/quickstart/cythonize.html">example from the Cython documentation</a> but in the context of pandas. Our final cythonized solution is around 100 times faster than the pure Python solution.</p>  <h3 id="enhancingperf-pure">Pure Python</h3> <p id="pure-python">We have a <code>DataFrame</code> to which we want to apply a function row-wise.</p> <pre data-language="python">In [1]: df = pd.DataFrame({'a': np.random.randn(1000),
+   ...:                    'b': np.random.randn(1000),
+   ...:                    'N': np.random.randint(100, 1000, (1000)),
+   ...:                    'x': 'x'})
+   ...: 
+
+In [2]: df
+Out[2]: 
+            a         b    N  x
+0    0.469112 -0.218470  585  x
+1   -0.282863 -0.061645  841  x
+2   -1.509059 -0.723780  251  x
+3   -1.135632  0.551225  972  x
+4    1.212112 -0.497767  181  x
+..        ...       ...  ... ..
+995 -1.512743  0.874737  374  x
+996  0.933753  1.120790  246  x
+997 -0.308013  0.198768  157  x
+998 -0.079915  1.757555  977  x
+999 -1.010589 -1.115680  770  x
+
+[1000 rows x 4 columns]
+</pre> <p>Here’s the function in pure Python:</p> <pre data-language="python">In [3]: def f(x):
+   ...:     return x * (x - 1)
+   ...: 
+
+In [4]: def integrate_f(a, b, N):
+   ...:     s = 0
+   ...:     dx = (b - a) / N
+   ...:     for i in range(N):
+   ...:         s += f(a + i * dx)
+   ...:     return s * dx
+   ...: 
+</pre> <p>We achieve our result by using <code>apply</code> (row-wise):</p> <pre data-language="python">In [7]: %timeit df.apply(lambda x: integrate_f(x['a'], x['b'], x['N']), axis=1)
+10 loops, best of 3: 174 ms per loop
+</pre> <p>But clearly this isn’t fast enough for us. Let’s take a look and see where the time is spent during this operation (limited to the most time consuming four calls) using the <a class="reference external" href="http://ipython.org/ipython-doc/stable/api/generated/IPython.core.magics.execution.html#IPython.core.magics.execution.ExecutionMagics.prun">prun ipython magic function</a>:</p> <pre data-language="python">In [5]: %prun -l 4 df.apply(lambda x: integrate_f(x['a'], x['b'], x['N']), axis=1)  # noqa E999
+         672332 function calls (667306 primitive calls) in 0.285 seconds
+
+   Ordered by: internal time
+   List reduced from 221 to 4 due to restriction &lt;4&gt;
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     1000    0.144    0.000    0.217    0.000 &lt;ipython-input-4-c2a74e076cf0&gt;:1(integrate_f)
+   552423    0.074    0.000    0.074    0.000 &lt;ipython-input-3-c138bdd570e3&gt;:1(f)
+     3000    0.008    0.000    0.045    0.000 base.py:4695(get_value)
+     6001    0.005    0.000    0.012    0.000 {pandas._libs.lib.values_from_object}
+</pre> <p>By far the majority of time is spend inside either <code>integrate_f</code> or <code>f</code>, hence we’ll concentrate our efforts cythonizing these two functions.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">In Python 2 replacing the <code>range</code> with its generator counterpart (<code>xrange</code>) would mean the <code>range</code> line would vanish. In Python 3 <code>range</code> is already a generator.</p> </div>   <h3 id="enhancingperf-plain">Plain Cython</h3> <p id="plain-cython">First we’re going to need to import the Cython magic function to ipython:</p> <pre data-language="python">In [6]: %load_ext Cython
+</pre> <p>Now, let’s simply copy our functions over to Cython as is (the suffix is here to distinguish between function versions):</p> <pre data-language="python">In [7]: %%cython
+   ...: def f_plain(x):
+   ...:     return x * (x - 1)
+   ...: def integrate_f_plain(a, b, N):
+   ...:     s = 0
+   ...:     dx = (b - a) / N
+   ...:     for i in range(N):
+   ...:         s += f_plain(a + i * dx)
+   ...:     return s * dx
+   ...: 
+</pre> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">If you’re having trouble pasting the above into your ipython, you may need to be using bleeding edge ipython for paste to play well with cell magics.</p> </div> <pre data-language="python">In [4]: %timeit df.apply(lambda x: integrate_f_plain(x['a'], x['b'], x['N']), axis=1)
+10 loops, best of 3: 85.5 ms per loop
+</pre> <p>Already this has shaved a third off, not too bad for a simple copy and paste.</p>   <h3 id="enhancingperf-type">Adding type</h3> <p id="adding-type">We get another huge improvement simply by providing type information:</p> <pre data-language="python">In [8]: %%cython
+   ...: cdef double f_typed(double x) except? -2:
+   ...:     return x * (x - 1)
+   ...: cpdef double integrate_f_typed(double a, double b, int N):
+   ...:     cdef int i
+   ...:     cdef double s, dx
+   ...:     s = 0
+   ...:     dx = (b - a) / N
+   ...:     for i in range(N):
+   ...:         s += f_typed(a + i * dx)
+   ...:     return s * dx
+   ...: 
+</pre> <pre data-language="python">In [4]: %timeit df.apply(lambda x: integrate_f_typed(x['a'], x['b'], x['N']), axis=1)
+10 loops, best of 3: 20.3 ms per loop
+</pre> <p>Now, we’re talking! It’s now over ten times faster than the original python implementation, and we haven’t <em>really</em> modified the code. Let’s have another look at what’s eating up time:</p> <pre data-language="python">In [9]: %prun -l 4 df.apply(lambda x: integrate_f_typed(x['a'], x['b'], x['N']), axis=1)
+         119905 function calls (114879 primitive calls) in 0.096 seconds
+
+   Ordered by: internal time
+   List reduced from 216 to 4 due to restriction &lt;4&gt;
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     3000    0.012    0.000    0.064    0.000 base.py:4695(get_value)
+     6001    0.007    0.000    0.017    0.000 {pandas._libs.lib.values_from_object}
+     3000    0.007    0.000    0.073    0.000 series.py:1061(__getitem__)
+     3000    0.006    0.000    0.006    0.000 {method 'get_value' of 'pandas._libs.index.IndexEngine' objects}
+</pre>   <h3 id="enhancingperf-ndarray">Using ndarray</h3> <p id="using-ndarray">It’s calling series… a lot! It’s creating a Series from each row, and get-ting from both the index and the series (three times for each row). Function calls are expensive in Python, so maybe we could minimize these by cythonizing the apply part.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">We are now passing ndarrays into the Cython function, fortunately Cython plays very nicely with NumPy.</p> </div> <pre data-language="python">In [10]: %%cython
+   ....: cimport numpy as np
+   ....: import numpy as np
+   ....: cdef double f_typed(double x) except? -2:
+   ....:     return x * (x - 1)
+   ....: cpdef double integrate_f_typed(double a, double b, int N):
+   ....:     cdef int i
+   ....:     cdef double s, dx
+   ....:     s = 0
+   ....:     dx = (b - a) / N
+   ....:     for i in range(N):
+   ....:         s += f_typed(a + i * dx)
+   ....:     return s * dx
+   ....: cpdef np.ndarray[double] apply_integrate_f(np.ndarray col_a, np.ndarray col_b,
+   ....:                                            np.ndarray col_N):
+   ....:     assert (col_a.dtype == np.float
+   ....:             and col_b.dtype == np.float and col_N.dtype == np.int)
+   ....:     cdef Py_ssize_t i, n = len(col_N)
+   ....:     assert (len(col_a) == len(col_b) == n)
+   ....:     cdef np.ndarray[double] res = np.empty(n)
+   ....:     for i in range(len(col_a)):
+   ....:         res[i] = integrate_f_typed(col_a[i], col_b[i], col_N[i])
+   ....:     return res
+   ....: 
+</pre> <p>The implementation is simple, it creates an array of zeros and loops over the rows, applying our <code>integrate_f_typed</code>, and putting this in the zeros array.</p> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p>You can <strong>not pass</strong> a <code>Series</code> directly as a <code>ndarray</code> typed parameter to a Cython function. Instead pass the actual <code>ndarray</code> using the <a class="reference internal" href="../reference/api/pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy()</code></a>. The reason is that the Cython definition is specific to an ndarray and not the passed <code>Series</code>.</p> <p>So, do not do this:</p> <pre data-language="python">apply_integrate_f(df['a'], df['b'], df['N'])
+</pre> <p>But rather, use <a class="reference internal" href="../reference/api/pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy()</code></a> to get the underlying <code>ndarray</code>:</p> <pre data-language="python">apply_integrate_f(df['a'].to_numpy(),
+                  df['b'].to_numpy(),
+                  df['N'].to_numpy())
+</pre> </div> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">Loops like this would be <em>extremely</em> slow in Python, but in Cython looping over NumPy arrays is <em>fast</em>.</p> </div> <pre data-language="python">In [4]: %timeit apply_integrate_f(df['a'].to_numpy(),
+                                  df['b'].to_numpy(),
+                                  df['N'].to_numpy())
+1000 loops, best of 3: 1.25 ms per loop
+</pre> <p>We’ve gotten another big improvement. Let’s check again where the time is spent:</p> <pre data-language="python">In [11]: %prun -l 4 apply_integrate_f(df['a'].to_numpy(),
+   ....:                              df['b'].to_numpy(),
+   ....:                              df['N'].to_numpy())
+   ....: 
+  File "&lt;ipython-input-11-613f5c6ec02d&gt;", line 2
+    df['b'].to_numpy(),
+    ^
+IndentationError: unexpected indent
+</pre> <p>As one might expect, the majority of the time is now spent in <code>apply_integrate_f</code>, so if we wanted to make anymore efficiencies we must continue to concentrate our efforts here.</p>   <h3 id="enhancingperf-boundswrap">More advanced techniques</h3> <p id="more-advanced-techniques">There is still hope for improvement. Here’s an example of using some more advanced Cython techniques:</p> <pre data-language="python">In [12]: %%cython
+   ....: cimport cython
+   ....: cimport numpy as np
+   ....: import numpy as np
+   ....: cdef double f_typed(double x) except? -2:
+   ....:     return x * (x - 1)
+   ....: cpdef double integrate_f_typed(double a, double b, int N):
+   ....:     cdef int i
+   ....:     cdef double s, dx
+   ....:     s = 0
+   ....:     dx = (b - a) / N
+   ....:     for i in range(N):
+   ....:         s += f_typed(a + i * dx)
+   ....:     return s * dx
+   ....: @cython.boundscheck(False)
+   ....: @cython.wraparound(False)
+   ....: cpdef np.ndarray[double] apply_integrate_f_wrap(np.ndarray[double] col_a,
+   ....:                                                 np.ndarray[double] col_b,
+   ....:                                                 np.ndarray[int] col_N):
+   ....:     cdef int i, n = len(col_N)
+   ....:     assert len(col_a) == len(col_b) == n
+   ....:     cdef np.ndarray[double] res = np.empty(n)
+   ....:     for i in range(n):
+   ....:         res[i] = integrate_f_typed(col_a[i], col_b[i], col_N[i])
+   ....:     return res
+   ....: 
+</pre> <pre data-language="python">In [4]: %timeit apply_integrate_f_wrap(df['a'].to_numpy(),
+                                       df['b'].to_numpy(),
+                                       df['N'].to_numpy())
+1000 loops, best of 3: 987 us per loop
+</pre> <p>Even faster, with the caveat that a bug in our Cython code (an off-by-one error, for example) might cause a segfault because memory access isn’t checked. For more about <code>boundscheck</code> and <code>wraparound</code>, see the Cython docs on <a class="reference external" href="http://cython.readthedocs.io/en/latest/src/reference/compilation.html?highlight=wraparound#compiler-directives">compiler directives</a>.</p>    <h2 id="enhancingperf-numba">Using Numba</h2> <p id="using-numba">A recent alternative to statically compiling Cython code, is to use a <em>dynamic jit-compiler</em>, Numba.</p> <p>Numba gives you the power to speed up your applications with high performance functions written directly in Python. With a few annotations, array-oriented and math-heavy Python code can be just-in-time compiled to native machine instructions, similar in performance to C, C++ and Fortran, without having to switch languages or Python interpreters.</p> <p>Numba works by generating optimized machine code using the LLVM compiler infrastructure at import time, runtime, or statically (using the included pycc tool). Numba supports compilation of Python to run on either CPU or GPU hardware, and is designed to integrate with the Python scientific software stack.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">You will need to install Numba. This is easy with <code>conda</code>, by using: <code>conda install numba</code>, see <a class="reference internal" href="../install.html#install-miniconda"><span class="std std-ref">installing using miniconda</span></a>.</p> </div> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">As of Numba version 0.20, pandas objects cannot be passed directly to Numba-compiled functions. Instead, one must pass the NumPy array underlying the pandas object to the Numba-compiled function as demonstrated below.</p> </div>  <h3 id="jit">Jit</h3> <p>We demonstrate how to use Numba to just-in-time compile our code. We simply take the plain Python code from above and annotate with the <code>@jit</code> decorator.</p> <pre data-language="python">import numba
+
+
+@numba.jit
+def f_plain(x):
+    return x * (x - 1)
+
+
+@numba.jit
+def integrate_f_numba(a, b, N):
+    s = 0
+    dx = (b - a) / N
+    for i in range(N):
+        s += f_plain(a + i * dx)
+    return s * dx
+
+
+@numba.jit
+def apply_integrate_f_numba(col_a, col_b, col_N):
+    n = len(col_N)
+    result = np.empty(n, dtype='float64')
+    assert len(col_a) == len(col_b) == n
+    for i in range(n):
+        result[i] = integrate_f_numba(col_a[i], col_b[i], col_N[i])
+    return result
+
+
+def compute_numba(df):
+    result = apply_integrate_f_numba(df['a'].to_numpy(),
+                                     df['b'].to_numpy(),
+                                     df['N'].to_numpy())
+    return pd.Series(result, index=df.index, name='result')
+</pre> <p>Note that we directly pass NumPy arrays to the Numba function. <code>compute_numba</code> is just a wrapper that provides a nicer interface by passing/returning pandas objects.</p> <pre data-language="python">In [4]: %timeit compute_numba(df)
+1000 loops, best of 3: 798 us per loop
+</pre> <p>In this example, using Numba was faster than Cython.</p>   <h3 id="vectorize">Vectorize</h3> <p>Numba can also be used to write vectorized functions that do not require the user to explicitly loop over the observations of a vector; a vectorized function will be applied to each row automatically. Consider the following toy example of doubling each observation:</p> <pre data-language="python">import numba
+
+
+def double_every_value_nonumba(x):
+    return x * 2
+
+
+@numba.vectorize
+def double_every_value_withnumba(x):  # noqa E501
+    return x * 2
+</pre> <pre data-language="python"># Custom function without numba
+In [5]: %timeit df['col1_doubled'] = df.a.apply(double_every_value_nonumba)  # noqa E501
+1000 loops, best of 3: 797 us per loop
+
+# Standard implementation (faster than a custom function)
+In [6]: %timeit df['col1_doubled'] = df.a * 2
+1000 loops, best of 3: 233 us per loop
+
+# Custom function with numba
+In [7]: %timeit (df['col1_doubled'] = double_every_value_withnumba(df.a.to_numpy())
+1000 loops, best of 3: 145 us per loop
+</pre>   <h3 id="caveats">Caveats</h3> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">Numba will execute on any function, but can only accelerate certain classes of functions.</p> </div> <p>Numba is best at accelerating functions that apply numerical functions to NumPy arrays. When passed a function that only uses operations it knows how to accelerate, it will execute in <code>nopython</code> mode.</p> <p>If Numba is passed a function that includes something it doesn’t know how to work with – a category that currently includes sets, lists, dictionaries, or string functions – it will revert to <code>object mode</code>. In <code>object mode</code>, Numba will execute but your code will not speed up significantly. If you would prefer that Numba throw an error if it cannot compile a function in a way that speeds up your code, pass Numba the argument <code>nopython=True</code> (e.g. <code>@numba.jit(nopython=True)</code>). For more on troubleshooting Numba modes, see the <a class="reference external" href="http://numba.pydata.org/numba-doc/latest/user/troubleshoot.html#the-compiled-code-is-too-slow">Numba troubleshooting page</a>.</p> <p>Read more in the <a class="reference external" href="http://numba.pydata.org/">Numba docs</a>.</p>    <h2 id="enhancingperf-eval">Expression evaluation via <code>eval()</code>
+</h2> <p id="expression-evaluation-via-eval">The top-level function <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>pandas.eval()</code></a> implements expression evaluation of <a class="reference internal" href="../reference/api/pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a> and <a class="reference internal" href="../reference/api/pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> objects.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">To benefit from using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> you need to install <code>numexpr</code>. See the <a class="reference internal" href="../install.html#install-recommended-dependencies"><span class="std std-ref">recommended dependencies section</span></a> for more details.</p> </div> <p>The point of using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> for expression evaluation rather than plain Python is two-fold: 1) large <a class="reference internal" href="../reference/api/pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> objects are evaluated more efficiently and 2) large arithmetic and boolean expressions are evaluated all at once by the underlying engine (by default <code>numexpr</code> is used for evaluation).</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">You should not use <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> for simple expressions or for expressions involving small DataFrames. In fact, <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> is many orders of magnitude slower for smaller expressions/objects than plain ol’ Python. A good rule of thumb is to only use <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> when you have a <code>DataFrame</code> with more than 10,000 rows.</p> </div> <p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> supports all arithmetic expressions supported by the engine in addition to some extensions available only in pandas.</p> <div class="admonition note"> <p class="first admonition-title">Note</p> <p class="last">The larger the frame and the larger the expression the more speedup you will see from using <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a>.</p> </div>  <h3 id="supported-syntax">Supported syntax</h3> <p>These operations are supported by <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>pandas.eval()</code></a>:</p> <ul class="simple"> <li>Arithmetic operations except for the left shift (<code>&lt;&lt;</code>) and right shift (<code>&gt;&gt;</code>) operators, e.g., <code>df + 2 * pi / s ** 4 % 42 - the_golden_ratio</code>
+</li> <li>Comparison operations, including chained comparisons, e.g., <code>2 &lt; df &lt; df2</code>
+</li> <li>Boolean operations, e.g., <code>df &lt; df2 and df3 &lt; df4 or not df_bool</code>
+</li> <li>
+<code>list</code> and <code>tuple</code> literals, e.g., <code>[1, 2]</code> or <code>(1, 2)</code>
+</li> <li>Attribute access, e.g., <code>df.a</code>
+</li> <li>Subscript expressions, e.g., <code>df[0]</code>
+</li> <li>Simple variable evaluation, e.g., <code>pd.eval('df')</code> (this is not very useful)</li> <li>Math functions: <code>sin</code>, <code>cos</code>, <code>exp</code>, <code>log</code>, <code>expm1</code>, <code>log1p</code>, <code>sqrt</code>, <code>sinh</code>, <code>cosh</code>, <code>tanh</code>, <code>arcsin</code>, <code>arccos</code>, <code>arctan</code>, <code>arccosh</code>, <code>arcsinh</code>, <code>arctanh</code>, <code>abs</code>, <code>arctan2</code> and <code>log10</code>.</li> </ul> <p>This Python syntax is <strong>not</strong> allowed:</p> <ul> <li>
+<p class="first">Expressions</p>  <ul class="simple"> <li>Function calls other than math functions.</li> <li>
+<code>is</code>/<code>is not</code> operations</li> <li>
+<code>if</code> expressions</li> <li>
+<code>lambda</code> expressions</li> <li>
+<code>list</code>/<code>set</code>/<code>dict</code> comprehensions</li> <li>Literal <code>dict</code> and <code>set</code> expressions</li> <li>
+<code>yield</code> expressions</li> <li>Generator expressions</li> <li>Boolean expressions consisting of only scalar values</li> </ul>  </li> <li>
+<p class="first">Statements</p>  <ul class="simple"> <li>Neither <a class="reference external" href="https://docs.python.org/3/reference/simple_stmts.html">simple</a> nor <a class="reference external" href="https://docs.python.org/3/reference/compound_stmts.html">compound</a> statements are allowed. This includes things like <code>for</code>, <code>while</code>, and <code>if</code>.</li> </ul>  </li> </ul>   <h3 id="eval-examples">
+<code>eval()</code> examples</h3> <p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>pandas.eval()</code></a> works well with expressions containing large arrays.</p> <p>First let’s create a few decent-sized arrays to play with:</p> <pre data-language="python">In [13]: nrows, ncols = 20000, 100
+
+In [14]: df1, df2, df3, df4 = [pd.DataFrame(np.random.randn(nrows, ncols)) for _ in range(4)]
+</pre> <p>Now let’s compare adding them together using plain ol’ Python versus <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a>:</p> <pre data-language="python">In [15]: %timeit df1 + df2 + df3 + df4
+21 ms +- 787 us per loop (mean +- std. dev. of 7 runs, 10 loops each)
+</pre> <pre data-language="python">In [16]: %timeit pd.eval('df1 + df2 + df3 + df4')
+8.12 ms +- 249 us per loop (mean +- std. dev. of 7 runs, 100 loops each)
+</pre> <p>Now let’s do the same thing but with comparisons:</p> <pre data-language="python">In [17]: %timeit (df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)
+272 ms +- 6.92 ms per loop (mean +- std. dev. of 7 runs, 1 loop each)
+</pre> <pre data-language="python">In [18]: %timeit pd.eval('(df1 &gt; 0) &amp; (df2 &gt; 0) &amp; (df3 &gt; 0) &amp; (df4 &gt; 0)')
+19.2 ms +- 1.87 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)
+</pre> <p><a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>eval()</code></a> also works with unaligned pandas objects:</p> <pre data-language="python">In [19]: s = pd.Series(np.random.randn(50))
+
+In [20]: %timeit df1 + df2 + df3 + df4 + s
+103 ms +- 12.7 ms per loop (mean +- std. dev. of 7 runs, 10 loops each)
+</pre> <pre data-language="python">In [21]: %timeit pd.eval('df1 + df2 + df3 + df4 + s')
+10.2 ms +- 215 us per loop (mean +- std. dev. of 7 runs, 100 loops each)
+</pre> <div class="admonition note"> <p class="first admonition-title">Note</p> <p>Operations such as</p>  <pre data-language="python">1 and 2  # would parse to 1 &amp; 2, but should evaluate to 2
+3 or 4  # would parse to 3 | 4, but should evaluate to 3
+~1  # this is okay, but slower when using eval
+</pre>  <p class="last">should be performed in Python. An exception will be raised if you try to perform any boolean/bitwise operations with scalar operands that are not of type <code>bool</code> or <code>np.bool_</code>. Again, you should perform these kinds of operations in plain Python.</p> </div>   <h3 id="the-dataframe-eval-method">The <code>DataFrame.eval</code> method</h3> <p>In addition to the top level <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>pandas.eval()</code></a> function you can also evaluate an expression in the “context” of a <a class="reference internal" href="../reference/api/pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a>.</p> <pre data-language="python">In [22]: df = pd.DataFrame(np.random.randn(5, 2), columns=['a', 'b'])
+
+In [23]: df.eval('a + b')
+Out[23]: 
+0   -0.246747
+1    0.867786
+2   -1.626063
+3   -1.134978
+4   -1.027798
+dtype: float64
+</pre> <p>Any expression that is a valid <a class="reference internal" href="../reference/api/pandas.eval.html#pandas.eval" title="pandas.eval"><code>pandas.eval()</code></a> expression is also a valid <a class="reference internal" href="../reference/api/pandas.dataframe.eval.html#pandas.DataFrame.eval" title="pandas.DataFrame.eval"><code>DataFrame.eval()</code></a> expression, with the added benefit that you don’t have to prefix the name of the <a class="reference internal" href="../reference/api/pandas.dataframe.html#pandas.DataFrame" title="pandas.DataFrame"><code>DataFrame</code></a> to the column(s) you’re interested in evaluating.</p> <p>In addition, you can perform assignment of columns within an expression. This allows for <em>formulaic evaluation</em>. The assignment target can be a new column name or an existing column name, and it must be a valid Python identifier.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> <p>The <code>inplace</code> keyword determines whether this assignment will performed on the original <code>DataFrame</code> or return a copy with the new column.</p> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">For backwards compatibility, <code>inplace</code> defaults to <code>True</code> if not specified. This will change in a future version of pandas - if your code depends on an inplace assignment you should update to explicitly set <code>inplace=True</code>.</p> </div> <pre data-language="python">In [24]: df = pd.DataFrame(dict(a=range(5), b=range(5, 10)))
+
+In [25]: df.eval('c = a + b', inplace=True)
+
+In [26]: df.eval('d = a + b + c', inplace=True)
+
+In [27]: df.eval('a = 1', inplace=True)
+
+In [28]: df
+Out[28]: 
+   a  b   c   d
+0  1  5   5  10
+1  1  6   7  14
+2  1  7   9  18
+3  1  8  11  22
+4  1  9  13  26
+</pre> <p>When <code>inplace</code> is set to <code>False</code>, a copy of the <code>DataFrame</code> with the new or modified columns is returned and the original frame is unchanged.</p> <pre data-language="python">In [29]: df
+Out[29]: 
+   a  b   c   d
+0  1  5   5  10
+1  1  6   7  14
+2  1  7   9  18
+3  1  8  11  22
+4  1  9  13  26
+
+In [30]: df.eval('e = a - c', inplace=False)
+</pre><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/enhancingperf.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/user_guide/enhancingperf.html</a>
+  </p>
+</div>

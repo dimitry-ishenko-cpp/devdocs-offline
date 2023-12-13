@@ -1,0 +1,19 @@
+<h1 id="pandas-series-slice-shift">pandas.Series.slice_shift</h1> <dl class="method"> <dt id="pandas.Series.slice_shift">
+<code>Series.slice_shift(self, periods=1, axis=0)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L9408-L9442"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Equivalent to <code>shift</code> without copying data. The shifted data will not include the dropped periods and the shifted axis will be smaller than the original.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>periods : int</code> </dt> <dd>
+<p class="first last">Number of periods to move, can be positive or negative</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>shifted : same type as caller</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>While the <code>slice_shift</code> is faster than <code>shift</code>, you may pay for it later during alignment.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.slice_shift.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.slice_shift.html</a>
+  </p>
+</div>

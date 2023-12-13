@@ -1,0 +1,27 @@
+<h1 id="pandas-period-qyear">pandas.Period.qyear</h1> <dl class="attribute"> <dt id="pandas.Period.qyear">
+<code>Period.qyear</code> </dt> <dd>
+<p>Fiscal year the Period lies in according to its starting-quarter.</p> <p>The <code>year</code> and the <code>qyear</code> of the period will be the same if the fiscal and calendar years are the same. When they are not, the fiscal year can be different from the calendar year of the period.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>int</dt> <dd>
+<p class="first last">The fiscal year of the period.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.period.year.html#pandas.Period.year" title="pandas.Period.year"><code>Period.year</code></a>
+</dt> <dd>Return the calendar year of the period.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>If the natural and fiscal year are the same, <code>qyear</code> and <code>year</code> will be the same.</p> <pre data-language="python">&gt;&gt;&gt; per = pd.Period('2018Q1', freq='Q')
+&gt;&gt;&gt; per.qyear
+2018
+&gt;&gt;&gt; per.year
+2018
+</pre> <p>If the fiscal year starts in April (<code>Q-MAR</code>), the first quarter of 2018 will start in April 2017. <code>year</code> will then be 2018, but <code>qyear</code> will be the fiscal year, 2018.</p> <pre data-language="python">&gt;&gt;&gt; per = pd.Period('2018Q1', freq='Q-MAR')
+&gt;&gt;&gt; per.start_time
+Timestamp('2017-04-01 00:00:00')
+&gt;&gt;&gt; per.qyear
+2018
+&gt;&gt;&gt; per.year
+2017
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.qyear.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Period.qyear.html</a>
+  </p>
+</div>

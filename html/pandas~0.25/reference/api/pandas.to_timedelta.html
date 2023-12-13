@@ -1,0 +1,45 @@
+<h1 id="pandas-to-timedelta">pandas.to_timedelta</h1> <dl class="function"> <dt id="pandas.to_timedelta">
+<code>pandas.to_timedelta(arg, unit='ns', box=True, errors='raise')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/tools/timedeltas.py#L19-L127"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert argument to timedelta.</p> <p>Timedeltas are absolute differences in times, expressed in difference units (e.g. days, hours, minutes, seconds). This method converts an argument from a recognized timedelta format / value into a Timedelta type.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arg : str, timedelta, list-like or Series</code> </dt> <dd>
+<p class="first last">The data to be converted to timedelta.</p> </dd> <dt>
+<code>unit : str, default ‘ns’</code> </dt> <dd>
+<p class="first last">Denotes the unit of the arg. Possible values: (‘Y’, ‘M’, ‘W’, ‘D’, ‘days’, ‘day’, ‘hours’, hour’, ‘hr’, ‘h’, ‘m’, ‘minute’, ‘min’, ‘minutes’, ‘T’, ‘S’, ‘seconds’, ‘sec’, ‘second’, ‘ms’, ‘milliseconds’, ‘millisecond’, ‘milli’, ‘millis’, ‘L’, ‘us’, ‘microseconds’, ‘microsecond’, ‘micro’, ‘micros’, ‘U’, ‘ns’, ‘nanoseconds’, ‘nano’, ‘nanos’, ‘nanosecond’, ‘N’).</p> </dd> <dt>
+<code>box : bool, default True</code> </dt> <dd>
+<ul class="first simple"> <li>If True returns a Timedelta/TimedeltaIndex of the results.</li> <li>If False returns a numpy.timedelta64 or numpy.darray of values of dtype timedelta64[ns].</li> </ul> <div class="last deprecated"> <p><span class="versionmodified">Deprecated since version 0.25.0: </span>Use <a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy()</code></a> or <a class="reference internal" href="pandas.timedelta.to_timedelta64.html#pandas.Timedelta.to_timedelta64" title="pandas.Timedelta.to_timedelta64"><code>Timedelta.to_timedelta64()</code></a> instead to get an ndarray of values or numpy.timedelta64, respectively.</p> </div> </dd> <dt>
+<code>errors : {‘ignore’, ‘raise’, ‘coerce’}, default ‘raise’</code> </dt> <dd>
+<ul class="first last simple"> <li>If ‘raise’, then invalid parsing will raise an exception.</li> <li>If ‘coerce’, then invalid parsing will be set as NaT.</li> <li>If ‘ignore’, then invalid parsing will return the input.</li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>timedelta64 or numpy.array of timedelta64</dt> <dd>
+<p class="first last">Output type returned if parsing succeeded.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.astype.html#pandas.DataFrame.astype" title="pandas.DataFrame.astype"><code>DataFrame.astype</code></a>
+</dt> <dd>Cast argument to a specified dtype.</dd> <dt>
+ <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code>to_datetime</code></a>
+</dt> <dd>Convert argument to datetime.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>Parsing a single string to a Timedelta:</p> <pre data-language="python">&gt;&gt;&gt; pd.to_timedelta('1 days 06:05:01.00003')
+Timedelta('1 days 06:05:01.000030')
+&gt;&gt;&gt; pd.to_timedelta('15.5us')
+Timedelta('0 days 00:00:00.000015')
+</pre> <p>Parsing a list or array of strings:</p> <pre data-language="python">&gt;&gt;&gt; pd.to_timedelta(['1 days 06:05:01.00003', '15.5us', 'nan'])
+TimedeltaIndex(['1 days 06:05:01.000030', '0 days 00:00:00.000015', NaT],
+               dtype='timedelta64[ns]', freq=None)
+</pre> <p>Converting numbers by specifying the <code>unit</code> keyword argument:</p> <pre data-language="python">&gt;&gt;&gt; pd.to_timedelta(np.arange(5), unit='s')
+TimedeltaIndex(['00:00:00', '00:00:01', '00:00:02',
+                '00:00:03', '00:00:04'],
+               dtype='timedelta64[ns]', freq=None)
+&gt;&gt;&gt; pd.to_timedelta(np.arange(5), unit='d')
+TimedeltaIndex(['0 days', '1 days', '2 days', '3 days', '4 days'],
+               dtype='timedelta64[ns]', freq=None)
+</pre> <p>Returning an ndarray by using the ‘box’ keyword argument:</p> <pre data-language="python">&gt;&gt;&gt; pd.to_timedelta(np.arange(5), box=False)
+array([0, 1, 2, 3, 4], dtype='timedelta64[ns]')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.to_timedelta.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.to_timedelta.html</a>
+  </p>
+</div>

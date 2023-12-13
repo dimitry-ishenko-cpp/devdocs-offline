@@ -1,0 +1,28 @@
+<h1 id="pandas-hdfstore-put">pandas.HDFStore.put</h1> <dl class="method"> <dt id="pandas.HDFStore.put">
+<code>HDFStore.put(self, key, value, format=None, append=False, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/pytables.py#L931-L959"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Store object in HDFStore</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>key : object</code> </dt>  <dt>
+<code>value : {Series, DataFrame}</code> </dt>  <dt>
+<code>format : ‘fixed(f)|table(t)’, default is ‘fixed’</code> </dt> <dd>
+<dl class="first last docutils"> <dt>
+<code>fixed(f) : Fixed format</code> </dt> <dd>
+<p class="first last">Fast writing/reading. Not-appendable, nor searchable</p> </dd> <dt>
+<code>table(t) : Table format</code> </dt> <dd>
+<p class="first last">Write as a PyTables Table structure which may perform worse but allow more flexible operations like searching / selecting subsets of the data</p> </dd> </dl> </dd> <dt>
+<code>append : boolean, default False</code> </dt> <dd>
+<p class="first last">This will force Table format, append the input data to the existing.</p> </dd> <dt>
+<code>data_columns : list of columns to create as data columns, or True to</code> </dt> <dd>
+<p class="first last">use all columns. See <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#query-via-data-columns">here</a>.</p> </dd> <dt>
+<code>encoding : default None, provide an encoding for strings</code> </dt>  <dt>
+<code>dropna : boolean, default False, do not write an ALL nan row to</code> </dt> <dd>
+<p class="first last">the store settable by the option ‘io.hdf.dropna_table’</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.HDFStore.put.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.HDFStore.put.html</a>
+  </p>
+</div>

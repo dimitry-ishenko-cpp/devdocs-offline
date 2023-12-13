@@ -1,0 +1,24 @@
+<h1 id="pandas-hdfstore-walk">pandas.HDFStore.walk</h1> <dl class="method"> <dt id="pandas.HDFStore.walk">
+<code>HDFStore.walk(self, where='/')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/io/pytables.py#L1191-L1235"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Walk the pytables group hierarchy for pandas objects</p> <p>This generator will yield the group path, subgroups and pandas object names for each group. Any non-pandas PyTables objects that are not a group will be ignored.</p> <p>The <code>where</code> group itself is listed first (preorder), then each of its child groups (following an alphanumerical order) is also traversed, following the same procedure.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>where : str, optional</code> </dt> <dd>
+<p class="first last">Group where to start walking. If not supplied, the root group is used.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Yields:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>path : str</code> </dt> <dd>
+<p class="first last">Full path to a group (without trailing ‘/’)</p> </dd> <dt>
+<code>groups : list of str</code> </dt> <dd>
+<p class="first last">names of the groups contained in <code>path</code></p> </dd> <dt>
+<code>leaves : list of str</code> </dt> <dd>
+<p class="first last">names of the pandas objects contained in <code>path</code></p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.HDFStore.walk.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.HDFStore.walk.html</a>
+  </p>
+</div>

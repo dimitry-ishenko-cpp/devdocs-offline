@@ -1,0 +1,84 @@
+<h1 id="pandas-series-mask">pandas.Series.mask</h1> <dl class="method"> <dt id="pandas.Series.mask">
+<code>Series.mask(self, cond, other=nan, inplace=False, axis=None, level=None, errors='raise', try_cast=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L9281-L9317"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Replace values where the condition is True.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>cond : boolean Series/DataFrame, array-like, or callable</code> </dt> <dd>
+<p class="first">Where <code>cond</code> is False, keep the original value. Where True, replace with corresponding value from <code>other</code>. If <code>cond</code> is callable, it is computed on the Series/DataFrame and should return boolean Series/DataFrame or array. The callable must not change input Series/DataFrame (though pandas doesn’t check it).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.1: </span>A callable can be used as cond.</p> </div> </dd> <dt>
+<code>other : scalar, Series/DataFrame, or callable</code> </dt> <dd>
+<p class="first">Entries where <code>cond</code> is True are replaced with corresponding value from <code>other</code>. If other is callable, it is computed on the Series/DataFrame and should return scalar or Series/DataFrame. The callable must not change input Series/DataFrame (though pandas doesn’t check it).</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.1: </span>A callable can be used as other.</p> </div> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to perform the operation in place on the data.</p> </dd> <dt>
+<code>axis : int, default None</code> </dt> <dd>
+<p class="first last">Alignment axis if needed.</p> </dd> <dt>
+<code>level : int, default None</code> </dt> <dd>
+<p class="first last">Alignment level if needed.</p> </dd> <dt>
+<code>errors : str, {‘raise’, ‘ignore’}, default ‘raise’</code> </dt> <dd>
+<p class="first">Note that currently this parameter won’t affect the results and will always coerce to a suitable dtype.</p> <ul class="last simple"> <li>‘raise’ : allow exceptions to be raised.</li> <li>‘ignore’ : suppress exceptions. On error return original object.</li> </ul> </dd> <dt>
+<code>try_cast : bool, default False</code> </dt> <dd>
+<p class="first last">Try to cast the result back to the input type (if possible).</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Same type as caller</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.where.html#pandas.DataFrame.where" title="pandas.DataFrame.where"><code>DataFrame.where()</code></a>
+</dt> <dd>Return an object of same shape as self.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The mask method is an application of the if-then idiom. For each element in the calling DataFrame, if <code>cond</code> is <code>False</code> the element is used; otherwise the corresponding element from the DataFrame <code>other</code> is used.</p> <p>The signature for <a class="reference internal" href="pandas.dataframe.where.html#pandas.DataFrame.where" title="pandas.DataFrame.where"><code>DataFrame.where()</code></a> differs from <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.where.html#numpy.where" title="(in NumPy v1.16)"><code>numpy.where()</code></a>. Roughly <code>df1.where(m, df2)</code> is equivalent to <code>np.where(m, df1, df2)</code>.</p> <p>For further details and examples see the <code>mask</code> documentation in <a class="reference internal" href="../../user_guide/indexing.html#indexing-where-mask"><span class="std std-ref">indexing</span></a>.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(range(5))
+&gt;&gt;&gt; s.where(s &gt; 0)
+0    NaN
+1    1.0
+2    2.0
+3    3.0
+4    4.0
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.mask(s &gt; 0)
+0    0.0
+1    NaN
+2    NaN
+3    NaN
+4    NaN
+dtype: float64
+</pre> <pre data-language="python">&gt;&gt;&gt; s.where(s &gt; 1, 10)
+0    10
+1    10
+2    2
+3    3
+4    4
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(np.arange(10).reshape(-1, 2), columns=['A', 'B'])
+&gt;&gt;&gt; df
+   A  B
+0  0  1
+1  2  3
+2  4  5
+3  6  7
+4  8  9
+&gt;&gt;&gt; m = df % 3 == 0
+&gt;&gt;&gt; df.where(m, -df)
+   A  B
+0  0 -1
+1 -2  3
+2 -4 -5
+3  6 -7
+4 -8  9
+&gt;&gt;&gt; df.where(m, -df) == np.where(m, df, -df)
+      A     B
+0  True  True
+1  True  True
+2  True  True
+3  True  True
+4  True  True
+&gt;&gt;&gt; df.where(m, -df) == df.mask(~m, -df)
+      A     B
+0  True  True
+1  True  True
+2  True  True
+3  True  True
+4  True  True
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.mask.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.mask.html</a>
+  </p>
+</div>

@@ -1,0 +1,56 @@
+<h1 id="pandas-series-factorize">pandas.Series.factorize</h1> <dl class="method"> <dt id="pandas.Series.factorize">
+<code>Series.factorize(self, sort=False, na_sentinel=-1)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/base.py#L1525-L1539"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Encode the object as an enumerated type or categorical variable.</p> <p>This method is useful for obtaining a numeric representation of an array when all that matters is identifying distinct values. <code>factorize</code> is available as both a top-level function <a class="reference internal" href="pandas.factorize.html#pandas.factorize" title="pandas.factorize"><code>pandas.factorize()</code></a>, and as a method <a class="reference internal" href="#pandas.Series.factorize" title="pandas.Series.factorize"><code>Series.factorize()</code></a> and <a class="reference internal" href="pandas.index.factorize.html#pandas.Index.factorize" title="pandas.Index.factorize"><code>Index.factorize()</code></a>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>sort : boolean, default False</code> </dt> <dd>
+<p class="first last">Sort <code>uniques</code> and shuffle <code>labels</code> to maintain the relationship.</p> </dd> <dt>
+<code>na_sentinel : int, default -1</code> </dt> <dd>
+<p class="first last">Value to mark “not found”.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>labels : ndarray</code> </dt> <dd>
+<p class="first last">An integer ndarray that’s an indexer into <code>uniques</code>. <code>uniques.take(labels)</code> will have the same values as <code>values</code>.</p> </dd> <dt>
+<code>uniques : ndarray, Index, or Categorical</code> </dt> <dd>
+<p class="first">The unique valid values. When <code>values</code> is Categorical, <code>uniques</code> is a Categorical. When <code>values</code> is some other pandas object, an <code>Index</code> is returned. Otherwise, a 1-D ndarray is returned.</p> <div class="last admonition note"> <p class="first admonition-title">Note</p> <p class="last">Even if there’s a missing value in <code>values</code>, <code>uniques</code> will <em>not</em> contain an entry for it.</p> </div> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.cut.html#pandas.cut" title="pandas.cut"><code>cut</code></a>
+</dt> <dd>Discretize continuous-valued array.</dd> <dt>
+ <a class="reference internal" href="pandas.unique.html#pandas.unique" title="pandas.unique"><code>unique</code></a>
+</dt> <dd>Find the unique value in an array.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>These examples all show factorize as a top-level method like <code>pd.factorize(values)</code>. The results are identical for methods like <a class="reference internal" href="#pandas.Series.factorize" title="pandas.Series.factorize"><code>Series.factorize()</code></a>.</p> <pre data-language="python">&gt;&gt;&gt; labels, uniques = pd.factorize(['b', 'b', 'a', 'c', 'b'])
+&gt;&gt;&gt; labels
+array([0, 0, 1, 2, 0])
+&gt;&gt;&gt; uniques
+array(['b', 'a', 'c'], dtype=object)
+</pre> <p>With <code>sort=True</code>, the <code>uniques</code> will be sorted, and <code>labels</code> will be shuffled so that the relationship is the maintained.</p> <pre data-language="python">&gt;&gt;&gt; labels, uniques = pd.factorize(['b', 'b', 'a', 'c', 'b'], sort=True)
+&gt;&gt;&gt; labels
+array([1, 1, 0, 2, 1])
+&gt;&gt;&gt; uniques
+array(['a', 'b', 'c'], dtype=object)
+</pre> <p>Missing values are indicated in <code>labels</code> with <code>na_sentinel</code> (<code>-1</code> by default). Note that missing values are never included in <code>uniques</code>.</p> <pre data-language="python">&gt;&gt;&gt; labels, uniques = pd.factorize(['b', None, 'a', 'c', 'b'])
+&gt;&gt;&gt; labels
+array([ 0, -1,  1,  2,  0])
+&gt;&gt;&gt; uniques
+array(['b', 'a', 'c'], dtype=object)
+</pre> <p>Thus far, we’ve only factorized lists (which are internally coerced to NumPy arrays). When factorizing pandas objects, the type of <code>uniques</code> will differ. For Categoricals, a <code>Categorical</code> is returned.</p> <pre data-language="python">&gt;&gt;&gt; cat = pd.Categorical(['a', 'a', 'c'], categories=['a', 'b', 'c'])
+&gt;&gt;&gt; labels, uniques = pd.factorize(cat)
+&gt;&gt;&gt; labels
+array([0, 0, 1])
+&gt;&gt;&gt; uniques
+[a, c]
+Categories (3, object): [a, b, c]
+</pre> <p>Notice that <code>'b'</code> is in <code>uniques.categories</code>, despite not being present in <code>cat.values</code>.</p> <p>For all other pandas objects, an Index of the appropriate type is returned.</p> <pre data-language="python">&gt;&gt;&gt; cat = pd.Series(['a', 'a', 'c'])
+&gt;&gt;&gt; labels, uniques = pd.factorize(cat)
+&gt;&gt;&gt; labels
+array([0, 0, 1])
+&gt;&gt;&gt; uniques
+Index(['a', 'c'], dtype='object')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.factorize.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.factorize.html</a>
+  </p>
+</div>

@@ -1,0 +1,157 @@
+<h1 id="pandas-dataframe-replace">pandas.DataFrame.replace</h1> <dl class="method"> <dt id="pandas.DataFrame.replace">
+<code>DataFrame.replace(self, to_replace=None, value=None, inplace=False, limit=None, regex=False, method='pad')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L4242-L4259"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Replace values given in <code>to_replace</code> with <code>value</code>.</p> <p>Values of the DataFrame are replaced with other values dynamically. This differs from updating with <code>.loc</code> or <code>.iloc</code>, which require you to specify a location to update with some value.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>to_replace : str, regex, list, dict, Series, int, float, or None</code> </dt> <dd>
+<p class="first">How to find the values that will be replaced.</p> <ul> <li>
+<p class="first">numeric, str or regex:</p>  <ul class="simple"> <li>numeric: numeric values equal to <code>to_replace</code> will be replaced with <code>value</code>
+</li> <li>str: string exactly matching <code>to_replace</code> will be replaced with <code>value</code>
+</li> <li>regex: regexs matching <code>to_replace</code> will be replaced with <code>value</code>
+</li> </ul>  </li> <li>
+<p class="first">list of str, regex, or numeric:</p>  <ul class="simple"> <li>First, if <code>to_replace</code> and <code>value</code> are both lists, they <strong>must</strong> be the same length.</li> <li>Second, if <code>regex=True</code> then all of the strings in <strong>both</strong> lists will be interpreted as regexs otherwise they will match directly. This doesn’t matter much for <code>value</code> since there are only a few possible substitution regexes you can use.</li> <li>str, regex and numeric rules apply as above.</li> </ul>  </li> <li>
+<p class="first">dict:</p>  <ul class="simple"> <li>Dicts can be used to specify different replacement values for different existing values. For example, <code>{'a': 'b', 'y': 'z'}</code> replaces the value ‘a’ with ‘b’ and ‘y’ with ‘z’. To use a dict in this way the <code>value</code> parameter should be <code>None</code>.</li> <li>For a DataFrame a dict can specify that different values should be replaced in different columns. For example, <code>{'a': 1, 'b': 'z'}</code> looks for the value 1 in column ‘a’ and the value ‘z’ in column ‘b’ and replaces these values with whatever is specified in <code>value</code>. The <code>value</code> parameter should not be <code>None</code> in this case. You can treat this as a special case of passing two lists except that you are specifying the column to search in.</li> <li>For a DataFrame nested dictionaries, e.g., <code>{'a': {'b': np.nan}}</code>, are read as follows: look in column ‘a’ for the value ‘b’ and replace it with NaN. The <code>value</code> parameter should be <code>None</code> to use a nested dict in this way. You can nest regular expressions as well. Note that column names (the top-level dictionary keys in a nested dictionary) <strong>cannot</strong> be regular expressions.</li> </ul>  </li> <li>
+<p class="first">None:</p>  <ul class="simple"> <li>This means that the <code>regex</code> argument must be a string, compiled regular expression, or list, dict, ndarray or Series of such elements. If <code>value</code> is also <code>None</code> then this <strong>must</strong> be a nested dictionary or Series.</li> </ul>  </li> </ul> <p class="last">See the examples section for examples of each of these.</p> </dd> <dt>
+<code>value : scalar, dict, list, str, regex, default None</code> </dt> <dd>
+<p class="first last">Value to replace any values matching <code>to_replace</code> with. For a DataFrame a dict of values can be used to specify which value to use for each column (columns not in the dict will not be filled). Regular expressions, strings and lists or dicts of such objects are also allowed.</p> </dd> <dt>
+<code>inplace : bool, default False</code> </dt> <dd>
+<p class="first last">If True, in place. Note: this will modify any other views on this object (e.g. a column from a DataFrame). Returns the caller if this is True.</p> </dd> <dt>
+<code>limit : int, default None</code> </dt> <dd>
+<p class="first last">Maximum size gap to forward or backward fill.</p> </dd> <dt>
+<code>regex : bool or same types as to_replace, default False</code> </dt> <dd>
+<p class="first last">Whether to interpret <code>to_replace</code> and/or <code>value</code> as regular expressions. If this is <code>True</code> then <code>to_replace</code> <em>must</em> be a string. Alternatively, this could be a regular expression or a list, dict, or array of regular expressions in which case <code>to_replace</code> must be <code>None</code>.</p> </dd> <dt>
+<code>method : {‘pad’, ‘ffill’, ‘bfill’, None}</code> </dt> <dd>
+<p class="first">The method to use when for replacement, when <code>to_replace</code> is a scalar, list or tuple and <code>value</code> is <code>None</code>.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.23.0: </span>Added to DataFrame.</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Object after replacement.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>AssertionError</dt> <dd>
+<ul class="first last simple"> <li>If <code>regex</code> is not a <code>bool</code> and <code>to_replace</code> is not <code>None</code>.</li> </ul> </dd> <dt>TypeError</dt> <dd>
+<ul class="first last simple"> <li>If <code>to_replace</code> is a <code>dict</code> and <code>value</code> is not a <code>list</code>, <code>dict</code>, <code>ndarray</code>, or <code>Series</code>
+</li> <li>If <code>to_replace</code> is <code>None</code> and <code>regex</code> is not compilable into a regular expression or is a list, dict, ndarray, or Series.</li> <li>When replacing multiple <code>bool</code> or <code>datetime64</code> objects and the arguments to <code>to_replace</code> does not match the type of the value being replaced</li> </ul> </dd> <dt>ValueError</dt> <dd>
+<ul class="first last simple"> <li>If a <code>list</code> or an <code>ndarray</code> is passed to <code>to_replace</code> and <code>value</code> but they are not the same length.</li> </ul> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.fillna.html#pandas.DataFrame.fillna" title="pandas.DataFrame.fillna"><code>DataFrame.fillna</code></a>
+</dt> <dd>Fill NA values.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.where.html#pandas.DataFrame.where" title="pandas.DataFrame.where"><code>DataFrame.where</code></a>
+</dt> <dd>Replace values based on boolean condition.</dd> <dt>
+ <a class="reference internal" href="pandas.series.str.replace.html#pandas.Series.str.replace" title="pandas.Series.str.replace"><code>Series.str.replace</code></a>
+</dt> <dd>Simple string replacement.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <ul class="simple"> <li>Regex substitution is performed under the hood with <code>re.sub</code>. The rules for substitution for <code>re.sub</code> are the same.</li> <li>Regular expressions will only substitute on strings, meaning you cannot provide, for example, a regular expression matching floating point numbers and expect the columns in your frame that have a numeric dtype to be matched. However, if those floating point numbers <em>are</em> strings, then you can do this.</li> <li>This method has <em>a lot</em> of options. You are encouraged to experiment and play with this method to gain intuition about how it works.</li> <li>When dict is used as the <code>to_replace</code> value, it is like key(s) in the dict are the to_replace part and value(s) in the dict are the value parameter.</li> </ul> <h4 class="rubric">Examples</h4> <p><strong>Scalar `to_replace` and `value`</strong></p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([0, 1, 2, 3, 4])
+&gt;&gt;&gt; s.replace(0, 5)
+0    5
+1    1
+2    2
+3    3
+4    4
+dtype: int64
+</pre> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': [0, 1, 2, 3, 4],
+...                    'B': [5, 6, 7, 8, 9],
+...                    'C': ['a', 'b', 'c', 'd', 'e']})
+&gt;&gt;&gt; df.replace(0, 5)
+   A  B  C
+0  5  5  a
+1  1  6  b
+2  2  7  c
+3  3  8  d
+4  4  9  e
+</pre> <p><strong>List-like `to_replace`</strong></p> <pre data-language="python">&gt;&gt;&gt; df.replace([0, 1, 2, 3], 4)
+   A  B  C
+0  4  5  a
+1  4  6  b
+2  4  7  c
+3  4  8  d
+4  4  9  e
+</pre> <pre data-language="python">&gt;&gt;&gt; df.replace([0, 1, 2, 3], [4, 3, 2, 1])
+   A  B  C
+0  4  5  a
+1  3  6  b
+2  2  7  c
+3  1  8  d
+4  4  9  e
+</pre> <pre data-language="python">&gt;&gt;&gt; s.replace([1, 2], method='bfill')
+0    0
+1    3
+2    3
+3    3
+4    4
+dtype: int64
+</pre> <p><strong>dict-like `to_replace`</strong></p> <pre data-language="python">&gt;&gt;&gt; df.replace({0: 10, 1: 100})
+     A  B  C
+0   10  5  a
+1  100  6  b
+2    2  7  c
+3    3  8  d
+4    4  9  e
+</pre> <pre data-language="python">&gt;&gt;&gt; df.replace({'A': 0, 'B': 5}, 100)
+     A    B  C
+0  100  100  a
+1    1    6  b
+2    2    7  c
+3    3    8  d
+4    4    9  e
+</pre> <pre data-language="python">&gt;&gt;&gt; df.replace({'A': {0: 100, 4: 400}})
+     A  B  C
+0  100  5  a
+1    1  6  b
+2    2  7  c
+3    3  8  d
+4  400  9  e
+</pre> <p><strong>Regular expression `to_replace`</strong></p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': ['bat', 'foo', 'bait'],
+...                    'B': ['abc', 'bar', 'xyz']})
+&gt;&gt;&gt; df.replace(to_replace=r'^ba.$', value='new', regex=True)
+      A    B
+0   new  abc
+1   foo  new
+2  bait  xyz
+</pre> <pre data-language="python">&gt;&gt;&gt; df.replace({'A': r'^ba.$'}, {'A': 'new'}, regex=True)
+      A    B
+0   new  abc
+1   foo  bar
+2  bait  xyz
+</pre> <pre data-language="python">&gt;&gt;&gt; df.replace(regex=r'^ba.$', value='new')
+      A    B
+0   new  abc
+1   foo  new
+2  bait  xyz
+</pre> <pre data-language="python">&gt;&gt;&gt; df.replace(regex={r'^ba.$': 'new', 'foo': 'xyz'})
+      A    B
+0   new  abc
+1   xyz  new
+2  bait  xyz
+</pre> <pre data-language="python">&gt;&gt;&gt; df.replace(regex=[r'^ba.$', 'foo'], value='new')
+      A    B
+0   new  abc
+1   new  new
+2  bait  xyz
+</pre> <p>Note that when replacing multiple <code>bool</code> or <code>datetime64</code> objects, the data types in the <code>to_replace</code> parameter must match the data type of the value being replaced:</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A': [True, False, True],
+...                    'B': [False, True, False]})
+&gt;&gt;&gt; df.replace({'a string': 'new value', True: False})  # raises
+Traceback (most recent call last):
+    ...
+TypeError: Cannot compare types 'ndarray(dtype=bool)' and 'str'
+</pre> <p>This raises a <code>TypeError</code> because one of the <code>dict</code> keys is not of the correct type for replacement.</p> <p>Compare the behavior of <code>s.replace({'a': None})</code> and <code>s.replace('a', None)</code> to understand the peculiarities of the <code>to_replace</code> parameter:</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series([10, 'a', 'a', 'b', 'a'])
+</pre> <p>When one uses a dict as the <code>to_replace</code> value, it is like the value(s) in the dict are equal to the <code>value</code> parameter. <code>s.replace({'a': None})</code> is equivalent to <code>s.replace(to_replace={'a': None}, value=None, method=None)</code>:</p> <pre data-language="python">&gt;&gt;&gt; s.replace({'a': None})
+0      10
+1    None
+2    None
+3       b
+4    None
+dtype: object
+</pre> <p>When <code>value=None</code> and <code>to_replace</code> is a scalar, list or tuple, <code>replace</code> uses the method parameter (default ‘pad’) to do the replacement. So this is why the ‘a’ values are being replaced by 10 in rows 1 and 2 and ‘b’ in row 4 in this case. The command <code>s.replace('a', None)</code> is actually equivalent to <code>s.replace(to_replace='a', value=None, method='pad')</code>:</p> <pre data-language="python">&gt;&gt;&gt; s.replace('a', None)
+0    10
+1    10
+2    10
+3     b
+4     b
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.replace.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.replace.html</a>
+  </p>
+</div>

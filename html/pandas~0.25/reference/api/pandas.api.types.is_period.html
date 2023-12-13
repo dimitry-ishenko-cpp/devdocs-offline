@@ -1,0 +1,25 @@
+<h1 id="pandas-api-types-is-period">pandas.api.types.is_period</h1> <dl class="function"> <dt id="pandas.api.types.is_period">
+<code>pandas.api.types.is_period(arr)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/common.py#L471-L505"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check whether an array-like is a periodical index.</p> <div class="deprecated"> <p><span class="versionmodified">Deprecated since version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arr : array-like</code> </dt> <dd>
+<p class="first last">The array-like to check.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>boolean</dt> <dd>
+<p class="first last">Whether or not the array-like is a periodical index.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; is_period([1, 2, 3])
+False
+&gt;&gt;&gt; is_period(pd.Index([1, 2, 3]))
+False
+&gt;&gt;&gt; is_period(pd.PeriodIndex(["2017-01-01"], freq="D"))
+True
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_period.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_period.html</a>
+  </p>
+</div>

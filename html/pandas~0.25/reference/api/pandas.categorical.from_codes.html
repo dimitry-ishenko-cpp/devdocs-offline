@@ -1,0 +1,28 @@
+<h1 id="pandas-categorical-from-codes">pandas.Categorical.from_codes</h1> <dl class="classmethod"> <dt id="pandas.Categorical.from_codes">
+<code>classmethod Categorical.from_codes(codes, categories=None, ordered=None, dtype=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/categorical.py#L632-L709"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Make a Categorical type from codes and categories or dtype.</p> <p>This constructor is useful if you already have codes and categories/dtype and so do not need the (computation intensive) factorization step, which is usually done on the constructor.</p> <p>If your data does not follow this convention, please use the normal constructor.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>codes : array-like, integers</code> </dt> <dd>
+<p class="first last">An integer array, where each integer points to a category in categories or dtype.categories, or else is -1 for NaN.</p> </dd> <dt>
+<code>categories : index-like, optional</code> </dt> <dd>
+<p class="first last">The categories for the categorical. Items need to be unique. If the categories are not given here, then they must be provided in <code>dtype</code>.</p> </dd> <dt>
+<code>ordered : bool, optional</code> </dt> <dd>
+<p class="first last">Whether or not this categorical is treated as an ordered categorical. If not given here or in <code>dtype</code>, the resulting categorical will be unordered.</p> </dd> <dt>
+<code>dtype : CategoricalDtype or the string “category”, optional</code> </dt> <dd>
+<p class="first">If <a class="reference internal" href="pandas.categoricaldtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code>CategoricalDtype</code></a>, cannot be used together with <code>categories</code> or <code>ordered</code>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0: </span>When <code>dtype</code> is provided, neither <code>categories</code> nor <code>ordered</code> should be provided.</p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Categorical</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; dtype = pd.CategoricalDtype(['a', 'b'], ordered=True)
+&gt;&gt;&gt; pd.Categorical.from_codes(codes=[0, 1, 0, 1], dtype=dtype)
+[a, b, a, b]
+Categories (2, object): [a &lt; b]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Categorical.from_codes.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Categorical.from_codes.html</a>
+  </p>
+</div>

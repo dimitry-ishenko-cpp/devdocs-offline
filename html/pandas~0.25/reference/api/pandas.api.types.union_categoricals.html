@@ -1,0 +1,56 @@
+<h1 id="pandas-api-types-union-categoricals">pandas.api.types.union_categoricals</h1> <dl class="function"> <dt id="pandas.api.types.union_categoricals">
+<code>pandas.api.types.union_categoricals(to_union, sort_categories=False, ignore_order=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/concat.py#L223-L397"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Combine list-like of Categorical-like, unioning categories. All categories must have the same dtype.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>to_union : list-like of Categorical, CategoricalIndex,</code> </dt> <dd>
+<p class="first last">or Series with dtype=’category’</p> </dd> <dt>
+<code>sort_categories : boolean, default False</code> </dt> <dd>
+<p class="first last">If true, resulting categories will be lexsorted, otherwise they will be ordered as they appear in the data.</p> </dd> <dt>
+<code>ignore_order : boolean, default False</code> </dt> <dd>
+<p class="first">If true, the ordered attribute of the Categoricals will be ignored. Results in an unordered categorical.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>result : Categorical</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError</dt> <dd>
+<ul class="first last simple"> <li>all inputs do not have the same dtype</li> <li>all inputs do not have the same ordered property</li> <li>all inputs are ordered and their categories are not identical</li> <li>sort_categories=True and Categoricals are ordered</li> </ul> </dd> <dt>ValueError</dt> <dd>
+<p class="first last">Empty list of categoricals passed</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>To learn more about categories, see <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/categorical.html#unioning">link</a></p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; from pandas.api.types import union_categoricals
+</pre> <p>If you want to combine categoricals that do not necessarily have the same categories, <code>union_categoricals</code> will combine a list-like of categoricals. The new categories will be the union of the categories being combined.</p> <pre data-language="python">&gt;&gt;&gt; a = pd.Categorical(["b", "c"])
+&gt;&gt;&gt; b = pd.Categorical(["a", "b"])
+&gt;&gt;&gt; union_categoricals([a, b])
+[b, c, a, b]
+Categories (3, object): [b, c, a]
+</pre> <p>By default, the resulting categories will be ordered as they appear in the <code>categories</code> of the data. If you want the categories to be lexsorted, use <code>sort_categories=True</code> argument.</p> <pre data-language="python">&gt;&gt;&gt; union_categoricals([a, b], sort_categories=True)
+[b, c, a, b]
+Categories (3, object): [a, b, c]
+</pre> <p><code>union_categoricals</code> also works with the case of combining two categoricals of the same categories and order information (e.g. what you could also <code>append</code> for).</p> <pre data-language="python">&gt;&gt;&gt; a = pd.Categorical(["a", "b"], ordered=True)
+&gt;&gt;&gt; b = pd.Categorical(["a", "b", "a"], ordered=True)
+&gt;&gt;&gt; union_categoricals([a, b])
+[a, b, a, b, a]
+Categories (2, object): [a &lt; b]
+</pre> <p>Raises <code>TypeError</code> because the categories are ordered and not identical.</p> <pre data-language="python">&gt;&gt;&gt; a = pd.Categorical(["a", "b"], ordered=True)
+&gt;&gt;&gt; b = pd.Categorical(["a", "b", "c"], ordered=True)
+&gt;&gt;&gt; union_categoricals([a, b])
+TypeError: to union ordered Categoricals, all categories must be the same
+</pre> <p>New in version 0.20.0</p> <p>Ordered categoricals with different categories or orderings can be combined by using the <code>ignore_ordered=True</code> argument.</p> <pre data-language="python">&gt;&gt;&gt; a = pd.Categorical(["a", "b", "c"], ordered=True)
+&gt;&gt;&gt; b = pd.Categorical(["c", "b", "a"], ordered=True)
+&gt;&gt;&gt; union_categoricals([a, b], ignore_order=True)
+[a, b, c, c, b, a]
+Categories (3, object): [a, b, c]
+</pre> <p><code>union_categoricals</code> also works with a <code>CategoricalIndex</code>, or <code>Series</code> containing categorical data, but note that the resulting array will always be a plain <code>Categorical</code></p> <pre data-language="python">&gt;&gt;&gt; a = pd.Series(["b", "c"], dtype='category')
+&gt;&gt;&gt; b = pd.Series(["a", "b"], dtype='category')
+&gt;&gt;&gt; union_categoricals([a, b])
+[b, c, a, b]
+Categories (3, object): [b, c, a]
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.union_categoricals.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.union_categoricals.html</a>
+  </p>
+</div>

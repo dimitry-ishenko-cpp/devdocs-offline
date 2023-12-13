@@ -1,0 +1,33 @@
+<h1 id="pandas-dataframe-infer-objects">pandas.DataFrame.infer_objects</h1> <dl class="method"> <dt id="pandas.DataFrame.infer_objects">
+<code>DataFrame.infer_objects(self)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L6051-L6097"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Attempt to infer better dtypes for object columns.</p> <p>Attempts soft conversion of object-dtyped columns, leaving non-object and unconvertible columns unchanged. The inference rules are the same as during normal Series/DataFrame construction.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>converted : same type as input object</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.to_datetime.html#pandas.to_datetime" title="pandas.to_datetime"><code>to_datetime</code></a>
+</dt> <dd>Convert argument to datetime.</dd> <dt>
+ <a class="reference internal" href="pandas.to_timedelta.html#pandas.to_timedelta" title="pandas.to_timedelta"><code>to_timedelta</code></a>
+</dt> <dd>Convert argument to timedelta.</dd> <dt>
+ <a class="reference internal" href="pandas.to_numeric.html#pandas.to_numeric" title="pandas.to_numeric"><code>to_numeric</code></a>
+</dt> <dd>Convert argument to numeric type.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({"A": ["a", 1, 2, 3]})
+&gt;&gt;&gt; df = df.iloc[1:]
+&gt;&gt;&gt; df
+   A
+1  1
+2  2
+3  3
+</pre> <pre data-language="python">&gt;&gt;&gt; df.dtypes
+A    object
+dtype: object
+</pre> <pre data-language="python">&gt;&gt;&gt; df.infer_objects().dtypes
+A    int64
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.infer_objects.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.infer_objects.html</a>
+  </p>
+</div>

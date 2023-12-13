@@ -1,0 +1,54 @@
+    <h1 id="firstHeading" class="firstHeading">std::filesystem::last_write_time</h1>            <table class="t-dcl-begin"> <tr class="t-dsc-header"> <th> Defined in header <code><a href="../header/filesystem.html" title="cpp/header/filesystem">&lt;filesystem&gt;</a></code> </th> <th> </th> <th> </th> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">std::filesystem::file_time_type last_write_time( const std::filesystem::path&amp; p );
+std::filesystem::file_time_type last_write_time( const std::filesystem::path&amp; p,
+                                                 std::error_code&amp; ec ) noexcept;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">void last_write_time( const std::filesystem::path&amp; p,
+                      std::filesystem::file_time_type new_time );
+void last_write_time( const std::filesystem::path&amp; p,
+                      std::filesystem::file_time_type new_time,
+                      std::error_code&amp; ec ) noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr>  </table> <div class="t-li1">
+<span class="t-li">1)</span> Returns the time of the last modification of <code>p</code>, determined as if by accessing the member <code>st_mtime</code> of the POSIX <a rel="nofollow" class="external text" href="http://pubs.opengroup.org/onlinepubs/9699919799/functions/stat.html"><code>stat</code></a> (symlinks are followed). The non-throwing overload returns <code>file_time_type::min()</code> on errors.</div> <div class="t-li1">
+<span class="t-li">2)</span> Changes the time of the last modification of <code>p</code>, as if by POSIX <a rel="nofollow" class="external text" href="http://pubs.opengroup.org/onlinepubs/9699919799/functions/futimens.html"><code>futimens</code></a> (symlinks are followed).</div>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> p </td> <td> - </td> <td> path to examine or modify </td>
+</tr> <tr class="t-par"> <td> new_time </td> <td> - </td> <td> new modification time </td>
+</tr> <tr class="t-par"> <td> ec </td> <td> - </td> <td> out-parameter for error reporting in the non-throwing overload </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <div class="t-li1">
+<span class="t-li">1)</span> The time of the last modification of <code>p</code>
+</div> <div class="t-li1">
+<span class="t-li">2)</span> (none)</div> <h3 id="Exceptions"> Exceptions</h3> <p>The overload that does not take a <code><a href="http://en.cppreference.com/w/cpp/error/error_code"><span class="kw879">std::<span class="me2">error_code</span></span></a><span class="sy3">&amp;</span></code> parameter throws <a href="filesystem_error.html" title="cpp/filesystem/filesystem error"><code>filesystem::filesystem_error</code></a> on underlying OS API errors, constructed with <code>p</code> as the first path argument and the OS error code as the error code argument. The overload taking a <code><a href="http://en.cppreference.com/w/cpp/error/error_code"><span class="kw879">std::<span class="me2">error_code</span></span></a><span class="sy3">&amp;</span></code> parameter sets it to the OS API error code if an OS API call fails, and executes <code>ec.clear()</code> if no errors occur. Any overload not marked <code>noexcept</code> may throw <code><a href="../memory/new/bad_alloc.html" title="cpp/memory/new/bad alloc">std::bad_alloc</a></code> if memory allocation fails.</p>
+<h3 id="Notes"> Notes</h3> <p>It is not guaranteed that immediately after setting the write time, the value returned by <span class="t-v">(1)</span> is the same as what was passed as the argument to <span class="t-v">(2)</span> because the file system's time may be more granular than <code><a href="file_time_type.html" title="cpp/filesystem/file time type">filesystem::file_time_type</a></code>.</p>
+<h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;chrono&gt;
+#include &lt;filesystem&gt;
+#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;print&gt;
+ 
+using namespace std::chrono_literals;
+ 
+int main()
+{
+    auto p = std::filesystem::temp_directory_path() / "example.bin";
+    std::ofstream{p.c_str()}.put('a'); // create file
+ 
+    std::filesystem::file_time_type ftime = std::filesystem::last_write_time(p);
+    std::println("File write time is {}", ftime);
+ 
+    // move file write time 1 hour to the future
+    std::filesystem::last_write_time(p, ftime + 1h);
+ 
+    // read back from the filesystem
+    ftime = std::filesystem::last_write_time(p);
+    std::println("File write time is {}", ftime);
+ 
+    std::filesystem::remove(p);
+}</pre></div> <p>Possible output:</p>
+<div class="text source-text"><pre data-language="c">File write time is Sun May  9 23:29:58 2021
+File write time is Mon May 10 00:29:58 2021</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="file_time_type.html" title="cpp/filesystem/file time type"> <span class="t-lines"><span>file_time_type</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx17">(C++17)</span></span></span></div> </td> <td> represents file time values <br> <span class="t-mark">(typedef)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="directory_entry/last_write_time.html" title="cpp/filesystem/directory entry/last write time"> <span class="t-lines"><span>last_write_time</span></span></a></div> </td> <td> gets or sets the time of the last data modification of the file to which the directory entry refers <br> <span class="t-mark">(public member function of <code>std::filesystem::directory_entry</code>)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/filesystem/last_write_time" class="_attribution-link">https://en.cppreference.com/w/cpp/filesystem/last_write_time</a>
+  </p>
+</div>

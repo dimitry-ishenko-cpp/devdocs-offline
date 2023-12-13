@@ -1,0 +1,21 @@
+<h1 id="pandas-index-to-series">pandas.Index.to_series</h1> <dl class="method"> <dt id="pandas.Index.to_series">
+<code>Index.to_series(self, index=None, name=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/base.py#L1240-L1265"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Create a Series with both index and values equal to the index keys useful with map for returning an indexer based on an index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : Index, optional</code> </dt> <dd>
+<p class="first last">index of resulting Series. If None, defaults to original index</p> </dd> <dt>
+<code>name : string, optional</code> </dt> <dd>
+<p class="first last">name of resulting Series. If None, defaults to name of original index</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>Series : dtype will be based on the type of the Index values.</code> </dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.to_series.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.to_series.html</a>
+  </p>
+</div>

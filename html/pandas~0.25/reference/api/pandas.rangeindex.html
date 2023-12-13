@@ -1,0 +1,30 @@
+<h1 id="pandas-rangeindex">pandas.RangeIndex</h1> <dl class="class"> <dt id="pandas.RangeIndex">
+<code>class pandas.RangeIndex</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/range.py#L36-L789"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Immutable Index implementing a monotonic integer range.</p> <p>RangeIndex is a memory-saving special case of Int64Index limited to representing monotonic ranges. Using RangeIndex may in some instances improve computing speed.</p> <p>This is the default index type used by DataFrame and Series when no explicit index is provided by the user.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>start : int (default: 0), or other RangeIndex instance</code> </dt> <dd>
+<p class="first last">If int and “stop” is not given, interpreted as “stop” instead.</p> </dd> <dt>
+<code>stop : int (default: 0)</code> </dt>  <dt>
+<code>step : int (default: 1)</code> </dt>  <dt>
+<code>name : object, optional</code> </dt> <dd>
+<p class="first last">Name to be stored in the index</p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Unused, accepted for homogeneity with other index types.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>
+</dt> <dd>The base pandas Index type.</dd> <dt>
+ <a class="reference internal" href="pandas.int64index.html#pandas.Int64Index" title="pandas.Int64Index"><code>Int64Index</code></a>
+</dt> <dd>Index of int64 data.</dd> </dl> </div> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.rangeindex.start.html#pandas.RangeIndex.start" title="pandas.RangeIndex.start"><code>start</code></a></td> <td>The value of the <code>start</code> parameter (<code>0</code> if this was not supplied)</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.rangeindex.stop.html#pandas.RangeIndex.stop" title="pandas.RangeIndex.stop"><code>stop</code></a></td> <td>The value of the <code>stop</code> parameter</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.rangeindex.step.html#pandas.RangeIndex.step" title="pandas.RangeIndex.step"><code>step</code></a></td> <td>The value of the <code>step</code> parameter (<code>1</code> if this was not supplied)</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.rangeindex.from_range.html#pandas.RangeIndex.from_range" title="pandas.RangeIndex.from_range"><code>from_range</code></a>(data[, name, dtype])</td> <td>Create RangeIndex from a range object.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.RangeIndex.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.RangeIndex.html</a>
+  </p>
+</div>

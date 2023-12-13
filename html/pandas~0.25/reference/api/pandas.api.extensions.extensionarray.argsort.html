@@ -1,0 +1,25 @@
+<h1 id="pandas-api-extensions-extensionarray-argsort">pandas.api.extensions.ExtensionArray.argsort</h1> <dl class="method"> <dt id="pandas.api.extensions.ExtensionArray.argsort">
+<code>ExtensionArray.argsort(self, ascending=True, kind='quicksort', *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/base.py#L428-L459"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the indices that would sort this array.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>ascending : bool, default True</code> </dt> <dd>
+<p class="first last">Whether the indices should result in an ascending or descending sort.</p> </dd> <dt>
+<code>kind : {‘quicksort’, ‘mergesort’, ‘heapsort’}, optional</code> </dt> <dd>
+<p class="first last">Sorting algorithm.</p> </dd> <dt><strong>*args, **kwargs:</strong></dt> <dd>
+<p class="first last">passed through to <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort" title="(in NumPy v1.16)"><code>numpy.argsort()</code></a>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>index_array : ndarray</code> </dt> <dd>
+<p class="first last">Array of indices that sort <code>self</code>. If NaN values are contained, NaN values are placed at the end.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.argsort.html#numpy.argsort" title="(in NumPy v1.16)"><code>numpy.argsort</code></a>
+</dt> <dd>Sorting implementation used internally.</dd> </dl> </div> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray.argsort.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray.argsort.html</a>
+  </p>
+</div>

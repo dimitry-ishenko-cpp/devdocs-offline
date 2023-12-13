@@ -1,0 +1,67 @@
+<h1 id="pandas-interval">pandas.Interval</h1> <dl class="class"> <dt id="pandas.Interval">
+<code>class pandas.Interval</code> </dt> <dd>
+<p>Immutable object implementing an Interval, a bounded slice-like interval.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>left : orderable scalar</code> </dt> <dd>
+<p class="first last">Left bound for the interval.</p> </dd> <dt>
+<code>right : orderable scalar</code> </dt> <dd>
+<p class="first last">Right bound for the interval.</p> </dd> <dt>
+<code>closed : {‘right’, ‘left’, ‘both’, ‘neither’}, default ‘right’</code> </dt> <dd>
+<p class="first last">Whether the interval is closed on the left-side, right-side, both or neither. See the Notes for more detailed explanation.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.intervalindex.html#pandas.IntervalIndex" title="pandas.IntervalIndex"><code>IntervalIndex</code></a>
+</dt> <dd>An Index of Interval objects that are all closed on the same side.</dd> <dt>
+ <a class="reference internal" href="pandas.cut.html#pandas.cut" title="pandas.cut"><code>cut</code></a>
+</dt> <dd>Convert continuous data into discrete bins (Categorical of Interval objects).</dd> <dt>
+ <a class="reference internal" href="pandas.qcut.html#pandas.qcut" title="pandas.qcut"><code>qcut</code></a>
+</dt> <dd>Convert continuous data into bins (Categorical of Interval objects) based on quantiles.</dd> <dt>
+ <a class="reference internal" href="pandas.period.html#pandas.Period" title="pandas.Period"><code>Period</code></a>
+</dt> <dd>Represents a period of time.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The parameters <code>left</code> and <code>right</code> must be from the same type, you must be able to compare them and they must satisfy <code>left &lt;= right</code>.</p> <p>A closed interval (in mathematics denoted by square brackets) contains its endpoints, i.e. the closed interval <code>[0, 5]</code> is characterized by the conditions <code>0 &lt;= x &lt;= 5</code>. This is what <code>closed='both'</code> stands for. An open interval (in mathematics denoted by parentheses) does not contain its endpoints, i.e. the open interval <code>(0, 5)</code> is characterized by the conditions <code>0 &lt; x &lt; 5</code>. This is what <code>closed='neither'</code> stands for. Intervals can also be half-open or half-closed, i.e. <code>[0, 5)</code> is described by <code>0 &lt;= x &lt; 5</code> (<code>closed='left'</code>) and <code>(0, 5]</code> is described by <code>0 &lt; x &lt;= 5</code> (<code>closed='right'</code>).</p> <h4 class="rubric">Examples</h4> <p>It is possible to build Intervals of different types, like numeric ones:</p> <pre data-language="python">&gt;&gt;&gt; iv = pd.Interval(left=0, right=5)
+&gt;&gt;&gt; iv
+Interval(0, 5, closed='right')
+</pre> <p>You can check if an element belongs to it</p> <pre data-language="python">&gt;&gt;&gt; 2.5 in iv
+True
+</pre> <p>You can test the bounds (<code>closed='right'</code>, so <code>0 &lt; x &lt;= 5</code>):</p> <pre data-language="python">&gt;&gt;&gt; 0 in iv
+False
+&gt;&gt;&gt; 5 in iv
+True
+&gt;&gt;&gt; 0.0001 in iv
+True
+</pre> <p>Calculate its length</p> <pre data-language="python">&gt;&gt;&gt; iv.length
+5
+</pre> <p>You can operate with <code>+</code> and <code>*</code> over an Interval and the operation is applied to each of its bounds, so the result depends on the type of the bound elements</p> <pre data-language="python">&gt;&gt;&gt; shifted_iv = iv + 3
+&gt;&gt;&gt; shifted_iv
+Interval(3, 8, closed='right')
+&gt;&gt;&gt; extended_iv = iv * 10.0
+&gt;&gt;&gt; extended_iv
+Interval(0.0, 50.0, closed='right')
+</pre> <p>To create a time interval you can use Timestamps as the bounds</p> <pre data-language="python">&gt;&gt;&gt; year_2017 = pd.Interval(pd.Timestamp('2017-01-01 00:00:00'),
+...                         pd.Timestamp('2018-01-01 00:00:00'),
+...                         closed='left')
+&gt;&gt;&gt; pd.Timestamp('2017-01-01 00:00') in year_2017
+True
+&gt;&gt;&gt; year_2017.length
+Timedelta('365 days 00:00:00')
+</pre> <p>And also you can create string intervals</p> <pre data-language="python">&gt;&gt;&gt; volume_1 = pd.Interval('Ant', 'Dog', closed='both')
+&gt;&gt;&gt; 'Bee' in volume_1
+True
+</pre> <h4 class="rubric">Attributes</h4> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="pandas.interval.closed.html#pandas.Interval.closed" title="pandas.Interval.closed"><code>closed</code></a></td> <td>Whether the interval is closed on the left-side, right-side, both or neither</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.closed_left.html#pandas.Interval.closed_left" title="pandas.Interval.closed_left"><code>closed_left</code></a></td> <td>Check if the interval is closed on the left side.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.closed_right.html#pandas.Interval.closed_right" title="pandas.Interval.closed_right"><code>closed_right</code></a></td> <td>Check if the interval is closed on the right side.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.is_empty.html#pandas.Interval.is_empty" title="pandas.Interval.is_empty"><code>is_empty</code></a></td> <td>Indicates if an interval is empty, meaning it contains no points.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.left.html#pandas.Interval.left" title="pandas.Interval.left"><code>left</code></a></td> <td>Left bound for the interval</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.length.html#pandas.Interval.length" title="pandas.Interval.length"><code>length</code></a></td> <td>Return the length of the Interval</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.mid.html#pandas.Interval.mid" title="pandas.Interval.mid"><code>mid</code></a></td> <td>Return the midpoint of the Interval</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.open_left.html#pandas.Interval.open_left" title="pandas.Interval.open_left"><code>open_left</code></a></td> <td>Check if the interval is open on the left side.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.open_right.html#pandas.Interval.open_right" title="pandas.Interval.open_right"><code>open_right</code></a></td> <td>Check if the interval is open on the right side.</td> </tr> <tr>
+<td><a class="reference internal" href="pandas.interval.right.html#pandas.Interval.right" title="pandas.Interval.right"><code>right</code></a></td> <td>Right bound for the interval</td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.interval.overlaps.html#pandas.Interval.overlaps" title="pandas.Interval.overlaps"><code>overlaps</code></a>()</td> <td>Check whether two Interval objects overlap.</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Interval.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Interval.html</a>
+  </p>
+</div>

@@ -1,0 +1,23 @@
+<h1 id="pandas-api-extensions-extensionarray-fillna">pandas.api.extensions.ExtensionArray.fillna</h1> <dl class="method"> <dt id="pandas.api.extensions.ExtensionArray.fillna">
+<code>ExtensionArray.fillna(self, value=None, method=None, limit=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/base.py#L461-L514"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Fill NA/NaN values using the specified method.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>value : scalar, array-like</code> </dt> <dd>
+<p class="first last">If a scalar value is passed it is used to fill all missing values. Alternatively, an array-like ‘value’ can be given. It’s expected that the array-like have the same length as ‘self’.</p> </dd> <dt>
+<code>method : {‘backfill’, ‘bfill’, ‘pad’, ‘ffill’, None}, default None</code> </dt> <dd>
+<p class="first last">Method to use for filling holes in reindexed Series pad / ffill: propagate last valid observation forward to next valid backfill / bfill: use NEXT valid observation to fill gap</p> </dd> <dt>
+<code>limit : int, default None</code> </dt> <dd>
+<p class="first last">If method is specified, this is the maximum number of consecutive NaN values to forward/backward fill. In other words, if there is a gap with more than this number of consecutive NaNs, it will only be partially filled. If method is not specified, this is the maximum number of entries along the entire axis where NaNs will be filled.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>filled : ExtensionArray with NA/NaN filled</code> </dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray.fillna.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.extensions.ExtensionArray.fillna.html</a>
+  </p>
+</div>

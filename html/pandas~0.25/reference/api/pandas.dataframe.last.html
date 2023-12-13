@@ -1,0 +1,40 @@
+<h1 id="pandas-dataframe-last">pandas.DataFrame.last</h1> <dl class="method"> <dt id="pandas.DataFrame.last">
+<code>DataFrame.last(self, offset)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L8520-L8576"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convenience method for subsetting final periods of time series data based on a date offset.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>offset : string, DateOffset, dateutil.relativedelta</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>subset : same type as caller</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError</dt> <dd>
+<p class="first last">If the index is not a <a class="reference internal" href="pandas.datetimeindex.html#pandas.DatetimeIndex" title="pandas.DatetimeIndex"><code>DatetimeIndex</code></a></p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.first.html#pandas.DataFrame.first" title="pandas.DataFrame.first"><code>first</code></a>
+</dt> <dd>Select initial periods of time series based on a date offset.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.at_time.html#pandas.DataFrame.at_time" title="pandas.DataFrame.at_time"><code>at_time</code></a>
+</dt> <dd>Select values at a particular time of the day.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.between_time.html#pandas.DataFrame.between_time" title="pandas.DataFrame.between_time"><code>between_time</code></a>
+</dt> <dd>Select values between particular times of the day.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; i = pd.date_range('2018-04-09', periods=4, freq='2D')
+&gt;&gt;&gt; ts = pd.DataFrame({'A': [1,2,3,4]}, index=i)
+&gt;&gt;&gt; ts
+            A
+2018-04-09  1
+2018-04-11  2
+2018-04-13  3
+2018-04-15  4
+</pre> <p>Get the rows for the last 3 days:</p> <pre data-language="python">&gt;&gt;&gt; ts.last('3D')
+            A
+2018-04-13  3
+2018-04-15  4
+</pre> <p>Notice the data for 3 last calender days were returned, not the last 3 observed days in the dataset, and therefore data for 2018-04-11 was not returned.</p> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.last.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.last.html</a>
+  </p>
+</div>

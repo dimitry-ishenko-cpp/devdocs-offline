@@ -1,0 +1,25 @@
+<h1 id="pandas-timedelta-isoformat">pandas.Timedelta.isoformat</h1> <dl class="method"> <dt id="pandas.Timedelta.isoformat">
+<code>Timedelta.isoformat()</code> </dt> <dd>
+<p>Format Timedelta as ISO 8601 Duration like <code>P[n]Y[n]M[n]DT[n]H[n]M[n]S</code>, where the <code>[n]</code> s are replaced by the values. See <a class="reference external" href="https://en.wikipedia.org/wiki/ISO_8601#Durations">https://en.wikipedia.org/wiki/ISO_8601#Durations</a></p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>formatted : str</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.timestamp.isoformat.html#pandas.Timestamp.isoformat" title="pandas.Timestamp.isoformat"><code>Timestamp.isoformat</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Notes</h4> <p>The longest component is days, whose value may be larger than 365. Every component is always included, even if its value is 0. Pandas uses nanosecond precision, so up to 9 decimal places may be included in the seconds component. Trailing 0’s are removed from the seconds component after the decimal. We do not 0 pad components, so it’s <code>…T5H…</code>, not <code>…T05H…</code></p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; td = pd.Timedelta(days=6, minutes=50, seconds=3,
+...                   milliseconds=10, microseconds=10, nanoseconds=12)
+&gt;&gt;&gt; td.isoformat()
+'P6DT0H50M3.010010012S'
+&gt;&gt;&gt; pd.Timedelta(hours=1, seconds=10).isoformat()
+'P0DT0H0M10S'
+&gt;&gt;&gt; pd.Timedelta(hours=1, seconds=10).isoformat()
+'P0DT0H0M10S'
+&gt;&gt;&gt; pd.Timedelta(days=500.5).isoformat()
+'P500DT12H0MS'
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.isoformat.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Timedelta.isoformat.html</a>
+  </p>
+</div>

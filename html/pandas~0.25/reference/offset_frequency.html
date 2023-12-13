@@ -1,0 +1,828 @@
+<h1 id="api-dateoffsets">Date offsets</h1>  <h2 id="date-offsets">DateOffset</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.html#pandas.tseries.offsets.DateOffset" title="pandas.tseries.offsets.DateOffset"><code>DateOffset</code></a>([n, normalize])</td> <td>Standard kind of date increment used for a date range.</td> </tr>  </table>  <h3 id="properties">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.freqstr.html#pandas.tseries.offsets.DateOffset.freqstr" title="pandas.tseries.offsets.DateOffset.freqstr"><code>DateOffset.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.kwds.html#pandas.tseries.offsets.DateOffset.kwds" title="pandas.tseries.offsets.DateOffset.kwds"><code>DateOffset.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.name.html#pandas.tseries.offsets.DateOffset.name" title="pandas.tseries.offsets.DateOffset.name"><code>DateOffset.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.nanos.html#pandas.tseries.offsets.DateOffset.nanos" title="pandas.tseries.offsets.DateOffset.nanos"><code>DateOffset.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.normalize.html#pandas.tseries.offsets.DateOffset.normalize" title="pandas.tseries.offsets.DateOffset.normalize"><code>DateOffset.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.rule_code.html#pandas.tseries.offsets.DateOffset.rule_code" title="pandas.tseries.offsets.DateOffset.rule_code"><code>DateOffset.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="methods">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.apply.html#pandas.tseries.offsets.DateOffset.apply" title="pandas.tseries.offsets.DateOffset.apply"><code>DateOffset.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.copy.html#pandas.tseries.offsets.DateOffset.copy" title="pandas.tseries.offsets.DateOffset.copy"><code>DateOffset.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.isanchored.html#pandas.tseries.offsets.DateOffset.isAnchored" title="pandas.tseries.offsets.DateOffset.isAnchored"><code>DateOffset.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.dateoffset.onoffset.html#pandas.tseries.offsets.DateOffset.onOffset" title="pandas.tseries.offsets.DateOffset.onOffset"><code>DateOffset.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="businessday">BusinessDay</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessday.html#pandas.tseries.offsets.BusinessDay" title="pandas.tseries.offsets.BusinessDay"><code>BusinessDay</code></a>([n, normalize, offset])</td> <td>DateOffset subclass representing possibly n business days.</td> </tr>  </table>  <h3 id="id1">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessday.freqstr.html#pandas.tseries.offsets.BusinessDay.freqstr" title="pandas.tseries.offsets.BusinessDay.freqstr"><code>BusinessDay.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessday.kwds.html#pandas.tseries.offsets.BusinessDay.kwds" title="pandas.tseries.offsets.BusinessDay.kwds"><code>BusinessDay.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessday.name.html#pandas.tseries.offsets.BusinessDay.name" title="pandas.tseries.offsets.BusinessDay.name"><code>BusinessDay.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessday.nanos.html#pandas.tseries.offsets.BusinessDay.nanos" title="pandas.tseries.offsets.BusinessDay.nanos"><code>BusinessDay.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessday.normalize.html#pandas.tseries.offsets.BusinessDay.normalize" title="pandas.tseries.offsets.BusinessDay.normalize"><code>BusinessDay.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessday.rule_code.html#pandas.tseries.offsets.BusinessDay.rule_code" title="pandas.tseries.offsets.BusinessDay.rule_code"><code>BusinessDay.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id2">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessday.apply.html#pandas.tseries.offsets.BusinessDay.apply" title="pandas.tseries.offsets.BusinessDay.apply"><code>BusinessDay.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessday.apply_index.html#pandas.tseries.offsets.BusinessDay.apply_index" title="pandas.tseries.offsets.BusinessDay.apply_index"><code>BusinessDay.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessday.copy.html#pandas.tseries.offsets.BusinessDay.copy" title="pandas.tseries.offsets.BusinessDay.copy"><code>BusinessDay.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessday.isanchored.html#pandas.tseries.offsets.BusinessDay.isAnchored" title="pandas.tseries.offsets.BusinessDay.isAnchored"><code>BusinessDay.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessday.onoffset.html#pandas.tseries.offsets.BusinessDay.onOffset" title="pandas.tseries.offsets.BusinessDay.onOffset"><code>BusinessDay.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="businesshour">BusinessHour</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businesshour.html#pandas.tseries.offsets.BusinessHour" title="pandas.tseries.offsets.BusinessHour"><code>BusinessHour</code></a>([n, normalize, start, end, offset])</td> <td>DateOffset subclass representing possibly n business hours.</td> </tr>  </table>  <h3 id="id3">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businesshour.freqstr.html#pandas.tseries.offsets.BusinessHour.freqstr" title="pandas.tseries.offsets.BusinessHour.freqstr"><code>BusinessHour.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businesshour.kwds.html#pandas.tseries.offsets.BusinessHour.kwds" title="pandas.tseries.offsets.BusinessHour.kwds"><code>BusinessHour.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businesshour.name.html#pandas.tseries.offsets.BusinessHour.name" title="pandas.tseries.offsets.BusinessHour.name"><code>BusinessHour.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businesshour.nanos.html#pandas.tseries.offsets.BusinessHour.nanos" title="pandas.tseries.offsets.BusinessHour.nanos"><code>BusinessHour.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businesshour.normalize.html#pandas.tseries.offsets.BusinessHour.normalize" title="pandas.tseries.offsets.BusinessHour.normalize"><code>BusinessHour.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businesshour.rule_code.html#pandas.tseries.offsets.BusinessHour.rule_code" title="pandas.tseries.offsets.BusinessHour.rule_code"><code>BusinessHour.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id4">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businesshour.apply.html#pandas.tseries.offsets.BusinessHour.apply" title="pandas.tseries.offsets.BusinessHour.apply"><code>BusinessHour.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businesshour.copy.html#pandas.tseries.offsets.BusinessHour.copy" title="pandas.tseries.offsets.BusinessHour.copy"><code>BusinessHour.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businesshour.isanchored.html#pandas.tseries.offsets.BusinessHour.isAnchored" title="pandas.tseries.offsets.BusinessHour.isAnchored"><code>BusinessHour.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businesshour.onoffset.html#pandas.tseries.offsets.BusinessHour.onOffset" title="pandas.tseries.offsets.BusinessHour.onOffset"><code>BusinessHour.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="custombusinessday">CustomBusinessDay</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.html#pandas.tseries.offsets.CustomBusinessDay" title="pandas.tseries.offsets.CustomBusinessDay"><code>CustomBusinessDay</code></a>([n, normalize, weekmask, …])</td> <td>DateOffset subclass representing possibly n custom business days, excluding holidays.</td> </tr>  </table>  <h3 id="id5">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.freqstr.html#pandas.tseries.offsets.CustomBusinessDay.freqstr" title="pandas.tseries.offsets.CustomBusinessDay.freqstr"><code>CustomBusinessDay.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.kwds.html#pandas.tseries.offsets.CustomBusinessDay.kwds" title="pandas.tseries.offsets.CustomBusinessDay.kwds"><code>CustomBusinessDay.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.name.html#pandas.tseries.offsets.CustomBusinessDay.name" title="pandas.tseries.offsets.CustomBusinessDay.name"><code>CustomBusinessDay.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.nanos.html#pandas.tseries.offsets.CustomBusinessDay.nanos" title="pandas.tseries.offsets.CustomBusinessDay.nanos"><code>CustomBusinessDay.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.normalize.html#pandas.tseries.offsets.CustomBusinessDay.normalize" title="pandas.tseries.offsets.CustomBusinessDay.normalize"><code>CustomBusinessDay.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.rule_code.html#pandas.tseries.offsets.CustomBusinessDay.rule_code" title="pandas.tseries.offsets.CustomBusinessDay.rule_code"><code>CustomBusinessDay.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id6">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.apply.html#pandas.tseries.offsets.CustomBusinessDay.apply" title="pandas.tseries.offsets.CustomBusinessDay.apply"><code>CustomBusinessDay.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.copy.html#pandas.tseries.offsets.CustomBusinessDay.copy" title="pandas.tseries.offsets.CustomBusinessDay.copy"><code>CustomBusinessDay.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.isanchored.html#pandas.tseries.offsets.CustomBusinessDay.isAnchored" title="pandas.tseries.offsets.CustomBusinessDay.isAnchored"><code>CustomBusinessDay.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.onoffset.html#pandas.tseries.offsets.CustomBusinessDay.onOffset" title="pandas.tseries.offsets.CustomBusinessDay.onOffset"><code>CustomBusinessDay.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="custombusinesshour">CustomBusinessHour</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.html#pandas.tseries.offsets.CustomBusinessHour" title="pandas.tseries.offsets.CustomBusinessHour"><code>CustomBusinessHour</code></a>([n, normalize, weekmask, …])</td> <td>DateOffset subclass representing possibly n custom business days.</td> </tr>  </table>  <h3 id="id7">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.freqstr.html#pandas.tseries.offsets.CustomBusinessHour.freqstr" title="pandas.tseries.offsets.CustomBusinessHour.freqstr"><code>CustomBusinessHour.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.kwds.html#pandas.tseries.offsets.CustomBusinessHour.kwds" title="pandas.tseries.offsets.CustomBusinessHour.kwds"><code>CustomBusinessHour.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.name.html#pandas.tseries.offsets.CustomBusinessHour.name" title="pandas.tseries.offsets.CustomBusinessHour.name"><code>CustomBusinessHour.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.nanos.html#pandas.tseries.offsets.CustomBusinessHour.nanos" title="pandas.tseries.offsets.CustomBusinessHour.nanos"><code>CustomBusinessHour.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.normalize.html#pandas.tseries.offsets.CustomBusinessHour.normalize" title="pandas.tseries.offsets.CustomBusinessHour.normalize"><code>CustomBusinessHour.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.rule_code.html#pandas.tseries.offsets.CustomBusinessHour.rule_code" title="pandas.tseries.offsets.CustomBusinessHour.rule_code"><code>CustomBusinessHour.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id8">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.apply.html#pandas.tseries.offsets.CustomBusinessHour.apply" title="pandas.tseries.offsets.CustomBusinessHour.apply"><code>CustomBusinessHour.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.copy.html#pandas.tseries.offsets.CustomBusinessHour.copy" title="pandas.tseries.offsets.CustomBusinessHour.copy"><code>CustomBusinessHour.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.isanchored.html#pandas.tseries.offsets.CustomBusinessHour.isAnchored" title="pandas.tseries.offsets.CustomBusinessHour.isAnchored"><code>CustomBusinessHour.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinesshour.onoffset.html#pandas.tseries.offsets.CustomBusinessHour.onOffset" title="pandas.tseries.offsets.CustomBusinessHour.onOffset"><code>CustomBusinessHour.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="monthoffset">MonthOffset</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.html#pandas.tseries.offsets.MonthOffset" title="pandas.tseries.offsets.MonthOffset"><code>MonthOffset</code></a></td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id9">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.freqstr.html#pandas.tseries.offsets.MonthOffset.freqstr" title="pandas.tseries.offsets.MonthOffset.freqstr"><code>MonthOffset.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.kwds.html#pandas.tseries.offsets.MonthOffset.kwds" title="pandas.tseries.offsets.MonthOffset.kwds"><code>MonthOffset.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.name.html#pandas.tseries.offsets.MonthOffset.name" title="pandas.tseries.offsets.MonthOffset.name"><code>MonthOffset.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.nanos.html#pandas.tseries.offsets.MonthOffset.nanos" title="pandas.tseries.offsets.MonthOffset.nanos"><code>MonthOffset.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.normalize.html#pandas.tseries.offsets.MonthOffset.normalize" title="pandas.tseries.offsets.MonthOffset.normalize"><code>MonthOffset.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.rule_code.html#pandas.tseries.offsets.MonthOffset.rule_code" title="pandas.tseries.offsets.MonthOffset.rule_code"><code>MonthOffset.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id10">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.apply.html#pandas.tseries.offsets.MonthOffset.apply" title="pandas.tseries.offsets.MonthOffset.apply"><code>MonthOffset.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.apply_index.html#pandas.tseries.offsets.MonthOffset.apply_index" title="pandas.tseries.offsets.MonthOffset.apply_index"><code>MonthOffset.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.copy.html#pandas.tseries.offsets.MonthOffset.copy" title="pandas.tseries.offsets.MonthOffset.copy"><code>MonthOffset.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.isanchored.html#pandas.tseries.offsets.MonthOffset.isAnchored" title="pandas.tseries.offsets.MonthOffset.isAnchored"><code>MonthOffset.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthoffset.onoffset.html#pandas.tseries.offsets.MonthOffset.onOffset" title="pandas.tseries.offsets.MonthOffset.onOffset"><code>MonthOffset.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="monthend">MonthEnd</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthend.html#pandas.tseries.offsets.MonthEnd" title="pandas.tseries.offsets.MonthEnd"><code>MonthEnd</code></a></td> <td>DateOffset of one month end.</td> </tr>  </table>  <h3 id="id11">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthend.freqstr.html#pandas.tseries.offsets.MonthEnd.freqstr" title="pandas.tseries.offsets.MonthEnd.freqstr"><code>MonthEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthend.kwds.html#pandas.tseries.offsets.MonthEnd.kwds" title="pandas.tseries.offsets.MonthEnd.kwds"><code>MonthEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthend.name.html#pandas.tseries.offsets.MonthEnd.name" title="pandas.tseries.offsets.MonthEnd.name"><code>MonthEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthend.nanos.html#pandas.tseries.offsets.MonthEnd.nanos" title="pandas.tseries.offsets.MonthEnd.nanos"><code>MonthEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthend.normalize.html#pandas.tseries.offsets.MonthEnd.normalize" title="pandas.tseries.offsets.MonthEnd.normalize"><code>MonthEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthend.rule_code.html#pandas.tseries.offsets.MonthEnd.rule_code" title="pandas.tseries.offsets.MonthEnd.rule_code"><code>MonthEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id12">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthend.apply.html#pandas.tseries.offsets.MonthEnd.apply" title="pandas.tseries.offsets.MonthEnd.apply"><code>MonthEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthend.apply_index.html#pandas.tseries.offsets.MonthEnd.apply_index" title="pandas.tseries.offsets.MonthEnd.apply_index"><code>MonthEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthend.copy.html#pandas.tseries.offsets.MonthEnd.copy" title="pandas.tseries.offsets.MonthEnd.copy"><code>MonthEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthend.isanchored.html#pandas.tseries.offsets.MonthEnd.isAnchored" title="pandas.tseries.offsets.MonthEnd.isAnchored"><code>MonthEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthend.onoffset.html#pandas.tseries.offsets.MonthEnd.onOffset" title="pandas.tseries.offsets.MonthEnd.onOffset"><code>MonthEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="monthbegin">MonthBegin</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.html#pandas.tseries.offsets.MonthBegin" title="pandas.tseries.offsets.MonthBegin"><code>MonthBegin</code></a></td> <td>DateOffset of one month at beginning.</td> </tr>  </table>  <h3 id="id13">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.freqstr.html#pandas.tseries.offsets.MonthBegin.freqstr" title="pandas.tseries.offsets.MonthBegin.freqstr"><code>MonthBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.kwds.html#pandas.tseries.offsets.MonthBegin.kwds" title="pandas.tseries.offsets.MonthBegin.kwds"><code>MonthBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.name.html#pandas.tseries.offsets.MonthBegin.name" title="pandas.tseries.offsets.MonthBegin.name"><code>MonthBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.nanos.html#pandas.tseries.offsets.MonthBegin.nanos" title="pandas.tseries.offsets.MonthBegin.nanos"><code>MonthBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.normalize.html#pandas.tseries.offsets.MonthBegin.normalize" title="pandas.tseries.offsets.MonthBegin.normalize"><code>MonthBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.rule_code.html#pandas.tseries.offsets.MonthBegin.rule_code" title="pandas.tseries.offsets.MonthBegin.rule_code"><code>MonthBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id14">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.apply.html#pandas.tseries.offsets.MonthBegin.apply" title="pandas.tseries.offsets.MonthBegin.apply"><code>MonthBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.apply_index.html#pandas.tseries.offsets.MonthBegin.apply_index" title="pandas.tseries.offsets.MonthBegin.apply_index"><code>MonthBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.copy.html#pandas.tseries.offsets.MonthBegin.copy" title="pandas.tseries.offsets.MonthBegin.copy"><code>MonthBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.isanchored.html#pandas.tseries.offsets.MonthBegin.isAnchored" title="pandas.tseries.offsets.MonthBegin.isAnchored"><code>MonthBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.monthbegin.onoffset.html#pandas.tseries.offsets.MonthBegin.onOffset" title="pandas.tseries.offsets.MonthBegin.onOffset"><code>MonthBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="businessmonthend">BusinessMonthEnd</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.html#pandas.tseries.offsets.BusinessMonthEnd" title="pandas.tseries.offsets.BusinessMonthEnd"><code>BusinessMonthEnd</code></a></td> <td>DateOffset increments between business EOM dates.</td> </tr>  </table>  <h3 id="id15">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.freqstr.html#pandas.tseries.offsets.BusinessMonthEnd.freqstr" title="pandas.tseries.offsets.BusinessMonthEnd.freqstr"><code>BusinessMonthEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.kwds.html#pandas.tseries.offsets.BusinessMonthEnd.kwds" title="pandas.tseries.offsets.BusinessMonthEnd.kwds"><code>BusinessMonthEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.name.html#pandas.tseries.offsets.BusinessMonthEnd.name" title="pandas.tseries.offsets.BusinessMonthEnd.name"><code>BusinessMonthEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.nanos.html#pandas.tseries.offsets.BusinessMonthEnd.nanos" title="pandas.tseries.offsets.BusinessMonthEnd.nanos"><code>BusinessMonthEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.normalize.html#pandas.tseries.offsets.BusinessMonthEnd.normalize" title="pandas.tseries.offsets.BusinessMonthEnd.normalize"><code>BusinessMonthEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.rule_code.html#pandas.tseries.offsets.BusinessMonthEnd.rule_code" title="pandas.tseries.offsets.BusinessMonthEnd.rule_code"><code>BusinessMonthEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id16">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.apply.html#pandas.tseries.offsets.BusinessMonthEnd.apply" title="pandas.tseries.offsets.BusinessMonthEnd.apply"><code>BusinessMonthEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.apply_index.html#pandas.tseries.offsets.BusinessMonthEnd.apply_index" title="pandas.tseries.offsets.BusinessMonthEnd.apply_index"><code>BusinessMonthEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.copy.html#pandas.tseries.offsets.BusinessMonthEnd.copy" title="pandas.tseries.offsets.BusinessMonthEnd.copy"><code>BusinessMonthEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.isanchored.html#pandas.tseries.offsets.BusinessMonthEnd.isAnchored" title="pandas.tseries.offsets.BusinessMonthEnd.isAnchored"><code>BusinessMonthEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.onoffset.html#pandas.tseries.offsets.BusinessMonthEnd.onOffset" title="pandas.tseries.offsets.BusinessMonthEnd.onOffset"><code>BusinessMonthEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="businessmonthbegin">BusinessMonthBegin</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.html#pandas.tseries.offsets.BusinessMonthBegin" title="pandas.tseries.offsets.BusinessMonthBegin"><code>BusinessMonthBegin</code></a></td> <td>DateOffset of one business month at beginning.</td> </tr>  </table>  <h3 id="id17">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.freqstr.html#pandas.tseries.offsets.BusinessMonthBegin.freqstr" title="pandas.tseries.offsets.BusinessMonthBegin.freqstr"><code>BusinessMonthBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.kwds.html#pandas.tseries.offsets.BusinessMonthBegin.kwds" title="pandas.tseries.offsets.BusinessMonthBegin.kwds"><code>BusinessMonthBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.name.html#pandas.tseries.offsets.BusinessMonthBegin.name" title="pandas.tseries.offsets.BusinessMonthBegin.name"><code>BusinessMonthBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.nanos.html#pandas.tseries.offsets.BusinessMonthBegin.nanos" title="pandas.tseries.offsets.BusinessMonthBegin.nanos"><code>BusinessMonthBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.normalize.html#pandas.tseries.offsets.BusinessMonthBegin.normalize" title="pandas.tseries.offsets.BusinessMonthBegin.normalize"><code>BusinessMonthBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.rule_code.html#pandas.tseries.offsets.BusinessMonthBegin.rule_code" title="pandas.tseries.offsets.BusinessMonthBegin.rule_code"><code>BusinessMonthBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id18">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.apply.html#pandas.tseries.offsets.BusinessMonthBegin.apply" title="pandas.tseries.offsets.BusinessMonthBegin.apply"><code>BusinessMonthBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.apply_index.html#pandas.tseries.offsets.BusinessMonthBegin.apply_index" title="pandas.tseries.offsets.BusinessMonthBegin.apply_index"><code>BusinessMonthBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.copy.html#pandas.tseries.offsets.BusinessMonthBegin.copy" title="pandas.tseries.offsets.BusinessMonthBegin.copy"><code>BusinessMonthBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.isanchored.html#pandas.tseries.offsets.BusinessMonthBegin.isAnchored" title="pandas.tseries.offsets.BusinessMonthBegin.isAnchored"><code>BusinessMonthBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.onoffset.html#pandas.tseries.offsets.BusinessMonthBegin.onOffset" title="pandas.tseries.offsets.BusinessMonthBegin.onOffset"><code>BusinessMonthBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="custombusinessmonthend">CustomBusinessMonthEnd</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.html#pandas.tseries.offsets.CustomBusinessMonthEnd" title="pandas.tseries.offsets.CustomBusinessMonthEnd"><code>CustomBusinessMonthEnd</code></a>([n, normalize, …])</td> <td>DateOffset subclass representing custom business month(s).</td> </tr>  </table>  <h3 id="id19">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.freqstr.html#pandas.tseries.offsets.CustomBusinessMonthEnd.freqstr" title="pandas.tseries.offsets.CustomBusinessMonthEnd.freqstr"><code>CustomBusinessMonthEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.kwds.html#pandas.tseries.offsets.CustomBusinessMonthEnd.kwds" title="pandas.tseries.offsets.CustomBusinessMonthEnd.kwds"><code>CustomBusinessMonthEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.m_offset.html#pandas.tseries.offsets.CustomBusinessMonthEnd.m_offset" title="pandas.tseries.offsets.CustomBusinessMonthEnd.m_offset"><code>CustomBusinessMonthEnd.m_offset</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.name.html#pandas.tseries.offsets.CustomBusinessMonthEnd.name" title="pandas.tseries.offsets.CustomBusinessMonthEnd.name"><code>CustomBusinessMonthEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.nanos.html#pandas.tseries.offsets.CustomBusinessMonthEnd.nanos" title="pandas.tseries.offsets.CustomBusinessMonthEnd.nanos"><code>CustomBusinessMonthEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.normalize.html#pandas.tseries.offsets.CustomBusinessMonthEnd.normalize" title="pandas.tseries.offsets.CustomBusinessMonthEnd.normalize"><code>CustomBusinessMonthEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.rule_code.html#pandas.tseries.offsets.CustomBusinessMonthEnd.rule_code" title="pandas.tseries.offsets.CustomBusinessMonthEnd.rule_code"><code>CustomBusinessMonthEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id20">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.apply.html#pandas.tseries.offsets.CustomBusinessMonthEnd.apply" title="pandas.tseries.offsets.CustomBusinessMonthEnd.apply"><code>CustomBusinessMonthEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.copy.html#pandas.tseries.offsets.CustomBusinessMonthEnd.copy" title="pandas.tseries.offsets.CustomBusinessMonthEnd.copy"><code>CustomBusinessMonthEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.isanchored.html#pandas.tseries.offsets.CustomBusinessMonthEnd.isAnchored" title="pandas.tseries.offsets.CustomBusinessMonthEnd.isAnchored"><code>CustomBusinessMonthEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.onoffset.html#pandas.tseries.offsets.CustomBusinessMonthEnd.onOffset" title="pandas.tseries.offsets.CustomBusinessMonthEnd.onOffset"><code>CustomBusinessMonthEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="custombusinessmonthbegin">CustomBusinessMonthBegin</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.html#pandas.tseries.offsets.CustomBusinessMonthBegin" title="pandas.tseries.offsets.CustomBusinessMonthBegin"><code>CustomBusinessMonthBegin</code></a>([n, normalize, …])</td> <td>DateOffset subclass representing custom business month(s).</td> </tr>  </table>  <h3 id="id21">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.freqstr.html#pandas.tseries.offsets.CustomBusinessMonthBegin.freqstr" title="pandas.tseries.offsets.CustomBusinessMonthBegin.freqstr"><code>CustomBusinessMonthBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.kwds.html#pandas.tseries.offsets.CustomBusinessMonthBegin.kwds" title="pandas.tseries.offsets.CustomBusinessMonthBegin.kwds"><code>CustomBusinessMonthBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.m_offset.html#pandas.tseries.offsets.CustomBusinessMonthBegin.m_offset" title="pandas.tseries.offsets.CustomBusinessMonthBegin.m_offset"><code>CustomBusinessMonthBegin.m_offset</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.name.html#pandas.tseries.offsets.CustomBusinessMonthBegin.name" title="pandas.tseries.offsets.CustomBusinessMonthBegin.name"><code>CustomBusinessMonthBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.nanos.html#pandas.tseries.offsets.CustomBusinessMonthBegin.nanos" title="pandas.tseries.offsets.CustomBusinessMonthBegin.nanos"><code>CustomBusinessMonthBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.normalize.html#pandas.tseries.offsets.CustomBusinessMonthBegin.normalize" title="pandas.tseries.offsets.CustomBusinessMonthBegin.normalize"><code>CustomBusinessMonthBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.rule_code.html#pandas.tseries.offsets.CustomBusinessMonthBegin.rule_code" title="pandas.tseries.offsets.CustomBusinessMonthBegin.rule_code"><code>CustomBusinessMonthBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id22">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.apply.html#pandas.tseries.offsets.CustomBusinessMonthBegin.apply" title="pandas.tseries.offsets.CustomBusinessMonthBegin.apply"><code>CustomBusinessMonthBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.copy.html#pandas.tseries.offsets.CustomBusinessMonthBegin.copy" title="pandas.tseries.offsets.CustomBusinessMonthBegin.copy"><code>CustomBusinessMonthBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.isanchored.html#pandas.tseries.offsets.CustomBusinessMonthBegin.isAnchored" title="pandas.tseries.offsets.CustomBusinessMonthBegin.isAnchored"><code>CustomBusinessMonthBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.onoffset.html#pandas.tseries.offsets.CustomBusinessMonthBegin.onOffset" title="pandas.tseries.offsets.CustomBusinessMonthBegin.onOffset"><code>CustomBusinessMonthBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="semimonthoffset">SemiMonthOffset</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.html#pandas.tseries.offsets.SemiMonthOffset" title="pandas.tseries.offsets.SemiMonthOffset"><code>SemiMonthOffset</code></a>([n, normalize, day_of_month])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id23">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.freqstr.html#pandas.tseries.offsets.SemiMonthOffset.freqstr" title="pandas.tseries.offsets.SemiMonthOffset.freqstr"><code>SemiMonthOffset.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.kwds.html#pandas.tseries.offsets.SemiMonthOffset.kwds" title="pandas.tseries.offsets.SemiMonthOffset.kwds"><code>SemiMonthOffset.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.name.html#pandas.tseries.offsets.SemiMonthOffset.name" title="pandas.tseries.offsets.SemiMonthOffset.name"><code>SemiMonthOffset.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.nanos.html#pandas.tseries.offsets.SemiMonthOffset.nanos" title="pandas.tseries.offsets.SemiMonthOffset.nanos"><code>SemiMonthOffset.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.normalize.html#pandas.tseries.offsets.SemiMonthOffset.normalize" title="pandas.tseries.offsets.SemiMonthOffset.normalize"><code>SemiMonthOffset.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.rule_code.html#pandas.tseries.offsets.SemiMonthOffset.rule_code" title="pandas.tseries.offsets.SemiMonthOffset.rule_code"><code>SemiMonthOffset.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id24">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.apply.html#pandas.tseries.offsets.SemiMonthOffset.apply" title="pandas.tseries.offsets.SemiMonthOffset.apply"><code>SemiMonthOffset.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.apply_index.html#pandas.tseries.offsets.SemiMonthOffset.apply_index" title="pandas.tseries.offsets.SemiMonthOffset.apply_index"><code>SemiMonthOffset.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.copy.html#pandas.tseries.offsets.SemiMonthOffset.copy" title="pandas.tseries.offsets.SemiMonthOffset.copy"><code>SemiMonthOffset.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.isanchored.html#pandas.tseries.offsets.SemiMonthOffset.isAnchored" title="pandas.tseries.offsets.SemiMonthOffset.isAnchored"><code>SemiMonthOffset.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthoffset.onoffset.html#pandas.tseries.offsets.SemiMonthOffset.onOffset" title="pandas.tseries.offsets.SemiMonthOffset.onOffset"><code>SemiMonthOffset.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="semimonthend">SemiMonthEnd</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.html#pandas.tseries.offsets.SemiMonthEnd" title="pandas.tseries.offsets.SemiMonthEnd"><code>SemiMonthEnd</code></a>([n, normalize, day_of_month])</td> <td>Two DateOffset’s per month repeating on the last day of the month and day_of_month.</td> </tr>  </table>  <h3 id="id25">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.freqstr.html#pandas.tseries.offsets.SemiMonthEnd.freqstr" title="pandas.tseries.offsets.SemiMonthEnd.freqstr"><code>SemiMonthEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.kwds.html#pandas.tseries.offsets.SemiMonthEnd.kwds" title="pandas.tseries.offsets.SemiMonthEnd.kwds"><code>SemiMonthEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.name.html#pandas.tseries.offsets.SemiMonthEnd.name" title="pandas.tseries.offsets.SemiMonthEnd.name"><code>SemiMonthEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.nanos.html#pandas.tseries.offsets.SemiMonthEnd.nanos" title="pandas.tseries.offsets.SemiMonthEnd.nanos"><code>SemiMonthEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.normalize.html#pandas.tseries.offsets.SemiMonthEnd.normalize" title="pandas.tseries.offsets.SemiMonthEnd.normalize"><code>SemiMonthEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.rule_code.html#pandas.tseries.offsets.SemiMonthEnd.rule_code" title="pandas.tseries.offsets.SemiMonthEnd.rule_code"><code>SemiMonthEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id26">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.apply.html#pandas.tseries.offsets.SemiMonthEnd.apply" title="pandas.tseries.offsets.SemiMonthEnd.apply"><code>SemiMonthEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.apply_index.html#pandas.tseries.offsets.SemiMonthEnd.apply_index" title="pandas.tseries.offsets.SemiMonthEnd.apply_index"><code>SemiMonthEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.copy.html#pandas.tseries.offsets.SemiMonthEnd.copy" title="pandas.tseries.offsets.SemiMonthEnd.copy"><code>SemiMonthEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.isanchored.html#pandas.tseries.offsets.SemiMonthEnd.isAnchored" title="pandas.tseries.offsets.SemiMonthEnd.isAnchored"><code>SemiMonthEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthend.onoffset.html#pandas.tseries.offsets.SemiMonthEnd.onOffset" title="pandas.tseries.offsets.SemiMonthEnd.onOffset"><code>SemiMonthEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="semimonthbegin">SemiMonthBegin</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.html#pandas.tseries.offsets.SemiMonthBegin" title="pandas.tseries.offsets.SemiMonthBegin"><code>SemiMonthBegin</code></a>([n, normalize, day_of_month])</td> <td>Two DateOffset’s per month repeating on the first day of the month and day_of_month.</td> </tr>  </table>  <h3 id="id27">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.freqstr.html#pandas.tseries.offsets.SemiMonthBegin.freqstr" title="pandas.tseries.offsets.SemiMonthBegin.freqstr"><code>SemiMonthBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.kwds.html#pandas.tseries.offsets.SemiMonthBegin.kwds" title="pandas.tseries.offsets.SemiMonthBegin.kwds"><code>SemiMonthBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.name.html#pandas.tseries.offsets.SemiMonthBegin.name" title="pandas.tseries.offsets.SemiMonthBegin.name"><code>SemiMonthBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.nanos.html#pandas.tseries.offsets.SemiMonthBegin.nanos" title="pandas.tseries.offsets.SemiMonthBegin.nanos"><code>SemiMonthBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.normalize.html#pandas.tseries.offsets.SemiMonthBegin.normalize" title="pandas.tseries.offsets.SemiMonthBegin.normalize"><code>SemiMonthBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.rule_code.html#pandas.tseries.offsets.SemiMonthBegin.rule_code" title="pandas.tseries.offsets.SemiMonthBegin.rule_code"><code>SemiMonthBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id28">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.apply.html#pandas.tseries.offsets.SemiMonthBegin.apply" title="pandas.tseries.offsets.SemiMonthBegin.apply"><code>SemiMonthBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.apply_index.html#pandas.tseries.offsets.SemiMonthBegin.apply_index" title="pandas.tseries.offsets.SemiMonthBegin.apply_index"><code>SemiMonthBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.copy.html#pandas.tseries.offsets.SemiMonthBegin.copy" title="pandas.tseries.offsets.SemiMonthBegin.copy"><code>SemiMonthBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.isanchored.html#pandas.tseries.offsets.SemiMonthBegin.isAnchored" title="pandas.tseries.offsets.SemiMonthBegin.isAnchored"><code>SemiMonthBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.semimonthbegin.onoffset.html#pandas.tseries.offsets.SemiMonthBegin.onOffset" title="pandas.tseries.offsets.SemiMonthBegin.onOffset"><code>SemiMonthBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="week">Week</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.week.html#pandas.tseries.offsets.Week" title="pandas.tseries.offsets.Week"><code>Week</code></a>([n, normalize, weekday])</td> <td>Weekly offset.</td> </tr>  </table>  <h3 id="id29">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.week.freqstr.html#pandas.tseries.offsets.Week.freqstr" title="pandas.tseries.offsets.Week.freqstr"><code>Week.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.week.kwds.html#pandas.tseries.offsets.Week.kwds" title="pandas.tseries.offsets.Week.kwds"><code>Week.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.week.name.html#pandas.tseries.offsets.Week.name" title="pandas.tseries.offsets.Week.name"><code>Week.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.week.nanos.html#pandas.tseries.offsets.Week.nanos" title="pandas.tseries.offsets.Week.nanos"><code>Week.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.week.normalize.html#pandas.tseries.offsets.Week.normalize" title="pandas.tseries.offsets.Week.normalize"><code>Week.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.week.rule_code.html#pandas.tseries.offsets.Week.rule_code" title="pandas.tseries.offsets.Week.rule_code"><code>Week.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id30">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.week.apply.html#pandas.tseries.offsets.Week.apply" title="pandas.tseries.offsets.Week.apply"><code>Week.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.week.apply_index.html#pandas.tseries.offsets.Week.apply_index" title="pandas.tseries.offsets.Week.apply_index"><code>Week.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.week.copy.html#pandas.tseries.offsets.Week.copy" title="pandas.tseries.offsets.Week.copy"><code>Week.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.week.isanchored.html#pandas.tseries.offsets.Week.isAnchored" title="pandas.tseries.offsets.Week.isAnchored"><code>Week.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.week.onoffset.html#pandas.tseries.offsets.Week.onOffset" title="pandas.tseries.offsets.Week.onOffset"><code>Week.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="weekofmonth">WeekOfMonth</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.html#pandas.tseries.offsets.WeekOfMonth" title="pandas.tseries.offsets.WeekOfMonth"><code>WeekOfMonth</code></a>([n, normalize, week, weekday])</td> <td>Describes monthly dates like “the Tuesday of the 2nd week of each month”.</td> </tr>  </table>  <h3 id="id31">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.freqstr.html#pandas.tseries.offsets.WeekOfMonth.freqstr" title="pandas.tseries.offsets.WeekOfMonth.freqstr"><code>WeekOfMonth.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.kwds.html#pandas.tseries.offsets.WeekOfMonth.kwds" title="pandas.tseries.offsets.WeekOfMonth.kwds"><code>WeekOfMonth.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.name.html#pandas.tseries.offsets.WeekOfMonth.name" title="pandas.tseries.offsets.WeekOfMonth.name"><code>WeekOfMonth.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.nanos.html#pandas.tseries.offsets.WeekOfMonth.nanos" title="pandas.tseries.offsets.WeekOfMonth.nanos"><code>WeekOfMonth.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.normalize.html#pandas.tseries.offsets.WeekOfMonth.normalize" title="pandas.tseries.offsets.WeekOfMonth.normalize"><code>WeekOfMonth.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.rule_code.html#pandas.tseries.offsets.WeekOfMonth.rule_code" title="pandas.tseries.offsets.WeekOfMonth.rule_code"><code>WeekOfMonth.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id32">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.apply.html#pandas.tseries.offsets.WeekOfMonth.apply" title="pandas.tseries.offsets.WeekOfMonth.apply"><code>WeekOfMonth.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.copy.html#pandas.tseries.offsets.WeekOfMonth.copy" title="pandas.tseries.offsets.WeekOfMonth.copy"><code>WeekOfMonth.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.isanchored.html#pandas.tseries.offsets.WeekOfMonth.isAnchored" title="pandas.tseries.offsets.WeekOfMonth.isAnchored"><code>WeekOfMonth.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.weekofmonth.onoffset.html#pandas.tseries.offsets.WeekOfMonth.onOffset" title="pandas.tseries.offsets.WeekOfMonth.onOffset"><code>WeekOfMonth.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="lastweekofmonth">LastWeekOfMonth</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.html#pandas.tseries.offsets.LastWeekOfMonth" title="pandas.tseries.offsets.LastWeekOfMonth"><code>LastWeekOfMonth</code></a>([n, normalize, weekday])</td> <td>Describes monthly dates in last week of month like “the last Tuesday of each month”.</td> </tr>  </table>  <h3 id="id33">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.freqstr.html#pandas.tseries.offsets.LastWeekOfMonth.freqstr" title="pandas.tseries.offsets.LastWeekOfMonth.freqstr"><code>LastWeekOfMonth.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.kwds.html#pandas.tseries.offsets.LastWeekOfMonth.kwds" title="pandas.tseries.offsets.LastWeekOfMonth.kwds"><code>LastWeekOfMonth.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.name.html#pandas.tseries.offsets.LastWeekOfMonth.name" title="pandas.tseries.offsets.LastWeekOfMonth.name"><code>LastWeekOfMonth.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.nanos.html#pandas.tseries.offsets.LastWeekOfMonth.nanos" title="pandas.tseries.offsets.LastWeekOfMonth.nanos"><code>LastWeekOfMonth.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.normalize.html#pandas.tseries.offsets.LastWeekOfMonth.normalize" title="pandas.tseries.offsets.LastWeekOfMonth.normalize"><code>LastWeekOfMonth.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.rule_code.html#pandas.tseries.offsets.LastWeekOfMonth.rule_code" title="pandas.tseries.offsets.LastWeekOfMonth.rule_code"><code>LastWeekOfMonth.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id34">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.apply.html#pandas.tseries.offsets.LastWeekOfMonth.apply" title="pandas.tseries.offsets.LastWeekOfMonth.apply"><code>LastWeekOfMonth.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.copy.html#pandas.tseries.offsets.LastWeekOfMonth.copy" title="pandas.tseries.offsets.LastWeekOfMonth.copy"><code>LastWeekOfMonth.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.isanchored.html#pandas.tseries.offsets.LastWeekOfMonth.isAnchored" title="pandas.tseries.offsets.LastWeekOfMonth.isAnchored"><code>LastWeekOfMonth.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.lastweekofmonth.onoffset.html#pandas.tseries.offsets.LastWeekOfMonth.onOffset" title="pandas.tseries.offsets.LastWeekOfMonth.onOffset"><code>LastWeekOfMonth.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="quarteroffset">QuarterOffset</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.html#pandas.tseries.offsets.QuarterOffset" title="pandas.tseries.offsets.QuarterOffset"><code>QuarterOffset</code></a>([n, normalize, startingMonth])</td> <td>Quarter representation - doesn’t call super.</td> </tr>  </table>  <h3 id="id35">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.freqstr.html#pandas.tseries.offsets.QuarterOffset.freqstr" title="pandas.tseries.offsets.QuarterOffset.freqstr"><code>QuarterOffset.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.kwds.html#pandas.tseries.offsets.QuarterOffset.kwds" title="pandas.tseries.offsets.QuarterOffset.kwds"><code>QuarterOffset.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.name.html#pandas.tseries.offsets.QuarterOffset.name" title="pandas.tseries.offsets.QuarterOffset.name"><code>QuarterOffset.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.nanos.html#pandas.tseries.offsets.QuarterOffset.nanos" title="pandas.tseries.offsets.QuarterOffset.nanos"><code>QuarterOffset.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.normalize.html#pandas.tseries.offsets.QuarterOffset.normalize" title="pandas.tseries.offsets.QuarterOffset.normalize"><code>QuarterOffset.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.rule_code.html#pandas.tseries.offsets.QuarterOffset.rule_code" title="pandas.tseries.offsets.QuarterOffset.rule_code"><code>QuarterOffset.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id36">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.apply.html#pandas.tseries.offsets.QuarterOffset.apply" title="pandas.tseries.offsets.QuarterOffset.apply"><code>QuarterOffset.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.apply_index.html#pandas.tseries.offsets.QuarterOffset.apply_index" title="pandas.tseries.offsets.QuarterOffset.apply_index"><code>QuarterOffset.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.copy.html#pandas.tseries.offsets.QuarterOffset.copy" title="pandas.tseries.offsets.QuarterOffset.copy"><code>QuarterOffset.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.isanchored.html#pandas.tseries.offsets.QuarterOffset.isAnchored" title="pandas.tseries.offsets.QuarterOffset.isAnchored"><code>QuarterOffset.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarteroffset.onoffset.html#pandas.tseries.offsets.QuarterOffset.onOffset" title="pandas.tseries.offsets.QuarterOffset.onOffset"><code>QuarterOffset.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="bquarterend">BQuarterEnd</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.html#pandas.tseries.offsets.BQuarterEnd" title="pandas.tseries.offsets.BQuarterEnd"><code>BQuarterEnd</code></a>([n, normalize, startingMonth])</td> <td>DateOffset increments between business Quarter dates.</td> </tr>  </table>  <h3 id="id37">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.freqstr.html#pandas.tseries.offsets.BQuarterEnd.freqstr" title="pandas.tseries.offsets.BQuarterEnd.freqstr"><code>BQuarterEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.kwds.html#pandas.tseries.offsets.BQuarterEnd.kwds" title="pandas.tseries.offsets.BQuarterEnd.kwds"><code>BQuarterEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.name.html#pandas.tseries.offsets.BQuarterEnd.name" title="pandas.tseries.offsets.BQuarterEnd.name"><code>BQuarterEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.nanos.html#pandas.tseries.offsets.BQuarterEnd.nanos" title="pandas.tseries.offsets.BQuarterEnd.nanos"><code>BQuarterEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.normalize.html#pandas.tseries.offsets.BQuarterEnd.normalize" title="pandas.tseries.offsets.BQuarterEnd.normalize"><code>BQuarterEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.rule_code.html#pandas.tseries.offsets.BQuarterEnd.rule_code" title="pandas.tseries.offsets.BQuarterEnd.rule_code"><code>BQuarterEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id38">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.apply.html#pandas.tseries.offsets.BQuarterEnd.apply" title="pandas.tseries.offsets.BQuarterEnd.apply"><code>BQuarterEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.apply_index.html#pandas.tseries.offsets.BQuarterEnd.apply_index" title="pandas.tseries.offsets.BQuarterEnd.apply_index"><code>BQuarterEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.copy.html#pandas.tseries.offsets.BQuarterEnd.copy" title="pandas.tseries.offsets.BQuarterEnd.copy"><code>BQuarterEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.isanchored.html#pandas.tseries.offsets.BQuarterEnd.isAnchored" title="pandas.tseries.offsets.BQuarterEnd.isAnchored"><code>BQuarterEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterend.onoffset.html#pandas.tseries.offsets.BQuarterEnd.onOffset" title="pandas.tseries.offsets.BQuarterEnd.onOffset"><code>BQuarterEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="bquarterbegin">BQuarterBegin</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.html#pandas.tseries.offsets.BQuarterBegin" title="pandas.tseries.offsets.BQuarterBegin"><code>BQuarterBegin</code></a>([n, normalize, startingMonth])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id39">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.freqstr.html#pandas.tseries.offsets.BQuarterBegin.freqstr" title="pandas.tseries.offsets.BQuarterBegin.freqstr"><code>BQuarterBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.kwds.html#pandas.tseries.offsets.BQuarterBegin.kwds" title="pandas.tseries.offsets.BQuarterBegin.kwds"><code>BQuarterBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.name.html#pandas.tseries.offsets.BQuarterBegin.name" title="pandas.tseries.offsets.BQuarterBegin.name"><code>BQuarterBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.nanos.html#pandas.tseries.offsets.BQuarterBegin.nanos" title="pandas.tseries.offsets.BQuarterBegin.nanos"><code>BQuarterBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.normalize.html#pandas.tseries.offsets.BQuarterBegin.normalize" title="pandas.tseries.offsets.BQuarterBegin.normalize"><code>BQuarterBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.rule_code.html#pandas.tseries.offsets.BQuarterBegin.rule_code" title="pandas.tseries.offsets.BQuarterBegin.rule_code"><code>BQuarterBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id40">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.apply.html#pandas.tseries.offsets.BQuarterBegin.apply" title="pandas.tseries.offsets.BQuarterBegin.apply"><code>BQuarterBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.apply_index.html#pandas.tseries.offsets.BQuarterBegin.apply_index" title="pandas.tseries.offsets.BQuarterBegin.apply_index"><code>BQuarterBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.copy.html#pandas.tseries.offsets.BQuarterBegin.copy" title="pandas.tseries.offsets.BQuarterBegin.copy"><code>BQuarterBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.isanchored.html#pandas.tseries.offsets.BQuarterBegin.isAnchored" title="pandas.tseries.offsets.BQuarterBegin.isAnchored"><code>BQuarterBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bquarterbegin.onoffset.html#pandas.tseries.offsets.BQuarterBegin.onOffset" title="pandas.tseries.offsets.BQuarterBegin.onOffset"><code>BQuarterBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="quarterend">QuarterEnd</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterend.html#pandas.tseries.offsets.QuarterEnd" title="pandas.tseries.offsets.QuarterEnd"><code>QuarterEnd</code></a>([n, normalize, startingMonth])</td> <td>DateOffset increments between business Quarter dates.</td> </tr>  </table>  <h3 id="id41">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterend.freqstr.html#pandas.tseries.offsets.QuarterEnd.freqstr" title="pandas.tseries.offsets.QuarterEnd.freqstr"><code>QuarterEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterend.kwds.html#pandas.tseries.offsets.QuarterEnd.kwds" title="pandas.tseries.offsets.QuarterEnd.kwds"><code>QuarterEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterend.name.html#pandas.tseries.offsets.QuarterEnd.name" title="pandas.tseries.offsets.QuarterEnd.name"><code>QuarterEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterend.nanos.html#pandas.tseries.offsets.QuarterEnd.nanos" title="pandas.tseries.offsets.QuarterEnd.nanos"><code>QuarterEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterend.normalize.html#pandas.tseries.offsets.QuarterEnd.normalize" title="pandas.tseries.offsets.QuarterEnd.normalize"><code>QuarterEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterend.rule_code.html#pandas.tseries.offsets.QuarterEnd.rule_code" title="pandas.tseries.offsets.QuarterEnd.rule_code"><code>QuarterEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id42">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterend.apply.html#pandas.tseries.offsets.QuarterEnd.apply" title="pandas.tseries.offsets.QuarterEnd.apply"><code>QuarterEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterend.apply_index.html#pandas.tseries.offsets.QuarterEnd.apply_index" title="pandas.tseries.offsets.QuarterEnd.apply_index"><code>QuarterEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterend.copy.html#pandas.tseries.offsets.QuarterEnd.copy" title="pandas.tseries.offsets.QuarterEnd.copy"><code>QuarterEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterend.isanchored.html#pandas.tseries.offsets.QuarterEnd.isAnchored" title="pandas.tseries.offsets.QuarterEnd.isAnchored"><code>QuarterEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterend.onoffset.html#pandas.tseries.offsets.QuarterEnd.onOffset" title="pandas.tseries.offsets.QuarterEnd.onOffset"><code>QuarterEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="quarterbegin">QuarterBegin</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.html#pandas.tseries.offsets.QuarterBegin" title="pandas.tseries.offsets.QuarterBegin"><code>QuarterBegin</code></a>([n, normalize, startingMonth])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id43">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.freqstr.html#pandas.tseries.offsets.QuarterBegin.freqstr" title="pandas.tseries.offsets.QuarterBegin.freqstr"><code>QuarterBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.kwds.html#pandas.tseries.offsets.QuarterBegin.kwds" title="pandas.tseries.offsets.QuarterBegin.kwds"><code>QuarterBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.name.html#pandas.tseries.offsets.QuarterBegin.name" title="pandas.tseries.offsets.QuarterBegin.name"><code>QuarterBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.nanos.html#pandas.tseries.offsets.QuarterBegin.nanos" title="pandas.tseries.offsets.QuarterBegin.nanos"><code>QuarterBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.normalize.html#pandas.tseries.offsets.QuarterBegin.normalize" title="pandas.tseries.offsets.QuarterBegin.normalize"><code>QuarterBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.rule_code.html#pandas.tseries.offsets.QuarterBegin.rule_code" title="pandas.tseries.offsets.QuarterBegin.rule_code"><code>QuarterBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id44">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.apply.html#pandas.tseries.offsets.QuarterBegin.apply" title="pandas.tseries.offsets.QuarterBegin.apply"><code>QuarterBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.apply_index.html#pandas.tseries.offsets.QuarterBegin.apply_index" title="pandas.tseries.offsets.QuarterBegin.apply_index"><code>QuarterBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.copy.html#pandas.tseries.offsets.QuarterBegin.copy" title="pandas.tseries.offsets.QuarterBegin.copy"><code>QuarterBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.isanchored.html#pandas.tseries.offsets.QuarterBegin.isAnchored" title="pandas.tseries.offsets.QuarterBegin.isAnchored"><code>QuarterBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.quarterbegin.onoffset.html#pandas.tseries.offsets.QuarterBegin.onOffset" title="pandas.tseries.offsets.QuarterBegin.onOffset"><code>QuarterBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="yearoffset">YearOffset</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.html#pandas.tseries.offsets.YearOffset" title="pandas.tseries.offsets.YearOffset"><code>YearOffset</code></a>([n, normalize, month])</td> <td>DateOffset that just needs a month.</td> </tr>  </table>  <h3 id="id45">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.freqstr.html#pandas.tseries.offsets.YearOffset.freqstr" title="pandas.tseries.offsets.YearOffset.freqstr"><code>YearOffset.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.kwds.html#pandas.tseries.offsets.YearOffset.kwds" title="pandas.tseries.offsets.YearOffset.kwds"><code>YearOffset.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.name.html#pandas.tseries.offsets.YearOffset.name" title="pandas.tseries.offsets.YearOffset.name"><code>YearOffset.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.nanos.html#pandas.tseries.offsets.YearOffset.nanos" title="pandas.tseries.offsets.YearOffset.nanos"><code>YearOffset.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.normalize.html#pandas.tseries.offsets.YearOffset.normalize" title="pandas.tseries.offsets.YearOffset.normalize"><code>YearOffset.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.rule_code.html#pandas.tseries.offsets.YearOffset.rule_code" title="pandas.tseries.offsets.YearOffset.rule_code"><code>YearOffset.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id46">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.apply.html#pandas.tseries.offsets.YearOffset.apply" title="pandas.tseries.offsets.YearOffset.apply"><code>YearOffset.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.apply_index.html#pandas.tseries.offsets.YearOffset.apply_index" title="pandas.tseries.offsets.YearOffset.apply_index"><code>YearOffset.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.copy.html#pandas.tseries.offsets.YearOffset.copy" title="pandas.tseries.offsets.YearOffset.copy"><code>YearOffset.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.isanchored.html#pandas.tseries.offsets.YearOffset.isAnchored" title="pandas.tseries.offsets.YearOffset.isAnchored"><code>YearOffset.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearoffset.onoffset.html#pandas.tseries.offsets.YearOffset.onOffset" title="pandas.tseries.offsets.YearOffset.onOffset"><code>YearOffset.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="byearend">BYearEnd</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearend.html#pandas.tseries.offsets.BYearEnd" title="pandas.tseries.offsets.BYearEnd"><code>BYearEnd</code></a>([n, normalize, month])</td> <td>DateOffset increments between business EOM dates.</td> </tr>  </table>  <h3 id="id47">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearend.freqstr.html#pandas.tseries.offsets.BYearEnd.freqstr" title="pandas.tseries.offsets.BYearEnd.freqstr"><code>BYearEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearend.kwds.html#pandas.tseries.offsets.BYearEnd.kwds" title="pandas.tseries.offsets.BYearEnd.kwds"><code>BYearEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearend.name.html#pandas.tseries.offsets.BYearEnd.name" title="pandas.tseries.offsets.BYearEnd.name"><code>BYearEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearend.nanos.html#pandas.tseries.offsets.BYearEnd.nanos" title="pandas.tseries.offsets.BYearEnd.nanos"><code>BYearEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearend.normalize.html#pandas.tseries.offsets.BYearEnd.normalize" title="pandas.tseries.offsets.BYearEnd.normalize"><code>BYearEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearend.rule_code.html#pandas.tseries.offsets.BYearEnd.rule_code" title="pandas.tseries.offsets.BYearEnd.rule_code"><code>BYearEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id48">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearend.apply.html#pandas.tseries.offsets.BYearEnd.apply" title="pandas.tseries.offsets.BYearEnd.apply"><code>BYearEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearend.apply_index.html#pandas.tseries.offsets.BYearEnd.apply_index" title="pandas.tseries.offsets.BYearEnd.apply_index"><code>BYearEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearend.copy.html#pandas.tseries.offsets.BYearEnd.copy" title="pandas.tseries.offsets.BYearEnd.copy"><code>BYearEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearend.isanchored.html#pandas.tseries.offsets.BYearEnd.isAnchored" title="pandas.tseries.offsets.BYearEnd.isAnchored"><code>BYearEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearend.onoffset.html#pandas.tseries.offsets.BYearEnd.onOffset" title="pandas.tseries.offsets.BYearEnd.onOffset"><code>BYearEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="byearbegin">BYearBegin</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.html#pandas.tseries.offsets.BYearBegin" title="pandas.tseries.offsets.BYearBegin"><code>BYearBegin</code></a>([n, normalize, month])</td> <td>DateOffset increments between business year begin dates.</td> </tr>  </table>  <h3 id="id49">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.freqstr.html#pandas.tseries.offsets.BYearBegin.freqstr" title="pandas.tseries.offsets.BYearBegin.freqstr"><code>BYearBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.kwds.html#pandas.tseries.offsets.BYearBegin.kwds" title="pandas.tseries.offsets.BYearBegin.kwds"><code>BYearBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.name.html#pandas.tseries.offsets.BYearBegin.name" title="pandas.tseries.offsets.BYearBegin.name"><code>BYearBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.nanos.html#pandas.tseries.offsets.BYearBegin.nanos" title="pandas.tseries.offsets.BYearBegin.nanos"><code>BYearBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.normalize.html#pandas.tseries.offsets.BYearBegin.normalize" title="pandas.tseries.offsets.BYearBegin.normalize"><code>BYearBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.rule_code.html#pandas.tseries.offsets.BYearBegin.rule_code" title="pandas.tseries.offsets.BYearBegin.rule_code"><code>BYearBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id50">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.apply.html#pandas.tseries.offsets.BYearBegin.apply" title="pandas.tseries.offsets.BYearBegin.apply"><code>BYearBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.apply_index.html#pandas.tseries.offsets.BYearBegin.apply_index" title="pandas.tseries.offsets.BYearBegin.apply_index"><code>BYearBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.copy.html#pandas.tseries.offsets.BYearBegin.copy" title="pandas.tseries.offsets.BYearBegin.copy"><code>BYearBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.isanchored.html#pandas.tseries.offsets.BYearBegin.isAnchored" title="pandas.tseries.offsets.BYearBegin.isAnchored"><code>BYearBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.byearbegin.onoffset.html#pandas.tseries.offsets.BYearBegin.onOffset" title="pandas.tseries.offsets.BYearBegin.onOffset"><code>BYearBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="yearend">YearEnd</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearend.html#pandas.tseries.offsets.YearEnd" title="pandas.tseries.offsets.YearEnd"><code>YearEnd</code></a>([n, normalize, month])</td> <td>DateOffset increments between calendar year ends.</td> </tr>  </table>  <h3 id="id51">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearend.freqstr.html#pandas.tseries.offsets.YearEnd.freqstr" title="pandas.tseries.offsets.YearEnd.freqstr"><code>YearEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearend.kwds.html#pandas.tseries.offsets.YearEnd.kwds" title="pandas.tseries.offsets.YearEnd.kwds"><code>YearEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearend.name.html#pandas.tseries.offsets.YearEnd.name" title="pandas.tseries.offsets.YearEnd.name"><code>YearEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearend.nanos.html#pandas.tseries.offsets.YearEnd.nanos" title="pandas.tseries.offsets.YearEnd.nanos"><code>YearEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearend.normalize.html#pandas.tseries.offsets.YearEnd.normalize" title="pandas.tseries.offsets.YearEnd.normalize"><code>YearEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearend.rule_code.html#pandas.tseries.offsets.YearEnd.rule_code" title="pandas.tseries.offsets.YearEnd.rule_code"><code>YearEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id52">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearend.apply.html#pandas.tseries.offsets.YearEnd.apply" title="pandas.tseries.offsets.YearEnd.apply"><code>YearEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearend.apply_index.html#pandas.tseries.offsets.YearEnd.apply_index" title="pandas.tseries.offsets.YearEnd.apply_index"><code>YearEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearend.copy.html#pandas.tseries.offsets.YearEnd.copy" title="pandas.tseries.offsets.YearEnd.copy"><code>YearEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearend.isanchored.html#pandas.tseries.offsets.YearEnd.isAnchored" title="pandas.tseries.offsets.YearEnd.isAnchored"><code>YearEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearend.onoffset.html#pandas.tseries.offsets.YearEnd.onOffset" title="pandas.tseries.offsets.YearEnd.onOffset"><code>YearEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="yearbegin">YearBegin</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.html#pandas.tseries.offsets.YearBegin" title="pandas.tseries.offsets.YearBegin"><code>YearBegin</code></a>([n, normalize, month])</td> <td>DateOffset increments between calendar year begin dates.</td> </tr>  </table>  <h3 id="id53">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.freqstr.html#pandas.tseries.offsets.YearBegin.freqstr" title="pandas.tseries.offsets.YearBegin.freqstr"><code>YearBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.kwds.html#pandas.tseries.offsets.YearBegin.kwds" title="pandas.tseries.offsets.YearBegin.kwds"><code>YearBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.name.html#pandas.tseries.offsets.YearBegin.name" title="pandas.tseries.offsets.YearBegin.name"><code>YearBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.nanos.html#pandas.tseries.offsets.YearBegin.nanos" title="pandas.tseries.offsets.YearBegin.nanos"><code>YearBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.normalize.html#pandas.tseries.offsets.YearBegin.normalize" title="pandas.tseries.offsets.YearBegin.normalize"><code>YearBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.rule_code.html#pandas.tseries.offsets.YearBegin.rule_code" title="pandas.tseries.offsets.YearBegin.rule_code"><code>YearBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id54">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.apply.html#pandas.tseries.offsets.YearBegin.apply" title="pandas.tseries.offsets.YearBegin.apply"><code>YearBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.apply_index.html#pandas.tseries.offsets.YearBegin.apply_index" title="pandas.tseries.offsets.YearBegin.apply_index"><code>YearBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.copy.html#pandas.tseries.offsets.YearBegin.copy" title="pandas.tseries.offsets.YearBegin.copy"><code>YearBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.isanchored.html#pandas.tseries.offsets.YearBegin.isAnchored" title="pandas.tseries.offsets.YearBegin.isAnchored"><code>YearBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.yearbegin.onoffset.html#pandas.tseries.offsets.YearBegin.onOffset" title="pandas.tseries.offsets.YearBegin.onOffset"><code>YearBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="fy5253">FY5253</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253.html#pandas.tseries.offsets.FY5253" title="pandas.tseries.offsets.FY5253"><code>FY5253</code></a>([n, normalize, weekday, …])</td> <td>Describes 52-53 week fiscal year.</td> </tr>  </table>  <h3 id="id55">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253.freqstr.html#pandas.tseries.offsets.FY5253.freqstr" title="pandas.tseries.offsets.FY5253.freqstr"><code>FY5253.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253.kwds.html#pandas.tseries.offsets.FY5253.kwds" title="pandas.tseries.offsets.FY5253.kwds"><code>FY5253.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253.name.html#pandas.tseries.offsets.FY5253.name" title="pandas.tseries.offsets.FY5253.name"><code>FY5253.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253.nanos.html#pandas.tseries.offsets.FY5253.nanos" title="pandas.tseries.offsets.FY5253.nanos"><code>FY5253.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253.normalize.html#pandas.tseries.offsets.FY5253.normalize" title="pandas.tseries.offsets.FY5253.normalize"><code>FY5253.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253.rule_code.html#pandas.tseries.offsets.FY5253.rule_code" title="pandas.tseries.offsets.FY5253.rule_code"><code>FY5253.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id56">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253.apply.html#pandas.tseries.offsets.FY5253.apply" title="pandas.tseries.offsets.FY5253.apply"><code>FY5253.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253.copy.html#pandas.tseries.offsets.FY5253.copy" title="pandas.tseries.offsets.FY5253.copy"><code>FY5253.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253.get_rule_code_suffix.html#pandas.tseries.offsets.FY5253.get_rule_code_suffix" title="pandas.tseries.offsets.FY5253.get_rule_code_suffix"><code>FY5253.get_rule_code_suffix</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253.get_year_end.html#pandas.tseries.offsets.FY5253.get_year_end" title="pandas.tseries.offsets.FY5253.get_year_end"><code>FY5253.get_year_end</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253.isanchored.html#pandas.tseries.offsets.FY5253.isAnchored" title="pandas.tseries.offsets.FY5253.isAnchored"><code>FY5253.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253.onoffset.html#pandas.tseries.offsets.FY5253.onOffset" title="pandas.tseries.offsets.FY5253.onOffset"><code>FY5253.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="fy5253quarter">FY5253Quarter</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.html#pandas.tseries.offsets.FY5253Quarter" title="pandas.tseries.offsets.FY5253Quarter"><code>FY5253Quarter</code></a>([n, normalize, weekday, …])</td> <td>DateOffset increments between business quarter dates for 52-53 week fiscal year (also known as a 4-4-5 calendar).</td> </tr>  </table>  <h3 id="id57">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.freqstr.html#pandas.tseries.offsets.FY5253Quarter.freqstr" title="pandas.tseries.offsets.FY5253Quarter.freqstr"><code>FY5253Quarter.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.kwds.html#pandas.tseries.offsets.FY5253Quarter.kwds" title="pandas.tseries.offsets.FY5253Quarter.kwds"><code>FY5253Quarter.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.name.html#pandas.tseries.offsets.FY5253Quarter.name" title="pandas.tseries.offsets.FY5253Quarter.name"><code>FY5253Quarter.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.nanos.html#pandas.tseries.offsets.FY5253Quarter.nanos" title="pandas.tseries.offsets.FY5253Quarter.nanos"><code>FY5253Quarter.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.normalize.html#pandas.tseries.offsets.FY5253Quarter.normalize" title="pandas.tseries.offsets.FY5253Quarter.normalize"><code>FY5253Quarter.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.rule_code.html#pandas.tseries.offsets.FY5253Quarter.rule_code" title="pandas.tseries.offsets.FY5253Quarter.rule_code"><code>FY5253Quarter.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id58">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.apply.html#pandas.tseries.offsets.FY5253Quarter.apply" title="pandas.tseries.offsets.FY5253Quarter.apply"><code>FY5253Quarter.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.copy.html#pandas.tseries.offsets.FY5253Quarter.copy" title="pandas.tseries.offsets.FY5253Quarter.copy"><code>FY5253Quarter.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.get_weeks.html#pandas.tseries.offsets.FY5253Quarter.get_weeks" title="pandas.tseries.offsets.FY5253Quarter.get_weeks"><code>FY5253Quarter.get_weeks</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.isanchored.html#pandas.tseries.offsets.FY5253Quarter.isAnchored" title="pandas.tseries.offsets.FY5253Quarter.isAnchored"><code>FY5253Quarter.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.onoffset.html#pandas.tseries.offsets.FY5253Quarter.onOffset" title="pandas.tseries.offsets.FY5253Quarter.onOffset"><code>FY5253Quarter.onOffset</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.fy5253quarter.year_has_extra_week.html#pandas.tseries.offsets.FY5253Quarter.year_has_extra_week" title="pandas.tseries.offsets.FY5253Quarter.year_has_extra_week"><code>FY5253Quarter.year_has_extra_week</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="easter">Easter</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.easter.html#pandas.tseries.offsets.Easter" title="pandas.tseries.offsets.Easter"><code>Easter</code></a></td> <td>DateOffset for the Easter holiday using logic defined in dateutil.</td> </tr>  </table>  <h3 id="id59">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.easter.freqstr.html#pandas.tseries.offsets.Easter.freqstr" title="pandas.tseries.offsets.Easter.freqstr"><code>Easter.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.easter.kwds.html#pandas.tseries.offsets.Easter.kwds" title="pandas.tseries.offsets.Easter.kwds"><code>Easter.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.easter.name.html#pandas.tseries.offsets.Easter.name" title="pandas.tseries.offsets.Easter.name"><code>Easter.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.easter.nanos.html#pandas.tseries.offsets.Easter.nanos" title="pandas.tseries.offsets.Easter.nanos"><code>Easter.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.easter.normalize.html#pandas.tseries.offsets.Easter.normalize" title="pandas.tseries.offsets.Easter.normalize"><code>Easter.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.easter.rule_code.html#pandas.tseries.offsets.Easter.rule_code" title="pandas.tseries.offsets.Easter.rule_code"><code>Easter.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id60">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.easter.apply.html#pandas.tseries.offsets.Easter.apply" title="pandas.tseries.offsets.Easter.apply"><code>Easter.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.easter.copy.html#pandas.tseries.offsets.Easter.copy" title="pandas.tseries.offsets.Easter.copy"><code>Easter.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.easter.isanchored.html#pandas.tseries.offsets.Easter.isAnchored" title="pandas.tseries.offsets.Easter.isAnchored"><code>Easter.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.easter.onoffset.html#pandas.tseries.offsets.Easter.onOffset" title="pandas.tseries.offsets.Easter.onOffset"><code>Easter.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="tick">Tick</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.tick.html#pandas.tseries.offsets.Tick" title="pandas.tseries.offsets.Tick"><code>Tick</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id61">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.tick.delta.html#pandas.tseries.offsets.Tick.delta" title="pandas.tseries.offsets.Tick.delta"><code>Tick.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.tick.freqstr.html#pandas.tseries.offsets.Tick.freqstr" title="pandas.tseries.offsets.Tick.freqstr"><code>Tick.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.tick.kwds.html#pandas.tseries.offsets.Tick.kwds" title="pandas.tseries.offsets.Tick.kwds"><code>Tick.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.tick.name.html#pandas.tseries.offsets.Tick.name" title="pandas.tseries.offsets.Tick.name"><code>Tick.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.tick.nanos.html#pandas.tseries.offsets.Tick.nanos" title="pandas.tseries.offsets.Tick.nanos"><code>Tick.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.tick.normalize.html#pandas.tseries.offsets.Tick.normalize" title="pandas.tseries.offsets.Tick.normalize"><code>Tick.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.tick.rule_code.html#pandas.tseries.offsets.Tick.rule_code" title="pandas.tseries.offsets.Tick.rule_code"><code>Tick.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id62">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.tick.copy.html#pandas.tseries.offsets.Tick.copy" title="pandas.tseries.offsets.Tick.copy"><code>Tick.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.tick.isanchored.html#pandas.tseries.offsets.Tick.isAnchored" title="pandas.tseries.offsets.Tick.isAnchored"><code>Tick.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.tick.onoffset.html#pandas.tseries.offsets.Tick.onOffset" title="pandas.tseries.offsets.Tick.onOffset"><code>Tick.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="day">Day</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.day.html#pandas.tseries.offsets.Day" title="pandas.tseries.offsets.Day"><code>Day</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id63">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.day.delta.html#pandas.tseries.offsets.Day.delta" title="pandas.tseries.offsets.Day.delta"><code>Day.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.day.freqstr.html#pandas.tseries.offsets.Day.freqstr" title="pandas.tseries.offsets.Day.freqstr"><code>Day.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.day.kwds.html#pandas.tseries.offsets.Day.kwds" title="pandas.tseries.offsets.Day.kwds"><code>Day.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.day.name.html#pandas.tseries.offsets.Day.name" title="pandas.tseries.offsets.Day.name"><code>Day.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.day.nanos.html#pandas.tseries.offsets.Day.nanos" title="pandas.tseries.offsets.Day.nanos"><code>Day.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.day.normalize.html#pandas.tseries.offsets.Day.normalize" title="pandas.tseries.offsets.Day.normalize"><code>Day.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.day.rule_code.html#pandas.tseries.offsets.Day.rule_code" title="pandas.tseries.offsets.Day.rule_code"><code>Day.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id64">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.day.copy.html#pandas.tseries.offsets.Day.copy" title="pandas.tseries.offsets.Day.copy"><code>Day.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.day.isanchored.html#pandas.tseries.offsets.Day.isAnchored" title="pandas.tseries.offsets.Day.isAnchored"><code>Day.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.day.onoffset.html#pandas.tseries.offsets.Day.onOffset" title="pandas.tseries.offsets.Day.onOffset"><code>Day.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="hour">Hour</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.hour.html#pandas.tseries.offsets.Hour" title="pandas.tseries.offsets.Hour"><code>Hour</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id65">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.hour.delta.html#pandas.tseries.offsets.Hour.delta" title="pandas.tseries.offsets.Hour.delta"><code>Hour.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.hour.freqstr.html#pandas.tseries.offsets.Hour.freqstr" title="pandas.tseries.offsets.Hour.freqstr"><code>Hour.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.hour.kwds.html#pandas.tseries.offsets.Hour.kwds" title="pandas.tseries.offsets.Hour.kwds"><code>Hour.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.hour.name.html#pandas.tseries.offsets.Hour.name" title="pandas.tseries.offsets.Hour.name"><code>Hour.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.hour.nanos.html#pandas.tseries.offsets.Hour.nanos" title="pandas.tseries.offsets.Hour.nanos"><code>Hour.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.hour.normalize.html#pandas.tseries.offsets.Hour.normalize" title="pandas.tseries.offsets.Hour.normalize"><code>Hour.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.hour.rule_code.html#pandas.tseries.offsets.Hour.rule_code" title="pandas.tseries.offsets.Hour.rule_code"><code>Hour.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id66">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.hour.copy.html#pandas.tseries.offsets.Hour.copy" title="pandas.tseries.offsets.Hour.copy"><code>Hour.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.hour.isanchored.html#pandas.tseries.offsets.Hour.isAnchored" title="pandas.tseries.offsets.Hour.isAnchored"><code>Hour.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.hour.onoffset.html#pandas.tseries.offsets.Hour.onOffset" title="pandas.tseries.offsets.Hour.onOffset"><code>Hour.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="minute">Minute</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.minute.html#pandas.tseries.offsets.Minute" title="pandas.tseries.offsets.Minute"><code>Minute</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id67">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.minute.delta.html#pandas.tseries.offsets.Minute.delta" title="pandas.tseries.offsets.Minute.delta"><code>Minute.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.minute.freqstr.html#pandas.tseries.offsets.Minute.freqstr" title="pandas.tseries.offsets.Minute.freqstr"><code>Minute.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.minute.kwds.html#pandas.tseries.offsets.Minute.kwds" title="pandas.tseries.offsets.Minute.kwds"><code>Minute.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.minute.name.html#pandas.tseries.offsets.Minute.name" title="pandas.tseries.offsets.Minute.name"><code>Minute.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.minute.nanos.html#pandas.tseries.offsets.Minute.nanos" title="pandas.tseries.offsets.Minute.nanos"><code>Minute.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.minute.normalize.html#pandas.tseries.offsets.Minute.normalize" title="pandas.tseries.offsets.Minute.normalize"><code>Minute.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.minute.rule_code.html#pandas.tseries.offsets.Minute.rule_code" title="pandas.tseries.offsets.Minute.rule_code"><code>Minute.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id68">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.minute.copy.html#pandas.tseries.offsets.Minute.copy" title="pandas.tseries.offsets.Minute.copy"><code>Minute.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.minute.isanchored.html#pandas.tseries.offsets.Minute.isAnchored" title="pandas.tseries.offsets.Minute.isAnchored"><code>Minute.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.minute.onoffset.html#pandas.tseries.offsets.Minute.onOffset" title="pandas.tseries.offsets.Minute.onOffset"><code>Minute.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="second">Second</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.second.html#pandas.tseries.offsets.Second" title="pandas.tseries.offsets.Second"><code>Second</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id69">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.second.delta.html#pandas.tseries.offsets.Second.delta" title="pandas.tseries.offsets.Second.delta"><code>Second.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.second.freqstr.html#pandas.tseries.offsets.Second.freqstr" title="pandas.tseries.offsets.Second.freqstr"><code>Second.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.second.kwds.html#pandas.tseries.offsets.Second.kwds" title="pandas.tseries.offsets.Second.kwds"><code>Second.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.second.name.html#pandas.tseries.offsets.Second.name" title="pandas.tseries.offsets.Second.name"><code>Second.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.second.nanos.html#pandas.tseries.offsets.Second.nanos" title="pandas.tseries.offsets.Second.nanos"><code>Second.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.second.normalize.html#pandas.tseries.offsets.Second.normalize" title="pandas.tseries.offsets.Second.normalize"><code>Second.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.second.rule_code.html#pandas.tseries.offsets.Second.rule_code" title="pandas.tseries.offsets.Second.rule_code"><code>Second.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id70">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.second.copy.html#pandas.tseries.offsets.Second.copy" title="pandas.tseries.offsets.Second.copy"><code>Second.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.second.isanchored.html#pandas.tseries.offsets.Second.isAnchored" title="pandas.tseries.offsets.Second.isAnchored"><code>Second.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.second.onoffset.html#pandas.tseries.offsets.Second.onOffset" title="pandas.tseries.offsets.Second.onOffset"><code>Second.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="milli">Milli</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.milli.html#pandas.tseries.offsets.Milli" title="pandas.tseries.offsets.Milli"><code>Milli</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id71">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.milli.delta.html#pandas.tseries.offsets.Milli.delta" title="pandas.tseries.offsets.Milli.delta"><code>Milli.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.milli.freqstr.html#pandas.tseries.offsets.Milli.freqstr" title="pandas.tseries.offsets.Milli.freqstr"><code>Milli.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.milli.kwds.html#pandas.tseries.offsets.Milli.kwds" title="pandas.tseries.offsets.Milli.kwds"><code>Milli.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.milli.name.html#pandas.tseries.offsets.Milli.name" title="pandas.tseries.offsets.Milli.name"><code>Milli.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.milli.nanos.html#pandas.tseries.offsets.Milli.nanos" title="pandas.tseries.offsets.Milli.nanos"><code>Milli.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.milli.normalize.html#pandas.tseries.offsets.Milli.normalize" title="pandas.tseries.offsets.Milli.normalize"><code>Milli.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.milli.rule_code.html#pandas.tseries.offsets.Milli.rule_code" title="pandas.tseries.offsets.Milli.rule_code"><code>Milli.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id72">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.milli.copy.html#pandas.tseries.offsets.Milli.copy" title="pandas.tseries.offsets.Milli.copy"><code>Milli.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.milli.isanchored.html#pandas.tseries.offsets.Milli.isAnchored" title="pandas.tseries.offsets.Milli.isAnchored"><code>Milli.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.milli.onoffset.html#pandas.tseries.offsets.Milli.onOffset" title="pandas.tseries.offsets.Milli.onOffset"><code>Milli.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="micro">Micro</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.micro.html#pandas.tseries.offsets.Micro" title="pandas.tseries.offsets.Micro"><code>Micro</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id73">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.micro.delta.html#pandas.tseries.offsets.Micro.delta" title="pandas.tseries.offsets.Micro.delta"><code>Micro.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.micro.freqstr.html#pandas.tseries.offsets.Micro.freqstr" title="pandas.tseries.offsets.Micro.freqstr"><code>Micro.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.micro.kwds.html#pandas.tseries.offsets.Micro.kwds" title="pandas.tseries.offsets.Micro.kwds"><code>Micro.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.micro.name.html#pandas.tseries.offsets.Micro.name" title="pandas.tseries.offsets.Micro.name"><code>Micro.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.micro.nanos.html#pandas.tseries.offsets.Micro.nanos" title="pandas.tseries.offsets.Micro.nanos"><code>Micro.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.micro.normalize.html#pandas.tseries.offsets.Micro.normalize" title="pandas.tseries.offsets.Micro.normalize"><code>Micro.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.micro.rule_code.html#pandas.tseries.offsets.Micro.rule_code" title="pandas.tseries.offsets.Micro.rule_code"><code>Micro.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id74">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.micro.copy.html#pandas.tseries.offsets.Micro.copy" title="pandas.tseries.offsets.Micro.copy"><code>Micro.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.micro.isanchored.html#pandas.tseries.offsets.Micro.isAnchored" title="pandas.tseries.offsets.Micro.isAnchored"><code>Micro.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.micro.onoffset.html#pandas.tseries.offsets.Micro.onOffset" title="pandas.tseries.offsets.Micro.onOffset"><code>Micro.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="nano">Nano</h2> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.nano.html#pandas.tseries.offsets.Nano" title="pandas.tseries.offsets.Nano"><code>Nano</code></a>([n, normalize])</td> <td>
+<h4 class="rubric">Attributes</h4> </td> </tr>  </table>  <h3 id="id75">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.nano.delta.html#pandas.tseries.offsets.Nano.delta" title="pandas.tseries.offsets.Nano.delta"><code>Nano.delta</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.nano.freqstr.html#pandas.tseries.offsets.Nano.freqstr" title="pandas.tseries.offsets.Nano.freqstr"><code>Nano.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.nano.kwds.html#pandas.tseries.offsets.Nano.kwds" title="pandas.tseries.offsets.Nano.kwds"><code>Nano.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.nano.name.html#pandas.tseries.offsets.Nano.name" title="pandas.tseries.offsets.Nano.name"><code>Nano.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.nano.nanos.html#pandas.tseries.offsets.Nano.nanos" title="pandas.tseries.offsets.Nano.nanos"><code>Nano.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.nano.normalize.html#pandas.tseries.offsets.Nano.normalize" title="pandas.tseries.offsets.Nano.normalize"><code>Nano.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.nano.rule_code.html#pandas.tseries.offsets.Nano.rule_code" title="pandas.tseries.offsets.Nano.rule_code"><code>Nano.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id76">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.nano.copy.html#pandas.tseries.offsets.Nano.copy" title="pandas.tseries.offsets.Nano.copy"><code>Nano.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.nano.isanchored.html#pandas.tseries.offsets.Nano.isAnchored" title="pandas.tseries.offsets.Nano.isAnchored"><code>Nano.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.nano.onoffset.html#pandas.tseries.offsets.Nano.onOffset" title="pandas.tseries.offsets.Nano.onOffset"><code>Nano.onOffset</code></a>(self, dt)</td> <td></td> </tr>  </table>    <h2 id="bday">BDay</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.html#pandas.tseries.offsets.BDay" title="pandas.tseries.offsets.BDay"><code>BDay</code></a></td> <td>alias of <a class="reference internal" href="api/pandas.tseries.offsets.businessday.html#pandas.tseries.offsets.BusinessDay" title="pandas.tseries.offsets.BusinessDay"><code>pandas.tseries.offsets.BusinessDay</code></a>
+</td> </tr>  </table>  <h3 id="id77">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.base.html#pandas.tseries.offsets.BDay.base" title="pandas.tseries.offsets.BDay.base"><code>BDay.base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.freqstr.html#pandas.tseries.offsets.BDay.freqstr" title="pandas.tseries.offsets.BDay.freqstr"><code>BDay.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.kwds.html#pandas.tseries.offsets.BDay.kwds" title="pandas.tseries.offsets.BDay.kwds"><code>BDay.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.name.html#pandas.tseries.offsets.BDay.name" title="pandas.tseries.offsets.BDay.name"><code>BDay.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.nanos.html#pandas.tseries.offsets.BDay.nanos" title="pandas.tseries.offsets.BDay.nanos"><code>BDay.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.normalize.html#pandas.tseries.offsets.BDay.normalize" title="pandas.tseries.offsets.BDay.normalize"><code>BDay.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.offset.html#pandas.tseries.offsets.BDay.offset" title="pandas.tseries.offsets.BDay.offset"><code>BDay.offset</code></a></td> <td>Alias for self._offset.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bday.rule_code.html#pandas.tseries.offsets.BDay.rule_code" title="pandas.tseries.offsets.BDay.rule_code"><code>BDay.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id78">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bday.apply.html#pandas.tseries.offsets.BDay.apply" title="pandas.tseries.offsets.BDay.apply"><code>BDay.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bday.apply_index.html#pandas.tseries.offsets.BDay.apply_index" title="pandas.tseries.offsets.BDay.apply_index"><code>BDay.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bday.copy.html#pandas.tseries.offsets.BDay.copy" title="pandas.tseries.offsets.BDay.copy"><code>BDay.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bday.isanchored.html#pandas.tseries.offsets.BDay.isAnchored" title="pandas.tseries.offsets.BDay.isAnchored"><code>BDay.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bday.onoffset.html#pandas.tseries.offsets.BDay.onOffset" title="pandas.tseries.offsets.BDay.onOffset"><code>BDay.onOffset</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bday.rollback.html#pandas.tseries.offsets.BDay.rollback" title="pandas.tseries.offsets.BDay.rollback"><code>BDay.rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bday.rollforward.html#pandas.tseries.offsets.BDay.rollforward" title="pandas.tseries.offsets.BDay.rollforward"><code>BDay.rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table>    <h2 id="bmonthend">BMonthEnd</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.html#pandas.tseries.offsets.BMonthEnd" title="pandas.tseries.offsets.BMonthEnd"><code>BMonthEnd</code></a></td> <td>alias of <a class="reference internal" href="api/pandas.tseries.offsets.businessmonthend.html#pandas.tseries.offsets.BusinessMonthEnd" title="pandas.tseries.offsets.BusinessMonthEnd"><code>pandas.tseries.offsets.BusinessMonthEnd</code></a>
+</td> </tr>  </table>  <h3 id="id79">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.base.html#pandas.tseries.offsets.BMonthEnd.base" title="pandas.tseries.offsets.BMonthEnd.base"><code>BMonthEnd.base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.freqstr.html#pandas.tseries.offsets.BMonthEnd.freqstr" title="pandas.tseries.offsets.BMonthEnd.freqstr"><code>BMonthEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.kwds.html#pandas.tseries.offsets.BMonthEnd.kwds" title="pandas.tseries.offsets.BMonthEnd.kwds"><code>BMonthEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.name.html#pandas.tseries.offsets.BMonthEnd.name" title="pandas.tseries.offsets.BMonthEnd.name"><code>BMonthEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.nanos.html#pandas.tseries.offsets.BMonthEnd.nanos" title="pandas.tseries.offsets.BMonthEnd.nanos"><code>BMonthEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.normalize.html#pandas.tseries.offsets.BMonthEnd.normalize" title="pandas.tseries.offsets.BMonthEnd.normalize"><code>BMonthEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.rule_code.html#pandas.tseries.offsets.BMonthEnd.rule_code" title="pandas.tseries.offsets.BMonthEnd.rule_code"><code>BMonthEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id80">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.apply.html#pandas.tseries.offsets.BMonthEnd.apply" title="pandas.tseries.offsets.BMonthEnd.apply"><code>BMonthEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.apply_index.html#pandas.tseries.offsets.BMonthEnd.apply_index" title="pandas.tseries.offsets.BMonthEnd.apply_index"><code>BMonthEnd.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.copy.html#pandas.tseries.offsets.BMonthEnd.copy" title="pandas.tseries.offsets.BMonthEnd.copy"><code>BMonthEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.isanchored.html#pandas.tseries.offsets.BMonthEnd.isAnchored" title="pandas.tseries.offsets.BMonthEnd.isAnchored"><code>BMonthEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.onoffset.html#pandas.tseries.offsets.BMonthEnd.onOffset" title="pandas.tseries.offsets.BMonthEnd.onOffset"><code>BMonthEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.rollback.html#pandas.tseries.offsets.BMonthEnd.rollback" title="pandas.tseries.offsets.BMonthEnd.rollback"><code>BMonthEnd.rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthend.rollforward.html#pandas.tseries.offsets.BMonthEnd.rollforward" title="pandas.tseries.offsets.BMonthEnd.rollforward"><code>BMonthEnd.rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table>    <h2 id="bmonthbegin">BMonthBegin</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.html#pandas.tseries.offsets.BMonthBegin" title="pandas.tseries.offsets.BMonthBegin"><code>BMonthBegin</code></a></td> <td>alias of <a class="reference internal" href="api/pandas.tseries.offsets.businessmonthbegin.html#pandas.tseries.offsets.BusinessMonthBegin" title="pandas.tseries.offsets.BusinessMonthBegin"><code>pandas.tseries.offsets.BusinessMonthBegin</code></a>
+</td> </tr>  </table>  <h3 id="id81">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.base.html#pandas.tseries.offsets.BMonthBegin.base" title="pandas.tseries.offsets.BMonthBegin.base"><code>BMonthBegin.base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.freqstr.html#pandas.tseries.offsets.BMonthBegin.freqstr" title="pandas.tseries.offsets.BMonthBegin.freqstr"><code>BMonthBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.kwds.html#pandas.tseries.offsets.BMonthBegin.kwds" title="pandas.tseries.offsets.BMonthBegin.kwds"><code>BMonthBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.name.html#pandas.tseries.offsets.BMonthBegin.name" title="pandas.tseries.offsets.BMonthBegin.name"><code>BMonthBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.nanos.html#pandas.tseries.offsets.BMonthBegin.nanos" title="pandas.tseries.offsets.BMonthBegin.nanos"><code>BMonthBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.normalize.html#pandas.tseries.offsets.BMonthBegin.normalize" title="pandas.tseries.offsets.BMonthBegin.normalize"><code>BMonthBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.rule_code.html#pandas.tseries.offsets.BMonthBegin.rule_code" title="pandas.tseries.offsets.BMonthBegin.rule_code"><code>BMonthBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id82">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.apply.html#pandas.tseries.offsets.BMonthBegin.apply" title="pandas.tseries.offsets.BMonthBegin.apply"><code>BMonthBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.apply_index.html#pandas.tseries.offsets.BMonthBegin.apply_index" title="pandas.tseries.offsets.BMonthBegin.apply_index"><code>BMonthBegin.apply_index</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.copy.html#pandas.tseries.offsets.BMonthBegin.copy" title="pandas.tseries.offsets.BMonthBegin.copy"><code>BMonthBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.isanchored.html#pandas.tseries.offsets.BMonthBegin.isAnchored" title="pandas.tseries.offsets.BMonthBegin.isAnchored"><code>BMonthBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.onoffset.html#pandas.tseries.offsets.BMonthBegin.onOffset" title="pandas.tseries.offsets.BMonthBegin.onOffset"><code>BMonthBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.rollback.html#pandas.tseries.offsets.BMonthBegin.rollback" title="pandas.tseries.offsets.BMonthBegin.rollback"><code>BMonthBegin.rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.bmonthbegin.rollforward.html#pandas.tseries.offsets.BMonthBegin.rollforward" title="pandas.tseries.offsets.BMonthBegin.rollforward"><code>BMonthBegin.rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table>    <h2 id="cbmonthend">CBMonthEnd</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.html#pandas.tseries.offsets.CBMonthEnd" title="pandas.tseries.offsets.CBMonthEnd"><code>CBMonthEnd</code></a></td> <td>alias of <a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthend.html#pandas.tseries.offsets.CustomBusinessMonthEnd" title="pandas.tseries.offsets.CustomBusinessMonthEnd"><code>pandas.tseries.offsets.CustomBusinessMonthEnd</code></a>
+</td> </tr>  </table>  <h3 id="id83">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.base.html#pandas.tseries.offsets.CBMonthEnd.base" title="pandas.tseries.offsets.CBMonthEnd.base"><code>CBMonthEnd.base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.cbday_roll.html#pandas.tseries.offsets.CBMonthEnd.cbday_roll" title="pandas.tseries.offsets.CBMonthEnd.cbday_roll"><code>CBMonthEnd.cbday_roll</code></a></td> <td>Define default roll function to be called in apply method.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.freqstr.html#pandas.tseries.offsets.CBMonthEnd.freqstr" title="pandas.tseries.offsets.CBMonthEnd.freqstr"><code>CBMonthEnd.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.kwds.html#pandas.tseries.offsets.CBMonthEnd.kwds" title="pandas.tseries.offsets.CBMonthEnd.kwds"><code>CBMonthEnd.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.m_offset.html#pandas.tseries.offsets.CBMonthEnd.m_offset" title="pandas.tseries.offsets.CBMonthEnd.m_offset"><code>CBMonthEnd.m_offset</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.month_roll.html#pandas.tseries.offsets.CBMonthEnd.month_roll" title="pandas.tseries.offsets.CBMonthEnd.month_roll"><code>CBMonthEnd.month_roll</code></a></td> <td>Define default roll function to be called in apply method.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.name.html#pandas.tseries.offsets.CBMonthEnd.name" title="pandas.tseries.offsets.CBMonthEnd.name"><code>CBMonthEnd.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.nanos.html#pandas.tseries.offsets.CBMonthEnd.nanos" title="pandas.tseries.offsets.CBMonthEnd.nanos"><code>CBMonthEnd.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.normalize.html#pandas.tseries.offsets.CBMonthEnd.normalize" title="pandas.tseries.offsets.CBMonthEnd.normalize"><code>CBMonthEnd.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.offset.html#pandas.tseries.offsets.CBMonthEnd.offset" title="pandas.tseries.offsets.CBMonthEnd.offset"><code>CBMonthEnd.offset</code></a></td> <td>Alias for self._offset.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.rule_code.html#pandas.tseries.offsets.CBMonthEnd.rule_code" title="pandas.tseries.offsets.CBMonthEnd.rule_code"><code>CBMonthEnd.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id84">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.apply.html#pandas.tseries.offsets.CBMonthEnd.apply" title="pandas.tseries.offsets.CBMonthEnd.apply"><code>CBMonthEnd.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.apply_index.html#pandas.tseries.offsets.CBMonthEnd.apply_index" title="pandas.tseries.offsets.CBMonthEnd.apply_index"><code>CBMonthEnd.apply_index</code></a>(self, other)</td> <td>Vectorized apply of DateOffset to DatetimeIndex, raises NotImplentedError for offsets without a vectorized implementation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.copy.html#pandas.tseries.offsets.CBMonthEnd.copy" title="pandas.tseries.offsets.CBMonthEnd.copy"><code>CBMonthEnd.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.isanchored.html#pandas.tseries.offsets.CBMonthEnd.isAnchored" title="pandas.tseries.offsets.CBMonthEnd.isAnchored"><code>CBMonthEnd.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.onoffset.html#pandas.tseries.offsets.CBMonthEnd.onOffset" title="pandas.tseries.offsets.CBMonthEnd.onOffset"><code>CBMonthEnd.onOffset</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.rollback.html#pandas.tseries.offsets.CBMonthEnd.rollback" title="pandas.tseries.offsets.CBMonthEnd.rollback"><code>CBMonthEnd.rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthend.rollforward.html#pandas.tseries.offsets.CBMonthEnd.rollforward" title="pandas.tseries.offsets.CBMonthEnd.rollforward"><code>CBMonthEnd.rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table>    <h2 id="cbmonthbegin">CBMonthBegin</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.html#pandas.tseries.offsets.CBMonthBegin" title="pandas.tseries.offsets.CBMonthBegin"><code>CBMonthBegin</code></a></td> <td>alias of <a class="reference internal" href="api/pandas.tseries.offsets.custombusinessmonthbegin.html#pandas.tseries.offsets.CustomBusinessMonthBegin" title="pandas.tseries.offsets.CustomBusinessMonthBegin"><code>pandas.tseries.offsets.CustomBusinessMonthBegin</code></a>
+</td> </tr>  </table>  <h3 id="id85">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.base.html#pandas.tseries.offsets.CBMonthBegin.base" title="pandas.tseries.offsets.CBMonthBegin.base"><code>CBMonthBegin.base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.cbday_roll.html#pandas.tseries.offsets.CBMonthBegin.cbday_roll" title="pandas.tseries.offsets.CBMonthBegin.cbday_roll"><code>CBMonthBegin.cbday_roll</code></a></td> <td>Define default roll function to be called in apply method.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.freqstr.html#pandas.tseries.offsets.CBMonthBegin.freqstr" title="pandas.tseries.offsets.CBMonthBegin.freqstr"><code>CBMonthBegin.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.kwds.html#pandas.tseries.offsets.CBMonthBegin.kwds" title="pandas.tseries.offsets.CBMonthBegin.kwds"><code>CBMonthBegin.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.m_offset.html#pandas.tseries.offsets.CBMonthBegin.m_offset" title="pandas.tseries.offsets.CBMonthBegin.m_offset"><code>CBMonthBegin.m_offset</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.month_roll.html#pandas.tseries.offsets.CBMonthBegin.month_roll" title="pandas.tseries.offsets.CBMonthBegin.month_roll"><code>CBMonthBegin.month_roll</code></a></td> <td>Define default roll function to be called in apply method.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.name.html#pandas.tseries.offsets.CBMonthBegin.name" title="pandas.tseries.offsets.CBMonthBegin.name"><code>CBMonthBegin.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.nanos.html#pandas.tseries.offsets.CBMonthBegin.nanos" title="pandas.tseries.offsets.CBMonthBegin.nanos"><code>CBMonthBegin.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.normalize.html#pandas.tseries.offsets.CBMonthBegin.normalize" title="pandas.tseries.offsets.CBMonthBegin.normalize"><code>CBMonthBegin.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.offset.html#pandas.tseries.offsets.CBMonthBegin.offset" title="pandas.tseries.offsets.CBMonthBegin.offset"><code>CBMonthBegin.offset</code></a></td> <td>Alias for self._offset.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.rule_code.html#pandas.tseries.offsets.CBMonthBegin.rule_code" title="pandas.tseries.offsets.CBMonthBegin.rule_code"><code>CBMonthBegin.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id86">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.apply.html#pandas.tseries.offsets.CBMonthBegin.apply" title="pandas.tseries.offsets.CBMonthBegin.apply"><code>CBMonthBegin.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.apply_index.html#pandas.tseries.offsets.CBMonthBegin.apply_index" title="pandas.tseries.offsets.CBMonthBegin.apply_index"><code>CBMonthBegin.apply_index</code></a>(self, other)</td> <td>Vectorized apply of DateOffset to DatetimeIndex, raises NotImplentedError for offsets without a vectorized implementation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.copy.html#pandas.tseries.offsets.CBMonthBegin.copy" title="pandas.tseries.offsets.CBMonthBegin.copy"><code>CBMonthBegin.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.isanchored.html#pandas.tseries.offsets.CBMonthBegin.isAnchored" title="pandas.tseries.offsets.CBMonthBegin.isAnchored"><code>CBMonthBegin.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.onoffset.html#pandas.tseries.offsets.CBMonthBegin.onOffset" title="pandas.tseries.offsets.CBMonthBegin.onOffset"><code>CBMonthBegin.onOffset</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.rollback.html#pandas.tseries.offsets.CBMonthBegin.rollback" title="pandas.tseries.offsets.CBMonthBegin.rollback"><code>CBMonthBegin.rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cbmonthbegin.rollforward.html#pandas.tseries.offsets.CBMonthBegin.rollforward" title="pandas.tseries.offsets.CBMonthBegin.rollforward"><code>CBMonthBegin.rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table>    <h2 id="cday">CDay</h2> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.html#pandas.tseries.offsets.CDay" title="pandas.tseries.offsets.CDay"><code>CDay</code></a></td> <td>alias of <a class="reference internal" href="api/pandas.tseries.offsets.custombusinessday.html#pandas.tseries.offsets.CustomBusinessDay" title="pandas.tseries.offsets.CustomBusinessDay"><code>pandas.tseries.offsets.CustomBusinessDay</code></a>
+</td> </tr>  </table>  <h3 id="id87">Properties</h3> <table class="longtable docutils">   <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.base.html#pandas.tseries.offsets.CDay.base" title="pandas.tseries.offsets.CDay.base"><code>CDay.base</code></a></td> <td>Returns a copy of the calling offset object with n=1 and all other attributes equal.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.freqstr.html#pandas.tseries.offsets.CDay.freqstr" title="pandas.tseries.offsets.CDay.freqstr"><code>CDay.freqstr</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.kwds.html#pandas.tseries.offsets.CDay.kwds" title="pandas.tseries.offsets.CDay.kwds"><code>CDay.kwds</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.name.html#pandas.tseries.offsets.CDay.name" title="pandas.tseries.offsets.CDay.name"><code>CDay.name</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.nanos.html#pandas.tseries.offsets.CDay.nanos" title="pandas.tseries.offsets.CDay.nanos"><code>CDay.nanos</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.normalize.html#pandas.tseries.offsets.CDay.normalize" title="pandas.tseries.offsets.CDay.normalize"><code>CDay.normalize</code></a></td> <td></td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.offset.html#pandas.tseries.offsets.CDay.offset" title="pandas.tseries.offsets.CDay.offset"><code>CDay.offset</code></a></td> <td>Alias for self._offset.</td> </tr> <tr>
+<td><a class="reference internal" href="api/pandas.tseries.offsets.cday.rule_code.html#pandas.tseries.offsets.CDay.rule_code" title="pandas.tseries.offsets.CDay.rule_code"><code>CDay.rule_code</code></a></td> <td></td> </tr>  </table>   <h3 id="id88">Methods</h3> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cday.apply.html#pandas.tseries.offsets.CDay.apply" title="pandas.tseries.offsets.CDay.apply"><code>CDay.apply</code></a>(self, other)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cday.apply_index.html#pandas.tseries.offsets.CDay.apply_index" title="pandas.tseries.offsets.CDay.apply_index"><code>CDay.apply_index</code></a>(self, i)</td> <td>Vectorized apply of DateOffset to DatetimeIndex, raises NotImplentedError for offsets without a vectorized implementation.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cday.copy.html#pandas.tseries.offsets.CDay.copy" title="pandas.tseries.offsets.CDay.copy"><code>CDay.copy</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cday.isanchored.html#pandas.tseries.offsets.CDay.isAnchored" title="pandas.tseries.offsets.CDay.isAnchored"><code>CDay.isAnchored</code></a>(self)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cday.onoffset.html#pandas.tseries.offsets.CDay.onOffset" title="pandas.tseries.offsets.CDay.onOffset"><code>CDay.onOffset</code></a>(self, dt)</td> <td></td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cday.rollback.html#pandas.tseries.offsets.CDay.rollback" title="pandas.tseries.offsets.CDay.rollback"><code>CDay.rollback</code></a>(self, dt)</td> <td>Roll provided date backward to next offset only if not on offset.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.offsets.cday.rollforward.html#pandas.tseries.offsets.CDay.rollforward" title="pandas.tseries.offsets.CDay.rollforward"><code>CDay.rollforward</code></a>(self, dt)</td> <td>Roll provided date forward to next offset only if not on offset.</td> </tr>  </table>     <h1 id="api-frequencies">Frequencies</h1> <table class="longtable docutils" id="frequencies">   <tr>
+<td>
+<a class="reference internal" href="api/pandas.tseries.frequencies.to_offset.html#pandas.tseries.frequencies.to_offset" title="pandas.tseries.frequencies.to_offset"><code>to_offset</code></a>(freq)</td> <td>Return DateOffset object from string or tuple representation or datetime.timedelta object</td> </tr>  </table><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/offset_frequency.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/offset_frequency.html</a>
+  </p>
+</div>

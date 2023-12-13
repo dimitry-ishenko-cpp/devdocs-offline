@@ -1,0 +1,28 @@
+    <h1 id="firstHeading" class="firstHeading">std::expected&lt;T,E&gt;::operator-&gt;, std::expected&lt;T,E&gt;::operator*</h1>            <table class="t-dcl-begin"> <tr class="t-dcl-h"> <td> T is not <i>cv</i> void</td> <td></td> <td></td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr const T* operator-&gt;() const noexcept;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr T* operator-&gt;() noexcept;</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr const T&amp; operator*() const&amp; noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr T&amp; operator*() &amp; noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr const T&amp;&amp; operator*() const&amp;&amp; noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr T&amp;&amp; operator*() &amp;&amp; noexcept;</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr> <tr class="t-dcl-h"> <td> T is <i>cv</i> void</td> <td></td> <td></td> </tr> <tr class="t-dcl t-since-cxx23"> <td> <pre data-language="cpp">constexpr void operator*() const noexcept;</pre>
+</td> <td> (3) </td> <td> <span class="t-mark-rev t-since-cxx23">(since C++23)</span> </td> </tr>  </table> <p>Accesses the expected value contained in <code>*this</code>.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Returns a pointer to the contained value.</div> <div class="t-li1">
+<span class="t-li">2)</span> Returns a reference to the contained value.</div> <div class="t-li1">
+<span class="t-li">3)</span> Returns nothing.</div> <p>The behavior is undefined if <a href="operator_bool.html" title="cpp/utility/expected/operator bool"><code>this-&gt;has_value()</code></a> is false.</p>
+<h3 id="Parameters"> Parameters</h3> <p>(none).</p>
+<h3 id="Return_value"> Return value</h3> <p>Pointer or reference to the contained value.</p>
+<h3 id="Example"> Example</h3>  <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="value.html" title="cpp/utility/expected/value"> <span class="t-lines"><span>value</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> returns the expected value <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="value_or.html" title="cpp/utility/expected/value or"> <span class="t-lines"><span>value_or</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> returns the expected value if present, another value otherwise <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="operator_bool.html" title="cpp/utility/expected/operator bool"> <span class="t-lines"><span>operator bool</span><span>has_value</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> checks whether the object contains an expected value <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="error.html" title="cpp/utility/expected/error"> <span class="t-lines"><span>error</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx23">(C++23)</span></span></span></div> </td> <td> returns the unexpected value <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/utility/expected/operator*" class="_attribution-link">https://en.cppreference.com/w/cpp/utility/expected/operator*</a>
+  </p>
+</div>

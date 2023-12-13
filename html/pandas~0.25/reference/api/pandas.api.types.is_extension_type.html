@@ -1,0 +1,47 @@
+<h1 id="pandas-api-types-is-extension-type">pandas.api.types.is_extension_type</h1> <dl class="function"> <dt id="pandas.api.types.is_extension_type">
+<code>pandas.api.types.is_extension_type(arr)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/common.py#L1684-L1740"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check whether an array-like is of a pandas extension class instance.</p> <p>Extension classes include categoricals, pandas sparse objects (i.e. classes represented within the pandas library and not ones external to it like scipy sparse matrices), and datetime-like arrays.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>arr : array-like</code> </dt> <dd>
+<p class="first last">The array-like to check.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>boolean</dt> <dd>
+<p class="first last">Whether or not the array-like is of a pandas extension class instance.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; is_extension_type([1, 2, 3])
+False
+&gt;&gt;&gt; is_extension_type(np.array([1, 2, 3]))
+False
+&gt;&gt;&gt;
+&gt;&gt;&gt; cat = pd.Categorical([1, 2, 3])
+&gt;&gt;&gt;
+&gt;&gt;&gt; is_extension_type(cat)
+True
+&gt;&gt;&gt; is_extension_type(pd.Series(cat))
+True
+&gt;&gt;&gt; is_extension_type(pd.SparseArray([1, 2, 3]))
+True
+&gt;&gt;&gt; is_extension_type(pd.SparseSeries([1, 2, 3]))
+True
+&gt;&gt;&gt;
+&gt;&gt;&gt; from scipy.sparse import bsr_matrix
+&gt;&gt;&gt; is_extension_type(bsr_matrix([1, 2, 3]))
+False
+&gt;&gt;&gt; is_extension_type(pd.DatetimeIndex([1, 2, 3]))
+False
+&gt;&gt;&gt; is_extension_type(pd.DatetimeIndex([1, 2, 3], tz="US/Eastern"))
+True
+&gt;&gt;&gt;
+&gt;&gt;&gt; dtype = DatetimeTZDtype("ns", tz="US/Eastern")
+&gt;&gt;&gt; s = pd.Series([], dtype=dtype)
+&gt;&gt;&gt; is_extension_type(s)
+True
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_extension_type.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_extension_type.html</a>
+  </p>
+</div>

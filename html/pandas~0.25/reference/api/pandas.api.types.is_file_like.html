@@ -1,0 +1,24 @@
+<h1 id="pandas-api-types-is-file-like">pandas.api.types.is_file_like</h1> <dl class="function"> <dt id="pandas.api.types.is_file_like">
+<code>pandas.api.types.is_file_like(obj)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/inference.py#L154-L191"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Check if the object is a file-like object.</p> <p>For objects to be considered file-like, they must be an iterator AND have either a <code>read</code> and/or <code>write</code> method as an attribute.</p> <p>Note: file-like objects must be iterable, but iterable objects need not be file-like.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>obj : The object to check</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>is_file_like : bool</code> </dt> <dd>
+<p class="first last">Whether <code>obj</code> has file-like properties.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; buffer(StringIO("data"))
+&gt;&gt;&gt; is_file_like(buffer)
+True
+&gt;&gt;&gt; is_file_like([1, 2, 3])
+False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_file_like.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_file_like.html</a>
+  </p>
+</div>

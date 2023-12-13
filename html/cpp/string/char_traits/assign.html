@@ -1,0 +1,25 @@
+    <h1 id="firstHeading" class="firstHeading">std::char_traits&lt;CharT&gt;::assign</h1>            <table class="t-dcl-begin">  <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="4">(1)</td> <td></td> </tr> <tr class="t-dcl t-until-cxx11"> <td> <pre data-language="cpp">static void assign( char_type&amp; r, const char_type&amp; a );</pre>
+</td>  <td> <span class="t-mark-rev t-until-cxx11">(until C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11 t-until-cxx17"> <td> <pre data-language="cpp">static void assign( char_type&amp; r, const char_type&amp; a ) noexcept;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> <br><span class="t-mark-rev t-until-cxx17">(until C++17)</span> </td> </tr> <tr class="t-dcl t-since-cxx17"> <td> <pre data-language="cpp">static constexpr void assign( char_type&amp; r, const char_type&amp; a ) noexcept;</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx17">(since C++17)</span> </td> </tr>   <tr class="t-dcl-rev-aux"> <td></td> <td rowspan="3">(2)</td> <td></td> </tr> <tr class="t-dcl t-until-cxx20"> <td> <pre data-language="cpp">static char_type* assign( char_type* p, std::size_t count, char_type a );</pre>
+</td>  <td> <span class="t-mark-rev t-until-cxx20">(until C++20)</span> </td> </tr> <tr class="t-dcl t-since-cxx20"> <td> <pre data-language="cpp">static constexpr char_type* assign( char_type* p,
+                                    std::size_t count, char_type a );</pre>
+</td>  <td> <span class="t-mark-rev t-since-cxx20">(since C++20)</span> </td> </tr>   </table> <p>Assigns a character.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Assigns character <code>a</code> to character <code>r</code>.</div> <div class="t-li1">
+<span class="t-li">2)</span> Assigns character <code>a</code> to each character in <code>count</code> characters in the character sequence pointed to by <code>p</code>.</div> <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> a </td> <td> - </td> <td> character value to assign </td>
+</tr> <tr class="t-par"> <td> r </td> <td> - </td> <td> character to assign to </td>
+</tr> <tr class="t-par"> <td> p </td> <td> - </td> <td> pointer to a character sequence to assign to </td>
+</tr> <tr class="t-par"> <td> count </td> <td> - </td> <td> the length of the character sequence </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <div class="t-li1">
+<span class="t-li">1)</span> (none)</div> <div class="t-li1">
+<span class="t-li">2)</span> <code>p</code>
+</div> <h3 id="Complexity"> Complexity</h3> <div class="t-li1">
+<span class="t-li">1)</span> Constant.</div> <div class="t-li1">
+<span class="t-li">2)</span> Linear in <code>count</code>.</div>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/string/char_traits/assign" class="_attribution-link">https://en.cppreference.com/w/cpp/string/char_traits/assign</a>
+  </p>
+</div>

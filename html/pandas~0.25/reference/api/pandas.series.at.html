@@ -1,0 +1,33 @@
+<h1 id="pandas-series-at">pandas.Series.at</h1> <dl class="attribute"> <dt id="pandas.Series.at">
+<code>Series.at</code> </dt> <dd>
+<p>Access a single value for a row/column label pair.</p> <p>Similar to <code>loc</code>, in that both provide label-based lookups. Use <code>at</code> if you only need to get or set a single value in a DataFrame or Series.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>KeyError</dt> <dd>
+<p class="first last">When label does not exist in DataFrame</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.iat.html#pandas.DataFrame.iat" title="pandas.DataFrame.iat"><code>DataFrame.iat</code></a>
+</dt> <dd>Access a single value for a row/column pair by integer position.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.loc.html#pandas.DataFrame.loc" title="pandas.DataFrame.loc"><code>DataFrame.loc</code></a>
+</dt> <dd>Access a group of rows and columns by label(s).</dd> <dt>
+ <a class="reference internal" href="#pandas.Series.at" title="pandas.Series.at"><code>Series.at</code></a>
+</dt> <dd>Access a single value using a label.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[0, 2, 3], [0, 4, 1], [10, 20, 30]],
+...                   index=[4, 5, 6], columns=['A', 'B', 'C'])
+&gt;&gt;&gt; df
+    A   B   C
+4   0   2   3
+5   0   4   1
+6  10  20  30
+</pre> <p>Get value at specified row/column pair</p> <pre data-language="python">&gt;&gt;&gt; df.at[4, 'B']
+2
+</pre> <p>Set value at specified row/column pair</p> <pre data-language="python">&gt;&gt;&gt; df.at[4, 'B'] = 10
+&gt;&gt;&gt; df.at[4, 'B']
+10
+</pre> <p>Get value within a Series</p> <pre data-language="python">&gt;&gt;&gt; df.loc[5].at['B']
+4
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.at.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.at.html</a>
+  </p>
+</div>

@@ -1,0 +1,39 @@
+<h1 id="pandas-dataframe-to-parquet">pandas.DataFrame.to_parquet</h1> <dl class="method"> <dt id="pandas.DataFrame.to_parquet">
+<code>DataFrame.to_parquet(self, fname, engine='auto', compression='snappy', index=None, partition_cols=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L2134-L2218"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Write a DataFrame to the binary parquet format.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> <p>This function writes the dataframe as a <a class="reference external" href="https://parquet.apache.org/">parquet file</a>. You can choose different parquet backends, and have the option of compression. See <a class="reference internal" href="../../user_guide/io.html#io-parquet"><span class="std std-ref">the user guide</span></a> for more details.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>fname : str</code> </dt> <dd>
+<p class="first">File path or Root Directory path. Will be used as Root Directory path while writing a partitioned dataset.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>engine : {‘auto’, ‘pyarrow’, ‘fastparquet’}, default ‘auto’</code> </dt> <dd>
+<p class="first last">Parquet library to use. If ‘auto’, then the option <code>io.parquet.engine</code> is used. The default <code>io.parquet.engine</code> behavior is to try ‘pyarrow’, falling back to ‘fastparquet’ if ‘pyarrow’ is unavailable.</p> </dd> <dt>
+<code>compression : {‘snappy’, ‘gzip’, ‘brotli’, None}, default ‘snappy’</code> </dt> <dd>
+<p class="first last">Name of the compression to use. Use <code>None</code> for no compression.</p> </dd> <dt>
+<code>index : bool, default None</code> </dt> <dd>
+<p class="first">If <code>True</code>, include the dataframe’s index(es) in the file output. If <code>False</code>, they will not be written to the file. If <code>None</code>, the behavior depends on the chosen engine.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> <dt>
+<code>partition_cols : list, optional, default None</code> </dt> <dd>
+<p class="first">Column names by which to partition the dataset Columns are partitioned in the order they are given</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Additional arguments passed to the parquet library. See <a class="reference internal" href="../../user_guide/io.html#io-parquet"><span class="std std-ref">pandas io</span></a> for more details.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_parquet.html#pandas.read_parquet" title="pandas.read_parquet"><code>read_parquet</code></a>
+</dt> <dd>Read a parquet file.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code>DataFrame.to_csv</code></a>
+</dt> <dd>Write a csv file.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_sql.html#pandas.DataFrame.to_sql" title="pandas.DataFrame.to_sql"><code>DataFrame.to_sql</code></a>
+</dt> <dd>Write to a sql table.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_hdf.html#pandas.DataFrame.to_hdf" title="pandas.DataFrame.to_hdf"><code>DataFrame.to_hdf</code></a>
+</dt> <dd>Write to hdf.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>This function requires either the <a class="reference external" href="https://pypi.org/project/fastparquet">fastparquet</a> or <a class="reference external" href="https://arrow.apache.org/docs/python/">pyarrow</a> library.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame(data={'col1': [1, 2], 'col2': [3, 4]})
+&gt;&gt;&gt; df.to_parquet('df.parquet.gzip',
+...               compression='gzip')  # doctest: +SKIP
+&gt;&gt;&gt; pd.read_parquet('df.parquet.gzip')  # doctest: +SKIP
+   col1  col2
+0     1     3
+1     2     4
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_parquet.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_parquet.html</a>
+  </p>
+</div>

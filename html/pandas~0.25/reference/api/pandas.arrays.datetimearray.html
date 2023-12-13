@@ -1,0 +1,22 @@
+<h1 id="pandas-arrays-datetimearray">pandas.arrays.DatetimeArray</h1> <dl class="class"> <dt id="pandas.arrays.DatetimeArray">
+<code>class pandas.arrays.DatetimeArray(values, dtype=dtype('&lt;M8[ns]'), freq=None, copy=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/datetimes.py#L238-L1774"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Pandas ExtensionArray for tz-naive or tz-aware datetime data.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">DatetimeArray is currently experimental, and its API may change without warning. In particular, <code>DatetimeArray.dtype</code> is expected to change to always be an instance of an <code>ExtensionDtype</code> subclass.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>values : Series, Index, DatetimeArray, ndarray</code> </dt> <dd>
+<p class="first">The datetime data.</p> <p class="last">For DatetimeArray <code>values</code> (or a Series or Index boxing one), <code>dtype</code> and <code>freq</code> will be extracted from <code>values</code>, with precedence given to</p> </dd> <dt>
+<code>dtype : numpy.dtype or DatetimeTZDtype</code> </dt> <dd>
+<p class="first last">Note that the only NumPy dtype allowed is ‘datetime64[ns]’.</p> </dd> <dt>
+<code>freq : str or Offset, optional</code> </dt>  <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to copy the underlying array of values.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.DatetimeArray.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.DatetimeArray.html</a>
+  </p>
+</div>

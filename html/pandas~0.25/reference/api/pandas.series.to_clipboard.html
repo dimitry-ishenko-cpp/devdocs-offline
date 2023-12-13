@@ -1,0 +1,33 @@
+<h1 id="pandas-series-to-clipboard">pandas.Series.to_clipboard</h1> <dl class="method"> <dt id="pandas.Series.to_clipboard">
+<code>Series.to_clipboard(self, excel=True, sep=None, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L2774-L2830"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Copy object to the system clipboard.</p> <p>Write a text representation of object to the system clipboard. This can be pasted into Excel, for example.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>excel : bool, default True</code> </dt> <dd>
+<ul class="first last simple"> <li>True, use the provided separator, writing in a csv format for allowing easy pasting into excel.</li> <li>False, write a string representation of the object to the clipboard.</li> </ul> </dd> <dt>
+<code>sep : str, default '\t'</code> </dt> <dd>
+<p class="first last">Field delimiter.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">These parameters will be passed to DataFrame.to_csv.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.to_csv.html#pandas.DataFrame.to_csv" title="pandas.DataFrame.to_csv"><code>DataFrame.to_csv</code></a>
+</dt> <dd>Write a DataFrame to a comma-separated values (csv) file.</dd> <dt>
+ <a class="reference internal" href="pandas.read_clipboard.html#pandas.read_clipboard" title="pandas.read_clipboard"><code>read_clipboard</code></a>
+</dt> <dd>Read text from clipboard and pass to read_table.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Requirements for your platform.</p>  <ul class="simple"> <li>Linux : <code>xclip</code>, or <code>xsel</code> (with <code>PyQt4</code> modules)</li> <li>Windows : none</li> <li>OS X : none</li> </ul>  <h4 class="rubric">Examples</h4> <p>Copy the contents of a DataFrame to the clipboard.</p> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[1, 2, 3], [4, 5, 6]], columns=['A', 'B', 'C'])
+&gt;&gt;&gt; df.to_clipboard(sep=',')
+... # Wrote the following to the system clipboard:
+... # ,A,B,C
+... # 0,1,2,3
+... # 1,4,5,6
+</pre> <p>We can omit the the index by passing the keyword <code>index</code> and setting it to false.</p> <pre data-language="python">&gt;&gt;&gt; df.to_clipboard(sep=',', index=False)
+... # Wrote the following to the system clipboard:
+... # A,B,C
+... # 1,2,3
+... # 4,5,6
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_clipboard.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.to_clipboard.html</a>
+  </p>
+</div>

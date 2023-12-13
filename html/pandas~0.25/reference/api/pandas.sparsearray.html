@@ -1,0 +1,36 @@
+<h1 id="pandas-sparsearray">pandas.SparseArray</h1> <dl class="class"> <dt id="pandas.SparseArray">
+<code>class pandas.SparseArray(data, sparse_index=None, index=None, fill_value=None, kind='integer', dtype=None, copy=False)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/sparse.py#L534-L1864"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>An ExtensionArray for storing sparse data.</p> <div class="versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0: </span>Implements the ExtensionArray interface.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>data : array-like</code> </dt> <dd>
+<p class="first last">A dense array of values to store in the SparseArray. This may contain <code>fill_value</code>.</p> </dd> <dt>
+<code>sparse_index : SparseIndex, optional</code> </dt>  <dt>
+<code>index : Index</code> </dt>  <dt>
+<code>fill_value : scalar, optional</code> </dt> <dd>
+<p class="first">Elements in <code>data</code> that are <code>fill_value</code> are not stored in the SparseArray. For memory savings, this should be the most common value in <code>data</code>. By default, <code>fill_value</code> depends on the dtype of <code>data</code>:</p> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">data.dtype</th> <th class="head">na_value</th> </tr> </thead>  <tr>
+<td>float</td> <td><code>np.nan</code></td> </tr> <tr>
+<td>int</td> <td><code>0</code></td> </tr> <tr>
+<td>bool</td> <td>False</td> </tr> <tr>
+<td>datetime64</td> <td><code>pd.NaT</code></td> </tr> <tr>
+<td>timedelta64</td> <td><code>pd.NaT</code></td> </tr>  </table> <p>The fill value is potentially specified in three ways. In order of precedence, these are</p> <ol class="last arabic simple"> <li>The <code>fill_value</code> argument</li> <li>
+<code>dtype.fill_value</code> if <code>fill_value</code> is None and <code>dtype</code> is a <code>SparseDtype</code>
+</li> <li>
+<code>data.dtype.fill_value</code> if <code>fill_value</code> is None and <code>dtype</code> is not a <code>SparseDtype</code> and <code>data</code> is a <code>SparseArray</code>.</li> </ol> </dd> <dt>
+<code>kind : {‘integer’, ‘block’}, default ‘integer’</code> </dt> <dd>
+<p class="first">The type of storage for sparse locations.</p> <ul class="last simple"> <li>‘block’: Stores a <code>block</code> and <code>block_length</code> for each contiguous <em>span</em> of sparse values. This is best when sparse data tends to be clumped together, with large regions of <code>fill-value</code> values between sparse values.</li> <li>‘integer’: uses an integer to store the location of each sparse value.</li> </ul> </dd> <dt>
+<code>dtype : np.dtype or SparseDtype, optional</code> </dt> <dd>
+<p class="first last">The dtype to use for the SparseArray. For numpy dtypes, this determines the dtype of <code>self.sp_values</code>. For SparseDtype, this determines <code>self.sp_values</code> and <code>self.fill_value</code>.</p> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Whether to explicitly copy the incoming <code>data</code> array.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="docutils">   <tr>
+<td><strong>None</strong></td> <td> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseArray.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.SparseArray.html</a>
+  </p>
+</div>

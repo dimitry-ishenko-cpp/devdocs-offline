@@ -1,0 +1,27 @@
+<h1 id="pandas-series-tz-convert">pandas.Series.tz_convert</h1> <dl class="method"> <dt id="pandas.Series.tz_convert">
+<code>Series.tz_convert(self, tz, axis=0, level=None, copy=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/generic.py#L9656-L9709"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Convert tz-aware axis to target time zone.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>tz : string or pytz.timezone object</code> </dt>  <dt>
+<code>axis : the axis to convert</code> </dt>  <dt>
+<code>level : int, str, default None</code> </dt> <dd>
+<p class="first last">If axis ia a MultiIndex, convert a specific level. Otherwise must be None</p> </dd> <dt>
+<code>copy : boolean, default True</code> </dt> <dd>
+<p class="first last">Also make a copy of the underlying data</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>%(klass)s</dt> <dd>
+<p class="first last">Object with time zone converted axis.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>TypeError</dt> <dd>
+<p class="first last">If the axis is tz-naive.</p> </dd> </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.tz_convert.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.tz_convert.html</a>
+  </p>
+</div>

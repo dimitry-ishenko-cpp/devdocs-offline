@@ -1,0 +1,35 @@
+<h1 id="pandas-index-min">pandas.Index.min</h1> <dl class="method"> <dt id="pandas.Index.min">
+<code>Index.min(self, axis=None, skipna=True, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/base.py#L1097-L1136"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return the minimum value of the Index.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>axis : {None}</code> </dt> <dd>
+<p class="first last">Dummy argument for consistency with Series</p> </dd> <dt>
+<code>skipna : bool, default True</code> </dt>  </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar</dt> <dd>
+<p class="first last">Minimum value.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.max.html#pandas.Index.max" title="pandas.Index.max"><code>Index.max</code></a>
+</dt> <dd>Return the maximum value of the object.</dd> <dt>
+ <a class="reference internal" href="pandas.series.min.html#pandas.Series.min" title="pandas.Series.min"><code>Series.min</code></a>
+</dt> <dd>Return the minimum value in a Series.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.min.html#pandas.DataFrame.min" title="pandas.DataFrame.min"><code>DataFrame.min</code></a>
+</dt> <dd>Return the minimum values in a DataFrame.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index([3, 2, 1])
+&gt;&gt;&gt; idx.min()
+1
+</pre> <pre data-language="python">&gt;&gt;&gt; idx = pd.Index(['c', 'b', 'a'])
+&gt;&gt;&gt; idx.min()
+'a'
+</pre> <p>For a MultiIndex, the minimum is determined lexicographically.</p> <pre data-language="python">&gt;&gt;&gt; idx = pd.MultiIndex.from_product([('a', 'b'), (2, 1)])
+&gt;&gt;&gt; idx.min()
+('a', 1)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.min.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Index.min.html</a>
+  </p>
+</div>

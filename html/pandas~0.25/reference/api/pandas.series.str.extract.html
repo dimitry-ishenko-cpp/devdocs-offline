@@ -1,0 +1,51 @@
+<h1 id="pandas-series-str-extract">pandas.Series.str.extract</h1> <dl class="method"> <dt id="pandas.Series.str.extract">
+<code>Series.str.extract(self, pat, flags=0, expand=True)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/strings.py#L2963-L2966"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Extract capture groups in the regex <code>pat</code> as columns in a DataFrame.</p> <p>For each subject string in the Series, extract groups from the first match of regular expression <code>pat</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>pat : str</code> </dt> <dd>
+<p class="first last">Regular expression pattern with capturing groups.</p> </dd> <dt>
+<code>flags : int, default 0 (no flags)</code> </dt> <dd>
+<p class="first last">Flags from the <code>re</code> module, e.g. <code>re.IGNORECASE</code>, that modify regular expression matching for things like case, spaces, etc. For more details, see <a class="reference external" href="https://docs.python.org/3/library/re.html#module-re" title="(in Python v3.7)"><code>re</code></a>.</p> </dd> <dt>
+<code>expand : bool, default True</code> </dt> <dd>
+<p class="first">If True, return DataFrame with one column per capture group. If False, return a Series/Index if there is one capture group or DataFrame if there are multiple capture groups.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.18.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame or Series or Index</dt> <dd>
+<p class="first last">A DataFrame with one row for each subject string, and one column for each group. Any capture group names in regular expression pat will be used for column names; otherwise capture group numbers will be used. The dtype of each result column is always object, even when no match is found. If <code>expand=False</code> and pat has only one capture group, then return a Series (if subject is a Series) or Index (if subject is an Index).</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.str.extractall.html#pandas.Series.str.extractall" title="pandas.Series.str.extractall"><code>extractall</code></a>
+</dt> <dd>Returns all matches (not just the first match).</dd> </dl> </div> <h4 class="rubric">Examples</h4> <p>A pattern with two groups will return a DataFrame with two columns. Non-matches will be NaN.</p> <pre data-language="python">&gt;&gt;&gt; s = pd.Series(['a1', 'b2', 'c3'])
+&gt;&gt;&gt; s.str.extract(r'([ab])(\d)')
+     0    1
+0    a    1
+1    b    2
+2  NaN  NaN
+</pre> <p>A pattern may contain optional groups.</p> <pre data-language="python">&gt;&gt;&gt; s.str.extract(r'([ab])?(\d)')
+     0  1
+0    a  1
+1    b  2
+2  NaN  3
+</pre> <p>Named groups will become column names in the result.</p> <pre data-language="python">&gt;&gt;&gt; s.str.extract(r'(?P&lt;letter&gt;[ab])(?P&lt;digit&gt;\d)')
+  letter digit
+0      a     1
+1      b     2
+2    NaN   NaN
+</pre> <p>A pattern with one group will return a DataFrame with one column if expand=True.</p> <pre data-language="python">&gt;&gt;&gt; s.str.extract(r'[ab](\d)', expand=True)
+     0
+0    1
+1    2
+2  NaN
+</pre> <p>A pattern with one group will return a Series if expand=False.</p> <pre data-language="python">&gt;&gt;&gt; s.str.extract(r'[ab](\d)', expand=False)
+0      1
+1      2
+2    NaN
+dtype: object
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.extract.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.str.extract.html</a>
+  </p>
+</div>

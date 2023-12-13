@@ -1,0 +1,93 @@
+<h1 id="pandas-array">pandas.array</h1> <dl class="function"> <dt id="pandas.array">
+<code>pandas.array(data: Sequence[object], dtype: Union[str, numpy.dtype, pandas.core.dtypes.base.ExtensionDtype, NoneType] = None, copy: bool = True) → pandas.core.dtypes.generic.ABCExtensionArray</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/arrays/array_.py#L16-L281"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Create an array.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.24.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : Sequence of objects</code> </dt> <dd>
+<p class="first">The scalars inside <code>data</code> should be instances of the scalar type for <code>dtype</code>. It’s expected that <code>data</code> represents a 1-dimensional array of data.</p> <p class="last">When <code>data</code> is an Index or Series, the underlying array will be extracted from <code>data</code>.</p> </dd> <dt>
+<code>dtype : str, np.dtype, or ExtensionDtype, optional</code> </dt> <dd>
+<p class="first">The dtype to use for the array. This may be a NumPy dtype or an extension type registered with pandas using <a class="reference internal" href="pandas.api.extensions.register_extension_dtype.html#pandas.api.extensions.register_extension_dtype" title="pandas.api.extensions.register_extension_dtype"><code>pandas.api.extensions.register_extension_dtype()</code></a>.</p> <p>If not specified, there are two possibilities:</p> <ol class="arabic simple"> <li>When <code>data</code> is a <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>, <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>, or <code>ExtensionArray</code>, the <code>dtype</code> will be taken from the data.</li> <li>Otherwise, pandas will attempt to infer the <code>dtype</code> from the data.</li> </ol> <p>Note that when <code>data</code> is a NumPy array, <code>data.dtype</code> is <em>not</em> used for inferring the array type. This is because NumPy cannot represent all the types of data that can be held in extension arrays.</p> <p>Currently, pandas will infer an extension dtype for sequences of</p> <table class="docutils">  <thead valign="bottom"> <tr>
+<th class="head">Scalar Type</th> <th class="head">Array Type</th> </tr> </thead>  <tr>
+<td><a class="reference internal" href="pandas.interval.html#pandas.Interval" title="pandas.Interval"><code>pandas.Interval</code></a></td> <td><a class="reference internal" href="pandas.arrays.intervalarray.html#pandas.arrays.IntervalArray" title="pandas.arrays.IntervalArray"><code>pandas.arrays.IntervalArray</code></a></td> </tr> <tr>
+<td><a class="reference internal" href="pandas.period.html#pandas.Period" title="pandas.Period"><code>pandas.Period</code></a></td> <td><a class="reference internal" href="pandas.arrays.periodarray.html#pandas.arrays.PeriodArray" title="pandas.arrays.PeriodArray"><code>pandas.arrays.PeriodArray</code></a></td> </tr> <tr>
+<td><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.datetime" title="(in Python v3.7)"><code>datetime.datetime</code></a></td> <td><a class="reference internal" href="pandas.arrays.datetimearray.html#pandas.arrays.DatetimeArray" title="pandas.arrays.DatetimeArray"><code>pandas.arrays.DatetimeArray</code></a></td> </tr> <tr>
+<td><a class="reference external" href="https://docs.python.org/3/library/datetime.html#datetime.timedelta" title="(in Python v3.7)"><code>datetime.timedelta</code></a></td> <td><a class="reference internal" href="pandas.arrays.timedeltaarray.html#pandas.arrays.TimedeltaArray" title="pandas.arrays.TimedeltaArray"><code>pandas.arrays.TimedeltaArray</code></a></td> </tr>  </table> <p class="last">For all other cases, NumPy’s usual inference rules will be used.</p> </dd> <dt>
+<code>copy : bool, default True</code> </dt> <dd>
+<p class="first last">Whether to copy the data, even if not necessary. Depending on the type of <code>data</code>, creating the new array may require copying data, even if <code>copy=False</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>ExtensionArray</dt> <dd>
+<p class="first last">The newly created array.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">When <code>data</code> is not 1-dimensional.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array.html#numpy.array" title="(in NumPy v1.16)"><code>numpy.array</code></a>
+</dt> <dd>Construct a NumPy array.</dd> <dt>
+ <a class="reference internal" href="pandas.series.html#pandas.Series" title="pandas.Series"><code>Series</code></a>
+</dt> <dd>Construct a pandas Series.</dd> <dt>
+ <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>
+</dt> <dd>Construct a pandas Index.</dd> <dt>
+ <a class="reference internal" href="pandas.arrays.pandasarray.html#pandas.arrays.PandasArray" title="pandas.arrays.PandasArray"><code>arrays.PandasArray</code></a>
+</dt> <dd>ExtensionArray wrapping a NumPy array.</dd> <dt>
+ <a class="reference internal" href="pandas.series.array.html#pandas.Series.array" title="pandas.Series.array"><code>Series.array</code></a>
+</dt> <dd>Extract the array stored within a Series.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>Omitting the <code>dtype</code> argument means pandas will attempt to infer the best array type from the values in the data. As new array types are added by pandas and 3rd party libraries, the “best” array type may change. We recommend specifying <code>dtype</code> to ensure that</p> <ol class="arabic simple"> <li>the correct array type for the data is returned</li> <li>the returned array type doesn’t change as new extension types are added by pandas and third-party libraries</li> </ol> <p>Additionally, if the underlying memory representation of the returned array matters, we recommend specifying the <code>dtype</code> as a concrete object rather than a string alias or allowing it to be inferred. For example, a future version of pandas or a 3rd-party library may include a dedicated ExtensionArray for string data. In this event, the following would no longer return a <a class="reference internal" href="pandas.arrays.pandasarray.html#pandas.arrays.PandasArray" title="pandas.arrays.PandasArray"><code>arrays.PandasArray</code></a> backed by a NumPy array.</p> <pre data-language="python">&gt;&gt;&gt; pd.array(['a', 'b'], dtype=str)
+&lt;PandasArray&gt;
+['a', 'b']
+Length: 2, dtype: str32
+</pre> <p>This would instead return the new ExtensionArray dedicated for string data. If you really need the new array to be backed by a NumPy array, specify that in the dtype.</p> <pre data-language="python">&gt;&gt;&gt; pd.array(['a', 'b'], dtype=np.dtype("&lt;U1"))
+&lt;PandasArray&gt;
+['a', 'b']
+Length: 2, dtype: str32
+</pre> <p>Or use the dedicated constructor for the array you’re expecting, and wrap that in a PandasArray</p> <pre data-language="python">&gt;&gt;&gt; pd.array(np.array(['a', 'b'], dtype='&lt;U1'))
+&lt;PandasArray&gt;
+['a', 'b']
+Length: 2, dtype: str32
+</pre> <p>Finally, Pandas has arrays that mostly overlap with NumPy</p>  <ul class="simple"> <li><a class="reference internal" href="pandas.arrays.datetimearray.html#pandas.arrays.DatetimeArray" title="pandas.arrays.DatetimeArray"><code>arrays.DatetimeArray</code></a></li> <li><a class="reference internal" href="pandas.arrays.timedeltaarray.html#pandas.arrays.TimedeltaArray" title="pandas.arrays.TimedeltaArray"><code>arrays.TimedeltaArray</code></a></li> </ul>  <p>When data with a <code>datetime64[ns]</code> or <code>timedelta64[ns]</code> dtype is passed, pandas will always return a <code>DatetimeArray</code> or <code>TimedeltaArray</code> rather than a <code>PandasArray</code>. This is for symmetry with the case of timezone-aware data, which NumPy does not natively support.</p> <pre data-language="python">&gt;&gt;&gt; pd.array(['2015', '2016'], dtype='datetime64[ns]')
+&lt;DatetimeArray&gt;
+['2015-01-01 00:00:00', '2016-01-01 00:00:00']
+Length: 2, dtype: datetime64[ns]
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.array(["1H", "2H"], dtype='timedelta64[ns]')
+&lt;TimedeltaArray&gt;
+['01:00:00', '02:00:00']
+Length: 2, dtype: timedelta64[ns]
+</pre> <h4 class="rubric">Examples</h4> <p>If a dtype is not specified, <code>data</code> is passed through to <code>numpy.array()</code>, and a <a class="reference internal" href="pandas.arrays.pandasarray.html#pandas.arrays.PandasArray" title="pandas.arrays.PandasArray"><code>arrays.PandasArray</code></a> is returned.</p> <pre data-language="python">&gt;&gt;&gt; pd.array([1, 2])
+&lt;PandasArray&gt;
+[1, 2]
+Length: 2, dtype: int64
+</pre> <p>Or the NumPy dtype can be specified</p> <pre data-language="python">&gt;&gt;&gt; pd.array([1, 2], dtype=np.dtype("int32"))
+&lt;PandasArray&gt;
+[1, 2]
+Length: 2, dtype: int32
+</pre> <p>You can use the string alias for <code>dtype</code></p> <pre data-language="python">&gt;&gt;&gt; pd.array(['a', 'b', 'a'], dtype='category')
+[a, b, a]
+Categories (2, object): [a, b]
+</pre> <p>Or specify the actual dtype</p> <pre data-language="python">&gt;&gt;&gt; pd.array(['a', 'b', 'a'],
+...          dtype=pd.CategoricalDtype(['a', 'b', 'c'], ordered=True))
+[a, b, a]
+Categories (3, object): [a &lt; b &lt; c]
+</pre> <p>Because omitting the <code>dtype</code> passes the data through to NumPy, a mixture of valid integers and NA will return a floating-point NumPy array.</p> <pre data-language="python">&gt;&gt;&gt; pd.array([1, 2, np.nan])
+&lt;PandasArray&gt;
+[1.0,  2.0, nan]
+Length: 3, dtype: float64
+</pre> <p>To use pandas’ nullable <a class="reference internal" href="pandas.arrays.integerarray.html#pandas.arrays.IntegerArray" title="pandas.arrays.IntegerArray"><code>pandas.arrays.IntegerArray</code></a>, specify the dtype:</p> <pre data-language="python">&gt;&gt;&gt; pd.array([1, 2, np.nan], dtype='Int64')
+&lt;IntegerArray&gt;
+[1, 2, NaN]
+Length: 3, dtype: Int64
+</pre> <p>Pandas will infer an ExtensionArray for some types of data:</p> <pre data-language="python">&gt;&gt;&gt; pd.array([pd.Period('2000', freq="D"), pd.Period("2000", freq="D")])
+&lt;PeriodArray&gt;
+['2000-01-01', '2000-01-01']
+Length: 2, dtype: period[D]
+</pre> <p><code>data</code> must be 1-dimensional. A ValueError is raised when the input has the wrong dimensionality.</p> <pre data-language="python">&gt;&gt;&gt; pd.array(1)
+Traceback (most recent call last):
+  ...
+ValueError: Cannot pass scalar '1' to 'pandas.array'.
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.array.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.array.html</a>
+  </p>
+</div>

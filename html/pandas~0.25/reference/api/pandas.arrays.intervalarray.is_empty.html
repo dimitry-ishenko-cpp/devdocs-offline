@@ -1,0 +1,30 @@
+<h1 id="pandas-arrays-intervalarray-is-empty">pandas.arrays.IntervalArray.is_empty</h1> <dl class="attribute"> <dt id="pandas.arrays.IntervalArray.is_empty">
+<code>IntervalArray.is_empty</code> </dt> <dd>
+<p>Indicates if an interval is empty, meaning it contains no points.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.25.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>bool or ndarray</dt> <dd>
+<p class="first last">A boolean indicating if a scalar <code>Interval</code> is empty, or a boolean <code>ndarray</code> positionally indicating if an <code>Interval</code> in an <code>IntervalArray</code> or <code>IntervalIndex</code> is empty.</p> </dd> </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <p>An <code>Interval</code> that contains points is not empty:</p> <pre data-language="python">&gt;&gt;&gt; pd.Interval(0, 1, closed='right').is_empty
+False
+</pre> <p>An <code>Interval</code> that does not contain any points is empty:</p> <pre data-language="python">&gt;&gt;&gt; pd.Interval(0, 0, closed='right').is_empty
+True
+&gt;&gt;&gt; pd.Interval(0, 0, closed='left').is_empty
+True
+&gt;&gt;&gt; pd.Interval(0, 0, closed='neither').is_empty
+True
+</pre> <p>An <code>Interval</code> that contains a single point is not empty:</p> <pre data-language="python">&gt;&gt;&gt; pd.Interval(0, 0, closed='both').is_empty
+False
+</pre> <p>An <code>IntervalArray</code> or <code>IntervalIndex</code> returns a boolean <code>ndarray</code> positionally indicating if an <code>Interval</code> is empty:</p> <pre data-language="python">&gt;&gt;&gt; ivs = [pd.Interval(0, 0, closed='neither'),
+...        pd.Interval(1, 2, closed='neither')]
+&gt;&gt;&gt; pd.arrays.IntervalArray(ivs).is_empty
+array([ True, False])
+</pre> <p>Missing values are not considered empty:</p> <pre data-language="python">&gt;&gt;&gt; ivs = [pd.Interval(0, 0, closed='neither'), np.nan]
+&gt;&gt;&gt; pd.IntervalIndex(ivs).is_empty
+array([ True, False])
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.IntervalArray.is_empty.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.arrays.IntervalArray.is_empty.html</a>
+  </p>
+</div>

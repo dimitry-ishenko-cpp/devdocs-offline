@@ -1,0 +1,58 @@
+<h1 id="pandas-dataframe-aggregate">pandas.DataFrame.aggregate</h1> <dl class="method"> <dt id="pandas.DataFrame.aggregate">
+<code>DataFrame.aggregate(self, func, axis=0, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L6678-L6695"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Aggregate using one or more operations over the specified axis.</p> <div class="versionadded"> <p><span class="versionmodified">New in version 0.20.0.</span></p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>func : function, str, list or dict</code> </dt> <dd>
+<p class="first">Function to use for aggregating the data. If a function, must either work when passed a DataFrame or when passed to DataFrame.apply.</p> <p>Accepted combinations are:</p> <ul class="last simple"> <li>function</li> <li>string function name</li> <li>list of functions and/or function names, e.g. <code>[np.sum, 'mean']</code>
+</li> <li>dict of axis labels -&gt; functions, function names or list of such.</li> </ul> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’}, default 0</code> </dt> <dd>
+<p class="first last">If 0 or ‘index’: apply function to each column. If 1 or ‘columns’: apply function to each row.</p> </dd> <dt><strong>*args</strong></dt> <dd>
+<p class="first last">Positional arguments to pass to <code>func</code>.</p> </dd> <dt><strong>**kwargs</strong></dt> <dd>
+<p class="first last">Keyword arguments to pass to <code>func</code>.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>scalar, Series or DataFrame</dt> <dd>
+<p class="first">The return can be:</p> <ul class="simple"> <li>scalar : when Series.agg is called with single function</li> <li>Series : when DataFrame.agg is called with a single function</li> <li>DataFrame : when DataFrame.agg is called with several functions</li> </ul> <p class="last">Return scalar, Series or DataFrame.</p> </dd> <dt>The aggregation operations are always performed over an axis, either the</dt>  <dt>index (default) or the column axis. This behavior is different from</dt>  <dt>
+<code>numpy aggregation functions (mean, median, prod, sum, std,</code> </dt>  <dt>
+<code>var), where the default is to compute the aggregation of the flattened</code> </dt>  <dt>
+<code>array, e.g., numpy.mean(arr_2d) as opposed to</code> </dt>  <dt>
+<code>numpy.mean(arr_2d, axis=0).</code> </dt>  <dt>
+<code>agg is an alias for aggregate. Use the alias.</code> </dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.apply.html#pandas.DataFrame.apply" title="pandas.DataFrame.apply"><code>DataFrame.apply</code></a>
+</dt> <dd>Perform any type of operations.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.transform.html#pandas.DataFrame.transform" title="pandas.DataFrame.transform"><code>DataFrame.transform</code></a>
+</dt> <dd>Perform transformation type operations.</dd> <dt>
+<code>core.groupby.GroupBy</code> </dt> <dd>Perform operations over groups.</dd> <dt>
+<code>core.resample.Resampler</code> </dt> <dd>Perform operations over resampled bins.</dd> <dt>
+<code>core.window.Rolling</code> </dt> <dd>Perform operations over rolling window.</dd> <dt>
+<code>core.window.Expanding</code> </dt> <dd>Perform operations over expanding window.</dd> <dt>
+<code>core.window.EWM</code> </dt> <dd>Perform operation over exponential weighted window.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p><code>agg</code> is an alias for <code>aggregate</code>. Use the alias.</p> <p>A passed user-defined-function will be passed a Series for evaluation.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame([[1, 2, 3],
+...                    [4, 5, 6],
+...                    [7, 8, 9],
+...                    [np.nan, np.nan, np.nan]],
+...                   columns=['A', 'B', 'C'])
+</pre> <p>Aggregate these functions over the rows.</p> <pre data-language="python">&gt;&gt;&gt; df.agg(['sum', 'min'])
+        A     B     C
+sum  12.0  15.0  18.0
+min   1.0   2.0   3.0
+</pre> <p>Different aggregations per column.</p> <pre data-language="python">&gt;&gt;&gt; df.agg({'A' : ['sum', 'min'], 'B' : ['min', 'max']})
+        A    B
+max   NaN  8.0
+min   1.0  2.0
+sum  12.0  NaN
+</pre> <p>Aggregate over the columns.</p> <pre data-language="python">&gt;&gt;&gt; df.agg("mean", axis="columns")
+0    2.0
+1    5.0
+2    8.0
+3    NaN
+dtype: float64
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.aggregate.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.aggregate.html</a>
+  </p>
+</div>

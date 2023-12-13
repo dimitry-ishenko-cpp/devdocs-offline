@@ -1,0 +1,46 @@
+<h1 id="pandas-dataframe-to-stata">pandas.DataFrame.to_stata</h1> <dl class="method"> <dt id="pandas.DataFrame.to_stata">
+<code>DataFrame.to_stata(self, fname, convert_dates=None, write_index=True, encoding='latin-1', byteorder=None, time_stamp=None, data_label=None, variable_labels=None, version=114, convert_strl=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L1998-L2117"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Export DataFrame object to Stata dta format.</p> <p>Writes the DataFrame to a Stata dataset file. “dta” files contain a Stata dataset.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>fname : str, buffer or path object</code> </dt> <dd>
+<p class="first last">String, path object (pathlib.Path or py._path.local.LocalPath) or object implementing a binary write() function. If using a buffer then the buffer will not be automatically closed after the file data has been written.</p> </dd> <dt>
+<code>convert_dates : dict</code> </dt> <dd>
+<p class="first last">Dictionary mapping columns containing datetime types to stata internal format to use when writing the dates. Options are ‘tc’, ‘td’, ‘tm’, ‘tw’, ‘th’, ‘tq’, ‘ty’. Column can be either an integer or a name. Datetime columns that do not have a conversion type specified will be converted to ‘tc’. Raises NotImplementedError if a datetime column has timezone information.</p> </dd> <dt>
+<code>write_index : bool</code> </dt> <dd>
+<p class="first last">Write the index to Stata dataset.</p> </dd> <dt>
+<code>encoding : str</code> </dt> <dd>
+<p class="first last">Default is latin-1. Unicode is not supported.</p> </dd> <dt>
+<code>byteorder : str</code> </dt> <dd>
+<p class="first last">Can be “&gt;”, “&lt;”, “little”, or “big”. default is <code>sys.byteorder</code>.</p> </dd> <dt>
+<code>time_stamp : datetime</code> </dt> <dd>
+<p class="first last">A datetime to use as file creation date. Default is the current time.</p> </dd> <dt>
+<code>data_label : str, optional</code> </dt> <dd>
+<p class="first last">A label for the data set. Must be 80 characters or smaller.</p> </dd> <dt>
+<code>variable_labels : dict</code> </dt> <dd>
+<p class="first">Dictionary containing columns as keys and variable labels as values. Each label must be 80 characters or smaller.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> <dt>
+<code>version : {114, 117}, default 114</code> </dt> <dd>
+<p class="first">Version to use in the output dta file. Version 114 can be used read by Stata 10 and later. Version 117 can be read by Stata 13 or later. Version 114 limits string variables to 244 characters or fewer while 117 allows strings with lengths up to 2,000,000 characters.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> <dt>
+<code>convert_strl : list, optional</code> </dt> <dd>
+<p class="first">List of column names to convert to string columns to Stata StrL format. Only available if version is 117. Storing strings in the StrL format can produce smaller dta files if strings have more than 8 characters and values are repeated.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.23.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>NotImplementedError</dt> <dd>
+<ul class="first last simple"> <li>If datetimes contain timezone information</li> <li>Column dtype is not representable in Stata</li> </ul> </dd> <dt>ValueError</dt> <dd>
+<ul class="first simple"> <li>Columns listed in convert_dates are neither datetime64[ns] or datetime.datetime</li> <li>Column listed in convert_dates is not in DataFrame</li> <li>Categorical label contains more than 32,000 characters</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.read_stata.html#pandas.read_stata" title="pandas.read_stata"><code>read_stata</code></a>
+</dt> <dd>Import Stata data files.</dd> <dt>
+<code>io.stata.StataWriter</code> </dt> <dd>Low-level writer for Stata data files.</dd> <dt>
+<code>io.stata.StataWriter117</code> </dt> <dd>Low-level writer for version 117 files.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'animal': ['falcon', 'parrot', 'falcon',
+...                               'parrot'],
+...                    'speed': [350, 18, 361, 15]})
+&gt;&gt;&gt; df.to_stata('animals.dta')  # doctest: +SKIP
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_stata.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.to_stata.html</a>
+  </p>
+</div>

@@ -1,0 +1,55 @@
+<h1 id="pandas-dataframe-shift">pandas.DataFrame.shift</h1> <dl class="method"> <dt id="pandas.DataFrame.shift">
+<code>DataFrame.shift(self, periods=1, freq=None, axis=0, fill_value=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L4261-L4265"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Shift index by desired number of periods with an optional time <code>freq</code>.</p> <p>When <code>freq</code> is not passed, shift the index without realigning the data. If <code>freq</code> is passed (in this case, the index must be date or datetime, or it will raise a <code>NotImplementedError</code>), the index will be increased using the periods and the <code>freq</code>.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>periods : int</code> </dt> <dd>
+<p class="first last">Number of periods to shift. Can be positive or negative.</p> </dd> <dt>
+<code>freq : DateOffset, tseries.offsets, timedelta, or str, optional</code> </dt> <dd>
+<p class="first last">Offset to use from the tseries module or time rule (e.g. ‘EOM’). If <code>freq</code> is specified then the index values are shifted but the data is not realigned. That is, use <code>freq</code> if you would like to extend the index when shifting and preserve the original data.</p> </dd> <dt>
+<code>axis : {0 or ‘index’, 1 or ‘columns’, None}, default None</code> </dt> <dd>
+<p class="first last">Shift direction.</p> </dd> <dt>
+<code>fill_value : object, optional</code> </dt> <dd>
+<p class="first">The scalar value to use for newly introduced missing values. the default depends on the dtype of <code>self</code>. For numeric data, <code>np.nan</code> is used. For datetime, timedelta, or period data, etc. <code>NaT</code> is used. For extension dtypes, <code>self.dtype.na_value</code> is used.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.24.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>DataFrame</dt> <dd>
+<p class="first last">Copy of input object, shifted.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.shift.html#pandas.Index.shift" title="pandas.Index.shift"><code>Index.shift</code></a>
+</dt> <dd>Shift values of Index.</dd> <dt>
+<code>DatetimeIndex.shift</code> </dt> <dd>Shift values of DatetimeIndex.</dd> <dt>
+<code>PeriodIndex.shift</code> </dt> <dd>Shift values of PeriodIndex.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.tshift.html#pandas.DataFrame.tshift" title="pandas.DataFrame.tshift"><code>tshift</code></a>
+</dt> <dd>Shift the time index, using the index’s frequency if available.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'Col1': [10, 20, 15, 30, 45],
+...                    'Col2': [13, 23, 18, 33, 48],
+...                    'Col3': [17, 27, 22, 37, 52]})
+</pre> <pre data-language="python">&gt;&gt;&gt; df.shift(periods=3)
+   Col1  Col2  Col3
+0   NaN   NaN   NaN
+1   NaN   NaN   NaN
+2   NaN   NaN   NaN
+3  10.0  13.0  17.0
+4  20.0  23.0  27.0
+</pre> <pre data-language="python">&gt;&gt;&gt; df.shift(periods=1, axis='columns')
+   Col1  Col2  Col3
+0   NaN  10.0  13.0
+1   NaN  20.0  23.0
+2   NaN  15.0  18.0
+3   NaN  30.0  33.0
+4   NaN  45.0  48.0
+</pre> <pre data-language="python">&gt;&gt;&gt; df.shift(periods=3, fill_value=0)
+   Col1  Col2  Col3
+0     0     0     0
+1     0     0     0
+2     0     0     0
+3    10    13    17
+4    20    23    27
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.shift.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.shift.html</a>
+  </p>
+</div>

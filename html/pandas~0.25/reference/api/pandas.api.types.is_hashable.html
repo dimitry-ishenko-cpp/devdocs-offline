@@ -1,0 +1,18 @@
+<h1 id="pandas-api-types-is-hashable">pandas.api.types.is_hashable</h1> <dl class="function"> <dt id="pandas.api.types.is_hashable">
+<code>pandas.api.types.is_hashable(obj)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/dtypes/inference.py#L386-L420"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return True if hash(obj) will succeed, False otherwise.</p> <p>Some types will pass a test against collections.abc.Hashable but fail when they are actually hashed with hash().</p> <p>Distinguish between these and other types by trying the call to hash() and seeing if they raise TypeError.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>bool</dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; a = ([],)
+&gt;&gt;&gt; isinstance(a, collections.abc.Hashable)
+True
+&gt;&gt;&gt; is_hashable(a)
+False
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_hashable.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.api.types.is_hashable.html</a>
+  </p>
+</div>

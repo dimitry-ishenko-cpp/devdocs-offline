@@ -1,0 +1,68 @@
+<h1 id="pandas-categoricalindex">pandas.CategoricalIndex</h1> <dl class="class"> <dt id="pandas.CategoricalIndex">
+<code>class pandas.CategoricalIndex</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/category.py#L56-L949"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Index based on an underlying <a class="reference internal" href="pandas.categorical.html#pandas.Categorical" title="pandas.Categorical"><code>Categorical</code></a>.</p> <p>CategoricalIndex, like Categorical, can only take on a limited, and usually fixed, number of possible values (<code>categories</code>). Also, like Categorical, it might have an order, but numerical operations (additions, divisions, …) are not possible.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>data : array-like (1-dimensional)</code> </dt> <dd>
+<p class="first last">The values of the categorical. If <code>categories</code> are given, values not in <code>categories</code> will be replaced with NaN.</p> </dd> <dt>
+<code>categories : index-like, optional</code> </dt> <dd>
+<p class="first last">The categories for the categorical. Items need to be unique. If the categories are not given here (and also not in <code>dtype</code>), they will be inferred from the <code>data</code>.</p> </dd> <dt>
+<code>ordered : bool, optional</code> </dt> <dd>
+<p class="first last">Whether or not this categorical is treated as an ordered categorical. If not given here or in <code>dtype</code>, the resulting categorical will be unordered.</p> </dd> <dt>
+<code>dtype : CategoricalDtype or the string “category”, optional</code> </dt> <dd>
+<p class="first">If <a class="reference internal" href="pandas.categoricaldtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code>CategoricalDtype</code></a>, cannot be used together with <code>categories</code> or <code>ordered</code>.</p> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.21.0.</span></p> </div> </dd> <dt>
+<code>copy : bool, default False</code> </dt> <dd>
+<p class="first last">Make a copy of input ndarray.</p> </dd> <dt>
+<code>name : object, optional</code> </dt> <dd>
+<p class="first last">Name to be stored in the index.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Raises:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>ValueError</dt> <dd>
+<p class="first last">If the categories do not validate.</p> </dd> <dt>TypeError</dt> <dd>
+<p class="first last">If an explicit <code>ordered=True</code> is given but no <code>categories</code> and the <code>values</code> are not sortable.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.index.html#pandas.Index" title="pandas.Index"><code>Index</code></a>
+</dt> <dd>The base pandas Index type.</dd> <dt>
+ <a class="reference internal" href="pandas.categorical.html#pandas.Categorical" title="pandas.Categorical"><code>Categorical</code></a>
+</dt> <dd>A categorical array.</dd> <dt>
+ <a class="reference internal" href="pandas.categoricaldtype.html#pandas.CategoricalDtype" title="pandas.CategoricalDtype"><code>CategoricalDtype</code></a>
+</dt> <dd>Type for categorical data.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>See the <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/advanced.html#categoricalindex">user guide</a> for more.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.CategoricalIndex(['a', 'b', 'c', 'a', 'b', 'c'])
+CategoricalIndex(['a', 'b', 'c', 'a', 'b', 'c'], categories=['a', 'b', 'c'], ordered=False, dtype='category')  # noqa
+</pre> <p><code>CategoricalIndex</code> can also be instantiated from a <code>Categorical</code>:</p> <pre data-language="python">&gt;&gt;&gt; c = pd.Categorical(['a', 'b', 'c', 'a', 'b', 'c'])
+&gt;&gt;&gt; pd.CategoricalIndex(c)
+CategoricalIndex(['a', 'b', 'c', 'a', 'b', 'c'], categories=['a', 'b', 'c'], ordered=False, dtype='category')  # noqa
+</pre> <p>Ordered <code>CategoricalIndex</code> can have a min and max value.</p> <pre data-language="python">&gt;&gt;&gt; ci = pd.CategoricalIndex(['a','b','c','a','b','c'], ordered=True,
+...                          categories=['c', 'b', 'a'])
+&gt;&gt;&gt; ci
+CategoricalIndex(['a', 'b', 'c', 'a', 'b', 'c'], categories=['c', 'b', 'a'], ordered=True, dtype='category')  # noqa
+&gt;&gt;&gt; ci.min()
+'c'
+</pre> <h4 class="rubric">Attributes</h4> <table class="docutils">   <tr>
+<td><strong>codes</strong></td> <td> </td> </tr> <tr>
+<td><strong>categories</strong></td> <td> </td> </tr> <tr>
+<td><strong>ordered</strong></td> <td> </td> </tr>  </table> <h4 class="rubric">Methods</h4> <table class="longtable docutils">   <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.rename_categories.html#pandas.CategoricalIndex.rename_categories" title="pandas.CategoricalIndex.rename_categories"><code>rename_categories</code></a>(self, \*args, \*\*kwargs)</td> <td>Rename categories.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.reorder_categories.html#pandas.CategoricalIndex.reorder_categories" title="pandas.CategoricalIndex.reorder_categories"><code>reorder_categories</code></a>(self, \*args, \*\*kwargs)</td> <td>Reorder categories as specified in new_categories.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.add_categories.html#pandas.CategoricalIndex.add_categories" title="pandas.CategoricalIndex.add_categories"><code>add_categories</code></a>(self, \*args, \*\*kwargs)</td> <td>Add new categories.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.remove_categories.html#pandas.CategoricalIndex.remove_categories" title="pandas.CategoricalIndex.remove_categories"><code>remove_categories</code></a>(self, \*args, \*\*kwargs)</td> <td>Remove the specified categories.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.remove_unused_categories.html#pandas.CategoricalIndex.remove_unused_categories" title="pandas.CategoricalIndex.remove_unused_categories"><code>remove_unused_categories</code></a>(self, \*args, …)</td> <td>Remove categories which are not used.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.set_categories.html#pandas.CategoricalIndex.set_categories" title="pandas.CategoricalIndex.set_categories"><code>set_categories</code></a>(self, \*args, \*\*kwargs)</td> <td>Set the categories to the specified new_categories.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.as_ordered.html#pandas.CategoricalIndex.as_ordered" title="pandas.CategoricalIndex.as_ordered"><code>as_ordered</code></a>(self, \*args, \*\*kwargs)</td> <td>Set the Categorical to be ordered.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.as_unordered.html#pandas.CategoricalIndex.as_unordered" title="pandas.CategoricalIndex.as_unordered"><code>as_unordered</code></a>(self, \*args, \*\*kwargs)</td> <td>Set the Categorical to be unordered.</td> </tr> <tr>
+<td>
+<a class="reference internal" href="pandas.categoricalindex.map.html#pandas.CategoricalIndex.map" title="pandas.CategoricalIndex.map"><code>map</code></a>(self, mapper)</td> <td>Map values using input correspondence (a dict, Series, or function).</td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.CategoricalIndex.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.CategoricalIndex.html</a>
+  </p>
+</div>

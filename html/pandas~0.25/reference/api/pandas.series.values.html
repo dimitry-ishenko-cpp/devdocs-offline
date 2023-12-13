@@ -1,0 +1,28 @@
+<h1 id="pandas-series-values">pandas.Series.values</h1> <dl class="attribute"> <dt id="pandas.Series.values">
+<code>Series.values</code> </dt> <dd>
+<p>Return Series as ndarray or ndarray-like depending on the dtype.</p> <div class="admonition warning"> <p class="first admonition-title">Warning</p> <p class="last">We recommend using <a class="reference internal" href="pandas.series.array.html#pandas.Series.array" title="pandas.Series.array"><code>Series.array</code></a> or <a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy()</code></a>, depending on whether you need a reference to the underlying data or a NumPy array.</p> </div> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>numpy.ndarray or ndarray-like</dt>  </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.series.array.html#pandas.Series.array" title="pandas.Series.array"><code>Series.array</code></a>
+</dt> <dd>Reference to the underlying data.</dd> <dt>
+ <a class="reference internal" href="pandas.series.to_numpy.html#pandas.Series.to_numpy" title="pandas.Series.to_numpy"><code>Series.to_numpy</code></a>
+</dt> <dd>A NumPy array representing the underlying data.</dd> </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.Series([1, 2, 3]).values
+array([1, 2, 3])
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Series(list('aabc')).values
+array(['a', 'a', 'b', 'c'], dtype=object)
+</pre> <pre data-language="python">&gt;&gt;&gt; pd.Series(list('aabc')).astype('category').values
+[a, a, b, c]
+Categories (3, object): [a, b, c]
+</pre> <p>Timezone aware datetime data is converted to UTC:</p> <pre data-language="python">&gt;&gt;&gt; pd.Series(pd.date_range('20130101', periods=3,
+...                         tz='US/Eastern')).values
+array(['2013-01-01T05:00:00.000000000',
+       '2013-01-02T05:00:00.000000000',
+       '2013-01-03T05:00:00.000000000'], dtype='datetime64[ns]')
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.values.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.Series.values.html</a>
+  </p>
+</div>

@@ -1,0 +1,22 @@
+<h1 id="pandas-dataframe-duplicated">pandas.DataFrame.duplicated</h1> <dl class="method"> <dt id="pandas.DataFrame.duplicated">
+<code>DataFrame.duplicated(self, subset=None, keep='first')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L4898-L4952"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return boolean Series denoting duplicate rows, optionally only considering certain columns.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>subset : column label or sequence of labels, optional</code> </dt> <dd>
+<p class="first last">Only consider certain columns for identifying duplicates, by default use all of the columns</p> </dd> <dt>
+<code>keep : {‘first’, ‘last’, False}, default ‘first’</code> </dt> <dd>
+<ul class="first last simple"> <li>
+<code>first</code> : Mark duplicates as <code>True</code> except for the first occurrence.</li> <li>
+<code>last</code> : Mark duplicates as <code>True</code> except for the last occurrence.</li> <li>False : Mark all duplicates as <code>True</code>.</li> </ul> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>Series</dt>  </dl> </td> </tr>  </table> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.duplicated.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.duplicated.html</a>
+  </p>
+</div>

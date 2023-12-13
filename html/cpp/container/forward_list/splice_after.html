@@ -1,0 +1,105 @@
+    <h1 id="firstHeading" class="firstHeading">std::forward_list&lt;T,Allocator&gt;::splice_after</h1>            <table class="t-dcl-begin"> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">void splice_after( const_iterator pos, forward_list&amp; other );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">void splice_after( const_iterator pos, forward_list&amp;&amp; other );</pre>
+</td> <td> (1) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">void splice_after( const_iterator pos, forward_list&amp; other,
+                   const_iterator it );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">void splice_after( const_iterator pos, forward_list&amp;&amp; other,
+                   const_iterator it );</pre>
+</td> <td> (2) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">void splice_after( const_iterator pos, forward_list&amp; other,
+                   const_iterator first, const_iterator last );</pre>
+</td> <td> (3) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr> <tr class="t-dcl t-since-cxx11"> <td> <pre data-language="cpp">void splice_after( const_iterator pos, forward_list&amp;&amp; other,
+                   const_iterator first, const_iterator last );</pre>
+</td> <td> (3) </td> <td> <span class="t-mark-rev t-since-cxx11">(since C++11)</span> </td> </tr>  </table> <p>Moves elements from another <code>forward_list</code> to <code>*this</code>.</p>
+<p>No elements are copied. <code>pos</code> must be either a dereferenceable valid iterator into <code>*this</code> or the <code><a href="before_begin.html" title="cpp/container/forward list/before begin">before_begin()</a></code> iterator (in particular, <code><a href="end.html" title="cpp/container/forward list/end">end()</a></code> is not a valid argument for <code>pos</code>). The behavior is undefined if <code>get_allocator() != other.get_allocator()</code>. No iterators or references become invalidated, the iterators to the moved elements now refer into <code>*this</code>, not into <code>other</code>.</p>
+<div class="t-li1">
+<span class="t-li">1)</span> Moves all elements from <code>other</code> into <code>*this</code>. The elements are inserted after the element pointed to by <code>pos</code>. The container <code>other</code> becomes empty after the operation. The behavior is undefined if <code>other</code> refers to the same object as <code>*this</code>.</div> <div class="t-li1">
+<span class="t-li">2)</span> Moves the element pointed to by the iterator following <code>it</code> from <code>other</code> into <code>*this</code>. The element is inserted after the element pointed to by <code>pos</code>. Has no effect if <code>pos == it</code> or if <code>pos == ++it</code>.</div> <div class="t-li1">
+<span class="t-li">3)</span> Moves the elements in the range <code>(first, last)</code> from <code>other</code> into <code>*this</code>. The elements are inserted after the element pointed to by <code>pos</code>. The element pointed-to by <code>first</code> is not moved. The behavior is undefined if <code>pos</code> is an iterator in the range <code>(first, last)</code>.</div>  <h3 id="Parameters"> Parameters</h3> <table class="t-par-begin"> <tr class="t-par"> <td> pos </td> <td> - </td> <td> element after which the content will be inserted </td>
+</tr> <tr class="t-par"> <td> other </td> <td> - </td> <td> another container to move the content from </td>
+</tr> <tr class="t-par"> <td> it </td> <td> - </td> <td> iterator preceding the iterator to the element to move from <code>other</code> to <code>*this</code> </td>
+</tr> <tr class="t-par"> <td> first, last </td> <td> - </td> <td> the range of elements to move from <code>other</code> to <code>*this</code> </td>
+</tr>
+</table> <h3 id="Return_value"> Return value</h3> <p>(none).</p>
+<h3 id="Exceptions"> Exceptions</h3> <p>Throws nothing.</p>
+<h3 id="Complexity"> Complexity</h3> <div class="t-li1">
+<span class="t-li">1)</span> Linear in the size of <code>other</code>
+</div> <div class="t-li1">
+<span class="t-li">2)</span> Constant</div> <div class="t-li1">
+<span class="t-li">3)</span> Linear in <code><a href="http://en.cppreference.com/w/cpp/iterator/distance"><span class="kw676">std::<span class="me2">distance</span></span></a><span class="br0">(</span>first, last<span class="br0">)</span></code>
+</div> <h3 id="Example"> Example</h3> <div class="t-example"> <div class="cpp source-cpp"><pre data-language="cpp">#include &lt;algorithm&gt;
+#include &lt;cassert&gt;
+#include &lt;forward_list&gt;
+#include &lt;initializer_list&gt;
+#include &lt;iostream&gt;
+ 
+using F = std::forward_list&lt;int&gt;;
+ 
+std::ostream&amp; operator&lt;&lt; (std::ostream&amp; os, F const&amp; l)
+{
+    for (int e : l)
+        os &lt;&lt; e &lt;&lt; ' ';
+    return os;
+}
+ 
+int main()
+{
+    // Demonstrate the meaning of open interval (first, last) in the 3rd
+    // overload of splice_after(): the first element of l1 is not moved.
+    {
+        F l1 = { 1, 2, 3, 4, 5 };
+        F l2 = { 10, 11, 12 };
+ 
+        l2.splice_after(l2.cbegin(), l1, l1.cbegin(), l1.cend());
+        // not equivalent to l2.splice_after(l2.cbegin(), l1);
+        // which is equivalent to
+        // l2.splice_after(l2.cbegin(), l1, l1.cbefore_begin(), l1.end());
+ 
+        std::cout &lt;&lt; "l1: " &lt;&lt; l1 &lt;&lt; "\n"
+                     "l2: " &lt;&lt; l2 &lt;&lt; '\n';
+    }
+ 
+ 
+    // Compare two given lists and abort the program if they are not equal.
+    auto assert_equ = [] (F const&amp; p, std::initializer_list&lt;int&gt; const&amp; q)
+    {
+        assert(std::ranges::equal(p, q));
+    };
+ 
+    // The following code demonstrates all three overloads (1),..(3).
+ 
+    {
+        F x = { 1, 2, 3, 4, 5 };
+        F y = { 10, 11, 12 };
+        x.splice_after(x.cbegin(), y); // (1)
+        assert_equ( x, { 1, 10, 11, 12, 2, 3, 4, 5 } );
+        assert_equ( y, { } );
+    }
+ 
+    {
+        F x = { 1, 2, 3, 4, 5 };
+        F y = { 10, 11, 12 };
+        x.splice_after(x.cbegin(), y, y.cbegin()); // (2)
+        assert_equ( x, { 1, 11, 2, 3, 4, 5 } );
+        assert_equ( y, { 10, 12 } );
+    }
+ 
+    {
+        F x = { 1, 2, 3, 4, 5 };
+        F y = { 10, 11, 12 };
+        x.splice_after(x.cbegin(), y, y.cbegin(), y.cend()); // (3)
+        assert_equ( x, { 1, 11, 12, 2, 3, 4, 5 } );
+        assert_equ( y, { 10 } );
+    }
+}</pre></div> <p>Output:</p>
+<div class="text source-text"><pre data-language="c">l1: 1
+l2: 10 2 3 4 5 11 12</pre></div> </div> <h3 id="See_also"> See also</h3> <table class="t-dsc-begin"> <tr class="t-dsc"> <td> <div><a href="merge.html" title="cpp/container/forward list/merge"> <span class="t-lines"><span>merge</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> merges two sorted lists <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="remove.html" title="cpp/container/forward list/remove"> <span class="t-lines"><span>remove</span><span>remove_if</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> removes elements satisfying specific criteria <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> <tr class="t-dsc"> <td> <div><a href="before_begin.html" title="cpp/container/forward list/before begin"> <span class="t-lines"><span>before_begin</span><span>cbefore_begin</span></span></a></div>
+<div><span class="t-lines"><span><span class="t-mark-rev t-since-cxx11">(C++11)</span></span></span></div> </td> <td> returns an iterator to the element before beginning <br> <span class="t-mark">(public member function)</span>  </td>
+</tr> </table>           <div class="_attribution">
+  <p class="_attribution-p">
+    &copy; cppreference.com<br>Licensed under the Creative Commons Attribution-ShareAlike Unported License v3.0.<br>
+    <a href="https://en.cppreference.com/w/cpp/container/forward_list/splice_after" class="_attribution-link">https://en.cppreference.com/w/cpp/container/forward_list/splice_after</a>
+  </p>
+</div>

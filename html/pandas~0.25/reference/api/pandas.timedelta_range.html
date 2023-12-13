@@ -1,0 +1,43 @@
+<h1 id="pandas-timedelta-range">pandas.timedelta_range</h1> <dl class="function"> <dt id="pandas.timedelta_range">
+<code>pandas.timedelta_range(start=None, end=None, periods=None, freq=None, name=None, closed=None)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/indexes/timedeltas.py#L737-L810"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a fixed frequency TimedeltaIndex, with day as the default frequency</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>start : string or timedelta-like, default None</code> </dt> <dd>
+<p class="first last">Left bound for generating timedeltas</p> </dd> <dt>
+<code>end : string or timedelta-like, default None</code> </dt> <dd>
+<p class="first last">Right bound for generating timedeltas</p> </dd> <dt>
+<code>periods : integer, default None</code> </dt> <dd>
+<p class="first last">Number of periods to generate</p> </dd> <dt>
+<code>freq : string or DateOffset, default ‘D’</code> </dt> <dd>
+<p class="first last">Frequency strings can have multiples, e.g. ‘5H’</p> </dd> <dt>
+<code>name : string, default None</code> </dt> <dd>
+<p class="first last">Name of the resulting TimedeltaIndex</p> </dd> <dt>
+<code>closed : string, default None</code> </dt> <dd>
+<p class="first last">Make the interval closed with respect to the given frequency to the ‘left’, ‘right’, or both sides (None)</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>rng : TimedeltaIndex</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>Of the four parameters <code>start</code>, <code>end</code>, <code>periods</code>, and <code>freq</code>, exactly three must be specified. If <code>freq</code> is omitted, the resulting <code>TimedeltaIndex</code> will have <code>periods</code> linearly spaced elements between <code>start</code> and <code>end</code> (closed on both sides).</p> <p>To learn more about the frequency strings, please see <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html#offset-aliases">this link</a>.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; pd.timedelta_range(start='1 day', periods=4)
+TimedeltaIndex(['1 days', '2 days', '3 days', '4 days'],
+               dtype='timedelta64[ns]', freq='D')
+</pre> <p>The <code>closed</code> parameter specifies which endpoint is included. The default behavior is to include both endpoints.</p> <pre data-language="python">&gt;&gt;&gt; pd.timedelta_range(start='1 day', periods=4, closed='right')
+TimedeltaIndex(['2 days', '3 days', '4 days'],
+               dtype='timedelta64[ns]', freq='D')
+</pre> <p>The <code>freq</code> parameter specifies the frequency of the TimedeltaIndex. Only fixed frequencies can be passed, non-fixed frequencies such as ‘M’ (month end) will raise.</p> <pre data-language="python">&gt;&gt;&gt; pd.timedelta_range(start='1 day', end='2 days', freq='6H')
+TimedeltaIndex(['1 days 00:00:00', '1 days 06:00:00', '1 days 12:00:00',
+                '1 days 18:00:00', '2 days 00:00:00'],
+               dtype='timedelta64[ns]', freq='6H')
+</pre> <p>Specify <code>start</code>, <code>end</code>, and <code>periods</code>; the frequency is generated automatically (linearly spaced).</p> <pre data-language="python">&gt;&gt;&gt; pd.timedelta_range(start='1 day', end='5 days', periods=4)
+TimedeltaIndex(['1 days 00:00:00', '2 days 08:00:00', '3 days 16:00:00',
+            '5 days 00:00:00'],
+           dtype='timedelta64[ns]', freq=None)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.timedelta_range.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.timedelta_range.html</a>
+  </p>
+</div>

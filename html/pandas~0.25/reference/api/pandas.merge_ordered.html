@@ -1,0 +1,60 @@
+<h1 id="pandas-merge-ordered">pandas.merge_ordered</h1> <dl class="function"> <dt id="pandas.merge_ordered">
+<code>pandas.merge_ordered(left, right, on=None, left_on=None, right_on=None, left_by=None, right_by=None, fill_method=None, suffixes=('_x', '_y'), how='outer')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/reshape/merge.py#L167-L289"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Perform merge with optional filling/interpolation designed for ordered data like time series data. Optionally perform group-wise merge (see examples)</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>left : DataFrame</code> </dt>  <dt>
+<code>right : DataFrame</code> </dt>  <dt>
+<code>on : label or list</code> </dt> <dd>
+<p class="first last">Field names to join on. Must be found in both DataFrames.</p> </dd> <dt>
+<code>left_on : label or list, or array-like</code> </dt> <dd>
+<p class="first last">Field names to join on in left DataFrame. Can be a vector or list of vectors of the length of the DataFrame to use a particular vector as the join key instead of columns</p> </dd> <dt>
+<code>right_on : label or list, or array-like</code> </dt> <dd>
+<p class="first last">Field names to join on in right DataFrame or vector/list of vectors per left_on docs</p> </dd> <dt>
+<code>left_by : column name or list of column names</code> </dt> <dd>
+<p class="first last">Group left DataFrame by group columns and merge piece by piece with right DataFrame</p> </dd> <dt>
+<code>right_by : column name or list of column names</code> </dt> <dd>
+<p class="first last">Group right DataFrame by group columns and merge piece by piece with left DataFrame</p> </dd> <dt>
+<code>fill_method : {‘ffill’, None}, default None</code> </dt> <dd>
+<p class="first last">Interpolation method for data</p> </dd> <dt>
+<code>suffixes : Sequence, default is (“_x”, “_y”)</code> </dt> <dd>
+<p class="first">A length-2 sequence where each element is optionally a string indicating the suffix to add to overlapping column names in <code>left</code> and <code>right</code> respectively. Pass a value of <code>None</code> instead of a string to indicate that the column name from <code>left</code> or <code>right</code> should be left as-is, with no suffix. At least one of the values must not be None.</p> <div class="last versionchanged"> <p><span class="versionmodified">Changed in version 0.25.0.</span></p> </div> </dd> <dt>
+<code>how : {‘left’, ‘right’, ‘outer’, ‘inner’}, default ‘outer’</code> </dt> <dd>
+<ul class="first simple"> <li>left: use only keys from left frame (SQL: left outer join)</li> <li>right: use only keys from right frame (SQL: right outer join)</li> <li>outer: use union of keys from both frames (SQL: full outer join)</li> <li>inner: use intersection of keys from both frames (SQL: inner join)</li> </ul> <div class="last versionadded"> <p><span class="versionmodified">New in version 0.19.0.</span></p> </div> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>merged : DataFrame</code> </dt> <dd>
+<p class="first last">The output type will the be same as ‘left’, if it is a subclass of DataFrame.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.merge.html#pandas.merge" title="pandas.merge"><code>merge</code></a>
+</dt>  <dt>
+ <a class="reference internal" href="pandas.merge_asof.html#pandas.merge_asof" title="pandas.merge_asof"><code>merge_asof</code></a>
+</dt>  </dl> </div> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; A                      &gt;&gt;&gt; B
+      key  lvalue group        key  rvalue
+0   a       1     a        0     b       1
+1   c       2     a        1     c       2
+2   e       3     a        2     d       3
+3   a       1     b
+4   c       2     b
+5   e       3     b
+</pre> <pre data-language="python">&gt;&gt;&gt; merge_ordered(A, B, fill_method='ffill', left_by='group')
+  group key  lvalue  rvalue
+0     a   a       1     NaN
+1     a   b       1     1.0
+2     a   c       2     2.0
+3     a   d       2     3.0
+4     a   e       3     3.0
+5     b   a       1     NaN
+6     b   b       1     1.0
+7     b   c       2     2.0
+8     b   d       2     3.0
+9     b   e       3     3.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.merge_ordered.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.merge_ordered.html</a>
+  </p>
+</div>

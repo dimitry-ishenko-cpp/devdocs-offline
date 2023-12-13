@@ -1,0 +1,46 @@
+<h1 id="pandas-dataframe-itertuples">pandas.DataFrame.itertuples</h1> <dl class="method"> <dt id="pandas.DataFrame.itertuples">
+<code>DataFrame.itertuples(self, index=True, name='Pandas')</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/frame.py#L892-L970"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Iterate over DataFrame rows as namedtuples.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>index : bool, default True</code> </dt> <dd>
+<p class="first last">If True, return the index as the first element of the tuple.</p> </dd> <dt>
+<code>name : str or None, default “Pandas”</code> </dt> <dd>
+<p class="first last">The name of the returned namedtuples or None to return regular tuples.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>iterator</dt> <dd>
+<p class="first last">An object to iterate over namedtuples for each row in the DataFrame with the first field possibly being the index and following fields being the column values.</p> </dd> </dl> </td> </tr>  </table> <div class="admonition seealso"> <p class="first admonition-title">See also</p> <dl class="last docutils"> <dt>
+ <a class="reference internal" href="pandas.dataframe.iterrows.html#pandas.DataFrame.iterrows" title="pandas.DataFrame.iterrows"><code>DataFrame.iterrows</code></a>
+</dt> <dd>Iterate over DataFrame rows as (index, Series) pairs.</dd> <dt>
+ <a class="reference internal" href="pandas.dataframe.items.html#pandas.DataFrame.items" title="pandas.DataFrame.items"><code>DataFrame.items</code></a>
+</dt> <dd>Iterate over (column name, Series) pairs.</dd> </dl> </div> <h4 class="rubric">Notes</h4> <p>The column names will be renamed to positional names if they are invalid Python identifiers, repeated, or start with an underscore. With a large number of columns (&gt;255), regular tuples are returned.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'num_legs': [4, 2], 'num_wings': [0, 2]},
+...                   index=['dog', 'hawk'])
+&gt;&gt;&gt; df
+      num_legs  num_wings
+dog          4          0
+hawk         2          2
+&gt;&gt;&gt; for row in df.itertuples():
+...     print(row)
+...
+Pandas(Index='dog', num_legs=4, num_wings=0)
+Pandas(Index='hawk', num_legs=2, num_wings=2)
+</pre> <p>By setting the <code>index</code> parameter to False we can remove the index as the first element of the tuple:</p> <pre data-language="python">&gt;&gt;&gt; for row in df.itertuples(index=False):
+...     print(row)
+...
+Pandas(num_legs=4, num_wings=0)
+Pandas(num_legs=2, num_wings=2)
+</pre> <p>With the <code>name</code> parameter set we set a custom name for the yielded namedtuples:</p> <pre data-language="python">&gt;&gt;&gt; for row in df.itertuples(name='Animal'):
+...     print(row)
+...
+Animal(Index='dog', num_legs=4, num_wings=0)
+Animal(Index='hawk', num_legs=2, num_wings=2)
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.itertuples.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.DataFrame.itertuples.html</a>
+  </p>
+</div>

@@ -1,0 +1,31 @@
+<h1 id="pandas-core-groupby-dataframegroupby-filter">pandas.core.groupby.DataFrameGroupBy.filter</h1> <dl class="method"> <dt id="pandas.core.groupby.DataFrameGroupBy.filter">
+<code>DataFrameGroupBy.filter(self, func, dropna=True, *args, **kwargs)</code> <a class="reference external" href="http://github.com/pandas-dev/pandas/blob/v0.25.0/pandas/core/groupby/generic.py#L674-L735"><span class="viewcode-link">[source]</span></a>
+</dt> <dd>
+<p>Return a copy of a DataFrame excluding elements from groups that do not satisfy the boolean criterion specified by func.</p> <table class="docutils field-list" frame="void" rules="none"> <col class="field-name"> <col class="field-body">  <tr>
+<th class="field-name">Parameters:</th>
+<td class="field-body">
+<dl class="first docutils"> <dt>
+<code>f : function</code> </dt> <dd>
+<p class="first last">Function to apply to each subframe. Should return True or False.</p> </dd> <dt>
+<code>dropna : Drop groups that do not pass the filter. True by default;</code> </dt> <dd>
+<p class="first last">if False, groups that evaluate False are filled with NaNs.</p> </dd> </dl> </td> </tr> <tr>
+<th class="field-name">Returns:</th>
+<td class="field-body">
+<dl class="first last docutils"> <dt>
+<code>filtered : DataFrame</code> </dt>  </dl> </td> </tr>  </table> <h4 class="rubric">Notes</h4> <p>Each subframe is endowed the attribute ‘name’ in case you need to know which group you are working on.</p> <h4 class="rubric">Examples</h4> <pre data-language="python">&gt;&gt;&gt; df = pd.DataFrame({'A' : ['foo', 'bar', 'foo', 'bar',
+...                           'foo', 'bar'],
+...                    'B' : [1, 2, 3, 4, 5, 6],
+...                    'C' : [2.0, 5., 8., 1., 2., 9.]})
+&gt;&gt;&gt; grouped = df.groupby('A')
+&gt;&gt;&gt; grouped.filter(lambda x: x['B'].mean() &gt; 3.)
+     A  B    C
+1  bar  2  5.0
+3  bar  4  1.0
+5  bar  6  9.0
+</pre> </dd>
+</dl><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2008&ndash;2012, AQR Capital Management, LLC, Lambda Foundry, Inc. and PyData Development Team<br>Licensed under the 3-clause BSD License.<br>
+    <a href="https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.filter.html" class="_attribution-link">https://pandas.pydata.org/pandas-docs/version/0.25.0/reference/api/pandas.core.groupby.DataFrameGroupBy.filter.html</a>
+  </p>
+</div>
